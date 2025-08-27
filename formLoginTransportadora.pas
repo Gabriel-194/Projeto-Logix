@@ -13,7 +13,14 @@ type
     Panel2: TPanel;
     Panel3: TPanel;
     Button1: TButton;
-    ComboBox1: TComboBox;
+    Image2: TImage;
+    Label1: TLabel;
+    Label3: TLabel;
+    edtNomeTransportadora: TEdit;
+    Label4: TLabel;
+    edtSenhaTransportadora: TEdit;
+    Label2: TLabel;
+    Shape1: TShape;
     Image1: TImage;
     procedure FormResize(Sender: TObject);
   private
