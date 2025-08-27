@@ -14,14 +14,14 @@ type
     Panel3: TPanel;
     Button1: TButton;
     Image2: TImage;
-    Label1: TLabel;
-    Label3: TLabel;
-    edtNomeTransportadora: TEdit;
-    Label4: TLabel;
-    edtSenhaTransportadora: TEdit;
-    Label2: TLabel;
-    Shape1: TShape;
     Image1: TImage;
+    Shape1: TShape;
+    Label1: TLabel;
+    Edit1: TEdit;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Edit2: TEdit;
     procedure FormResize(Sender: TObject);
   private
     { Private declarations }

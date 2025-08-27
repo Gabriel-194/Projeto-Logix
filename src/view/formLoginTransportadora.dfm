@@ -2,10 +2,10 @@ object Form1: TForm1
   Left = 0
   Top = 0
   BorderStyle = bsSingle
-  Caption = 'login de transportadora'
+  Caption = 'login de usuario'
   ClientHeight = 681
   ClientWidth = 1264
-  Color = clSilver
+  Color = 16368821
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
@@ -28,17 +28,15 @@ object Form1: TForm1
     Align = alClient
     Caption = 'Panel1'
     TabOrder = 0
-    ExplicitWidth = 1112
-    ExplicitHeight = 523
     object Panel2: TPanel
       Left = 640
       Top = 1
       Width = 473
       Height = 529
       Align = alRight
+      Color = 14407121
+      ParentBackground = False
       TabOrder = 0
-      ExplicitLeft = 638
-      ExplicitHeight = 521
       object Image2: TImage
         AlignWithMargins = True
         Left = 4
@@ -1737,69 +1735,6 @@ object Form1: TForm1
       Color = 14407121
       ParentBackground = False
       TabOrder = 1
-      ExplicitLeft = 2
-      ExplicitTop = 5
-      object Label1: TLabel
-        Left = 83
-        Top = 56
-        Width = 82
-        Height = 37
-        Caption = 'LOGIN'
-        Color = 14358562
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = 14358562
-        Font.Height = -27
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label3: TLabel
-        Left = 83
-        Top = 152
-        Width = 299
-        Height = 24
-        Caption = 'Digite o nome da transportadora:'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -18
-        Font.Name = 'Segoe UI Emoji'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object Label4: TLabel
-        Left = 83
-        Top = 221
-        Width = 131
-        Height = 24
-        Caption = 'Digite a senha:'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -18
-        Font.Name = 'Segoe UI Emoji'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object Label2: TLabel
-        Left = 131
-        Top = 341
-        Width = 365
-        Height = 21
-        Caption = 'Ou cadastre uma transportadora clicando aqui'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -16
-        Font.Name = 'Segoe UI Emoji'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object Shape1: TShape
-        Left = 131
-        Top = 368
-        Width = 365
-        Height = 2
-        Pen.Color = 1628985
-      end
       object Image1: TImage
         Left = -1
         Top = -1
@@ -2752,14 +2687,105 @@ object Form1: TForm1
         Proportional = True
         Stretch = True
       end
+      object Shape1: TShape
+        AlignWithMargins = True
+        Left = 186
+        Top = 365
+        Width = 274
+        Height = 1
+        Margins.Left = 185
+        Margins.Right = 175
+        Margins.Bottom = 75
+        Align = alBottom
+        ExplicitLeft = 1
+        ExplicitTop = 376
+        ExplicitWidth = 634
+      end
+      object Label1: TLabel
+        AlignWithMargins = True
+        Left = 186
+        Top = 337
+        Width = 274
+        Height = 25
+        Margins.Left = 185
+        Margins.Top = 0
+        Margins.Right = 175
+        Margins.Bottom = 0
+        Align = alBottom
+        Caption = 'Fa'#231'a seu cadastro clicando aqui!'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -19
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        ExplicitWidth = 271
+      end
+      object Label2: TLabel
+        AlignWithMargins = True
+        Left = 61
+        Top = 261
+        Width = 399
+        Height = 25
+        Margins.Left = 60
+        Margins.Top = 0
+        Margins.Right = 175
+        Margins.Bottom = 0
+        Align = alBottom
+        Caption = 'Senha:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -19
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        ExplicitWidth = 56
+      end
+      object Label3: TLabel
+        AlignWithMargins = True
+        Left = 61
+        Top = 141
+        Width = 571
+        Height = 25
+        Margins.Left = 60
+        Margins.Top = 0
+        Align = alTop
+        Caption = 'Transportadora'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -19
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        ExplicitWidth = 128
+      end
+      object Label4: TLabel
+        AlignWithMargins = True
+        Left = 281
+        Top = 101
+        Width = 74
+        Height = 37
+        Margins.Left = 280
+        Margins.Top = 100
+        Margins.Right = 280
+        Align = alTop
+        Caption = 'Login'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -27
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ExplicitWidth = 72
+      end
       object Button1: TButton
         AlignWithMargins = True
-        Left = 41
+        Left = 61
         Top = 444
-        Width = 554
+        Width = 514
         Height = 34
-        Margins.Left = 40
-        Margins.Right = 40
+        Margins.Left = 60
+        Margins.Right = 60
         Margins.Bottom = 50
         Align = alBottom
         Caption = 'Entrar'
@@ -2770,23 +2796,46 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
         TabOrder = 0
-        ExplicitTop = 436
-        ExplicitWidth = 552
       end
-      object edtNomeTransportadora: TEdit
-        Left = 83
-        Top = 182
-        Width = 456
-        Height = 23
-        TabOrder = 1
-      end
-      object edtSenhaTransportadora: TEdit
+      object Edit1: TEdit
         AlignWithMargins = True
-        Left = 83
-        Top = 251
-        Width = 456
-        Height = 23
+        Left = 61
+        Top = 289
+        Width = 514
+        Height = 33
+        Margins.Left = 60
+        Margins.Right = 60
+        Margins.Bottom = 15
+        Align = alBottom
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -19
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 1
+        TextHint = 'Digite sua senha'
+      end
+      object Edit2: TEdit
+        AlignWithMargins = True
+        Left = 61
+        Top = 169
+        Width = 514
+        Height = 33
+        Margins.Left = 60
+        Margins.Top = 0
+        Margins.Right = 60
+        Margins.Bottom = 0
+        Align = alTop
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -19
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
         TabOrder = 2
+        Text = 'Digite o nome da transportadora'
+        TextHint = 'Digite o nome da transportadora'
       end
     end
   end
