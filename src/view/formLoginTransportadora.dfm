@@ -5,7 +5,7 @@ object Form1: TForm1
   Caption = 'login de usuario'
   ClientHeight = 681
   ClientWidth = 1264
-  Color = 16368821
+  Color = 6957870
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
@@ -28,6 +28,8 @@ object Form1: TForm1
     Align = alClient
     Caption = 'Panel1'
     TabOrder = 0
+    ExplicitWidth = 1112
+    ExplicitHeight = 523
     object Panel2: TPanel
       Left = 640
       Top = 1
@@ -35,8 +37,11 @@ object Form1: TForm1
       Height = 529
       Align = alRight
       Color = 14407121
+      UseDockManager = False
       ParentBackground = False
       TabOrder = 0
+      ExplicitLeft = 638
+      ExplicitHeight = 521
       object Image2: TImage
         AlignWithMargins = True
         Left = 4
@@ -1732,9 +1737,23 @@ object Form1: TForm1
       Margins.Top = 0
       Margins.Bottom = 0
       Align = alClient
+      Anchors = [akLeft, akTop, akBottom]
       Color = 14407121
       ParentBackground = False
       TabOrder = 1
+      ExplicitWidth = 634
+      ExplicitHeight = 521
+      object Shape2: TShape
+        AlignWithMargins = True
+        Left = 144
+        Top = 366
+        Width = 353
+        Height = 35
+        Brush.Color = 14407121
+        Pen.Color = 14179329
+        Shape = stRoundRect
+        Visible = False
+      end
       object Image1: TImage
         Left = -1
         Top = -1
@@ -2687,44 +2706,33 @@ object Form1: TForm1
         Proportional = True
         Stretch = True
       end
-      object Shape1: TShape
-        AlignWithMargins = True
-        Left = 186
-        Top = 365
-        Width = 274
-        Height = 1
-        Margins.Left = 185
-        Margins.Right = 175
-        Margins.Bottom = 75
-        Align = alBottom
-        ExplicitLeft = 1
-        ExplicitTop = 376
-        ExplicitWidth = 634
-      end
       object Label1: TLabel
         AlignWithMargins = True
-        Left = 186
-        Top = 337
-        Width = 274
+        Left = 151
+        Top = 366
+        Width = 334
         Height = 25
-        Margins.Left = 185
+        Margins.Left = 150
         Margins.Top = 0
-        Margins.Right = 175
-        Margins.Bottom = 0
+        Margins.Right = 150
+        Margins.Bottom = 50
         Align = alBottom
-        Caption = 'Fa'#231'a seu cadastro clicando aqui!'
+        Caption = 'Ou cadastre sua empresa clicando aqui!'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -19
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
-        ExplicitWidth = 271
+        OnClick = Label1Click
+        OnMouseEnter = Label1MouseEnter
+        OnMouseLeave = Label1MouseLeave
+        ExplicitWidth = 335
       end
       object Label2: TLabel
         AlignWithMargins = True
         Left = 61
-        Top = 261
+        Top = 245
         Width = 399
         Height = 25
         Margins.Left = 60
@@ -2744,39 +2752,41 @@ object Form1: TForm1
       object Label3: TLabel
         AlignWithMargins = True
         Left = 61
-        Top = 141
+        Top = 169
         Width = 571
         Height = 25
         Margins.Left = 60
-        Margins.Top = 0
+        Margins.Top = 20
         Align = alTop
-        Caption = 'Transportadora'
+        Caption = 'Email:'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -19
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
-        ExplicitWidth = 128
+        ExplicitTop = 161
+        ExplicitWidth = 50
       end
       object Label4: TLabel
         AlignWithMargins = True
-        Left = 281
+        Left = 201
         Top = 101
-        Width = 74
-        Height = 37
-        Margins.Left = 280
+        Width = 234
+        Height = 45
+        Margins.Left = 200
         Margins.Top = 100
-        Margins.Right = 280
+        Margins.Right = 200
         Align = alTop
-        Caption = 'Login'
+        Caption = 'Fa'#231'a seu Login'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -27
+        Font.Color = 6957870
+        Font.Height = -33
         Font.Name = 'Segoe UI'
         Font.Style = [fsBold]
         ParentFont = False
-        ExplicitWidth = 72
+        ExplicitLeft = 221
+        ExplicitWidth = 219
       end
       object Button1: TButton
         AlignWithMargins = True
@@ -2796,17 +2806,22 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
         TabOrder = 0
+        ExplicitTop = 436
+        ExplicitWidth = 512
       end
       object Edit1: TEdit
         AlignWithMargins = True
         Left = 61
-        Top = 289
+        Top = 273
         Width = 514
         Height = 33
         Margins.Left = 60
         Margins.Right = 60
-        Margins.Bottom = 15
+        Margins.Bottom = 60
         Align = alBottom
+        Anchors = [akLeft, akRight]
+        AutoSelect = False
+        AutoSize = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -19
@@ -2815,11 +2830,13 @@ object Form1: TForm1
         ParentFont = False
         TabOrder = 1
         TextHint = 'Digite sua senha'
+        ExplicitTop = 265
+        ExplicitWidth = 512
       end
       object Edit2: TEdit
         AlignWithMargins = True
         Left = 61
-        Top = 169
+        Top = 197
         Width = 514
         Height = 33
         Margins.Left = 60
@@ -2827,6 +2844,9 @@ object Form1: TForm1
         Margins.Right = 60
         Margins.Bottom = 0
         Align = alTop
+        Anchors = [akLeft, akRight]
+        AutoSelect = False
+        AutoSize = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -19
@@ -2834,8 +2854,386 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
         TabOrder = 2
-        Text = 'Digite o nome da transportadora'
-        TextHint = 'Digite o nome da transportadora'
+        TextHint = 'Digite seu email'
+        ExplicitTop = 189
+        ExplicitWidth = 512
+      end
+    end
+    object Panel4: TPanel
+      AlignWithMargins = True
+      Left = 4
+      Top = 1
+      Width = 633
+      Height = 529
+      Margins.Top = 0
+      Margins.Bottom = 0
+      Align = alClient
+      Color = 14407121
+      ParentBackground = False
+      TabOrder = 2
+      Visible = False
+      ExplicitWidth = 631
+      ExplicitHeight = 521
+      object Label6: TLabel
+        AlignWithMargins = True
+        Left = 101
+        Top = 26
+        Width = 431
+        Height = 45
+        Margins.Left = 100
+        Margins.Top = 25
+        Margins.Right = 100
+        Align = alTop
+        Caption = 'Cadastro de transportadora'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = 6957870
+        Font.Height = -33
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ExplicitWidth = 429
+      end
+      object Shape1: TShape
+        Left = 240
+        Top = 453
+        Width = 134
+        Height = 25
+        Brush.Color = 14407121
+        Pen.Color = 14179329
+        Shape = stRoundRect
+        Visible = False
+      end
+      object Label12: TLabel
+        AlignWithMargins = True
+        Left = 251
+        Top = 453
+        Width = 131
+        Height = 25
+        Margins.Left = 250
+        Margins.Right = 250
+        Margins.Bottom = 50
+        Align = alBottom
+        Caption = 'CADASTRAR'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -19
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+        OnMouseEnter = Label12MouseEnter
+        OnMouseLeave = Label12MouseLeave
+        ExplicitLeft = 243
+      end
+      object Panel6: TPanel
+        AlignWithMargins = True
+        Left = 4
+        Top = 158
+        Width = 625
+        Height = 41
+        Margins.Top = 0
+        Margins.Bottom = 0
+        Align = alBottom
+        BevelOuter = bvNone
+        ParentColor = True
+        TabOrder = 0
+        ExplicitLeft = 1
+        ExplicitTop = 162
+        ExplicitWidth = 629
+        object Edit3: TEdit
+          AlignWithMargins = True
+          Left = 10
+          Top = 3
+          Width = 254
+          Height = 35
+          Margins.Left = 10
+          Align = alLeft
+          BevelInner = bvNone
+          BevelOuter = bvNone
+          BorderStyle = bsNone
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -23
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+          TextHint = 'Digite o nome'
+        end
+        object Edit4: TEdit
+          AlignWithMargins = True
+          Left = 361
+          Top = 3
+          Width = 254
+          Height = 35
+          Margins.Left = 1
+          Margins.Right = 10
+          Align = alRight
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -23
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 1
+          TextHint = 'Digite a CNPJ'
+          ExplicitLeft = 365
+          ExplicitHeight = 39
+        end
+      end
+      object Panel9: TPanel
+        AlignWithMargins = True
+        Left = 4
+        Top = 290
+        Width = 625
+        Height = 41
+        Align = alBottom
+        BevelOuter = bvNone
+        ParentColor = True
+        TabOrder = 2
+        ExplicitLeft = 1
+        ExplicitTop = 285
+        ExplicitWidth = 629
+        object Label8: TLabel
+          AlignWithMargins = True
+          Left = 10
+          Top = 3
+          Width = 46
+          Height = 35
+          Margins.Left = 10
+          Align = alLeft
+          Caption = 'CEP'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -27
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+          ExplicitHeight = 37
+        end
+        object Label9: TLabel
+          AlignWithMargins = True
+          Left = 367
+          Top = 3
+          Width = 78
+          Height = 35
+          Margins.Right = 180
+          Align = alRight
+          Caption = 'Senha:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -27
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+          ExplicitLeft = 373
+          ExplicitHeight = 37
+        end
+      end
+      object Panel10: TPanel
+        AlignWithMargins = True
+        Left = 4
+        Top = 334
+        Width = 625
+        Height = 41
+        Margins.Top = 0
+        Margins.Bottom = 75
+        Align = alBottom
+        BevelOuter = bvNone
+        ParentColor = True
+        TabOrder = 3
+        ExplicitTop = 326
+        ExplicitWidth = 623
+        object Edit5: TEdit
+          AlignWithMargins = True
+          Left = 10
+          Top = 3
+          Width = 254
+          Height = 35
+          Margins.Left = 10
+          Align = alLeft
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -23
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+          TextHint = 'Digite o CEP '
+          ExplicitHeight = 39
+        end
+        object Edit6: TEdit
+          AlignWithMargins = True
+          Left = 361
+          Top = 3
+          Width = 254
+          Height = 35
+          Margins.Left = 1
+          Margins.Right = 10
+          Align = alRight
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -23
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 1
+          TextHint = 'Digite a senha'
+          ExplicitLeft = 359
+          ExplicitHeight = 39
+        end
+      end
+      object Panel7: TPanel
+        AlignWithMargins = True
+        Left = 4
+        Top = 202
+        Width = 625
+        Height = 41
+        Align = alBottom
+        BevelOuter = bvNone
+        ParentColor = True
+        TabOrder = 4
+        ExplicitLeft = 1
+        ExplicitTop = 203
+        ExplicitWidth = 629
+        object Label10: TLabel
+          AlignWithMargins = True
+          Left = 10
+          Top = 3
+          Width = 105
+          Height = 35
+          Margins.Left = 10
+          Align = alLeft
+          Caption = 'Telefone:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -27
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+          ExplicitHeight = 37
+        end
+        object Label11: TLabel
+          AlignWithMargins = True
+          Left = 363
+          Top = 3
+          Width = 82
+          Height = 35
+          Margins.Right = 180
+          Align = alRight
+          Caption = 'E-mail:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -27
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+          ExplicitLeft = 369
+          ExplicitHeight = 37
+        end
+      end
+      object Panel8: TPanel
+        AlignWithMargins = True
+        Left = 4
+        Top = 246
+        Width = 625
+        Height = 41
+        Margins.Top = 0
+        Margins.Bottom = 0
+        Align = alBottom
+        BevelOuter = bvNone
+        ParentColor = True
+        TabOrder = 5
+        ExplicitLeft = 1
+        ExplicitTop = 244
+        ExplicitWidth = 629
+        object Edit7: TEdit
+          AlignWithMargins = True
+          Left = 10
+          Top = 3
+          Width = 254
+          Height = 35
+          Margins.Left = 10
+          Align = alLeft
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -23
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+          TextHint = 'Digite o telefone'
+          ExplicitHeight = 39
+        end
+        object Edit8: TEdit
+          AlignWithMargins = True
+          Left = 361
+          Top = 3
+          Width = 254
+          Height = 35
+          Margins.Left = 1
+          Margins.Right = 10
+          Align = alRight
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -23
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 1
+          TextHint = 'Digite o E-mail'
+          ExplicitLeft = 365
+          ExplicitHeight = 39
+        end
+      end
+      object Panel5: TPanel
+        AlignWithMargins = True
+        Left = 4
+        Top = 109
+        Width = 625
+        Height = 49
+        Margins.Bottom = 0
+        Align = alBottom
+        BevelOuter = bvNone
+        ParentColor = True
+        TabOrder = 1
+        ExplicitLeft = 1
+        ExplicitTop = 113
+        ExplicitWidth = 629
+        object Label7: TLabel
+          AlignWithMargins = True
+          Left = 10
+          Top = 3
+          Width = 79
+          Height = 43
+          Margins.Left = 10
+          Align = alLeft
+          Caption = 'Nome:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -27
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+          ExplicitHeight = 37
+        end
+        object Label5: TLabel
+          AlignWithMargins = True
+          Left = 364
+          Top = 3
+          Width = 66
+          Height = 43
+          Margins.Right = 195
+          Align = alRight
+          Caption = 'CNPJ:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -27
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+          ExplicitLeft = 370
+          ExplicitHeight = 37
+        end
       end
     end
   end

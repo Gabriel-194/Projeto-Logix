@@ -127,9 +127,8 @@
             <Form>Form1</Form>
         </DCCReference>
         <DCCReference Include="src\model\uTransportadora.pas"/>
-        <DCCReference Include="src\repository\Unit1.pas">
+        <DCCReference Include="src\repository\Unit2.pas">
             <Form>DataModule1</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <BuildConfiguration Include="Base">
