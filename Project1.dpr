@@ -2,9 +2,12 @@ program Project1;
 
 uses
   Vcl.Forms,
-  formLoginTransportadora in 'src\view\formLoginTransportadora.pas' {Form1},
+  formMain in 'src\view\formMain.pas' {Form1},
   uTransportadora in 'src\model\uTransportadora.pas',
-  Unit2 in 'src\repository\Unit2.pas' {DataModule1: TDataModule};
+  Unit2 in 'src\repository\Unit2.pas' {DataModule1: TDataModule},
+  transpRepository in 'src\repository\transpRepository.pas',
+  transpService in 'src\service\transpService.pas',
+  transpController in 'src\controller\transpController.pas';
 
 {$R *.res}
 

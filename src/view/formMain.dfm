@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   BorderStyle = bsSingle
-  Caption = 'login de usuario'
+  Caption = 'Login '
   ClientHeight = 681
   ClientWidth = 1264
   Color = 6957870
@@ -13,7 +13,6 @@ object Form1: TForm1
   Font.Style = []
   Position = poScreenCenter
   WindowState = wsMaximized
-  OnResize = FormResize
   TextHeight = 15
   object Panel1: TPanel
     AlignWithMargins = True
@@ -30,7 +29,7 @@ object Form1: TForm1
     TabOrder = 0
     ExplicitWidth = 1112
     ExplicitHeight = 523
-    object Panel2: TPanel
+    object PanelImage: TPanel
       Left = 640
       Top = 1
       Width = 473
@@ -1727,7 +1726,7 @@ object Form1: TForm1
         ExplicitLeft = -12
       end
     end
-    object Panel3: TPanel
+    object PanelLogin: TPanel
       AlignWithMargins = True
       Left = 1
       Top = 1
@@ -2706,7 +2705,7 @@ object Form1: TForm1
         Proportional = True
         Stretch = True
       end
-      object Label1: TLabel
+      object lblButtonCadastroEmp: TLabel
         AlignWithMargins = True
         Left = 151
         Top = 366
@@ -2724,9 +2723,9 @@ object Form1: TForm1
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
-        OnClick = Label1Click
-        OnMouseEnter = Label1MouseEnter
-        OnMouseLeave = Label1MouseLeave
+        OnClick = lblButtonCadastroEmpClick
+        OnMouseEnter = lblButtonCadastroEmpMouseEnter
+        OnMouseLeave = lblButtonCadastroEmpMouseLeave
         ExplicitWidth = 335
       end
       object Label2: TLabel
@@ -2765,7 +2764,6 @@ object Form1: TForm1
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
-        ExplicitTop = 161
         ExplicitWidth = 50
       end
       object Label4: TLabel
@@ -2785,8 +2783,7 @@ object Form1: TForm1
         Font.Name = 'Segoe UI'
         Font.Style = [fsBold]
         ParentFont = False
-        ExplicitLeft = 221
-        ExplicitWidth = 219
+        ExplicitWidth = 225
       end
       object Button1: TButton
         AlignWithMargins = True
@@ -2809,7 +2806,7 @@ object Form1: TForm1
         ExplicitTop = 436
         ExplicitWidth = 512
       end
-      object Edit1: TEdit
+      object edtSenhaLogin: TEdit
         AlignWithMargins = True
         Left = 61
         Top = 273
@@ -2833,7 +2830,7 @@ object Form1: TForm1
         ExplicitTop = 265
         ExplicitWidth = 512
       end
-      object Edit2: TEdit
+      object edtEmailLogin: TEdit
         AlignWithMargins = True
         Left = 61
         Top = 197
@@ -2855,11 +2852,10 @@ object Form1: TForm1
         ParentFont = False
         TabOrder = 2
         TextHint = 'Digite seu email'
-        ExplicitTop = 189
         ExplicitWidth = 512
       end
     end
-    object Panel4: TPanel
+    object PanelCadastroTransp: TPanel
       AlignWithMargins = True
       Left = 4
       Top = 1
@@ -2874,7 +2870,7 @@ object Form1: TForm1
       Visible = False
       ExplicitWidth = 631
       ExplicitHeight = 521
-      object Label6: TLabel
+      object lblCadastro: TLabel
         AlignWithMargins = True
         Left = 101
         Top = 26
@@ -2903,7 +2899,7 @@ object Form1: TForm1
         Shape = stRoundRect
         Visible = False
       end
-      object Label12: TLabel
+      object lblButtonCadastrar: TLabel
         AlignWithMargins = True
         Left = 251
         Top = 453
@@ -2920,9 +2916,10 @@ object Form1: TForm1
         Font.Name = 'Segoe UI'
         Font.Style = [fsBold]
         ParentFont = False
-        OnMouseEnter = Label12MouseEnter
-        OnMouseLeave = Label12MouseLeave
-        ExplicitLeft = 243
+        OnClick = lblButtonCadastrarClick
+        OnMouseEnter = lblButtonCadastrarMouseEnter
+        OnMouseLeave = lblButtonCadastrarMouseLeave
+        ExplicitWidth = 111
       end
       object Panel6: TPanel
         AlignWithMargins = True
@@ -2936,10 +2933,9 @@ object Form1: TForm1
         BevelOuter = bvNone
         ParentColor = True
         TabOrder = 0
-        ExplicitLeft = 1
-        ExplicitTop = 162
-        ExplicitWidth = 629
-        object Edit3: TEdit
+        ExplicitTop = 150
+        ExplicitWidth = 623
+        object edtNome: TEdit
           AlignWithMargins = True
           Left = 10
           Top = 3
@@ -2959,25 +2955,23 @@ object Form1: TForm1
           TabOrder = 0
           TextHint = 'Digite o nome'
         end
-        object Edit4: TEdit
-          AlignWithMargins = True
-          Left = 361
-          Top = 3
-          Width = 254
-          Height = 35
-          Margins.Left = 1
-          Margins.Right = 10
+        object MaskEditCNPJ: TMaskEdit
+          Left = 362
+          Top = 0
+          Width = 263
+          Height = 41
           Align = alRight
+          EditMask = '!99.999.999/9999-99;1;_'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -23
           Font.Name = 'Segoe UI'
           Font.Style = []
+          MaxLength = 18
           ParentFont = False
           TabOrder = 1
-          TextHint = 'Digite a CNPJ'
-          ExplicitLeft = 365
-          ExplicitHeight = 39
+          Text = '  .   .   /    -  '
+          ExplicitLeft = 361
         end
       end
       object Panel9: TPanel
@@ -2990,9 +2984,8 @@ object Form1: TForm1
         BevelOuter = bvNone
         ParentColor = True
         TabOrder = 2
-        ExplicitLeft = 1
-        ExplicitTop = 285
-        ExplicitWidth = 629
+        ExplicitTop = 282
+        ExplicitWidth = 623
         object Label8: TLabel
           AlignWithMargins = True
           Left = 10
@@ -3025,7 +3018,6 @@ object Form1: TForm1
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
-          ExplicitLeft = 373
           ExplicitHeight = 37
         end
       end
@@ -3043,25 +3035,7 @@ object Form1: TForm1
         TabOrder = 3
         ExplicitTop = 326
         ExplicitWidth = 623
-        object Edit5: TEdit
-          AlignWithMargins = True
-          Left = 10
-          Top = 3
-          Width = 254
-          Height = 35
-          Margins.Left = 10
-          Align = alLeft
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -23
-          Font.Name = 'Segoe UI'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 0
-          TextHint = 'Digite o CEP '
-          ExplicitHeight = 39
-        end
-        object Edit6: TEdit
+        object edtSenha: TEdit
           AlignWithMargins = True
           Left = 361
           Top = 3
@@ -3076,10 +3050,27 @@ object Form1: TForm1
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
-          TabOrder = 1
+          TabOrder = 0
           TextHint = 'Digite a senha'
           ExplicitLeft = 359
           ExplicitHeight = 39
+        end
+        object MaskEditCEP: TMaskEdit
+          Left = 0
+          Top = 0
+          Width = 264
+          Height = 41
+          Align = alLeft
+          EditMask = '!99.999-999;1;_'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -23
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          MaxLength = 10
+          ParentFont = False
+          TabOrder = 1
+          Text = '  .   -   '
         end
       end
       object Panel7: TPanel
@@ -3092,9 +3083,8 @@ object Form1: TForm1
         BevelOuter = bvNone
         ParentColor = True
         TabOrder = 4
-        ExplicitLeft = 1
-        ExplicitTop = 203
-        ExplicitWidth = 629
+        ExplicitTop = 194
+        ExplicitWidth = 623
         object Label10: TLabel
           AlignWithMargins = True
           Left = 10
@@ -3127,7 +3117,6 @@ object Form1: TForm1
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
-          ExplicitLeft = 369
           ExplicitHeight = 37
         end
       end
@@ -3143,28 +3132,9 @@ object Form1: TForm1
         BevelOuter = bvNone
         ParentColor = True
         TabOrder = 5
-        ExplicitLeft = 1
-        ExplicitTop = 244
-        ExplicitWidth = 629
-        object Edit7: TEdit
-          AlignWithMargins = True
-          Left = 10
-          Top = 3
-          Width = 254
-          Height = 35
-          Margins.Left = 10
-          Align = alLeft
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -23
-          Font.Name = 'Segoe UI'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 0
-          TextHint = 'Digite o telefone'
-          ExplicitHeight = 39
-        end
-        object Edit8: TEdit
+        ExplicitTop = 238
+        ExplicitWidth = 623
+        object edtEmail: TEdit
           AlignWithMargins = True
           Left = 361
           Top = 3
@@ -3179,10 +3149,27 @@ object Form1: TForm1
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
-          TabOrder = 1
+          TabOrder = 0
           TextHint = 'Digite o E-mail'
-          ExplicitLeft = 365
+          ExplicitLeft = 359
           ExplicitHeight = 39
+        end
+        object MaskEditTelefone: TMaskEdit
+          Left = 0
+          Top = 0
+          Width = 262
+          Height = 41
+          Align = alLeft
+          EditMask = '! (99) 99999-9999;1;_'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -23
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          MaxLength = 16
+          ParentFont = False
+          TabOrder = 1
+          Text = ' (  )      -    '
         end
       end
       object Panel5: TPanel
@@ -3196,9 +3183,8 @@ object Form1: TForm1
         BevelOuter = bvNone
         ParentColor = True
         TabOrder = 1
-        ExplicitLeft = 1
-        ExplicitTop = 113
-        ExplicitWidth = 629
+        ExplicitTop = 101
+        ExplicitWidth = 623
         object Label7: TLabel
           AlignWithMargins = True
           Left = 10
@@ -3231,7 +3217,6 @@ object Form1: TForm1
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
-          ExplicitLeft = 370
           ExplicitHeight = 37
         end
       end

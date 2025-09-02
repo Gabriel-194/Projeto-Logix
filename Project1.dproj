@@ -123,7 +123,7 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="src\view\formLoginTransportadora.pas">
+        <DCCReference Include="src\view\formMain.pas">
             <Form>Form1</Form>
         </DCCReference>
         <DCCReference Include="src\model\uTransportadora.pas"/>
@@ -131,6 +131,9 @@
             <Form>DataModule1</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="src\repository\transpRepository.pas"/>
+        <DCCReference Include="src\service\transpService.pas"/>
+        <DCCReference Include="src\controller\transpController.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
