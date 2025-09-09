@@ -1,45 +1,34 @@
 unit transpController;
 
 interface
-  uses
-    System.SysUtils, System.Classes, FireDAC.Comp.Client;
-   type TTranspController = class
-  private
-    FConnection: TFDConnection;
+
+uses
+  System.SysUtils, transpService,uTransportadora;
+
+type
+  TTranspController = class
   public
-    constructor Create(AConnection: TFDConnection);
-
-
-    procedure CadastrarTransportadora(ANome, ACnpj, ATelefone, AEmail, ACep: string);
+    procedure CadastrarTransportadora(ATransp: TTransportadora);
   end;
 
 implementation
-uses
-  transpService;
 
-constructor TTranspController.Create(AConnection: TFDConnection);
-begin
-  inherited Create;
-  // Apenas atribui a referência da conexão recebida
-  // Validação para garantir que a conexão não seja nula
-  if not Assigned(AConnection) then
-    raise Exception.Create('A conexão com o banco de dados não foi fornecida para o Controller.');
+{ TTranspController }
 
-  FConnection := AConnection;
-end;
 
-procedure TTranspController.CadastrarTransportadora(ANome, ACnpj, ATelefone, AEmail, ACep: string);
+
+procedure TTranspController.CadastrarTransportadora(ATransp: TTransportadora);
 var
-  Service: TTranspService;
+ service : TTranspService;
 begin
-  Service := TTranspService.Create(FConnection);
-  try
-    Service.CadastrarTransportadora(ANome, ACnpj, ATelefone, AEmail, ACep);
+  service := TTranspService.create;
+
+ try
+    Service.CadastrarTransportadora(ATransp);
   finally
     Service.Free;
   end;
 end;
 
-
-
 end.
+

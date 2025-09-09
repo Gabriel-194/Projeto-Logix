@@ -3,7 +3,7 @@ unit transpRepository;
 interface
 
 uses
-  System.SysUtils, System.Classes, FireDAC.Comp.Client;
+  System.SysUtils, System.Classes, FireDAC.Comp.Client,uTransportadora;
 
 type
   TTranspRepository = class
@@ -84,7 +84,7 @@ type
         ');';
   public
     constructor Create(AConn: TFDConnection);
-    procedure CadastrarTransportadora(Nome, CNPJ, Telefone, Email, CEP: string);
+    procedure CadastrarTransportadora(ATransp: TTransportadora);
   end;
 
 implementation
@@ -96,30 +96,29 @@ begin
   FConn := AConn;
 end;
 
-procedure TTranspRepository.CadastrarTransportadora(Nome, CNPJ, Telefone, Email, CEP: string);
+procedure TTranspRepository.CadastrarTransportadora(ATransp: TTransportadora);
 var
   FDQuery: TFDQuery;
-  SQL: TStringList;
   SchemaName, Script: string;
 begin
   FDQuery := TFDQuery.Create(nil);
   try
     FDQuery.Connection := FConn;
 
-    SchemaName := StringReplace(LowerCase(Nome), ' ', '_', [rfReplaceAll]);
+    SchemaName := StringReplace(LowerCase(Atransp.getNome), ' ', '_', [rfReplaceAll]);
 
     FDQuery.SQL.Text :=
       'INSERT INTO public.transportadora (nome, cnpj, telefone, email, cep, ativo, schema_name) ' +
       'VALUES (:nome, :cnpj, :telefone, :email, :cep, TRUE, :schema_name)';
-    FDQuery.ParamByName('nome').AsString := Nome;
-    FDQuery.ParamByName('cnpj').AsString := CNPJ;
-    FDQuery.ParamByName('telefone').AsString := Telefone;
-    FDQuery.ParamByName('email').AsString := Email;
-    FDQuery.ParamByName('cep').AsString := CEP;
+    FDQuery.ParamByName('nome').AsString := ATransp.getNome;
+    FDQuery.ParamByName('cnpj').AsString := ATransp.getCNPJ;
+    FDQuery.ParamByName('telefone').AsString := ATransp.getTelefone;
+    FDQuery.ParamByName('email').AsString := ATransp.getEmail;
+    FDQuery.ParamByName('cep').AsString := ATransp.getCep;
     FDQuery.ParamByName('schema_name').AsString := SchemaName;
     FDQuery.ExecSQL;
 
-    // Cria schema exclusivo
+    // Criação do schema exclusivo
     FConn.ExecSQL('CREATE SCHEMA IF NOT EXISTS ' + SchemaName);
     Script := StringReplace(SchemaScript, '{schema}', SchemaName, [rfReplaceAll]);
 
@@ -129,7 +128,6 @@ begin
     FDQuery.Free;
   end;
 end;
-
 
 end.
 

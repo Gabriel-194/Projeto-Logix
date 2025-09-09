@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.Mask, transpController,Unit2;
+  Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.Mask, transpController, transpService, uTransportadora;
 
 type
   TForm1 = class(TForm)
@@ -16,13 +16,12 @@ type
     Image1: TImage;
     PanelCadastroTransp: TPanel;
     lblCadastro: TLabel;
-    Shape1: TShape;
     lblButtonCadastrar: TLabel;
     Panel6: TPanel;
     edtNome: TEdit;
     Panel9: TPanel;
     Label8: TLabel;
-    Panel10: TPanel;
+    panel10: TPanel;
     Panel7: TPanel;
     Label10: TLabel;
     Label11: TLabel;
@@ -34,19 +33,41 @@ type
     MaskEditCNPJ: TMaskEdit;
     MaskEditTelefone: TMaskEdit;
     MaskEditCEP: TMaskEdit;
-    panelEditSenha: TPanel;
-    Shape4: TShape;
-    Edit1: TEdit;
-    Panel2: TPanel;
-    panelEditEmail: TPanel;
+    pnlEditSenha: TPanel;
     Shape3: TShape;
+    edtSenhaLogin: TEdit;
+    loginLabel: TLabel;
+    Email: TLabel;
+    Senha: TLabel;
+    pnlEditEmail: TPanel;
+    Shape2: TShape;
     edtEmailLogin: TEdit;
-    procedure lblButtonCadastrarMouseEnter(Sender: TObject);
-    procedure lblButtonCadastrarMouseLeave(Sender: TObject);
-//    procedure lblButtonCadastroEmpMouseEnter(Sender: TObject);
-//    procedure lblButtonCadastroEmpMouseLeave(Sender: TObject);
-    procedure lblButtonCadastroEmpClick(Sender: TObject);
+    pnlBtnChangeCadastrar: TPanel;
+    Shape5: TShape;
+    btnchangeCadastrar: TLabel;
+    pnlBtnEntrar: TPanel;
+    Shape4: TShape;
+    btnEntrar: TLabel;
+    Image3: TImage;
+    PnlEditNome: TPanel;
+    Shape6: TShape;
+    pnlEditCnpj: TPanel;
+    Shape7: TShape;
+    pnlEditTelefone: TPanel;
+    Shape8: TShape;
+    pnlEditEmailCadastro: TPanel;
+    Shape9: TShape;
+    pnlEditCep: TPanel;
+    Shape1: TShape;
+    pnlBtnCadastar: TPanel;
+    Shape10: TShape;
+    pnlVoltarLogin: TPanel;
+    Shape11: TShape;
+    voltarImage: TImage;
     procedure lblButtonCadastrarClick(Sender: TObject);
+    procedure btnchangeCadastrarClick(Sender: TObject);
+    procedure voltarImageClick(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -60,61 +81,51 @@ implementation
 
 {$R *.dfm}
 
+
+
+
 procedure TForm1.lblButtonCadastrarClick(Sender: TObject);
 var
   Controller: TTranspController;
+  Transp: TTransportadora;
 begin
 
-  Controller := TTranspController.Create(dataModule2.FDConnection1);
+  Transp := TTransportadora.create;
   try
-    Controller.CadastrarTransportadora(
-      edtNome.Text,
-      MaskEditCnpj.Text,
-      MaskEditTelefone.Text,
-      edtEmail.Text,
-      MaskEditCep.Text
-    );
-    ShowMessage('Transportadora cadastrada com sucesso!');
-  finally
-    Controller.Free;
+    Transp.setNome(edtNome.Text);
+    Transp.setCNPJ(MaskEditCNPJ.Text);
+    Transp.setTelefone(MaskEditTelefone.Text);
+    Transp.setEmail(edtEmail.Text);
+    Transp.setCep(MaskEditCEP.Text);
+
+    Controller := TTranspController.Create;
+    try
+      Controller.CadastrarTransportadora(Transp);
+      ShowMessage('Transportadora cadastrada com sucesso!');
+    finally
+      Controller.Free;
+    end;
+  except
+    on E: Exception do
+      ShowMessage('Erro: ' + E.Message);
   end;
+    Transp.Free;
 end;
 
-procedure TForm1.lblButtonCadastrarMouseEnter(Sender: TObject);
+
+
+procedure TForm1.voltarImageClick(Sender: TObject);
 begin
-   shape1.Visible:=true;
-   Shape1.Left := lblButtonCadastrar.Left -10;
-   Shape1.Top :=  lblButtonCadastrar.Top -5;
-   shape1.Margins.Right := lblButtonCadastrar.Margins.right + 10;
-   Shape1.Height := lblButtonCadastrar.Height + 10;
-
-
+  panelLogin.Visible:=true;
+  panelCadastroTransp.Visible:=false;
 end;
 
-procedure TForm1.lblButtonCadastrarMouseLeave(Sender: TObject);
-begin
-   shape1.Visible:=false;
-end;
-
-procedure TForm1.lblButtonCadastroEmpClick(Sender: TObject);
+procedure TForm1.btnchangeCadastrarClick(Sender: TObject);
 begin
   panelLogin.Visible:=false;
   panelCadastroTransp.Visible:=true;
 end;
 
-//procedure TForm1.lblButtonCadastroEmpMouseEnter(Sender: TObject);
-//begin
-//  shape2.Visible:=true;
-//   shape2.Visible:=true;
-//   Shape2.Left := lblButtonCadastroEmp.Left -10;
-//   Shape2.Top :=  lblButtonCadastroEmp.Top -5;
-//   shape2.Margins.Right := lblButtonCadastroEmp.Margins.right + 10;
-//   Shape2.Height := lblButtonCadastroEmp.Height + 10;
-//end;
-//
-//procedure TForm1.lblButtonCadastroEmpMouseLeave(Sender: TObject);
-//begin
-//  shape2.Visible:=false;
-//end;
+
 
 end.

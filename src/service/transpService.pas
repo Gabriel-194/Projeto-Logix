@@ -3,55 +3,82 @@ unit transpService;
 interface
 
 uses
-  System.SysUtils, FireDAC.Comp.Client, transpRepository, System.Hash;
+  System.SysUtils, transpRepository,uTransportadora,FireDAC.Comp.Client,  System.Hash;
 
 type
   TTranspService = class
   private
-    FRepo: TTranspRepository;
+    TransRepo: TTranspRepository;
+    FConn: TFDConnection;
+    function ExtrairApenasNumeros (const AValor: string) : String;
   public
-    constructor Create(AConn: TFDConnection);
-    destructor Destroy; override;
-
-    procedure CadastrarTransportadora(Nome, CNPJ, Telefone, Email, CEP: string);
+    procedure CadastrarTransportadora(ATransp: TTransportadora);
   end;
 
 implementation
 
 { TTranspService }
 
-constructor TTranspService.Create(AConn: TFDConnection);
+
+
+function TTranspService.ExtrairApenasNumeros(const AValor: string): string;
+var
+  i: Integer;
 begin
-  FRepo := TTranspRepository.Create(AConn);
+  Result := '';
+  for i := 1 to Length(AValor) do
+  begin
+
+    if AValor[i] in ['0'..'9'] then
+      Result := Result + AValor[i];
+  end;
 end;
 
-destructor TTranspService.Destroy;
-begin
-  FRepo.Free;
-  inherited;
-end;
 
-procedure TTranspService.CadastrarTransportadora(Nome, CNPJ, Telefone, Email, CEP: string);
+procedure TTranspService.CadastrarTransportadora(ATransp: TTransportadora);
+var
+  OnlyDigitsCNPJ, OnlyDigitsFone, OnlyDigitsCEP: string;
 begin
-  // Validações
-  if Nome.Trim = '' then
+  if ATransp.getNome.Trim = '' then begin
     raise Exception.Create('Nome da transportadora é obrigatório.');
+  end;
 
-  if CNPJ.Trim = '' then
-    raise Exception.Create('CNPJ é obrigatório.');
+  if ATransp.getCnpj.Trim = '' then begin
+    raise Exception.Create('Cnpj da transportadora é obrigatório.');
+  end;
 
-  if Length(CNPJ) < 14 then
-    raise Exception.Create('CNPJ inválido.');
+  OnlyDigitsCNPJ := ExtrairApenasNumeros(ATransp.getCnpj.Trim);
 
-  if Telefone.Trim = '' then
-    raise Exception.Create('Telefone é obrigatório.');
+  if Length(OnlyDigitsCNPJ) <> 14 then begin
+    raise Exception.Create('CNPJ invalido, deve conter 14 dígitos.');
+  end;
 
-  if Email.Trim = '' then
+  if ATransp.getTelefone.Trim = '' then begin
+    raise Exception.Create('O campo Telefone é obrigatório.');
+  end;
+
+  OnlyDigitsFone := ExtrairApenasNumeros(Atransp.getTelefone.Trim);
+
+  if Length(OnlyDigitsFone) <> 11 then begin
+    raise Exception.Create('Telefone Invalido');
+  end;
+
+  if ATransp.getEmail.Trim = '' then begin
     raise Exception.Create('E-mail é obrigatório.');
+  end;
 
+  if Atransp.getCep.trim = '' then begin
+    raise exception.Create('CEP é obrigatorio');
+  end;
 
-  // Chama o Repository
-  FRepo.CadastrarTransportadora(Nome, CNPJ, Telefone, Email, CEP);
+  OnlyDigitsCEP := ExtrairApenasNumeros(ATransp.getCep.Trim);
+
+  if length(OnlyDigitsCEP) <> 8  then begin
+    raise exception.Create('CnpjInvalido');
+  end;
+
+  TransRepo := TTranspRepository.Create(FConn);
+  TransRepo.CadastrarTransportadora(ATransp);
 end;
 
 end.
