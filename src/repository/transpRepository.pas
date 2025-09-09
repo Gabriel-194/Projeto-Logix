@@ -3,7 +3,7 @@ unit transpRepository;
 interface
 
 uses
-  System.SysUtils, System.Classes, FireDAC.Comp.Client,uTransportadora;
+  System.SysUtils, System.Classes, FireDAC.Comp.Client,uTransportadora, unit2;
 
 type
   TTranspRepository = class
@@ -83,7 +83,6 @@ type
         '  PRIMARY KEY (id_carregamento, id_pedido)' +
         ');';
   public
-    constructor Create(AConn: TFDConnection);
     procedure CadastrarTransportadora(ATransp: TTransportadora);
   end;
 
@@ -91,10 +90,6 @@ implementation
 
 { TTranspRepository }
 
-constructor TTranspRepository.Create(AConn: TFDConnection);
-begin
-  FConn := AConn;
-end;
 
 procedure TTranspRepository.CadastrarTransportadora(ATransp: TTransportadora);
 var
@@ -103,7 +98,7 @@ var
 begin
   FDQuery := TFDQuery.Create(nil);
   try
-    FDQuery.Connection := FConn;
+    FDQuery.Connection := DataModule2.FDConnection1;
 
     SchemaName := StringReplace(LowerCase(Atransp.getNome), ' ', '_', [rfReplaceAll]);
 
@@ -119,10 +114,10 @@ begin
     FDQuery.ExecSQL;
 
     // Criação do schema exclusivo
-    FConn.ExecSQL('CREATE SCHEMA IF NOT EXISTS ' + SchemaName);
+    DataModule2.FDConnection1.ExecSQL('CREATE SCHEMA IF NOT EXISTS ' + SchemaName);
     Script := StringReplace(SchemaScript, '{schema}', SchemaName, [rfReplaceAll]);
 
-    FConn.ExecSQL(Script);
+    DataModule2.FDConnection1.ExecSQL(Script);
 
   finally
     FDQuery.Free;

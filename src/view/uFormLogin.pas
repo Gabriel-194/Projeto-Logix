@@ -1,4 +1,4 @@
-unit formMain;
+unit uFormLogin;
 
 interface
 
@@ -8,7 +8,7 @@ uses
   Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.Mask, transpController, transpService, uTransportadora;
 
 type
-  TForm1 = class(TForm)
+  TFormLogin = class(TForm)
     Panel1: TPanel;
     PanelImage: TPanel;
     PanelLogin: TPanel;
@@ -75,16 +75,13 @@ type
   end;
 
 var
-  Form1: TForm1;
+  FrmLogin : TFormLogin;
 
 implementation
 
 {$R *.dfm}
 
-
-
-
-procedure TForm1.lblButtonCadastrarClick(Sender: TObject);
+procedure TFormLogin.lblButtonCadastrarClick(Sender: TObject);
 var
   Controller: TTranspController;
   Transp: TTransportadora;
@@ -114,13 +111,13 @@ end;
 
 
 
-procedure TForm1.voltarImageClick(Sender: TObject);
+procedure TFormLogin.voltarImageClick(Sender: TObject);
 begin
   panelLogin.Visible:=true;
   panelCadastroTransp.Visible:=false;
 end;
 
-procedure TForm1.btnchangeCadastrarClick(Sender: TObject);
+procedure TFormLogin.btnchangeCadastrarClick(Sender: TObject);
 begin
   panelLogin.Visible:=false;
   panelCadastroTransp.Visible:=true;

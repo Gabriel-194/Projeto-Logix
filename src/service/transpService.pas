@@ -3,13 +3,12 @@ unit transpService;
 interface
 
 uses
-  System.SysUtils, transpRepository,uTransportadora,FireDAC.Comp.Client,  System.Hash;
+  System.SysUtils, transpRepository,uTransportadora;
 
 type
   TTranspService = class
   private
     TransRepo: TTranspRepository;
-    FConn: TFDConnection;
     function ExtrairApenasNumeros (const AValor: string) : String;
   public
     procedure CadastrarTransportadora(ATransp: TTransportadora);
@@ -77,7 +76,7 @@ begin
     raise exception.Create('CnpjInvalido');
   end;
 
-  TransRepo := TTranspRepository.Create(FConn);
+
   TransRepo.CadastrarTransportadora(ATransp);
 end;
 
