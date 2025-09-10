@@ -136,8 +136,9 @@
         <DCCReference Include="src\view\uFormLogin.pas"/>
         <DCCReference Include="src\controller\loginController.pas"/>
         <DCCReference Include="src\service\loginService.pas"/>
-        <DCCReference Include="uUsuario.pas"/>
         <DCCReference Include="src\repository\loginRepository.pas"/>
+        <DCCReference Include="src\model\uUsuario.pas"/>
+        <DCCReference Include="login.types.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

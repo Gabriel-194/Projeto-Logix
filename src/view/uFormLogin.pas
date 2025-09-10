@@ -14,25 +14,6 @@ type
     PanelLogin: TPanel;
     Image2: TImage;
     Image1: TImage;
-    PanelCadastroTransp: TPanel;
-    lblCadastro: TLabel;
-    lblButtonCadastrar: TLabel;
-    Panel6: TPanel;
-    edtNome: TEdit;
-    Panel9: TPanel;
-    Label8: TLabel;
-    panel10: TPanel;
-    Panel7: TPanel;
-    Label10: TLabel;
-    Label11: TLabel;
-    Panel8: TPanel;
-    edtEmail: TEdit;
-    Panel5: TPanel;
-    Label7: TLabel;
-    Label5: TLabel;
-    MaskEditCNPJ: TMaskEdit;
-    MaskEditTelefone: TMaskEdit;
-    MaskEditCEP: TMaskEdit;
     pnlEditSenha: TPanel;
     Shape3: TShape;
     edtSenhaLogin: TEdit;
@@ -42,33 +23,67 @@ type
     pnlEditEmail: TPanel;
     Shape2: TShape;
     edtEmailLogin: TEdit;
-    pnlBtnChangeCadastrar: TPanel;
-    Shape5: TShape;
-    btnchangeCadastrar: TLabel;
     pnlBtnEntrar: TPanel;
     Shape4: TShape;
     btnEntrar: TLabel;
-    Image3: TImage;
+    PanelAdmin: TPanel;
+    Image4: TImage;
+    lblWelcome: TLabel;
+    PanelOptionsTransp: TPanel;
+    lblPanelOption: TLabel;
+    Panel6: TPanel;
     PnlEditNome: TPanel;
     Shape6: TShape;
+    edtNome: TEdit;
     pnlEditCnpj: TPanel;
     Shape7: TShape;
-    pnlEditTelefone: TPanel;
-    Shape8: TShape;
-    pnlEditEmailCadastro: TPanel;
-    Shape9: TShape;
+    MaskEditCNPJ: TMaskEdit;
+    Panel9: TPanel;
+    Label8: TLabel;
+    panel10: TPanel;
     pnlEditCep: TPanel;
     Shape1: TShape;
-    pnlBtnCadastar: TPanel;
-    Shape10: TShape;
+    MaskEditCEP: TMaskEdit;
+    Panel7: TPanel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Panel8: TPanel;
+    pnlEditTelefone: TPanel;
+    Shape8: TShape;
+    MaskEditTelefone: TMaskEdit;
+    pnlEditEmailCadastro: TPanel;
+    Shape9: TShape;
+    edtEmail: TEdit;
+    Panel5: TPanel;
+    Label7: TLabel;
+    Label5: TLabel;
     pnlVoltarLogin: TPanel;
     Shape11: TShape;
     voltarImage: TImage;
-    PanelAdmin: TPanel;
+    PanelButtons: TPanel;
+    pnlBtnChangeCadastrar: TPanel;
+    Shape5: TShape;
+    btnchangeCadastrar: TLabel;
+    pnlBtnExcluirTransp: TPanel;
+    Shape12: TShape;
+    btrnExcluirTransp: TLabel;
+    PnlBtnEditarTransp: TPanel;
+    Shape13: TShape;
+    btnEditarTransp: TLabel;
+    ListBox1: TListBox;
+    Panel2: TPanel;
+    pnlBtnCadastar: TPanel;
+    Shape10: TShape;
+    lblButtonCadastrar: TLabel;
+    pnlBtnEditar: TPanel;
+    Shape14: TShape;
+    lblButtonEditar: TLabel;
     procedure lblButtonCadastrarClick(Sender: TObject);
     procedure btnchangeCadastrarClick(Sender: TObject);
     procedure voltarImageClick(Sender: TObject);
     procedure btnEntrarClick(Sender: TObject);
+    procedure btnEditarTranspClick(Sender: TObject);
+    procedure btrnExcluirTranspClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -80,13 +95,24 @@ var
   FrmLogin : TFormLogin;
 
 implementation
+uses login.types;
 
 {$R *.dfm}
+
+procedure TFormLogin.btnEditarTranspClick(Sender: TObject);
+begin
+  PanelOptionsTransp.Visible:=true;
+  lblPanelOption.Caption := 'Editar Transportadora';
+  pnlBtnCadastar.Visible := false;
+  pnlBtnEditar.Visible := true;
+
+end;
 
 procedure TFormLogin.btnEntrarClick(Sender: TObject);
 var
 controlLogin : TloginController;
 user : Tusuario;
+resultado : TLoginResult;
 begin
   user := Tusuario.Create;
 
@@ -96,8 +122,25 @@ begin
 
     controlLogin := TloginController.Create;
     try
-      controlLogin.verificaLogin(user);
-      ShowMessage('Login eftuado!');
+      resultado := controlLogin.verificaLogin(user);
+      case resultado of
+        lrFalhou:
+          ShowMessage('Usuário ou senha inválidos.');
+
+        lrSucessoUsuario:
+          begin
+            ShowMessage('Login realizado com sucesso! Bem-vindo ' + user.getEmail);
+            // Aqui você fecharia este form e abriria o form principal do usuário
+            Close;
+          end;
+
+        lrSucessoAdmin:
+          begin
+            ShowMessage('Bem-vindo ADMINISTRADOR!');
+              Panel1.Visible := False;
+              PanelAdmin.Visible := True;
+          end;
+      end;
     finally
       controlLogin.Free;
     end;
@@ -106,6 +149,12 @@ begin
       ShowMessage('Erro: ' + E.Message);
   end;
     user.free;
+end;
+
+procedure TFormLogin.btrnExcluirTranspClick(Sender: TObject);
+begin
+    PanelOptionsTransp.Visible:=true;
+  lblPanelOption.Caption := 'Excluit Transportadora';
 end;
 
 procedure TFormLogin.lblButtonCadastrarClick(Sender: TObject);
@@ -140,14 +189,15 @@ end;
 
 procedure TFormLogin.voltarImageClick(Sender: TObject);
 begin
-  panelLogin.Visible:=true;
-  panelCadastroTransp.Visible:=false;
+  PanelOptionsTransp.Visible:=false;
 end;
 
 procedure TFormLogin.btnchangeCadastrarClick(Sender: TObject);
 begin
-  panelLogin.Visible:=false;
-  panelCadastroTransp.Visible:=true;
+  PanelOptionsTransp.Visible:=true;
+  lblPanelOption.Caption := 'Cadastrar Transportadora';
+  pnlBtnCadastar.Visible := true;
+  pnlBtnEditar.Visible := false;
 end;
 
 

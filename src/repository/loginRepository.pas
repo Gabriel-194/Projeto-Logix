@@ -25,8 +25,8 @@ begin
   try
     FDQuery.Connection := DataModule2.FDConnection1;
     FDQuery.SQL.Text :=
-      'SELECT id FROM public.usuario ' +
-      'WHERE email = :email AND senha_hash = :senha AND';
+      'SELECT id_usuario FROM public.usuarios ' +
+      'WHERE email = :email AND senha_hash = :senha';
     FDQuery.ParamByName('email').AsString := Ausuario.getEmail;
     FDQuery.ParamByName('senha').AsString := Ausuario.getSenha_hash;
     FDQuery.Open;

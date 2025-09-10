@@ -2,10 +2,9 @@ unit loginService;
 
 interface
 uses
-   System.SysUtils,uUsuario,loginRepository;
+   System.SysUtils,uUsuario,loginRepository,login.types;
    type
-      TLoginResult = (lrFalhou, lrSucessoUsuario, lrSucessoAdmin);
-  TloginService = class
+   TloginService = class
 
     private
      loginRepo : TloginRepository;
@@ -27,15 +26,15 @@ begin
   end;
 
   if not loginRepo.VerificaLogin(AUsuario) then begin
-    Result := lrFalhou; // Retorna o status de falha
+    Result := lrFalhou;
     Exit;
   end;
 
   if loginRepo.VerificaAdmin(AUsuario) then
   begin
-    Result := lrSucessoAdmin; // Retorna o status de Admin
+    Result := lrSucessoAdmin;
   end else begin
-    Result := lrSucessoUsuario; // Retorna o status de Usuário Comum
+    Result := lrSucessoUsuario;
   end;
 end;
 

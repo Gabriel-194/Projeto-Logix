@@ -2,11 +2,11 @@ unit loginController;
 
 interface
 uses
-  System.SysUtils, uUsuario, loginService;
+  System.SysUtils, uUsuario, loginService, login.types;
     type
     TloginController = class
     public
-      procedure verificaLogin(Ausuario: TUsuario);
+      function verificaLogin(Ausuario: Tusuario):TLoginResult;
     end;
 
 implementation
@@ -14,13 +14,13 @@ implementation
 
 { TadminController }
 
-procedure TloginController.verificaLogin(Ausuario: Tusuario);
+function TloginController.verificaLogin(Ausuario: Tusuario):TLoginResult;
 var
  service : TloginService;
 begin
   service := TloginService.Create;
   try
-    service.verificaLogin(Ausuario);
+    Result := service.verificaLogin(Ausuario);
   finally
     service.Free;
   end;

@@ -1,6 +1,8 @@
 unit uUsuario;
 
 interface
+uses
+  System.SysUtils;
 type
  Tusuario = class
    protected
@@ -36,9 +38,7 @@ type
 
     procedure setSenha_hash(aSenha_hash: String);
     function getSenha_hash: String;
-
  end;
-
 
 implementation
 
@@ -125,5 +125,6 @@ function TUsuario.getSenha_hash: String;
 begin
   Result := Self.senha_hash;
 end;
+
 
 end.

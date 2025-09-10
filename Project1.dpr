@@ -10,15 +10,16 @@ uses
   uFormLogin in 'src\view\uFormLogin.pas',
   loginController in 'src\controller\loginController.pas',
   loginService in 'src\service\loginService.pas',
-  uUsuario in 'uUsuario.pas',
-  loginRepository in 'src\repository\loginRepository.pas';
+  loginRepository in 'src\repository\loginRepository.pas',
+  uUsuario in 'src\model\uUsuario.pas',
+  login.types in 'login.types.pas';
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TFrmLogin, FrmLogin);
+  Application.CreateForm(TFormLogin, FrmLogin);
   Application.CreateForm(TDataModule2, DataModule2);
   Application.Run;
 end.
