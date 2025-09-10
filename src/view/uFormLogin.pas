@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.Mask, transpController, transpService, uTransportadora;
+  Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.Mask, transpController, uTransportadora, uUsuario,loginController;
 
 type
   TFormLogin = class(TForm)
@@ -64,9 +64,11 @@ type
     pnlVoltarLogin: TPanel;
     Shape11: TShape;
     voltarImage: TImage;
+    PanelAdmin: TPanel;
     procedure lblButtonCadastrarClick(Sender: TObject);
     procedure btnchangeCadastrarClick(Sender: TObject);
     procedure voltarImageClick(Sender: TObject);
+    procedure btnEntrarClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -80,6 +82,31 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TFormLogin.btnEntrarClick(Sender: TObject);
+var
+controlLogin : TloginController;
+user : Tusuario;
+begin
+  user := Tusuario.Create;
+
+  try
+    user.setEmail(edtEmailLogin.text);
+    user.setSenha_hash(edtSenhaLogin.text);
+
+    controlLogin := TloginController.Create;
+    try
+      controlLogin.verificaLogin(user);
+      ShowMessage('Login eftuado!');
+    finally
+      controlLogin.Free;
+    end;
+  except
+    on E: Exception do
+      ShowMessage('Erro: ' + E.Message);
+  end;
+    user.free;
+end;
 
 procedure TFormLogin.lblButtonCadastrarClick(Sender: TObject);
 var

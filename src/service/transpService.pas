@@ -76,7 +76,6 @@ begin
     raise exception.Create('CnpjInvalido');
   end;
 
-
   TransRepo.CadastrarTransportadora(ATransp);
 end;
 

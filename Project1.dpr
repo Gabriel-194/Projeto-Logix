@@ -8,16 +8,17 @@ uses
   transpService in 'src\service\transpService.pas',
   transpController in 'src\controller\transpController.pas',
   uFormLogin in 'src\view\uFormLogin.pas',
-  uLogin in 'src\model\uLogin.pas',
   loginController in 'src\controller\loginController.pas',
-  loginService in 'src\service\loginService.pas';
+  loginService in 'src\service\loginService.pas',
+  uUsuario in 'uUsuario.pas',
+  loginRepository in 'src\repository\loginRepository.pas';
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TFormLogin, FrmLogin);
+  Application.CreateForm(TFrmLogin, FrmLogin);
   Application.CreateForm(TDataModule2, DataModule2);
   Application.Run;
 end.

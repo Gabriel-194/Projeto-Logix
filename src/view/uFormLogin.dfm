@@ -4437,10 +4437,21 @@ object FormLogin: TFormLogin
           Font.Name = 'Segoe UI'
           Font.Style = []
           ParentFont = False
+          OnClick = btnEntrarClick
           ExplicitWidth = 51
           ExplicitHeight = 25
         end
       end
     end
+  end
+  object PanelAdmin: TPanel
+    Left = 75
+    Top = 75
+    Width = 1200
+    Height = 648
+    Align = alCustom
+    Color = clWhite
+    ParentBackground = False
+    TabOrder = 1
   end
 end
