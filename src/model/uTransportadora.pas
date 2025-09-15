@@ -4,12 +4,16 @@ interface
   type
     TTransportadora = class
   protected
+    id :Integer;
     Nome: string;
     CNPJ: string;
     Telefone: string;
     Email: string;
     cep: string;
   public
+    function getId: Integer;
+    procedure setId(aId: Integer);
+
     function getNome: string;
     procedure setNome(aNome: string);
 
@@ -64,9 +68,19 @@ begin
   Result := Self.Email;
 end;
 
+function TTransportadora.getId: Integer;
+begin
+ result := self.id;
+end;
+
 procedure TTransportadora.setEmail(aEmail: string);
 begin
   Self.Email := aEmail;
+end;
+
+procedure TTransportadora.setId(aId: Integer);
+begin
+  self.id := aId;
 end;
 
 function TTransportadora.getCep: string;

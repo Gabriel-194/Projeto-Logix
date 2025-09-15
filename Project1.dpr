@@ -12,7 +12,7 @@ uses
   loginService in 'src\service\loginService.pas',
   loginRepository in 'src\repository\loginRepository.pas',
   uUsuario in 'src\model\uUsuario.pas',
-  login.types in 'login.types.pas';
+  login.types in 'src\model\login.types.pas';
 
 {$R *.res}
 

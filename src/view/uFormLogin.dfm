@@ -26,6 +26,8 @@ object FormLogin: TFormLogin
     Align = alClient
     Caption = 'Panel1'
     TabOrder = 0
+    ExplicitWidth = 1198
+    ExplicitHeight = 642
     object PanelImage: TPanel
       AlignWithMargins = True
       Left = 726
@@ -43,6 +45,8 @@ object FormLogin: TFormLogin
       UseDockManager = False
       ParentBackground = False
       TabOrder = 0
+      ExplicitLeft = 724
+      ExplicitHeight = 640
       object Image2: TImage
         AlignWithMargins = True
         Left = 1
@@ -1749,6 +1753,8 @@ object FormLogin: TFormLogin
       Color = clWhite
       ParentBackground = False
       TabOrder = 1
+      ExplicitWidth = 720
+      ExplicitHeight = 640
       object Image1: TImage
         Left = 0
         Top = 0
@@ -2778,6 +2784,7 @@ object FormLogin: TFormLogin
         Constraints.MaxWidth = 600
         ParentBackground = False
         TabOrder = 0
+        ExplicitWidth = 360
         object Shape3: TShape
           Left = 0
           Top = 0
@@ -2821,6 +2828,7 @@ object FormLogin: TFormLogin
         Constraints.MaxWidth = 600
         ParentBackground = False
         TabOrder = 1
+        ExplicitWidth = 360
         object Shape2: TShape
           Left = 0
           Top = 0
@@ -2863,7 +2871,7 @@ object FormLogin: TFormLogin
         BevelOuter = bvNone
         Constraints.MaxWidth = 412
         TabOrder = 2
-        ExplicitTop = 498
+        ExplicitWidth = 220
         object Shape4: TShape
           Left = 0
           Top = 0
@@ -2914,9 +2922,8 @@ object FormLogin: TFormLogin
     ParentBackground = False
     TabOrder = 1
     Visible = False
-    ExplicitLeft = 74
-    ExplicitTop = 71
-    ExplicitHeight = 657
+    ExplicitWidth = 1198
+    ExplicitHeight = 642
     object Image4: TImage
       Left = 1
       Top = 1
@@ -3887,8 +3894,7 @@ object FormLogin: TFormLogin
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
-      ExplicitLeft = 5
-      ExplicitTop = 74
+      ExplicitWidth = 576
     end
     object PanelOptionsTransp: TPanel
       AlignWithMargins = True
@@ -3904,8 +3910,8 @@ object FormLogin: TFormLogin
       ParentBackground = False
       TabOrder = 0
       Visible = False
-      ExplicitLeft = 509
-      ExplicitHeight = 541
+      ExplicitLeft = 510
+      ExplicitHeight = 526
       object lblPanelOption: TLabel
         AlignWithMargins = True
         Left = 100
@@ -3924,8 +3930,7 @@ object FormLogin: TFormLogin
         Font.Name = 'Segoe UI'
         Font.Style = [fsBold]
         ParentFont = False
-        ExplicitLeft = 92
-        ExplicitWidth = 489
+        ExplicitWidth = 382
       end
       object Panel6: TPanel
         AlignWithMargins = True
@@ -3939,9 +3944,7 @@ object FormLogin: TFormLogin
         BevelOuter = bvNone
         ParentColor = True
         TabOrder = 0
-        ExplicitLeft = 4
-        ExplicitTop = 181
-        ExplicitWidth = 683
+        ExplicitTop = 139
         object PnlEditNome: TPanel
           AlignWithMargins = True
           Left = 40
@@ -3999,7 +4002,6 @@ object FormLogin: TFormLogin
           Align = alRight
           BevelOuter = bvNone
           TabOrder = 1
-          ExplicitLeft = 389
           object Shape7: TShape
             Left = 0
             Top = 0
@@ -4045,9 +4047,7 @@ object FormLogin: TFormLogin
         BevelOuter = bvNone
         ParentColor = True
         TabOrder = 2
-        ExplicitLeft = 4
-        ExplicitTop = 313
-        ExplicitWidth = 683
+        ExplicitTop = 271
         object Label8: TLabel
           AlignWithMargins = True
           Left = 40
@@ -4078,9 +4078,7 @@ object FormLogin: TFormLogin
         BevelOuter = bvNone
         ParentColor = True
         TabOrder = 3
-        ExplicitLeft = 4
-        ExplicitTop = 357
-        ExplicitWidth = 683
+        ExplicitTop = 315
         object pnlEditCep: TPanel
           AlignWithMargins = True
           Left = 40
@@ -4138,9 +4136,7 @@ object FormLogin: TFormLogin
         BevelOuter = bvNone
         ParentColor = True
         TabOrder = 4
-        ExplicitLeft = 4
-        ExplicitTop = 225
-        ExplicitWidth = 683
+        ExplicitTop = 183
         object Label10: TLabel
           AlignWithMargins = True
           Left = 40
@@ -4173,7 +4169,6 @@ object FormLogin: TFormLogin
           Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
           ParentFont = False
-          ExplicitLeft = 386
           ExplicitHeight = 32
         end
       end
@@ -4189,9 +4184,7 @@ object FormLogin: TFormLogin
         BevelOuter = bvNone
         ParentColor = True
         TabOrder = 5
-        ExplicitLeft = 4
-        ExplicitTop = 269
-        ExplicitWidth = 683
+        ExplicitTop = 227
         object pnlEditTelefone: TPanel
           AlignWithMargins = True
           Left = 40
@@ -4249,7 +4242,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           Caption = 'pnlEditEmailCadastro'
           TabOrder = 1
-          ExplicitLeft = 389
           object Shape9: TShape
             Left = 0
             Top = 0
@@ -4297,9 +4289,7 @@ object FormLogin: TFormLogin
         BevelOuter = bvNone
         ParentColor = True
         TabOrder = 1
-        ExplicitLeft = 4
-        ExplicitTop = 132
-        ExplicitWidth = 683
+        ExplicitTop = 90
         object Label7: TLabel
           AlignWithMargins = True
           Left = 40
@@ -4332,7 +4322,6 @@ object FormLogin: TFormLogin
           Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
           ParentFont = False
-          ExplicitLeft = 390
           ExplicitHeight = 32
         end
       end
@@ -4346,9 +4335,7 @@ object FormLogin: TFormLogin
         Align = alRight
         BevelOuter = bvNone
         TabOrder = 6
-        ExplicitLeft = 657
-        ExplicitTop = 99
-        ExplicitHeight = 27
+        ExplicitHeight = 11
         object Shape11: TShape
           Left = 0
           Top = 0
@@ -4428,7 +4415,7 @@ object FormLogin: TFormLogin
         Color = clWhite
         ParentBackground = False
         TabOrder = 7
-        ExplicitTop = 424
+        ExplicitTop = 409
         object pnlBtnCadastar: TPanel
           AlignWithMargins = True
           Left = 200
@@ -4441,9 +4428,6 @@ object FormLogin: TFormLogin
           Align = alBottom
           BevelOuter = bvNone
           TabOrder = 0
-          ExplicitLeft = 201
-          ExplicitTop = 461
-          ExplicitWidth = 289
           object Shape10: TShape
             Left = 0
             Top = 0
@@ -4487,9 +4471,6 @@ object FormLogin: TFormLogin
           Align = alBottom
           BevelOuter = bvNone
           TabOrder = 1
-          ExplicitLeft = 201
-          ExplicitTop = 461
-          ExplicitWidth = 289
           object Shape14: TShape
             Left = 0
             Top = 0
@@ -4517,7 +4498,7 @@ object FormLogin: TFormLogin
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            OnClick = lblButtonCadastrarClick
+            OnClick = lblButtonEditarClick
             ExplicitWidth = 65
             ExplicitHeight = 25
           end
@@ -4534,7 +4515,8 @@ object FormLogin: TFormLogin
       Color = clWhite
       ParentBackground = False
       TabOrder = 1
-      ExplicitHeight = 544
+      ExplicitLeft = 3
+      ExplicitTop = 115
       object pnlBtnExcluirTransp: TPanel
         AlignWithMargins = True
         Left = 70
@@ -4549,9 +4531,6 @@ object FormLogin: TFormLogin
         BevelOuter = bvNone
         Constraints.MaxWidth = 598
         TabOrder = 0
-        ExplicitLeft = 61
-        ExplicitTop = 51
-        ExplicitWidth = 381
         object Shape12: TShape
           Left = 0
           Top = 0
@@ -4598,9 +4577,6 @@ object FormLogin: TFormLogin
         BevelOuter = bvNone
         Constraints.MaxWidth = 598
         TabOrder = 1
-        ExplicitLeft = 61
-        ExplicitTop = 51
-        ExplicitWidth = 381
         object Shape13: TShape
           Left = 0
           Top = 0
@@ -4647,7 +4623,6 @@ object FormLogin: TFormLogin
         BevelOuter = bvNone
         Constraints.MaxWidth = 598
         TabOrder = 2
-        ExplicitWidth = 221
         object Shape5: TShape
           Left = 0
           Top = 0
@@ -4680,13 +4655,44 @@ object FormLogin: TFormLogin
           ExplicitHeight = 34
         end
       end
-      object ListBox1: TListBox
-        Left = 32
-        Top = 347
-        Width = 433
-        Height = 148
-        ItemHeight = 15
+      object lswTransp: TListView
+        AlignWithMargins = True
+        Left = 70
+        Top = 337
+        Width = 363
+        Height = 150
+        Margins.Left = 70
+        Margins.Right = 70
+        Margins.Bottom = 50
+        Align = alBottom
+        Columns = <
+          item
+            Caption = 'id'
+          end
+          item
+            Alignment = taCenter
+            Caption = 'Nome Transportadora'
+            MinWidth = 190
+            Width = 190
+          end
+          item
+            Alignment = taCenter
+            Caption = 'CNPJ'
+            MinWidth = 110
+            Width = 110
+          end
+          item
+            Caption = 'Telefone'
+          end
+          item
+            Caption = 'E-mail'
+          end
+          item
+            Caption = 'CEP'
+          end>
         TabOrder = 3
+        ViewStyle = vsReport
+        ExplicitTop = 325
       end
     end
   end

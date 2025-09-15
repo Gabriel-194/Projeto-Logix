@@ -3,7 +3,7 @@ unit transpRepository;
 interface
 
 uses
-  System.SysUtils, System.Classes, FireDAC.Comp.Client,uTransportadora, unit2;
+  System.SysUtils, System.Classes, FireDAC.Comp.Client, uTransportadora, System.Generics.Collections, unit2;
 
 type
   TTranspRepository = class
@@ -84,12 +84,48 @@ type
         ');';
   public
     procedure CadastrarTransportadora(ATransp: TTransportadora);
+    function atualizarTabela: TObjectList<TTransportadora>;
+    procedure EditarTransportadora(Atransp:TTransportadora);
+    procedure ExcluirTransportadora (Atransp:TTransportadora);
   end;
 
 implementation
 
 { TTranspRepository }
 
+
+function TTranspRepository.atualizarTabela:TObjectList<TTransportadora>;
+var
+  FDQuery : TFDquery;
+  Lista: TObjectList<TTransportadora>;
+  Transp: TTransportadora;
+begin
+  Lista := TObjectList<TTransportadora>.Create(True);
+  FDQuery := TFDquery.Create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+
+    FDQuery.SQL.Text := 'SELECT id, nome, cnpj, telefone, email, cep FROM public.transportadora WHERE ativo = TRUE ORDER BY id';
+
+    FDQuery.Open;
+    while not FDQuery.Eof do
+    begin
+      Transp := TTransportadora.Create;
+      Transp.setId(FDQuery.FieldByName('id').AsInteger);
+      Transp.setNome(FDQuery.FieldByName('nome').AsString);
+      Transp.setCNPJ(FDQuery.FieldByName('cnpj').AsString);
+      Transp.setTelefone(FDQuery.FieldByName('telefone').AsString);
+      Transp.setEmail(FDQuery.FieldByName('Email').AsString);
+      Transp.setCep(FDQuery.FieldByName('cep').AsString);
+
+      Lista.Add(Transp);
+      FDQuery.Next;
+    end;
+    Result := Lista;
+  finally
+    FDQuery.free;
+  end;
+end;
 
 procedure TTranspRepository.CadastrarTransportadora(ATransp: TTransportadora);
 var
@@ -121,6 +157,47 @@ begin
 
   finally
     FDQuery.Free;
+  end;
+end;
+
+procedure TTranspRepository.EditarTransportadora(Atransp: TTransportadora);
+var
+  FDQuery :TFDQuery;
+begin
+  FDQuery := TFDQuery.create(nil);
+  try
+    FDQuery.Connection := datamodule2.FDConnection1;
+
+    FDQuery.SQL.Text := 'UPDATE public.transportadora SET nome = :nome, cnpj = :cnpj, telefone = :telefone, email = :email, cep = :cep ' +
+                    'WHERE id = :id';
+    FDQuery.ParamByName('nome').AsString := ATransp.getNome;
+    FDQuery.ParamByName('cnpj').AsString := ATransp.getCNPJ;
+    FDQuery.ParamByName('telefone').AsString := ATransp.getTelefone;
+    FDQuery.ParamByName('email').AsString := ATransp.getEmail;
+    FDQuery.ParamByName('cep').AsString := ATransp.getCep;
+    FDQuery.ParamByName('id').AsInteger := ATransp.getId;
+
+    FDQuery.ExecSQL;
+  finally
+    FDQuery.Free;
+  end;
+
+end;
+
+procedure TTranspRepository.ExcluirTransportadora(Atransp: TTransportadora);
+var
+  FDQuery : TFDQuery;
+begin
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := datamodule2.FDConnection1;
+
+     FDQuery.SQL.Text := 'UPDATE public.transportadora SET ativo = FALSE WHERE id = :id';
+     FDQuery.ParamByName('id').AsInteger := ATransp.getId;
+
+    FDQuery.ExecSQL;
+  finally
+    FDQuery.free;
   end;
 end;
 
