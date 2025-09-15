@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
   Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.Mask, transpController, uTransportadora, uUsuario,loginController,
-  Vcl.ComCtrls,System.Generics.Collections;
+  Vcl.ComCtrls,System.Generics.Collections, LoginDto;
 
 type
   TFormLogin = class(TForm)
@@ -65,9 +65,6 @@ type
     pnlBtnChangeCadastrar: TPanel;
     Shape5: TShape;
     btnchangeCadastrar: TLabel;
-    pnlBtnExcluirTransp: TPanel;
-    Shape12: TShape;
-    btrnExcluirTransp: TLabel;
     PnlBtnEditarTransp: TPanel;
     Shape13: TShape;
     btnEditarTransp: TLabel;
@@ -79,6 +76,18 @@ type
     Shape14: TShape;
     lblButtonEditar: TLabel;
     lswTransp: TListView;
+    pnlBtnExcluirTransp: TPanel;
+    Shape12: TShape;
+    btrnExcluirTransp: TLabel;
+    pnlBtnrecuperar: TPanel;
+    Shape15: TShape;
+    btnRecuperarTransp: TLabel;
+    pnlBtnRecuperarConfirm: TPanel;
+    Shape16: TShape;
+    btnRecuperar: TLabel;
+    pnlBtnExcluirConfirm: TPanel;
+    Shape17: TShape;
+    btnExcluir: TLabel;
     procedure lblButtonCadastrarClick(Sender: TObject);
     procedure btnchangeCadastrarClick(Sender: TObject);
     procedure voltarImageClick(Sender: TObject);
@@ -86,10 +95,14 @@ type
     procedure btnEditarTranspClick(Sender: TObject);
     procedure btrnExcluirTranspClick(Sender: TObject);
     procedure lblButtonEditarClick(Sender: TObject);
+    procedure btnRecuperarTranspClick(Sender: TObject);
+    procedure btnRecuperarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
 
   private
     { Private declarations }
     procedure atualizarTabela;
+    procedure tabelaInativo;
   public
     { Public declarations }
   end;
@@ -108,19 +121,23 @@ begin
   lblPanelOption.Caption := 'Editar Transportadora';
   pnlBtnCadastar.Visible := false;
   pnlBtnEditar.Visible := true;
+  pnlBtnRecuperarConfirm.Visible := False;
+  pnlBtnExcluirConfirm.Visible := false;
 
-  if lswTransp.selected = nil then begin
+    if lswTransp.selected = nil then begin
     showMessage('selecione uma transportadora na lista para editar.');
+    atualizarTabela;
     exit;
-  end else begin
-    edtNome.text := lswTransp.selected.subItems[0];
-    maskEditCnpj.text := lswTransp.selected.SubItems[1];
-    maskEditTelefone.Text := lswTransp.selected.subItems[2];
-    edtEmail.Text := lswTransp.selected.subItems[3];
-    maskEditCep.text := lswTransp.selected.SubItems[4];
-  end;
+    end;
 
-end;
+      edtNome.text := lswTransp.selected.subItems[0];
+      maskEditCnpj.text := lswTransp.selected.SubItems[1];
+      maskEditTelefone.Text := lswTransp.selected.subItems[2];
+      edtEmail.Text := lswTransp.selected.subItems[3];
+      maskEditCep.text := lswTransp.selected.SubItems[4];
+
+
+  end;
 
 procedure TFormLogin.btnEntrarClick(Sender: TObject);
 var
@@ -131,16 +148,15 @@ user : Tusuario;
 resultado : TLoginResult;
 ListaTransp: TObjectList<TTransportadora>;
 Item: TListItem;
+LoginDto:TLoginDto;
 begin
-  user := Tusuario.Create;
-
   try
-    user.setEmail(edtEmailLogin.text);
-    user.setSenha_hash(edtSenhaLogin.text);
+    LoginDto.email:=edtEmailLogin.text;
+    LoginDto.Senha:=edtSenhaLogin.text;
 
     controlLogin := TloginController.Create;
     try
-      resultado := controlLogin.verificaLogin(user);
+      resultado := controlLogin.verificaLogin(LoginDto);
       case resultado of
         lrFalhou:
           ShowMessage('Usuário ou senha inválidos.');
@@ -170,26 +186,87 @@ begin
     user.free;
 end;
 
-procedure TFormLogin.btrnExcluirTranspClick(Sender: TObject);
+procedure TFormLogin.btnExcluirClick(Sender: TObject);
 var
 controller: TTranspController;
 Transp: TTransportadora;
 codParaExcluir : integer;
 begin
-  transp := TTransportadora.create;
-  codParaExcluir := StrToInt(lswTransp.Selected.Caption);
-  transp.setId(codParaExcluir);
 
+  if lswTransp.selected = nil then begin
+    showMessage('selecione uma transportadora na lista para Excluir.');
+    atualizarTabela;
+    exit;
+  end;
+
+  if MessageDlg('Tem certeza que deseja excluir a transportadora selecionada?',mtConfirmation, [mbYes, mbNo], 0) = mrNo then
+    begin
+      exit;
+    end;
+
+    transp := TTransportadora.create;
+    codParaExcluir := StrToInt(lswTransp.Selected.Caption);
+    transp.setId(codParaExcluir);
+
+    controller := TTranspController.Create;
+    try
+      controller.ExcluirTransportadora(Transp);
+      ShowMessage('Transportadora excluida!!');
+      atualizarTabela;
+    finally
+      controller.free
+    end;
+  transp.free;
+end;
+
+procedure TFormLogin.btnRecuperarClick(Sender: TObject);
+var
+controller: TTranspController;
+Transp: TTransportadora;
+codParaRecuperar : integer;
+begin
+    if lswTransp.selected = nil then begin
+    showMessage('selecione uma transportadora na lista para Recuperar.');
+    exit;
+  end else begin
+
+    transp := TTransportadora.Create;
+    codParaRecuperar := StrToInt(lswTransp.Selected.Caption);
+    transp.setId(codParaRecuperar);
+
+    controller := TTranspController.create;
+    try
+      controller.recuperarTransportadora(Transp);
+      ShowMessage('Transportadora recuperada!!');
+      tabelaInativo;
+    finally
+      controller.free;
+      pnlBtnRecuperarConfirm.Visible := False;
+    end;
+  end;
+end;
+
+procedure TFormLogin.btnRecuperarTranspClick(Sender: TObject);
+var
+controller: TTranspController;
+codParaRecuperar:Integer;
+begin
+  lswTransp.Items.Clear;
+  pnlBtnRecuperarConfirm.Visible := True;
+  pnlBtnExcluirConfirm.Visible := false;
   controller := TTranspController.Create;
   try
-    controller.ExcluirTransportadora(Transp);
-    ShowMessage('Transportadora excluida!!');
-    atualizarTabela;
+    ShowMessage('Agora a tabela mostra as transportadoras excluidas, Selecione a transportadora desejada e clique em recuperar para reativa-la');
+    tabelaInativo;
   finally
-    controller.free
+    controller.free;
   end;
-  transp.free;
+end;
 
+procedure TFormLogin.btrnExcluirTranspClick(Sender: TObject);
+begin
+  pnlBtnRecuperarConfirm.Visible := False;
+  pnlBtnExcluirConfirm.Visible := true;
 end;
 
 procedure TFormLogin.lblButtonCadastrarClick(Sender: TObject);
@@ -215,6 +292,11 @@ begin
     finally
       Controller.Free;
     end;
+      edtNome.clear;
+      maskEditCnpj.clear;
+      maskEditTelefone.clear;
+      edtEmail.clear;
+      maskEditCep.clear;
   except
     on E: Exception do
       ShowMessage('Erro: ' + E.Message);
@@ -250,6 +332,43 @@ begin
   finally
     transp.free;
     PanelOptionsTransp.Visible:=false;
+    edtNome.clear;
+    maskEditCnpj.clear;
+    maskEditTelefone.clear;
+    edtEmail.clear;
+    maskEditCep.clear;
+  end;
+end;
+
+procedure TFormLogin.tabelaInativo;
+var
+  controlTransp: TTranspController;
+  ListaTransp: TObjectList<TTransportadora>;
+  Transp: TTransportadora;
+  Item: TListItem;
+begin
+  controlTransp := TTranspController.Create;
+  try
+    ListaTransp := controlTransp.tabelaInativo;
+    try
+      lswTransp.Items.Clear;
+
+      for Transp in ListaTransp do
+      begin
+        Item := lswTransp.Items.Add;
+        Item.Caption := Transp.getId.ToString;
+        Item.SubItems.Add(Transp.getNome);
+        Item.SubItems.Add(Transp.getCNPJ);
+        Item.SubItems.Add(Transp.getTelefone);
+        Item.SubItems.Add(Transp.getEmail);
+        Item.SubItems.Add(Transp.getCep);
+      end;
+
+    finally
+      ListaTransp.Free;
+    end;
+  finally
+    controlTransp.Free;
   end;
 end;
 
@@ -296,6 +415,9 @@ begin
   lblPanelOption.Caption := 'Cadastrar Transportadora';
   pnlBtnCadastar.Visible := true;
   pnlBtnEditar.Visible := false;
+  atualizarTabela;
+  pnlBtnRecuperarConfirm.Visible := False;
+  pnlBtnExcluirConfirm.Visible := false;
 end;
 
 

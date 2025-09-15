@@ -26,8 +26,6 @@ object FormLogin: TFormLogin
     Align = alClient
     Caption = 'Panel1'
     TabOrder = 0
-    ExplicitWidth = 1198
-    ExplicitHeight = 642
     object PanelImage: TPanel
       AlignWithMargins = True
       Left = 726
@@ -45,8 +43,6 @@ object FormLogin: TFormLogin
       UseDockManager = False
       ParentBackground = False
       TabOrder = 0
-      ExplicitLeft = 724
-      ExplicitHeight = 640
       object Image2: TImage
         AlignWithMargins = True
         Left = 1
@@ -1753,8 +1749,6 @@ object FormLogin: TFormLogin
       Color = clWhite
       ParentBackground = False
       TabOrder = 1
-      ExplicitWidth = 720
-      ExplicitHeight = 640
       object Image1: TImage
         Left = 0
         Top = 0
@@ -2784,7 +2778,6 @@ object FormLogin: TFormLogin
         Constraints.MaxWidth = 600
         ParentBackground = False
         TabOrder = 0
-        ExplicitWidth = 360
         object Shape3: TShape
           Left = 0
           Top = 0
@@ -2828,7 +2821,6 @@ object FormLogin: TFormLogin
         Constraints.MaxWidth = 600
         ParentBackground = False
         TabOrder = 1
-        ExplicitWidth = 360
         object Shape2: TShape
           Left = 0
           Top = 0
@@ -2871,7 +2863,6 @@ object FormLogin: TFormLogin
         BevelOuter = bvNone
         Constraints.MaxWidth = 412
         TabOrder = 2
-        ExplicitWidth = 220
         object Shape4: TShape
           Left = 0
           Top = 0
@@ -2922,8 +2913,6 @@ object FormLogin: TFormLogin
     ParentBackground = False
     TabOrder = 1
     Visible = False
-    ExplicitWidth = 1198
-    ExplicitHeight = 642
     object Image4: TImage
       Left = 1
       Top = 1
@@ -3910,8 +3899,6 @@ object FormLogin: TFormLogin
       ParentBackground = False
       TabOrder = 0
       Visible = False
-      ExplicitLeft = 510
-      ExplicitHeight = 526
       object lblPanelOption: TLabel
         AlignWithMargins = True
         Left = 100
@@ -3944,7 +3931,6 @@ object FormLogin: TFormLogin
         BevelOuter = bvNone
         ParentColor = True
         TabOrder = 0
-        ExplicitTop = 139
         object PnlEditNome: TPanel
           AlignWithMargins = True
           Left = 40
@@ -4047,7 +4033,6 @@ object FormLogin: TFormLogin
         BevelOuter = bvNone
         ParentColor = True
         TabOrder = 2
-        ExplicitTop = 271
         object Label8: TLabel
           AlignWithMargins = True
           Left = 40
@@ -4078,7 +4063,6 @@ object FormLogin: TFormLogin
         BevelOuter = bvNone
         ParentColor = True
         TabOrder = 3
-        ExplicitTop = 315
         object pnlEditCep: TPanel
           AlignWithMargins = True
           Left = 40
@@ -4136,7 +4120,6 @@ object FormLogin: TFormLogin
         BevelOuter = bvNone
         ParentColor = True
         TabOrder = 4
-        ExplicitTop = 183
         object Label10: TLabel
           AlignWithMargins = True
           Left = 40
@@ -4184,7 +4167,6 @@ object FormLogin: TFormLogin
         BevelOuter = bvNone
         ParentColor = True
         TabOrder = 5
-        ExplicitTop = 227
         object pnlEditTelefone: TPanel
           AlignWithMargins = True
           Left = 40
@@ -4289,7 +4271,6 @@ object FormLogin: TFormLogin
         BevelOuter = bvNone
         ParentColor = True
         TabOrder = 1
-        ExplicitTop = 90
         object Label7: TLabel
           AlignWithMargins = True
           Left = 40
@@ -4335,7 +4316,6 @@ object FormLogin: TFormLogin
         Align = alRight
         BevelOuter = bvNone
         TabOrder = 6
-        ExplicitHeight = 11
         object Shape11: TShape
           Left = 0
           Top = 0
@@ -4415,7 +4395,6 @@ object FormLogin: TFormLogin
         Color = clWhite
         ParentBackground = False
         TabOrder = 7
-        ExplicitTop = 409
         object pnlBtnCadastar: TPanel
           AlignWithMargins = True
           Left = 200
@@ -4517,66 +4496,20 @@ object FormLogin: TFormLogin
       TabOrder = 1
       ExplicitLeft = 3
       ExplicitTop = 115
-      object pnlBtnExcluirTransp: TPanel
+      object PnlBtnEditarTransp: TPanel
         AlignWithMargins = True
         Left = 70
-        Top = 230
+        Top = 120
         Width = 363
         Height = 30
         Margins.Left = 70
-        Margins.Top = 50
+        Margins.Top = 30
         Margins.Right = 70
         Margins.Bottom = 10
         Align = alTop
         BevelOuter = bvNone
         Constraints.MaxWidth = 598
         TabOrder = 0
-        object Shape12: TShape
-          Left = 0
-          Top = 0
-          Width = 363
-          Height = 30
-          Align = alClient
-          Pen.Color = clBlue
-          Shape = stRoundRect
-          ExplicitWidth = 262
-          ExplicitHeight = 297
-        end
-        object btrnExcluirTransp: TLabel
-          Left = 0
-          Top = 0
-          Width = 363
-          Height = 30
-          Align = alClient
-          Alignment = taCenter
-          AutoSize = False
-          Caption = 'Excluir transportadora'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Segoe UI'
-          Font.Style = [fsBold]
-          ParentFont = False
-          OnClick = btrnExcluirTranspClick
-          ExplicitTop = 6
-          ExplicitWidth = 598
-          ExplicitHeight = 34
-        end
-      end
-      object PnlBtnEditarTransp: TPanel
-        AlignWithMargins = True
-        Left = 70
-        Top = 140
-        Width = 363
-        Height = 30
-        Margins.Left = 70
-        Margins.Top = 50
-        Margins.Right = 70
-        Margins.Bottom = 10
-        Align = alTop
-        BevelOuter = bvNone
-        Constraints.MaxWidth = 598
-        TabOrder = 1
         object Shape13: TShape
           Left = 0
           Top = 0
@@ -4604,9 +4537,7 @@ object FormLogin: TFormLogin
           Font.Style = [fsBold]
           ParentFont = False
           OnClick = btnEditarTranspClick
-          ExplicitTop = 6
-          ExplicitWidth = 598
-          ExplicitHeight = 34
+          ExplicitTop = 7
         end
       end
       object pnlBtnChangeCadastrar: TPanel
@@ -4622,7 +4553,7 @@ object FormLogin: TFormLogin
         Align = alTop
         BevelOuter = bvNone
         Constraints.MaxWidth = 598
-        TabOrder = 2
+        TabOrder = 1
         object Shape5: TShape
           Left = 0
           Top = 0
@@ -4658,12 +4589,12 @@ object FormLogin: TFormLogin
       object lswTransp: TListView
         AlignWithMargins = True
         Left = 70
-        Top = 337
+        Top = 372
         Width = 363
         Height = 150
         Margins.Left = 70
         Margins.Right = 70
-        Margins.Bottom = 50
+        Margins.Bottom = 15
         Align = alBottom
         Columns = <
           item
@@ -4690,9 +4621,197 @@ object FormLogin: TFormLogin
           item
             Caption = 'CEP'
           end>
-        TabOrder = 3
+        TabOrder = 2
         ViewStyle = vsReport
-        ExplicitTop = 325
+        ExplicitLeft = 75
+        ExplicitTop = 156
+      end
+      object pnlBtnExcluirTransp: TPanel
+        AlignWithMargins = True
+        Left = 70
+        Top = 289
+        Width = 363
+        Height = 30
+        Margins.Left = 70
+        Margins.Top = 30
+        Margins.Right = 70
+        Margins.Bottom = 10
+        Align = alTop
+        BevelOuter = bvNone
+        Constraints.MaxWidth = 598
+        TabOrder = 3
+        ExplicitLeft = 94
+        ExplicitTop = 522
+        object Shape12: TShape
+          Left = 0
+          Top = 0
+          Width = 363
+          Height = 30
+          Align = alClient
+          Pen.Color = clBlue
+          Shape = stRoundRect
+          ExplicitWidth = 262
+          ExplicitHeight = 297
+        end
+        object btrnExcluirTransp: TLabel
+          Left = 0
+          Top = 0
+          Width = 363
+          Height = 30
+          Align = alClient
+          Alignment = taCenter
+          AutoSize = False
+          Caption = 'Excluir transportadora'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -19
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btrnExcluirTranspClick
+          ExplicitWidth = 353
+        end
+      end
+      object pnlBtnrecuperar: TPanel
+        AlignWithMargins = True
+        Left = 70
+        Top = 190
+        Width = 363
+        Height = 30
+        Margins.Left = 70
+        Margins.Top = 30
+        Margins.Right = 70
+        Margins.Bottom = 10
+        Align = alTop
+        BevelOuter = bvNone
+        Constraints.MaxWidth = 598
+        TabOrder = 4
+        object Shape15: TShape
+          Left = 0
+          Top = 0
+          Width = 363
+          Height = 30
+          Align = alClient
+          Pen.Color = clBlue
+          Shape = stRoundRect
+          ExplicitWidth = 262
+          ExplicitHeight = 297
+        end
+        object btnRecuperarTransp: TLabel
+          Left = 0
+          Top = 0
+          Width = 363
+          Height = 30
+          Align = alClient
+          Alignment = taCenter
+          AutoSize = False
+          Caption = 'Recuperar Transportadora'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -19
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btnRecuperarTranspClick
+          ExplicitLeft = 24
+          ExplicitWidth = 339
+        end
+      end
+      object pnlBtnRecuperarConfirm: TPanel
+        AlignWithMargins = True
+        Left = 150
+        Top = 230
+        Width = 203
+        Height = 29
+        Margins.Left = 150
+        Margins.Top = 0
+        Margins.Right = 150
+        Margins.Bottom = 0
+        Align = alTop
+        BevelOuter = bvNone
+        TabOrder = 5
+        Visible = False
+        ExplicitLeft = 155
+        ExplicitTop = 218
+        object Shape16: TShape
+          Left = 0
+          Top = 0
+          Width = 203
+          Height = 29
+          Align = alClient
+          Brush.Color = 6957870
+          Pen.Color = clBlue
+          Shape = stRoundRect
+          ExplicitTop = 8
+          ExplicitWidth = 117
+          ExplicitHeight = 33
+        end
+        object btnRecuperar: TLabel
+          AlignWithMargins = True
+          Left = 3
+          Top = 3
+          Width = 197
+          Height = 23
+          Align = alClient
+          Alignment = taCenter
+          Caption = 'RECUPERAR'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -19
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btnRecuperarClick
+          ExplicitWidth = 190
+        end
+      end
+      object pnlBtnExcluirConfirm: TPanel
+        AlignWithMargins = True
+        Left = 150
+        Top = 329
+        Width = 203
+        Height = 29
+        Margins.Left = 150
+        Margins.Top = 0
+        Margins.Right = 150
+        Margins.Bottom = 10
+        Align = alTop
+        BevelOuter = bvNone
+        TabOrder = 6
+        Visible = False
+        ExplicitLeft = 155
+        ExplicitTop = 291
+        object Shape17: TShape
+          Left = 0
+          Top = 0
+          Width = 203
+          Height = 29
+          Align = alClient
+          Brush.Color = 6957870
+          Pen.Color = clBlue
+          Shape = stRoundRect
+          ExplicitTop = 8
+          ExplicitWidth = 117
+          ExplicitHeight = 33
+        end
+        object btnExcluir: TLabel
+          AlignWithMargins = True
+          Left = 3
+          Top = 3
+          Width = 197
+          Height = 23
+          Align = alClient
+          Alignment = taCenter
+          Caption = 'EXCLUIR'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -19
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btnExcluirClick
+          ExplicitWidth = 182
+        end
       end
     end
   end

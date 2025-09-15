@@ -15,6 +15,8 @@ type
     function atualizarTabela: TObjectList<TTransportadora>;
     procedure EditarTransportadora (ATransp: TTransportadora);
     procedure ExcluirTransportadora (ATransp: TTransportadora);
+    function tabelaInativo: TObjectList<TTransportadora>;
+    procedure RecuperarTransportadora(ATransp: TTransportadora);
   end;
 
 implementation
@@ -98,6 +100,26 @@ end;
 
 
 
+
+procedure TTranspService.RecuperarTransportadora(ATransp: TTransportadora);
+begin
+transRepo := TTranspRepository.Create;
+  try
+    if Atransp.getId.ToString = '' then begin
+      raise exception.Create('Selecione uma transportadora para recuperar');
+      exit;
+    end;
+
+    transRepo.RecuperarTransportadora(Atransp);
+  finally
+    transRepo.Free;
+  end;
+end;
+
+function TTranspService.tabelaInativo: TObjectList<TTransportadora>;
+begin
+result := TransRepo.tabelaInativo;
+end;
 
 function TTranspService.atualizarTabela: TObjectList<TTransportadora>;
 begin

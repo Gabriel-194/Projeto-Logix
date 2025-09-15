@@ -12,6 +12,8 @@ type
     function atualizarTabela: TObjectList<TTransportadora>;
     procedure EditarTranportadora(ATransp: TTransportadora);
     procedure ExcluirTransportadora (ATransp: TTransportadora);
+    function tabelaInativo: TObjectList<TTransportadora>;
+    procedure recuperarTransportadora (ATransp: TTransportadora);
   end;
 
   var
@@ -59,6 +61,26 @@ service := TTranspService.create;
     service.ExcluirTransportadora(Atransp);
   finally
     service.free;
+  end;
+end;
+
+procedure TTranspController.recuperarTransportadora(ATransp: TTransportadora);
+begin
+service := TTranspService.create;
+  try
+    service.RecuperarTransportadora(Atransp);
+  finally
+    service.free;
+  end;
+end;
+
+function TTranspController.tabelaInativo: TObjectList<TTransportadora>;
+begin
+  service := TTranspService.create;
+  try
+    result :=service.tabelaInativo;
+  finally
+    Service.Free;
   end;
 end;
 
