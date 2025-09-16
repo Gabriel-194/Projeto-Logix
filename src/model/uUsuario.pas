@@ -8,9 +8,7 @@ type
    protected
     nome : String;
     cpf : String;
-    numero_cnh : String;
-    validade_cnh : String;
-    categoria_cnh: String;
+    telefone: String;
     cargo_descricao : String;
     email : String;
     senha_hash : String;
@@ -20,15 +18,6 @@ type
 
     procedure setCpf(aCpf: String);
     function getCpf: String;
-
-    procedure setNumero_cnh(aNumero_cnh: String);
-    function getNumero_cnh: String;
-
-    procedure setValidade_cnh(aValidade_cnh: String);
-    function getValidade_cnh: String;
-
-    procedure setCategoria_cnh(aCategoria_cnh: String);
-    function getCategoria_cnh: String;
 
     procedure setCargo_descricao(aCargo_descricao: String);
     function getCargo_descricao: String;
@@ -64,37 +53,7 @@ begin
   Result := Self.cpf;
 end;
 
-procedure TUsuario.setNumero_cnh(aNumero_cnh: String);
-begin
-  Self.numero_cnh := aNumero_cnh;
-end;
 
-function TUsuario.getNumero_cnh: String;
-begin
-  Result := Self.numero_cnh;
-end;
-
-
-procedure TUsuario.setValidade_cnh(aValidade_cnh: String);
-begin
-  Self.validade_cnh := aValidade_cnh;
-end;
-
-function TUsuario.getValidade_cnh: String;
-begin
-  Result := Self.validade_cnh;
-end;
-
-
-procedure TUsuario.setCategoria_cnh(aCategoria_cnh: String);
-begin
-  Self.categoria_cnh := aCategoria_cnh;
-end;
-
-function TUsuario.getCategoria_cnh: String;
-begin
-  Result := Self.categoria_cnh;
-end;
 
 procedure TUsuario.setCargo_descricao(aCargo_descricao: String);
 begin

@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
   Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.Mask, transpController, uTransportadora, uUsuario,loginController,
   Vcl.ComCtrls,System.Generics.Collections, LoginDto, System.ImageList,
-  Vcl.ImgList;
+  Vcl.ImgList, adminController, adminDto;
 
 type
   TFormLogin = class(TForm)
@@ -152,13 +152,19 @@ type
     EditSenhaAdm: TEdit;
     pnlButtonChoseTransp: TPanel;
     Shape32: TShape;
-    Image5: TImage;
+    imgTransp: TImage;
     Label1: TLabel;
+    pnlVoltarMenuAdmin: TPanel;
+    Shape34: TShape;
+    imgVoltarMenuAdmin: TImage;
+    pnlVoltarMenuAdminTr: TPanel;
+    Shape35: TShape;
+    ImgVoltarMenuAdminTr: TImage;
     pnlButtonChoseAdmin: TPanel;
     Shape33: TShape;
-    Image6: TImage;
+    ImgAdmin: TImage;
     Label2: TLabel;
-    procedure lblButtonCadastrarClick(Sender: TObject);
+    procedure lick(Sender: TObject);
     procedure btnchangeCadastrarClick(Sender: TObject);
     procedure voltarImageClick(Sender: TObject);
     procedure btnEntrarClick(Sender: TObject);
@@ -168,8 +174,12 @@ type
     procedure btnRecuperarTranspClick(Sender: TObject);
     procedure btnRecuperarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
-    procedure pnlButtonChoseAdminClick(Sender: TObject);
-    procedure pnlButtonChoseTranspClick(Sender: TObject);
+    procedure ImgAdminClick(Sender: TObject);
+    procedure imgTranspClick(Sender: TObject);
+    procedure imgVoltarMenuAdminClick(Sender: TObject);
+    procedure ImgVoltarMenuAdminTrClick(Sender: TObject);
+    procedure lblBtnCadastrarAdminClick(Sender: TObject);
+    procedure lblBtnCadastrarAdmClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -231,14 +241,14 @@ begin
       resultado := controlLogin.verificaLogin(LoginDto);
       case resultado of
         lrFalhou:
-          ShowMessage('Usuário ou senha inválidos.');
+        ShowMessage('Usuário ou senha inválidos.');
 
         lrSucessoUsuario:
-          begin
+        begin
             ShowMessage('Login realizado com sucesso! Bem-vindo ' + user.getEmail);
             // Aqui vai abrir a home de usuario
             Close;
-          end;
+        end;
 
         lrSucessoAdmin:
           begin
@@ -341,12 +351,97 @@ begin
   pnlBtnExcluirConfirm.Visible := true;
 end;
 
-procedure TFormLogin.lblButtonCadastrarClick(Sender: TObject);
+procedure TFormLogin.imgVoltarMenuAdminClick(Sender: TObject);
+begin
+  panelForAdmins.Visible:= false;
+  pnlButtonChoseAdmin.Visible:= true;
+  pnlButtonChoseTransp.Visible:= true;
+end;
+
+procedure TFormLogin.ImgVoltarMenuAdminTrClick(Sender: TObject);
+begin
+  panelForTransp.Visible:= false;
+  pnlButtonChoseAdmin.Visible:= true;
+  pnlButtonChoseTransp.Visible:= true;
+end;
+
+procedure TFormLogin.ImgAdminClick(Sender: TObject);
+begin
+  panelForAdmins.Visible:= true;
+  pnlButtonChoseAdmin.Visible:= false;
+  pnlButtonChoseTransp.Visible:= false;
+end;
+
+procedure TFormLogin.imgTranspClick(Sender: TObject);
+begin
+  panelForTransp.Visible:= true;
+  pnlButtonChoseAdmin.Visible:= false;
+  pnlButtonChoseTransp.Visible:= false;
+end;
+
+procedure TFormLogin.lblBtnCadastrarAdmClick(Sender: TObject);
+var
+controller : TadminController;
+adminDto : TadminDto;
+begin
+  adminDto.nome := EditNomeAdm.Text;
+  adminDto.cpf := maskEditCpfAdm.text;
+  adminDto.telefone := maskEditTelefoneAdm.text;
+  adminDto.email := editEmailAdm.Text;
+  adminDto.senha := editSenhaAdm.text;
+  AdminDto.idTransportadora := StrToIntDef(cbTransp4admin.Text, 0);
+  if AdminDto.idTransportadora = 0 then begin
+    raise Exception.Create('Selecione uma transportadora válida.');
+  end;
+
+
+  controller := TadminController.Create;
+  try
+    controller.cadastrarAdmin(adminDto);
+    ShowMessage('Admnistrador criado com sucesso!');
+    paneloptionsAdmins.visible := false;
+  finally
+    controller.Free;
+  end;
+
+  EditNomeAdm.Clear;
+  maskEditCpfAdm.Clear;
+  maskEditTelefoneAdm.clear;
+  editEmailAdm.clear;
+  editSenhaAdm.clear;
+end;
+
+procedure TFormLogin.lblBtnCadastrarAdminClick(Sender: TObject);
+var
+  Controller: TTranspController;
+  Lista: TObjectList<TTransportadora>;
+  Transp: TTransportadora;
+begin
+  paneloptionsAdmins.Visible := True;
+
+  Controller := TTranspController.Create;
+  try
+    Lista := Controller.atualizarTabela;
+    try
+      cbTransp4Admin.Items.Clear;
+
+      for Transp in Lista do
+        cbTransp4Admin.Items.Add(
+          Transp.getId.ToString + ' - ' + Transp.getNome
+        );
+    finally
+      Lista.Free;
+    end;
+  finally
+    Controller.Free;
+  end;
+end;
+
+procedure TFormLogin.lick(Sender: TObject);
 var
   Controller: TTranspController;
   Transp: TTransportadora;
 begin
-
   Transp := TTransportadora.create;
   try
     Transp.setNome(edtNome.Text);
@@ -410,20 +505,6 @@ begin
     edtEmail.clear;
     maskEditCep.clear;
   end;
-end;
-
-procedure TFormLogin.pnlButtonChoseAdminClick(Sender: TObject);
-begin
-  panelForAdmins.Visible:= true;
-  pnlButtonChoseAdmin.Visible:= false;
-  pnlButtonChoseTransp.Visible:= false;
-end;
-
-procedure TFormLogin.pnlButtonChoseTranspClick(Sender: TObject);
-begin
-  panelForTransp.Visible:= true;
-  pnlButtonChoseAdmin.Visible:= false;
-  pnlButtonChoseTransp.Visible:= false;
 end;
 
 procedure TFormLogin.tabelaInativo;

@@ -13,7 +13,11 @@ uses
   loginRepository in 'src\repository\loginRepository.pas',
   uUsuario in 'src\model\uUsuario.pas',
   login.types in 'src\model\login.types.pas',
-  LoginDto in 'src\DTO\LoginDto.pas';
+  LoginDto in 'src\DTO\LoginDto.pas',
+  AdminDto in 'src\DTO\AdminDto.pas',
+  AdminController in 'src\controller\AdminController.pas',
+  adminService in 'src\service\adminService.pas',
+  adminRepository in 'src\repository\adminRepository.pas';
 
 {$R *.res}
 

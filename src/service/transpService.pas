@@ -98,9 +98,6 @@ begin
   end;
 end;
 
-
-
-
 procedure TTranspService.RecuperarTransportadora(ATransp: TTransportadora);
 begin
 transRepo := TTranspRepository.Create;

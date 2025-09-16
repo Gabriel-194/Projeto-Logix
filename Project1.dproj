@@ -140,6 +140,10 @@
         <DCCReference Include="src\model\uUsuario.pas"/>
         <DCCReference Include="src\model\login.types.pas"/>
         <DCCReference Include="src\DTO\LoginDto.pas"/>
+        <DCCReference Include="src\DTO\AdminDto.pas"/>
+        <DCCReference Include="src\controller\AdminController.pas"/>
+        <DCCReference Include="src\service\adminService.pas"/>
+        <DCCReference Include="src\repository\adminRepository.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
