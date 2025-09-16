@@ -3885,532 +3885,266 @@ object FormLogin: TFormLogin
       ParentFont = False
       ExplicitWidth = 576
     end
-    object PanelOptionsTransp: TPanel
-      AlignWithMargins = True
-      Left = 512
+    object panelForTransp: TPanel
+      Left = 1
       Top = 112
-      Width = 684
-      Height = 534
-      Margins.Top = 0
-      Align = alRight
-      BevelKind = bkFlat
-      BevelOuter = bvNone
+      Width = 1198
+      Height = 537
+      Align = alCustom
+      Caption = 'panelForTransp'
       Color = clWhite
       ParentBackground = False
       TabOrder = 0
       Visible = False
-      object lblPanelOption: TLabel
-        AlignWithMargins = True
-        Left = 100
-        Top = 25
-        Width = 480
-        Height = 40
-        Margins.Left = 100
-        Margins.Top = 25
-        Margins.Right = 100
-        Align = alTop
-        Alignment = taCenter
-        Caption = 'Cadastro de transportadora'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = 6957870
-        Font.Height = -29
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
-        ExplicitWidth = 382
-      end
-      object Panel6: TPanel
-        AlignWithMargins = True
-        Left = 3
-        Top = 147
-        Width = 674
-        Height = 41
-        Margins.Top = 0
-        Margins.Bottom = 0
-        Align = alBottom
-        BevelOuter = bvNone
-        ParentColor = True
-        TabOrder = 0
-        object PnlEditNome: TPanel
-          AlignWithMargins = True
-          Left = 40
-          Top = 3
-          Width = 254
-          Height = 35
-          Margins.Left = 40
-          Margins.Right = 0
-          Align = alLeft
-          BevelOuter = bvNone
-          Color = clWhite
-          ParentBackground = False
-          TabOrder = 0
-          object Shape6: TShape
-            Left = 0
-            Top = 0
-            Width = 254
-            Height = 35
-            Align = alClient
-            Pen.Color = 6957870
-            Shape = stRoundRect
-            ExplicitLeft = 64
-            ExplicitTop = -8
-            ExplicitWidth = 65
-            ExplicitHeight = 65
-          end
-          object edtNome: TEdit
-            AlignWithMargins = True
-            Left = 10
-            Top = 3
-            Width = 241
-            Height = 29
-            Margins.Left = 10
-            Align = alClient
-            BevelInner = bvNone
-            BevelOuter = bvNone
-            BorderStyle = bsNone
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -23
-            Font.Name = 'Segoe UI'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 0
-            TextHint = 'Digite o nome'
-          end
-        end
-        object pnlEditCnpj: TPanel
-          AlignWithMargins = True
-          Left = 380
-          Top = 3
-          Width = 254
-          Height = 35
-          Margins.Right = 40
-          Align = alRight
-          BevelOuter = bvNone
-          TabOrder = 1
-          object Shape7: TShape
-            Left = 0
-            Top = 0
-            Width = 254
-            Height = 35
-            Align = alClient
-            Pen.Color = 6957870
-            Shape = stRoundRect
-            ExplicitLeft = 64
-            ExplicitTop = -8
-            ExplicitWidth = 65
-            ExplicitHeight = 65
-          end
-          object MaskEditCNPJ: TMaskEdit
-            AlignWithMargins = True
-            Left = 3
-            Top = 3
-            Width = 241
-            Height = 29
-            Margins.Right = 10
-            Align = alClient
-            BorderStyle = bsNone
-            EditMask = '!99.999.999/9999-99;1;_'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -23
-            Font.Name = 'Segoe UI'
-            Font.Style = []
-            MaxLength = 18
-            ParentFont = False
-            TabOrder = 0
-            Text = '  .   .   /    -  '
-          end
-        end
-      end
-      object Panel9: TPanel
-        AlignWithMargins = True
-        Left = 3
-        Top = 279
-        Width = 674
-        Height = 41
-        Align = alBottom
-        BevelOuter = bvNone
-        ParentColor = True
-        TabOrder = 2
-        object Label8: TLabel
-          AlignWithMargins = True
-          Left = 40
-          Top = 3
-          Width = 43
-          Height = 35
-          Margins.Left = 40
-          Align = alLeft
-          Caption = 'CEP'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -24
-          Font.Name = 'Segoe UI'
-          Font.Style = [fsBold]
-          ParentFont = False
-          ExplicitHeight = 32
-        end
-      end
-      object panel10: TPanel
-        AlignWithMargins = True
-        Left = 3
-        Top = 323
-        Width = 674
-        Height = 41
-        Margins.Top = 0
-        Margins.Bottom = 50
-        Align = alBottom
-        BevelOuter = bvNone
-        ParentColor = True
-        TabOrder = 3
-        object pnlEditCep: TPanel
-          AlignWithMargins = True
-          Left = 40
-          Top = 3
-          Width = 254
-          Height = 35
-          Margins.Left = 40
-          Align = alLeft
-          BevelOuter = bvNone
-          TabOrder = 0
-          object Shape1: TShape
-            Left = 0
-            Top = 0
-            Width = 254
-            Height = 35
-            Align = alClient
-            Pen.Color = 6957870
-            Shape = stRoundRect
-            ExplicitLeft = 64
-            ExplicitTop = -8
-            ExplicitWidth = 65
-            ExplicitHeight = 65
-          end
-          object MaskEditCEP: TMaskEdit
-            AlignWithMargins = True
-            Left = 10
-            Top = 3
-            Width = 241
-            Height = 29
-            Margins.Left = 10
-            Align = alClient
-            BevelInner = bvNone
-            BevelOuter = bvNone
-            BorderStyle = bsNone
-            EditMask = '!99.999-999;1;_'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -23
-            Font.Name = 'Segoe UI'
-            Font.Style = []
-            MaxLength = 10
-            ParentFont = False
-            TabOrder = 0
-            Text = '  .   -   '
-          end
-        end
-      end
-      object Panel7: TPanel
-        AlignWithMargins = True
-        Left = 3
-        Top = 191
-        Width = 674
-        Height = 41
-        Align = alBottom
-        BevelOuter = bvNone
-        ParentColor = True
-        TabOrder = 4
-        object Label10: TLabel
-          AlignWithMargins = True
-          Left = 40
-          Top = 3
-          Width = 97
-          Height = 35
-          Margins.Left = 40
-          Align = alLeft
-          Caption = 'Telefone:'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -23
-          Font.Name = 'Segoe UI'
-          Font.Style = [fsBold]
-          ParentFont = False
-          ExplicitHeight = 31
-        end
-        object Label11: TLabel
-          AlignWithMargins = True
-          Left = 375
-          Top = 3
-          Width = 79
-          Height = 35
-          Margins.Right = 220
-          Align = alRight
-          Caption = 'E-mail:'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -24
-          Font.Name = 'Segoe UI'
-          Font.Style = [fsBold]
-          ParentFont = False
-          ExplicitHeight = 32
-        end
-      end
-      object Panel8: TPanel
-        AlignWithMargins = True
-        Left = 3
-        Top = 235
-        Width = 674
-        Height = 41
-        Margins.Top = 0
-        Margins.Bottom = 0
-        Align = alBottom
-        BevelOuter = bvNone
-        ParentColor = True
-        TabOrder = 5
-        object pnlEditTelefone: TPanel
-          AlignWithMargins = True
-          Left = 40
-          Top = 3
-          Width = 254
-          Height = 35
-          Margins.Left = 40
-          Align = alLeft
-          BevelOuter = bvNone
-          TabOrder = 0
-          object Shape8: TShape
-            Left = 0
-            Top = 0
-            Width = 254
-            Height = 35
-            Align = alClient
-            Pen.Color = 6957870
-            Shape = stRoundRect
-            ExplicitLeft = 64
-            ExplicitTop = -8
-            ExplicitWidth = 65
-            ExplicitHeight = 65
-          end
-          object MaskEditTelefone: TMaskEdit
-            AlignWithMargins = True
-            Left = 10
-            Top = 3
-            Width = 241
-            Height = 29
-            Margins.Left = 10
-            Align = alClient
-            BevelInner = bvNone
-            BevelOuter = bvNone
-            BorderStyle = bsNone
-            EditMask = '! (99) 99999-9999;1;_'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -23
-            Font.Name = 'Segoe UI'
-            Font.Style = []
-            MaxLength = 16
-            ParentFont = False
-            TabOrder = 0
-            Text = ' (  )      -    '
-          end
-        end
-        object pnlEditEmailCadastro: TPanel
-          AlignWithMargins = True
-          Left = 380
-          Top = 3
-          Width = 254
-          Height = 35
-          Margins.Right = 40
-          Align = alRight
-          BevelOuter = bvNone
-          Caption = 'pnlEditEmailCadastro'
-          TabOrder = 1
-          object Shape9: TShape
-            Left = 0
-            Top = 0
-            Width = 254
-            Height = 35
-            Align = alClient
-            Pen.Color = 6957870
-            Shape = stRoundRect
-            ExplicitLeft = 64
-            ExplicitTop = -8
-            ExplicitWidth = 65
-            ExplicitHeight = 65
-          end
-          object edtEmail: TEdit
-            AlignWithMargins = True
-            Left = 1
-            Top = 3
-            Width = 243
-            Height = 29
-            Margins.Left = 1
-            Margins.Right = 10
-            Align = alClient
-            BevelInner = bvNone
-            BevelOuter = bvNone
-            BorderStyle = bsNone
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -23
-            Font.Name = 'Segoe UI'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 0
-            TextHint = 'Digite o E-mail'
-          end
-        end
-      end
-      object Panel5: TPanel
-        AlignWithMargins = True
-        Left = 3
-        Top = 98
-        Width = 674
-        Height = 49
-        Margins.Bottom = 0
-        Align = alBottom
-        BevelOuter = bvNone
-        ParentColor = True
-        TabOrder = 1
-        object Label7: TLabel
-          AlignWithMargins = True
-          Left = 40
-          Top = 3
-          Width = 76
-          Height = 43
-          Margins.Left = 40
-          Align = alLeft
-          Caption = 'Nome:'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -24
-          Font.Name = 'Segoe UI'
-          Font.Style = [fsBold]
-          ParentFont = False
-          ExplicitHeight = 32
-        end
-        object Label5: TLabel
-          AlignWithMargins = True
-          Left = 379
-          Top = 3
-          Width = 65
-          Height = 43
-          Margins.Right = 230
-          Align = alRight
-          Caption = 'CNPJ:'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -24
-          Font.Name = 'Segoe UI'
-          Font.Style = [fsBold]
-          ParentFont = False
-          ExplicitHeight = 32
-        end
-      end
-      object pnlVoltarLogin: TPanel
-        AlignWithMargins = True
-        Left = 647
-        Top = 73
-        Width = 30
-        Height = 19
-        Margins.Top = 5
-        Align = alRight
-        BevelOuter = bvNone
-        TabOrder = 6
-        object Shape11: TShape
-          Left = 0
-          Top = 0
-          Width = 30
-          Height = 19
-          Align = alClient
-          Pen.Color = clBlue
-          Shape = stRoundRect
-          ExplicitTop = 48
-          ExplicitWidth = 97
-          ExplicitHeight = 28
-        end
-        object voltarImage: TImage
-          Left = 0
-          Top = 0
-          Width = 30
-          Height = 19
-          Align = alClient
-          Center = True
-          Picture.Data = {
-            0954506E67496D61676589504E470D0A1A0A0000000D49484452000000800000
-            00800806000000C33E61CB000000097048597300000B1300000B1301009A9C18
-            000000B46558496649492A000800000006001201030001000000010000001A01
-            050001000000560000001B010500010000005E00000028010300010000000200
-            0000130203000100000001000000698704000100000066000000000000004800
-            0000010000004800000001000000060000900700040000003032313001910700
-            040000000102030000A00700040000003031303001A0030001000000FFFF0000
-            02A00400010000008000000003A004000100000080000000000000004ABE23F4
-            000003A24944415478DAEDDD4D6E13611084E144708AB0E61E888B935384057B
-            14CE902C7049B614210889A7BFAFABBAEA952CC422D1F4F4437EEC31737B93AC
-            BBED3E80D45B00981700E605807901605E00981700E605807901605E00981700
-            E605807901605E00981700E605807901605E00981700E605807901605E009817
-            00E67503F87CFEF347F789709DBF130086FF767A7C3C3DBE9E1E0F8DC7623B7F
-            1780CBF09FCE7FFFD579129CE7EF00F0E7F0975C1050CDBF1BC0BF866F3D09CE
-            F3EF04F0BFE1DB4E82F3FCBB00BC75F89693E03CFF0E00EF1D7EFB49709E9F19
-            C0B693403AFBE379F6EF2B0F90F55BC0CB5411D02F1F31FE10F8B7D410482C1F
-            B1FD1AF85A2A0864968F989E087A4BEC08A4968F589E0A7E4FAC08E4968F185E
-            0C9A804072F988E1E5607504B2CB47DD00903202E9E5230600481181FCF2110B
-            00A48460C4F2111300A48060CCF2111B00C48C60D4F2112300C48860DCF2112B
-            00C48460E4F2113300C48060ECF2113B00D48960F4F2910200D48160FCF2910A
-            00B41381C5F2911200B40381CDF2911A00B41281D5F2912200B40281DDF2912A
-            005489C072F9481900AA40F074E073482F1FA9034040707F7ADC5DF1B13FCF7F
-            5EFBB15F6EC4FF6F830900D091AF04D724FF2FFFD2140068178231CB479300A0
-            D508462D1F4D0380562118B77C341100AA463072F9682A00548560ECF2D16400
-            E82882D1CB4701F07ADDEF3B58DE640055DF024623980AA0FA87C0B108260258
-            F56BE04804D300AC7E22681C824900763D153C0AC11400BB5F0C1A83600280BC
-            1C7C2075001557F23C1FF81CF25F099401545EC6C5F00EA4965401ACB886CF12
-            812280951770DA215003B0E3EA5D2B044A00765EBA6D83400540C775FB160814
-            0074BE69633C0276000CEFD8198D801900C3F22B8E851A012B00A6E5571C132D
-            0246008CCBAF38364A046C0098975F718C74089800282CBFE258A910B000505A
-            7EC531D3206000A0B8FC8A63A740D00D4079F91533B42350BD650CCBF22B6669
-            45A078D328B6E557CCD48640EDB671ACCBAF98AD0581D28D23D9975F31E37604
-            2AB78E55597EC5AC5B1128DC3C5A6DF915336F43C07EFB78D5E557CCBE050133
-            00F5E54BCCCFFA2D60CAF2E9E767FC2170DAF2A9E767FB3570EAF269E7677A22
-            68FAF229E767792AD865F974F333BC18F4A16BF8E628E66778391849BFC75E79
-            FE6E00A9B900302F00CC0B00F302C0BC00302F00CC0B00F302C0BC00302F00CC
-            0B00F302C0BC00302F00CC0B00F302C0BC00302F00CC0B00F302C0BC00302F00
-            CC0B00F37E03FA7FA690A75DFBDA0000000049454E44AE426082}
-          Proportional = True
-          Stretch = True
-          OnClick = voltarImageClick
-          ExplicitLeft = 8
-          ExplicitTop = 3
-          ExplicitWidth = 50
-          ExplicitHeight = 40
-        end
-      end
-      object Panel2: TPanel
-        AlignWithMargins = True
-        Left = 3
-        Top = 417
-        Width = 674
-        Height = 73
-        Margins.Bottom = 40
-        Align = alBottom
+      object PanelButtons: TPanel
+        Left = 1
+        Top = 1
+        Width = 503
+        Height = 535
+        Align = alLeft
         BevelOuter = bvNone
         Color = clWhite
         ParentBackground = False
-        TabOrder = 7
-        object pnlBtnCadastar: TPanel
+        TabOrder = 0
+        ExplicitLeft = 9
+        ExplicitTop = 2
+        ExplicitHeight = 39
+        object PnlBtnEditarTransp: TPanel
           AlignWithMargins = True
-          Left = 200
-          Top = 9
-          Width = 274
-          Height = 29
-          Margins.Left = 200
-          Margins.Right = 200
-          Margins.Bottom = 0
-          Align = alBottom
+          Left = 70
+          Top = 120
+          Width = 363
+          Height = 30
+          Margins.Left = 70
+          Margins.Top = 30
+          Margins.Right = 70
+          Margins.Bottom = 10
+          Align = alTop
           BevelOuter = bvNone
+          Constraints.MaxWidth = 598
           TabOrder = 0
-          object Shape10: TShape
+          object Shape13: TShape
             Left = 0
             Top = 0
-            Width = 274
+            Width = 363
+            Height = 30
+            Align = alClient
+            Pen.Color = clBlue
+            Shape = stRoundRect
+            ExplicitWidth = 262
+            ExplicitHeight = 297
+          end
+          object btnEditarTransp: TLabel
+            Left = 0
+            Top = 0
+            Width = 363
+            Height = 30
+            Align = alClient
+            Alignment = taCenter
+            AutoSize = False
+            Caption = 'Editar transportadora'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            OnClick = btnEditarTranspClick
+            ExplicitTop = 7
+          end
+        end
+        object pnlBtnChangeCadastrar: TPanel
+          AlignWithMargins = True
+          Left = 70
+          Top = 50
+          Width = 363
+          Height = 30
+          Margins.Left = 70
+          Margins.Top = 50
+          Margins.Right = 70
+          Margins.Bottom = 10
+          Align = alTop
+          BevelOuter = bvNone
+          Constraints.MaxWidth = 598
+          TabOrder = 1
+          object Shape5: TShape
+            Left = 0
+            Top = 0
+            Width = 363
+            Height = 30
+            Align = alClient
+            Pen.Color = clBlue
+            Shape = stRoundRect
+            ExplicitWidth = 262
+            ExplicitHeight = 297
+          end
+          object btnchangeCadastrar: TLabel
+            Left = 0
+            Top = 0
+            Width = 363
+            Height = 30
+            Align = alClient
+            Alignment = taCenter
+            AutoSize = False
+            Caption = 'Cadastrar transportadora'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            OnClick = btnchangeCadastrarClick
+            ExplicitTop = 6
+            ExplicitWidth = 598
+            ExplicitHeight = 34
+          end
+        end
+        object lswTransp: TListView
+          AlignWithMargins = True
+          Left = 70
+          Top = 370
+          Width = 363
+          Height = 150
+          Margins.Left = 70
+          Margins.Right = 70
+          Margins.Bottom = 15
+          Align = alBottom
+          Columns = <
+            item
+              Caption = 'id'
+            end
+            item
+              Alignment = taCenter
+              Caption = 'Nome Transportadora'
+              MinWidth = 190
+              Width = 190
+            end
+            item
+              Alignment = taCenter
+              Caption = 'CNPJ'
+              MinWidth = 110
+              Width = 110
+            end
+            item
+              Caption = 'Telefone'
+            end
+            item
+              Caption = 'E-mail'
+            end
+            item
+              Caption = 'CEP'
+            end>
+          TabOrder = 2
+          ViewStyle = vsReport
+          ExplicitTop = -126
+        end
+        object pnlBtnExcluirTransp: TPanel
+          AlignWithMargins = True
+          Left = 70
+          Top = 289
+          Width = 363
+          Height = 30
+          Margins.Left = 70
+          Margins.Top = 30
+          Margins.Right = 70
+          Margins.Bottom = 10
+          Align = alTop
+          BevelOuter = bvNone
+          Constraints.MaxWidth = 598
+          TabOrder = 3
+          object Shape12: TShape
+            Left = 0
+            Top = 0
+            Width = 363
+            Height = 30
+            Align = alClient
+            Pen.Color = clBlue
+            Shape = stRoundRect
+            ExplicitWidth = 262
+            ExplicitHeight = 297
+          end
+          object btrnExcluirTransp: TLabel
+            Left = 0
+            Top = 0
+            Width = 363
+            Height = 30
+            Align = alClient
+            Alignment = taCenter
+            AutoSize = False
+            Caption = 'Excluir transportadora'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            OnClick = btrnExcluirTranspClick
+            ExplicitWidth = 353
+          end
+        end
+        object pnlBtnrecuperar: TPanel
+          AlignWithMargins = True
+          Left = 70
+          Top = 190
+          Width = 363
+          Height = 30
+          Margins.Left = 70
+          Margins.Top = 30
+          Margins.Right = 70
+          Margins.Bottom = 10
+          Align = alTop
+          BevelOuter = bvNone
+          Constraints.MaxWidth = 598
+          TabOrder = 4
+          object Shape15: TShape
+            Left = 0
+            Top = 0
+            Width = 363
+            Height = 30
+            Align = alClient
+            Pen.Color = clBlue
+            Shape = stRoundRect
+            ExplicitWidth = 262
+            ExplicitHeight = 297
+          end
+          object btnRecuperarTransp: TLabel
+            Left = 0
+            Top = 0
+            Width = 363
+            Height = 30
+            Align = alClient
+            Alignment = taCenter
+            AutoSize = False
+            Caption = 'Recuperar Transportadora'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            OnClick = btnRecuperarTranspClick
+            ExplicitLeft = 24
+            ExplicitWidth = 339
+          end
+        end
+        object pnlBtnRecuperarConfirm: TPanel
+          AlignWithMargins = True
+          Left = 150
+          Top = 230
+          Width = 203
+          Height = 29
+          Margins.Left = 150
+          Margins.Top = 0
+          Margins.Right = 150
+          Margins.Bottom = 0
+          Align = alTop
+          BevelOuter = bvNone
+          TabOrder = 5
+          Visible = False
+          object Shape16: TShape
+            Left = 0
+            Top = 0
+            Width = 203
             Height = 29
             Align = alClient
             Brush.Color = 6957870
@@ -4420,40 +4154,44 @@ object FormLogin: TFormLogin
             ExplicitWidth = 117
             ExplicitHeight = 33
           end
-          object lblButtonCadastrar: TLabel
-            Left = 0
-            Top = 0
-            Width = 274
-            Height = 29
+          object btnRecuperar: TLabel
+            AlignWithMargins = True
+            Left = 3
+            Top = 3
+            Width = 197
+            Height = 23
             Align = alClient
             Alignment = taCenter
-            Caption = 'CADASTRAR'
+            Caption = 'RECUPERAR'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWhite
             Font.Height = -19
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            OnClick = lblButtonCadastrarClick
-            ExplicitWidth = 111
+            OnClick = btnRecuperarClick
+            ExplicitWidth = 107
             ExplicitHeight = 25
           end
         end
-        object pnlBtnEditar: TPanel
+        object pnlBtnExcluirConfirm: TPanel
           AlignWithMargins = True
-          Left = 200
-          Top = 41
-          Width = 274
+          Left = 150
+          Top = 329
+          Width = 203
           Height = 29
-          Margins.Left = 200
-          Margins.Right = 200
-          Align = alBottom
+          Margins.Left = 150
+          Margins.Top = 0
+          Margins.Right = 150
+          Margins.Bottom = 10
+          Align = alTop
           BevelOuter = bvNone
-          TabOrder = 1
-          object Shape14: TShape
+          TabOrder = 6
+          Visible = False
+          object Shape17: TShape
             Left = 0
             Top = 0
-            Width = 274
+            Width = 203
             Height = 29
             Align = alClient
             Brush.Color = 6957870
@@ -4463,355 +4201,2494 @@ object FormLogin: TFormLogin
             ExplicitWidth = 117
             ExplicitHeight = 33
           end
-          object lblButtonEditar: TLabel
-            Left = 0
-            Top = 0
-            Width = 274
-            Height = 29
+          object btnExcluir: TLabel
+            AlignWithMargins = True
+            Left = 3
+            Top = 3
+            Width = 197
+            Height = 23
             Align = alClient
             Alignment = taCenter
-            Caption = 'EDITAR'
+            Caption = 'EXCLUIR'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWhite
             Font.Height = -19
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            OnClick = lblButtonEditarClick
-            ExplicitWidth = 65
+            OnClick = btnExcluirClick
+            ExplicitWidth = 76
             ExplicitHeight = 25
+          end
+        end
+      end
+      object PanelOptionsTransp: TPanel
+        AlignWithMargins = True
+        Left = 510
+        Top = 1
+        Width = 684
+        Height = 532
+        Margins.Top = 0
+        Align = alRight
+        BevelKind = bkFlat
+        BevelOuter = bvNone
+        Color = clWhite
+        ParentBackground = False
+        TabOrder = 1
+        Visible = False
+        ExplicitLeft = 512
+        ExplicitTop = 112
+        ExplicitHeight = 534
+        object lblPanelOption: TLabel
+          AlignWithMargins = True
+          Left = 100
+          Top = 25
+          Width = 480
+          Height = 40
+          Margins.Left = 100
+          Margins.Top = 25
+          Margins.Right = 100
+          Align = alTop
+          Alignment = taCenter
+          Caption = 'Cadastro de transportadora'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 6957870
+          Font.Height = -29
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          ExplicitWidth = 382
+        end
+        object Panel6: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 145
+          Width = 674
+          Height = 41
+          Margins.Top = 0
+          Margins.Bottom = 0
+          Align = alBottom
+          BevelOuter = bvNone
+          ParentColor = True
+          TabOrder = 0
+          ExplicitTop = -351
+          object PnlEditNome: TPanel
+            AlignWithMargins = True
+            Left = 40
+            Top = 3
+            Width = 254
+            Height = 35
+            Margins.Left = 40
+            Margins.Right = 0
+            Align = alLeft
+            BevelOuter = bvNone
+            Color = clWhite
+            ParentBackground = False
+            TabOrder = 0
+            object Shape6: TShape
+              Left = 0
+              Top = 0
+              Width = 254
+              Height = 35
+              Align = alClient
+              Pen.Color = 6957870
+              Shape = stRoundRect
+              ExplicitLeft = 64
+              ExplicitTop = -8
+              ExplicitWidth = 65
+              ExplicitHeight = 65
+            end
+            object edtNome: TEdit
+              AlignWithMargins = True
+              Left = 10
+              Top = 3
+              Width = 241
+              Height = 29
+              Margins.Left = 10
+              Align = alClient
+              BevelInner = bvNone
+              BevelOuter = bvNone
+              BorderStyle = bsNone
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -23
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              TextHint = 'Digite o nome'
+            end
+          end
+          object pnlEditCnpj: TPanel
+            AlignWithMargins = True
+            Left = 380
+            Top = 3
+            Width = 254
+            Height = 35
+            Margins.Right = 40
+            Align = alRight
+            BevelOuter = bvNone
+            TabOrder = 1
+            object Shape7: TShape
+              Left = 0
+              Top = 0
+              Width = 254
+              Height = 35
+              Align = alClient
+              Pen.Color = 6957870
+              Shape = stRoundRect
+              ExplicitLeft = 64
+              ExplicitTop = -8
+              ExplicitWidth = 65
+              ExplicitHeight = 65
+            end
+            object MaskEditCNPJ: TMaskEdit
+              AlignWithMargins = True
+              Left = 3
+              Top = 3
+              Width = 241
+              Height = 29
+              Margins.Right = 10
+              Align = alClient
+              BorderStyle = bsNone
+              EditMask = '!99.999.999/9999-99;1;_'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -23
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              MaxLength = 18
+              ParentFont = False
+              TabOrder = 0
+              Text = '  .   .   /    -  '
+            end
+          end
+        end
+        object Panel9: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 277
+          Width = 674
+          Height = 41
+          Align = alBottom
+          BevelOuter = bvNone
+          ParentColor = True
+          TabOrder = 2
+          ExplicitTop = -219
+          object Label8: TLabel
+            AlignWithMargins = True
+            Left = 40
+            Top = 3
+            Width = 43
+            Height = 35
+            Margins.Left = 40
+            Align = alLeft
+            Caption = 'CEP'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -24
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ExplicitHeight = 32
+          end
+        end
+        object panel10: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 321
+          Width = 674
+          Height = 41
+          Margins.Top = 0
+          Margins.Bottom = 50
+          Align = alBottom
+          BevelOuter = bvNone
+          ParentColor = True
+          TabOrder = 3
+          ExplicitTop = -175
+          object pnlEditCep: TPanel
+            AlignWithMargins = True
+            Left = 40
+            Top = 3
+            Width = 254
+            Height = 35
+            Margins.Left = 40
+            Align = alLeft
+            BevelOuter = bvNone
+            TabOrder = 0
+            object Shape1: TShape
+              Left = 0
+              Top = 0
+              Width = 254
+              Height = 35
+              Align = alClient
+              Pen.Color = 6957870
+              Shape = stRoundRect
+              ExplicitLeft = 64
+              ExplicitTop = -8
+              ExplicitWidth = 65
+              ExplicitHeight = 65
+            end
+            object MaskEditCEP: TMaskEdit
+              AlignWithMargins = True
+              Left = 10
+              Top = 3
+              Width = 241
+              Height = 29
+              Margins.Left = 10
+              Align = alClient
+              BevelInner = bvNone
+              BevelOuter = bvNone
+              BorderStyle = bsNone
+              EditMask = '!99.999-999;1;_'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -23
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              MaxLength = 10
+              ParentFont = False
+              TabOrder = 0
+              Text = '  .   -   '
+            end
+          end
+        end
+        object Panel7: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 189
+          Width = 674
+          Height = 41
+          Align = alBottom
+          BevelOuter = bvNone
+          ParentColor = True
+          TabOrder = 4
+          ExplicitTop = -307
+          object Label10: TLabel
+            AlignWithMargins = True
+            Left = 40
+            Top = 3
+            Width = 97
+            Height = 35
+            Margins.Left = 40
+            Align = alLeft
+            Caption = 'Telefone:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -23
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ExplicitHeight = 31
+          end
+          object Label11: TLabel
+            AlignWithMargins = True
+            Left = 375
+            Top = 3
+            Width = 79
+            Height = 35
+            Margins.Right = 220
+            Align = alRight
+            Caption = 'E-mail:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -24
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ExplicitHeight = 32
+          end
+        end
+        object Panel8: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 233
+          Width = 674
+          Height = 41
+          Margins.Top = 0
+          Margins.Bottom = 0
+          Align = alBottom
+          BevelOuter = bvNone
+          ParentColor = True
+          TabOrder = 5
+          ExplicitTop = -263
+          object pnlEditTelefone: TPanel
+            AlignWithMargins = True
+            Left = 40
+            Top = 3
+            Width = 254
+            Height = 35
+            Margins.Left = 40
+            Align = alLeft
+            BevelOuter = bvNone
+            TabOrder = 0
+            object Shape8: TShape
+              Left = 0
+              Top = 0
+              Width = 254
+              Height = 35
+              Align = alClient
+              Pen.Color = 6957870
+              Shape = stRoundRect
+              ExplicitLeft = 64
+              ExplicitTop = -8
+              ExplicitWidth = 65
+              ExplicitHeight = 65
+            end
+            object MaskEditTelefone: TMaskEdit
+              AlignWithMargins = True
+              Left = 10
+              Top = 3
+              Width = 241
+              Height = 29
+              Margins.Left = 10
+              Align = alClient
+              BevelInner = bvNone
+              BevelOuter = bvNone
+              BorderStyle = bsNone
+              EditMask = '! (99) 99999-9999;1;_'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -23
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              MaxLength = 16
+              ParentFont = False
+              TabOrder = 0
+              Text = ' (  )      -    '
+            end
+          end
+          object pnlEditEmailCadastro: TPanel
+            AlignWithMargins = True
+            Left = 380
+            Top = 3
+            Width = 254
+            Height = 35
+            Margins.Right = 40
+            Align = alRight
+            BevelOuter = bvNone
+            Caption = 'pnlEditEmailCadastro'
+            TabOrder = 1
+            object Shape9: TShape
+              Left = 0
+              Top = 0
+              Width = 254
+              Height = 35
+              Align = alClient
+              Pen.Color = 6957870
+              Shape = stRoundRect
+              ExplicitLeft = 64
+              ExplicitTop = -8
+              ExplicitWidth = 65
+              ExplicitHeight = 65
+            end
+            object edtEmail: TEdit
+              AlignWithMargins = True
+              Left = 1
+              Top = 3
+              Width = 243
+              Height = 29
+              Margins.Left = 1
+              Margins.Right = 10
+              Align = alClient
+              BevelInner = bvNone
+              BevelOuter = bvNone
+              BorderStyle = bsNone
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -23
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              TextHint = 'Digite o E-mail'
+            end
+          end
+        end
+        object Panel5: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 96
+          Width = 674
+          Height = 49
+          Margins.Bottom = 0
+          Align = alBottom
+          BevelOuter = bvNone
+          ParentColor = True
+          TabOrder = 1
+          ExplicitTop = -400
+          object Label7: TLabel
+            AlignWithMargins = True
+            Left = 40
+            Top = 3
+            Width = 76
+            Height = 43
+            Margins.Left = 40
+            Align = alLeft
+            Caption = 'Nome:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -24
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ExplicitHeight = 32
+          end
+          object Label5: TLabel
+            AlignWithMargins = True
+            Left = 379
+            Top = 3
+            Width = 65
+            Height = 43
+            Margins.Right = 230
+            Align = alRight
+            Caption = 'CNPJ:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -24
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ExplicitHeight = 32
+          end
+        end
+        object pnlVoltarLogin: TPanel
+          AlignWithMargins = True
+          Left = 647
+          Top = 73
+          Width = 30
+          Height = 17
+          Margins.Top = 5
+          Align = alRight
+          BevelOuter = bvNone
+          TabOrder = 6
+          ExplicitHeight = 19
+          object Shape11: TShape
+            Left = 0
+            Top = 0
+            Width = 30
+            Height = 17
+            Align = alClient
+            Pen.Color = clBlue
+            Shape = stRoundRect
+            ExplicitTop = 48
+            ExplicitWidth = 97
+            ExplicitHeight = 28
+          end
+          object voltarImage: TImage
+            Left = 0
+            Top = 0
+            Width = 30
+            Height = 17
+            Align = alClient
+            Center = True
+            Picture.Data = {
+              0954506E67496D61676589504E470D0A1A0A0000000D49484452000000800000
+              00800806000000C33E61CB000000097048597300000B1300000B1301009A9C18
+              000000B46558496649492A000800000006001201030001000000010000001A01
+              050001000000560000001B010500010000005E00000028010300010000000200
+              0000130203000100000001000000698704000100000066000000000000004800
+              0000010000004800000001000000060000900700040000003032313001910700
+              040000000102030000A00700040000003031303001A0030001000000FFFF0000
+              02A00400010000008000000003A004000100000080000000000000004ABE23F4
+              000003A24944415478DAEDDD4D6E13611084E144708AB0E61E888B935384057B
+              14CE902C7049B614210889A7BFAFABBAEA952CC422D1F4F4437EEC31737B93AC
+              BBED3E80D45B00981700E605807901605E00981700E605807901605E00981700
+              E605807901605E00981700E605807901605E00981700E605807901605E009817
+              00E67503F87CFEF347F789709DBF130086FF767A7C3C3DBE9E1E0F8DC7623B7F
+              1780CBF09FCE7FFFD579129CE7EF00F0E7F0975C1050CDBF1BC0BF866F3D09CE
+              F3EF04F0BFE1DB4E82F3FCBB00BC75F89693E03CFF0E00EF1D7EFB49709E9F19
+              C0B693403AFBE379F6EF2B0F90F55BC0CB5411D02F1F31FE10F8B7D410482C1F
+              B1FD1AF85A2A0864968F989E087A4BEC08A4968F589E0A7E4FAC08E4968F185E
+              0C9A804072F988E1E5607504B2CB47DD00903202E9E5230600481181FCF2110B
+              00A48460C4F2111300A48060CCF2111B00C48C60D4F2112300C48860DCF2112B
+              00C48460E4F2113300C48060ECF2113B00D48960F4F2910200D48160FCF2910A
+              00B41381C5F2911200B40381CDF2911A00B41281D5F2912200B40281DDF2912A
+              005489C072F9481900AA40F074E073482F1FA9034040707F7ADC5DF1B13FCF7F
+              5EFBB15F6EC4FF6F830900D091AF04D724FF2FFFD2140068178231CB479300A0
+              D508462D1F4D0380562118B77C341100AA463072F9682A00548560ECF2D16400
+              E82882D1CB4701F07ADDEF3B58DE640055DF024623980AA0FA87C0B108260258
+              F56BE04804D300AC7E22681C824900763D153C0AC11400BB5F0C1A83600280BC
+              1C7C2075001557F23C1FF81CF25F099401545EC6C5F00EA4965401ACB886CF12
+              812280951770DA215003B0E3EA5D2B044A00765EBA6D83400540C775FB160814
+              0074BE69633C0276000CEFD8198D801900C3F22B8E851A012B00A6E5571C132D
+              0246008CCBAF38364A046C0098975F718C74089800282CBFE258A910B000505A
+              7EC531D3206000A0B8FC8A63A740D00D4079F91533B42350BD650CCBF22B6669
+              45A078D328B6E557CCD48640EDB671ACCBAF98AD0581D28D23D9975F31E37604
+              2AB78E55597EC5AC5B1128DC3C5A6DF915336F43C07EFB78D5E557CCBE050133
+              00F5E54BCCCFFA2D60CAF2E9E767FC2170DAF2A9E767FB3570EAF269E7677A22
+              68FAF229E767792AD865F974F333BC18F4A16BF8E628E66778391849BFC75E79
+              FE6E00A9B900302F00CC0B00F302C0BC00302F00CC0B00F302C0BC00302F00CC
+              0B00F302C0BC00302F00CC0B00F302C0BC00302F00CC0B00F302C0BC00302F00
+              CC0B00F37E03FA7FA690A75DFBDA0000000049454E44AE426082}
+            Proportional = True
+            Stretch = True
+            OnClick = voltarImageClick
+            ExplicitLeft = 8
+            ExplicitTop = 3
+            ExplicitWidth = 50
+            ExplicitHeight = 40
+          end
+        end
+        object Panel2: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 415
+          Width = 674
+          Height = 73
+          Margins.Bottom = 40
+          Align = alBottom
+          BevelOuter = bvNone
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 7
+          ExplicitTop = -81
+          object pnlBtnCadastar: TPanel
+            AlignWithMargins = True
+            Left = 200
+            Top = 9
+            Width = 274
+            Height = 29
+            Margins.Left = 200
+            Margins.Right = 200
+            Margins.Bottom = 0
+            Align = alBottom
+            BevelOuter = bvNone
+            TabOrder = 0
+            object Shape10: TShape
+              Left = 0
+              Top = 0
+              Width = 274
+              Height = 29
+              Align = alClient
+              Brush.Color = 6957870
+              Pen.Color = clBlue
+              Shape = stRoundRect
+              ExplicitTop = 8
+              ExplicitWidth = 117
+              ExplicitHeight = 33
+            end
+            object lblButtonCadastrar: TLabel
+              Left = 0
+              Top = 0
+              Width = 274
+              Height = 29
+              Align = alClient
+              Alignment = taCenter
+              Caption = 'CADASTRAR'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWhite
+              Font.Height = -19
+              Font.Name = 'Segoe UI'
+              Font.Style = [fsBold]
+              ParentFont = False
+              OnClick = lblButtonCadastrarClick
+              ExplicitWidth = 111
+              ExplicitHeight = 25
+            end
+          end
+          object pnlBtnEditar: TPanel
+            AlignWithMargins = True
+            Left = 200
+            Top = 41
+            Width = 274
+            Height = 29
+            Margins.Left = 200
+            Margins.Right = 200
+            Align = alBottom
+            BevelOuter = bvNone
+            TabOrder = 1
+            object Shape14: TShape
+              Left = 0
+              Top = 0
+              Width = 274
+              Height = 29
+              Align = alClient
+              Brush.Color = 6957870
+              Pen.Color = clBlue
+              Shape = stRoundRect
+              ExplicitTop = 8
+              ExplicitWidth = 117
+              ExplicitHeight = 33
+            end
+            object lblButtonEditar: TLabel
+              Left = 0
+              Top = 0
+              Width = 274
+              Height = 29
+              Align = alClient
+              Alignment = taCenter
+              Caption = 'EDITAR'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWhite
+              Font.Height = -19
+              Font.Name = 'Segoe UI'
+              Font.Style = [fsBold]
+              ParentFont = False
+              OnClick = lblButtonEditarClick
+              ExplicitWidth = 65
+              ExplicitHeight = 25
+            end
           end
         end
       end
     end
-    object PanelButtons: TPanel
-      Left = 1
+    object PanelForADMINS: TPanel
+      Left = 0
       Top = 112
-      Width = 503
+      Width = 1198
       Height = 537
+      Align = alCustom
+      TabOrder = 1
+      Visible = False
+      object PanelButtonAdms: TPanel
+        Left = 1
+        Top = 1
+        Width = 503
+        Height = 535
+        Align = alLeft
+        BevelOuter = bvNone
+        Color = clWhite
+        ParentBackground = False
+        TabOrder = 0
+        ExplicitLeft = 9
+        ExplicitTop = 2
+        object pnlBtnEditarAdmin: TPanel
+          AlignWithMargins = True
+          Left = 70
+          Top = 120
+          Width = 363
+          Height = 30
+          Margins.Left = 70
+          Margins.Top = 30
+          Margins.Right = 70
+          Margins.Bottom = 10
+          Align = alTop
+          BevelOuter = bvNone
+          Constraints.MaxWidth = 598
+          TabOrder = 0
+          object Shape18: TShape
+            Left = 0
+            Top = 0
+            Width = 363
+            Height = 30
+            Align = alClient
+            Pen.Color = clBlue
+            Shape = stRoundRect
+            ExplicitWidth = 262
+            ExplicitHeight = 297
+          end
+          object lblBtnEditarAdmin: TLabel
+            Left = 0
+            Top = 0
+            Width = 363
+            Height = 30
+            Align = alClient
+            Alignment = taCenter
+            AutoSize = False
+            Caption = 'Editar administrador'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            OnClick = btnEditarTranspClick
+            ExplicitTop = 7
+          end
+        end
+        object pnlBtnCadastrarAdmin: TPanel
+          AlignWithMargins = True
+          Left = 70
+          Top = 50
+          Width = 363
+          Height = 30
+          Margins.Left = 70
+          Margins.Top = 50
+          Margins.Right = 70
+          Margins.Bottom = 10
+          Align = alTop
+          BevelOuter = bvNone
+          Constraints.MaxWidth = 598
+          TabOrder = 1
+          object Shape19: TShape
+            Left = 0
+            Top = 0
+            Width = 363
+            Height = 30
+            Align = alClient
+            Pen.Color = clBlue
+            Shape = stRoundRect
+            ExplicitWidth = 262
+            ExplicitHeight = 297
+          end
+          object lblBtnCadastrarAdmin: TLabel
+            Left = 0
+            Top = 0
+            Width = 363
+            Height = 30
+            Align = alClient
+            Alignment = taCenter
+            AutoSize = False
+            Caption = 'Cadastrar Administrador'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            OnClick = btnchangeCadastrarClick
+            ExplicitTop = 6
+            ExplicitWidth = 598
+            ExplicitHeight = 34
+          end
+        end
+        object lswAdmins: TListView
+          AlignWithMargins = True
+          Left = 70
+          Top = 370
+          Width = 363
+          Height = 150
+          Margins.Left = 70
+          Margins.Right = 70
+          Margins.Bottom = 15
+          Align = alBottom
+          Columns = <
+            item
+              Caption = 'id'
+            end
+            item
+              Alignment = taCenter
+              Caption = 'Nome Administrador'
+              MinWidth = 190
+              Width = 190
+            end
+            item
+              Alignment = taCenter
+              Caption = 'CPF'
+              MinWidth = 110
+              Width = 110
+            end
+            item
+              Caption = 'Telefone'
+            end
+            item
+              Caption = 'E-mail'
+            end>
+          TabOrder = 2
+          ViewStyle = vsReport
+        end
+        object pnlBtnExcluirAdmin: TPanel
+          AlignWithMargins = True
+          Left = 70
+          Top = 289
+          Width = 363
+          Height = 30
+          Margins.Left = 70
+          Margins.Top = 30
+          Margins.Right = 70
+          Margins.Bottom = 10
+          Align = alTop
+          BevelOuter = bvNone
+          Constraints.MaxWidth = 598
+          TabOrder = 3
+          object Shape20: TShape
+            Left = 0
+            Top = 0
+            Width = 363
+            Height = 30
+            Align = alClient
+            Pen.Color = clBlue
+            Shape = stRoundRect
+            ExplicitWidth = 262
+            ExplicitHeight = 297
+          end
+          object lblBtnExcluirAdmin: TLabel
+            Left = 0
+            Top = 0
+            Width = 363
+            Height = 30
+            Align = alClient
+            Alignment = taCenter
+            AutoSize = False
+            Caption = 'Excluir administridor'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            OnClick = btrnExcluirTranspClick
+            ExplicitWidth = 353
+          end
+        end
+        object pnlBtnRecuperarAdmin: TPanel
+          AlignWithMargins = True
+          Left = 70
+          Top = 190
+          Width = 363
+          Height = 30
+          Margins.Left = 70
+          Margins.Top = 30
+          Margins.Right = 70
+          Margins.Bottom = 10
+          Align = alTop
+          BevelOuter = bvNone
+          Constraints.MaxWidth = 598
+          TabOrder = 4
+          object Shape21: TShape
+            Left = 0
+            Top = 0
+            Width = 363
+            Height = 30
+            Align = alClient
+            Pen.Color = clBlue
+            Shape = stRoundRect
+            ExplicitWidth = 262
+            ExplicitHeight = 297
+          end
+          object lblBtnRecuperarAdmin: TLabel
+            Left = 0
+            Top = 0
+            Width = 363
+            Height = 30
+            Align = alClient
+            Alignment = taCenter
+            AutoSize = False
+            Caption = 'Recuperar administrador'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            OnClick = btnRecuperarTranspClick
+            ExplicitLeft = 24
+            ExplicitWidth = 339
+          end
+        end
+        object pnlBtnRecuperarAdmConfirm: TPanel
+          AlignWithMargins = True
+          Left = 150
+          Top = 230
+          Width = 203
+          Height = 29
+          Margins.Left = 150
+          Margins.Top = 0
+          Margins.Right = 150
+          Margins.Bottom = 0
+          Align = alTop
+          BevelOuter = bvNone
+          TabOrder = 5
+          Visible = False
+          object Shape22: TShape
+            Left = 0
+            Top = 0
+            Width = 203
+            Height = 29
+            Align = alClient
+            Brush.Color = 6957870
+            Pen.Color = clBlue
+            Shape = stRoundRect
+            ExplicitTop = 8
+            ExplicitWidth = 117
+            ExplicitHeight = 33
+          end
+          object lblBtnRecuperarAdmConfirm: TLabel
+            AlignWithMargins = True
+            Left = 3
+            Top = 3
+            Width = 197
+            Height = 23
+            Align = alClient
+            Alignment = taCenter
+            Caption = 'RECUPERAR'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -19
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            OnClick = btnRecuperarClick
+            ExplicitWidth = 107
+            ExplicitHeight = 25
+          end
+        end
+        object pnlBtnExcluirAdminConfirm: TPanel
+          AlignWithMargins = True
+          Left = 150
+          Top = 329
+          Width = 203
+          Height = 29
+          Margins.Left = 150
+          Margins.Top = 0
+          Margins.Right = 150
+          Margins.Bottom = 10
+          Align = alTop
+          BevelOuter = bvNone
+          TabOrder = 6
+          Visible = False
+          object Shape23: TShape
+            Left = 0
+            Top = 0
+            Width = 203
+            Height = 29
+            Align = alClient
+            Brush.Color = 6957870
+            Pen.Color = clBlue
+            Shape = stRoundRect
+            ExplicitTop = 8
+            ExplicitWidth = 117
+            ExplicitHeight = 33
+          end
+          object lblBtnExcluirAdmConfirm: TLabel
+            AlignWithMargins = True
+            Left = 3
+            Top = 3
+            Width = 197
+            Height = 23
+            Align = alClient
+            Alignment = taCenter
+            Caption = 'EXCLUIR'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -19
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            OnClick = btnExcluirClick
+            ExplicitWidth = 76
+            ExplicitHeight = 25
+          end
+        end
+      end
+      object panelOptionsAdmins: TPanel
+        AlignWithMargins = True
+        Left = 510
+        Top = 1
+        Width = 684
+        Height = 532
+        Margins.Top = 0
+        Align = alRight
+        BevelKind = bkFlat
+        BevelOuter = bvNone
+        Color = clWhite
+        ParentBackground = False
+        TabOrder = 1
+        Visible = False
+        ExplicitLeft = 342
+        ExplicitTop = -23
+        object lblPanelOptionAdm: TLabel
+          AlignWithMargins = True
+          Left = 50
+          Top = 25
+          Width = 580
+          Height = 35
+          Margins.Left = 50
+          Margins.Top = 25
+          Margins.Right = 50
+          Align = alTop
+          Alignment = taCenter
+          Caption = 'Cadastro de Administrador de transportadoras'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 6957870
+          Font.Height = -25
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          ExplicitWidth = 546
+        end
+        object Panel17: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 145
+          Width = 674
+          Height = 41
+          Margins.Top = 0
+          Margins.Bottom = 0
+          Align = alBottom
+          BevelOuter = bvNone
+          ParentColor = True
+          TabOrder = 0
+          object pnlEditNomeAdm: TPanel
+            AlignWithMargins = True
+            Left = 40
+            Top = 3
+            Width = 254
+            Height = 35
+            Margins.Left = 40
+            Margins.Right = 0
+            Align = alLeft
+            BevelOuter = bvNone
+            Color = clWhite
+            ParentBackground = False
+            TabOrder = 0
+            object Shape24: TShape
+              Left = 0
+              Top = 0
+              Width = 254
+              Height = 35
+              Align = alClient
+              Pen.Color = 6957870
+              Shape = stRoundRect
+              ExplicitLeft = 64
+              ExplicitTop = -8
+              ExplicitWidth = 65
+              ExplicitHeight = 65
+            end
+            object EditNomeAdm: TEdit
+              AlignWithMargins = True
+              Left = 10
+              Top = 3
+              Width = 241
+              Height = 29
+              Margins.Left = 10
+              Align = alClient
+              BevelInner = bvNone
+              BevelOuter = bvNone
+              BorderStyle = bsNone
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -23
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              TextHint = 'Digite o nome'
+            end
+          end
+          object pnlEditCpfAdm: TPanel
+            AlignWithMargins = True
+            Left = 380
+            Top = 3
+            Width = 254
+            Height = 35
+            Margins.Right = 40
+            Align = alRight
+            BevelOuter = bvNone
+            TabOrder = 1
+            object Shape25: TShape
+              Left = 0
+              Top = 0
+              Width = 254
+              Height = 35
+              Align = alClient
+              Pen.Color = 6957870
+              Shape = stRoundRect
+              ExplicitLeft = 64
+              ExplicitTop = -8
+              ExplicitWidth = 65
+              ExplicitHeight = 65
+            end
+            object MaskEditCpfAdm: TMaskEdit
+              AlignWithMargins = True
+              Left = 3
+              Top = 3
+              Width = 241
+              Height = 29
+              Margins.Right = 10
+              Align = alClient
+              BorderStyle = bsNone
+              EditMask = '!99.999.999/9999-99;1;_'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -23
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              MaxLength = 18
+              ParentFont = False
+              TabOrder = 0
+              Text = '  .   .   /    -  '
+            end
+          end
+        end
+        object Panel20: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 277
+          Width = 674
+          Height = 41
+          Align = alBottom
+          BevelOuter = bvNone
+          ParentColor = True
+          TabOrder = 2
+          object Label13: TLabel
+            AlignWithMargins = True
+            Left = 40
+            Top = 3
+            Width = 75
+            Height = 35
+            Margins.Left = 40
+            Align = alLeft
+            Caption = 'Senha:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -24
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ExplicitHeight = 32
+          end
+        end
+        object Panel21: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 321
+          Width = 674
+          Height = 41
+          Margins.Top = 0
+          Margins.Bottom = 50
+          Align = alBottom
+          BevelOuter = bvNone
+          ParentColor = True
+          TabOrder = 3
+          ExplicitLeft = 19
+          ExplicitTop = 330
+          object cbTransp4Admin: TComboBox
+            AlignWithMargins = True
+            Left = 384
+            Top = 3
+            Width = 250
+            Height = 36
+            Margins.Right = 40
+            Align = alRight
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -20
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            Text = 'selecione a transportadora'
+            TextHint = 'selecione a transportadora'
+          end
+          object pnlEditSenhaAdm: TPanel
+            AlignWithMargins = True
+            Left = 40
+            Top = 3
+            Width = 254
+            Height = 35
+            Margins.Left = 40
+            Align = alLeft
+            BevelOuter = bvNone
+            Caption = 'pnlEditEmailCadastro'
+            TabOrder = 1
+            ExplicitLeft = 380
+            object Shape26: TShape
+              Left = 0
+              Top = 0
+              Width = 254
+              Height = 35
+              Align = alClient
+              Pen.Color = 6957870
+              Shape = stRoundRect
+              ExplicitLeft = 64
+              ExplicitTop = -8
+              ExplicitWidth = 65
+              ExplicitHeight = 65
+            end
+            object EditSenhaAdm: TEdit
+              AlignWithMargins = True
+              Left = 10
+              Top = 3
+              Width = 241
+              Height = 29
+              Margins.Left = 10
+              Align = alClient
+              BevelInner = bvNone
+              BevelOuter = bvNone
+              BorderStyle = bsNone
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -23
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              TextHint = 'Digite a senha'
+              ExplicitLeft = 1
+              ExplicitWidth = 243
+            end
+          end
+        end
+        object Panel23: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 189
+          Width = 674
+          Height = 41
+          Align = alBottom
+          BevelOuter = bvNone
+          ParentColor = True
+          TabOrder = 4
+          object Label14: TLabel
+            AlignWithMargins = True
+            Left = 40
+            Top = 3
+            Width = 97
+            Height = 35
+            Margins.Left = 40
+            Align = alLeft
+            Caption = 'Telefone:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -23
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ExplicitHeight = 31
+          end
+          object Label15: TLabel
+            AlignWithMargins = True
+            Left = 375
+            Top = 3
+            Width = 79
+            Height = 35
+            Margins.Right = 220
+            Align = alRight
+            Caption = 'E-mail:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -24
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ExplicitHeight = 32
+          end
+        end
+        object Panel24: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 233
+          Width = 674
+          Height = 41
+          Margins.Top = 0
+          Margins.Bottom = 0
+          Align = alBottom
+          BevelOuter = bvNone
+          ParentColor = True
+          TabOrder = 5
+          object pnlEditTelefoneAdm: TPanel
+            AlignWithMargins = True
+            Left = 40
+            Top = 3
+            Width = 254
+            Height = 35
+            Margins.Left = 40
+            Align = alLeft
+            BevelOuter = bvNone
+            TabOrder = 0
+            object Shape27: TShape
+              Left = 0
+              Top = 0
+              Width = 254
+              Height = 35
+              Align = alClient
+              Pen.Color = 6957870
+              Shape = stRoundRect
+              ExplicitLeft = 64
+              ExplicitTop = -8
+              ExplicitWidth = 65
+              ExplicitHeight = 65
+            end
+            object MaskEditTelefoneAdm: TMaskEdit
+              AlignWithMargins = True
+              Left = 10
+              Top = 3
+              Width = 241
+              Height = 29
+              Margins.Left = 10
+              Align = alClient
+              BevelInner = bvNone
+              BevelOuter = bvNone
+              BorderStyle = bsNone
+              EditMask = '! (99) 99999-9999;1;_'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -23
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              MaxLength = 16
+              ParentFont = False
+              TabOrder = 0
+              Text = ' (  )      -    '
+            end
+          end
+          object pnlEditEmailAdm: TPanel
+            AlignWithMargins = True
+            Left = 380
+            Top = 3
+            Width = 254
+            Height = 35
+            Margins.Right = 40
+            Align = alRight
+            BevelOuter = bvNone
+            Caption = 'pnlEditEmailCadastro'
+            TabOrder = 1
+            object Shape28: TShape
+              Left = 0
+              Top = 0
+              Width = 254
+              Height = 35
+              Align = alClient
+              Pen.Color = 6957870
+              Shape = stRoundRect
+              ExplicitLeft = 64
+              ExplicitTop = -8
+              ExplicitWidth = 65
+              ExplicitHeight = 65
+            end
+            object editEmailAdm: TEdit
+              AlignWithMargins = True
+              Left = 1
+              Top = 3
+              Width = 243
+              Height = 29
+              Margins.Left = 1
+              Margins.Right = 10
+              Align = alClient
+              BevelInner = bvNone
+              BevelOuter = bvNone
+              BorderStyle = bsNone
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -23
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              TextHint = 'Digite o E-mail'
+            end
+          end
+        end
+        object Panel27: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 96
+          Width = 674
+          Height = 49
+          Margins.Bottom = 0
+          Align = alBottom
+          BevelOuter = bvNone
+          ParentColor = True
+          TabOrder = 1
+          object Label16: TLabel
+            AlignWithMargins = True
+            Left = 40
+            Top = 3
+            Width = 76
+            Height = 43
+            Margins.Left = 40
+            Align = alLeft
+            Caption = 'Nome:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -24
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ExplicitHeight = 32
+          end
+          object Label17: TLabel
+            AlignWithMargins = True
+            Left = 395
+            Top = 3
+            Width = 49
+            Height = 43
+            Margins.Right = 230
+            Align = alRight
+            Caption = 'CPF:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -24
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ExplicitLeft = 407
+            ExplicitHeight = 32
+          end
+        end
+        object Panel28: TPanel
+          AlignWithMargins = True
+          Left = 647
+          Top = 68
+          Width = 30
+          Height = 22
+          Margins.Top = 5
+          Align = alRight
+          BevelOuter = bvNone
+          TabOrder = 6
+          ExplicitTop = 73
+          ExplicitHeight = 17
+          object Shape29: TShape
+            Left = 0
+            Top = 0
+            Width = 30
+            Height = 22
+            Align = alClient
+            Pen.Color = clBlue
+            Shape = stRoundRect
+            ExplicitTop = 48
+            ExplicitWidth = 97
+            ExplicitHeight = 28
+          end
+          object Image3: TImage
+            Left = 0
+            Top = 0
+            Width = 30
+            Height = 22
+            Align = alClient
+            Center = True
+            Picture.Data = {
+              0954506E67496D61676589504E470D0A1A0A0000000D49484452000000800000
+              00800806000000C33E61CB000000097048597300000B1300000B1301009A9C18
+              000000B46558496649492A000800000006001201030001000000010000001A01
+              050001000000560000001B010500010000005E00000028010300010000000200
+              0000130203000100000001000000698704000100000066000000000000004800
+              0000010000004800000001000000060000900700040000003032313001910700
+              040000000102030000A00700040000003031303001A0030001000000FFFF0000
+              02A00400010000008000000003A004000100000080000000000000004ABE23F4
+              000003A24944415478DAEDDD4D6E13611084E144708AB0E61E888B935384057B
+              14CE902C7049B614210889A7BFAFABBAEA952CC422D1F4F4437EEC31737B93AC
+              BBED3E80D45B00981700E605807901605E00981700E605807901605E00981700
+              E605807901605E00981700E605807901605E00981700E605807901605E009817
+              00E67503F87CFEF347F789709DBF130086FF767A7C3C3DBE9E1E0F8DC7623B7F
+              1780CBF09FCE7FFFD579129CE7EF00F0E7F0975C1050CDBF1BC0BF866F3D09CE
+              F3EF04F0BFE1DB4E82F3FCBB00BC75F89693E03CFF0E00EF1D7EFB49709E9F19
+              C0B693403AFBE379F6EF2B0F90F55BC0CB5411D02F1F31FE10F8B7D410482C1F
+              B1FD1AF85A2A0864968F989E087A4BEC08A4968F589E0A7E4FAC08E4968F185E
+              0C9A804072F988E1E5607504B2CB47DD00903202E9E5230600481181FCF2110B
+              00A48460C4F2111300A48060CCF2111B00C48C60D4F2112300C48860DCF2112B
+              00C48460E4F2113300C48060ECF2113B00D48960F4F2910200D48160FCF2910A
+              00B41381C5F2911200B40381CDF2911A00B41281D5F2912200B40281DDF2912A
+              005489C072F9481900AA40F074E073482F1FA9034040707F7ADC5DF1B13FCF7F
+              5EFBB15F6EC4FF6F830900D091AF04D724FF2FFFD2140068178231CB479300A0
+              D508462D1F4D0380562118B77C341100AA463072F9682A00548560ECF2D16400
+              E82882D1CB4701F07ADDEF3B58DE640055DF024623980AA0FA87C0B108260258
+              F56BE04804D300AC7E22681C824900763D153C0AC11400BB5F0C1A83600280BC
+              1C7C2075001557F23C1FF81CF25F099401545EC6C5F00EA4965401ACB886CF12
+              812280951770DA215003B0E3EA5D2B044A00765EBA6D83400540C775FB160814
+              0074BE69633C0276000CEFD8198D801900C3F22B8E851A012B00A6E5571C132D
+              0246008CCBAF38364A046C0098975F718C74089800282CBFE258A910B000505A
+              7EC531D3206000A0B8FC8A63A740D00D4079F91533B42350BD650CCBF22B6669
+              45A078D328B6E557CCD48640EDB671ACCBAF98AD0581D28D23D9975F31E37604
+              2AB78E55597EC5AC5B1128DC3C5A6DF915336F43C07EFB78D5E557CCBE050133
+              00F5E54BCCCFFA2D60CAF2E9E767FC2170DAF2A9E767FB3570EAF269E7677A22
+              68FAF229E767792AD865F974F333BC18F4A16BF8E628E66778391849BFC75E79
+              FE6E00A9B900302F00CC0B00F302C0BC00302F00CC0B00F302C0BC00302F00CC
+              0B00F302C0BC00302F00CC0B00F302C0BC00302F00CC0B00F302C0BC00302F00
+              CC0B00F37E03FA7FA690A75DFBDA0000000049454E44AE426082}
+            Proportional = True
+            Stretch = True
+            OnClick = voltarImageClick
+            ExplicitLeft = 8
+            ExplicitTop = 3
+            ExplicitWidth = 50
+            ExplicitHeight = 40
+          end
+        end
+        object Panel29: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 415
+          Width = 674
+          Height = 73
+          Margins.Bottom = 40
+          Align = alBottom
+          BevelOuter = bvNone
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 7
+          ExplicitLeft = -2
+          ExplicitTop = 407
+          object pnlBtnCadastrarAdm: TPanel
+            AlignWithMargins = True
+            Left = 200
+            Top = 9
+            Width = 274
+            Height = 29
+            Margins.Left = 200
+            Margins.Right = 200
+            Margins.Bottom = 0
+            Align = alBottom
+            BevelOuter = bvNone
+            TabOrder = 0
+            object Shape30: TShape
+              Left = 0
+              Top = 0
+              Width = 274
+              Height = 29
+              Align = alClient
+              Brush.Color = 6957870
+              Pen.Color = clBlue
+              Shape = stRoundRect
+              ExplicitTop = 8
+              ExplicitWidth = 117
+              ExplicitHeight = 33
+            end
+            object lblBtnCadastrarAdm: TLabel
+              Left = 0
+              Top = 0
+              Width = 274
+              Height = 29
+              Align = alClient
+              Alignment = taCenter
+              Caption = 'CADASTRAR'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWhite
+              Font.Height = -19
+              Font.Name = 'Segoe UI'
+              Font.Style = [fsBold]
+              ParentFont = False
+              OnClick = lblButtonCadastrarClick
+              ExplicitWidth = 111
+              ExplicitHeight = 25
+            end
+          end
+          object pnlEditarAdm: TPanel
+            AlignWithMargins = True
+            Left = 200
+            Top = 41
+            Width = 274
+            Height = 29
+            Margins.Left = 200
+            Margins.Right = 200
+            Align = alBottom
+            BevelOuter = bvNone
+            TabOrder = 1
+            object Shape31: TShape
+              Left = 0
+              Top = 0
+              Width = 274
+              Height = 29
+              Align = alClient
+              Brush.Color = 6957870
+              Pen.Color = clBlue
+              Shape = stRoundRect
+              ExplicitTop = 8
+              ExplicitWidth = 117
+              ExplicitHeight = 33
+            end
+            object lblBtnEditarAdm: TLabel
+              Left = 0
+              Top = 0
+              Width = 274
+              Height = 29
+              Align = alClient
+              Alignment = taCenter
+              Caption = 'EDITAR'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWhite
+              Font.Height = -19
+              Font.Name = 'Segoe UI'
+              Font.Style = [fsBold]
+              ParentFont = False
+              OnClick = lblButtonEditarClick
+              ExplicitWidth = 65
+              ExplicitHeight = 25
+            end
+          end
+        end
+      end
+    end
+    object pnlButtonChoseTransp: TPanel
+      AlignWithMargins = True
+      Left = 688
+      Top = 212
+      Width = 361
+      Height = 337
+      Margins.Top = 100
+      Margins.Right = 150
+      Margins.Bottom = 100
+      Align = alRight
+      BevelOuter = bvNone
+      Color = clWhite
+      ParentBackground = False
+      TabOrder = 2
+      OnClick = pnlButtonChoseTranspClick
+      ExplicitLeft = 638
+      object Shape32: TShape
+        Left = 0
+        Top = 0
+        Width = 361
+        Height = 337
+        Align = alClient
+        Pen.Color = clBlue
+        Shape = stRoundRect
+        ExplicitLeft = 120
+        ExplicitTop = 136
+        ExplicitWidth = 65
+        ExplicitHeight = 65
+      end
+      object Image5: TImage
+        Left = 0
+        Top = 8
+        Width = 361
+        Height = 256
+        Align = alCustom
+        Center = True
+        Picture.Data = {
+          0954506E67496D61676589504E470D0A1A0A0000000D49484452000001000000
+          010008060000005C72A866000000097048597300000B1300000B1301009A9C18
+          000000B46558496649492A000800000006001201030001000000010000001A01
+          050001000000560000001B010500010000005E00000028010300010000000200
+          0000130203000100000001000000698704000100000066000000000000004800
+          0000010000004800000001000000060000900700040000003032313001910700
+          040000000102030000A00700040000003031303001A0030001000000FFFF0000
+          02A00400010000000001000003A0040001000000000100000000000003E16DEE
+          0000347D4944415478DAED9D0BFC76D594C7D7747DD13D32E5D2BF4217D15D8A
+          F24E498A149132CCBC7237885152C86B8ADC2A32A1EBBC28A2424D2645F90F23
+          BA2854C6988657924BB954CA103373BEB3CFD3FF79D7B3CF7D9FB3CFF39CF5FB
+          7CF6E7FFBEFB39CF7EF6799EB3D75E7BADDF5AEB2FC460300C167F117B020683
+          211E4C00180C038609008361C0300160300C1826000C8601C30480C130609800
+          3018060C130006C3806102C06018304C00180C038609008361C0300160300C18
+          26000C8601C30480C1306098003018060C130006C3806102C06018304C00180C
+          038609008361C0300160300C1826000C8601C30480C1306098003018060C1300
+          06C3806102C06018304C00180C038609008361C0300160300C1826000C8601C3
+          0480C1306098003018060C130006C3806102C06068863592F6F0A43D386DEB27
+          6D6575CD2FD3765BD26E4DDA9F624F7A041300064339AC9AB46D92B673D21E97
+          B4C724EDD1E2167F15DC9BB4EF24EDDAA47D2D699724ED77B16ECA0480C1E0C7
+          A2A4ED96B4BD92B66BD2B64FDA035AF89CDF27EDB2A42D4BDA4549FB9F2E6FD2
+          0480C1B0804D927640D29E96B4A7483B0B3E0FFF9EB4F725EDE349FB73171F68
+          02C030743C3269CF4EDAF3C4EDF47D5813DF4EDA4B92765DDB1FD4879B3518BA
+          C63A493B24694B92F6848663B153FF24693F4DDAAFD276DFD8EBAB24ED2149DB
+          409CCD60BD92E332C65BC46904ADC1048061285829697F95B41727ED39524FBD
+          C78AFF2D7106BCEB93F61F495B9EB43F561863E3A4ED90B4A7276DBFA4FD65C1
+          F5A725EDEFA425CF810900C3AC632D718BFE35497B54C5F7B2E0AF48DB57C42D
+          F6904028616F7863D29E9A731DC6C103A505216002C030AB60B1B3E859FC6B55
+          781FE7EF0BD3767D87F37D72D24E4DDA5619AF2F4BEF25284C0018660D3B25ED
+          A8A4ED2F6E872D831B93F6C9A47D4AC2EFF255B05AD2DE254E23F081A3C08743
+          7EA00900C3AC00B7DDD1E254EA32809987BBED1349FB6EECC92BBC5CDC42D78C
+          C23F246D3B71EEC2203001609876EC9DB4B78A53A18BF0BFE2CEF318D63E2FD5
+          8C775D032170AAA77F3E697BA4F7D2182600EA01FAE78619AFFD509C2B48E3A1
+          49DB3DF6C45B06CF132E362CEC30E91E244EAD1D01D61BB4D7BB92F6DBB4FD5A
+          9CB1ED17528D05F72471EA7299EF94CFFCA7A47D2869FF19FB4BAA00B4805779
+          FA9F95B47F0EF1012600EAE1BD493B22E3B5BF15A75A6A4029BD2CF6C47B0C2C
+          DC08811F25ED07E2162A0DA31C4275B4E3C1C73F2E69CF2C31E62D49FBC7A49D
+          2E4ED84C1B10A4D8273655FDD74873FEC2FFC304403D9800E816778A13047727
+          6D5F2936EE71463E5E9C51AF379177350167E1024FFF13937655D3C14D00D483
+          09807E0263DE3B9376BE741C54D32258A3440F3E4EF563C7784588C10DD56102
+          A07FB823696F13B7F8EF883D99C07875D24E517D7831B0433512742600EAE1B5
+          49FB9B8CD7DE9EB47FF1F43F5E9CB53A1630CAED99B40776F8993C9C50676F12
+          771E5F5D1C277EFBF4FB68E3F943E5BF3C699F1667E9FF4D87F7DB1636129748
+          447F5FBB24ED9B4D06360130FB40757C69D25E94B4756B8EC1A2C23087410A35
+          1B96DD929CEB098EC1F8F6A9F4DF3E108547C41BBBDB835BBA77FCE69F15674D
+          FFB7963EA32BB0D077567D68A1EF6F32A80980D904D96B0E16C71CDBB9C6FBD9
+          6DE0BEFFABB8C0178C6A239FF933C42DAAD53CEF63C1F140E29EBBB7E467AD2D
+          EEDCFE7725AEC59DF75F524F7B40702108CE918819781A80E3CD3FA83E8E3BCF
+          6B32A80980D902F9E9D8EDDF206E872D0B780B5F144732A1DD9C711D04942F88
+          3B4E68B030A1DFDE5471CE507731686D5B70DDC5E28C5E7006E054103C030908
+          DB4A5144DD38E02020084E4CDAED15E71A13242AF99CEA43306F5563ACFB6102
+          6036C02E0A7F9C5DB46CBC3986321E287611D87145EE327CD1D7648C3F9FB4E7
+          8A9F00950584D568E75FB9C4F584DEA2CDDCA9FA7986111E07898BF1DFB8E4E7
+          DF93B48F8A8BB7FF458579C7C21632490146E3826C553B7B900980E906441116
+          10C12F65163EAAEFB9E20C64A8F8651F1C16EB9532E98A02680464D4B9AFE458
+          006324E49C4D2ADE2F5A005A4696E59BE799AC3E2F10A71A3FA4C498B013D140
+          2017F5D97BC0B1EE9EF4EF38D07E6A0B301300D309764C4243F13894C94AFBBD
+          A47D445CE0CB9D25AED7383B697FEDE9C7B0861A5EF6BC4F582E2E5478EE59CF
+          1E8B9B9D19D5FED19ED7F1A4BCB3C467918907C184C766B712D7C3143C569CF1
+          B2AF31023F96C9A3DD66E29892B5600260FA801ACC62DEAEE03A54FACFA6D7CE
+          37F83C76D2CF78FAF108B0B0CA526C1114ECB479B609E2EF5F99B4AB93B6A538
+          CBB78EE547D3800557255F1EDFD5EBC4194617155C8BB7E37009C4B50F0C8E41
+          8F517D18446FA83BA00980E9012AFEBBC5B9CEF2A8B02C7C2CDDA8B437971837
+          0FA8973C5CDA4DC7516247710F6411B04F60704363C97ADE50C38F49DA076445
+          5B047CFF0B3DF77B53FAF9FF5DF17E3812BC5E9C3058A3E0DA4BC509A3E50DBF
+          C390E0B7D85AF535A2049B00980EA07EB338F2FCE52117FE086810CFF6F4BF30
+          FDAC22A021C08A9CCBB9E6EB493B54DCCEEB83CFFD053806D425562108DE2C2E
+          D22E2F37E0EFD2EBD0A2FA402DC625BB83EAC39E7245DD014D00F41B2C781EBE
+          E7165C779EB86418A1163E20B1C6A59EFEB3C4692179C050B53469474AB685FF
+          DE74CE84E8E62D2EDECF516047D58F057CEB86F7BC513A8797CBA4716D1C5F15
+          E75E8D1D4ACCD16827D58790AD4D723201D05FA0FE6229CFF371730E479DFD4A
+          E0CF66311080B2A5EAFFB93877549E2191332A46C39D72AE81608410F9AF92F3
+          2104F81A995CA450AE9F11E07EB94F8C7F7BE45CC3310557EB47027C5E5D20EC
+          36537D8F1567E4AD051300FD030CBB93C45164B380E10D0F00849636C25D2112
+          9DE8E9C7BDF6A99CF7BD2C9DFB83325E1FA9D4CCBB6A461B8E366FF1F4131E7C
+          49A0FBC6480893F16139D77C26BDCFBB027D6615F0BBAFADFA0808FA79DD014D
+          00F40B8F10A7CEE7D177F1E3B3EBB7C5625B539C5B49DB1BBE2CCE35E7030F25
+          4783E7E48C3B2FEEACFFA39AF3C27A8F56A2ADE07803381E04499195DEFFD2A4
+          1D26D9C717766288475D660D6663C0E8A9D72C0156B5DD962600FA0316179969
+          B30C7DA4CE82F4736ECBF360973D4EF54118E2BCFD7DCFF52C3E88459B668C87
+          8682B68207A3A9210D5BC87919FD17541CAB08A41C8337914556623122884F0F
+          FCB95960A7BF4DF5A151ADD964501300FDC0DF8B23C864ED3818E33833FFB4E5
+          79B093B343EBA8C165E2CF494FDE7D54E6D533C64393C083D12864750C3CAFD8
+          02B4251CB720FEF0D0967A16D7C9921FF9C851E988163E5B0381A48D7D08E42D
+          6B8C753F4C00C4050BFE83921D09C72E0329A5CE99B90E7C2E37D44B0C7FE3AA
+          3B82E20CC9F74EA0CDE0660B7D56A6A496EFCC8FBBF2F32D7D2F54E52143EFFA
+          19AF53B907FBC83D0D3F0723E7489BD16A3D81501F557D1748B18728172600E2
+          01220A06B5ACE49684E4F2E05DDDD17CD8C5A19A3E54F563F51E374892CC0395
+          3FABCC1679FBD00C3E2EED012F82CE060C9FA04C6AF0BA20C888E0A92C0626B6
+          08B2F5D6D1D2603BE28AE448811D086D6B99BA064DE4B5AA0F61FDF626376502
+          200E38E7A3D66F9FF13A7E678C4C5D46A92D11973A7B1CD06E39DBDF9AFE9F2C
+          48EC8459745AD47376C2907C041F28F2E923BF34CE905300B229A1F91C92F13A
+          598FF6AC78FF1C91D0F0C629CFB87739D28C6B7D57A4F73D8EE78B9FA65D1A26
+          00BA073B2C16F5AD335EC71F8D4DA04A745D089075771BD58786C28226B0E604
+          713B940F3CA8B8FFDEDCE1BC7DF3C5407850079FCDB10CA3A6CF6683A18E5C05
+          65ABF7C097F06979FB88CBD130023900757423CF50D5FC0B2BC00440B7C0BFCC
+          E2DFC2F31A96766C01A7561A310C28AB35EFE98767CED9FF33E9353EA0F263A0
+          3C4FBA059F7986EA43F8106C54DB2F5E014F4FEFD91753C0628549F99D9263F9
+          8E34E4351C550C262A5253A5FF987E7623816B02A03BF060A2C66DE6790D5A2B
+          AA6068575659E0EE7AA1EA4395E6CC493CC02332DE87151ADF7FB05A75150087
+          1F955BBB4DC98DF0EE8EE640710ED8883EE3206E5B2220AF2D31CE7EE20C891A
+          1C11E11A4043D6EE463C0265C29C736102A01BA0BA7D2D699B7B5E6307C5827D
+          79A4B961D1FF994C06C56069E7CC9975DE2793D0A1E9FC6381DC8347A93EE8C5
+          EC985D784D0029B9B0E7F8F232902109CDA9484D671D42E7D59A21015708665F
+          3E0672171C93311EA4A13F4B89842F2600DA07BE6476FE1D3DAF9181062AEB35
+          11E747C86B157E3BC41E161D3681AE1659165874CB65F22C8EEADCA540C54380
+          10F00978BC024F96E2B062DF2E8F7A8FB7E5EB3229607C5180D465E4F7447383
+          9BF0C9A2899B006817B8D650117D41262CFEC5D2D0881300C49297AD33875702
+          BEFC7CE4398F8385A74B82E3CD38B4E37950EF80B3BCCFBE43142142E09739EF
+          47D35A2E936E58F221ECAFFAE087901FE2F7E9FFE7C451971122239B046EC91D
+          A4002600DA03492C309E1DE8798DA00E8442975C721FB0479475595D95DE4BDB
+          6CC4AAC0677E96EAE3FB258AF20F1DCF05232F2E5C1F2D9ADF9AE340DE9189FC
+          06C796F89C7971C73316381E09C840AB78AE2BCC156002A03D90B0E2684F3FFC
+          6D76AC6FC49EA038B7DDF125AE23FE80855635034F17C08681D55FDB2ADA6406
+          E6614E9C10F0194E2F4AE795451BC69808192B2B9A72044ACC71CE5F5C701D76
+          9C7DF32E3001D00EF09D63B8F17DBF8DABB9040465BBB6CF799D33FE3BC431CE
+          629FF7F38041526B5A685FCF8F341FD89D593905F1501C95F35E7820658AA414
+          E1CFE9F78211313364DC04407840ECE02C98976A8A14DBA4F8825A1AAB7C7591
+          FACFF9927374DBD18721C0E23F5FF5A169E17DE94A6B612D617C24E7201C81BC
+          BC8D58F4B30C74FC2EE45A2C532BC107EE9B2311CF5761E8B50980B0408583A1
+          5626553740DD43E263FDAD93AEBB2E7838CF94EC2837546A2AD134AE3FDF1116
+          A573D6C93242260BC902829EBA8BB0241F5BF23D040D6178CDCAE403C1A86A90
+          0FAE5CD2AB113054BA20AA098070E0BBE48CF7CC1AEF1D15ECE0D8005FA0CDD0
+          523C1304EA64516661AF11D4724B8B7368033E32138BE1552D7DDE36E9E7611B
+          59BFC6FB59FC08015F04210961CAC634E045C2258B4651D9E86902201CE0EF9F
+          E0E9E70762D13DAAE4382C3C7ECCB325BC8B104E02C78E3D335E4780A19E4E63
+          F14CEC2E3A53311E0B8C71A1EC1758F70F493FAB6C4D3EDCBD1CB59EE8790D41
+          FCB719EF6323C88B6EC4BACFF3764993FB6B4300C0C22A53F209F5B728AF3CEA
+          D5935A986368E003C6F7AC2BE6E28EC2C8C6A286328B0170A70AE3729C40185C
+          54E2BB2A3347380959BE61CE8B08A93EA4BFAE0328C1F014F4D99BFBAD524444
+          037722C55158F82CE2B26B86084A8CBD67A473C2E0EAAB749415D187EF5F7B31
+          B0179D978EDBE49EEE471B0280CC364794B88E4418AF2FB806895B36736C1F81
+          9AAD83641627ED4DE20C4555BE7FB2EBB080A9C58791F1F715DECBF70861264F
+          0B39455C1CFF3403B559E7532435F97B2B8C41520EEA0BC2E3E737A2F06895DF
+          09EE3FB1FBE44C184FEAC14680F157674F2266809A8B3ADD1742836302EC42B8
+          030812D6CC8F437E612600DA43D1F9138311CC2D54EE32452CC7414E7D528113
+          2E8ACF99F8F1AC9D9B071835B1A8843646BF0BE37E658DB1542613647C492699
+          821A73B2B0E0391E55CDB3C7EFC1D10A219AC7EF80ADF7014F3FBFE33E9E7E58
+          9704911121DA8A91D804403B604162E029B34BE3EE81D545461816E1AA25DEA3
+          C1991DE31D1162F0C6393F72FC8079C6A25EBBE0FDA896A8D05D7A22DA002ABA
+          5E809A36CBF74BB20DCED73BA4ADEC797E1CFF937E16E7780CB865529FB1DE10
+          14FB7B5E23D9CA27BAFEC24C0084070F1A0F559D105932BFE252E2E880CA58F7
+          F761412310D0328A8A61021EE45D3BFFA6C203618A1D405BE5891A24E30E0202
+          EB7D1D213B02F5F958A8D866EAD0A299DB77C555251A07C6C22DA5E312E56D08
+          00D4DA3259598833FF68C1352C883673CB35010F924F7527ADF6BB028C8FF59A
+          9D02AD809D7C9566C3E58234E06F6B71FCB6C1EF008166D3F43EB66836DC0A60
+          A7C780C7318A7C0DDF0D30A68FB8043E26F9198883C3DC80F5806022438BCE06
+          83DB8E9D3B747D79D274C32FC03FBF58F28B84D601EAEB8FD3F693B186259B1D
+          E9F6F46F617C790B6071E3C1D8306D44CBB17B1282CB8267E137CA8DEF0171FC
+          F0ED31BA5E2AED1461812AAC3923B8F3389A5CD9C2E7796102A01EB0C8EA0299
+          FC78A475AA5DA8B124B00E6335FEABB4F199EB7474DF77A40DFBC2EFD2BF18C0
+          20B3204438FE8C536FC7FF8F4B77741CE11E467609FAD64ADBDAE9BD8CFECFD9
+          7D35691FCC13EB3D8655767AF233B42DEC10606C183AF087FC801C553A89BD30
+          01501D58D55109B5BF19A1F0B208F3E1DC4BAA6A2CC5DB371C6B2880F380DDE3
+          9BE95FEC255D27610584F2BECFD3DF9941D004407590694627F820D103069C5F
+          479A1361C7EFCC788D332B4715C85943FEBD7107E2A663D177996E3D0FD875D0
+          3C7476638E5FD4406C3D9069C80F441D105CF2054F3FFEFE2283665BF055F319
+          014B355453BC029C93395BEA74E4BCD6A681B10BC081C75B44E61D68B7109EB4
+          AB8D08B997541CB70B64D538C043F6C1B63FDC044035A02E6A4E370C3DACCE31
+          5448482F4B335EE381875B303ACB7254E09CFE40751DF4549866781D1E9936CE
+          A764B7C1E08611EEC1529DAC140A44B68D8C9044BC6198845AFD53F5EF712294
+          2F1E9F63DB8E451F160968274F557D682918389B961BCB850980F28021F6654F
+          7F140287E467F321C9274925C60D491C5174F829863C0C6F65F8FF0890913058
+          236D78271E9436FEBF9AAC68D4C2C037CA8B709FAC186484A7E49EB461484408
+          DD95FE9B453F3238D6C99780F0BA55F5A14EAF5973BCB69115FD5795C65C1926
+          00CAC3579A89001D54EAAE1F2AB2BE9E9CF11AC6408E24DA8A0CE5F86CD5C791
+          601A82ADEA80FC003AC166E34A3A2D8280AFFD541F5AC09CB4680B3001500E3E
+          8A2968A32E7D11C8D283C7C1F7DB6187A090A7CF8584B5F970D5A70B7FCE12E0
+          D7EFADFA88DF3FA7C6585D00D72ED19FDABB8467E98CEAC395C32C0B00D4D346
+          8513C78051694EF5118EC999B2CB5C7918F438DBFBD24D910DE6B09CF9F8CE99
+          318D976D83E3D19B551F42F04DB12796036A311EACFAA8BE04A5BB9530ED5916
+          00A87F6DD68883B37F76E351CA83B871762F5FAE38528A513F3E4F18F95462F8
+          FF7DC84EDC06A0A37F5AF5C1EEDBBBC6585D810DC55724E619E25889C16102A0
+          1EF0FB632DEF2AEF3C2E2DF20AF8825830402E91FC1D02769DCE13C7F51800A7
+          31FB4F1910E1A7CFFB781336883DB102F83C4DD807F6AF3156214C00D44397C1
+          33C4A893196675CF6BEC7018F78A68AB3E2B333EF3C774740F318047028F82D6
+          9810006D70FB43C167ACE5F725EE21789E461300D581C57F4EBAA99083D701E2
+          912FC538420135B70CFF80E38A8EAA241AF3C012EF9D6620E47416A45DA47CC2
+          CD1840701194A513B8E41503AD8D5916007C91BB371C0326964E16812A5E26DC
+          B929D8B5E11DF8EACF13B0429870D9A8433496B7A8BEBE1BC442E06271E7E771
+          E4E5E4EF0B28C6A217FB72715A4050A3F32C0B80A640836097D72AE4627139F9
+          DA04AA39997D7C61BFC422E02FAE9213106FC8F354DF2C7B0046206BEEDFAB3E
+          8E6EC7C59E58010877460BD014EDDD2470B4A909806C50E84173B1619761FC6B
+          D3F587EAC7E2F7159824D517B9E3AAD243F12FEB80136C0B97B6781F7D009E11
+          2DE4FA1A13A0E173DB06AF736002201B3E6B2C091DDFD0E26742559D177F582F
+          8B98CC406572CF69E001D03903C836FB8316EFA50F582C2EC67F1CF332C9E8EC
+          2388E33855F5418D66830896ABC004801FA860ECF6FAFB69D380848B8F00169F
+          9F9AF87528BB3FAB312E893574B24F5C800405755D3EBB6B10D4B45CF5DD92F6
+          F71D1CFFF8BDF531804DE0ABA13EC404801F3EE94B8C360F4E1BEA3FBF03AAE9
+          12CF6B487DD244D52D0C02C554E7B1E35E1ED9C27DF40D08556C25E3769C6912
+          7E1881751527EC1A87D718CB0B13007EF802334E4CDA1B5BFA3C4A461FE9E9C7
+          8FCD39B0095B0F2BF8C5AA0F23E6E296EEA56FA0E0C686AA6F5A8E3F3E1B0679
+          0FCA96992B8409804940B821B38F8E9B6F8B364B359E0F79FAF1EF9304F48B0D
+          C77FA5B8A09F712C1357D47208A0C2F11354DFB4184009BFE618A03D51E470B8
+          B9FA709330013009CE58F3AA8FE4979CC942278A8488838B4E07F770CC582261
+          52A2932AEC68D5B7549CAF790820FDB6263C1154D5D774F31AC406E844261C51
+          4F0F31B80980492C95C9F252A8D0FB551F2A171814C931E02BDC11321104454B
+          97A83E42803F527DA8A9C4493259808633F40935C68A010A81EAA32795880E09
+          31B8098049CC8BD302C641A5A3F707FC0CD26F91FED957AF2FB4ABD1C7868314
+          747E8DB1A611BEB2EDEF91C950E1BE828DE722D547A210EC1A8D0DD226005604
+          F4615C667A5786967B75A0CFC0B600A1C7E7EB879FCFE20C19FBED3B032F96F6
+          D98C7D812FB806ADE8D0D8132B09F81B7882B41D004360E3B2792600560435FD
+          AE557D84CB925C2444DA2FBE6F78E8077B5EBB5E1CD533741248380473AA8FFC
+          80DF0FFC397D0506BF4B545F1B47BA3641F299ED54DF0BC42510690413002BC2
+          E776C92ADD5C0759597CB1F4A265FCA4857B4280E9EA3318347FD5C267F511BE
+          241B68733BC79E5805F8EC18418E8A260056C4693259DD076BF9D20063638926
+          92507FE71055B0395C5379C46210467CAFEAC393C151A79514533D0405517EA8
+          FAD08A36AD31562C900DEA5CD547BCC8939B0E6C026045F8CECB7CF94D730B52
+          4E8C282EBD13FF6F3AFE792DDD0FC6469D44826C460FAD31D6B482F80A1D3FF1
+          3B095F50B44DF8D89CD8AA1AD7843401B022F0F7AFADFAF8F26F6C3026EA362A
+          E7269ED788F93EB6C5FBE1DC789DEABB31BDA72181B4DA3AA312C2F8DE1A63C5
+          0073C736A40D81D43FB8ADC9C0260016E02B2681E18F841C7579E3FC70C4EFFB
+          72EF63C0C142DD6668F16299DE68B89020AFC346AA0FEDE8D61A63C502D4E547
+          ABBEBDC45FACA6344C002C00CEFD97541F01385B341813B6D64B3DFD4414B208
+          DB2EFE4822C9CFAB3E220E9FD5F2E7F60D683D8F557DD3120F30C28532F9BB91
+          B3E24335C6BA1F26001680F1EF34D5F7B9A43DA7E678940CFB98A71F950D7763
+          9B29CB47F0E5022491E8C135C69A66F8723B6097F94EEC895580AFCE41E3C840
+          13000BA0C2AECEF4CB977E748DB1D86D30286AA31F013E94160F9AD62907507E
+          4F517DCB6438814023500F602FD5376D3511885F58A6FA304E3FBFC9A0260016
+          E0E3CC5383EF1F2B8E83CD00A3DF969ED73A29F93C06620ADEADFA3E2CAE70E8
+          9080267780EA23CEFE8A1A63C50202EC32D5C751729726839A0058802F071B01
+          17E7561C07DAE95F7BFA63A8DEBEECB241134A4C097CBF094CC08B6B8C150B1C
+          59AE577D18371FDE645013000BE0CBDD56F555B5B2FA988480B2DC30CFBAAEC2
+          43D08B4EFDDD4A7EF99EE34C99E4FE93DABD2DFE451B60A16BA62846E407D418
+          EB7E980058006998759A2CFCE8DF2EF97EAEA5DCB60E24A2EE3DE4A218DC7B8E
+          1BAF537DD8348E8F309798E0D8A3B3E92E11BF91B6AFC0A5ECF31A35E2339800
+          58006C31CD0E43EA96A90004798820229DAA091F3F3B4DACD05BB49157A83EF8
+          E31F88349F58E07E0F537DD3581701F6DF5AAAAF119FC10480039957A9B2A3BF
+          0F76F3221210EF4195F495D98A7DDEF6A9BE0884D36A8C35CD20B9CA11AA8F24
+          1B27C69E584510FEAB63181A31554D0038A046E9F33941336796782F79DB9EED
+          E98745F8710913465C178B65B200E8BC4C170126047692C9705A3C35658F777D
+          019BCCFA9E7BBBB6C658FF0F13000EC4FBFF3AF6240C861A80667E65DD379B00
+          7068B394B8C1D026A094CFD77DB30900075F2090C1300DA092D46575DF6C02C0
+          81E49C75CA6E190CB1611A4000AC279329B2300ABE31E35A72EDEB5CFE64F681
+          7ADBA7925354C1D5094E28417655EC89750CA2E874666432ED7E21F6C42A024F
+          86763537AA576902C001FEFEDDAAEF9EB45FE313497BA1A7BF8FFE75BC102F52
+          7D0885B3624FAC63F88AA384ACBDD0157CC941AB90D5266002C0811C797AE786
+          C4033F603C779EAFCE1E20C5F61ED2BF3C7B2C741DF937A4A22023F86A2F420C
+          3A39F6C42AC29714A451866713000B4085D7345E9881237E006C3F08173AF802
+          4D611B0990A3BD05F8929C5228E3A4D813EB1827A4F73D8E692444E1A9D2F91C
+          E7C4D1D86BC104C0027C69A3F8FFC838788638F55923589DB6164028B30EFD3D
+          4A264384671D64CD798DEA5B22D3150B007C29DE21A2DD51774013000B20EBAA
+          4E9639CA1A435420D564F5F745C1098E056DE6F56B025F5DB95069CEA709A78A
+          13D4E32034FBD3B12756011C5309061A7F064930439050EDE7CF04C002489EB9
+          58F5511084325E0807CDC126833002A3CFFC81E392F616D5C7EE7F54EC89750C
+          9FE196042117C69E5805F8EA1B101EFCC81A63DD0F13000B20F1874EAF44200D
+          5CEB5779AE0F529AA965B0F88F537DA18B8F4E037C25C211EE5F8C3DB10AA008
+          C8D7545FE30A47260016E08B1843ED7F9A4C7E4F14F13CB0CCA09181A55BBB26
+          F100BC3AF6C43A862FDB5323024D047064D11B0E1ACC0135C6BA1F26001680B1
+          AC4CFE3FF8025B49BF55FF11305A9EA1FACE12BF31739641D9B51D555F23024D
+          04B03969DE4263616E026001CF149733BF085D27F66C024A8DEBB266E7A7FD43
+          02F51D7458F4B4A505F779744813FE9E26839A005800BBFA4D05D77C4BDC99EB
+          CFB1275B12048AE873EEBC0CAF3290CF7F8EF1AC8D6ACC6DC167A486E25C66D3
+          CA84098005AC2ACECFBA5AC6EB2C7A8A4BD44EBE1001082BADE6DE90B4C7C79E
+          58C798F6DA80E076717526C7012BF0E626839A0058112C8EAD335E834CF2BA0A
+          63F5019BC9E4034265A287C59E5887F09548E7FF0FAA31562CF8A255116AC4AA
+          34D2464D00AC08ACACBEDCFDA89070AE7F1B7B821541F9E8DFA83E621E16D518
+          6B5AE15B3C944CDF38F6C42AC057B79234F6DB371DD804C08AF05146C1B4E590
+          1F81DF9705BFAAEA1F8F71987520B8BFA7FA889EDBAEC658B1406D076DEC3B47
+          FC51A99560026001F0FEB116EB10E0C6D55722237800C9940183A72E0146B197
+          BD6A8C150BAD540606260016B04C5C01460D78D61B26ED17B1275813BED2D854
+          27BE2EF6C43A0225C1CE567DB03E0F893DB192608DF2EC3D44F5A3FE5F5F7DB8
+          C9C1F380B1E8DF0BAE41C27E2BE775D4AD467CE58EB04ECEF70145F83315C6EA
+          13C855B0BBEA83DDF8A51A634D2308867ABFEAA362F26B6A8C1503BE230CC737
+          3259374E395F2400A83A724BC135B8C6F2524CFD489CCA39CD9866FA2C116F07
+          A93ECE8EE7C49E5847F04544520AFEEDB12756124BC455AE1EC7E532496DAE05
+          1300E580047E6CE351E2C0970C8320A177C59E584740D0BD40F5C1A8FB70EC89
+          95046B14D7F453D3F61471BF6910016602A03C364DEF65DA40E49F2E8145269C
+          57D4186B1A810150331FC9E1F02FB127561310D5E036DC19623013007E10F0A3
+          0B85F631E96719F8E201C823BF77EC8975046C585BA83E76D422DAF720502400
+          787DCD826BC88997C7462297DE4AD23F302768B23ACD32916324FE7C87EA9F97
+          E9E4D023A0BFA1FA70776E5163AC6903CF2F06B307AA7E5CBDF7C49E5C1F3064
+          372086315F4A282CE430C76E50FD08395865B5F3AF45021C061DF4420254A8B0
+          7D4D65160A703B7479F75FCA242F62B018AA00E0BE0905D53900E7656197FF4F
+          99D40EC8B07B864C17486D0EF75DB3011166D3CA6D288BDD92F655D58786F784
+          1A63CD24862A00C8E673BEA71F0BEBE881F165082225D3EE327DF009332205AF
+          8E3DB196414D045D04054AF74135C69A490C510070CFB0E0B655FDA4FF7AFAD8
+          FFD925B47113959910CC3ED600C80316EF7D54DF34939BCAC29714155EC01135
+          C69A490C5100EC27AE2E9CC6F8EE3F0296E2AD54DF349148462083910E651E42
+          7D005F74270CC053624FAC00B0FF30521679E01A638802605EDC621F47966AEF
+          A3911244439CFDB46405023CF43A7024483459CFE1CB05380D1C00DCB47B8AA3
+          6B637362C3FA631B1F3434014000852F6E212B4534D6622CE8DA80F6DCA45D10
+          FB662A80A3CD25AA0F23E8B635C69A16F06C930B616DD53F27FD8E8444E3BC51
+          565C9B64037A92385B4E500C4D00F80A44142556F89C4CA65EFE377116E66981
+          2F33107902F087370E28E92948F8B15CF5C19E2388A6CFEE4FE24E5EA9FAF8ED
+          3697168ACF0E490010D9082B51EFE694CF3E3BE77DF0022EF5F4A35AE64541F6
+          09909EEE92C93458C4377CAFFA7053019FADE7EBE20A6CF4150827344EFD3B71
+          143DB1FA70C568530070A65E3FE775A4DA0D39AFF303864C5DC5782F527DE4C7
+          A3E452DEF92A8B33F04971B1E6D302D8804F547DD3561FAF0ADE9AB46355DF47
+          C55FE5A92F383C69EF537D70382073FDA6FA70C5685300A0263F29E7752CD3AF
+          CF79DD97C92634CA46C52D91C9904C8C80ECA0FFD1F21C43C157209305724CEC
+          89B5045C9CBAFE419F3D0004F8B029EA0AD5AD86A20F5900408725D8E95725AE
+          25028BE383FE71A6C992EEAB7CF4F9A43DBBE07DA8A31B88FB2DC84A436AEA35
+          D286816DADF4DF8BD27FAF3CF65EE2485619FB3F4955C7CFDF045DB1C3E1F2FA
+          4DFA6FDAAFC5FD2E77A4EDF6B4AF0ABE2FEEDC3C0E9FABB72FF0799CFE94DEC3
+          0FAB0F570E4316001804FFA6C2F547CAA4DF1C2D80C8B2EFB738CF50F01597E4
+          C122D7DC9CB8AC4D1B8FFD45ED64C13F20F6C453B018E0F163C1BF356DFC9B33
+          33C299DDF3EEF45A827FB079ACACC6584F5A52A51B0201CA6FA1D37EB57ECC1C
+          B200D82D9D6359F023C100DC40F573863EB8C23831C0838F4DE673B127D23278
+          667095A13D68CF0D02E311B12798015F15672CFEB8696FA83E5C79B42900DE29
+          932CBA7150D2E8AC9CD74F97491F6E1D40E9D539E0EB66F841609DA4FA5069D9
+          5DAF0C30D710C0F0BAAB38AEFF3669EBEB83DF25100A244221041C83E8EDB127
+          94825C943F4AFF8EA393C4A5B3EE06E4FE500D3755FD75937B70CEFD814C2E28
+          186758D883FB694B80A2972CF827A77FB790D9FF5D4380E7024180404078B3D3
+          C66077FA7216DE276E830A4EFCD198F507C5970C83B324E7DBBAA1B084049FE6
+          E95F92B48F75704F907AA0B312B6CC82DFA0D97085C058CA6EF98BF42F46398C
+          7918EE20D6DC9DFEFB1E99AC9CC4397CB4A8E05F8CD75C5823EDC34888F1709D
+          B4AD35D638BA700CC4F8DA76292F1287200CE07C7C418AB3618700AEE5EB6445
+          4329E8CC5D39EB02C0170403E5779F1A638DC08FC58FA67901241121882348AE
+          B63160C8C296C2A2DF2FFD8CD0206FDE7271C1273F4EFF625C8327D197CC3908
+          00C85C0804EA34A08511E2BC59DA305EAE527BF449609423660061302FAE165F
+          48B0F6F0486862120215CBFFCF2A8F587312B30AD86F187E3654FD45CCBF32C0
+          9D44B966FDFD61B77879F5E126C0EEB76FD29E294E58ADD7703C8E261C5D105C
+          B8FDB4651F3BC17703CC3B26D026B0F5BC24696F0E3C36AE498424C2E0B3E2BC
+          114DE1CB55002803F6BE8A63D5C62C0B00D4E3AFAB3E7E4876901075F17CE9A6
+          310812C5F5951AE321B0F610579DE8393299C7AE2C50B92127B1D8BF95368AB3
+          8C5C645F4EE7380E8C9B1F0CF09DF4013EC213063516EF13D386C0ABAB2DF0FD
+          F21D126A0C8FA28EC68740C775ACDD7EFC6E946E6F25F2CF87591600C7CBE44E
+          408DB5036A8CE503E7527E449D3415E3120F58D9DAF32418818FC0C2AF63ADE7
+          01C4BF3F2F2E81098B3D4FC01D2DCE43338E3284A069812F0BB52EEE8A702596
+          0361B04BFAF72F6B7C16F611324B11B2CB6F5036C8C817940688DABCB4E41841
+          30CB02C057130FF5F0AC1A6365E130F17B138A4A4FE14D38249D0F9A4A95DF81
+          DD81870D5B069A060BBE8AF59A075EBB2C21C7C0F08BE1C508093C229A9ACDA2
+          647117A9ED10BAF6491BE7F255A51AF85C8E8008833CAD00CEC8A73CFD558969
+          4130AB0280001F4D9FE4E1C61E10E2FC36026A3B8B502713E1A16347BD50F573
+          FC7855DAAA58EF9933916D18A5503FEFAEF05E0D545F68B55A73812F714DC0EF
+          26067C74673682C7551C071B0C55784602E16115DECB6F43DCC8C932993A0E43
+          258165DAE78F8785CDAA0C2D3D28665500BC549C341E07EEC05D5BF82C3806FC
+          A8BAAC383F264CAE11038DE3083BFEEA25C7C5028FC189C423ECF8217DD49C87
+          F7557DD398EA4CC357469B857858C371B71347C9456BDBA8E47BD870084882E1
+          476A39360B0C894FF15C4BD0D2F925C70D8A59150058F935879A1FE26D2D7D1E
+          3BBAAFD61C0B971DE85029B7F0B11BB0E0E113A059B4A592FBC24E311AEED0D2
+          E77501547684AED66C429EAB71C962A8C5938486B74689F7F01BF29B22D07D82
+          288AEA3FC2AC0A008A416849CD0F57C73A5F067C8FECAA75F905D78A0BFBC450
+          D544BD2F0B5FC9698E2D682A3FAD3E5C2FE0AB010087016AF41F5AF83C780908
+          0184C15E526F2D714C45BBB8ABBBAF6945CCA200801CA229949038D695F0648E
+          71604463172D6BC9E7A1249008CDE1AA92EF09098C568F517DB8CF4EAF31561F
+          40A4E691AA2FA4D7270F7C8F187DF1E4AC55F23D3052115ADFECEA0BF2611605
+          00F9EECF557D5D15F4C0C2FEAF926F41668767B727A8E8E731BEA014BEC22718
+          1AF78F38A7BAE039C6E0B689EAEF5AA0B1F8A9BA4C39F622B762A7849F2CCCA2
+          00788FB82F771CB8EADED0D1E7F3E39F90F11A1C6FFCF07D8849875EACC3A1F1
+          6BF3E04653496BC2E7DAE44843CCC76D11E6839B97981184FCCA9ED739EA3D5F
+          7A909C74160500B9D49FAAFA42D07FCB82EF94440EBE1C01A8DD6822215D9175
+          81551ABEB9764742515D167B7215E18BF9889D00D497DD17E011807814828DDA
+          18B328007C0640F2127411DD35023B002E9F5D3CAF61272092AF0FBB2CA49597
+          A83E78067BC59E5805B0C3E26AD52AF76B659213D015C8B5F8564F3F91943C13
+          37571BAE3DCC9A0060E1DDABEE0BFF39C12FF7753C178C82700F1EE5798D7E16
+          59EC483B04D115AA0FB715849569F106A0ED7D49F5F19B43DE8951FDD8474602
+          30387149B6E589AA85591300ECF437A93EB8E19BD6182BD47C389BFA321BE19B
+          26E8A76CCC401BE018802B4A674C82277042F5E1A2C0A7C55C2E93C7C02E80D1
+          11D57F25D5CF599FC0B1732B8FD832664D0010337FB1EA8BADD2C2FC82B7EFAB
+          7180DF9A90DF2E7CFF59F055D025BE60BB88732A0BBE538C7CEBAA7E0C706774
+          3C178CCC084DDF9AEA85C5DF875913003E465EA818FD26809E8AE57735CF6B57
+          8B2310554D7B1D0ABE001A006DFA1B15C7EA1A4B64B25E03C6356C405D0A5528
+          D44B335E232AF5E8AEBF98B298350100DFFE78D50741E4A8D81313C7BD8712EA
+          D30460E5A1A5C4705901C8283BABBE69A87CE4ABFE4BBAB65774F4F9AC1FF814
+          8767BC7E42CE6BBDC0AC09009FF5B56CF59F2EC01185A00F9F1080BD48CAAF18
+          958688553853F561B4C2361093AC94075F9D03B093386A75DB80EC45D8F7CB32
+          5E47E57F53F9E1E260D60400C40B5D6B20A63BC887BDC5E5E7F715DC20A92611
+          675FAC3462732090C805A83901A8B6FFD0F5175412D0A80F527D5D0534E1E1E1
+          48B738E375B482234B8F1611B326007CE9A0FAC86FC7420D4FDD97F60B17163B
+          472BD56073C042D7D1921085F0A0B419435107C45BE0BDD069BDD064FEA9FA70
+          9540CA2E7EBB39CF6B58FB39EFBFBBCA8031316B0280D8EFD7AABEBE690023C0
+          0623155756F523B2C6E0DEFA7D47F361F7271BB00E5B2684F5E4185F500E7C2C
+          3B780B08AB36F3E971448351EA0BF841706384EEDB66938B5913009CF5B5C10F
+          55ECBDB127968139716ECBAC2A45A8B418E2BAAA3DF871992CA18E1640DAEDAE
+          0451113649BF0FED5121B0E9FDD5872B05CEFB68483C4BBE350397036EFFC555
+          06ED03664D00F8125EF63DD30D242132C73C2DE3751E2E2CC90412B51D3C425E
+          3CB21B69220B014E27551FAE1590D3F1C5AA0FDB0906CB36E8D590B948DAB17D
+          C6EBD84E0839FE76EC2FA60E664D00F8689864D759127B6205E02C8B9A9D570D
+          86DD852341DB8144BE6C4A7802E00BC4242C493A07989EFAECDF46B627D606C7
+          1FDCCA8B32AE81C8F55CE94F9DC15A37394BC0C2AE2DE884BCEE167B6225814B
+          89C8B6AC92DC70DB117217B438076217E025E89C06A8D747541F2E28B099E87C
+          0577A4730E5991092323C6C43D73AE817086C7A9EB1893A098350130278EFB3F
+          0E164D9D9CEFB1803D00CEF8D639D720E4087F6DAB7824641AEDDFE641871E7C
+          53F5E1820035DB57DE3C645113EC0AECFA68136B665C83A021E96C94249EA131
+          6B0280B32B5450BD83A23AB65E693520983F67EE3C461B29C5306EA2A28636D0
+          B1036268D36E4A22D9D815BB4E64C162442B79B8EA47D8530D3984E59F483D12
+          C76C9E730DA9DB0E91C94D666A316B0200900842A7FFC665746AEC89D5C081E2
+          DC4AEBE65C833F1CDE0029C4432E4C1FAD1AB0FB9D5971ACA66061FA32EA72FE
+          6E7A1CC27588B07D56CE35683FF8F68F952957F9356651001C93B477A8BE692E
+          7D45311316C04105D75D2FCEDB81B1308420C006405D415D54831C06F0EFBB72
+          4D122371894CA6D66A9ABF909C07084E045A5ECA76767D8E43377474BF9D6216
+          0500412D3AD32A1958E7647A925CF84030D129E267A08D832ABF58C539A33615
+          047C97E433D06E416A1D5049A86D6E002A3F5C085D44136F04B6929FD418734E
+          5CE82E0CD14539D7E17EC5858CF1336451965E611605405659F03EF3DACB8233
+          F952710F7051755BC28CD11C50919B9C91B176FBDC936D8759A3819061D99756
+          AD0EBB135B0124311273147D77D47820CDF7F216EFAF179845010096CA24F987
+          AA319B4B84FA6B8181EACAC3BF5FC9EBF1E1931C0322511D0D0883241AD5E33D
+          AF2D95C9E35608AC94CEF9C59ED7FE599CEA5F46BB41B527EB12828AC42C45CF
+          3BDA06C782CB5BB8A75E625605006E3F185A9A2E8A21F095D587EB0548E38D21
+          0C5B469DDAF61C83B08560C0E301AF62CCC28B4288ADCF35F66A71DCFC50E099
+          4458F9B40B7E53187945C953A87CC4B99D925BEB97F8CCE5E2C2C889BF98F60A
+          C99530AB0200F828A3FCB8C4E4771D6E5B1708308C7F2CFC1D1B8E350EB4207C
+          EA84B49214F44F25DEC33C3EEDE9E73B852014227A91E79123874F48738C6117
+          CFAAA4838A7F40DA7696728055892B158DAA8DF261BDC72C0B00B4005281EB52
+          CCF0C57113C622B4940191797000387B6F58E27AC275117858AC391F57111630
+          E91006941E87DA9AB7BBA2EE1F93F11A3601588A75DD6418FAA06DFBEA2B2264
+          38BB8F0B208E092C74163C4782CD8B3E600C3F1027B03E26FD0B75EE14B32C00
+          00EAE9299E7E8C8458D5FBE4DA592D9DD392F4EFAA25DE834B8E630D96EA9F8D
+          F52F161740C4625AA9C43823B0D0080682F0332F4E20688AAD2FE9CA080820BE
+          F3EB2ADE3B3BFB39E25279FB00EB119B00D97E380AED9AB6F52A7ECE95E97775
+          A10C4CD5CFC2AC0B001E7ED47D5F56603401425F2F8A3C3FE214A80F4F38E983
+          4BBE8FE013CEDD1F12B7836781305EFCDC4BA41E1D1AF7170CCA1BD27663FA17
+          6BFAA139EF814ACC42FB61C1F844DA71F6A68A52D6B38846C28E4DA69F324251
+          83DF99A30E02246A21CE3E62D6050020DC16766056CC3D3BCF1BA5BB221258D5
+          290F06F30C0B759585091D16D71E117B557CF0ABA69F87C083F2BA7A85F7FA80
+          DABCA8E01AACF46415C60DC9510CFA2C020FDF3E8B195B0CBB781BCF20BB3B86
+          4E54FCCF56FCAE068521080030274E086C94F13AA40FACE384E4862EDB84C51E
+          171A8B9E6845D4DD0754783F3B2A7E69767C8A893425F720103937A371EC21CD
+          85415F802113159FEF0A6B7E1D92D0E030140100E6C4514AB728B80E7717BB16
+          02032A6C95CA3DABA6E313C9C7A2E7CC8AA16A8D1AF3253DD799696B8BC1C8BC
+          C84FB86FDA1ED66CB8CEC15188231E8BFE32E947D5E5A9C2900400C0274C9C77
+          59120DBBCA72718B911D05D5F7B7E96BECE2A8C19CDB51E3374EFFAE5C726C1F
+          A0B86291E758820ADB3505157F3FE9B6774FFF6ED6F1E717017BC45569E37841
+          FC8319F31A60680260045C6C44BAADDB74A00040C3A0B8252EAE0B256EAD400D
+          ACECDB8E358C760885759A0C5A0218FE388AB1E0A9938026C6A29F761667EF30
+          54010078B8B140433AA972260F015C76A8AD7820A85D386D462A342904C19C38
+          AD071FFE43D346BC020262914CE61340A342836281FF2AFD3B6A78336E4E5BAC
+          326983C39005C00808021883B8B5B66AE93338AB52C506D61D3EF6EFC5BE6983
+          0198005811EC6A54EB25026D47A97E06864E8AEF1BD5159F39AA2B46C55B62DF
+          98C1E08309807CA0C262DC234516F6025C68B8CD303CDD95B63BD3BFF0CA6F13
+          334A19A60826000C8601C30480C1306098003018060C130006C3806102C06018
+          304C00180C038609008361C0300160300C1826000C8601C30480C13060980030
+          18060C130006C3806102C06018304C00180C038609008361C0300160300C1826
+          000C8601C30480C1306098003018060C130006C3806102C06018304C00180C03
+          8609008361C0300160300C1826000C8601C30480C1306098003018060C130006
+          C3806102C06018304C00180C038609008361C0300160300C1826000C8601E3FF
+          0018AFE4880ECFFC8D0000000049454E44AE426082}
+        Transparent = True
+      end
+      object Label1: TLabel
+        Left = 49
+        Top = 284
+        Width = 268
+        Height = 37
+        Align = alCustom
+        Alignment = taCenter
+        Caption = 'TRANSPORTADORAS'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -27
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+    end
+    object pnlButtonChoseAdmin: TPanel
+      AlignWithMargins = True
+      Left = 151
+      Top = 212
+      Width = 361
+      Height = 337
+      Margins.Left = 150
+      Margins.Top = 100
+      Margins.Bottom = 100
       Align = alLeft
       BevelOuter = bvNone
       Color = clWhite
       ParentBackground = False
-      TabOrder = 1
-      ExplicitLeft = 3
-      ExplicitTop = 115
-      object PnlBtnEditarTransp: TPanel
-        AlignWithMargins = True
-        Left = 70
-        Top = 120
-        Width = 363
-        Height = 30
-        Margins.Left = 70
-        Margins.Top = 30
-        Margins.Right = 70
-        Margins.Bottom = 10
-        Align = alTop
-        BevelOuter = bvNone
-        Constraints.MaxWidth = 598
-        TabOrder = 0
-        object Shape13: TShape
-          Left = 0
-          Top = 0
-          Width = 363
-          Height = 30
-          Align = alClient
-          Pen.Color = clBlue
-          Shape = stRoundRect
-          ExplicitWidth = 262
-          ExplicitHeight = 297
-        end
-        object btnEditarTransp: TLabel
-          Left = 0
-          Top = 0
-          Width = 363
-          Height = 30
-          Align = alClient
-          Alignment = taCenter
-          AutoSize = False
-          Caption = 'Editar transportadora'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Segoe UI'
-          Font.Style = [fsBold]
-          ParentFont = False
-          OnClick = btnEditarTranspClick
-          ExplicitTop = 7
-        end
+      TabOrder = 3
+      OnClick = pnlButtonChoseAdminClick
+      ExplicitLeft = 74
+      object Shape33: TShape
+        Left = 0
+        Top = 0
+        Width = 361
+        Height = 337
+        Align = alClient
+        Pen.Color = clBlue
+        Shape = stRoundRect
+        ExplicitLeft = 120
+        ExplicitTop = 136
+        ExplicitWidth = 65
+        ExplicitHeight = 65
       end
-      object pnlBtnChangeCadastrar: TPanel
-        AlignWithMargins = True
-        Left = 70
-        Top = 50
-        Width = 363
-        Height = 30
-        Margins.Left = 70
-        Margins.Top = 50
-        Margins.Right = 70
-        Margins.Bottom = 10
-        Align = alTop
-        BevelOuter = bvNone
-        Constraints.MaxWidth = 598
-        TabOrder = 1
-        object Shape5: TShape
-          Left = 0
-          Top = 0
-          Width = 363
-          Height = 30
-          Align = alClient
-          Pen.Color = clBlue
-          Shape = stRoundRect
-          ExplicitWidth = 262
-          ExplicitHeight = 297
-        end
-        object btnchangeCadastrar: TLabel
-          Left = 0
-          Top = 0
-          Width = 363
-          Height = 30
-          Align = alClient
-          Alignment = taCenter
-          AutoSize = False
-          Caption = 'Cadastrar transportadora'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Segoe UI'
-          Font.Style = [fsBold]
-          ParentFont = False
-          OnClick = btnchangeCadastrarClick
-          ExplicitTop = 6
-          ExplicitWidth = 598
-          ExplicitHeight = 34
-        end
+      object Image6: TImage
+        Left = 0
+        Top = 8
+        Width = 361
+        Height = 256
+        Align = alCustom
+        Center = True
+        Picture.Data = {
+          0954506E67496D61676589504E470D0A1A0A0000000D49484452000001000000
+          010008060000005C72A866000000097048597300000B1300000B1301009A9C18
+          000000B46558496649492A000800000006001201030001000000010000001A01
+          050001000000560000001B010500010000005E00000028010300010000000200
+          0000130203000100000001000000698704000100000066000000000000004800
+          0000010000004800000001000000060000900700040000003032313001910700
+          040000000102030000A00700040000003031303001A0030001000000FFFF0000
+          02A00400010000000001000003A0040001000000000100000000000003E16DEE
+          00002BE94944415478DAED9D09F86D53D9C0DF645684CACC2D425186CAD44737
+          2A94A210292143121A547C222A631F4A1249BA6588CC8AA86448114A54E6E192
+          2191CCA4F8BEF56B9DF3F9DFE37FD65A7BEFB5F6DAC3FB7B9EF594BBF77F9D77
+          EF73F6BBD77AC71789A228BDE545B9055014251FAA0014A5C7A80250941EA30A
+          40517A8C2A0045E931AA0014A5C7A80250941EA30AA03C2F36631933963563E9
+          09631E33E634635E33E6127B8F1F37E361339E30E351336E31E326336E1EFCEF
+          0D663C9BFB8294FEA10A201CEED51BCC986AC6DA66AC65C6CB22CD8D52B8D48C
+          5F9A719119D799F15CEE0B56BA8F2A003F4B98B1B919DB99B1544D9F798F19A7
+          9B719C19D7E6BE014A7751053039339BB185191F3763B5CCB2FCD68C6F9B7182
+          19FFCA2C8BD2315401CCC8AC62DFF67B99F19ADCC28C7097198799718C194FE5
+          1646E906AA002CDC876DCCD8CF8C85720BE3E1AF66EC2D767BA07602A512AA00
+          445630E34833DE925B9082FCCE8C9DCCB832B7204A7BE9B30298CD8C03CDD855
+          AC4BAF8DE03AFCA6197B98F1746E6194F6D15705C0FEFE143356CA2D4824FE60
+          C66662E30A94E6B19C1907887521CF5D712EE249CE336337B1DBC14AF4510160
+          DD3FDA8C97E61624328F99B1A31927E51644990162472E93F8BFB7FBC56E5FEF
+          AF32499F1400D7FA65B116FE2EC3B6E60B66FC6F6E4194FF708119EF4C34F70F
+          CCD8AACA047D5100ECF179EB6F975B909AC043F03133FE9D5B909E339358DBCC
+          2C89E6E7EDBF609509FAA0006637E3643336CC2D48CD9C2336A6416306F2414E
+          C81309E747B9CC516582AE2B00DEFC3CFC9BE41624133F31E37DA22B815CA802
+          C808D746D45C5F96FDE3385EEC3E516D02F5A30A202318C3F6C82D4443E05EEC
+          995B881EA20A20131F10EBE7579E674BB109454A7DA802C80029BB84C9560DB8
+          E81A142579B31937E616A447A802A8192CFEBF91EE44F8C5E68F66AC2AEA19A8
+          0B55003573B8D8D87E653CDF30E393B985E809AA006A6465B199716D4DECA90B
+          12885631E3F7B905A911EA3662085D47AA87E412724D74DF67CCF88BE75C5500
+          3541C4154BFF55730BD212A832B486F4A39E000FFFE512AF7EE390BF9BB1A219
+          773BCE510550133B882D9BA58443A8F031B985A88133CDD828D1DCA78AF5388D
+          4315400D60F8BB432AC644F71052495F2DDD370852713955E6E723E25E59A802
+          A8819DCD3822B7102D6517B10545BA4CEA0848D733A40A20316459D1646389DC
+          82B4148C58C44D3C935B9084A80228297C1BA090E771B9856839DB9B716C6E21
+          12A20AA0A4F06DE00A51CB7F55AE161B21D85554019414BEE950D7EFA6965F43
+          5378BD197FCA2D442254019414BEE9EC2F9AE1168B2E670BAA0228297C9341EE
+          E9662C9E5B908E8031708A74333048154049E19B0C9556B569665C08A5BE26B7
+          100950055052F8264332CBD7730BD1313E6BC6A189E67EAD3C1F8BFF928A7315
+          89C507550025856F32679BF1DEDC42740C9A4DBC3BC1BC6CD358ADE588C50755
+          0025856F2A64FB3D28F17F507D8737EB7C12BF80E819620B93A6C0178B0FAA00
+          4A0ADF54C8EEBA21B7101D854E33D7459E934A44732592D7178B0FAA004A0ADF
+          54C8EC3A33B7101D6553334E8B381F69DACF2696D9F71B56055052F8A6B2BB19
+          07E516A2A3D0366DFF88F3A9025005101D62FFB7C92D4447A187C04722CEA70A
+          401540742E36E3ADB985E82854CE5923E27CAA00540144E70F628D554A7CAE17
+          DBCB3E16AA00540144E736B1956C94F8E0535F2CE27CAA005401448752560BE4
+          1622313C3439AA1B87B8D58AA00A401540749EAC7AD10D8607F0F3662C6CC63E
+          193E9F87952A4BB11E1A5500AA00A2F32F3366CE2D440268E54DA5DE7BCD5848
+          6CB6E3AC19E44001C48A065405A00A203A5D53006C6978EB1F3FF2EF5F33E353
+          19E4510510EFF3550124A02B0A801059B2EF0E19FCFF51E635E366335E5EB35C
+          AA00E27DBE2A8004B45D01F07011CCB4AF19F779CE2589E68C9AE5530510EFF3
+          550124A0AD0A806C3B1E7C9A73DE5EE0EFA8DBFF891AE5540510EFF3550124A0
+          6D0A80B73C2DB878F01F2AF1F7B8037F64C6FB6B92571540BCCF570590803628
+          00BE981F9B71A219E74AF5078A2F1923E1C635C8AE0A20DEE7AB0288CCCC838B
+          6E620B700A6A5E24F6A167DFFE48E4F979980E165BBA2B25FCA09E8E28B32A80
+          74F44E017CD58CCFE5166202B8F07E26B646DDCFCD78A086CFDCD08C23CD5824
+          D1FCD45AFC74A4B95401A80288C62662F7C239652656FE2AB159733CF0D4BA4B
+          FD039B8CB9CDF8B2D8B65E7326989F325BA746984715802A802850520ACBF92B
+          6BFABC7F0E3E8FC6A33CE4570DC65F73DF88118811D851AC2288D923E16F6213
+          AEAAFE785501A8028802CBFEAF469AEB2EB115651F18FC2F03EB3C25A66F1B0C
+          DEF46D6B92B1BC19EB89B513CC14613E2A2F55BDE7AA0054015406C3DF3DE27F
+          FB6380DBDB8C4BC5FD00CC26DD6E87EDF392AC293608691DCF3C28C84506F395
+          4515802A80CAAC65C6259E737E68C696627F6C0C5500E31966FB9D60C6E69EB9
+          A8BC746905595401A802A80C1D65F6701C67E94EE799E18D7ECE735DAA00AC9F
+          9F0E3D378ADB9BC076C275EF7DA80250055019DEFE6B398E8FEE555501842900
+          F86F330E709CCBBD9F5A41165500AA002A7393194B3B8E8FF6B6570510AE007C
+          4D56C9465C26E0335731E32B620B8A56EDFDA75483CCD2DF98F10533AEF69DDC
+          06054044DDDC8EE3B8089F9CF0DF3E8DAF0AE07905C0DBE349C7B98F9A318FE7
+          F32822CA0F6DF6DC17AECCC05366BC513C5DB4DAA0005842B9825D4643575501
+          842B00EE053F9471BF039483AFAD97366A6D2E74D0722691B54101DC61C614C7
+          F1D79871EB84FFE6C7EDCA155005F0BC02606B7593E35CEEBDAF0233EEC2BA8B
+          96286110D0E52CA0DB0605708519AB3A8EEF60C67726FC376F34D7727474CBD0
+          25F83E9F95F1DF2BF61194C370954414E1518EF9B8F7AB7B3E53154073E98402
+          208F7E17C7718C58EC7586D666F6AD2F759CBFC0E0C67491970EAE7F1C13CB7E
+          A308AE111B41380EEEFD273D9FA95B80E6D2892DC07BCC38C773CEBE667C69F0
+          FF891A5CD871EE5262C37DBBC8C283EB1FC79DF2FC768AFBF545CF7CDCFB9F78
+          CE51236033E98C1110B712A5B25D6F7596B447885504178B756F8DE32D62DD24
+          5D6465337EE7387E9D58BFFEBE66ECEA998B950441428F8B1F75033687CEB901
+          21B40E000630B602AEB7119D85A7E5BEA0447CD08C931CC7C9722438679680B9
+          B8E7BBE7BE20252D6D510034CA60D91EA323D0416223E0BA48C8B23E04968F58
+          FF9B96FEAC44A62D0A0030047E23C23C640DAE9DFB62124175A277449887EDC1
+          11B92F46494F9B1400B25268F3DD15E72168685E8957F7AE2910DF405D83AA15
+          827E2AF61EE7A874A4D44C9B140060084409BCB5E23CEF145BD2AB4BB0AAB9B0
+          E21CA4FE62F97FB4E23C4A4B689B0200EC00E4FF6F58618E69628D815DE25833
+          B6ADF0F7B85A31227635484A9984362A8021BCA9BE65C6A225FE1657C94212E6
+          E26A03783D6840F2B2127F7BBFD8E6A43FC87D114AFDB459010061BD1B99B185
+          D82570916014C260BF9DFB02224151D0630A9C8F3B70D8C3E02CE98E22540AD2
+          760530111280580DCC2F3683F0643356749C4FA20BC930B1BAE0E482905E127A
+          5C493B040051561D1B0A4550EFE9C0752B11E8920218E5E362B7082ED8331F97
+          5BD08A7CD48CEF7ACED9596C33114599812E2B008A88F0A67385A6B2FF5DD68C
+          87730B5B12DC99D4F573554C663544486FEC56654A07E8B20280901062D26177
+          CA2D6849907D47CF398799B15B6E419566D27505409E3A7B7DD72A808097F789
+          4D6B6D131B8875DDB9BE43829D96149B4CA5282FA0EB0A00F637634FCF3918C6
+          C8A4BB2BB7B081BC4A6CD6DFBC9EF3FE47AC8B4F5126A50F0A80D0D83F8BBBAC
+          1850599808C387720BEC012F07117BAFF39C47220FF60DDDFB2B63E9830200AA
+          A29C1E70DE6566AC2BCD8D8623EE8110665F992EA0EBCF29B905569A4D5F1400
+          10F4B245C07928014A5CFD23B7C023F0E6A73ACF6A01E7D2DAFB03B90556FE1F
+          AA26ED67C6DB06FFFD4B33F632E3FADC82F54901E016A4069EAFCA2DB0652023
+          EECEDC420FC09077AE8435E9C08E410054D314585FA171CDAFE58515AD48B8A2
+          82D29F730AD7270500D448A3DD95AFD63DF000116473566699799313E6EB6BD0
+          0158FD0989BE3CB3CCCAF3B06A1B97C24E666BD682AA7D530040EE00F6809902
+          CEC54548941D0D32FF5EB39C04F760C5FF48E0F9C8CA16E7E49AE554DC3C26E3
+          DDD01C9BBBC05CD1E9A30280A2D58578F8F716AB0C523715A1B0C7C7C496F72A
+          92DD37DA24556906BEC22A599FC1BE2A00F894195F2BF837779B7188D8FC81C7
+          22CBC3127F3BB1517B0B15FC5B2AC01E50F06F947A5005D0603E61C6E1E26E25
+          361914CDC436406112D26ACBA6D362185A476C210EF682456BEBF3E322D0E790
+          9AEE571F5841ECF7B1A019B788ED3A55A5914C4A0540931B5E1AB4C7A31E04BF
+          C7EB8A4CD077050084D472E3CAD6B327ADF64AB1965ED27269A94D121246C461
+          6F788C8E44ED9194430A32013AF42778B3B8FBF8B94009611F382DF70DEC1074
+          41625538F1B97850EC6FE4B725E74CA500700763609C7FE4B3B886E082AEAA00
+          2C3412216866D9DC820472BB199B4940E3072518DEFC84574FB61AC4654780D8
+          1525E64DA10078F82F90C90D88F4C558C98C3F864CA40AE079784B6318FC686E
+          413CB05A2103500B77C6C597395A5609C45600AE877F4870EF0B550033C2FD78
+          2EB7101E705F6AC9EEF85013714BCF396594404C05401C0BA1E0BE24B0EF49E0
+          8B4C15C08CB44101603378B6F22CCA28C47A1C18705E5125104B0184BCF98704
+          BB845501CC882A80FE42E01516F40502CE2DA2045CEDEA4303818A3CFC648162
+          D37A20E4A25501CC882A807E436CFEF9E2EE443D8434EB55C57A7E5C30DFBA63
+          8EF150AFE7F97B0CD3289A9050F0C706F30577BF56053023ECAF7D0F178939C4
+          76D39700575ED5565CB80A712152DD87D8F03BC41DA64C675FADE89B0E9400ED
+          D142DEB6E789BF551DFBF65FC90B1BDBE2C65D53DCEDDC65208B4F49002B8DF5
+          A5C0C30FAA00668458005F841F6EA2E12A81B731D95EAB98F15AB1957AA69831
+          9F58AFC2F04DC29C040B516C64BAD887FC06B1BE65B2C1263ED028209702E04D
+          A01E80B4506F8137B74F09D08E9E07DBF7D2E02D4E65AAFF1AFC3729E7446FDE
+          E8F93B943DB5297CB122FC1E50128593C05401585E21362A90F172CFB9131540
+          0A7C0A80BC044A7C7F5302F7794A29D877A3045C4B6F143B16F9545B321E7C02
+          CA5C416A6C4578F8CBC428F45E01B09CFF8CD83E817304FE4D6E05308425E434
+          B1557F6F4D284F9F618FCF3E7D9C1220AB7493C4329C21B668ED64F0F0635F28
+          1BA5D85B0540082E411F940A2B9A07C0B23E552BAD39077317F95E5046FC4848
+          1DBE32915C7D86ED1D2B8151DF3B21C2ECEF5317925D42AC9D60FE917F6765C0
+          9BBFD277DE2705C0B56224E1C19F5A611E0246B64A2423E9C655221129768222
+          C038A5C142F1A08A147E757E3FF4556455C0EFE8EE9A3E7F31B1095FB4B59F55
+          ECF74B12D81D5527EE8302C0904276175FD8F291E6E421FD5E643991F1A44873
+          B125C04640F3D3A723CBA974882E2B0096EA3CA8E4D72F16796E1E2A8C44D746
+          9A8F0CC1AB25CCFF5C045A9F1D2D36E5596B042A2FA08B0A80482E1A83EE2AFE
+          98E92A90F6FB26A95E18841A0058705748282B32B2626119F997849FA3B48C2E
+          29004A2F7F566C5DBC592BCE85AB6DFE80F38E97F09A7DE3E0C1DC3AA24C2E28
+          674636218AE04F15E7523A40171400DD7CD8DFBF2BC2F5109CC3C3410F015A8B
+          8718E4A8C8E26BCF3D0E8C89D302CEC3F0B8BD191F12BBA559AEE275622024C2
+          0C83E1C515E752FC102446C936FA0210F475A1D840A0ECEEDBB62A00FCE4B8F0
+          78F05789301FA19A3C0C5458195ACF71C9E15FF5190EF1C7E32F0E2AC03081E5
+          06F3FB4A945F3FB8C6617521BEB3770DAEFDAD11AEFDAAC1B5E34AD41C83F8D0
+          73924620A3B104ACE8F8FEB42F400108D6D95A6CF0CE5215E7C27F4E5D3F7EFC
+          E3A2A808E1E401F1950B23A493D882D0F8001E7AFCB7BEFE7E8481F2F08FFB91
+          706C18CF10123CE4E236B141456C499EAA3897625954AC925F78CCF1E9628DC9
+          F7E712B02D0A80B7315570F8B12F1861BE63C5FA756F0938F7C362F7FA3E4E1C
+          9C1BC234098B25D846C2B6084B0DEECD0E11EE0DE9A428455C884F549CABCFE0
+          D16165E933EEF222982A99946ED315006F4AF6D81438285A2ADBC5A1620D86A1
+          7C6720878F1D06E7BAC0AE10623308AEEA32E06089DB0A9C4837720E2892A91D
+          868B4174295BAAD0AE3F8414D301AAF654F4A62A0096DCDB8AADD212E38D3F19
+          5B9BF1FDC07371D59166B992E73CE2034827BD66CC71F6FD687C5F0A314B7E96
+          F7A15D8A8915E74794E2FB64AF4A50D1D7CD7838C1FC5D84AABC3B17FC1B14F8
+          1E750BDA340540D41E5D7BE89C9AD2870F3C5CE4F3FF21F07C1A73620FF005EB
+          8C8B0F986BF0F7AFF5FC3DCB6EEC093704CA453AF2E512D6EFB00A0412D1E116
+          6590BA3B529B29D37066089E9E63EB14B6490A80021BB8E096AE3007167CE2B4
+          29B0F1E580EB23969A872DB4EF5F68B82EBEF6D156E421452781B882109B03A0
+          24512A4B06DC977DC57A2BD60FB82F2EB09BB07D3AA7C21C5D85253F4BFFA209
+          6643A82F8087E7177509DC040540FF3BF69A5B5498831B87451FC3DEB0563E7E
+          D790D2C8F864C9AA0AADB283712C86B16D32B00D84D81A00AB3F1584DE15702E
+          F765F7C1FFA78BCCCE836B28DA896822FCD0E961F860A27BD13670F7918C55B6
+          C1CC108A7B5038A4A85BB914B915C0DBC55AB91729F9F7AE10571E10DE52BE92
+          4D80D53BD480166A0F280A9179BCA143F7FD54B00DD933F23641C18DFAF86384
+          4CE3BE4261FD24F2BD681BB8F970F72D1A69BEE952937B309702E073E97EBB57
+          4919D88F1E3E182EC3143F6C8C6EBE980196C82CEF4F09FC7CDEA2AC3462B576
+          267E80AD88AF44D4908DCD3855FCF7EEF6C1BC0F39CE21400525C0DE75BE12B2
+          73EF50467B493F539043DD7D4541A1103998D43D98430150E688FDF0074BFC2D
+          3F64ACD174F009754D11C98791CCB734C3F886053FB4B922DB8B581D79BF68C6
+          5702CFC593704582EB41996180FDB494CB393859ACFDE25F91EE491BE0B7CC2A
+          73FD44F3D3F7911670C9DC83752B006E183F948D0BFE1D463A2CABB857CA14C4
+          8CF9C694C1393F136BBF8841685D373E8F15CD6B3CE7155DD14C8437DA5011F8
+          EA238E825D801F6C5FAA1663BBDA29F16724750FD6AD008ADE30F6C3870C46D5
+          B45BAAB2EE19701E5E04EC06E3E2E2633FFC437CF5DDCA1AFDCAC20A036B3F11
+          86454A9F1F25E91F8A2680823CACA6CFAA9270E6A44E0540604F111F27EE3634
+          5FACFC751E208C5521CBB5715A17FF3EBDD9623FFC435C4A001FFC1702E64039
+          A1246225F660D8A2D9E4870AFC4DB21F6C43D850EC6AA76AFE4528C9DC837529
+          006AAA513D27C44582E59380881F2790A3C8129AA5ECA913FE8D879F872B7580
+          D2644A2034D22F740B53860DC4863987446662D45C516C8251D7A01028EEBED4
+          8157A360EC2670EDFA9893D6A500CE3463A380F3489B64EFFAB784B26044C328
+          E88BE8E3474C8308DC73A15D59812F8AE28D578DFC7B91391E19CC31CC18BC22
+          40DEA246BF32601320C8E9ED01E79E2D61DF799BA0B41C8A39665E4A11085CC3
+          3D18EDF9A84301A0B52E0B388F253FD96F758499923E7B5AC0F553B0015FF98F
+          A4DAC33FA4A822214184D05B5F74242B96CD0772A6866A4BC749D8968080965F
+          D720531DA080F91DBF21B31CBC0CD69648EEC13A14000F9ACFEA8F2B85656E9D
+          D950A17BEA50429B34B034662F57B5BCD744D8A387443DC682DF0DCAC6D71483
+          7D72518F4F1321B49755EC7B720B32209A7B30B502A0E5F23DE2EE6D46775532
+          DFEAEE77572452D087EFCD3F4A9195800F9FD72215C40DA0EC96759C834C1811
+          FF5AB36CB1A13CDCC7730B314214A59F5A018458FEB16EFE34B11CE308350AFA
+          C070B98E8497772223901C84AA7B498C6C18FD7295FC2676C1F7DD85D4486832
+          549F3A34B71063E0F93AAECA04A915005674D73291FDCCEA8965F0116A64F341
+          A34E8C633E231C91896C0116A8F879182931FAD59234E20083EA6A8EE36DDE06
+          60C4C4FB5297BBAF28B807716B5F587682D40A80BE69AEA61C64931D93588610
+          F0EB9E19E17EF026C60E306E2B40BC384BFF5754FC9C3A8D7E3E70D9BABEC3FB
+          647C4DBC264376DFA552BFBBAF286C9D31B4972AF39E5201E032F2B5AFC6BA1D
+          5297AF0EA81FB07784795002D803AE1EF977B20779F86318FF48BE09896AAC03
+          623C7CFE7E6207B215BE2CC1E2625785B9DC7D4529ED1E4CA900D614AB41C781
+          713056FA640C58E6E1BBDE20C25C1805D91F0F3D02318388CE1FC8D8A412DED3
+          C576B11D076EAB8B720B1908C64DDC7DAFCF2D4841D88A61872AE41E4CA9007C
+          4B437EC8A9B2A8CA426A2C46C1717E77965B942D9B2360AE4707D7F7ECE05A43
+          C287A929F84F19DF8F9EB8043C264DEBF347D4A64B71921B70546E2103987970
+          2DEBE516A4246C09D91A06A765A75400244A7CDA71FCEB9EE3B9C0424F7EF7E8
+          527DF856279C19F76148820C094C7C19217503D0DCD82278B8275B2D10DEBB96
+          646E2431060AAAB8AA2C93C5B96B6E21034049ED985B888A14DA1EA65400F430
+          77BDE19B62009C0C0A887023B1EA93DACAF2959B3A6CE5444717128BAA967F1A
+          42182FF5E47E39F86F6AFC516B80A5332B0EBC06F87C9B622F19C557EA1CDBC7
+          3B730BE9A1C9EEBEA204B7AF4FA900304C4C711CE76DF6ABFAEE4974B0BCA2E4
+          AA56051A7DF8DB08EE4857C82F199D8BE716D2018154D87FCA16F36C1AC1D983
+          A91400CB6396BF2EFF2951823E2F41D36105B37DC5398A360069226C575C1988
+          6C83B06B54ADE99002E24070DB16A979D006D84A12767E97EBA4540A0097D7EF
+          1DC7A9F053B4DA4C13F1AD724268FADB3114C27D5DC14D182F4343A5EB0403ED
+          BAB9854884B75D5D2A05E0AB9F8F9B65CD4C372516BC396219E4C830CB1DD157
+          15EC24531DC78BF43BA80B96FC549D9A35B7208920F6C259BF219502F005D590
+          1F5075E99C9BDDC4962A8B01D5870ECE7D4115F159D0316AC6CCBE8C015B545C
+          AFB3E4162411ACCA9CC14CA91400FEC84D1DC77978EAAAA7960AE2AFD78E3417
+          01536FCD7D4115C1CD77B8E338A1D6EFCF2DE424F8BC556DE604F174A34AA500
+          58CE2EEF388ED5F5BC4C372506240ED11127D6D2115723F9016D6EBE899BEF02
+          C7717A1DBE2EB79093C0EF140F46AC1E0F4D81B0601ACD4C779D944201B0AFC2
+          B5359BE31CE2C7EFC875672240F192331CC7B9FE69F2FC5B9D373C7B6057DC00
+          D57F4E95F642D297CBE28C6B6A2E6966DF0094005B14EC52A90ABED605D6FF61
+          DC88B726630A05406EFDCD8EE344BCF120D4DE0B3D22E4B7BB7AF81124345A3D
+          86DE851B3AFE669AD892686D85DF12E1CF2E2547946568F7A32682ABF0898C9F
+          4F5839E1CADC63EC16D83086CF11AED6C22BC8140A80A096B31DC769C71DBBAF
+          5E9D70CF70DDB9FA19D27CF3C8917F23F2F168C7DF60B0216DB6CDEDB5C8807C
+          A3E3382BA7B3720B5901C2C3733643C56311353D398502A0C9A6CBA23D59EBEC
+          364170C5359E7308251E5D7EF996C840D6E0EF725F600570F3B9FCCE84531F98
+          5BC80A90BD1AAB4F451978C3472D4B9F420110D9B6B5E3F83E62DD846D851FF1
+          FE8EE36C7F961973CC671C2DD223B089E0E6DBCF719C9E905BE516B202BEED6D
+          6A30EC55AD243503291480AF4414D54C6354B261FF33556CD9268C370B0E6E4E
+          EE96E7342EFDE49863B4ECFA9CE36FB9776B6496BF0AB8F94E771C27127095DC
+          42568080AD6B337E7EF41A1A291E16AC902E4B6A8CA837FCB66C339A58B4C155
+          E474AAB80B6360E44191E5DC6756C1171D492E0039016DB573E056F335704D09
+          9D9F968C39616C0540D4D1BD8EE3FCC0B1603E5D727E2CA0BC619B56A2790816
+          59F668E34A9C63B9E5E176F99CD9439F98FB424A425CC4E3E28EACC31672776E
+          414B3255F25636A22DD87231278CAD00DE26EEB456F2E9CB96E0E6E1C7BB10D2
+          1D37276C6F30728E2BD9E56B94E24DE06838B8F996711C2760E8E7B9852C09BF
+          BD73337E7EF41C9AD80A80D24F473A8E4FE61F0F8530D336549501DA79ED32E6
+          98AF57022B04B6014DAAF957045F1F48BEC323720B5992AD25B0D04622A2F75B
+          8CAD00589EEFE2384EE9A8CF9798D71766DA34D8E352F064B29E88F8FA5902BB
+          EE3D86C0CB735F444970F3EDE1384ED2D04EB9852CC95E92D74B4313906D634E
+          185B01B0B473758E2DD3C9041909305939B2ACA9C15ABCE29863D7388E013FB2
+          2FE6BE809210F2FC7DC771F6D0B192A8EA2677CD40B24F3F57799609C4560004
+          49B8DC1465DE6CBEF2E24D665C110CE2CE5D7DDD08067A536EE12B5CB3AB41AA
+          3745B5C1F8AA1FA786DFCC4131278CA900C8907BC433E77C52BCA4355A6F37CF
+          39EC8D082EC2BD983AD9040B37EE47029ADEEB39F7B031B2D336DB550F912D04
+          5B853636D5C4C341C49AEB7730AFB433F3D1B7724B4DE55E80A3C4540034A9BC
+          D271BCACE6BF7230F738D0CABE07311518355DDD854933FDAF49FE1D8F06515D
+          AEB04E1283A665BAAEAA60E370E54AB4D5C6410DCB9CA5ECD85E97EE03381931
+          15806FEF77B1583761517C3FA69CB5E67CCBDD3B657CCDC053C4A6008FE354CF
+          F126E3B3050597AD6E10B38B4DC6C919694A10D0ED31278C7931BE7D6D59EBEF
+          33E20E2CA14B4FD9C0A2AAF0D94F7A641F57178198F8698EBF65894C91907F67
+          BAB62AE0E6DBD9719C90E8DD730B591002704A35E08C046E617E6F51B7B83115
+          402AFF2F17EE2A2F4E01925CB5056612B7BFFE39195F6B9EB2E8F779AE8D8222
+          6D34807E426C2CC438E8ACB461E05C4D81D25A3FC8F8F9AED56469622A805411
+          605D5500E0CB9FC7E2EB5A553515DC7CAEBD2A1D8E960E9CAB29F85ADDA5E662
+          29B78576124B01B0447F42DC4B756ADF97C9A5EEB202F0554FC6ABF1864CD756
+          85909C100A5BFC33B7A00520C43DFA0358009AD07C2CF6A4B114802F0B8C0411
+          DC4365B2C0BAAC005637E3379ECFA0EDB6AF904813F16585E24ACDB9A72E02CF
+          09CD6CA216E32808097047579E65920B8B812F0F5C290F86440C82D3C5FAA189
+          A4A3A27213DB6C4DC45717A24D4550A748FE22B6F4A2F4BD2C0A134301E0A2FB
+          B6B8FDE14A5CD86E51F39D2DC4BD15E74A85AF32549BAA1FF9AA40A786952475
+          141E8F3D71150540EE375F226D95E7C8735F7A0F8A80042BDC6A4FE5166604DC
+          7CAEB0D536D586F455724A4D32A3695905F02AB1812C6F2EF9F74A5C8896C405
+          7B5F6E4126E0AB0ECD76A62D095E3E6F4D6A78D6364F31711905406D771A0F2C
+          9CF186282F040F0B892AD7E51664006FAC9B1CC709A0227FA4E9FD2130FC1102
+          FCE2AA135580B88A6FA598B8A8029822B6265AD4CAA44A34B0079045D8849500
+          F90EEC595D1DA258494ECF2DA807AA379D965906A210AF4F31711105C0174981
+          8BB6A6A9F60514F45469868F1D379FAB861DC55DCFCF2DA407A2FFB6AC3C4B79
+          481AA342549242AA4514802FD65F690ED4E6DFBBF22CD5C1CDB789E33806E4AF
+          E516D201CB7EB25873660026DBFF43A8029822B6BBEBEC01E712BD46CD3BEC04
+          C42FE7ECA5D60588989B2236BB8E7E84CB07FC0DF79CEE44B9EB09E0E6DBCB71
+          9C1E8B3B6496D1C554C95B051888FE3B26D5E4A10A003FBFEF8B62C949430CBE
+          D4A61B76DA0A918794A4222E7D36CFB9188D3E91595EDC7CAE12E71445592BB3
+          8C2E78F0B6CFF8F93C47C4D92453E4210A803710C625572D7BD271D7957666AE
+          B591A962F7CE2E25C02A80BD63F4E09102E0E673F53A8CDEE82222AC7631A6E6
+          6C173EAEA04C34421400219BA778CE6175F09D9A6E8A6261257094E71CF68EBE
+          EF2E259480FBBBE3384AEA258173D5CDA612A7855D1528277758CA0F085100BE
+          52DF54BF45D3EBB2BF5ED80ED06ADDD51E2D4906590158A1B88AB550EC6496C0
+          B9EA061BD63A996548EE260D510094BC7235746C73A387B683CDE5EB8EE37C77
+          AB05CE950282C5EE711C7FC88CF933CA378E65C5FADD7396FFC29DBB7AEA0F09
+          B9405FA96F52816FA8E9A62833E22B534504DB2B33CA4764E28F1DC789145C36
+          A37CE3F0AD7AEB207A05E0C9085100846CBA927D300E363D35B5AB104AFBA8E3
+          B8AB26611DF83202D9636F9651BEC9A00EE37433E6CC2803E5F5B1FE2777A187
+          28005F0452CE6592D2DCEF87373B7909AE3D3E19768764926F1CFB9BB1676619
+          6A73E1AA02683F4DFD7E7E6AC67A9E73E8147D6B26F92603AF05AEC97932CB41
+          F3916BEBF8205500EDA789DFCF97C4DFDBB089EDCFA8ADF0D9CC3210DFB17E5D
+          1FA60AA0FD34EDFBF99484C5F77FD08C936B96CDC56266DC2C61E1EE29A117E6
+          65956709248602A03250EA7E7CCAE470EF7D597F752900027AB09E6F13702E5E
+          23E2179E0D38B72E4E12AB94727289D828CFDA88A100DADAE8B10BF822EDA00E
+          0540C0CC91E2EE0B3184DF13E5B52FA941AE5048B42AD3B32236657B67942686
+          02203BEDCF01F328F1E12DEAAB00944A01902ACB5E158B7991801514C5CE05CE
+          4F0D4B7E0C6EB91B955C207EA369746228006AD19D1D308F129F906AB5311400
+          712034FB20B988B73C3F54DE9AF3159C87BD2DAB8567EABD4D4E42DACFA7862D
+          F40A9221A02E8602C06FBA57C03C4A7C0E34638FDC420442C4222DC31EC82DC8
+          04E8BD48C79F99AA4E5411C2B9B3B41D8BA100D0EA6BE6105EF94FA388E4F1E2
+          11609BF20EB1E5AD9A023908B82297C82CC7FD6283A6B2D8D16228002CB98B0C
+          2E44A90F96E4774BFEB7970FB6285B4BB3C2C5B967E74A863DF72464DD42C750
+          0040FDB9FD725D444FD9C78C7D730BE18038766A48D2263C4941CB0AF89AB2D6
+          C53409739B26239602606937459AD79DA6AB90A842BDC59CC52A5D9C2936A2EE
+          F6DC824CC287C556FACD1DC0C6F787E1EF919C42C4520090AC7981F202A8C170
+          786E2146A0200CCB6A0C9397E716660C18FD70B7E5CC9004BC2078436A8BF81B
+          474C05800D805EF64D32F474119AB25079F915B9051980EB8AF2DFC74BB3127B
+          46A1300A0FFFDC55278A409256DF6588A9000063C646B92FAAE3506063839A3F
+          93D25D18F1A8E0C3B29E9879AA0DF106CBDD363B04928E88B0CB59E07348A34A
+          A1C7560022E50A84E28A61E9C812AD6ACF410A64A0E909EEF84B847B04248A50
+          9C9150CDAA6F104A6411064B04DD9D05FF96FA7E45DF1CB9F7BAB9E137C58B29
+          778A2FF0BDF31B6A4C20540A054054131555435D1B94B5A2FC71EC2F88B7D54A
+          66DC55711E9AA1E26F8FFDF6C0F8B38684F77C23EA8F0ABF458B68F65901B01A
+          A50D79EE0C3F20E68040A847AB4E1493140A00D070EF176B14F2718E19EF4974
+          7DF8A037AE3847CA2577E89689FB4383CA594B7C461F1500D7BCBBD828D526C4
+          49A0E459893C985B9051522900204D95DE6F4779E6E04D98CA3013A3EEBCAF26
+          6215B876D7CA82EF07EF0AF1EA652DD77D530034B2A1355DB27E7A05C15EC29B
+          FF9EAA13A520A50218C27E7C6B19DFDE8848C2945A9A25F3BF4BFE2D2DAE53D6
+          3AC07536AEEF3C3E7EAAC2565D1DF54901B09DA4C84848FFC43AB8DA8C774B83
+          3D63752800C04578B0D81E834F8E1C53053023BCC130F67D5EACCBAF2A7D5000
+          DC432A11B1E4CFEDE31F82D7816D70CED66C5EEA520043D08458D3F119DF3BF8
+          37550016BC1F1F11BB6D8AE9E3EFBA02A080265EA726D517441E6A1E34C6DA3F
+          8E180A808A3445BBBBF0C3A7F309AD97F70C94A32C4D5600DCDB03C4EE115795
+          E28A30E4DE775501B045DA57EC6A69E6DCC20CA00D1A0FFE77730B124AAC8A40
+          2C7716CA7D313D8315143EE53F79CEEB9A02608BB493D8174713027B864C17EB
+          FEBE3AB72045885515788AD8049015735F504FA02928EE4302899A5615381574
+          41E2C127C0AB2961D0C0FD67C94FF25393529E838859169C0C359281B6CA7D51
+          1DE7FB621F84A131B5EB0A6049B1AED08F4A33A2F92642A4E97666FC2CB72065
+          49D1178037138A40B7047161C94F12C93923FFDE4505C0CB84C8475277D9E634
+          21986722C4B8D0FB00FB4DEBDEFA1349D51884E51AB5EAA873962A88A62F5063
+          01CFC94132B94BA92B0A8060302AF46C68C67BA57A00572ACE12BBDCBF2DB720
+          3148DD1988D6D45845797335B5784553A17826519494D1760592B45501E09D79
+          B3D810D9B70DFEB74CA8735DB0CCA792D0AF730B1293BA5A83F1C552437E0B29
+          574EBA2FE0D6FB85D82E3534D70C7141B64101109C43DD7DEA45E0AF7FA3192B
+          8BB5E83719EE2D91AC5F119B10D63972F40624F0852F9F1F025E83ED4BCCD115
+          861664ACFA5799F17BB1311245E77091E2DE32E7D005C7527D9EC17FF3BFD87E
+          16155B2896346A1E7CD2BD9BB68F77410E09C16A474878B6662B694273508D04
+          AC461D0A809468EA35B0546F42459D545C23B65E209E967FE416A60E5401B851
+          0520B2B8D8D6594D0ABA8909AE3CEA2CF0E0FF31B73075A30AC08D2A806674CD
+          8D0DBD2CCF1A0C0A7534AD6C796DA80270A30A40E43EB13D01DB0C1E958BC51A
+          58B1E64FCF2D5053688202A02552AA08AFA61704619F59D52392FAFBA18E438C
+          B4E4BA40D953A918AB3DE5C9493AA328476FDFF22E9AA0004E179B379D821855
+          8A59266E98483ECA7C6D5A718ED4DFCF09667C28D1F557819523158A4986C252
+          CFFE9D07FF4669411A6E53688202A0DD345A3A45D14D6AC1DF58719E2962DD74
+          B15729BCFD4901BEA5E23C751801B9FE79235FBF0FC26DEF190C0C758442DF3D
+          183CF83CEC4FD72C53E768820200940015830812AA1A1CC2B2FF42B14521AB3E
+          FC435E273614976E2E73569C8B70DE5F0CE4BB39826C757C3F74AFE5FBA16EC1
+          645B2AEEF9C4B7EE33837FE32D3DAC82FBF04056AEFF91C17FFF63F0BF0F8FFC
+          37DB8EC696D1EA124D51004A79F4FB514AA30AA0FDE8F7A394461540FBD1EF47
+          298D2A80F6A3DF8F529A901F07D658579A26B9FF8D2E7DDC6188CB77F597E7BB
+          6B425B2CA5A1842800A2A85CB9FC58C86FC87D213D854618AEA2A058D2DB14C4
+          A3D44C8802B8526CE18671EC2A366D52A91F9A617CCD719CF88AD5730BA93497
+          100540BEFA768EE3648A91DF5F348F5DA906F91304E8BCDE710E9D9876CC2DA8
+          D25C421400557C4EF49CB3835845A1D4070FF6519E733633E347B905559A4B88
+          02C0D04464962B2186904CAAB7FE2AF705F504EAE751AACAD5078F483CB2F8D4
+          40AB8C25D4454497DA6D3CE7A0043E29B635B36E07D2C0B29F373F55827D4D30
+          591DEC945B60A5D9842A0062F5B13687F460BB4E6C6F34E2F1A78B7D1329E521
+          37628AD83C896DC5BDE71FC23D7F8DD85C7E45194B91209143C576AE559ACF7E
+          66EC9D5B08A5F914510004945C62C62AB985569C50E26A4DB10D4514C549D130
+          514A3E53BE7A91DC822B93C2929F988D7B720BA2B4833271E2F8FCCF97667568
+          55EC43BF81D8D8004509A26CA208CD1E28E5B57CEE0B50FEC36FC536D354A39F
+          52882A996254C6A1571AAEBF10EF80121F2A16130ABC8F68792CA50431524559
+          0D50DE6A73A95E2E4B09834AC53F145BA6ECD6DCC228ED2566AE3869C1EF16DB
+          3E6A05335E2DB69066933BBEB601EAEB5127EF0EB1FBFB8BCC384F5ADE975E69
+          065A2C42517A8C2A0045E931AA0014A5C7A80250941EA30A40517A8C2A0045E9
+          31AA0014A5C7A80250941EF37F9B73CB797B54523A0000000049454E44AE4260
+          82}
+        Transparent = True
       end
-      object lswTransp: TListView
-        AlignWithMargins = True
-        Left = 70
-        Top = 372
-        Width = 363
-        Height = 150
-        Margins.Left = 70
-        Margins.Right = 70
-        Margins.Bottom = 15
-        Align = alBottom
-        Columns = <
-          item
-            Caption = 'id'
-          end
-          item
-            Alignment = taCenter
-            Caption = 'Nome Transportadora'
-            MinWidth = 190
-            Width = 190
-          end
-          item
-            Alignment = taCenter
-            Caption = 'CNPJ'
-            MinWidth = 110
-            Width = 110
-          end
-          item
-            Caption = 'Telefone'
-          end
-          item
-            Caption = 'E-mail'
-          end
-          item
-            Caption = 'CEP'
-          end>
-        TabOrder = 2
-        ViewStyle = vsReport
-        ExplicitLeft = 75
-        ExplicitTop = 156
-      end
-      object pnlBtnExcluirTransp: TPanel
-        AlignWithMargins = True
-        Left = 70
-        Top = 289
-        Width = 363
-        Height = 30
-        Margins.Left = 70
-        Margins.Top = 30
-        Margins.Right = 70
-        Margins.Bottom = 10
-        Align = alTop
-        BevelOuter = bvNone
-        Constraints.MaxWidth = 598
-        TabOrder = 3
-        ExplicitLeft = 94
-        ExplicitTop = 522
-        object Shape12: TShape
-          Left = 0
-          Top = 0
-          Width = 363
-          Height = 30
-          Align = alClient
-          Pen.Color = clBlue
-          Shape = stRoundRect
-          ExplicitWidth = 262
-          ExplicitHeight = 297
-        end
-        object btrnExcluirTransp: TLabel
-          Left = 0
-          Top = 0
-          Width = 363
-          Height = 30
-          Align = alClient
-          Alignment = taCenter
-          AutoSize = False
-          Caption = 'Excluir transportadora'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Segoe UI'
-          Font.Style = [fsBold]
-          ParentFont = False
-          OnClick = btrnExcluirTranspClick
-          ExplicitWidth = 353
-        end
-      end
-      object pnlBtnrecuperar: TPanel
-        AlignWithMargins = True
-        Left = 70
-        Top = 190
-        Width = 363
-        Height = 30
-        Margins.Left = 70
-        Margins.Top = 30
-        Margins.Right = 70
-        Margins.Bottom = 10
-        Align = alTop
-        BevelOuter = bvNone
-        Constraints.MaxWidth = 598
-        TabOrder = 4
-        object Shape15: TShape
-          Left = 0
-          Top = 0
-          Width = 363
-          Height = 30
-          Align = alClient
-          Pen.Color = clBlue
-          Shape = stRoundRect
-          ExplicitWidth = 262
-          ExplicitHeight = 297
-        end
-        object btnRecuperarTransp: TLabel
-          Left = 0
-          Top = 0
-          Width = 363
-          Height = 30
-          Align = alClient
-          Alignment = taCenter
-          AutoSize = False
-          Caption = 'Recuperar Transportadora'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Segoe UI'
-          Font.Style = [fsBold]
-          ParentFont = False
-          OnClick = btnRecuperarTranspClick
-          ExplicitLeft = 24
-          ExplicitWidth = 339
-        end
-      end
-      object pnlBtnRecuperarConfirm: TPanel
-        AlignWithMargins = True
-        Left = 150
-        Top = 230
-        Width = 203
-        Height = 29
-        Margins.Left = 150
-        Margins.Top = 0
-        Margins.Right = 150
-        Margins.Bottom = 0
-        Align = alTop
-        BevelOuter = bvNone
-        TabOrder = 5
-        Visible = False
-        ExplicitLeft = 155
-        ExplicitTop = 218
-        object Shape16: TShape
-          Left = 0
-          Top = 0
-          Width = 203
-          Height = 29
-          Align = alClient
-          Brush.Color = 6957870
-          Pen.Color = clBlue
-          Shape = stRoundRect
-          ExplicitTop = 8
-          ExplicitWidth = 117
-          ExplicitHeight = 33
-        end
-        object btnRecuperar: TLabel
-          AlignWithMargins = True
-          Left = 3
-          Top = 3
-          Width = 197
-          Height = 23
-          Align = alClient
-          Alignment = taCenter
-          Caption = 'RECUPERAR'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -19
-          Font.Name = 'Segoe UI'
-          Font.Style = [fsBold]
-          ParentFont = False
-          OnClick = btnRecuperarClick
-          ExplicitWidth = 190
-        end
-      end
-      object pnlBtnExcluirConfirm: TPanel
-        AlignWithMargins = True
-        Left = 150
-        Top = 329
-        Width = 203
-        Height = 29
-        Margins.Left = 150
-        Margins.Top = 0
-        Margins.Right = 150
-        Margins.Bottom = 10
-        Align = alTop
-        BevelOuter = bvNone
-        TabOrder = 6
-        Visible = False
-        ExplicitLeft = 155
-        ExplicitTop = 291
-        object Shape17: TShape
-          Left = 0
-          Top = 0
-          Width = 203
-          Height = 29
-          Align = alClient
-          Brush.Color = 6957870
-          Pen.Color = clBlue
-          Shape = stRoundRect
-          ExplicitTop = 8
-          ExplicitWidth = 117
-          ExplicitHeight = 33
-        end
-        object btnExcluir: TLabel
-          AlignWithMargins = True
-          Left = 3
-          Top = 3
-          Width = 197
-          Height = 23
-          Align = alClient
-          Alignment = taCenter
-          Caption = 'EXCLUIR'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -19
-          Font.Name = 'Segoe UI'
-          Font.Style = [fsBold]
-          ParentFont = False
-          OnClick = btnExcluirClick
-          ExplicitWidth = 182
-        end
+      object Label2: TLabel
+        Left = 57
+        Top = 284
+        Width = 259
+        Height = 37
+        Align = alCustom
+        Alignment = taCenter
+        Caption = 'ADMINISTRADORES'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -27
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
       end
     end
   end

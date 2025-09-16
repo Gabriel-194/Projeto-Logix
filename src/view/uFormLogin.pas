@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
   Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.Mask, transpController, uTransportadora, uUsuario,loginController,
-  Vcl.ComCtrls,System.Generics.Collections, LoginDto;
+  Vcl.ComCtrls,System.Generics.Collections, LoginDto, System.ImageList,
+  Vcl.ImgList;
 
 type
   TFormLogin = class(TForm)
@@ -30,6 +31,27 @@ type
     PanelAdmin: TPanel;
     Image4: TImage;
     lblWelcome: TLabel;
+    panelForTransp: TPanel;
+    PanelButtons: TPanel;
+    PnlBtnEditarTransp: TPanel;
+    Shape13: TShape;
+    btnEditarTransp: TLabel;
+    pnlBtnChangeCadastrar: TPanel;
+    Shape5: TShape;
+    btnchangeCadastrar: TLabel;
+    lswTransp: TListView;
+    pnlBtnExcluirTransp: TPanel;
+    Shape12: TShape;
+    btrnExcluirTransp: TLabel;
+    pnlBtnrecuperar: TPanel;
+    Shape15: TShape;
+    btnRecuperarTransp: TLabel;
+    pnlBtnRecuperarConfirm: TPanel;
+    Shape16: TShape;
+    btnRecuperar: TLabel;
+    pnlBtnExcluirConfirm: TPanel;
+    Shape17: TShape;
+    btnExcluir: TLabel;
     PanelOptionsTransp: TPanel;
     lblPanelOption: TLabel;
     Panel6: TPanel;
@@ -61,13 +83,6 @@ type
     pnlVoltarLogin: TPanel;
     Shape11: TShape;
     voltarImage: TImage;
-    PanelButtons: TPanel;
-    pnlBtnChangeCadastrar: TPanel;
-    Shape5: TShape;
-    btnchangeCadastrar: TLabel;
-    PnlBtnEditarTransp: TPanel;
-    Shape13: TShape;
-    btnEditarTransp: TLabel;
     Panel2: TPanel;
     pnlBtnCadastar: TPanel;
     Shape10: TShape;
@@ -75,19 +90,74 @@ type
     pnlBtnEditar: TPanel;
     Shape14: TShape;
     lblButtonEditar: TLabel;
-    lswTransp: TListView;
-    pnlBtnExcluirTransp: TPanel;
-    Shape12: TShape;
-    btrnExcluirTransp: TLabel;
-    pnlBtnrecuperar: TPanel;
-    Shape15: TShape;
-    btnRecuperarTransp: TLabel;
-    pnlBtnRecuperarConfirm: TPanel;
-    Shape16: TShape;
-    btnRecuperar: TLabel;
-    pnlBtnExcluirConfirm: TPanel;
-    Shape17: TShape;
-    btnExcluir: TLabel;
+    PanelForADMINS: TPanel;
+    PanelButtonAdms: TPanel;
+    pnlBtnEditarAdmin: TPanel;
+    Shape18: TShape;
+    lblBtnEditarAdmin: TLabel;
+    pnlBtnCadastrarAdmin: TPanel;
+    Shape19: TShape;
+    lblBtnCadastrarAdmin: TLabel;
+    lswAdmins: TListView;
+    pnlBtnExcluirAdmin: TPanel;
+    Shape20: TShape;
+    lblBtnExcluirAdmin: TLabel;
+    pnlBtnRecuperarAdmin: TPanel;
+    Shape21: TShape;
+    lblBtnRecuperarAdmin: TLabel;
+    pnlBtnRecuperarAdmConfirm: TPanel;
+    Shape22: TShape;
+    lblBtnRecuperarAdmConfirm: TLabel;
+    pnlBtnExcluirAdminConfirm: TPanel;
+    Shape23: TShape;
+    lblBtnExcluirAdmConfirm: TLabel;
+    panelOptionsAdmins: TPanel;
+    lblPanelOptionAdm: TLabel;
+    Panel17: TPanel;
+    pnlEditNomeAdm: TPanel;
+    Shape24: TShape;
+    EditNomeAdm: TEdit;
+    pnlEditCpfAdm: TPanel;
+    Shape25: TShape;
+    MaskEditCpfAdm: TMaskEdit;
+    Panel20: TPanel;
+    Label13: TLabel;
+    Panel21: TPanel;
+    Panel23: TPanel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Panel24: TPanel;
+    pnlEditTelefoneAdm: TPanel;
+    Shape27: TShape;
+    MaskEditTelefoneAdm: TMaskEdit;
+    pnlEditEmailAdm: TPanel;
+    Shape28: TShape;
+    editEmailAdm: TEdit;
+    Panel27: TPanel;
+    Label16: TLabel;
+    Label17: TLabel;
+    Panel28: TPanel;
+    Shape29: TShape;
+    Image3: TImage;
+    Panel29: TPanel;
+    pnlBtnCadastrarAdm: TPanel;
+    Shape30: TShape;
+    lblBtnCadastrarAdm: TLabel;
+    pnlEditarAdm: TPanel;
+    Shape31: TShape;
+    lblBtnEditarAdm: TLabel;
+    cbTransp4Admin: TComboBox;
+    pnlEditSenhaAdm: TPanel;
+    Shape26: TShape;
+    EditSenhaAdm: TEdit;
+    pnlButtonChoseTransp: TPanel;
+    Shape32: TShape;
+    Image5: TImage;
+    Label1: TLabel;
+    pnlButtonChoseAdmin: TPanel;
+    Shape33: TShape;
+    Image6: TImage;
+    Label2: TLabel;
     procedure lblButtonCadastrarClick(Sender: TObject);
     procedure btnchangeCadastrarClick(Sender: TObject);
     procedure voltarImageClick(Sender: TObject);
@@ -98,6 +168,8 @@ type
     procedure btnRecuperarTranspClick(Sender: TObject);
     procedure btnRecuperarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
+    procedure pnlButtonChoseAdminClick(Sender: TObject);
+    procedure pnlButtonChoseTranspClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -338,6 +410,20 @@ begin
     edtEmail.clear;
     maskEditCep.clear;
   end;
+end;
+
+procedure TFormLogin.pnlButtonChoseAdminClick(Sender: TObject);
+begin
+  panelForAdmins.Visible:= true;
+  pnlButtonChoseAdmin.Visible:= false;
+  pnlButtonChoseTransp.Visible:= false;
+end;
+
+procedure TFormLogin.pnlButtonChoseTranspClick(Sender: TObject);
+begin
+  panelForTransp.Visible:= true;
+  pnlButtonChoseAdmin.Visible:= false;
+  pnlButtonChoseTransp.Visible:= false;
 end;
 
 procedure TFormLogin.tabelaInativo;
