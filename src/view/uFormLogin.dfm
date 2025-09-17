@@ -3873,7 +3873,7 @@ object FormLogin: TFormLogin
       Left = 4
       Top = 72
       Width = 1192
-      Height = 581
+      Height = 37
       Margins.Top = 10
       Align = alTop
       Caption = 'Bem vindo ao painel de administrador Logix:'
@@ -3883,14 +3883,14 @@ object FormLogin: TFormLogin
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
-      ExplicitWidth = 574
+      ExplicitWidth = 576
     end
     object pnlButtonChoseAdmin: TPanel
       AlignWithMargins = True
       Left = 151
-      Top = 756
+      Top = 212
       Width = 361
-      Height = 387
+      Height = 337
       Margins.Left = 150
       Margins.Top = 100
       Margins.Bottom = 100
@@ -3899,24 +3899,23 @@ object FormLogin: TFormLogin
       Color = clWhite
       ParentBackground = False
       TabOrder = 3
-      ExplicitTop = 313
-      ExplicitHeight = 337
       object Shape33: TShape
         Left = 0
         Top = 0
         Width = 361
-        Height = 387
+        Height = 337
         Align = alClient
         Pen.Color = clBlue
         Shape = stRoundRect
         ExplicitLeft = -8
         ExplicitTop = -16
+        ExplicitHeight = 387
       end
       object ImgAdmin: TImage
         Left = 0
         Top = 0
         Width = 361
-        Height = 387
+        Height = 337
         Align = alClient
         Center = True
         Picture.Data = {
@@ -4306,9 +4305,9 @@ object FormLogin: TFormLogin
     object pnlButtonChoseTransp: TPanel
       AlignWithMargins = True
       Left = 688
-      Top = 756
+      Top = 212
       Width = 361
-      Height = 387
+      Height = 337
       Margins.Top = 100
       Margins.Right = 150
       Margins.Bottom = 100
@@ -4317,13 +4316,11 @@ object FormLogin: TFormLogin
       Color = clWhite
       ParentBackground = False
       TabOrder = 2
-      ExplicitTop = 212
-      ExplicitHeight = 337
       object Shape32: TShape
         Left = 0
         Top = 0
         Width = 361
-        Height = 387
+        Height = 337
         Align = alClient
         Pen.Color = clBlue
         Shape = stRoundRect
@@ -4808,7 +4805,6 @@ object FormLogin: TFormLogin
         Color = clWhite
         ParentBackground = False
         TabOrder = 0
-        ExplicitHeight = 535
         object PnlBtnEditarTransp: TPanel
           AlignWithMargins = True
           Left = 70
@@ -4823,7 +4819,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           Constraints.MaxWidth = 598
           TabOrder = 0
-          ExplicitTop = 120
           object Shape13: TShape
             Left = 0
             Top = 0
@@ -4868,7 +4863,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           Constraints.MaxWidth = 598
           TabOrder = 1
-          ExplicitTop = 50
           object Shape5: TShape
             Left = 0
             Top = 0
@@ -4938,7 +4932,6 @@ object FormLogin: TFormLogin
             end>
           TabOrder = 2
           ViewStyle = vsReport
-          ExplicitTop = 370
         end
         object pnlBtnExcluirTransp: TPanel
           AlignWithMargins = True
@@ -4954,7 +4947,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           Constraints.MaxWidth = 598
           TabOrder = 3
-          ExplicitTop = 289
           object Shape12: TShape
             Left = 0
             Top = 0
@@ -4999,7 +4991,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           Constraints.MaxWidth = 598
           TabOrder = 4
-          ExplicitTop = 190
           object Shape15: TShape
             Left = 0
             Top = 0
@@ -5045,7 +5036,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           TabOrder = 5
           Visible = False
-          ExplicitTop = 230
           object Shape16: TShape
             Left = 0
             Top = 0
@@ -5093,7 +5083,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           TabOrder = 6
           Visible = False
-          ExplicitTop = 329
           object Shape17: TShape
             Left = 0
             Top = 0
@@ -5140,8 +5129,6 @@ object FormLogin: TFormLogin
           Align = alTop
           BevelOuter = bvNone
           TabOrder = 7
-          ExplicitLeft = 18
-          ExplicitTop = 8
           object Shape35: TShape
             Left = 0
             Top = 0
@@ -5224,8 +5211,6 @@ object FormLogin: TFormLogin
         ParentBackground = False
         TabOrder = 1
         Visible = False
-        ExplicitTop = 12
-        ExplicitHeight = 532
         object lblPanelOption: TLabel
           AlignWithMargins = True
           Left = 100
@@ -5258,7 +5243,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 0
-          ExplicitTop = 145
           object PnlEditNome: TPanel
             AlignWithMargins = True
             Left = 40
@@ -5361,7 +5345,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 2
-          ExplicitTop = 277
           object Label8: TLabel
             AlignWithMargins = True
             Left = 40
@@ -5392,7 +5375,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 3
-          ExplicitTop = 321
           object pnlEditCep: TPanel
             AlignWithMargins = True
             Left = 40
@@ -5450,7 +5432,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 4
-          ExplicitTop = 189
           object Label10: TLabel
             AlignWithMargins = True
             Left = 40
@@ -5498,7 +5479,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 5
-          ExplicitTop = 233
           object pnlEditTelefone: TPanel
             AlignWithMargins = True
             Left = 40
@@ -5603,7 +5583,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 1
-          ExplicitTop = 96
           object Label7: TLabel
             AlignWithMargins = True
             Left = 40
@@ -5649,7 +5628,6 @@ object FormLogin: TFormLogin
           Align = alRight
           BevelOuter = bvNone
           TabOrder = 6
-          ExplicitHeight = 17
           object Shape11: TShape
             Left = 0
             Top = 0
@@ -5729,7 +5707,6 @@ object FormLogin: TFormLogin
           Color = clWhite
           ParentBackground = False
           TabOrder = 7
-          ExplicitTop = 415
           object pnlBtnCadastar: TPanel
             AlignWithMargins = True
             Left = 200
@@ -5838,7 +5815,6 @@ object FormLogin: TFormLogin
         Color = clWhite
         ParentBackground = False
         TabOrder = 0
-        ExplicitTop = -2
         object pnlBtnEditarAdmin: TPanel
           AlignWithMargins = True
           Left = 70
@@ -5853,7 +5829,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           Constraints.MaxWidth = 598
           TabOrder = 0
-          ExplicitTop = 120
           object Shape18: TShape
             Left = 0
             Top = 0
@@ -5898,7 +5873,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           Constraints.MaxWidth = 598
           TabOrder = 1
-          ExplicitTop = 50
           object Shape19: TShape
             Left = 0
             Top = 0
@@ -5942,6 +5916,7 @@ object FormLogin: TFormLogin
           Columns = <
             item
               Caption = 'id'
+              Width = 30
             end
             item
               Alignment = taCenter
@@ -5956,13 +5931,21 @@ object FormLogin: TFormLogin
               Width = 110
             end
             item
-              Caption = 'Telefone'
+              Caption = 'id Transportadora'
+              Width = 100
             end
             item
-              Caption = 'E-mail'
+              Caption = 'telefone'
+              Width = 60
+            end
+            item
+              Caption = 'E- mail'
+              Width = 100
             end>
           TabOrder = 2
           ViewStyle = vsReport
+          ExplicitLeft = 73
+          ExplicitTop = 345
         end
         object pnlBtnExcluirAdmin: TPanel
           AlignWithMargins = True
@@ -5978,7 +5961,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           Constraints.MaxWidth = 598
           TabOrder = 3
-          ExplicitTop = 289
           object Shape20: TShape
             Left = 0
             Top = 0
@@ -6023,7 +6005,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           Constraints.MaxWidth = 598
           TabOrder = 4
-          ExplicitTop = 190
           object Shape21: TShape
             Left = 0
             Top = 0
@@ -6069,7 +6050,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           TabOrder = 5
           Visible = False
-          ExplicitTop = 230
           object Shape22: TShape
             Left = 0
             Top = 0
@@ -6117,7 +6097,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           TabOrder = 6
           Visible = False
-          ExplicitTop = 329
           object Shape23: TShape
             Left = 0
             Top = 0
@@ -6164,9 +6143,6 @@ object FormLogin: TFormLogin
           Align = alTop
           BevelOuter = bvNone
           TabOrder = 7
-          ExplicitLeft = -1
-          ExplicitTop = -1
-          ExplicitWidth = 200
           object Shape34: TShape
             Left = 0
             Top = 0
@@ -6249,8 +6225,6 @@ object FormLogin: TFormLogin
         ParentBackground = False
         TabOrder = 1
         Visible = False
-        ExplicitLeft = 507
-        ExplicitTop = 39
         object lblPanelOptionAdm: TLabel
           AlignWithMargins = True
           Left = 50
@@ -6283,7 +6257,6 @@ object FormLogin: TFormLogin
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 0
-          ExplicitLeft = 4
           object pnlEditNomeAdm: TPanel
             AlignWithMargins = True
             Left = 40
@@ -6765,8 +6738,6 @@ object FormLogin: TFormLogin
           Color = clWhite
           ParentBackground = False
           TabOrder = 7
-          ExplicitLeft = -5
-          ExplicitTop = 438
           object pnlBtnCadastrarAdm: TPanel
             AlignWithMargins = True
             Left = 200

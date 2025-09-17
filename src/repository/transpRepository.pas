@@ -28,6 +28,7 @@ function TTranspRepository.atualizarTabela:TObjectList<TTransportadora>;
 var
   Lista: TObjectList<TTransportadora>;
   Transp: TTransportadora;
+  FDquery: TFDQuery;
 begin
   Lista := TObjectList<TTransportadora>.Create(True);
   FDQuery := TFDquery.Create(nil);
@@ -58,6 +59,7 @@ end;
 
 procedure TTranspRepository.CadastrarTransportadora(ATransp: TTransportadora);
 var
+  FDquery: TFDQuery;
   SchemaName, Script: string;
   SQLFile: TStringList;
 begin
@@ -93,6 +95,8 @@ begin
 end;
 
 procedure TTranspRepository.EditarTransportadora(Atransp: TTransportadora);
+var
+  FDquery: TFDQuery;
 begin
   FDQuery := TFDQuery.create(nil);
   try
@@ -115,6 +119,8 @@ begin
 end;
 
 procedure TTranspRepository.ExcluirTransportadora(Atransp: TTransportadora);
+var
+   FDQuery: TFDQuery;
 begin
   FDQuery := TFDQuery.Create(nil);
   try
@@ -131,6 +137,8 @@ end;
 
 
 procedure TTranspRepository.RecuperarTransportadora(Atransp: TTransportadora);
+var
+  FDquery: TFDQuery;
 begin
   FDQuery := TFDQuery.Create(nil);
   try
@@ -149,6 +157,7 @@ function TTranspRepository.tabelaInativo: TObjectList<TTransportadora>;
 var
   Lista: TObjectList<TTransportadora>;
   Transp: TTransportadora;
+  FDquery: TFDQuery;
 begin
   Lista := TObjectList<TTransportadora>.Create(True);
   FDQuery := TFDquery.Create(nil);

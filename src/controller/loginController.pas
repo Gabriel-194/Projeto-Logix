@@ -6,7 +6,7 @@ uses
     type
     TloginController = class
     public
-      function verificaLogin(ALoginDto: TLoginDto):TLoginResult;
+      function verificaLogin(ALoginDto: TLoginDto;out aUser: TUsuario):TLoginResult;
     end;
 
 implementation
@@ -14,7 +14,7 @@ implementation
 
 { TadminController }
 
-function TloginController.verificaLogin(ALoginDto: TLoginDto):TLoginResult;
+function TloginController.verificaLogin(ALoginDto: TLoginDto;out aUser: TUsuario):TLoginResult;
 var
  service : TloginService;
 begin

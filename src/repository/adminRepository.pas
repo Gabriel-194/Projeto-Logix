@@ -2,10 +2,10 @@ unit adminRepository;
 
 interface
 uses
-  System.SysUtils, FireDAC.Comp.Client, uUsuario, unit2,adminDto,uTransportadora, System.Generics.Collections;
+  System.SysUtils, FireDAC.Comp.Client, uUsuario, unit2,adminDto, System.Generics.Collections;
 type TadminRepository = class
-  FDQuery : TFDquery;
   procedure cadastrarAdmin(AadminDto :TadminDto);
+  function mostrarAdmins: TList<TadminDto>;
 
 
 end;
@@ -42,6 +42,42 @@ begin
 end;
 
 
+function TadminRepository.mostrarAdmins: TList<TAdminDto>;
+var
+  Lista: TList<TadminDto>;
+  adminDto: TadminDto;
+  FDquery: TFDQuery;
+begin
+  Lista := TList<TAdminDto>.Create;
+  FDQuery := TFDquery.Create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
 
+    FDQuery.SQL.Text := 'SELECT id_usuario, nome, cpf, id_transportadora, telefone, email ' +
+                    'FROM public.usuarios ' +
+                    'WHERE ativo = TRUE AND cargo_descricao = ''ADMIN'' ' +
+                    'ORDER BY id_usuario';
+
+    FDQuery.Open;
+
+    adminDto := Default(TadminDto);
+    while not FDQuery.Eof do
+    begin
+
+      adminDto.idAdmin := FDQuery.FieldByName('id_usuario').AsInteger;
+      adminDto.Nome:= FDQuery.FieldByName('nome').AsString;
+      adminDto.cpf := FDQuery.FieldByName('cpf').AsString;
+      adminDto.idTransportadora := FDQuery.FieldByName('id_transportadora').AsInteger;
+      adminDto.Telefone := FDQuery.FieldByName('telefone').AsString;
+      adminDto.Email := FDQuery.FieldByName('email').AsString;
+
+      Lista.Add(adminDto);
+      FDQuery.Next;
+    end;
+    Result := Lista;
+  finally
+    FDQuery.free;
+  end;
+end;
 
 end.

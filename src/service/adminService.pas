@@ -2,9 +2,10 @@ unit adminService;
 
 interface
 uses
-  System.SysUtils, adminRepository, AdminDto, uUsuario;
+  System.SysUtils, adminRepository, AdminDto, uUsuario,system.Generics.Collections;
   type TadminService = class
     procedure cadastrarAdmin(AadminDto:TadminDto);
+    function MostrarAdmin:Tlist<TadminDto>;
   end;
 
 implementation
@@ -35,6 +36,10 @@ begin
     raise Exception.Create('Telefone é obrigatório.');
   end;
 
+  if AadminDto.idTransportadora = 0 then begin
+    raise Exception.Create('Selecione uma transportadora válida.');
+  end;
+
   AadminDto.senha := IntToStr(AadminDto.senha.GetHashCode);
 
   adminRepo := TadminRepository.Create;
@@ -44,5 +49,18 @@ begin
     adminRepo.Free;
   end;
 end;
+
+function TadminService.MostrarAdmin: Tlist<TadminDto>;
+var
+  adminRepo : TAdminRepository;
+begin
+  adminRepo := TadminRepository.create;
+  try
+    result := AdminRepo.mostrarAdmins;
+  finally
+    AdminRepo.free;
+  end;
+end;
+
 
 end.

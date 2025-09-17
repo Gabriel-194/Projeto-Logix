@@ -183,6 +183,7 @@ type
 
   private
     { Private declarations }
+    procedure mostrarAdmins;
     procedure atualizarTabela;
     procedure tabelaInativo;
   public
@@ -223,22 +224,21 @@ begin
 
 procedure TFormLogin.btnEntrarClick(Sender: TObject);
 var
-ATransp : TTransportadora;
-controlTransp : TTranspController;
 controlLogin : TloginController;
 user : Tusuario;
 resultado : TLoginResult;
-ListaTransp: TObjectList<TTransportadora>;
-Item: TListItem;
+
 LoginDto:TLoginDto;
 begin
+  controlLogin := nil;
+  user := nil;
   try
     LoginDto.email:=edtEmailLogin.text;
     LoginDto.Senha:=edtSenhaLogin.text;
 
     controlLogin := TloginController.Create;
     try
-      resultado := controlLogin.verificaLogin(LoginDto);
+      resultado := controlLogin.verificaLogin(LoginDto,user);
       case resultado of
         lrFalhou:
         ShowMessage('Usuário ou senha inválidos.');
@@ -256,6 +256,7 @@ begin
               Panel1.Visible := False;
               PanelAdmin.Visible := True;
               atualizarTabela;
+              mostrarAdmins;
           end;
       end;
     finally
@@ -265,7 +266,6 @@ begin
     on E: Exception do
       ShowMessage('Erro: ' + E.Message);
   end;
-    user.free;
 end;
 
 procedure TFormLogin.btnExcluirClick(Sender: TObject);
@@ -381,6 +381,7 @@ end;
 
 procedure TFormLogin.lblBtnCadastrarAdmClick(Sender: TObject);
 var
+idTransp:String;
 controller : TadminController;
 adminDto : TadminDto;
 begin
@@ -389,17 +390,18 @@ begin
   adminDto.telefone := maskEditTelefoneAdm.text;
   adminDto.email := editEmailAdm.Text;
   adminDto.senha := editSenhaAdm.text;
-  AdminDto.idTransportadora := StrToIntDef(cbTransp4admin.Text, 0);
-  if AdminDto.idTransportadora = 0 then begin
-    raise Exception.Create('Selecione uma transportadora válida.');
-  end;
 
+  idTransp := cbTransp4admin.Text;
+  idTransp := idTRansp.Remove(idTransp.IndexOf('-')-1);
+
+  AdminDto.idTransportadora := StrToIntDef(idTransp, 0);
 
   controller := TadminController.Create;
   try
     controller.cadastrarAdmin(adminDto);
     ShowMessage('Admnistrador criado com sucesso!');
     paneloptionsAdmins.visible := false;
+    mostrarAdmins;
   finally
     controller.Free;
   end;
@@ -472,6 +474,38 @@ begin
 end;
 
 
+
+procedure TFormLogin.mostrarAdmins;
+var
+  controlAdmin: TadminController;
+  ListaAdmin: TList<TadminDto>;
+  AdminDto: TadminDto;
+  Item: TListItem;
+begin
+  controlAdmin := TadminController.Create;
+  try
+    ListaAdmin := controlAdmin.MostrarAdmin;
+    try
+      lswAdmins.Items.Clear;
+
+      for AdminDto in ListaAdmin do
+      begin
+        Item := lswAdmins.Items.Add;
+        Item.Caption := AdminDto.idAdmin.ToString;
+        Item.SubItems.Add(adminDto.nome);
+        Item.SubItems.Add(adminDto.cpf);
+        Item.SubItems.Add(adminDto.idTransportadora.ToString);
+        Item.SubItems.Add(AdminDto.telefone);
+        Item.SubItems.Add(adminDto.email);
+      end;
+
+    finally
+      listaAdmin.Free
+    end;
+  finally
+    controlAdmin.Free;
+  end;
+end;
 
 procedure TFormLogin.lblButtonEditarClick(Sender: TObject);
 var
