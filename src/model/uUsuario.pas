@@ -6,6 +6,7 @@ uses
 type
  Tusuario = class
    protected
+    id :string;
     nome : String;
     cpf : String;
     telefone: String;

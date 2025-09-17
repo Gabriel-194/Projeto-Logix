@@ -2,46 +2,54 @@ unit loginService;
 
 interface
 uses
-   System.SysUtils,uUsuario,loginRepository,login.types, LoginDto;
+   System.SysUtils,uUsuario,loginRepository,login.types, LoginDto, BCrypt;
    type
    TloginService = class
 
     private
      loginRepo : TloginRepository;
     public
-     function verificaLogin(aLoginDto: TLoginDto): TLoginResult;
+    function verificaLogin(aLoginDto: TLoginDto): TLoginResult;
+
   end;
 
 implementation
+
+
 { TadminService }
 
 function TloginService.verificaLogin(aLoginDto: TLoginDto): TLoginResult;
-var usuario:TUsuario;
+var
+  userId: Integer;
+  senhaHashDoBanco: string;
+  rehashNecessario: Boolean;
 begin
-  if aLoginDto.email.Trim = '' then begin
+  if aLoginDto.email.Trim = '' then
     raise Exception.Create('E-mail é obrigatório.');
-  end;
+  if aLoginDto.Senha.Trim = '' then
+    raise Exception.Create('Senha é obrigatória.');
 
-  if aLoginDto.Senha.Trim = '' then begin
-    raise Exception.Create('senha é obrigatório.');
-  end;
-
-  usuario:=TUsuario.Create;
-  usuario.setEmail(aLoginDto.email);
-  usuario.setSenha_hash(aLoginDto.senha);
-
-  if not loginRepo.VerificaLogin(usuario) then begin
-    Result := lrFalhou;
-    Exit;
-  end;
-
-  if loginRepo.VerificaAdmin(usuario) then
+  if loginRepo.FindByEmail(aLoginDto.email, userId, senhaHashDoBanco) then
   begin
-    Result := lrSucessoAdmin;
-  end else begin
-    Result := lrSucessoUsuario;
-  end;
-  usuario.Free;
+
+    if TBCrypt.CheckPassword(aLoginDto.Senha, senhaHashDoBanco, rehashNecessario) then
+    begin
+
+      if (aLoginDto.email = 'LogixAdmin@gmail.com') then
+      begin
+        Result := lrSucessoAdmin;
+      end
+      else
+      begin
+        Result := lrSucessoUsuario;
+      end;
+    end
+    else
+
+      Result := lrFalhou;
+  end
+  else
+    Result := lrFalhou;
 end;
 
 end.

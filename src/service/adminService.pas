@@ -2,7 +2,7 @@ unit adminService;
 
 interface
 uses
-  System.SysUtils, adminRepository, AdminDto, uUsuario,system.Generics.Collections;
+  System.SysUtils, adminRepository, AdminDto, uUsuario,system.Generics.Collections, BCrypt;
   type TadminService = class
     procedure cadastrarAdmin(AadminDto:TadminDto);
     function MostrarAdmin:Tlist<TadminDto>;
@@ -15,6 +15,7 @@ implementation
 procedure TadminService.cadastrarAdmin(AadminDto: TadminDto);
 var
   adminRepo: TadminRepository;
+  HashedSenha : String;
 begin
   if Trim(AadminDto.nome) = '' then begin
     raise Exception.Create('Nome é obrigatório.');
@@ -40,7 +41,8 @@ begin
     raise Exception.Create('Selecione uma transportadora válida.');
   end;
 
-  AadminDto.senha := IntToStr(AadminDto.senha.GetHashCode);
+  HashedSenha := TBCrypt.HashPassword(AAdminDto.senha);
+  AAdminDto.senha := HashedSenha;
 
   adminRepo := TadminRepository.Create;
   try
