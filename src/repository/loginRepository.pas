@@ -9,7 +9,7 @@ type
   TLoginRepository = class
   public
     function VerificaLogin(AUsuario: TUsuario): Boolean;
-    function VerificaAdmin(AUsuario: TUsuario): Boolean;
+//    function VerificaAdmin(AUsuario: TUsuario): Boolean;
     function FindByEmail(AEmail: string; out AUserId: Integer; out ASenhaHash: string): Boolean;
   end;
 

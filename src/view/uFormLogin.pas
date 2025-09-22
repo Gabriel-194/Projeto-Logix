@@ -138,7 +138,7 @@ type
     Label17: TLabel;
     Panel28: TPanel;
     Shape29: TShape;
-    Image3: TImage;
+    imgVoltarAdm: TImage;
     Panel29: TPanel;
     pnlBtnCadastrarAdm: TPanel;
     Shape30: TShape;
@@ -180,6 +180,9 @@ type
     procedure ImgVoltarMenuAdminTrClick(Sender: TObject);
     procedure lblBtnCadastrarAdminClick(Sender: TObject);
     procedure lblBtnCadastrarAdmClick(Sender: TObject);
+    procedure imgVoltarAdmClick(Sender: TObject);
+    procedure lblBtnExcluirAdminClick(Sender: TObject);
+    procedure lblBtnExcluirAdmConfirmClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -365,6 +368,11 @@ begin
   pnlButtonChoseTransp.Visible:= true;
 end;
 
+procedure TFormLogin.imgVoltarAdmClick(Sender: TObject);
+begin
+ panelOptionsAdmins.Visible := false;
+end;
+
 procedure TFormLogin.ImgAdminClick(Sender: TObject);
 begin
   panelForAdmins.Visible:= true;
@@ -437,6 +445,43 @@ begin
   finally
     Controller.Free;
   end;
+end;
+
+procedure TFormLogin.lblBtnExcluirAdmConfirmClick(Sender: TObject);
+var
+controller: TadminController;
+admin: TadminDto;
+codParaExcluir : integer;
+begin
+
+  if lswAdmins.selected = nil then begin
+    showMessage('selecione um Administrador na lista para Excluir.');
+    MostrarAdmins;
+    exit;
+  end;
+
+  if MessageDlg('Tem certeza que deseja o administrador selecionado?',mtConfirmation, [mbYes, mbNo], 0) = mrNo then
+    begin
+      exit;
+    end;
+
+    codParaExcluir := StrToInt(lswAdmins.Selected.Caption);
+    admin.idAdmin := codParaExcluir;
+
+    controller := TadminController.Create;
+    try
+      controller.ExcluirAdmin(admin);
+      ShowMessage('Administrador excluido!!');
+      MostrarAdmins;
+    finally
+      controller.free
+    end;
+end;
+
+procedure TFormLogin.lblBtnExcluirAdminClick(Sender: TObject);
+begin
+  pnlBtnExcluirAdminConfirm.Visible := true;
+  pnlBtnRecuperarAdmConfirm.visible := false;
 end;
 
 procedure TFormLogin.lick(Sender: TObject);

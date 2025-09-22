@@ -6,6 +6,7 @@ uses
   type TadminService = class
     procedure cadastrarAdmin(AadminDto:TadminDto);
     function MostrarAdmin:Tlist<TadminDto>;
+    procedure ExcluirADmin (AadminDto:TadminDto);
   end;
 
 implementation
@@ -49,6 +50,18 @@ begin
     adminRepo.cadastrarAdmin(AadminDto);
   finally
     adminRepo.Free;
+  end;
+end;
+
+procedure TadminService.ExcluirADmin(AadminDto: TadminDto);
+var
+adminRepo : TadminRepository;
+begin
+adminRepo := TadminRepository.create;
+  try
+    adminRepo.ExcluirAdmin(AadminDto);
+  finally
+    adminRepo.free;
   end;
 end;
 

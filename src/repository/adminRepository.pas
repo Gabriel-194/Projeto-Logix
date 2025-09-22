@@ -6,6 +6,7 @@ uses
 type TadminRepository = class
   procedure cadastrarAdmin(AadminDto :TadminDto);
   function mostrarAdmins: TList<TadminDto>;
+  procedure excluirAdmin (AadminDto :TadminDto);
 
 
 end;
@@ -38,6 +39,24 @@ begin
     FDQuery.ExecSQL;
   finally
     FDQuery.Free;
+  end;
+end;
+
+
+procedure TadminRepository.excluirAdmin(AadminDto: TadminDto);
+var
+   FDQuery: TFDQuery;
+begin
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := datamodule2.FDConnection1;
+
+     FDQuery.SQL.Text := 'UPDATE public.usuarios SET ativo = FALSE WHERE id_usuario = :id_usuario AND cargo_descricao = ''ADMIN''';
+     FDQuery.ParamByName('id_usuario').AsInteger := AadminDto.idAdmin;
+
+    FDQuery.ExecSQL;
+  finally
+    FDQuery.free;
   end;
 end;
 
