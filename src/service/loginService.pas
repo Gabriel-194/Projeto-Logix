@@ -2,14 +2,14 @@ unit loginService;
 
 interface
 uses
-   System.SysUtils,uUsuario,loginRepository,login.types, LoginDto, BCrypt;
+   System.SysUtils,uUsuario,loginRepository, loginTypes, LoginDto, BCrypt;
    type
    TloginService = class
 
     private
      loginRepo : TloginRepository;
     public
-    function verificaLogin(aLoginDto: TLoginDto): TLoginResult;
+    function verificaLogin(aLoginDto: TLoginDto; var user: TUsuario): TLoginResult;
 
   end;
 
@@ -18,7 +18,7 @@ implementation
 
 { TadminService }
 
-function TloginService.verificaLogin(aLoginDto: TLoginDto): TLoginResult;
+function TloginService.verificaLogin(aLoginDto: TLoginDto; var user: TUsuario): TLoginResult;
 var
   userId: Integer;
   senhaHashDoBanco: string;
@@ -31,21 +31,20 @@ begin
 
   if loginRepo.FindByEmail(aLoginDto.email, userId, senhaHashDoBanco) then
   begin
-
     if TBCrypt.CheckPassword(aLoginDto.Senha, senhaHashDoBanco, rehashNecessario) then
     begin
+      // instancia o user
+      user := TUsuario.Create;
+      user.setId(userId);
+      user.setEmail(aLoginDto.email);
+      user.setNome(loginRepo.BuscaNomePorId(userId)); // exemplo, se você tiver no banco
 
-      if (aLoginDto.email = 'LogixAdmin@gmail.com') then
-      begin
-        Result := lrSucessoAdmin;
-      end
+      if SameText(aLoginDto.email, 'LogixAdmin@gmail.com') then
+        Result := lrSucessoAdmin
       else
-      begin
         Result := lrSucessoUsuario;
-      end;
     end
     else
-
       Result := lrFalhou;
   end
   else

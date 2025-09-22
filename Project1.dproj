@@ -139,12 +139,16 @@
         <DCCReference Include="src\service\loginService.pas"/>
         <DCCReference Include="src\repository\loginRepository.pas"/>
         <DCCReference Include="src\model\uUsuario.pas"/>
-        <DCCReference Include="src\model\login.types.pas"/>
         <DCCReference Include="src\DTO\LoginDto.pas"/>
         <DCCReference Include="src\DTO\AdminDto.pas"/>
         <DCCReference Include="src\controller\AdminController.pas"/>
         <DCCReference Include="src\service\adminService.pas"/>
         <DCCReference Include="src\repository\adminRepository.pas"/>
+        <DCCReference Include="src\view\uFormHome.pas">
+            <Form>FormHome</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\model\loginTypes.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

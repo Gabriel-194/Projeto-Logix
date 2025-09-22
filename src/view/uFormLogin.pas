@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
   Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.Mask, transpController, uTransportadora, uUsuario,loginController,
   Vcl.ComCtrls,System.Generics.Collections, LoginDto, System.ImageList,
-  Vcl.ImgList, adminController, adminDto;
+  Vcl.ImgList, adminController, adminDto, uFormHome;
 
 type
   TFormLogin = class(TForm)
@@ -202,7 +202,7 @@ var
   FrmLogin : TFormLogin;
 
 implementation
-uses login.types;
+uses logintypes;
 
 {$R *.dfm}
 
@@ -250,11 +250,12 @@ begin
         lrFalhou:
         ShowMessage('Usuário ou senha inválidos.');
 
-        lrSucessoUsuario:
+
+       lrSucessoUsuario:
         begin
-            ShowMessage('Login realizado com sucesso! Bem-vindo ' + user.getEmail);
-            // Aqui vai abrir a home de usuario
-            Close;
+          ShowMessage('Login realizado com sucesso! Bem-vindo ' + user.getNome);
+          FormHome.ShowModal;
+          Close;
         end;
 
         lrSucessoAdmin:

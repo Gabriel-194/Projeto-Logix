@@ -6,7 +6,7 @@ uses
 type
  Tusuario = class
    protected
-    id :string;
+    id :Integer;
     nome : String;
     cpf : String;
     telefone: String;
@@ -14,6 +14,10 @@ type
     email : String;
     senha_hash : String;
    public
+
+   procedure setId(aId : Integer);
+   function getId : Integer;
+
     procedure setNome(aNome : String);
     function getNome : String;
 
@@ -71,9 +75,19 @@ begin
   Self.email := aEmail;
 end;
 
+procedure Tusuario.setId(aId: Integer);
+begin
+  self.id := aId;
+end;
+
 function TUsuario.getEmail: String;
 begin
   Result := Self.email;
+end;
+
+function Tusuario.getId: Integer;
+begin
+  Result := Self.id;
 end;
 
 procedure TUsuario.setSenha_hash(aSenha_hash: String);

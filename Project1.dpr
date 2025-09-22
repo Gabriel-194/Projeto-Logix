@@ -12,12 +12,13 @@ uses
   loginService in 'src\service\loginService.pas',
   loginRepository in 'src\repository\loginRepository.pas',
   uUsuario in 'src\model\uUsuario.pas',
-  login.types in 'src\model\login.types.pas',
   LoginDto in 'src\DTO\LoginDto.pas',
   AdminDto in 'src\DTO\AdminDto.pas',
   AdminController in 'src\controller\AdminController.pas',
   adminService in 'src\service\adminService.pas',
-  adminRepository in 'src\repository\adminRepository.pas';
+  adminRepository in 'src\repository\adminRepository.pas',
+  uFormHome in 'src\view\uFormHome.pas' {FormHome},
+  loginTypes in 'src\model\loginTypes.pas';
 
 {$R *.res}
 
@@ -26,5 +27,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFormLogin, FrmLogin);
   Application.CreateForm(TDataModule2, DataModule2);
+  Application.CreateForm(TFormHome, FormHome);
   Application.Run;
 end.

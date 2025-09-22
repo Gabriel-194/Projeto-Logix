@@ -11,6 +11,7 @@ type
     function VerificaLogin(AUsuario: TUsuario): Boolean;
 //    function VerificaAdmin(AUsuario: TUsuario): Boolean;
     function FindByEmail(AEmail: string; out AUserId: Integer; out ASenhaHash: string): Boolean;
+    function BuscaNomePorId(const aUserId: Integer): string;
   end;
 
 implementation
@@ -49,6 +50,27 @@ begin
   end;
 end;
 
+
+function TLoginRepository.BuscaNomePorId(const aUserId: Integer): string;
+var
+  FDQuery: TFDQuery;
+begin
+  Result := '';
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+
+    FDQuery.SQL.Text :=
+      'SELECT nome FROM usuarios WHERE id_usuario = :id_usuario';
+    FDQuery.ParamByName('id_usuario').AsInteger := aUserId;
+    FDQuery.Open;
+
+    if not FDQuery.IsEmpty then
+      Result := FDQuery.FieldByName('nome').AsString;
+  finally
+    FDQuery.Free;
+  end;
+end;
 
 function TLoginRepository.VerificaLogin(AUsuario: TUsuario): Boolean;
 begin
