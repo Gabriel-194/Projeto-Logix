@@ -5017,7 +5017,7 @@ object FormLogin: TFormLogin
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            OnClick = btnRecuperarTranspClick
+            OnClick = ick
             ExplicitLeft = 24
             ExplicitWidth = 339
           end
@@ -5855,7 +5855,7 @@ object FormLogin: TFormLogin
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            OnClick = btnEditarTranspClick
+            OnClick = lblBtnEditarAdminClick
             ExplicitTop = 7
           end
         end
@@ -6029,7 +6029,7 @@ object FormLogin: TFormLogin
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            OnClick = btnRecuperarTranspClick
+            OnClick = lblBtnRecuperarAdminClick
             ExplicitLeft = 24
             ExplicitWidth = 339
           end
@@ -6076,7 +6076,7 @@ object FormLogin: TFormLogin
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            OnClick = btnRecuperarClick
+            OnClick = lblBtnRecuperarAdmConfirmClick
             ExplicitWidth = 107
             ExplicitHeight = 25
           end
@@ -6141,7 +6141,6 @@ object FormLogin: TFormLogin
           Align = alTop
           BevelOuter = bvNone
           TabOrder = 7
-          ExplicitWidth = 33
           object Shape34: TShape
             Left = 0
             Top = 0
@@ -6818,7 +6817,7 @@ object FormLogin: TFormLogin
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              OnClick = lblButtonEditarClick
+              OnClick = lblBtnEditarAdmClick
               ExplicitWidth = 65
               ExplicitHeight = 25
             end

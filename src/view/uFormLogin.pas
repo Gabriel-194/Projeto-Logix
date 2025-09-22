@@ -171,7 +171,7 @@ type
     procedure btnEditarTranspClick(Sender: TObject);
     procedure btrnExcluirTranspClick(Sender: TObject);
     procedure lblButtonEditarClick(Sender: TObject);
-    procedure btnRecuperarTranspClick(Sender: TObject);
+    procedure ick(Sender: TObject);
     procedure btnRecuperarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
     procedure ImgAdminClick(Sender: TObject);
@@ -183,12 +183,17 @@ type
     procedure imgVoltarAdmClick(Sender: TObject);
     procedure lblBtnExcluirAdminClick(Sender: TObject);
     procedure lblBtnExcluirAdmConfirmClick(Sender: TObject);
+    procedure lblBtnRecuperarAdminClick(Sender: TObject);
+    procedure lblBtnRecuperarAdmConfirmClick(Sender: TObject);
+    procedure lblBtnEditarAdminClick(Sender: TObject);
+    procedure lblBtnEditarAdmClick(Sender: TObject);
 
   private
     { Private declarations }
     procedure mostrarAdmins;
     procedure atualizarTabela;
     procedure tabelaInativo;
+    procedure AdminsInativo;
   public
     { Public declarations }
   end;
@@ -216,12 +221,11 @@ begin
     exit;
     end;
 
-      edtNome.text := lswTransp.selected.subItems[0];
-      maskEditCnpj.text := lswTransp.selected.SubItems[1];
-      maskEditTelefone.Text := lswTransp.selected.subItems[2];
-      edtEmail.Text := lswTransp.selected.subItems[3];
-      maskEditCep.text := lswTransp.selected.SubItems[4];
-
+    edtNome.text := lswTransp.selected.subItems[0];
+    maskEditCnpj.text := lswTransp.selected.SubItems[1];
+    maskEditTelefone.Text := lswTransp.selected.subItems[2];
+    edtEmail.Text := lswTransp.selected.subItems[3];
+    maskEditCep.text := lswTransp.selected.SubItems[4];
 
   end;
 
@@ -331,7 +335,7 @@ begin
   end;
 end;
 
-procedure TFormLogin.btnRecuperarTranspClick(Sender: TObject);
+procedure TFormLogin.ick(Sender: TObject);
 var
 controller: TTranspController;
 codParaRecuperar:Integer;
@@ -447,6 +451,87 @@ begin
   end;
 end;
 
+procedure TFormLogin.lblBtnEditarAdmClick(Sender: TObject);
+var
+controller : TadminController;
+adminDto : TadminDto;
+codParaEditar : integer;
+idTransp:String;
+begin
+  codParaEditar := StrToInt(lswAdmins.Selected.Caption);
+  try
+    adminDto.idAdmin := codParaEditar;
+    adminDto.nome := EditNomeAdm.Text;
+    adminDto.cpf := maskEditCpfAdm.text;
+    adminDto.telefone := maskEditTelefoneAdm.text;
+    adminDto.email := editEmailAdm.Text;
+    adminDto.senha := editSenhaAdm.text;
+
+    idTransp := cbTransp4admin.Text;
+    idTransp := idTRansp.Remove(idTransp.IndexOf('-')-1);
+
+    AdminDto.idTransportadora := StrToIntDef(idTransp, 0);
+
+    controller := TadminController.create;
+    try
+      controller.EditarAdmin(adminDto);
+      showMessage('administrador editado com sucesso!!');
+      mostrarAdmins;
+    finally
+      controller.free;
+    end;
+  finally
+    PanelOptionsTransp.Visible:=false;
+    edtNome.clear;
+    maskEditCnpj.clear;
+    maskEditTelefone.clear;
+    edtEmail.clear;
+    maskEditCep.clear;
+  end;
+end;
+
+procedure TFormLogin.lblBtnEditarAdminClick(Sender: TObject);
+var
+  Controller: TTranspController;
+  Lista: TObjectList<TTransportadora>;
+  Transp: TTransportadora;
+begin
+  panelOptionsAdmins.Visible:=true;
+  lblPanelOptionAdm.Caption := 'Editar administrador de transportadoras';
+  pnlBtnCadastrarAdm.visible:= false;
+  pnlEditarAdm.Visible := true;
+  pnlBtnRecuperarAdmConfirm.Visible := False;
+  pnlBtnExcluirAdminConfirm.Visible := false;
+
+    if lswAdmins.selected = nil then begin
+    showMessage('selecione um administrador na lista para editar.');
+    mostrarAdmins;
+    exit;
+    end;
+
+  Controller := TTranspController.Create;
+  try
+    Lista := Controller.atualizarTabela;
+    try
+      cbTransp4Admin.Items.Clear;
+
+      for Transp in Lista do
+        cbTransp4Admin.Items.Add(
+          Transp.getId.ToString + ' - ' + Transp.getNome
+        );
+    finally
+      Lista.Free;
+    end;
+  finally
+    Controller.Free;
+  end;
+
+    EditNomeAdm.text := lswAdmins.selected.subItems[0];
+    MaskEditCpfAdm.text := lswAdmins.selected.SubItems[1];
+    MaskEditTelefoneAdm.Text := lswAdmins.selected.subItems[3];
+    editEmailAdm.Text := lswAdmins.selected.subItems[4];
+  end;
+
 procedure TFormLogin.lblBtnExcluirAdmConfirmClick(Sender: TObject);
 var
 controller: TadminController;
@@ -460,7 +545,7 @@ begin
     exit;
   end;
 
-  if MessageDlg('Tem certeza que deseja o administrador selecionado?',mtConfirmation, [mbYes, mbNo], 0) = mrNo then
+  if MessageDlg('Tem certeza que deseja excluir o administrador selecionado?',mtConfirmation, [mbYes, mbNo], 0) = mrNo then
     begin
       exit;
     end;
@@ -482,6 +567,50 @@ procedure TFormLogin.lblBtnExcluirAdminClick(Sender: TObject);
 begin
   pnlBtnExcluirAdminConfirm.Visible := true;
   pnlBtnRecuperarAdmConfirm.visible := false;
+  mostrarAdmins;
+end;
+
+procedure TFormLogin.lblBtnRecuperarAdmConfirmClick(Sender: TObject);
+var
+controller: TadminController;
+admin: TadminDto;
+codParaRecuperar : integer;
+begin
+    if lswAdmins.selected = nil then begin
+    showMessage('selecione um administrador na lista para Recuperar.');
+    exit;
+  end else begin
+
+    codParaRecuperar := StrToInt(lswAdmins.Selected.Caption);
+    admin.idAdmin := codParaRecuperar;
+
+    controller := TadminController.create;
+    try
+      controller.recuperarAdmin(admin);
+      ShowMessage('administrador recuperado!!');
+      adminsInativo;
+    finally
+      controller.free;
+      pnlBtnRecuperarConfirm.Visible := False;
+    end;
+  end;
+end;
+
+procedure TFormLogin.lblBtnRecuperarAdminClick(Sender: TObject);
+var
+controller : TadminController;
+begin
+  pnlBtnExcluirAdminConfirm.Visible := False;
+  pnlBtnRecuperarAdmConfirm.visible := true;
+  lswAdmins.Items.Clear;
+
+  controller := TadminController.Create;
+  try
+    ShowMessage('Agora a tabela mostra os administradores excluidos, Selecione o administrador e clique em recuperar para reativa-lo');
+    AdminsInativo;
+  finally
+    controller.free;
+  end;
 end;
 
 procedure TFormLogin.lick(Sender: TObject);
@@ -621,6 +750,38 @@ end;
 procedure TFormLogin.voltarImageClick(Sender: TObject);
 begin
   PanelOptionsTransp.Visible:=false;
+end;
+
+procedure TFormLogin.AdminsInativo;
+var
+  controladmin: TadminController;
+  ListaAdmin: Tlist<TadminDto>;
+  adminDto: TadminDto;
+  Item: TListItem;
+begin
+  controlAdmin := TadminController.Create;
+  try
+    ListaAdmin := controlAdmin.AdminInativo;
+    try
+      lswAdmins.Items.Clear;
+
+      for adminDto in ListaAdmin do
+      begin
+        Item := lswAdmins.Items.Add;
+        Item.Caption := AdminDto.idAdmin.ToString;
+        Item.SubItems.Add(adminDto.nome);
+        Item.SubItems.Add(adminDto.cpf);
+        Item.SubItems.Add(adminDto.idTransportadora.ToString);
+        Item.SubItems.Add(AdminDto.telefone);
+        Item.SubItems.Add(adminDto.email);
+      end;
+
+    finally
+      ListaAdmin.Free;
+    end;
+  finally
+    controlAdmin.Free;
+  end;
 end;
 
 procedure TFormLogin.atualizarTabela;

@@ -8,6 +8,9 @@ type TadminController = class
   procedure cadastrarAdmin(AadminDto: TAdminDto);
   function MostrarAdmin:Tlist<TadminDto>;
   procedure ExcluirADmin (AadminDto: TAdminDto);
+  function AdminInativo:Tlist<TadminDto>;
+  procedure recuperarAdmin(AadminDto: TAdminDto);
+  procedure editarAdmin(AadminDto: TAdminDto);
 end;
 
 implementation
@@ -21,6 +24,18 @@ begin
   service := TadminService.create;
   try
     service.cadastrarAdmin(AadminDto)
+  finally
+    service.free;
+  end;
+end;
+
+procedure TadminController.editarAdmin(AadminDto: TAdminDto);
+var
+  service :TadminService;
+begin
+  service := TadminService.create;
+  try
+   Service.EditarAdmin(AadminDto);
   finally
     service.free;
   end;
@@ -45,6 +60,31 @@ begin
   service := TadminService.create;
   try
     result := Service.MostrarAdmin;
+  finally
+    service.free;
+  end;
+end;
+
+
+procedure TadminController.recuperarAdmin(AadminDto: TAdminDto);
+var
+  service :TadminService;
+begin
+  service := TadminService.create;
+  try
+   Service.recuperarAdmin(AadminDto);
+  finally
+    service.free;
+  end;
+end;
+
+function TadminController.AdminInativo: Tlist<TadminDto>;
+var
+  service :TadminService;
+begin
+  service := TadminService.create;
+  try
+    result := Service.AdminInativo;
   finally
     service.free;
   end;
