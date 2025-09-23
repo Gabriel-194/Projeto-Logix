@@ -28,8 +28,6 @@ object FormLogin: TFormLogin
     ParentBackground = False
     TabOrder = 1
     Visible = False
-    ExplicitWidth = 1200
-    ExplicitHeight = 650
     object Image4: TImage
       Left = 1
       Top = 1
@@ -1017,7 +1015,6 @@ object FormLogin: TFormLogin
       Color = clWhite
       ParentBackground = False
       TabOrder = 3
-      ExplicitHeight = 337
       object Shape33: TShape
         Left = 0
         Top = 0
@@ -1435,8 +1432,6 @@ object FormLogin: TFormLogin
       Color = clWhite
       ParentBackground = False
       TabOrder = 2
-      ExplicitLeft = 688
-      ExplicitHeight = 337
       object Shape32: TShape
         Left = 0
         Top = 0
@@ -3960,8 +3955,6 @@ object FormLogin: TFormLogin
     Align = alClient
     Caption = 'Panel1'
     TabOrder = 0
-    ExplicitWidth = 1200
-    ExplicitHeight = 650
     object PanelImage: TPanel
       AlignWithMargins = True
       Left = 742
@@ -3979,8 +3972,6 @@ object FormLogin: TFormLogin
       UseDockManager = False
       ParentBackground = False
       TabOrder = 0
-      ExplicitLeft = 726
-      ExplicitHeight = 648
       object Image2: TImage
         AlignWithMargins = True
         Left = 1
@@ -5687,8 +5678,6 @@ object FormLogin: TFormLogin
       Color = clWhite
       ParentBackground = False
       TabOrder = 1
-      ExplicitWidth = 722
-      ExplicitHeight = 648
       object Image1: TImage
         Left = 0
         Top = 0
@@ -6718,7 +6707,6 @@ object FormLogin: TFormLogin
         Constraints.MaxWidth = 600
         ParentBackground = False
         TabOrder = 0
-        ExplicitWidth = 362
         object Shape3: TShape
           Left = 0
           Top = 0
@@ -6762,7 +6750,6 @@ object FormLogin: TFormLogin
         Constraints.MaxWidth = 600
         ParentBackground = False
         TabOrder = 1
-        ExplicitWidth = 362
         object Shape2: TShape
           Left = 0
           Top = 0
@@ -6805,7 +6792,6 @@ object FormLogin: TFormLogin
         BevelOuter = bvNone
         Constraints.MaxWidth = 412
         TabOrder = 2
-        ExplicitWidth = 222
         object Shape4: TShape
           Left = 0
           Top = 0
