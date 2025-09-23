@@ -2051,6 +2051,7 @@ object FormLogin: TFormLogin
             item
               Caption = 'CEP'
             end>
+          Items.ItemData = {050000000000000000}
           TabOrder = 2
           ViewStyle = vsReport
         end
@@ -3063,6 +3064,7 @@ object FormLogin: TFormLogin
               Caption = 'E- mail'
               Width = 100
             end>
+          Items.ItemData = {050000000000000000}
           TabOrder = 2
           ViewStyle = vsReport
         end
