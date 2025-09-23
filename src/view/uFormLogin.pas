@@ -199,7 +199,7 @@ type
   end;
 
 var
-  FrmLogin : TFormLogin;
+  FormLogin : TFormLogin;
 
 implementation
 uses logintypes;

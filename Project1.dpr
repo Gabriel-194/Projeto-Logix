@@ -7,7 +7,6 @@ uses
   transpRepository in 'src\repository\transpRepository.pas',
   transpService in 'src\service\transpService.pas',
   transpController in 'src\controller\transpController.pas',
-  uFormLogin in 'src\view\uFormLogin.pas',
   loginController in 'src\controller\loginController.pas',
   loginService in 'src\service\loginService.pas',
   loginRepository in 'src\repository\loginRepository.pas',
@@ -18,15 +17,16 @@ uses
   adminService in 'src\service\adminService.pas',
   adminRepository in 'src\repository\adminRepository.pas',
   uFormHome in 'src\view\uFormHome.pas' {FormHome},
-  loginTypes in 'src\model\loginTypes.pas';
+  loginTypes in 'src\model\loginTypes.pas',
+  uFormLogin in 'src\view\uFormLogin.pas' {FormLogin};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TFormLogin, FrmLogin);
-  Application.CreateForm(TDataModule2, DataModule2);
   Application.CreateForm(TFormHome, FormHome);
+  Application.CreateForm(TFormLogin, FormLogin);
+  Application.CreateForm(TDataModule2, DataModule2);
   Application.Run;
 end.
