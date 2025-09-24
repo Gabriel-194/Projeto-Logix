@@ -16,15 +16,16 @@ CREATE TABLE IF NOT EXISTS {schema}.cliente (
 
 -- Tabela veiculo
 CREATE TABLE IF NOT EXISTS {schema}.veiculo (
-  id_veiculo SERIAL PRIMARY KEY,
-  placa VARCHAR(80),
-  modelo VARCHAR(25),
-  ano INT,
-  capacidade VARCHAR(30),
-  status BOOLEAN,
-  data_cadastro TIMESTAMP DEFAULT now(),
-  data_atualizacao TIMESTAMP DEFAULT now(),
-  ativo BOOLEAN DEFAULT TRUE
+    id_veiculo SERIAL PRIMARY KEY,
+    placa VARCHAR(10) NOT NULL unique,
+    modelo VARCHAR(50),
+    ano INTEGER,
+    tipo_carga VARCHAR(50),
+    capacidade INTEGER NOT NULL,
+    unidade_medida VARCHAR(20) NOT NULL,
+    ativo BOOLEAN DEFAULT TRUE,
+    data_cadastro TIMESTAMP WITH TIME ZONE DEFAULT now(),
+    data_atualizacao TIMESTAMP WITH TIME ZONE DEFAULT now()
 );
 
 -- Tabela tipo_carga
