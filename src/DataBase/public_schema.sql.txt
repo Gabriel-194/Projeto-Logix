@@ -1,0 +1,62 @@
+CREATE DATABASE logix
+    WITH ENCODING 'UTF8'
+    LC_COLLATE='pt_BR.UTF-8'
+    LC_CTYPE='pt_BR.UTF-8'
+    TEMPLATE=template0;
+
+
+-- Transportadoras
+CREATE TABLE IF NOT EXISTS public.transportadora (
+    id               SERIAL PRIMARY KEY,
+    nome             VARCHAR(90) NOT NULL,
+    cnpj             VARCHAR(20) UNIQUE NOT NULL,
+    telefone         VARCHAR(20),
+    email            VARCHAR(90) UNIQUE,
+    cep              VARCHAR(20),
+    ativo            BOOLEAN DEFAULT TRUE,
+    schema_name      VARCHAR(50) UNIQUE NOT NULL,
+    data_cadastro    TIMESTAMP DEFAULT now(),
+    data_atualizacao TIMESTAMP DEFAULT now()
+);
+
+-- Usuários (administradores, comuns e motoristas)
+CREATE TABLE IF NOT EXISTS public.usuarios (
+    id_usuario        SERIAL PRIMARY KEY,
+    nome              VARCHAR(90) NOT NULL,
+    senha_hash        VARCHAR(255) NOT NULL,
+    cpf               VARCHAR(20) UNIQUE NOT NULL,
+    telefone          VARCHAR(20),
+    email             VARCHAR(90) UNIQUE NOT NULL,
+    cargo_descricao   VARCHAR(50), -- ex: admin, user, motorista
+    ativo             BOOLEAN DEFAULT TRUE,
+    status            BOOLEAN DEFAULT TRUE,
+    id_transportadora INT REFERENCES public.transportadora(id),
+    data_cadastro     TIMESTAMP DEFAULT now(),
+    data_atualizacao  TIMESTAMP DEFAULT now()
+);
+
+-- Motoristas (1:1 com usuários)
+CREATE TABLE IF NOT EXISTS public.motorista (
+    id_motorista    SERIAL PRIMARY KEY,
+    id_usuario      INT UNIQUE NOT NULL REFERENCES public.usuarios(id_usuario) ON DELETE CASCADE,
+    numero_cnh      VARCHAR(20) UNIQUE NOT NULL,
+    categoria_cnh   VARCHAR(5) NOT NULL,
+    validade_cnh    DATE NOT NULL,
+    data_cadastro   TIMESTAMP DEFAULT now(),
+    data_atualizacao TIMESTAMP DEFAULT now()
+);
+
+-- Permissões
+CREATE TABLE IF NOT EXISTS public.permissao (
+    id_permissao  SERIAL PRIMARY KEY,
+    nome          VARCHAR(80) NOT NULL,
+    descricao     VARCHAR(255)
+);
+
+-- Relação usuário x permissões (N:N)
+CREATE TABLE IF NOT EXISTS public.usuario_permissao (
+    id_usuario    INT NOT NULL REFERENCES public.usuarios(id_usuario) ON DELETE CASCADE,
+    id_permissao  INT NOT NULL REFERENCES public.permissao(id_permissao) ON DELETE CASCADE,
+    data_cadastro TIMESTAMP DEFAULT now(),
+    PRIMARY KEY (id_usuario, id_permissao)
+);

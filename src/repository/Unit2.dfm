@@ -18,8 +18,8 @@ object DataModule2: TDataModule2
   end
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorLib = 
-      'C:\Users\gabriel kuchma\Documents\Embarcadero\Studio\Projects\Pr' +
-      'ojeto-Logix\lib\libpq.dll'
+      'C:\Users\kuchma.2973\Documents\Embarcadero\Studio\Projects\Proje' +
+      'to-Logix\lib\libpq.dll'
     Left = 333
     Top = 38
   end

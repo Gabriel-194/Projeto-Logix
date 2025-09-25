@@ -26,6 +26,7 @@ object FormLogin: TFormLogin
     Align = alClient
     Caption = 'Panel1'
     TabOrder = 0
+    Visible = False
     object PanelImage: TPanel
       AlignWithMargins = True
       Left = 742
@@ -2912,7 +2913,6 @@ object FormLogin: TFormLogin
     Color = clWhite
     ParentBackground = False
     TabOrder = 1
-    Visible = False
     object Image4: TImage
       Left = 1
       Top = 1
