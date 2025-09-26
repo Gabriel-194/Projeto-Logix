@@ -29,8 +29,8 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TFormLogin, FormLogin);
   Application.CreateForm(TFormHome, FormHome);
+  Application.CreateForm(TFormLogin, FormLogin);
   Application.CreateForm(TDataModule2, DataModule2);
   Application.Run;
 end.

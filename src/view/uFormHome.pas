@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
-  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask, usuarioLogado,uUsuario,userController;
+  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask, usuarioLogado,uUsuario,userController,
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController;
 
 type
   TFormHome = class(TForm)
@@ -117,9 +118,6 @@ type
     pnlEditarGerente: TPanel;
     Shape31: TShape;
     lblBtnEditarGerenteConf: TLabel;
-    PnlBtnDefPermissoesGerente: TPanel;
-    Shape2: TShape;
-    lblBtnDefPermissoesGerente: TLabel;
     imgFecharPageControl: TImage;
     PanelButtonMotoristas: TPanel;
     Image9: TImage;
@@ -323,6 +321,8 @@ type
     imgFechaOptionsVeiculo: TImage;
     MaskEditAnoVeiculo: TMaskEdit;
     ComboBoxUnidadeMed: TComboBox;
+    dSrcPermissao: TDataSource;
+    DBGridPermissaoGerente: TDBGrid;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -348,6 +348,9 @@ type
     procedure lblBtnRecuperarVeiculoClick(Sender: TObject);
     procedure lblBtnExcluirVeiculoClick(Sender: TObject);
     procedure lblBtnCadastrarGerenteConfClick(Sender: TObject);
+    procedure lblBtnDefPermissoesGerenteClick(Sender: TObject);
+    procedure ImgBtnFechaDefPermissoesGerenteClick(Sender: TObject);
+    procedure lblBtnConfPermissoesGerenteClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -373,6 +376,7 @@ begin
 end;
 
 //=================== GERENTE ============================================
+
 procedure TFormHome.Image8Click(Sender: TObject);
 begin
   close;
@@ -384,7 +388,11 @@ pagecontrolCadastrar.visible := False;
 end;
 
 procedure TFormHome.lblBtnCadastrarGerenteClick(Sender: TObject);
+var
+controller :ThomeController;
 begin
+dSrcPermissao.DataSet := controller.mostrarPemissao;
+DBGridPermissaoGerente.DataSource := dSrcPermissao;
 panelOptionsGerente.Visible := true;
 lblPanelOptionGerente.caption := 'Cadastrar Gerente';
 pnlEditarGerente.visible := false;
@@ -444,6 +452,51 @@ procedure TFormHome.lblBtnExcluirGerenteClick(Sender: TObject);
 begin
 pnlBtnRecuperarGerenteConfirm.visible := false;
 pnlBtnExcluirGerenteConfirm.visible := true;
+end;
+
+procedure TFormHome.lblBtnDefPermissoesGerenteClick(Sender: TObject);
+var
+controller :ThomeController;
+begin
+
+
+  dSrcPermissao.DataSet := controller.mostrarPemissao;
+  DBGridPermissaoGerente.DataSource := dSrcPermissao;
+end;
+
+procedure TFormHome.lblBtnConfPermissoesGerenteClick(Sender: TObject);
+var
+  i: Integer;
+  DS: TDataSet;
+begin
+  if DBGridPermissaoGerente.SelectedRows.Count = 0 then
+  begin
+    ShowMessage('Por favor, selecione uma ou mais permissões no grid (usando Ctrl/Shift + clique).');
+    Exit;
+  end;
+
+  DS := DBGridPermissaoGerente.DataSource.DataSet;
+
+  DS.DisableControls;
+  try
+    DS.First;
+    while not DS.Eof do
+    begin
+      for i := 0 to DBGridPermissaoGerente.SelectedRows.Count - 1 do
+      begin
+        if DS.CompareBookmarks(DS.Bookmark, DBGridPermissaoGerente.SelectedRows[i]) = 0 then
+        begin
+          DS.Edit;
+          DS.FieldByName('selecionado').AsString := 'X'; 
+          DS.Post;
+          Break;
+        end;
+      end;
+      DS.Next;
+    end;
+  finally
+    DS.EnableControls;
+  end;
 end;
 
 //======================= MOTORISTA ========================================

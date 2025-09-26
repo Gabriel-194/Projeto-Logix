@@ -1333,7 +1333,7 @@ object FormHome: TFormHome
         object pnlBtnEditarGerente: TPanel
           AlignWithMargins = True
           Left = 100
-          Top = 190
+          Top = 120
           Width = 421
           Height = 30
           Margins.Left = 100
@@ -1344,6 +1344,7 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           Constraints.MaxWidth = 598
           TabOrder = 0
+          ExplicitTop = 190
           object Shape18: TShape
             Left = 0
             Top = 0
@@ -1471,7 +1472,7 @@ object FormHome: TFormHome
         object pnlBtnExcluirGerente: TPanel
           AlignWithMargins = True
           Left = 100
-          Top = 359
+          Top = 289
           Width = 421
           Height = 30
           Margins.Left = 100
@@ -1482,6 +1483,7 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           Constraints.MaxWidth = 598
           TabOrder = 3
+          ExplicitTop = 359
           object Shape20: TShape
             Left = 0
             Top = 0
@@ -1515,7 +1517,7 @@ object FormHome: TFormHome
         object pnlBtnRecuperarGerente: TPanel
           AlignWithMargins = True
           Left = 100
-          Top = 260
+          Top = 190
           Width = 421
           Height = 30
           Margins.Left = 100
@@ -1526,6 +1528,7 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           Constraints.MaxWidth = 598
           TabOrder = 4
+          ExplicitTop = 260
           object Shape21: TShape
             Left = 0
             Top = 0
@@ -1560,7 +1563,7 @@ object FormHome: TFormHome
         object pnlBtnRecuperarGerenteConfirm: TPanel
           AlignWithMargins = True
           Left = 200
-          Top = 300
+          Top = 230
           Width = 221
           Height = 29
           Margins.Left = 200
@@ -1571,6 +1574,7 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           TabOrder = 5
           Visible = False
+          ExplicitTop = 300
           object Shape22: TShape
             Left = 0
             Top = 0
@@ -1606,7 +1610,7 @@ object FormHome: TFormHome
         object pnlBtnExcluirGerenteConfirm: TPanel
           AlignWithMargins = True
           Left = 200
-          Top = 399
+          Top = 329
           Width = 221
           Height = 29
           Margins.Left = 200
@@ -1617,6 +1621,7 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           TabOrder = 6
           Visible = False
+          ExplicitTop = 399
           object Shape23: TShape
             Left = 0
             Top = 0
@@ -1647,51 +1652,6 @@ object FormHome: TFormHome
             ParentFont = False
             ExplicitWidth = 76
             ExplicitHeight = 25
-          end
-        end
-        object PnlBtnDefPermissoesGerente: TPanel
-          AlignWithMargins = True
-          Left = 100
-          Top = 120
-          Width = 421
-          Height = 30
-          Margins.Left = 100
-          Margins.Top = 30
-          Margins.Right = 100
-          Margins.Bottom = 10
-          Align = alTop
-          BevelOuter = bvNone
-          Constraints.MaxWidth = 598
-          TabOrder = 7
-          object Shape2: TShape
-            Left = 0
-            Top = 0
-            Width = 421
-            Height = 30
-            Align = alClient
-            Pen.Color = clBlue
-            Shape = stRoundRect
-            ExplicitWidth = 262
-            ExplicitHeight = 297
-          end
-          object lblBtnDefPermissoesGerente: TLabel
-            Left = 0
-            Top = 0
-            Width = 421
-            Height = 30
-            Margins.Right = 100
-            Align = alClient
-            Alignment = taCenter
-            AutoSize = False
-            Caption = 'Definir Permiss'#245'es'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -19
-            Font.Name = 'Segoe UI'
-            Font.Style = [fsBold]
-            ParentFont = False
-            ExplicitTop = 7
-            ExplicitWidth = 363
           end
         end
       end
@@ -1735,7 +1695,7 @@ object FormHome: TFormHome
         object Panel17: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 199
+          Top = 122
           Width = 858
           Height = 41
           Margins.Top = 0
@@ -1744,6 +1704,7 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 0
+          ExplicitTop = 199
           object pnlEditNomeGerente: TPanel
             AlignWithMargins = True
             Left = 80
@@ -1839,13 +1800,14 @@ object FormHome: TFormHome
         object Panel20: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 331
+          Top = 254
           Width = 858
           Height = 41
           Align = alBottom
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 2
+          ExplicitTop = 331
           object Label1: TLabel
             AlignWithMargins = True
             Left = 80
@@ -1867,15 +1829,16 @@ object FormHome: TFormHome
         object Panel21: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 375
+          Top = 298
           Width = 858
           Height = 41
           Margins.Top = 0
-          Margins.Bottom = 120
+          Margins.Bottom = 20
           Align = alBottom
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 3
+          ExplicitTop = 375
           object pnlEditSenhaGerente: TPanel
             AlignWithMargins = True
             Left = 80
@@ -1924,13 +1887,14 @@ object FormHome: TFormHome
         object Panel23: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 243
+          Top = 166
           Width = 858
           Height = 41
           Align = alBottom
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 4
+          ExplicitTop = 243
           object Label2: TLabel
             AlignWithMargins = True
             Left = 80
@@ -1969,7 +1933,7 @@ object FormHome: TFormHome
         object Panel24: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 287
+          Top = 210
           Width = 858
           Height = 41
           Margins.Top = 0
@@ -1978,6 +1942,7 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 5
+          ExplicitTop = 287
           object pnlEditTelefoneGerente: TPanel
             AlignWithMargins = True
             Left = 80
@@ -2074,7 +2039,7 @@ object FormHome: TFormHome
         object Panel27: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 150
+          Top = 73
           Width = 858
           Height = 49
           Margins.Bottom = 0
@@ -2082,6 +2047,7 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 1
+          ExplicitTop = 150
           object Label16: TLabel
             AlignWithMargins = True
             Left = 80
@@ -2194,15 +2160,16 @@ object FormHome: TFormHome
         object Panel29: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 539
+          Top = 589
           Width = 858
           Height = 73
-          Margins.Bottom = 80
+          Margins.Bottom = 30
           Align = alBottom
           BevelOuter = bvNone
           Color = clWhite
           ParentBackground = False
           TabOrder = 7
+          ExplicitTop = 539
           object pnlCadastrarGerente: TPanel
             AlignWithMargins = True
             Left = 300
@@ -2362,6 +2329,64 @@ object FormHome: TFormHome
             OnClick = imgBtnFechaOptionsGerenteClick
             ExplicitHeight = 153
           end
+        end
+        object DBGridPermissaoGerente: TDBGrid
+          AlignWithMargins = True
+          Left = 80
+          Top = 362
+          Width = 704
+          Height = 221
+          Margins.Left = 80
+          Margins.Right = 80
+          Align = alBottom
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
+          ParentFont = False
+          ReadOnly = True
+          TabOrder = 9
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -16
+          TitleFont.Name = 'Segoe UI'
+          TitleFont.Style = [fsBold]
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'id_permissao'
+              Title.Caption = 'ID'
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'nome'
+              Title.Caption = 'Nome permiss'#227'o'
+              Width = 250
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'descricao'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -16
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Caption = 'Descri'#231#227'o da Permiss'#227'o'
+              Width = 360
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'selecionado'
+              Width = 150
+              Visible = True
+            end>
         end
       end
     end
@@ -3052,7 +3077,6 @@ object FormHome: TFormHome
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            ExplicitLeft = 488
             ExplicitHeight = 32
           end
         end
@@ -3205,7 +3229,6 @@ object FormHome: TFormHome
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            ExplicitLeft = 488
             ExplicitHeight = 32
           end
         end
@@ -3572,7 +3595,6 @@ object FormHome: TFormHome
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            ExplicitLeft = 488
             ExplicitHeight = 31
           end
         end
@@ -5240,7 +5262,6 @@ object FormHome: TFormHome
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            ExplicitLeft = 480
             ExplicitHeight = 32
           end
         end
@@ -5567,5 +5588,9 @@ object FormHome: TFormHome
         end
       end
     end
+  end
+  object dSrcPermissao: TDataSource
+    Left = 661
+    Top = 151
   end
 end

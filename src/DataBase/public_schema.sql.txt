@@ -70,3 +70,14 @@ VALUES (
     'adminLogix',  -- Preenchido com base no nome de usuário
     NULL              -- id_transportadora definido como nulo
 );
+
+INSERT INTO public.permissao (nome, descricao) VALUES
+('cadastrar_gerente', 'Permite criar novos registros de Gerentes.'),
+('editar_gerente', 'Permite modificar dados de Gerentes existentes.'),
+('excluir_gerente', 'Permite apagar registros de Gerentes.'),
+('definir_permissoes_gerente', 'Permite atribuir permissões a um Gerente.'),
+('visualizar_motoristas', 'Permite acessar a tela e lista de Motoristas.'),
+('cadastrar_motorista', 'Permite criar novos registros de Motoristas.'),
+('gerenciar_cargas', 'Permite criar, editar e despachar Cargas.'),
+('visualizar_clientes', 'Permite acessar a tela e lista de Clientes.'),
+('configurar_sistema', 'Permite acesso a configurações globais do sistema.');
