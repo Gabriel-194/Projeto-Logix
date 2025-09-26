@@ -13,6 +13,7 @@ type
     cargo_descricao : String;
     email : String;
     senha_hash : String;
+    idTransportadora :Integer;
    public
 
    procedure setId(aId : Integer);
@@ -32,6 +33,11 @@ type
 
     procedure setSenha_hash(aSenha_hash: String);
     function getSenha_hash: String;
+
+    procedure SetIdTransportadora(aIdTransportadora :Integer);
+    function getIdTransportadora : Integer;
+
+
  end;
 
 implementation
@@ -60,6 +66,8 @@ end;
 
 
 
+
+
 procedure TUsuario.setCargo_descricao(aCargo_descricao: String);
 begin
   Self.cargo_descricao := aCargo_descricao;
@@ -80,6 +88,11 @@ begin
   self.id := aId;
 end;
 
+procedure Tusuario.SetIdTransportadora(aIdTransportadora: Integer);
+begin
+  Self.IdTransportadora := aIdTransportadora;
+end;
+
 function TUsuario.getEmail: String;
 begin
   Result := Self.email;
@@ -88,6 +101,11 @@ end;
 function Tusuario.getId: Integer;
 begin
   Result := Self.id;
+end;
+
+function Tusuario.getIdTransportadora: Integer;
+begin
+result := Self.idTransportadora;
 end;
 
 procedure TUsuario.setSenha_hash(aSenha_hash: String);

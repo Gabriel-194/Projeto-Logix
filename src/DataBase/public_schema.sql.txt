@@ -60,3 +60,13 @@ CREATE TABLE IF NOT EXISTS public.usuario_permissao (
     data_cadastro TIMESTAMP DEFAULT now(),
     PRIMARY KEY (id_usuario, id_permissao)
 );
+
+INSERT INTO public.usuarios (nome, senha_hash, email, cpf, cargo_descricao, id_transportadora)
+VALUES (
+    'administrador logix',
+    '$2a$11$LDeqorZd6gz4j1Hif0aRjO2.lkdIKEvEW4sy9tkdUdIhrxJE8Qcb.',
+    'LogixAdmin@gmail.com',
+    '000.000.000-00', -- ATENÇÃO: CPF é obrigatório e único. Use um valor real aqui.
+    'adminLogix',  -- Preenchido com base no nome de usuário
+    NULL              -- id_transportadora definido como nulo
+);

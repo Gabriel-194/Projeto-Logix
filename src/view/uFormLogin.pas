@@ -234,7 +234,6 @@ var
 controlLogin : TloginController;
 user : Tusuario;
 resultado : TLoginResult;
-
 LoginDto:TLoginDto;
 begin
   controlLogin := nil;
@@ -253,14 +252,25 @@ begin
 
        lrSucessoUsuario:
         begin
-          ShowMessage('Login realizado com sucesso! Bem-vindo ' + user.getNome);
+          ShowMessage(
+            'Login realizado com sucesso! ' + sLineBreak +
+            'Bem-vindo: ' + user.getNome + sLineBreak +
+            'Cargo: ' + user.getCargo_descricao + sLineBreak +
+            'Transportadora ID: ' + user.getIdTransportadora.ToString
+          );
           FormHome.ShowModal;
           Close;
         end;
 
         lrSucessoAdmin:
           begin
-            ShowMessage('Bem-vindo ADMINISTRADOR!');
+            ShowMessage(
+              'Bem-vindo ADMINISTRADOR!' + sLineBreak +
+              'Nome: ' + user.getNome + sLineBreak +
+              'Cargo: ' + user.getCargo_descricao + sLineBreak +
+              'Transportadora ID: ' + user.getIdTransportadora.ToString
+            );
+
               Panel1.Visible := False;
               PanelAdmin.Visible := True;
               atualizarTabela;

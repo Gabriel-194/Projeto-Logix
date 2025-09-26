@@ -1276,7 +1276,7 @@ object FormHome: TFormHome
     Top = 84
     Width = 1500
     Height = 756
-    ActivePage = TabSheetVeiculos
+    ActivePage = TabSheetGerente
     Align = alTop
     Font.Charset = DEFAULT_CHARSET
     Font.Color = 6957870
@@ -1963,7 +1963,6 @@ object FormHome: TFormHome
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            ExplicitLeft = 488
             ExplicitHeight = 32
           end
         end
@@ -2115,7 +2114,6 @@ object FormHome: TFormHome
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            ExplicitLeft = 488
             ExplicitHeight = 32
           end
         end
@@ -3040,9 +3038,9 @@ object FormHome: TFormHome
           end
           object Label27: TLabel
             AlignWithMargins = True
-            Left = 488
+            Left = 524
             Top = 3
-            Width = 115
+            Width = 79
             Height = 35
             Margins.Right = 255
             Align = alRight
@@ -3053,6 +3051,8 @@ object FormHome: TFormHome
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
+            ExplicitLeft = 488
+            ExplicitHeight = 32
           end
         end
         object Panel30: TPanel
@@ -3191,9 +3191,9 @@ object FormHome: TFormHome
           end
           object Label29: TLabel
             AlignWithMargins = True
-            Left = 488
+            Left = 529
             Top = 3
-            Width = 90
+            Width = 49
             Height = 43
             Margins.Right = 280
             Align = alRight
@@ -3204,6 +3204,8 @@ object FormHome: TFormHome
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
+            ExplicitLeft = 488
+            ExplicitHeight = 32
           end
         end
         object pnlFechaOptionsMotorista: TPanel
@@ -3556,9 +3558,9 @@ object FormHome: TFormHome
           end
           object Label18: TLabel
             AlignWithMargins = True
-            Left = 488
+            Left = 543
             Top = 3
-            Width = 220
+            Width = 165
             Height = 35
             Margins.Right = 150
             Align = alRight
@@ -3569,6 +3571,8 @@ object FormHome: TFormHome
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
+            ExplicitLeft = 488
+            ExplicitHeight = 31
           end
         end
         object Panel9: TPanel
@@ -5222,9 +5226,9 @@ object FormHome: TFormHome
           end
           object Label31: TLabel
             AlignWithMargins = True
-            Left = 480
+            Left = 495
             Top = 3
-            Width = 178
+            Width = 163
             Height = 35
             Margins.Right = 200
             Align = alRight
@@ -5235,6 +5239,8 @@ object FormHome: TFormHome
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
+            ExplicitLeft = 480
+            ExplicitHeight = 32
           end
         end
         object Panel39: TPanel
@@ -5384,7 +5390,6 @@ object FormHome: TFormHome
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            ExplicitLeft = 490
             ExplicitHeight = 32
           end
         end

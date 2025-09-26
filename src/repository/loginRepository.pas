@@ -10,7 +10,8 @@ type
   public
     function VerificaLogin(AUsuario: TUsuario): Boolean;
 //    function VerificaAdmin(AUsuario: TUsuario): Boolean;
-    function FindByEmail(AEmail: string; out AUserId: Integer; out ASenhaHash: string): Boolean;
+    function FindByEmail(AEmail: string; out AUserId: Integer;out ASenhaHash: string;  out ATransportadoraId: Integer;
+  out ACargo: string): Boolean;
     function BuscaNomePorId(const aUserId: Integer): string;
   end;
 
@@ -22,19 +23,22 @@ implementation
 
 
 function TLoginRepository.FindByEmail(AEmail: string; out AUserId: Integer;
-  out ASenhaHash: string): Boolean;
+  out ASenhaHash: string;  out ATransportadoraId: Integer;
+  out ACargo: string): Boolean;
 var
   FDQuery: TFDQuery;
 begin
   Result := False;
   AUserId := 0;
   ASenhaHash := '';
+  ATransportadoraId := 0;
+  ACargo := '';
 
   FDQuery := TFDQuery.Create(nil);
 
   try
     FDQuery.Connection := DataModule2.FDConnection1;
-    FDQuery.SQL.Text := 'SELECT id_usuario, senha_hash, cargo_descricao FROM public.usuarios WHERE email = :email';
+    FDQuery.SQL.Text := 'SELECT id_usuario, senha_hash, cargo_descricao, id_transportadora FROM public.usuarios WHERE email = :email';
     FDQuery.ParamByName('email').AsString := AEmail;
     FDQuery.Open;
 
@@ -42,6 +46,8 @@ begin
     begin
       AUserId    := FDQuery.FieldByName('id_usuario').AsInteger;
       ASenhaHash := FDQuery.FieldByName('senha_hash').AsString;
+      ACargo := FDQuery.FieldByName('cargo_descricao').AsString;
+      ATransportadoraId := FDQuery.FieldByName('id_transportadora').AsInteger;
 
       Result := True;
     end;
