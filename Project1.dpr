@@ -18,7 +18,11 @@ uses
   adminRepository in 'src\repository\adminRepository.pas',
   uFormHome in 'src\view\uFormHome.pas' {FormHome},
   loginTypes in 'src\model\loginTypes.pas',
-  uFormLogin in 'src\view\uFormLogin.pas' {FormLogin};
+  uFormLogin in 'src\view\uFormLogin.pas' {FormLogin},
+  usuarioLogado in 'src\session\usuarioLogado.pas',
+  userController in 'src\controller\userController.pas',
+  userService in 'src\service\userService.pas',
+  userRepository in 'src\repository\userRepository.pas';
 
 {$R *.res}
 

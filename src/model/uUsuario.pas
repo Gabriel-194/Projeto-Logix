@@ -25,6 +25,9 @@ type
     procedure setCpf(aCpf: String);
     function getCpf: String;
 
+    procedure setTelefone(aTelefone:String);
+    function getTelefone:String;
+
     procedure setCargo_descricao(aCargo_descricao: String);
     function getCargo_descricao: String;
 
@@ -113,10 +116,20 @@ begin
   Self.senha_hash := aSenha_hash;
 end;
 
+procedure Tusuario.setTelefone(aTelefone: String);
+begin
+   Self.telefone := aTelefone;
+end;
+
 function TUsuario.getSenha_hash: String;
 begin
   Result := Self.senha_hash;
 end;
 
+
+function Tusuario.getTelefone: String;
+begin
+result := Self.telefone;
+end;
 
 end.

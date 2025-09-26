@@ -152,6 +152,10 @@
             <Form>FormLogin</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\session\usuarioLogado.pas"/>
+        <DCCReference Include="src\controller\userController.pas"/>
+        <DCCReference Include="src\service\userService.pas"/>
+        <DCCReference Include="src\repository\userRepository.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

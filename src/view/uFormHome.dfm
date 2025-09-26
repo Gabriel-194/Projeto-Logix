@@ -1770,7 +1770,7 @@ object FormHome: TFormHome
               ExplicitWidth = 65
               ExplicitHeight = 65
             end
-            object EditNomeAdm: TEdit
+            object EditNomeGerente: TEdit
               AlignWithMargins = True
               Left = 10
               Top = 3
@@ -1814,7 +1814,7 @@ object FormHome: TFormHome
               ExplicitWidth = 65
               ExplicitHeight = 65
             end
-            object MaskEditCpfAdm: TMaskEdit
+            object MaskEditCpfGerente: TMaskEdit
               AlignWithMargins = True
               Left = 3
               Top = 3
@@ -2242,6 +2242,7 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
+              OnClick = lblBtnCadastrarGerenteConfClick
               ExplicitWidth = 111
               ExplicitHeight = 25
             end

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
-  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask;
+  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask, usuarioLogado,uUsuario,userController;
 
 type
   TFormHome = class(TForm)
@@ -84,10 +84,10 @@ type
     Panel17: TPanel;
     pnlEditNomeGerente: TPanel;
     Shape24: TShape;
-    EditNomeAdm: TEdit;
+    EditNomeGerente: TEdit;
     pnlEditCpfGerente: TPanel;
     Shape25: TShape;
-    MaskEditCpfAdm: TMaskEdit;
+    MaskEditCpfGerente: TMaskEdit;
     Panel20: TPanel;
     Label1: TLabel;
     Panel21: TPanel;
@@ -347,6 +347,7 @@ type
     procedure imgFechaOptionsVeiculoClick(Sender: TObject);
     procedure lblBtnRecuperarVeiculoClick(Sender: TObject);
     procedure lblBtnExcluirVeiculoClick(Sender: TObject);
+    procedure lblBtnCadastrarGerenteConfClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -390,6 +391,31 @@ pnlEditarGerente.visible := false;
 pnlCadastrarGerente.visible := true;
 pnlBtnRecuperarGerenteConfirm.visible := false;
 pnlBtnExcluirGerenteConfirm.visible := false;
+end;
+
+procedure TFormHome.lblBtnCadastrarGerenteConfClick(Sender: TObject);
+var
+controller:TuserController;
+usuario :Tusuario;
+begin
+usuario := TUsuario.Create;
+  usuario.setNome(EditNomeGerente.Text);
+  usuario.setEmail (editEmailGerente.text);
+  usuario.setsenha_hash (EditSenhaGerente.text);
+  usuario.Setcpf(MaskEditCpfGerente.Text);
+  usuario.setTelefone (MaskEditTelefoneGerente.text);
+  usuario.setCargo_descricao('gerente');
+  usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
+
+  controller := TUserController.Create;
+  try
+      controller.CadastrarUsuario(usuario);
+      ShowMessage('Usuário cadastrado com sucesso!');
+
+    finally
+      controller.Free;
+  end;
+    usuario.Free;
 end;
 
 procedure TFormHome.lblBtnEditarGerenteClick(Sender: TObject);

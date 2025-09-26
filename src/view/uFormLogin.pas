@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
   Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.Mask, transpController, uTransportadora, uUsuario,loginController,
   Vcl.ComCtrls,System.Generics.Collections, LoginDto, System.ImageList,
-  Vcl.ImgList, adminController, adminDto, uFormHome;
+  Vcl.ImgList, adminController, adminDto, uFormHome,UsuarioLogado;
 
 type
   TFormLogin = class(TForm)
@@ -258,6 +258,7 @@ begin
             'Cargo: ' + user.getCargo_descricao + sLineBreak +
             'Transportadora ID: ' + user.getIdTransportadora.ToString
           );
+          UsuarioLogado.userLogado := user;
           FormHome.ShowModal;
           Close;
         end;
@@ -270,7 +271,7 @@ begin
               'Cargo: ' + user.getCargo_descricao + sLineBreak +
               'Transportadora ID: ' + user.getIdTransportadora.ToString
             );
-
+              UsuarioLogado.userLogado := user;
               Panel1.Visible := False;
               PanelAdmin.Visible := True;
               atualizarTabela;
