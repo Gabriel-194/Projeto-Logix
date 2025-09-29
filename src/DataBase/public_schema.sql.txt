@@ -50,7 +50,8 @@ CREATE TABLE IF NOT EXISTS public.motorista (
 CREATE TABLE IF NOT EXISTS public.permissao (
     id_permissao  SERIAL PRIMARY KEY,
     nome          VARCHAR(80) NOT NULL,
-    descricao     VARCHAR(255)
+    descricao     VARCHAR(255),
+    selecionado varchar(1)
 );
 
 -- Relação usuário x permissões (N:N)

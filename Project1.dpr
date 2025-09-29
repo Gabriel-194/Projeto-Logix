@@ -20,9 +20,11 @@ uses
   loginTypes in 'src\model\loginTypes.pas',
   uFormLogin in 'src\view\uFormLogin.pas' {FormLogin},
   usuarioLogado in 'src\session\usuarioLogado.pas',
-  userController in 'src\controller\userController.pas',
   userService in 'src\service\userService.pas',
-  userRepository in 'src\repository\userRepository.pas';
+  userRepository in 'src\repository\userRepository.pas',
+  homeRepository in 'src\repository\homeRepository.pas',
+  homeService in 'src\service\homeService.pas',
+  homeController in 'src\controller\homeController.pas';
 
 {$R *.res}
 

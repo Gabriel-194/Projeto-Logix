@@ -105,7 +105,7 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <DCC_UnitSearchPath>C:\Users\gabriel kuchma\Documents\Embarcadero\Studio\Projects\Projeto-Logix\bcrypt-for-delphi-master;C:\Users\gabri\OneDrive\Documents\Embarcadero\Studio\Projects\Projeto-Logix\bcrypt-for-delphi-master;C:\Users\gabri\OneDrive\Documents\Embarcadero\Studio\Projects\Projeto-Logix\src\bcrypt-for-delphi-master;C:\Users\kuchma.2973\Documents\Embarcadero\Studio\Projects\Projeto-Logix\src\bcrypt-for-delphi-master;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>C:\Users\gabriel kuchma\Documents\Embarcadero\Studio\Projects\Projeto-Logix\bcrypt-for-delphi-master;C:\Users\gabri\OneDrive\Documents\Embarcadero\Studio\Projects\Projeto-Logix\bcrypt-for-delphi-master;C:\Users\gabri\OneDrive\Documents\Embarcadero\Studio\Projects\Projeto-Logix\src\bcrypt-for-delphi-master;C:\Users\kuchma.2973\Documents\Embarcadero\Studio\Projects\Projeto-Logix\src\bcrypt-for-delphi-master;C:\Users\gabriel kuchma\Documents\Embarcadero\Studio\Projects\Projeto-Logix\src\bcrypt-for-delphi-master;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
@@ -153,9 +153,11 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\session\usuarioLogado.pas"/>
-        <DCCReference Include="src\controller\userController.pas"/>
         <DCCReference Include="src\service\userService.pas"/>
         <DCCReference Include="src\repository\userRepository.pas"/>
+        <DCCReference Include="src\repository\homeRepository.pas"/>
+        <DCCReference Include="src\service\homeService.pas"/>
+        <DCCReference Include="src\controller\homeController.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

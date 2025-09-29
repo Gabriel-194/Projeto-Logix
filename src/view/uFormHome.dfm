@@ -1333,7 +1333,7 @@ object FormHome: TFormHome
         object pnlBtnEditarGerente: TPanel
           AlignWithMargins = True
           Left = 100
-          Top = 120
+          Top = 150
           Width = 421
           Height = 30
           Margins.Left = 100
@@ -1344,7 +1344,6 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           Constraints.MaxWidth = 598
           TabOrder = 0
-          ExplicitTop = 190
           object Shape18: TShape
             Left = 0
             Top = 0
@@ -1379,11 +1378,11 @@ object FormHome: TFormHome
         object pnlBtnCadastrarGerente: TPanel
           AlignWithMargins = True
           Left = 100
-          Top = 50
+          Top = 80
           Width = 421
           Height = 30
           Margins.Left = 100
-          Margins.Top = 50
+          Margins.Top = 80
           Margins.Right = 100
           Margins.Bottom = 10
           Align = alTop
@@ -1459,6 +1458,9 @@ object FormHome: TFormHome
             item
               Caption = 'E- mail'
               Width = 100
+            end
+            item
+              Caption = 'cargo'
             end>
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1472,7 +1474,7 @@ object FormHome: TFormHome
         object pnlBtnExcluirGerente: TPanel
           AlignWithMargins = True
           Left = 100
-          Top = 289
+          Top = 319
           Width = 421
           Height = 30
           Margins.Left = 100
@@ -1483,7 +1485,6 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           Constraints.MaxWidth = 598
           TabOrder = 3
-          ExplicitTop = 359
           object Shape20: TShape
             Left = 0
             Top = 0
@@ -1517,7 +1518,7 @@ object FormHome: TFormHome
         object pnlBtnRecuperarGerente: TPanel
           AlignWithMargins = True
           Left = 100
-          Top = 190
+          Top = 220
           Width = 421
           Height = 30
           Margins.Left = 100
@@ -1528,7 +1529,6 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           Constraints.MaxWidth = 598
           TabOrder = 4
-          ExplicitTop = 260
           object Shape21: TShape
             Left = 0
             Top = 0
@@ -1563,7 +1563,7 @@ object FormHome: TFormHome
         object pnlBtnRecuperarGerenteConfirm: TPanel
           AlignWithMargins = True
           Left = 200
-          Top = 230
+          Top = 260
           Width = 221
           Height = 29
           Margins.Left = 200
@@ -1574,7 +1574,6 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           TabOrder = 5
           Visible = False
-          ExplicitTop = 300
           object Shape22: TShape
             Left = 0
             Top = 0
@@ -1603,6 +1602,7 @@ object FormHome: TFormHome
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
+            OnClick = lblBtnRecuperaGerenteConfirmClick
             ExplicitWidth = 107
             ExplicitHeight = 25
           end
@@ -1610,7 +1610,7 @@ object FormHome: TFormHome
         object pnlBtnExcluirGerenteConfirm: TPanel
           AlignWithMargins = True
           Left = 200
-          Top = 329
+          Top = 359
           Width = 221
           Height = 29
           Margins.Left = 200
@@ -1621,7 +1621,6 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           TabOrder = 6
           Visible = False
-          ExplicitTop = 399
           object Shape23: TShape
             Left = 0
             Top = 0
@@ -1650,6 +1649,7 @@ object FormHome: TFormHome
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
+            OnClick = lblBtnExcluirGerenteConfirmClick
             ExplicitWidth = 76
             ExplicitHeight = 25
           end
@@ -1695,7 +1695,7 @@ object FormHome: TFormHome
         object Panel17: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 122
+          Top = 249
           Width = 858
           Height = 41
           Margins.Top = 0
@@ -1704,7 +1704,6 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 0
-          ExplicitTop = 199
           object pnlEditNomeGerente: TPanel
             AlignWithMargins = True
             Left = 80
@@ -1800,14 +1799,13 @@ object FormHome: TFormHome
         object Panel20: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 254
+          Top = 381
           Width = 858
           Height = 41
           Align = alBottom
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 2
-          ExplicitTop = 331
           object Label1: TLabel
             AlignWithMargins = True
             Left = 80
@@ -1829,16 +1827,15 @@ object FormHome: TFormHome
         object Panel21: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 298
+          Top = 425
           Width = 858
           Height = 41
           Margins.Top = 0
-          Margins.Bottom = 20
+          Margins.Bottom = 80
           Align = alBottom
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 3
-          ExplicitTop = 375
           object pnlEditSenhaGerente: TPanel
             AlignWithMargins = True
             Left = 80
@@ -1887,14 +1884,13 @@ object FormHome: TFormHome
         object Panel23: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 166
+          Top = 293
           Width = 858
           Height = 41
           Align = alBottom
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 4
-          ExplicitTop = 243
           object Label2: TLabel
             AlignWithMargins = True
             Left = 80
@@ -1933,7 +1929,7 @@ object FormHome: TFormHome
         object Panel24: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 210
+          Top = 337
           Width = 858
           Height = 41
           Margins.Top = 0
@@ -1942,7 +1938,6 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 5
-          ExplicitTop = 287
           object pnlEditTelefoneGerente: TPanel
             AlignWithMargins = True
             Left = 80
@@ -2039,7 +2034,7 @@ object FormHome: TFormHome
         object Panel27: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 73
+          Top = 200
           Width = 858
           Height = 49
           Margins.Bottom = 0
@@ -2047,7 +2042,6 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 1
-          ExplicitTop = 150
           object Label16: TLabel
             AlignWithMargins = True
             Left = 80
@@ -2083,93 +2077,18 @@ object FormHome: TFormHome
             ExplicitHeight = 32
           end
         end
-        object Panel28: TPanel
-          AlignWithMargins = True
-          Left = 831
-          Top = 73
-          Width = 30
-          Height = 0
-          Margins.Top = 5
-          Margins.Bottom = 150
-          Align = alRight
-          BevelOuter = bvNone
-          TabOrder = 6
-          object Shape29: TShape
-            Left = 0
-            Top = 0
-            Width = 30
-            Height = 0
-            Align = alClient
-            Pen.Color = clBlue
-            Shape = stRoundRect
-            ExplicitTop = 48
-            ExplicitWidth = 97
-            ExplicitHeight = 28
-          end
-          object imgVoltarGerente: TImage
-            Left = 0
-            Top = 0
-            Width = 30
-            Height = 0
-            Align = alClient
-            Center = True
-            Picture.Data = {
-              0954506E67496D61676589504E470D0A1A0A0000000D49484452000000800000
-              00800806000000C33E61CB000000097048597300000B1300000B1301009A9C18
-              000000B46558496649492A000800000006001201030001000000010000001A01
-              050001000000560000001B010500010000005E00000028010300010000000200
-              0000130203000100000001000000698704000100000066000000000000004800
-              0000010000004800000001000000060000900700040000003032313001910700
-              040000000102030000A00700040000003031303001A0030001000000FFFF0000
-              02A00400010000008000000003A004000100000080000000000000004ABE23F4
-              000003A24944415478DAEDDD4D6E13611084E144708AB0E61E888B935384057B
-              14CE902C7049B614210889A7BFAFABBAEA952CC422D1F4F4437EEC31737B93AC
-              BBED3E80D45B00981700E605807901605E00981700E605807901605E00981700
-              E605807901605E00981700E605807901605E00981700E605807901605E009817
-              00E67503F87CFEF347F789709DBF130086FF767A7C3C3DBE9E1E0F8DC7623B7F
-              1780CBF09FCE7FFFD579129CE7EF00F0E7F0975C1050CDBF1BC0BF866F3D09CE
-              F3EF04F0BFE1DB4E82F3FCBB00BC75F89693E03CFF0E00EF1D7EFB49709E9F19
-              C0B693403AFBE379F6EF2B0F90F55BC0CB5411D02F1F31FE10F8B7D410482C1F
-              B1FD1AF85A2A0864968F989E087A4BEC08A4968F589E0A7E4FAC08E4968F185E
-              0C9A804072F988E1E5607504B2CB47DD00903202E9E5230600481181FCF2110B
-              00A48460C4F2111300A48060CCF2111B00C48C60D4F2112300C48860DCF2112B
-              00C48460E4F2113300C48060ECF2113B00D48960F4F2910200D48160FCF2910A
-              00B41381C5F2911200B40381CDF2911A00B41281D5F2912200B40281DDF2912A
-              005489C072F9481900AA40F074E073482F1FA9034040707F7ADC5DF1B13FCF7F
-              5EFBB15F6EC4FF6F830900D091AF04D724FF2FFFD2140068178231CB479300A0
-              D508462D1F4D0380562118B77C341100AA463072F9682A00548560ECF2D16400
-              E82882D1CB4701F07ADDEF3B58DE640055DF024623980AA0FA87C0B108260258
-              F56BE04804D300AC7E22681C824900763D153C0AC11400BB5F0C1A83600280BC
-              1C7C2075001557F23C1FF81CF25F099401545EC6C5F00EA4965401ACB886CF12
-              812280951770DA215003B0E3EA5D2B044A00765EBA6D83400540C775FB160814
-              0074BE69633C0276000CEFD8198D801900C3F22B8E851A012B00A6E5571C132D
-              0246008CCBAF38364A046C0098975F718C74089800282CBFE258A910B000505A
-              7EC531D3206000A0B8FC8A63A740D00D4079F91533B42350BD650CCBF22B6669
-              45A078D328B6E557CCD48640EDB671ACCBAF98AD0581D28D23D9975F31E37604
-              2AB78E55597EC5AC5B1128DC3C5A6DF915336F43C07EFB78D5E557CCBE050133
-              00F5E54BCCCFFA2D60CAF2E9E767FC2170DAF2A9E767FB3570EAF269E7677A22
-              68FAF229E767792AD865F974F333BC18F4A16BF8E628E66778391849BFC75E79
-              FE6E00A9B900302F00CC0B00F302C0BC00302F00CC0B00F302C0BC00302F00CC
-              0B00F302C0BC00302F00CC0B00F302C0BC00302F00CC0B00F302C0BC00302F00
-              CC0B00F37E03FA7FA690A75DFBDA0000000049454E44AE426082}
-            Proportional = True
-            Stretch = True
-            ExplicitHeight = 153
-          end
-        end
         object Panel29: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 589
+          Top = 549
           Width = 858
           Height = 73
-          Margins.Bottom = 30
+          Margins.Bottom = 70
           Align = alBottom
           BevelOuter = bvNone
           Color = clWhite
           ParentBackground = False
-          TabOrder = 7
-          ExplicitTop = 539
+          TabOrder = 6
           object pnlCadastrarGerente: TPanel
             AlignWithMargins = True
             Left = 300
@@ -2253,6 +2172,7 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
+              OnClick = lblBtnEditarGerenteConfClick
               ExplicitWidth = 65
               ExplicitHeight = 25
             end
@@ -2265,7 +2185,7 @@ object FormHome: TFormHome
           Width = 30
           Height = 26
           BevelOuter = bvNone
-          TabOrder = 8
+          TabOrder = 7
           object Shape43: TShape
             Left = 0
             Top = 0
@@ -2329,64 +2249,6 @@ object FormHome: TFormHome
             OnClick = imgBtnFechaOptionsGerenteClick
             ExplicitHeight = 153
           end
-        end
-        object DBGridPermissaoGerente: TDBGrid
-          AlignWithMargins = True
-          Left = 80
-          Top = 362
-          Width = 704
-          Height = 221
-          Margins.Left = 80
-          Margins.Right = 80
-          Align = alBottom
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -17
-          Font.Name = 'Segoe UI'
-          Font.Style = []
-          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
-          ParentFont = False
-          ReadOnly = True
-          TabOrder = 9
-          TitleFont.Charset = DEFAULT_CHARSET
-          TitleFont.Color = clWindowText
-          TitleFont.Height = -16
-          TitleFont.Name = 'Segoe UI'
-          TitleFont.Style = [fsBold]
-          Columns = <
-            item
-              Expanded = False
-              FieldName = 'id_permissao'
-              Title.Caption = 'ID'
-              Visible = True
-            end
-            item
-              Alignment = taCenter
-              Expanded = False
-              FieldName = 'nome'
-              Title.Caption = 'Nome permiss'#227'o'
-              Width = 250
-              Visible = True
-            end
-            item
-              Alignment = taCenter
-              Expanded = False
-              FieldName = 'descricao'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -16
-              Font.Name = 'Segoe UI'
-              Font.Style = []
-              Title.Caption = 'Descri'#231#227'o da Permiss'#227'o'
-              Width = 360
-              Visible = True
-            end
-            item
-              Expanded = False
-              FieldName = 'selecionado'
-              Width = 150
-              Visible = True
-            end>
         end
       end
     end
@@ -5588,9 +5450,5 @@ object FormHome: TFormHome
         end
       end
     end
-  end
-  object dSrcPermissao: TDataSource
-    Left = 661
-    Top = 151
   end
 end

@@ -5,8 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
-  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask, usuarioLogado,uUsuario,userController,
-  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController;
+  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask, usuarioLogado,uUsuario,
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController,system.Generics.Collections;
 
 type
   TFormHome = class(TForm)
@@ -108,9 +108,6 @@ type
     Panel27: TPanel;
     Label16: TLabel;
     Label17: TLabel;
-    Panel28: TPanel;
-    Shape29: TShape;
-    imgVoltarGerente: TImage;
     Panel29: TPanel;
     pnlCadastrarGerente: TPanel;
     Shape30: TShape;
@@ -321,8 +318,6 @@ type
     imgFechaOptionsVeiculo: TImage;
     MaskEditAnoVeiculo: TMaskEdit;
     ComboBoxUnidadeMed: TComboBox;
-    dSrcPermissao: TDataSource;
-    DBGridPermissaoGerente: TDBGrid;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -348,9 +343,13 @@ type
     procedure lblBtnRecuperarVeiculoClick(Sender: TObject);
     procedure lblBtnExcluirVeiculoClick(Sender: TObject);
     procedure lblBtnCadastrarGerenteConfClick(Sender: TObject);
-    procedure lblBtnDefPermissoesGerenteClick(Sender: TObject);
-    procedure ImgBtnFechaDefPermissoesGerenteClick(Sender: TObject);
-    procedure lblBtnConfPermissoesGerenteClick(Sender: TObject);
+    procedure mostrarGerente;
+    procedure mostrarGerenteInativo;
+    procedure lblBtnEditarGerenteConfClick(Sender: TObject);
+    procedure lblBtnExcluirGerenteConfirmClick(Sender: TObject);
+    procedure lblBtnRecuperaGerenteConfirmClick(Sender: TObject);
+
+
   private
     { Private declarations }
   public
@@ -364,18 +363,86 @@ implementation
 
 {$R *.dfm}
 
+// procedures de atualizar tabelas
+procedure TFormHome.mostrarGerente;
+var
+  controller: ThomeController;
+  ListaUser: TObjectList<Tusuario>;
+  user: Tusuario;
+  Item: TListItem;
+begin
+  controller := ThomeController.Create;
+  try
+    ListaUser := controller.MostrarGerente;
+    try
+      lswGerente.Items.Clear;
+
+      for user in ListaUser do
+      begin
+        Item := lswGerente.Items.Add;
+        Item.Caption := user.getId.ToString;
+        Item.SubItems.Add(user.getNome);
+        Item.SubItems.Add(user.getCpf);
+        Item.SubItems.Add(user.getIdTransportadora.ToString);
+        Item.SubItems.Add(user.getTelefone);
+        Item.SubItems.Add(user.getEmail);
+        Item.SubItems.Add(user.getCargo_descricao);
+      end;
+
+    finally
+      listaUser.Free;
+    end;
+  finally
+    controller.Free;
+  end;
+end;
+
+procedure TFormHome.mostrarGerenteInativo;
+var
+  controller: ThomeController;
+  ListaUser: TObjectList<Tusuario>;
+  user: Tusuario;
+  Item: TListItem;
+begin
+  controller := ThomeController.Create;
+  try
+    ListaUser := controller.MostrarGerenteInativo;
+    try
+      lswGerente.Items.Clear;
+
+      for user in ListaUser do
+      begin
+        Item := lswGerente.Items.Add;
+        Item.Caption := user.getId.ToString;
+        Item.SubItems.Add(user.getNome);
+        Item.SubItems.Add(user.getCpf);
+        Item.SubItems.Add(user.getIdTransportadora.ToString);
+        Item.SubItems.Add(user.getTelefone);
+        Item.SubItems.Add(user.getEmail);
+        Item.SubItems.Add(user.getCargo_descricao);
+      end;
+
+    finally
+      listaUser.Free;
+    end;
+  finally
+    controller.Free;
+  end;
+end;
+
+// ====================== on show form home ============================
+
+
+
 //============HEADER =====================================================
 procedure TFormHome.lblCadastrosBtnClick(Sender: TObject);
 begin
 pagecontrolCadastrar.visible := true;
-end;
-
-procedure TFormHome.pnlBtnRecuperarCarregadorConfClick(Sender: TObject);
-begin
-
+mostrarGerente;
 end;
 
 //=================== GERENTE ============================================
+
 
 procedure TFormHome.Image8Click(Sender: TObject);
 begin
@@ -391,8 +458,6 @@ procedure TFormHome.lblBtnCadastrarGerenteClick(Sender: TObject);
 var
 controller :ThomeController;
 begin
-dSrcPermissao.DataSet := controller.mostrarPemissao;
-DBGridPermissaoGerente.DataSource := dSrcPermissao;
 panelOptionsGerente.Visible := true;
 lblPanelOptionGerente.caption := 'Cadastrar Gerente';
 pnlEditarGerente.visible := false;
@@ -403,7 +468,7 @@ end;
 
 procedure TFormHome.lblBtnCadastrarGerenteConfClick(Sender: TObject);
 var
-controller:TuserController;
+controller:THomeController;
 usuario :Tusuario;
 begin
 usuario := TUsuario.Create;
@@ -413,13 +478,17 @@ usuario := TUsuario.Create;
   usuario.Setcpf(MaskEditCpfGerente.Text);
   usuario.setTelefone (MaskEditTelefoneGerente.text);
   usuario.setCargo_descricao('gerente');
-  usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
+//  usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
+// jeito para teste ->
+ usuario.SetIdTransportadora(4);
 
-  controller := TUserController.Create;
+
+
+  controller := THomeController.Create;
   try
       controller.CadastrarUsuario(usuario);
-      ShowMessage('Usuário cadastrado com sucesso!');
-
+      ShowMessage('Gerente cadastrado com sucesso!');
+      mostrarGerente;
     finally
       controller.Free;
   end;
@@ -427,6 +496,10 @@ usuario := TUsuario.Create;
 end;
 
 procedure TFormHome.lblBtnEditarGerenteClick(Sender: TObject);
+var
+  Controller: ThomeController;
+  Lista: TObjectList<Tusuario>;
+  Transp: Tusuario;
 begin
 panelOptionsGerente.Visible := true;
 pnlEditarGerente.visible := true;
@@ -434,8 +507,57 @@ pnlCadastrarGerente.visible := false;
 lblPanelOptionGerente.caption := 'Editar Gerente';
 pnlBtnRecuperarGerenteConfirm.visible := false;
 pnlBtnExcluirGerenteConfirm.visible := false;
+
+    if lswgerente.selected = nil then begin
+    showMessage('selecione um gerente na lista para editar.');
+    mostrarGerente;
+    exit;
+    end;
+
+    EditNomeGerente.text := lswGerente.selected.subItems[0];
+    MaskEditCpfGerente.text := lswGerente.selected.SubItems[1];
+    MaskEditTelefoneGerente.Text := lswGerente.selected.subItems[3];
+    editEmailGerente.Text := lswGerente.selected.subItems[4];
+
 end;
 
+
+procedure TFormHome.lblBtnEditarGerenteConfClick(Sender: TObject);
+var
+controller : THomeController;
+usuario : Tusuario;
+codParaEditar : integer;
+idTransp:String;
+begin
+  codParaEditar := StrToInt(lswGerente.Selected.Caption);
+  try
+    usuario := TUsuario.Create;
+    usuario.setId(codParaEditar);
+    usuario.setNome(EditNomeGerente.Text);
+    usuario.setEmail (editEmailGerente.text);
+    usuario.setsenha_hash (EditSenhaGerente.text);
+    usuario.Setcpf(MaskEditCpfGerente.Text);
+    usuario.setTelefone (MaskEditTelefoneGerente.text);
+    usuario.setCargo_descricao('gerente');
+    //  usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
+    // jeito para teste ->
+
+    controller := ThomeController.create;
+    try
+      controller.EditarUser(usuario);
+      showMessage('Gerente editado com sucesso!!');
+      mostrarGerente;
+    finally
+      controller.free;
+    end;
+  finally
+    EditNomeGerente.clear;
+    MaskEditCpfGerente.clear;
+    editEmailGerente.clear;
+    EditSenhaGerente.clear;
+    MaskEditTelefoneGerente.clear;
+  end;
+end;
 
 procedure TFormHome.ImgBtnFechaOptionsGerenteClick(Sender: TObject);
 begin
@@ -446,56 +568,77 @@ procedure TFormHome.lblBtnRecuperarGerenteClick(Sender: TObject);
 begin
 pnlBtnRecuperarGerenteConfirm.visible := true;
 pnlBtnExcluirGerenteConfirm.visible := false;
+
+  showMessage('Agora a tabela ira mostrar os gerentes excluidos');
+  mostrarGerenteInativo;
 end;
 
 procedure TFormHome.lblBtnExcluirGerenteClick(Sender: TObject);
 begin
 pnlBtnRecuperarGerenteConfirm.visible := false;
 pnlBtnExcluirGerenteConfirm.visible := true;
+mostrarGerente;
 end;
 
-procedure TFormHome.lblBtnDefPermissoesGerenteClick(Sender: TObject);
+procedure TFormHome.lblBtnExcluirGerenteConfirmClick(Sender: TObject);
 var
-controller :ThomeController;
+controller : THomeController;
+user : Tusuario;
+codParaExcluir: Integer;
 begin
-
-
-  dSrcPermissao.DataSet := controller.mostrarPemissao;
-  DBGridPermissaoGerente.DataSource := dSrcPermissao;
-end;
-
-procedure TFormHome.lblBtnConfPermissoesGerenteClick(Sender: TObject);
-var
-  i: Integer;
-  DS: TDataSet;
-begin
-  if DBGridPermissaoGerente.SelectedRows.Count = 0 then
-  begin
-    ShowMessage('Por favor, selecione uma ou mais permissões no grid (usando Ctrl/Shift + clique).');
-    Exit;
+  if lswGerente.selected = nil then begin
+    showMessage('selecione um gerente na lista para Excluir.');
+    MostrarGerente;
+    exit;
   end;
 
-  DS := DBGridPermissaoGerente.DataSource.DataSet;
-
-  DS.DisableControls;
-  try
-    DS.First;
-    while not DS.Eof do
+  if MessageDlg('Tem certeza que deseja excluir o gerente selecionado?',mtConfirmation, [mbYes, mbNo], 0) = mrNo then
     begin
-      for i := 0 to DBGridPermissaoGerente.SelectedRows.Count - 1 do
-      begin
-        if DS.CompareBookmarks(DS.Bookmark, DBGridPermissaoGerente.SelectedRows[i]) = 0 then
-        begin
-          DS.Edit;
-          DS.FieldByName('selecionado').AsString := 'X'; 
-          DS.Post;
-          Break;
-        end;
-      end;
-      DS.Next;
+      exit;
     end;
+
+  codParaExcluir := StrToInt(lswGerente.Selected.Caption);
+  user := Tusuario.create;
+  user.setId(codParaExcluir);
+
+  controller := THomeController.Create;
+  try
+    controller.excluirUser(user);
+    showMessage('gerente excluido com sucesso.');
+    mostrarGerente;
   finally
-    DS.EnableControls;
+    controller.free;
+  end;
+end;
+
+procedure TFormHome.lblBtnRecuperaGerenteConfirmClick(Sender: TObject);
+var
+controller : THomeController;
+user : Tusuario;
+codParaExcluir: Integer;
+begin
+  if lswGerente.selected = nil then begin
+    showMessage('selecione um gerente na lista para recuperar.');
+    mostrarGerenteInativo;
+    exit;
+  end;
+
+  if MessageDlg('Tem certeza que deseja recuperar o gerente selecionado?',mtConfirmation, [mbYes, mbNo], 0) = mrNo then
+    begin
+      exit;
+    end;
+
+  codParaExcluir := StrToInt(lswGerente.Selected.Caption);
+  user := Tusuario.create;
+  user.setId(codParaExcluir);
+
+  controller := THomeController.Create;
+  try
+    controller.recuperarUser(user);
+    showMessage('gerente recuperado com sucesso.');
+    mostrarGerenteInativo;
+  finally
+    controller.free;
   end;
 end;
 
@@ -564,6 +707,7 @@ begin
 panelOptionsCarregador.Visible := false;
 end;
 
+
 procedure TFormHome.lblBtnRecuperarCarregadorClick(Sender: TObject);
 begin
 pnlBtnRecuperarCarregadorConf.visible := true;
@@ -574,6 +718,10 @@ procedure TFormHome.lblBtnExcluirCarregadorClick(Sender: TObject);
 begin
 pnlBtnRecuperarCarregadorConf.visible := false;
 pnlBtnExcluirCarregadorConf.visible := true;
+end;
+procedure TFormHome.pnlBtnRecuperarCarregadorConfClick(Sender: TObject);
+begin
+
 end;
 
 //================= VEICULOS ===================================================
