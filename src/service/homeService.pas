@@ -4,20 +4,26 @@ interface
 uses
 data.DB,homeRepository;
 type ThomeService = class
-  function mostrarPermissoes : TDataSet;
+function ContarUsuariosPorCargo(const aCargo: string): Integer;
+
 end;
 
 implementation
 
 { ThomeService }
 
-function ThomeService.mostrarPermissoes: TDataSet;
-var
-homeRepo : ThomeRepository;
-begin
-homeRepo := ThomeRepository.create;
+{ ThomeService }
 
-result := homeRepo.mostrarPermissoes;
+function ThomeService.ContarUsuariosPorCargo(const aCargo: string): Integer;
+var
+homeRepo:ThomeRepository;
+begin
+  homeRepo := ThomeRepository.create;
+  try
+    result := homeRepo.ContarUsuariosPorCargo(aCargo);
+  finally
+    homeRepo.free;
+  end;
 end;
 
 end.

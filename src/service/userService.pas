@@ -5,10 +5,10 @@ uses
 uUsuario, system.Generics.Collections, BCrypt, System.SysUtils,userRepository;
   type TuserService = class
     procedure cadastrarUsuario(aUsuario:TUsuario);
-    function mostrarGerente: TobjectList<Tusuario>;
+    function mostrarUser(const aCargo: string): TObjectList<Tusuario>;
     procedure editarUser (aUsuario:TUsuario);
     procedure excluirUser(aUsuario:TUsuario);
-    function mostrarGerenteInativo: TobjectList<Tusuario>;
+    function MostrarUserInativo(const aCargo: string): TObjectList<Tusuario>;
     procedure recuperarUser(aUsuario:Tusuario);
   end;
 
@@ -113,25 +113,25 @@ userRepo := TuserRepository.create;
   end;
 end;
 
-function TuserService.mostrarGerente: TobjectList<Tusuario>;
+function TuserService.mostrarUser(const aCargo: string): TObjectList<Tusuario>;
 var
 userRepo : TuserRepository;
 begin
 userRepo := TuserRepository.create;
   try
-    result := userRepo.mostrarGerente;
+    result := userRepo.mostrarUser(aCargo);
   finally
     userRepo.free;
   end;
 end;
 
-function TuserService.mostrarGerenteInativo: TobjectList<Tusuario>;
+function TuserService.MostrarUserInativo(const aCargo: string): TObjectList<Tusuario>;
 var
 userRepo : TuserRepository;
 begin
 userRepo := TuserRepository.create;
   try
-    result := userRepo.MostrarGerenteInativo;
+    result := userRepo.MostrarUserInativo(aCargo);
   finally
     userRepo.free;
   end;

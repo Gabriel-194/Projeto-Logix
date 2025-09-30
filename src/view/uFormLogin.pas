@@ -164,6 +164,9 @@ type
     Shape33: TShape;
     ImgAdmin: TImage;
     Label2: TLabel;
+    Panel3: TPanel;
+    Shape36: TShape;
+    Label3: TLabel;
     procedure lick(Sender: TObject);
     procedure btnchangeCadastrarClick(Sender: TObject);
     procedure voltarImageClick(Sender: TObject);

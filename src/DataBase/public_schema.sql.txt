@@ -29,7 +29,6 @@ CREATE TABLE IF NOT EXISTS public.usuarios (
     email             VARCHAR(90) UNIQUE NOT NULL,
     cargo_descricao   VARCHAR(50), -- ex: admin, user, motorista
     ativo             BOOLEAN DEFAULT TRUE,
-    status            BOOLEAN DEFAULT TRUE,
     id_transportadora INT REFERENCES public.transportadora(id),
     data_cadastro     TIMESTAMP DEFAULT now(),
     data_atualizacao  TIMESTAMP DEFAULT now()

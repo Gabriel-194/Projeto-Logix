@@ -7,10 +7,10 @@ type
   TUserRepository = class
   public
     procedure cadastrarUsuario(aUsuario: TUsuario);
-    function mostrarGerente: TobjectList <Tusuario>;
+    function mostrarUser(const aCargo: string): TObjectList<Tusuario>;
     procedure editarUser(aUsuario: TUsuario);
     procedure excluirUser(aUsuario:Tusuario);
-    function MostrarGerenteInativo: TobjectList <Tusuario>;
+    function MostrarUserInativo(const aCargo: string): TObjectList<Tusuario>;
     procedure recuperarUser(aUsuario:Tusuario);
   end;
 
@@ -78,7 +78,7 @@ begin
   try
     FDQuery.Connection := datamodule2.FDConnection1;
 
-     FDQuery.SQL.Text := 'UPDATE public.usuarios SET ativo = FALSE WHERE id_usuario = :id_usuario AND cargo_descricao = ''gerente''';
+     FDQuery.SQL.Text := 'UPDATE public.usuarios SET ativo = FALSE WHERE id_usuario = :id_usuario';
      FDQuery.ParamByName('id_usuario').AsInteger := aUsuario.getId;
 
     FDQuery.ExecSQL;
@@ -87,7 +87,7 @@ begin
   end;
 end;
 
-function TUserRepository.mostrarGerente: TobjectList<Tusuario>;
+function TUserRepository.mostrarUser(const aCargo: string): TObjectList<Tusuario>;
 var
   user: Tusuario;
   FDQuery : TFDQuery;
@@ -98,9 +98,11 @@ begin
     FDQuery.Connection := DataModule2.FDConnection1;
 
     FDQuery.SQL.Text := 'SELECT id_usuario, nome, cpf, id_transportadora, telefone, email, cargo_descricao ' +
-                    'FROM public.usuarios ' +
-                    'WHERE ativo = TRUE AND cargo_descricao = ''gerente'' ' +
-                    'ORDER BY id_usuario';
+                        'FROM public.usuarios ' +
+                        'WHERE ativo = TRUE AND cargo_descricao = :cargo ' +
+                        'ORDER BY id_usuario';
+    FDQuery.ParamByName('cargo').AsString := aCargo;
+
     FDQuery.Open;
 
     user := Default(Tusuario);
@@ -123,7 +125,7 @@ begin
   end;
 end;
 
-function TUserRepository.MostrarGerenteInativo: TobjectList<Tusuario>;
+function TUserRepository.MostrarUserInativo(const aCargo: string): TObjectList<Tusuario>;
 var
   user: Tusuario;
   FDQuery : TFDQuery;
@@ -134,9 +136,11 @@ begin
     FDQuery.Connection := DataModule2.FDConnection1;
 
     FDQuery.SQL.Text := 'SELECT id_usuario, nome, cpf, id_transportadora, telefone, email, cargo_descricao ' +
-                    'FROM public.usuarios ' +
-                    'WHERE ativo = false AND cargo_descricao = ''gerente'' ' +
-                    'ORDER BY id_usuario';
+                        'FROM public.usuarios ' +
+                        'WHERE ativo = false AND cargo_descricao = :cargo ' +
+                        'ORDER BY id_usuario';
+    FDQuery.ParamByName('cargo').AsString := aCargo;
+
     FDQuery.Open;
 
     user := Default(Tusuario);
@@ -167,7 +171,7 @@ begin
   try
     FDQuery.Connection := datamodule2.FDConnection1;
 
-     FDQuery.SQL.Text := 'UPDATE public.usuarios SET ativo = true WHERE id_usuario = :id_usuario AND cargo_descricao = ''gerente''';
+     FDQuery.SQL.Text := 'UPDATE public.usuarios SET ativo = true WHERE id_usuario = :id_usuario';
      FDQuery.ParamByName('id_usuario').AsInteger := aUsuario.getId;
 
     FDQuery.ExecSQL;

@@ -6,11 +6,13 @@ data.DB,homeService, uUsuario, userService, System.SysUtils, system.Generics.Col
 
 type THomeController = class
   procedure cadastrarUsuario(aUsuario:TUsuario);
-  function MostrarGerente: TobjectList<Tusuario>;
+  function MostrarUser(const aCargo: string): TObjectList<Tusuario>;
   procedure EditarUser(aUsuario:TUsuario);
   procedure excluirUser(aUsuario:TUsuario);
-  function MostrarGerenteInativo: TobjectList<Tusuario>;
+  function MostrarUserInativo(const aCargo: string): TObjectList<Tusuario>;
   procedure recuperarUser(aUsuario:Tusuario);
+  function ContarUsuariosPorCargo(const aCargo: string): Integer;
+
   end;
 
 implementation
@@ -30,6 +32,18 @@ begin
     service.CadastrarUsuario(aUsuario);
   finally
     service.Free;
+  end;
+end;
+
+function THomeController.ContarUsuariosPorCargo(const aCargo: string): Integer;
+var
+homeService:Thomeservice;
+begin
+  homeService:=Thomeservice.create;
+  try
+    result := homeService.ContarUsuariosPorCargo(aCargo);
+  finally
+    homeService.free;
   end;
 end;
 
@@ -57,25 +71,25 @@ service := TuserService.create;
   end;
 end;
 
-function THomeController.MostrarGerente: TobjectList<Tusuario>;
+function THomeController.mostrarUser(const aCargo: string): TObjectList<Tusuario>;
 var
 service : TuserService;
 begin
  service := TuserService.create;
  try
-   result := service.mostrarGerente;
+   result := service.mostrarUser(aCargo);
  finally
   service.free;
  end;
 end;
 
-function THomeController.MostrarGerenteInativo: TobjectList<Tusuario>;
+function THomeController.MostrarUserInativo(const aCargo: string): TObjectList<Tusuario>;
 var
 service : TuserService;
 begin
  service := TuserService.create;
  try
-   result := service.mostrarGerenteInativo;
+   result := service.MostrarUserInativo(aCargo);
  finally
   service.free;
  end;

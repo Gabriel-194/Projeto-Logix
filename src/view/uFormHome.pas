@@ -29,38 +29,36 @@ type
     Image2: TImage;
     Label4: TLabel;
     contadorVeiculos: TLabel;
-    Panel4: TPanel;
+    pedidosFeitos: TPanel;
     Shape8: TShape;
     Image3: TImage;
     Label5: TLabel;
-    Label6: TLabel;
-    Panel5: TPanel;
+    lblCountPedidos: TLabel;
+    clientesCadastrados: TPanel;
     Shape9: TShape;
     Image4: TImage;
     Label7: TLabel;
-    Label8: TLabel;
-    Panel6: TPanel;
+    lblCountCliente: TLabel;
+    gerentesCadastrados: TPanel;
     Shape10: TShape;
     Image5: TImage;
     Label9: TLabel;
-    Label10: TLabel;
-    Panel7: TPanel;
+    lblCountGerente: TLabel;
+    carregadoresCadastrados: TPanel;
     Shape11: TShape;
     Image6: TImage;
     Label11: TLabel;
-    Label12: TLabel;
-    Panel8: TPanel;
+    lblCountCarregador: TLabel;
+    motoristasCadastrados: TPanel;
     Shape12: TShape;
     Image7: TImage;
     Label13: TLabel;
-    Label14: TLabel;
+    lblCountMotorista: TLabel;
+    Image8: TImage;
     PageControlCadastrar: TPageControl;
     TabSheetGerente: TTabSheet;
-    TabSheetMotoristas: TTabSheet;
-    TabSheetCarregador: TTabSheet;
-    TabSheetVeiculos: TTabSheet;
-    Image8: TImage;
     PanelButtonGerentes: TPanel;
+    imgFecharPageControl: TImage;
     pnlBtnEditarGerente: TPanel;
     Shape18: TShape;
     lblBtnEditarGerente: TLabel;
@@ -115,7 +113,10 @@ type
     pnlEditarGerente: TPanel;
     Shape31: TShape;
     lblBtnEditarGerenteConf: TLabel;
-    imgFecharPageControl: TImage;
+    panelFechaOptionsGerente: TPanel;
+    Shape43: TShape;
+    imgBtnFechaOptionsGerente: TImage;
+    TabSheetMotoristas: TTabSheet;
     PanelButtonMotoristas: TPanel;
     Image9: TImage;
     PnlBtnEditarMotorista: TPanel;
@@ -153,6 +154,9 @@ type
     pnlEdtSenhaMotorista: TPanel;
     Shape34: TShape;
     EdtSenhaMotorista: TEdit;
+    pnlEdtCategoriaCnh: TPanel;
+    Shape42: TShape;
+    edtCategoriaCnh: TEdit;
     Panel26: TPanel;
     Label26: TLabel;
     Label27: TLabel;
@@ -188,14 +192,9 @@ type
     MaskEditValidadeCnh: TMaskEdit;
     Panel3: TPanel;
     Label3: TLabel;
-    Panel9: TPanel;
-    panelFechaOptionsGerente: TPanel;
-    Shape43: TShape;
-    imgBtnFechaOptionsGerente: TImage;
     Label18: TLabel;
-    pnlEdtCategoriaCnh: TPanel;
-    Shape42: TShape;
-    edtCategoriaCnh: TEdit;
+    Panel9: TPanel;
+    TabSheetCarregador: TTabSheet;
     PanelButtonsCarregador: TPanel;
     ImgFechaPageCoontrolCadastrar: TImage;
     pnlBtnEditarCarregador: TPanel;
@@ -217,9 +216,6 @@ type
     pnlBtnExcluirCarregadorConf: TPanel;
     Shape49: TShape;
     lblBtnExcluirCarregadorConf: TLabel;
-    pnlBtnDefPermissoesCarregador: TPanel;
-    Shape50: TShape;
-    lblBtnDefPermissoesCarregador: TLabel;
     panelOptionsCarregador: TPanel;
     lblOptionsCarregadores: TLabel;
     Panel11: TPanel;
@@ -258,6 +254,7 @@ type
     pnlImgFecharOptionsCarregador: TPanel;
     Shape59: TShape;
     imgFecharOptionCarregador: TImage;
+    TabSheetVeiculos: TTabSheet;
     panelButtonVeiculos: TPanel;
     imgFechaPageControl: TImage;
     pnlbtnEditarVeiculo: TPanel;
@@ -294,12 +291,14 @@ type
     pnlEdtCapacidadeVeiculo: TPanel;
     Shape67: TShape;
     EdtCapacidadeVeiculo: TEdit;
+    ComboBoxUnidadeMed: TComboBox;
     Panel38: TPanel;
     Label30: TLabel;
     Label31: TLabel;
     Panel39: TPanel;
     pnlEdtAnoVeiculo: TPanel;
     Shape68: TShape;
+    MaskEditAnoVeiculo: TMaskEdit;
     pnlEdtTipoCargaVeiculo: TPanel;
     Shape69: TShape;
     EditTipoCargaVeiculo: TEdit;
@@ -316,8 +315,6 @@ type
     PanelFechaOptionsVeiculo: TPanel;
     Shape72: TShape;
     imgFechaOptionsVeiculo: TImage;
-    MaskEditAnoVeiculo: TMaskEdit;
-    ComboBoxUnidadeMed: TComboBox;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -343,11 +340,18 @@ type
     procedure lblBtnRecuperarVeiculoClick(Sender: TObject);
     procedure lblBtnExcluirVeiculoClick(Sender: TObject);
     procedure lblBtnCadastrarGerenteConfClick(Sender: TObject);
-    procedure mostrarGerente;
-    procedure mostrarGerenteInativo;
+    procedure mostrarUser(const aCargo: string; aListView: TListView);
+    procedure MostrarUserInativo(const aCargo: string; aListView: TListView);
     procedure lblBtnEditarGerenteConfClick(Sender: TObject);
     procedure lblBtnExcluirGerenteConfirmClick(Sender: TObject);
     procedure lblBtnRecuperaGerenteConfirmClick(Sender: TObject);
+    procedure PageControlCadastrarChange(Sender: TObject);
+    procedure AtualizarDashboards;
+    procedure FormShow(Sender: TObject);
+    procedure lblBtnCadastrarCarregadorConfClick(Sender: TObject);
+    procedure lblBtnEditarCarregadorConfClick(Sender: TObject);
+    procedure lblBtnExcluirCarregadorConfClick(Sender: TObject);
+    procedure lblBtnRecuperarCarregadorConfClick(Sender: TObject);
 
 
   private
@@ -363,23 +367,27 @@ implementation
 
 {$R *.dfm}
 
-// procedures de atualizar tabelas
-procedure TFormHome.mostrarGerente;
+// procedure de atualizar tabelas
+procedure TFormHome.mostrarUser(const aCargo: string; aListView: TListView);
 var
   controller: ThomeController;
   ListaUser: TObjectList<Tusuario>;
   user: Tusuario;
   Item: TListItem;
 begin
+  if not Assigned(aListView) then
+    Exit;
+
   controller := ThomeController.Create;
   try
-    ListaUser := controller.MostrarGerente;
+
+    ListaUser := controller.MostrarUser(aCargo);
     try
-      lswGerente.Items.Clear;
+      aListView.Items.Clear;
 
       for user in ListaUser do
       begin
-        Item := lswGerente.Items.Add;
+        Item := aListView.Items.Add;
         Item.Caption := user.getId.ToString;
         Item.SubItems.Add(user.getNome);
         Item.SubItems.Add(user.getCpf);
@@ -396,23 +404,38 @@ begin
     controller.Free;
   end;
 end;
+procedure TFormHome.PageControlCadastrarChange(Sender: TObject);
+begin
+  if PageControlCadastrar.ActivePage = TabSheetGerente then
+  begin
+    mostrarUser('gerente', lswGerente);
+  end
+  else if PageControlCadastrar.ActivePage = TabSheetCarregador then
+  begin
+    mostrarUser('Carregador', lswCarregador);
+  end;
+end;
 
-procedure TFormHome.mostrarGerenteInativo;
+procedure TFormHome.mostrarUserInativo;
 var
   controller: ThomeController;
   ListaUser: TObjectList<Tusuario>;
   user: Tusuario;
   Item: TListItem;
 begin
+  if not Assigned(aListView) then
+    Exit;
+
   controller := ThomeController.Create;
   try
-    ListaUser := controller.MostrarGerenteInativo;
+
+    ListaUser := controller.MostrarUserInativo(aCargo);
     try
-      lswGerente.Items.Clear;
+      aListView.Items.Clear;
 
       for user in ListaUser do
       begin
-        Item := lswGerente.Items.Add;
+        Item := aListView.Items.Add;
         Item.Caption := user.getId.ToString;
         Item.SubItems.Add(user.getNome);
         Item.SubItems.Add(user.getCpf);
@@ -431,6 +454,32 @@ begin
 end;
 
 // ====================== on show form home ============================
+procedure TFormHome.AtualizarDashboards;
+var
+  controller: THomeController;
+begin
+  controller := THomeController.Create;
+  try
+    // --- Contadores baseados em Cargos de Usuários ---
+    lblCountGerente.Caption := controller.ContarUsuariosPorCargo('gerente').ToString;
+    lblCountCarregador.Caption := controller.ContarUsuariosPorCargo('Carregador').ToString;
+    lblCountMotorista.Caption := controller.ContarUsuariosPorCargo('motorista').ToString;
+
+    // --- Outros Contadores (exigirão seus próprios métodos no controller) ---
+    // Exemplo de como ficaria para os outros dashboards:
+    // lblContadorPedidos.Caption := controller.ContarPedidosDoDia.ToString;
+    // lblContadorClientes.Caption := controller.ContarClientesAtivos.ToString;
+    // lblContadorVeiculos.Caption := controller.ContarVeiculosAtivos.ToString;
+
+  finally
+    controller.Free;
+  end;
+end;
+
+procedure TFormHome.FormShow(Sender: TObject);
+begin
+  AtualizarDashboards;
+end;
 
 
 
@@ -438,7 +487,6 @@ end;
 procedure TFormHome.lblCadastrosBtnClick(Sender: TObject);
 begin
 pagecontrolCadastrar.visible := true;
-mostrarGerente;
 end;
 
 //=================== GERENTE ============================================
@@ -488,7 +536,8 @@ usuario := TUsuario.Create;
   try
       controller.CadastrarUsuario(usuario);
       ShowMessage('Gerente cadastrado com sucesso!');
-      mostrarGerente;
+      mostrarUser('gerente',lswGerente);
+      AtualizarDashboards;
     finally
       controller.Free;
   end;
@@ -499,7 +548,6 @@ procedure TFormHome.lblBtnEditarGerenteClick(Sender: TObject);
 var
   Controller: ThomeController;
   Lista: TObjectList<Tusuario>;
-  Transp: Tusuario;
 begin
 panelOptionsGerente.Visible := true;
 pnlEditarGerente.visible := true;
@@ -510,7 +558,7 @@ pnlBtnExcluirGerenteConfirm.visible := false;
 
     if lswgerente.selected = nil then begin
     showMessage('selecione um gerente na lista para editar.');
-    mostrarGerente;
+    mostrarUser('gerente',lswGerente);
     exit;
     end;
 
@@ -546,7 +594,7 @@ begin
     try
       controller.EditarUser(usuario);
       showMessage('Gerente editado com sucesso!!');
-      mostrarGerente;
+      mostrarUser('gerente',lswGerente);
     finally
       controller.free;
     end;
@@ -570,14 +618,14 @@ pnlBtnRecuperarGerenteConfirm.visible := true;
 pnlBtnExcluirGerenteConfirm.visible := false;
 
   showMessage('Agora a tabela ira mostrar os gerentes excluidos');
-  mostrarGerenteInativo;
+  MostrarUserInativo('gerente', lswGerente);
 end;
 
 procedure TFormHome.lblBtnExcluirGerenteClick(Sender: TObject);
 begin
 pnlBtnRecuperarGerenteConfirm.visible := false;
 pnlBtnExcluirGerenteConfirm.visible := true;
-mostrarGerente;
+mostrarUser('gerente',lswGerente);
 end;
 
 procedure TFormHome.lblBtnExcluirGerenteConfirmClick(Sender: TObject);
@@ -588,7 +636,7 @@ codParaExcluir: Integer;
 begin
   if lswGerente.selected = nil then begin
     showMessage('selecione um gerente na lista para Excluir.');
-    MostrarGerente;
+    mostrarUser('gerente',lswGerente);
     exit;
   end;
 
@@ -605,7 +653,8 @@ begin
   try
     controller.excluirUser(user);
     showMessage('gerente excluido com sucesso.');
-    mostrarGerente;
+    mostrarUser('gerente',lswGerente);
+    AtualizarDashboards;
   finally
     controller.free;
   end;
@@ -619,7 +668,7 @@ codParaExcluir: Integer;
 begin
   if lswGerente.selected = nil then begin
     showMessage('selecione um gerente na lista para recuperar.');
-    mostrarGerenteInativo;
+    MostrarUserInativo('gerente', lswGerente);
     exit;
   end;
 
@@ -636,7 +685,8 @@ begin
   try
     controller.recuperarUser(user);
     showMessage('gerente recuperado com sucesso.');
-    mostrarGerenteInativo;
+    MostrarUserInativo('gerente', lswGerente);
+    AtualizarDashboards;
   finally
     controller.free;
   end;
@@ -646,7 +696,7 @@ end;
   procedure TFormHome.LblBtnCadastrarMotoristaClick(Sender: TObject);
 begin
 panelOptionsMotoristas.Visible := true;
-lblOptionsMotorista.caption := 'Cadastrar Gerente';
+lblOptionsMotorista.caption := 'Cadastrar Motorista';
 pnlBtnCadastrarMotoristaConf.visible := true;
 pnlBtnEditarMotoristaConf.Visible := false;
 pnlBtnCadastrarMotoristaConf.visible := false;
@@ -692,6 +742,36 @@ pnlBtnExcluirCarregadorConf.visible := false;
 end;
 
 
+procedure TFormHome.lblBtnCadastrarCarregadorConfClick(Sender: TObject);
+var
+controller:THomeController;
+usuario :Tusuario;
+begin
+usuario := TUsuario.Create;
+  usuario.setNome(edtNomeCarregador.Text);
+  usuario.setEmail (edtEmailCarregador.Text);
+  usuario.setsenha_hash (EdtSenhaCarregador.text);
+  usuario.Setcpf(MaskEditCpfCarregador.Text);
+  usuario.setTelefone (MaskEditTelefoneCarregador.text);
+  usuario.setCargo_descricao('Carregador');
+//  usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
+// jeito para teste ->
+ usuario.SetIdTransportadora(4);
+
+
+
+  controller := THomeController.Create;
+  try
+      controller.CadastrarUsuario(usuario);
+      ShowMessage('Carregador cadastrado com sucesso!');
+      mostrarUser('Carregador',lswCarregador);
+      AtualizarDashboards;
+    finally
+      controller.Free;
+  end;
+    usuario.Free;
+end;
+
 procedure TFormHome.lblBtnEditarCarregadorClick(Sender: TObject);
 begin
 panelOptionsCarregador.Visible := true;
@@ -700,6 +780,54 @@ pnlBtnEditarCarregadorConf.visible := true;
 pnlBtnCadastrarCarregadorConf.visible := false;
 pnlBtnRecuperarCarregadorConf.visible := false;
 pnlBtnExcluirCarregadorConf.visible := false;
+
+     if lswCarregador.selected = nil then begin
+    showMessage('selecione um carregador na lista para editar.');
+    mostrarUser('Carregador',lswcarregador);
+    exit;
+    end;
+
+    edtNomeCarregador.text := lswCarregador.selected.subItems[0];
+    MaskEditCpfCarregador.text := lswCarregador.selected.SubItems[1];
+    MaskEditTelefoneCarregador.Text := lswCarregador.selected.subItems[3];
+    edtEmailCarregador.Text := lswCarregador.selected.subItems[4];
+end;
+
+procedure TFormHome.lblBtnEditarCarregadorConfClick(Sender: TObject);
+var
+controller : THomeController;
+usuario : Tusuario;
+codParaEditar : integer;
+idTransp:String;
+begin
+  codParaEditar := StrToInt(lswCarregador.Selected.Caption);
+  try
+    usuario := TUsuario.Create;
+    usuario.setId(codParaEditar);
+    usuario.setNome(edtNomeCarregador.Text);
+    usuario.setEmail (edtEmailCarregador.text);
+    usuario.setsenha_hash (EdtSenhaCarregador.text);
+    usuario.Setcpf(MaskEditCpfCarregador.Text);
+    usuario.setTelefone (MaskEditTelefoneCarregador.text);
+    usuario.setCargo_descricao('Carregador');
+    //  usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
+    // jeito para teste ->
+
+    controller := ThomeController.create;
+    try
+      controller.EditarUser(usuario);
+      showMessage('Carregador editado com sucesso!!');
+      mostrarUser('Carregador',lswcarregador);
+    finally
+      controller.free;
+    end;
+  finally
+    edtNomeCarregador.clear;
+    MaskEditCpfCarregador.clear;
+    edtEmailCarregador.clear;
+    EdtSenhaCarregador.clear;
+    MaskEditTelefoneCarregador.clear;
+  end;
 end;
 
 procedure TFormHome.imgFecharOptionCarregadorClick(Sender: TObject);
@@ -712,6 +840,42 @@ procedure TFormHome.lblBtnRecuperarCarregadorClick(Sender: TObject);
 begin
 pnlBtnRecuperarCarregadorConf.visible := true;
 pnlBtnExcluirCarregadorConf.visible := false;
+
+  showMessage('Agora a tabela ira mostrar os carregadores excluidos');
+  MostrarUserInativo('Carregador', lswCarregador);
+
+end;
+
+procedure TFormHome.lblBtnRecuperarCarregadorConfClick(Sender: TObject);
+var
+controller : THomeController;
+user : Tusuario;
+codParaExcluir: Integer;
+begin
+  if lswCarregador.selected = nil then begin
+    showMessage('selecione um carregador na lista para recuperar.');
+    MostrarUserInativo('gerente', lswGerente);
+    exit;
+  end;
+
+  if MessageDlg('Tem certeza que deseja recuperar o carregador selecionado?',mtConfirmation, [mbYes, mbNo], 0) = mrNo then
+    begin
+      exit;
+    end;
+
+  codParaExcluir := StrToInt(lswCarregador.Selected.Caption);
+  user := Tusuario.create;
+  user.setId(codParaExcluir);
+
+  controller := THomeController.Create;
+  try
+    controller.recuperarUser(user);
+    showMessage('Carregador recuperado com sucesso.');
+    MostrarUserInativo('Carregador', lswCarregador);
+    AtualizarDashboards;
+  finally
+    controller.free;
+  end;
 end;
 
 procedure TFormHome.lblBtnExcluirCarregadorClick(Sender: TObject);
@@ -719,6 +883,38 @@ begin
 pnlBtnRecuperarCarregadorConf.visible := false;
 pnlBtnExcluirCarregadorConf.visible := true;
 end;
+procedure TFormHome.lblBtnExcluirCarregadorConfClick(Sender: TObject);
+var
+controller : THomeController;
+user : Tusuario;
+codParaExcluir: Integer;
+begin
+  if lswCarregador.selected = nil then begin
+    showMessage('selecione um carregador na lista para Excluir.');
+    mostrarUser('Carregador',lswCarregador);
+    exit;
+  end;
+
+  if MessageDlg('Tem certeza que deseja excluir o carregador selecionado?',mtConfirmation, [mbYes, mbNo], 0) = mrNo then
+    begin
+      exit;
+    end;
+
+  codParaExcluir := StrToInt(lswCarregador.Selected.Caption);
+  user := Tusuario.create;
+  user.setId(codParaExcluir);
+
+  controller := THomeController.Create;
+  try
+    controller.excluirUser(user);
+    showMessage('Carregador excluido com sucesso.');
+    mostrarUser('Carregador',lswCarregador);
+    AtualizarDashboards;
+  finally
+    controller.free;
+  end;
+end;
+
 procedure TFormHome.pnlBtnRecuperarCarregadorConfClick(Sender: TObject);
 begin
 
