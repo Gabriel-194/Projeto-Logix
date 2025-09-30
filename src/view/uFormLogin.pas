@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
   Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.Mask, transpController, uTransportadora, uUsuario,loginController,
   Vcl.ComCtrls,System.Generics.Collections, LoginDto, System.ImageList,
-  Vcl.ImgList, adminController, adminDto, uFormHome,UsuarioLogado;
+  Vcl.ImgList, adminController, adminDto, uFormHome,UsuarioLogado,System.JSON;
 
 type
   TFormLogin = class(TForm)
@@ -164,9 +164,71 @@ type
     Shape33: TShape;
     ImgAdmin: TImage;
     Label2: TLabel;
-    Panel3: TPanel;
+    pnlBtnRecoverPassword: TPanel;
     Shape36: TShape;
     Label3: TLabel;
+    pnlCadastroCliente: TPanel;
+    Shape37: TShape;
+    lblBtnCadastrarCliente: TLabel;
+    panelCadastroCliente: TPanel;
+    Panel4: TPanel;
+    Label4: TLabel;
+    Label6: TLabel;
+    pnlLblCadastrarCliente: TPanel;
+    Shape39: TShape;
+    Panel12: TPanel;
+    Shape40: TShape;
+    lblBtnCadastrarClienteConf: TLabel;
+    Image3: TImage;
+    Label9: TLabel;
+    Panel3: TPanel;
+    Panel11: TPanel;
+    Shape38: TShape;
+    edtSenhaCliente: TEdit;
+    Panel14: TPanel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Panel15: TPanel;
+    Panel16: TPanel;
+    Shape42: TShape;
+    edtEmailCliente: TEdit;
+    Panel19: TPanel;
+    Label20: TLabel;
+    Label21: TLabel;
+    Panel22: TPanel;
+    Panel30: TPanel;
+    Panel33: TPanel;
+    Label22: TLabel;
+    Label23: TLabel;
+    Panel34: TPanel;
+    Label24: TLabel;
+    Label25: TLabel;
+    Panel35: TPanel;
+    Panel36: TPanel;
+    Shape48: TShape;
+    edtNomeCliente: TEdit;
+    Panel37: TPanel;
+    Shape49: TShape;
+    MaskEditCepCliente: TMaskEdit;
+    Panel25: TPanel;
+    Shape44: TShape;
+    MaskEditTelefoneCliente: TMaskEdit;
+    Panel32: TPanel;
+    Shape47: TShape;
+    Panel31: TPanel;
+    Shape46: TShape;
+    edtEstadoCliente: TEdit;
+    Panel18: TPanel;
+    Shape43: TShape;
+    edtMunicipioCliente: TEdit;
+    Panel26: TPanel;
+    Shape45: TShape;
+    edtEnderecoCliente: TEdit;
+    Panel13: TPanel;
+    Shape41: TShape;
+    edtNumeroEnderecoCliente: TEdit;
+    MaskEditCpfCliente: TMaskEdit;
+    imgBtnBuscarCep: TImage;
     procedure lick(Sender: TObject);
     procedure btnchangeCadastrarClick(Sender: TObject);
     procedure voltarImageClick(Sender: TObject);
@@ -190,6 +252,9 @@ type
     procedure lblBtnRecuperarAdmConfirmClick(Sender: TObject);
     procedure lblBtnEditarAdminClick(Sender: TObject);
     procedure lblBtnEditarAdmClick(Sender: TObject);
+    procedure lblBtnCadastrarClienteMouseEnter(Sender: TObject);
+    procedure lblBtnCadastrarClienteMouseLeave(Sender: TObject);
+    procedure imgBtnBuscarCepClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -205,10 +270,26 @@ var
   FormLogin : TFormLogin;
 
 implementation
-uses logintypes;
+uses logintypes, System.Net.HttpClient;
 
 {$R *.dfm}
 
+// cadastrar cliente ===================================
+procedure TFormLogin.lblBtnCadastrarClienteMouseEnter(Sender: TObject);
+begin
+Shape37.Pen.Color := $006A2B2E;
+end;
+procedure TFormLogin.lblBtnCadastrarClienteMouseLeave(Sender: TObject);
+begin
+Shape37.Pen.Color := clWhite;
+end;
+
+procedure TFormLogin.imgBtnBuscarCepClick(Sender: TObject);
+begin
+  
+end;
+
+//===================================================
 procedure TFormLogin.btnEditarTranspClick(Sender: TObject);
 begin
   PanelOptionsTransp.Visible:=true;

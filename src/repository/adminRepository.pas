@@ -28,8 +28,8 @@ begin
 
     FDQuery.SQL.Text :=
       'INSERT INTO public.usuarios ' +
-      '(nome, cpf, telefone, email, senha_hash, cargo_descricao, ativo, status, data_cadastro, data_atualizacao, id_transportadora) ' +
-      'VALUES (:nome, :cpf, :telefone, :email, :senha_hash, :cargo_descricao, TRUE, TRUE, NOW(), NOW(), :id_transportadora)';
+      '(nome, cpf, telefone, email, senha_hash, cargo_descricao, ativo, data_cadastro, data_atualizacao, id_transportadora) ' +
+      'VALUES (:nome, :cpf, :telefone, :email, :senha_hash, :cargo_descricao, TRUE, NOW(), NOW(), :id_transportadora)';
 
     FDQuery.ParamByName('nome').AsString := AadminDto.nome;
     FDQuery.ParamByName('cpf').AsString := AadminDto.cpf;

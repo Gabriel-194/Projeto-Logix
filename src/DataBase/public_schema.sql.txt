@@ -1,9 +1,17 @@
+-- =====================================================================
+-- 1. Criação do banco de dados
+-- =====================================================================
 CREATE DATABASE logix
     WITH ENCODING 'UTF8'
     LC_COLLATE='pt_BR.UTF-8'
     LC_CTYPE='pt_BR.UTF-8'
     TEMPLATE=template0;
 
+\c logix;
+
+-- =====================================================================
+-- 2. Schema público (global)
+-- =====================================================================
 
 -- Transportadoras
 CREATE TABLE IF NOT EXISTS public.transportadora (
@@ -19,7 +27,7 @@ CREATE TABLE IF NOT EXISTS public.transportadora (
     data_atualizacao TIMESTAMP DEFAULT now()
 );
 
--- Usuários (administradores, comuns e motoristas)
+-- Usuários (administradores, funcionários e motoristas)
 CREATE TABLE IF NOT EXISTS public.usuarios (
     id_usuario        SERIAL PRIMARY KEY,
     nome              VARCHAR(90) NOT NULL,
@@ -50,7 +58,7 @@ CREATE TABLE IF NOT EXISTS public.permissao (
     id_permissao  SERIAL PRIMARY KEY,
     nome          VARCHAR(80) NOT NULL,
     descricao     VARCHAR(255),
-    selecionado varchar(1)
+    selecionado   VARCHAR(1)
 );
 
 -- Relação usuário x permissões (N:N)
@@ -61,23 +69,32 @@ CREATE TABLE IF NOT EXISTS public.usuario_permissao (
     PRIMARY KEY (id_usuario, id_permissao)
 );
 
+-- Clientes globais (um cadastro único que pode usar qualquer transportadora)
+CREATE TABLE IF NOT EXISTS public.cliente (
+    id_cliente      SERIAL PRIMARY KEY,
+    nome            VARCHAR(90) NOT NULL,
+    cpf             VARCHAR(20) UNIQUE NOT NULL,
+    telefone        VARCHAR(20),
+    email           VARCHAR(90) UNIQUE NOT NULL,
+    data_cadastro   TIMESTAMP DEFAULT now(),
+    data_atualizacao TIMESTAMP DEFAULT now(),
+    ativo             BOOLEAN DEFAULT TRUE,
+    CEP VARCHAR(20),
+    estado varchar(50),
+    município varchar(50),
+    endereço varchar(100),
+    numero int,
+    senha_hash        VARCHAR(100) NOT NULL	
+);
+
+-- Usuário master do sistema
 INSERT INTO public.usuarios (nome, senha_hash, email, cpf, cargo_descricao, id_transportadora)
 VALUES (
     'administrador logix',
-    '$2a$11$LDeqorZd6gz4j1Hif0aRjO2.lkdIKEvEW4sy9tkdUdIhrxJE8Qcb.',
+    '$2a$11$LDeqorZd6gz4j1Hif0aRjO2.lkdIKEvEW4sy9tkdUdIhrxJE8Qcb.', -- hash do "AdminLogix0203"
     'LogixAdmin@gmail.com',
-    '000.000.000-00', -- ATENÇÃO: CPF é obrigatório e único. Use um valor real aqui.
-    'adminLogix',  -- Preenchido com base no nome de usuário
-    NULL              -- id_transportadora definido como nulo
-);
-
-INSERT INTO public.permissao (nome, descricao) VALUES
-('cadastrar_gerente', 'Permite criar novos registros de Gerentes.'),
-('editar_gerente', 'Permite modificar dados de Gerentes existentes.'),
-('excluir_gerente', 'Permite apagar registros de Gerentes.'),
-('definir_permissoes_gerente', 'Permite atribuir permissões a um Gerente.'),
-('visualizar_motoristas', 'Permite acessar a tela e lista de Motoristas.'),
-('cadastrar_motorista', 'Permite criar novos registros de Motoristas.'),
-('gerenciar_cargas', 'Permite criar, editar e despachar Cargas.'),
-('visualizar_clientes', 'Permite acessar a tela e lista de Clientes.'),
-('configurar_sistema', 'Permite acesso a configurações globais do sistema.');
+    '000.000.000-00',
+    'adminLogix',
+    NULL
+)
+ON CONFLICT (email) DO NOTHING;
