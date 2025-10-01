@@ -165,6 +165,11 @@
         <DCCReference Include="src\service\enderecoService.pas"/>
         <DCCReference Include="src\repository\clienteRepository.pas"/>
         <DCCReference Include="src\service\clienteService.pas"/>
+        <DCCReference Include="src\view\uFormHomeCliente.pas">
+            <Form>Form1</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\DTO\motoristaDto.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

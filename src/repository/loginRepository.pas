@@ -13,6 +13,7 @@ type
     function FindByEmail(AEmail: string; out AUserId: Integer;out ASenhaHash: string;  out ATransportadoraId: Integer;
   out ACargo: string): Boolean;
     function BuscaNomePorId(const aUserId: Integer): string;
+    function findByEmailCliente(AEmail: string; out AClienteId: Integer;out ASenhaHash: string):boolean;
   end;
 
 implementation
@@ -56,6 +57,37 @@ begin
   end;
 end;
 
+
+function TLoginRepository.findByEmailCliente( AEmail: string;
+  out AClienteId: Integer; out ASenhaHash: string): boolean;
+var
+ FDQuery: TFDQuery;
+ begin
+ result:= false;
+ aClienteId:= 0;
+ aSenhaHash := '';
+
+ FDQuery:= TFDQuery.create(nil);
+
+ try
+  FDQuery.Connection := DataModule2.FDConnection1;
+
+  FDQuery.SQL.Text := 'SELECT id_cliente, senha_hash FROM public.cliente WHERE email = :email';
+    FDQuery.ParamByName('email').AsString := AEmail;
+    FDQuery.Open;
+
+  if not FDQuery.IsEmpty  then
+  begin
+    aClienteId := FDQuery.FieldByName('id_cliente').AsInteger;
+    aSenhaHash := FDQuery.FieldByName('senha_hash').asString;
+
+    result := true;
+  end;
+ finally
+  FDQuery.Free;
+ end;
+
+end;
 
 function TLoginRepository.BuscaNomePorId(const aUserId: Integer): string;
 var

@@ -233,6 +233,8 @@ type
     MaskEditCepCliente: TMaskEdit;
     imgFecharPanelCadastroCliente: TImage;
     imgFechaPainelAdm: TImage;
+    imgEyeBLock: TImage;
+    imgEye: TImage;
     procedure lick(Sender: TObject);
     procedure btnchangeCadastrarClick(Sender: TObject);
     procedure voltarImageClick(Sender: TObject);
@@ -262,6 +264,9 @@ type
     procedure imgFecharPanelCadastroClienteClick(Sender: TObject);
     procedure imgFechaPainelAdmClick(Sender: TObject);
     procedure lblBtnCadastrarClienteConfClick(Sender: TObject);
+    procedure imgEyeBLockClick(Sender: TObject);
+    procedure imgEyeClick(Sender: TObject);
+    procedure lblBtnCadastrarClienteClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -282,6 +287,13 @@ uses logintypes, System.Net.HttpClient;
 {$R *.dfm}
 
 // cadastrar cliente ===================================
+procedure TFormLogin.lblBtnCadastrarClienteClick(Sender: TObject);
+begin
+panelLoginStart.visible:= false;
+paneladmin.Visible:= false;
+panelCadastroCliente.Visible := true;
+end;
+
 procedure TFormLogin.lblBtnCadastrarClienteConfClick(Sender: TObject);
 var
 controller : TLoginController;
@@ -355,6 +367,7 @@ begin
   end;
 end;
 
+
 procedure TFormLogin.imgFechaPainelAdmClick(Sender: TObject);
 begin
 panelAdmin.visible := false;
@@ -392,6 +405,19 @@ begin
 
   end;
 
+procedure TFormLogin.imgEyeBLockClick(Sender: TObject);
+begin
+edtSenhaLogin.passwordchar := #0;
+imgEyeBLock.visible := false;
+imgEye.visible := true;
+end;
+
+procedure TFormLogin.imgEyeClick(Sender: TObject);
+begin
+edtSenhaLogin.passwordchar := '*';
+imgEye.visible := false;
+imgEyeBLock.visible := true;
+end;
 procedure TFormLogin.btnEntrarClick(Sender: TObject);
 var
 controlLogin : TloginController;
@@ -440,6 +466,14 @@ begin
               atualizarTabela;
               mostrarAdmins;
           end;
+
+        lrSucessocliente:
+        begin
+          ShowMessage('Bem vindo de volta cliente!!');
+          UsuarioLogado.userLogado := user;
+          FormHome.ShowModal;
+          Close;
+        end;
       end;
     finally
       controlLogin.Free;

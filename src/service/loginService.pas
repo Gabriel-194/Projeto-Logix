@@ -2,7 +2,7 @@ unit loginService;
 
 interface
 uses
-   System.SysUtils,uUsuario,loginRepository, loginTypes, LoginDto, BCrypt;
+   System.SysUtils,uUsuario,loginRepository, loginTypes, LoginDto, BCrypt,uCliente;
    type
    TloginService = class
 
@@ -24,7 +24,10 @@ var
   senhaHashDoBanco: string;
   rehashNecessario: Boolean;
   transportadoraId: Integer;
+  aClienteId: Integer;
   cargo: string;
+  cliente: TCliente;
+  nomeCliente: string;
 begin
   if aLoginDto.email.Trim = '' then
     raise Exception.Create('E-mail é obrigatório.');
@@ -43,15 +46,30 @@ begin
       user.setCargo_descricao(cargo);
 
       if SameText(cargo, 'adminLogix') then
-        Result := lrSucessoAdmin
+        Exit(lrSucessoAdmin)
       else
-        Result := lrSucessoUsuario;
+        Exit(lrSucessoUsuario);
     end
     else
-      Result := lrFalhou;
-  end
-  else
-    Result := lrFalhou;
+      Exit(lrFalhou);
+  end;
+
+  if loginRepo.findByEmailCliente(aLoginDto.email, aClienteId, senhaHashDoBanco) then
+  begin
+    if TBCrypt.CheckPassword(aLoginDto.Senha, senhaHashDoBanco, rehashNecessario) then
+    begin
+      cliente := TCliente.Create;
+      cliente.setId(aClienteId);
+      cliente.setEmail(aLoginDto.email);
+      cliente.setNome(nomeCliente);
+
+      Exit(lrSucessoCliente);
+    end
+    else
+      Exit(lrFalhou);
+  end;
+
+  Result := lrFalhou;
 end;
 
 end.

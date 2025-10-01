@@ -1277,7 +1277,7 @@ object FormHome: TFormHome
     Top = 84
     Width = 1500
     Height = 756
-    ActivePage = TabSheetGerente
+    ActivePage = TabSheetMotoristas
     Align = alTop
     Font.Charset = DEFAULT_CHARSET
     Font.Color = 6957870
@@ -3224,6 +3224,7 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
+              OnClick = lblBtnCadastrarMotoristaConfClick
               ExplicitWidth = 111
               ExplicitHeight = 25
             end

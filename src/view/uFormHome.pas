@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
   Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask, usuarioLogado,uUsuario,
-  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController,system.Generics.Collections;
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController,system.Generics.Collections,motoristaDto;
 
 type
   TFormHome = class(TForm)
@@ -352,6 +352,7 @@ type
     procedure lblBtnEditarCarregadorConfClick(Sender: TObject);
     procedure lblBtnExcluirCarregadorConfClick(Sender: TObject);
     procedure lblBtnRecuperarCarregadorConfClick(Sender: TObject);
+    procedure lblBtnCadastrarMotoristaConfClick(Sender: TObject);
 
 
   private
@@ -528,7 +529,7 @@ usuario := TUsuario.Create;
   usuario.setCargo_descricao('gerente');
 //  usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
 // jeito para teste ->
- usuario.SetIdTransportadora(4);
+ usuario.SetIdTransportadora(1);
 
 
 
@@ -699,7 +700,6 @@ panelOptionsMotoristas.Visible := true;
 lblOptionsMotorista.caption := 'Cadastrar Motorista';
 pnlBtnCadastrarMotoristaConf.visible := true;
 pnlBtnEditarMotoristaConf.Visible := false;
-pnlBtnCadastrarMotoristaConf.visible := false;
 pnlBtnEditarMotoristaConf.Visible := false;
 end;
 
@@ -730,6 +730,37 @@ begin
   panelOptionsMotoristas.Visible := false;
 end;
 
+procedure TFormHome.lblBtnCadastrarMotoristaConfClick(Sender: TObject);
+var
+controller:ThomeController;
+motorista:TmotoristaDto;
+begin
+  motorista.Nome := edtNomeMotorista.text;
+  motorista.cpf := MaskEditCpfMotorista.text;
+  motorista.telefone := MaskEditTelefoneMotorista.text;
+  motorista.Email := EdtEmailMotorista.text;
+  motorista.senha := EdtSenhaMotorista.text;
+  motorista.NumeroCNH := EdtNumCnh.text;
+  motorista.CategoriaCNH := edtCategoriaCnh.text;
+  motorista.ValidadeCNH := strToInt(MaskEditValidadeCnh.text);
+  motorista.cargo := 'motorista';
+//  motorista.idTransportadora := UsuarioLogado.UserLogado.getIdTransportadora;
+  // jeito para teste ->
+ motorista.idTransportadora:= 1;
+
+ controller := ThomeController.Create;
+
+  try
+      controller.CadastrarMotorista(motorista);
+      ShowMessage('Motorista cadastrado com sucesso!');
+      mostrarUser('motorista',lswMotorista);
+      AtualizarDashboards;
+    finally
+      controller.Free;
+  end;
+
+end;
+
 //========================== CARREGADOR ========================================
 procedure TFormHome.lblBtnCadastrarCarregadorClick(Sender: TObject);
 begin
@@ -756,7 +787,7 @@ usuario := TUsuario.Create;
   usuario.setCargo_descricao('Carregador');
 //  usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
 // jeito para teste ->
- usuario.SetIdTransportadora(4);
+ usuario.SetIdTransportadora(1);
 
 
 
@@ -921,6 +952,8 @@ begin
 end;
 
 //================= VEICULOS ===================================================
+
+
 procedure TFormHome.lblBtnCadastrarVeiculoClick(Sender: TObject);
 begin
 pnlOptionsVeiculo.visible := true;

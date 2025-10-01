@@ -2,7 +2,7 @@ unit userRepository;
 
 interface
 uses
-  System.SysUtils, FireDAC.Comp.Client, uUsuario, unit2,System.Generics.Collections;
+  System.SysUtils, FireDAC.Comp.Client, uUsuario, unit2,System.Generics.Collections,motoristaDto;
 type
   TUserRepository = class
   public
@@ -12,12 +12,80 @@ type
     procedure excluirUser(aUsuario:Tusuario);
     function MostrarUserInativo(const aCargo: string): TObjectList<Tusuario>;
     procedure recuperarUser(aUsuario:Tusuario);
+    procedure editarUserNotSenha(aUsuario: TUsuario);
+//====================MOTORISTA=================================================
+  procedure cadastrarMotorista(motorista: TmotoristaDto);
   end;
 
 
 implementation
 
 { TuserRepository }
+
+procedure TUserRepository.cadastrarMotorista(motorista: TmotoristaDto);
+var
+  FDQuery: TFDQuery;
+  idNovoUsuario: Integer;
+begin
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+    FDQuery.Connection.StartTransaction;
+
+    try
+      FDQuery.SQL.Text :=
+        'INSERT INTO public.usuarios ' +
+        '(nome, cpf, telefone, email, senha_hash, cargo_descricao, ativo, data_cadastro, data_atualizacao, id_transportadora) ' +
+        'VALUES (:nome, :cpf, :telefone, :email, :senha_hash, :cargo_descricao, TRUE, NOW(), NOW(), :id_transportadora) ' +
+        'RETURNING id_usuario';
+
+      FDQuery.ParamByName('nome').AsString := motorista.nome;
+      FDQuery.ParamByName('cpf').AsString := motorista.cpf;
+      FDQuery.ParamByName('telefone').AsString := motorista.telefone;
+      FDQuery.ParamByName('email').AsString := motorista.email;
+      FDQuery.ParamByName('senha_hash').AsString := motorista.senha;
+      FDQuery.ParamByName('cargo_descricao').AsString := 'Motorista';
+      FDQuery.ParamByName('id_transportadora').AsInteger := motorista.idTransportadora;
+
+      FDQuery.Open;
+
+      if not FDQuery.IsEmpty then
+      begin
+        idNovoUsuario := FDQuery.FieldByName('id_usuario').AsInteger;
+      end
+      else
+      begin
+        raise Exception.Create('Falha ao obter o ID do novo usuário após a inserção.');
+      end;
+
+      FDQuery.Close;
+
+      FDQuery.SQL.Text :=
+        'INSERT INTO public.motorista ' +
+        '(id_usuario, numero_cnh, categoria_cnh, validade_cnh, data_cadastro, data_atualizacao) ' +
+        'VALUES (:id_usuario, :numero_cnh, :categoria_cnh, :validade_cnh, NOW(), NOW())';
+
+      FDQuery.ParamByName('id_usuario').AsInteger := idNovoUsuario;
+      FDQuery.ParamByName('numero_cnh').AsString := motorista.NumeroCNH;
+      FDQuery.ParamByName('categoria_cnh').AsString := motorista.CategoriaCNH;
+      FDQuery.ParamByName('validade_cnh').AsDate := motorista.ValidadeCNH;
+
+      FDQuery.ExecSQL;
+
+      FDQuery.Connection.Commit;
+
+    except
+      on E: Exception do
+      begin
+        FDQuery.Connection.Rollback;
+        raise Exception.Create('Erro ao cadastrar motorista: ' + E.Message);
+      end;
+    end;
+
+  finally
+    FDQuery.Free;
+  end;
+end;
 
 procedure TUserRepository.cadastrarUsuario(aUsuario: TUsuario);
 var
@@ -28,8 +96,8 @@ begin
     FDQuery.Connection := DataModule2.FDConnection1;
 
     FDQuery.SQL.Text :=
-    'INSERT INTO USUARIOS (nome, cpf, telefone, email, senha_hash, cargo_descricao, ativo, status, data_cadastro, data_atualizacao, id_transportadora) ' +
-    'VALUES (:nome, :cpf, :telefone, :email, :senha_hash, :cargo_descricao, TRUE, TRUE, NOW(), NOW(), :id_transportadora)';
+    'INSERT INTO USUARIOS (nome, cpf, telefone, email, senha_hash, cargo_descricao, ativo, data_cadastro, data_atualizacao, id_transportadora) ' +
+    'VALUES (:nome, :cpf, :telefone, :email, :senha_hash, :cargo_descricao, TRUE, NOW(), NOW(), :id_transportadora)';
 
   FDQuery.ParamByName('NOME').AsString := aUsuario.getNome;
   FDQuery.ParamByName('EMAIL').AsString := aUsuario.getemail;
@@ -67,7 +135,27 @@ begin
   finally
     FDQuery.Free;
   end;
+end;
 
+procedure TUserRepository.editarUserNotSenha(aUsuario: TUsuario);
+var
+  FDquery: TFDQuery;
+begin
+  FDQuery := TFDQuery.create(nil);
+  try
+    FDQuery.Connection := datamodule2.FDConnection1;
+
+    FDQuery.SQL.Text := 'UPDATE public.usuarios SET nome = :nome, cpf = :cpf, telefone = :telefone, email = :email '+'WHERE id_usuario = :id_usuario';
+    FDQuery.ParamByName('id_usuario').AsInteger := aUsuario.getId;
+    FDQuery.ParamByName('nome').AsString := aUsuario.getNome;
+    FDQuery.ParamByName('email').AsString := aUsuario.getemail;
+    FDQuery.ParamByName('cpf').AsString := aUsuario.getcpf;
+    FDQuery.ParamByName('telefone').AsString := aUsuario.getTelefone;
+
+    FDQuery.ExecSQL;
+  finally
+    FDQuery.Free;
+  end;
 end;
 
 procedure TUserRepository.excluirUser(aUsuario: Tusuario);

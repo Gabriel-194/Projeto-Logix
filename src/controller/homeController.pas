@@ -2,7 +2,7 @@ unit homeController;
 
 interface
 uses
-data.DB,homeService, uUsuario, userService, System.SysUtils, system.Generics.Collections;
+data.DB,homeService, uUsuario, userService, System.SysUtils, system.Generics.Collections,MotoristaDto;
 
 type THomeController = class
   procedure cadastrarUsuario(aUsuario:TUsuario);
@@ -12,6 +12,8 @@ type THomeController = class
   function MostrarUserInativo(const aCargo: string): TObjectList<Tusuario>;
   procedure recuperarUser(aUsuario:Tusuario);
   function ContarUsuariosPorCargo(const aCargo: string): Integer;
+//=============== motorista ==============
+ procedure cadastrarMotorista(motorista:TmotoristaDto);
 
   end;
 
@@ -22,6 +24,18 @@ implementation
 
 
 { THomeController }
+
+procedure THomeController.cadastrarMotorista(motorista: TmotoristaDto);
+var
+service: TuserService;
+begin
+service:= TuserService.create;
+  try
+    service.cadastrarMotorista(motorista);
+  finally
+    service.free;
+  end;
+end;
 
 procedure THomeController.CadastrarUsuario(aUsuario: TUsuario);
 var
