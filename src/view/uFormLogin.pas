@@ -7,11 +7,11 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
   Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.Mask, transpController, uTransportadora, uUsuario,loginController,
   Vcl.ComCtrls,System.Generics.Collections, LoginDto, System.ImageList,
-  Vcl.ImgList, adminController, adminDto, uFormHome,UsuarioLogado,System.JSON;
+  Vcl.ImgList, adminController, adminDto, uFormHome,UsuarioLogado,enderecoDto,uCliente;
 
 type
   TFormLogin = class(TForm)
-    Panel1: TPanel;
+    PanelLoginStart: TPanel;
     PanelImage: TPanel;
     PanelLogin: TPanel;
     Image2: TImage;
@@ -207,9 +207,6 @@ type
     Panel36: TPanel;
     Shape48: TShape;
     edtNomeCliente: TEdit;
-    Panel37: TPanel;
-    Shape49: TShape;
-    MaskEditCepCliente: TMaskEdit;
     Panel25: TPanel;
     Shape44: TShape;
     MaskEditTelefoneCliente: TMaskEdit;
@@ -228,7 +225,14 @@ type
     Shape41: TShape;
     edtNumeroEnderecoCliente: TEdit;
     MaskEditCpfCliente: TMaskEdit;
+    Panel38: TPanel;
+    Shape50: TShape;
     imgBtnBuscarCep: TImage;
+    Panel37: TPanel;
+    Shape49: TShape;
+    MaskEditCepCliente: TMaskEdit;
+    imgFecharPanelCadastroCliente: TImage;
+    imgFechaPainelAdm: TImage;
     procedure lick(Sender: TObject);
     procedure btnchangeCadastrarClick(Sender: TObject);
     procedure voltarImageClick(Sender: TObject);
@@ -255,6 +259,9 @@ type
     procedure lblBtnCadastrarClienteMouseEnter(Sender: TObject);
     procedure lblBtnCadastrarClienteMouseLeave(Sender: TObject);
     procedure imgBtnBuscarCepClick(Sender: TObject);
+    procedure imgFecharPanelCadastroClienteClick(Sender: TObject);
+    procedure imgFechaPainelAdmClick(Sender: TObject);
+    procedure lblBtnCadastrarClienteConfClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -275,6 +282,51 @@ uses logintypes, System.Net.HttpClient;
 {$R *.dfm}
 
 // cadastrar cliente ===================================
+procedure TFormLogin.lblBtnCadastrarClienteConfClick(Sender: TObject);
+var
+controller : TLoginController;
+cliente : Tcliente;
+endereco: Tendereco;
+begin
+cliente := Tcliente.create;
+  try
+    cliente.setNome(edtNomeCliente.text);
+    cliente.setCpf(MaskEditCpfCliente.text);
+    cliente.setemail(edtEmailCliente.text);
+    cliente.setTelefone(MaskEditTelefoneCliente.text);
+    cliente.setSenha_hash(edtSenhaCliente.text);
+
+    Endereco.cep := MaskEditCepCliente.text;
+    Endereco.endereco := edtEnderecoCliente.text;
+    Endereco.numero := strToInt(edtNumeroEnderecoCliente.text);
+    Endereco.municipio := edtMunicipioCliente.text;
+    Endereco.estado := edtEstadoCliente.text;
+
+    cliente.setEndereco(endereco);
+
+    controller:= TloginController.create;
+    try
+      controller.cadastrarCliente(cliente);
+      showMessage('Seu cadastro foi realizado com sucesso, volte para a tela de login para entrar no sistema');
+    finally
+     controller.free
+    end;
+
+    edtNomeCliente.clear;
+    MaskEditCpfCliente.clear;
+    edtEmailCliente.clear;
+    MaskEditTelefoneCliente.clear;
+    edtSenhaCliente.clear;
+    MaskEditCepCliente.clear;
+    edtEnderecoCliente.clear;
+    edtNumeroEnderecoCliente.clear;
+    edtMunicipioCliente.clear;
+    edtEstadoCliente.clear;
+  finally
+   cliente.free;
+  end;
+end;
+
 procedure TFormLogin.lblBtnCadastrarClienteMouseEnter(Sender: TObject);
 begin
 Shape37.Pen.Color := $006A2B2E;
@@ -285,8 +337,35 @@ Shape37.Pen.Color := clWhite;
 end;
 
 procedure TFormLogin.imgBtnBuscarCepClick(Sender: TObject);
+var
+  Controller: TloginController;
+  Endereco: TEndereco;
 begin
-  
+  Shape50.pen.color := clWhite;
+  Controller := TloginController.Create;
+  try
+    Endereco := Controller.getByCep(MaskEditCepCliente.Text);
+
+    edtEnderecoCliente.Text := Endereco.endereco;
+    edtMunicipioCliente.Text := Endereco.municipio;
+    edtEstadoCliente.Text := Endereco.estado;
+    edtNumeroEnderecoCliente.Text := intToStr(Endereco.numero);
+  finally
+    Controller.Free;
+  end;
+end;
+
+procedure TFormLogin.imgFechaPainelAdmClick(Sender: TObject);
+begin
+panelAdmin.visible := false;
+panelLoginStart.visible := true;
+end;
+
+procedure TFormLogin.imgFecharPanelCadastroClienteClick(Sender: TObject);
+begin
+panelCadastroCliente.visible := false;
+PanelLoginStart.visible := true;
+
 end;
 
 //===================================================
@@ -356,7 +435,7 @@ begin
               'Transportadora ID: ' + user.getIdTransportadora.ToString
             );
               UsuarioLogado.userLogado := user;
-              Panel1.Visible := False;
+              PanelLoginStart.Visible := False;
               PanelAdmin.Visible := True;
               atualizarTabela;
               mostrarAdmins;
@@ -714,13 +793,15 @@ var
   Controller: TTranspController;
   Transp: TTransportadora;
 begin
-  Transp := TTransportadora.create;
+    Transp := TTransportadora.create;
   try
     Transp.setNome(edtNome.Text);
     Transp.setCNPJ(MaskEditCNPJ.Text);
     Transp.setTelefone(MaskEditTelefone.Text);
     Transp.setEmail(edtEmail.Text);
     Transp.setCep(MaskEditCEP.Text);
+
+
 
     Controller := TTranspController.Create;
     try

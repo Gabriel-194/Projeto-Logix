@@ -24,7 +24,14 @@ uses
   userRepository in 'src\repository\userRepository.pas',
   homeRepository in 'src\repository\homeRepository.pas',
   homeService in 'src\service\homeService.pas',
-  homeController in 'src\controller\homeController.pas';
+  homeController in 'src\controller\homeController.pas',
+  uCliente in 'src\model\uCliente.pas',
+  EnderecoDto in 'src\DTO\EnderecoDto.pas',
+  cepRepository in 'src\repository\cepRepository.pas',
+  enderecoRepository in 'src\repository\enderecoRepository.pas',
+  enderecoService in 'src\service\enderecoService.pas',
+  clienteRepository in 'src\repository\clienteRepository.pas',
+  clienteService in 'src\service\clienteService.pas';
 
 {$R *.res}
 

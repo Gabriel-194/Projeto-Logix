@@ -158,6 +158,13 @@
         <DCCReference Include="src\repository\homeRepository.pas"/>
         <DCCReference Include="src\service\homeService.pas"/>
         <DCCReference Include="src\controller\homeController.pas"/>
+        <DCCReference Include="src\model\uCliente.pas"/>
+        <DCCReference Include="src\DTO\EnderecoDto.pas"/>
+        <DCCReference Include="src\repository\cepRepository.pas"/>
+        <DCCReference Include="src\repository\enderecoRepository.pas"/>
+        <DCCReference Include="src\service\enderecoService.pas"/>
+        <DCCReference Include="src\repository\clienteRepository.pas"/>
+        <DCCReference Include="src\service\clienteService.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

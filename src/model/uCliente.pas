@@ -1,6 +1,8 @@
 unit uCliente;
 
 interface
+uses
+  EnderecoDto;
 type Tcliente = class
 protected
   id :integer;
@@ -9,12 +11,10 @@ protected
   email:String;
   Telefone : String;
   senha_hash : String;
-  cep: String;
-  estado :string;
-  municipio:string;
-  endereco:string;
-  numero :integer;
+  Endereco: TEndereco;
+
 public
+
   procedure setId(aId : Integer);
   function getId : Integer;
 
@@ -33,20 +33,8 @@ public
   procedure setSenha_hash(aSenha_hash: String);
   function getSenha_hash: String;
 
-  procedure setCep(aCep: String);
-  function getCep: String;
-
-  procedure setEstado(aEstado: String);
-  function getEstado: String;
-
-  procedure setmunicipio(aMunicipio: String);
-  function getmunicipio: String;
-
-  procedure setEndereco(aEndereco: String);
-  function getEndereco: String;
-
-  procedure setNumero(aNumero: integer);
-  function getNumero: integer;
+  procedure setEndereco(aEndereco: TEndereco); // 2. O novo "setter"
+  function getEndereco: TEndereco;
 
 end;
 
@@ -54,9 +42,14 @@ implementation
 
 { Tcliente }
 
-function Tcliente.getCep: String;
+procedure TCliente.setEndereco(aEndereco: TEndereco);
 begin
-Result := Self.cep;
+  Self.Endereco := aEndereco;
+end;
+
+function TCliente.getEndereco: TEndereco;
+begin
+  Result := Self.Endereco;
 end;
 
 function Tcliente.getCpf: String;
@@ -69,24 +62,9 @@ begin
 Result := Self.email;
 end;
 
-function Tcliente.getEndereco: String;
-begin
-Result := Self.endereco;
-end;
-
-function Tcliente.getEstado: String;
-begin
-Result := Self.estado;
-end;
-
 function Tcliente.getId: Integer;
 begin
   Result := Self.id;
-end;
-
-function Tcliente.getmunicipio: String;
-begin
-  Result := Self.municipio;
 end;
 
 function Tcliente.getNome: String;
@@ -94,10 +72,6 @@ begin
   Result := Self.nome;
 end;
 
-function Tcliente.getNumero: integer;
-begin
-Result := Self.numero;
-end;
 
 function Tcliente.getSenha_hash: String;
 begin
@@ -109,10 +83,6 @@ begin
 Result := Self.telefone;
 end;
 
-procedure Tcliente.setCep(aCep: String);
-begin
-Self.cep := acep;
-end;
 
 procedure Tcliente.setCpf(aCpf: String);
 begin
@@ -124,34 +94,14 @@ begin
 Self.email := aEmail;
 end;
 
-procedure Tcliente.setEndereco(aEndereco: String);
-begin
-Self.endereco := aEndereco;
-end;
-
-procedure Tcliente.setEstado(aEstado: String);
-begin
-Self.estado:= aEstado;
-end;
-
 procedure Tcliente.setId(aId: Integer);
 begin
 Self.id := aId;
 end;
 
-procedure Tcliente.setmunicipio(aMunicipio: String);
-begin
-Self.municipio := aMunicipio;
-end;
-
 procedure Tcliente.setNome(aNome: String);
 begin
 Self.nome := aNome;
-end;
-
-procedure Tcliente.setNumero(aNumero: integer);
-begin
-Self.numero := aNumero;
 end;
 
 procedure Tcliente.setSenha_hash(aSenha_hash: String);

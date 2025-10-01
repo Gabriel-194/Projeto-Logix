@@ -13,7 +13,7 @@ object FormLogin: TFormLogin
   Font.Style = []
   Position = poScreenCenter
   TextHeight = 15
-  object Panel1: TPanel
+  object PanelLoginStart: TPanel
     AlignWithMargins = True
     Left = 75
     Top = 75
@@ -24,8 +24,9 @@ object FormLogin: TFormLogin
     Margins.Right = 75
     Margins.Bottom = 75
     Align = alClient
-    Caption = 'Panel1'
+    Caption = 'PanelLoginStart'
     TabOrder = 0
+    Visible = False
     object PanelImage: TPanel
       AlignWithMargins = True
       Left = 742
@@ -2951,9 +2952,6 @@ object FormLogin: TFormLogin
         BevelOuter = bvNone
         Constraints.MaxWidth = 598
         TabOrder = 4
-        ExplicitLeft = 220
-        ExplicitTop = 634
-        ExplicitWidth = 338
         object Shape37: TShape
           Left = 0
           Top = 0
@@ -3979,6 +3977,30 @@ object FormLogin: TFormLogin
       Font.Style = [fsBold]
       ParentFont = False
       ExplicitWidth = 576
+    end
+    object imgFechaPainelAdm: TImage
+      Left = 7
+      Top = 8
+      Width = 41
+      Height = 41
+      Center = True
+      Picture.Data = {
+        0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
+        00200806000000737A7AF400000009704859730000167F0000167F01A413BABF
+        0000001974455874536F667477617265007777772E696E6B73636170652E6F72
+        679BEE3C1A0000015C4944415478DAED95C14AC3401086B32711A1AFA03E867A
+        EA4108E62078F7A81EF202BE81F42C48513C7996D29B20288A78F709C4675011
+        44AC5FDA089B90DDCC4C412F19F89976B699FF4BBA9975C93F87EB003A80D0C2
+        64B6B6872EF8F061694E8F45D22E3A73D3AF4280D2FC18E5E81E6D5178579A2F
+        902E5186CED13E3DBEA50047A443AF748DB6A54FA2BCF331DAF4CA0357ED1905
+        58235DA19E57163D89DA9DFF46714DC6B57722002B84D63C0AA085B098B70248
+        21ACE622803608F46535170344201ED01B4A2DE62A8008841F2A7335400B84DA
+        DC0A506CB81BB45E5B7A421BDA89A9FD0B9A76BB1FEAB1ADD9844DE6C5682EE6
+        FB921542FA1A06DF73F49918C7B608403264E6393BDA46B178C259216287917A
+        BC5A2042C7B179B66B21420043D281577A45293F7E4C0411803875D59E518055
+        D22D5AD69A07205E509F1ECF2280B2C10A698472AD790DE204ED34994701FE2A
+        3A800EE007DA4794219C6C6FCB0000000049454E44AE426082}
+      OnClick = imgFechaPainelAdmClick
     end
     object pnlButtonChoseAdmin: TPanel
       AlignWithMargins = True
@@ -6927,6 +6949,8 @@ object FormLogin: TFormLogin
     Top = 75
     Width = 1216
     Height = 689
+    Color = clWhite
+    ParentBackground = False
     TabOrder = 2
     object Image3: TImage
       Left = 1
@@ -7883,6 +7907,30 @@ object FormLogin: TFormLogin
       ExplicitLeft = 2
       ExplicitTop = 9
     end
+    object imgFecharPanelCadastroCliente: TImage
+      Left = 8
+      Top = 8
+      Width = 41
+      Height = 41
+      Center = True
+      Picture.Data = {
+        0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
+        00200806000000737A7AF400000009704859730000167F0000167F01A413BABF
+        0000001974455874536F667477617265007777772E696E6B73636170652E6F72
+        679BEE3C1A0000015C4944415478DAED95C14AC3401086B32711A1AFA03E867A
+        EA4108E62078F7A81EF202BE81F42C48513C7996D29B20288A78F709C4675011
+        44AC5FDA089B90DDCC4C412F19F89976B699FF4BBA9975C93F87EB003A80D0C2
+        64B6B6872EF8F061694E8F45D22E3A73D3AF4280D2FC18E5E81E6D5178579A2F
+        902E5186CED13E3DBEA50047A443AF748DB6A54FA2BCF331DAF4CA0357ED1905
+        58235DA19E57163D89DA9DFF46714DC6B57722002B84D63C0AA085B098B70248
+        21ACE622803608F46535170344201ED01B4A2DE62A8008841F2A7335400B84DA
+        DC0A506CB81BB45E5B7A421BDA89A9FD0B9A76BB1FEAB1ADD9844DE6C5682EE6
+        FB921542FA1A06DF73F49918C7B608403264E6393BDA46B178C259216287917A
+        BC5A2042C7B179B66B21420043D281577A45293F7E4C0411803875D59E518055
+        D22D5AD69A07205E509F1ECF2280B2C10A698472AD790DE204ED34994701FE2A
+        3A800EE007DA4794219C6C6FCB0000000049454E44AE426082}
+      OnClick = imgFecharPanelCadastroClienteClick
+    end
     object Panel4: TPanel
       AlignWithMargins = True
       Left = 4
@@ -7894,8 +7942,6 @@ object FormLogin: TFormLogin
       BevelOuter = bvNone
       ParentColor = True
       TabOrder = 0
-      ExplicitLeft = 20
-      ExplicitTop = 497
       object Label4: TLabel
         AlignWithMargins = True
         Left = 150
@@ -7915,9 +7961,9 @@ object FormLogin: TFormLogin
       end
       object Label6: TLabel
         AlignWithMargins = True
-        Left = 754
+        Left = 877
         Top = 3
-        Width = 224
+        Width = 101
         Height = 43
         Margins.Right = 230
         Align = alRight
@@ -7928,6 +7974,7 @@ object FormLogin: TFormLogin
         Font.Name = 'Segoe UI'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitHeight = 32
       end
     end
     object Panel12: TPanel
@@ -7942,7 +7989,6 @@ object FormLogin: TFormLogin
       Align = alBottom
       BevelOuter = bvNone
       TabOrder = 2
-      ExplicitTop = 681
       object Shape40: TShape
         Left = 0
         Top = 0
@@ -7971,8 +8017,9 @@ object FormLogin: TFormLogin
         Font.Name = 'Segoe UI'
         Font.Style = [fsBold]
         ParentFont = False
-        OnClick = lblBtnCadastrarAdmClick
-        ExplicitWidth = 194
+        OnClick = lblBtnCadastrarClienteConfClick
+        ExplicitWidth = 111
+        ExplicitHeight = 25
       end
     end
     object pnlLblCadastrarCliente: TPanel
@@ -7989,9 +8036,6 @@ object FormLogin: TFormLogin
       BevelOuter = bvNone
       Constraints.MaxWidth = 1074
       TabOrder = 1
-      ExplicitLeft = 70
-      ExplicitTop = 47
-      ExplicitWidth = 363
       object Shape39: TShape
         Left = 0
         Top = 0
@@ -8035,8 +8079,6 @@ object FormLogin: TFormLogin
       BevelOuter = bvNone
       ParentColor = True
       TabOrder = 3
-      ExplicitLeft = 11
-      ExplicitTop = 536
       object Panel11: TPanel
         AlignWithMargins = True
         Left = 150
@@ -8050,7 +8092,6 @@ object FormLogin: TFormLogin
         Color = clWhite
         ParentBackground = False
         TabOrder = 0
-        ExplicitLeft = 40
         object Shape38: TShape
           Left = 0
           Top = 0
@@ -8097,8 +8138,6 @@ object FormLogin: TFormLogin
         Color = clWhite
         ParentBackground = False
         TabOrder = 1
-        ExplicitLeft = 762
-        ExplicitTop = 6
         object Shape41: TShape
           Left = 0
           Top = 0
@@ -8120,6 +8159,7 @@ object FormLogin: TFormLogin
           Height = 29
           Margins.Left = 10
           Align = alClient
+          Alignment = taCenter
           BevelInner = bvNone
           BevelOuter = bvNone
           BorderStyle = bsNone
@@ -8145,8 +8185,6 @@ object FormLogin: TFormLogin
       BevelOuter = bvNone
       ParentColor = True
       TabOrder = 4
-      ExplicitLeft = 20
-      ExplicitTop = 497
       object Label18: TLabel
         AlignWithMargins = True
         Left = 150
@@ -8166,9 +8204,9 @@ object FormLogin: TFormLogin
       end
       object Label19: TLabel
         AlignWithMargins = True
-        Left = 754
+        Left = 895
         Top = 3
-        Width = 224
+        Width = 83
         Height = 43
         Margins.Right = 230
         Align = alRight
@@ -8179,6 +8217,8 @@ object FormLogin: TFormLogin
         Font.Name = 'Segoe UI'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitLeft = 754
+        ExplicitHeight = 32
       end
     end
     object Panel15: TPanel
@@ -8191,10 +8231,9 @@ object FormLogin: TFormLogin
       Margins.Bottom = 0
       Align = alBottom
       BevelOuter = bvNone
-      ParentColor = True
+      Color = clWhite
+      ParentBackground = False
       TabOrder = 5
-      ExplicitLeft = 12
-      ExplicitTop = 505
       object Panel16: TPanel
         AlignWithMargins = True
         Left = 150
@@ -8208,7 +8247,6 @@ object FormLogin: TFormLogin
         Color = clWhite
         ParentBackground = False
         TabOrder = 0
-        ExplicitLeft = 40
         object Shape42: TShape
           Left = 0
           Top = 0
@@ -8255,8 +8293,6 @@ object FormLogin: TFormLogin
         Color = clWhite
         ParentBackground = False
         TabOrder = 1
-        ExplicitLeft = 762
-        ExplicitTop = 6
         object Shape43: TShape
           Left = 0
           Top = 0
@@ -8278,6 +8314,7 @@ object FormLogin: TFormLogin
           Height = 29
           Margins.Left = 10
           Align = alClient
+          Alignment = taCenter
           BevelInner = bvNone
           BevelOuter = bvNone
           BorderStyle = bsNone
@@ -8303,8 +8340,6 @@ object FormLogin: TFormLogin
       BevelOuter = bvNone
       ParentColor = True
       TabOrder = 6
-      ExplicitLeft = 20
-      ExplicitTop = 497
       object Label20: TLabel
         AlignWithMargins = True
         Left = 150
@@ -8324,9 +8359,9 @@ object FormLogin: TFormLogin
       end
       object Label21: TLabel
         AlignWithMargins = True
-        Left = 754
+        Left = 865
         Top = 3
-        Width = 224
+        Width = 113
         Height = 43
         Margins.Right = 230
         Align = alRight
@@ -8337,6 +8372,7 @@ object FormLogin: TFormLogin
         Font.Name = 'Segoe UI'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitHeight = 32
       end
     end
     object Panel22: TPanel
@@ -8351,7 +8387,6 @@ object FormLogin: TFormLogin
       BevelOuter = bvNone
       ParentColor = True
       TabOrder = 7
-      ExplicitTop = 505
       object Panel25: TPanel
         AlignWithMargins = True
         Left = 150
@@ -8362,8 +8397,6 @@ object FormLogin: TFormLogin
         Align = alLeft
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitLeft = 48
-        ExplicitTop = 6
         object Shape44: TShape
           Left = 0
           Top = 0
@@ -8412,8 +8445,6 @@ object FormLogin: TFormLogin
         Color = clWhite
         ParentBackground = False
         TabOrder = 1
-        ExplicitLeft = 762
-        ExplicitTop = 6
         object Shape45: TShape
           Left = 0
           Top = 0
@@ -8435,6 +8466,7 @@ object FormLogin: TFormLogin
           Height = 29
           Margins.Left = 10
           Align = alClient
+          Alignment = taCenter
           BevelInner = bvNone
           BevelOuter = bvNone
           BorderStyle = bsNone
@@ -8461,8 +8493,6 @@ object FormLogin: TFormLogin
       BevelOuter = bvNone
       ParentColor = True
       TabOrder = 8
-      ExplicitLeft = 12
-      ExplicitTop = 505
       object Panel32: TPanel
         AlignWithMargins = True
         Left = 150
@@ -8476,8 +8506,6 @@ object FormLogin: TFormLogin
         Color = clWhite
         ParentBackground = False
         TabOrder = 0
-        ExplicitLeft = 158
-        ExplicitTop = 6
         object Shape47: TShape
           Left = 0
           Top = 0
@@ -8511,7 +8539,6 @@ object FormLogin: TFormLogin
           ParentFont = False
           TabOrder = 0
           Text = '   .   .   -  '
-          ExplicitWidth = 240
         end
       end
       object Panel31: TPanel
@@ -8526,8 +8553,6 @@ object FormLogin: TFormLogin
         Color = clWhite
         ParentBackground = False
         TabOrder = 1
-        ExplicitLeft = 158
-        ExplicitTop = 6
         object Shape46: TShape
           Left = 0
           Top = 0
@@ -8549,6 +8574,7 @@ object FormLogin: TFormLogin
           Height = 29
           Margins.Left = 10
           Align = alClient
+          Alignment = taCenter
           BevelInner = bvNone
           BevelOuter = bvNone
           BorderStyle = bsNone
@@ -8574,8 +8600,6 @@ object FormLogin: TFormLogin
       BevelOuter = bvNone
       ParentColor = True
       TabOrder = 9
-      ExplicitLeft = 12
-      ExplicitTop = 413
       object Label22: TLabel
         AlignWithMargins = True
         Left = 150
@@ -8595,9 +8619,9 @@ object FormLogin: TFormLogin
       end
       object Label23: TLabel
         AlignWithMargins = True
-        Left = 754
+        Left = 862
         Top = 3
-        Width = 224
+        Width = 116
         Height = 43
         Margins.Right = 230
         Align = alRight
@@ -8608,6 +8632,8 @@ object FormLogin: TFormLogin
         Font.Name = 'Segoe UI'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitLeft = 757
+        ExplicitHeight = 32
       end
     end
     object Panel34: TPanel
@@ -8621,8 +8647,6 @@ object FormLogin: TFormLogin
       BevelOuter = bvNone
       ParentColor = True
       TabOrder = 10
-      ExplicitLeft = 20
-      ExplicitTop = 497
       object Label24: TLabel
         AlignWithMargins = True
         Left = 150
@@ -8638,14 +8662,13 @@ object FormLogin: TFormLogin
         Font.Name = 'Segoe UI'
         Font.Style = [fsBold]
         ParentFont = False
-        ExplicitLeft = 40
         ExplicitHeight = 32
       end
       object Label25: TLabel
         AlignWithMargins = True
-        Left = 754
+        Left = 758
         Top = 3
-        Width = 54
+        Width = 50
         Height = 43
         Margins.Right = 400
         Align = alRight
@@ -8656,6 +8679,7 @@ object FormLogin: TFormLogin
         Font.Name = 'Segoe UI'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitHeight = 32
       end
     end
     object Panel35: TPanel
@@ -8670,41 +8694,6 @@ object FormLogin: TFormLogin
       BevelOuter = bvNone
       ParentColor = True
       TabOrder = 11
-      ExplicitLeft = 0
-      ExplicitTop = 226
-      object imgBtnBuscarCep: TImage
-        AlignWithMargins = True
-        Left = 1014
-        Top = 3
-        Width = 44
-        Height = 35
-        Margins.Right = 150
-        Align = alRight
-        Center = True
-        Picture.Data = {
-          0954506E67496D61676589504E470D0A1A0A0000000D49484452000000100000
-          001008060000001FF3FF61000000097048597300000EC300000EC301C76FA864
-          0000001974455874536F667477617265007777772E696E6B73636170652E6F72
-          679BEE3C1A000001EC4944415478DA9D534D4B5B41143D336A6D37C9425C1405
-          17BEF774E147E9CA0FACB5B870575CB970695E82E2077651BBE84210C5B405C1
-          8FA226A22B95FE80221445AA455D086A8B60A2A01829E2AA8A3518CD78A2117D
-          894174E0CCDC99B9E7BC3BF7DE279068D4E59422E9BC094A9471974E1C00621E
-          0AFDF0FAE6AEDD441CB1FD7532F6023DBC6AE44E11BF89BFC473223FCA1984B0
-          35637839142F601A03E435D09A23DD0599940C845F22AC8E20C42EEF3EF3AEFC
-          52C4E3AFB70A388C3208F593D63C9DAB29E025E12DF7A7C413DA3310F62AA8C3
-          1F97224ABCB20A38B5491ED6D0310F909D5C8BA19413D2FE1D29C736FC3F9318
-          DD3C80D3C8E5F93A3FF6CD2A60EA01CE8778AA8A1014FB90E16A0C6D4DDD9964
-          535B633AD262058E19F602BCFE4AB4663E434FE02461954C3D225C11F3047D8B
-          7308C3FE5CDC374CFD0F677B4C12350F93E780142F30E45B4DDC23D97990728D
-          D14E58055C4621CBB5426B11A15005C6B68371E4262D15414CF3FDA590AA2436
-          076ECEEFA3BB2546E2B244E2C829604FB089C0EAA097B96AB911308D6E96ADED
-          8E80FDC40E9145E8B8EACE7E6464BC43FBEC994840FEC4AF8FB3D60D747F1329
-          17EF8F68F35F905F31B2F1EBDA5130EC8F5C3B6EB8C20D8FEFC3BD55B825F08F
-          ABED31E4A880D6C7B6AD65785FF89B763D841C1917C50F9F5BCF5B91F0000000
-          0049454E44AE426082}
-        OnClick = imgBtnBuscarCepClick
-        ExplicitLeft = 1017
-      end
       object Panel36: TPanel
         AlignWithMargins = True
         Left = 150
@@ -8718,7 +8707,6 @@ object FormLogin: TFormLogin
         Color = clWhite
         ParentBackground = False
         TabOrder = 0
-        ExplicitLeft = 40
         object Shape48: TShape
           Left = 0
           Top = 0
@@ -8753,6 +8741,61 @@ object FormLogin: TFormLogin
           TextHint = 'Digite o nome'
         end
       end
+      object Panel38: TPanel
+        AlignWithMargins = True
+        Left = 1014
+        Top = 3
+        Width = 39
+        Height = 35
+        Margins.Right = 155
+        Align = alRight
+        BevelOuter = bvNone
+        Caption = 'Panel38'
+        Color = clWhite
+        ParentBackground = False
+        TabOrder = 1
+        object Shape50: TShape
+          Left = 0
+          Top = 0
+          Width = 39
+          Height = 35
+          Align = alClient
+          Shape = stRoundRect
+          ExplicitTop = 6
+          ExplicitWidth = 55
+          ExplicitHeight = 41
+        end
+        object imgBtnBuscarCep: TImage
+          Left = 0
+          Top = 2
+          Width = 39
+          Height = 33
+          Margins.Right = 150
+          Center = True
+          Picture.Data = {
+            0954506E67496D61676589504E470D0A1A0A0000000D49484452000000100000
+            001008060000001FF3FF61000000097048597300000EC300000EC301C76FA864
+            0000001974455874536F667477617265007777772E696E6B73636170652E6F72
+            679BEE3C1A000001EC4944415478DA9D534D4B5B41143D336A6D37C9425C1405
+            17BEF774E147E9CA0FACB5B870575CB970695E82E2077651BBE84210C5B405C1
+            8FA226A22B95FE80221445AA455D086A8B60A2A01829E2AA8A3518CD78A2117D
+            894174E0CCDC99B9E7BC3BF7DE279068D4E59422E9BC094A9471974E1C00621E
+            0AFDF0FAE6AEDD441CB1FD7532F6023DBC6AE44E11BF89BFC473223FCA1984B0
+            35637839142F601A03E435D09A23DD0599940C845F22AC8E20C42EEF3EF3AEFC
+            52C4E3AFB70A388C3208F593D63C9DAB29E025E12DF7A7C413DA3310F62AA8C3
+            1F97224ABCB20A38B5491ED6D0310F909D5C8BA19413D2FE1D29C736FC3F9318
+            DD3C80D3C8E5F93A3FF6CD2A60EA01CE8778AA8A1014FB90E16A0C6D4DDD9964
+            535B633AD262058E19F602BCFE4AB4663E434FE02461954C3D225C11F3047D8B
+            7308C3FE5CDC374CFD0F677B4C12350F93E780142F30E45B4DDC23D97990728D
+            D14E58055C4621CBB5426B11A15005C6B68371E4262D15414CF3FDA590AA2436
+            076ECEEFA3BB2546E2B244E2C829604FB089C0EAA097B96AB911308D6E96ADED
+            8E80FDC40E9145E8B8EACE7E6464BC43FBEC994840FEC4AF8FB3D60D747F1329
+            17EF8F68F35F905F31B2F1EBDA5130EC8F5C3B6EB8C20D8FEFC3BD55B825F08F
+            ABED31E4A880D6C7B6AD65785FF89B763D841C1917C50F9F5BCF5B91F0000000
+            0049454E44AE426082}
+          OnClick = imgBtnBuscarCepClick
+        end
+      end
       object Panel37: TPanel
         AlignWithMargins = True
         Left = 754
@@ -8761,8 +8804,7 @@ object FormLogin: TFormLogin
         Height = 35
         Align = alRight
         BevelOuter = bvNone
-        TabOrder = 1
-        ExplicitLeft = 914
+        TabOrder = 2
         object Shape49: TShape
           Left = 0
           Top = 0
@@ -8796,7 +8838,6 @@ object FormLogin: TFormLogin
           ParentFont = False
           TabOrder = 0
           Text = '  .   -   '
-          ExplicitWidth = 240
         end
       end
     end
