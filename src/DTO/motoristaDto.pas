@@ -11,7 +11,7 @@ type TmotoristaDto = record
     IdMotorista: Integer;
     NumeroCNH: string;
     CategoriaCNH: string;
-    ValidadeCNH: TDate;
+    ValidadeCNH: Tdate;
     cargo :string;
     idTransportadora:Integer;
 end;

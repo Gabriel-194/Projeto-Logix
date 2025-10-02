@@ -8,12 +8,14 @@ type THomeController = class
   procedure cadastrarUsuario(aUsuario:TUsuario);
   function MostrarUser(const aCargo: string): TObjectList<Tusuario>;
   procedure EditarUser(aUsuario:TUsuario);
-  procedure excluirUser(aUsuario:TUsuario);
+  procedure excluirUser(aUsuario: TUsuario); overload;
+  procedure excluirUser(aMotorista: TmotoristaDto); overload;
   function MostrarUserInativo(const aCargo: string): TObjectList<Tusuario>;
   procedure recuperarUser(aUsuario:Tusuario);
   function ContarUsuariosPorCargo(const aCargo: string): Integer;
 //=============== motorista ==============
  procedure cadastrarMotorista(motorista:TmotoristaDto);
+ function mostrarMotorista:Tlist<TmotoristaDto>;
 
   end;
 
@@ -73,6 +75,18 @@ service := TuserService.create;
   end;
 end;
 
+procedure THomeController.excluirUser(aMotorista: TmotoristaDto);
+var
+  service: TuserService;
+begin
+  service := TuserService.create;
+  try
+    service.excluirUser(aMotorista);
+  finally
+    service.free;
+  end;
+end;
+
 procedure THomeController.excluirUser(aUsuario: TUsuario);
 var
 service : TuserService;
@@ -83,6 +97,18 @@ service := TuserService.create;
   finally
     service.free;
   end;
+end;
+
+function THomeController.mostrarMotorista: Tlist<TmotoristaDto>;
+var
+service : TuserService;
+begin
+ service := TuserService.create;
+ try
+   result := service.mostrarMotorista;
+ finally
+  service.free;
+ end;
 end;
 
 function THomeController.mostrarUser(const aCargo: string): TObjectList<Tusuario>;

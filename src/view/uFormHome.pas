@@ -125,7 +125,6 @@ type
     PnlBtnCadastrarMotoristas: TPanel;
     Shape4: TShape;
     LblBtnCadastrarMotorista: TLabel;
-    LswMotorista: TListView;
     pnlBtnExcluirMotorista: TPanel;
     Shape13: TShape;
     lblBtnExcluirMotorista: TLabel;
@@ -138,11 +137,7 @@ type
     pnlBtnExcluirMotoristaConf: TPanel;
     Shape16: TShape;
     lblBtnExcluirMotoristaConf: TLabel;
-    pblBtnDefPermissoesMotorista: TPanel;
-    Shape17: TShape;
-    lblBtnDefPermissoesMotorista: TLabel;
     PanelOptionsMotoristas: TPanel;
-    lblOptionsMotorista: TLabel;
     Panel15: TPanel;
     pnlEdtNomeMotorista: TPanel;
     Shape32: TShape;
@@ -193,7 +188,6 @@ type
     Panel3: TPanel;
     Label3: TLabel;
     Label18: TLabel;
-    Panel9: TPanel;
     TabSheetCarregador: TTabSheet;
     PanelButtonsCarregador: TPanel;
     ImgFechaPageCoontrolCadastrar: TImage;
@@ -315,6 +309,7 @@ type
     PanelFechaOptionsVeiculo: TPanel;
     Shape72: TShape;
     imgFechaOptionsVeiculo: TImage;
+    LswMotorista: TListView;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -353,6 +348,9 @@ type
     procedure lblBtnExcluirCarregadorConfClick(Sender: TObject);
     procedure lblBtnRecuperarCarregadorConfClick(Sender: TObject);
     procedure lblBtnCadastrarMotoristaConfClick(Sender: TObject);
+    procedure MostrarMotorista;
+    procedure lblBtnExcluirMotoristaClick(Sender: TObject);
+
 
 
   private
@@ -414,7 +412,12 @@ begin
   else if PageControlCadastrar.ActivePage = TabSheetCarregador then
   begin
     mostrarUser('Carregador', lswCarregador);
+  end
+  else if PageControlCadastrar.ActivePage = TabSheetMotoristas then
+  begin
+    MostrarMotorista;
   end;
+
 end;
 
 procedure TFormHome.mostrarUserInativo;
@@ -454,6 +457,39 @@ begin
   end;
 end;
 
+procedure TFormHome.MostrarMotorista;
+var
+  controller: ThomeController;
+  ListaMotorista: TList<TmotoristaDto>;
+  motorista: TmotoristaDto;
+  Item: TListItem;
+begin
+  controller := ThomeController.Create;
+  try
+    ListaMotorista := controller.mostrarMotorista;
+
+    lswMotorista.Items.Clear;
+
+    for motorista in ListaMotorista do
+    begin
+      Item := lswMotorista.Items.Add;
+      Item.Caption := IntToStr(motorista.IdUsuario);
+      Item.SubItems.Add(motorista.nome);
+      Item.SubItems.Add(motorista.cpf);
+      Item.SubItems.Add(IntToStr(motorista.idTransportadora));
+      Item.SubItems.Add(motorista.telefone);
+      Item.SubItems.Add(motorista.email);
+      Item.SubItems.Add(motorista.cargo);
+      Item.SubItems.Add(motorista.CategoriaCNH);
+      Item.SubItems.Add(motorista.NumeroCNH);
+      Item.SubItems.Add(DateToStr(motorista.ValidadeCNH));
+    end;
+
+  finally
+    controller.Free;
+  end;
+end;
+
 // ====================== on show form home ============================
 procedure TFormHome.AtualizarDashboards;
 var
@@ -466,16 +502,11 @@ begin
     lblCountCarregador.Caption := controller.ContarUsuariosPorCargo('Carregador').ToString;
     lblCountMotorista.Caption := controller.ContarUsuariosPorCargo('motorista').ToString;
 
-    // --- Outros Contadores (exigirão seus próprios métodos no controller) ---
-    // Exemplo de como ficaria para os outros dashboards:
-    // lblContadorPedidos.Caption := controller.ContarPedidosDoDia.ToString;
-    // lblContadorClientes.Caption := controller.ContarClientesAtivos.ToString;
-    // lblContadorVeiculos.Caption := controller.ContarVeiculosAtivos.ToString;
-
   finally
     controller.Free;
   end;
 end;
+
 
 procedure TFormHome.FormShow(Sender: TObject);
 begin
@@ -489,6 +520,7 @@ procedure TFormHome.lblCadastrosBtnClick(Sender: TObject);
 begin
 pagecontrolCadastrar.visible := true;
 end;
+
 
 //=================== GERENTE ============================================
 
@@ -697,7 +729,6 @@ end;
   procedure TFormHome.LblBtnCadastrarMotoristaClick(Sender: TObject);
 begin
 panelOptionsMotoristas.Visible := true;
-lblOptionsMotorista.caption := 'Cadastrar Motorista';
 pnlBtnCadastrarMotoristaConf.visible := true;
 pnlBtnEditarMotoristaConf.Visible := false;
 pnlBtnEditarMotoristaConf.Visible := false;
@@ -705,18 +736,49 @@ end;
 
 procedure TFormHome.lblBtnEditarMotoristaClick(Sender: TObject);
 begin
-lblOptionsMotorista.caption := 'Editar motorista';
 panelOptionsMotoristas.Visible := true;
 pnlBtnCadastrarMotoristaConf.visible := false;
 pnlBtnEditarMotoristaConf.Visible := true;
 pnlBtnCadastrarMotoristaConf.visible := false;
 pnlBtnEditarMotoristaConf.Visible := false;
+
+MostrarMotorista;
+end;
+
+procedure TFormHome.lblBtnExcluirMotoristaClick(Sender: TObject);
+begin
+pnlBtnExcluirMotoristaConf.Visible := true;
 end;
 
 procedure TFormHome.lblBtnExcluirMotoristaConfClick(Sender: TObject);
+var
+controller : THomeController;
+motorista : TmotoristaDto;
+codParaExcluir: Integer;
 begin
-  pnlBtnRecuperarMototistaConf.Visible:=false;
-  pnlBtnExcluirMotoristaConf.visible := true;
+  if lswMotorista.selected = nil then begin
+    showMessage('selecione um gerente na lista para Excluir.');
+    mostrarMotorista;
+    exit;
+  end;
+
+  if MessageDlg('Tem certeza que deseja excluir o gerente selecionado?',mtConfirmation, [mbYes, mbNo], 0) = mrNo then
+    begin
+      exit;
+    end;
+
+  codParaExcluir := StrToInt(lswMotorista.Selected.Caption);
+  motorista.IdUsuario := codParaExcluir;
+
+  controller := THomeController.Create;
+  try
+    controller.excluirUser(motorista);
+    showMessage('motorista excluido com sucesso.');
+    mostrarMotorista;
+    AtualizarDashboards;
+  finally
+    controller.free;
+  end;
 end;
 
 procedure TFormHome.lblBtnRecuperarMotoristaClick(Sender: TObject);
@@ -742,7 +804,7 @@ begin
   motorista.senha := EdtSenhaMotorista.text;
   motorista.NumeroCNH := EdtNumCnh.text;
   motorista.CategoriaCNH := edtCategoriaCnh.text;
-  motorista.ValidadeCNH := strToInt(MaskEditValidadeCnh.text);
+  motorista.ValidadeCNH := StrToDate(MaskEditValidadeCnh.text);
   motorista.cargo := 'motorista';
 //  motorista.idTransportadora := UsuarioLogado.UserLogado.getIdTransportadora;
   // jeito para teste ->
@@ -754,6 +816,7 @@ begin
       controller.CadastrarMotorista(motorista);
       ShowMessage('Motorista cadastrado com sucesso!');
       mostrarUser('motorista',lswMotorista);
+      mostrarMotorista;
       AtualizarDashboards;
     finally
       controller.Free;

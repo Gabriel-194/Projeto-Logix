@@ -1788,17 +1788,18 @@ object FormHome: TFormHome
               Height = 29
               Margins.Right = 10
               Align = alClient
+              Alignment = taCenter
               BorderStyle = bsNone
-              EditMask = '!99.999.999/9999-99;1;_'
+              EditMask = '999.999.999-99;1;_'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -23
               Font.Name = 'Segoe UI'
               Font.Style = []
-              MaxLength = 18
+              MaxLength = 14
               ParentFont = False
               TabOrder = 0
-              Text = '  .   .   /    -  '
+              Text = '   .   .   -  '
             end
           end
         end
@@ -1975,6 +1976,7 @@ object FormHome: TFormHome
               Height = 29
               Margins.Left = 10
               Align = alClient
+              Alignment = taCenter
               BevelInner = bvNone
               BevelOuter = bvNone
               BorderStyle = bsNone
@@ -2265,7 +2267,7 @@ object FormHome: TFormHome
         Left = 0
         Top = 0
         Width = 621
-        Height = 696
+        Height = 463
         Align = alLeft
         BevelOuter = bvNone
         Color = clWhite
@@ -2298,7 +2300,7 @@ object FormHome: TFormHome
         object PnlBtnEditarMotorista: TPanel
           AlignWithMargins = True
           Left = 100
-          Top = 190
+          Top = 150
           Width = 421
           Height = 30
           Margins.Left = 100
@@ -2343,11 +2345,11 @@ object FormHome: TFormHome
         object PnlBtnCadastrarMotoristas: TPanel
           AlignWithMargins = True
           Left = 100
-          Top = 50
+          Top = 80
           Width = 421
           Height = 30
           Margins.Left = 100
-          Margins.Top = 50
+          Margins.Top = 80
           Margins.Right = 100
           Margins.Bottom = 10
           Align = alTop
@@ -2385,58 +2387,10 @@ object FormHome: TFormHome
             ExplicitWidth = 363
           end
         end
-        object LswMotorista: TListView
-          AlignWithMargins = True
-          Left = 40
-          Top = 456
-          Width = 541
-          Height = 225
-          Margins.Left = 40
-          Margins.Right = 40
-          Margins.Bottom = 15
-          Align = alBottom
-          Columns = <
-            item
-              Caption = 'id'
-              Width = 30
-            end
-            item
-              Alignment = taCenter
-              Caption = 'Nome'
-              MinWidth = 190
-              Width = 190
-            end
-            item
-              Alignment = taCenter
-              Caption = 'CPF'
-              MinWidth = 110
-              Width = 110
-            end
-            item
-              Caption = 'id Transportadora'
-              Width = 100
-            end
-            item
-              Caption = 'telefone'
-              Width = 60
-            end
-            item
-              Caption = 'E- mail'
-              Width = 100
-            end>
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Segoe UI'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 2
-          ViewStyle = vsReport
-        end
         object pnlBtnExcluirMotorista: TPanel
           AlignWithMargins = True
           Left = 100
-          Top = 359
+          Top = 319
           Width = 421
           Height = 30
           Margins.Left = 100
@@ -2446,7 +2400,7 @@ object FormHome: TFormHome
           Align = alTop
           BevelOuter = bvNone
           Constraints.MaxWidth = 598
-          TabOrder = 3
+          TabOrder = 2
           object Shape13: TShape
             Left = 0
             Top = 0
@@ -2473,13 +2427,14 @@ object FormHome: TFormHome
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
+            OnClick = lblBtnExcluirMotoristaClick
             ExplicitWidth = 353
           end
         end
         object pnlBtnRecuperarMotorista: TPanel
           AlignWithMargins = True
           Left = 100
-          Top = 260
+          Top = 220
           Width = 421
           Height = 30
           Margins.Left = 100
@@ -2489,7 +2444,7 @@ object FormHome: TFormHome
           Align = alTop
           BevelOuter = bvNone
           Constraints.MaxWidth = 598
-          TabOrder = 4
+          TabOrder = 3
           object Shape14: TShape
             Left = 0
             Top = 0
@@ -2524,7 +2479,7 @@ object FormHome: TFormHome
         object pnlBtnRecuperarMototistaConf: TPanel
           AlignWithMargins = True
           Left = 200
-          Top = 300
+          Top = 260
           Width = 221
           Height = 29
           Margins.Left = 200
@@ -2533,7 +2488,7 @@ object FormHome: TFormHome
           Margins.Bottom = 0
           Align = alTop
           BevelOuter = bvNone
-          TabOrder = 5
+          TabOrder = 4
           Visible = False
           object Shape15: TShape
             Left = 0
@@ -2570,7 +2525,7 @@ object FormHome: TFormHome
         object pnlBtnExcluirMotoristaConf: TPanel
           AlignWithMargins = True
           Left = 200
-          Top = 399
+          Top = 359
           Width = 221
           Height = 29
           Margins.Left = 200
@@ -2579,7 +2534,7 @@ object FormHome: TFormHome
           Margins.Bottom = 10
           Align = alTop
           BevelOuter = bvNone
-          TabOrder = 6
+          TabOrder = 5
           Visible = False
           object Shape16: TShape
             Left = 0
@@ -2614,93 +2569,27 @@ object FormHome: TFormHome
             ExplicitHeight = 25
           end
         end
-        object pblBtnDefPermissoesMotorista: TPanel
-          AlignWithMargins = True
-          Left = 100
-          Top = 120
-          Width = 421
-          Height = 30
-          Margins.Left = 100
-          Margins.Top = 30
-          Margins.Right = 100
-          Margins.Bottom = 10
-          Align = alTop
-          BevelOuter = bvNone
-          Constraints.MaxWidth = 598
-          TabOrder = 7
-          object Shape17: TShape
-            Left = 0
-            Top = 0
-            Width = 421
-            Height = 30
-            Align = alClient
-            Pen.Color = clBlue
-            Shape = stRoundRect
-            ExplicitWidth = 262
-            ExplicitHeight = 297
-          end
-          object lblBtnDefPermissoesMotorista: TLabel
-            Left = 0
-            Top = 0
-            Width = 421
-            Height = 30
-            Margins.Right = 100
-            Align = alClient
-            Alignment = taCenter
-            AutoSize = False
-            Caption = 'Definir Permiss'#245'es'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -19
-            Font.Name = 'Segoe UI'
-            Font.Style = [fsBold]
-            ParentFont = False
-            ExplicitLeft = 3
-            ExplicitTop = 7
-          end
-        end
       end
       object PanelOptionsMotoristas: TPanel
         AlignWithMargins = True
         Left = 624
         Top = 0
         Width = 868
-        Height = 696
+        Height = 465
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0
         Margins.Bottom = 0
-        Align = alRight
         BevelKind = bkFlat
         BevelOuter = bvNone
         Color = clWhite
         ParentBackground = False
         TabOrder = 1
         Visible = False
-        object lblOptionsMotorista: TLabel
-          AlignWithMargins = True
-          Left = 50
-          Top = 25
-          Width = 764
-          Height = 40
-          Margins.Left = 50
-          Margins.Top = 25
-          Margins.Right = 50
-          Align = alTop
-          Alignment = taCenter
-          Caption = 'Cadastro de Motoristas'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = 6957870
-          Font.Height = -29
-          Font.Name = 'Segoe UI'
-          Font.Style = [fsBold]
-          ParentFont = False
-          ExplicitWidth = 320
-        end
         object Panel15: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 173
+          Top = 58
           Width = 858
           Height = 41
           Margins.Top = 0
@@ -2789,23 +2678,24 @@ object FormHome: TFormHome
               Align = alClient
               Alignment = taCenter
               BorderStyle = bsNone
-              EditMask = '!99.999.999/9999-99;1;_'
+              EditMask = '999.999.999-99;1;_'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -23
               Font.Name = 'Segoe UI'
               Font.Style = []
-              MaxLength = 18
+              MaxLength = 14
               ParentFont = False
               TabOrder = 0
-              Text = '  .   .   /    -  '
+              Text = '   .   .   -  '
+              ExplicitWidth = 276
             end
           end
         end
         object Panel22: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 349
+          Top = 234
           Width = 858
           Height = 41
           Margins.Top = 0
@@ -2906,7 +2796,7 @@ object FormHome: TFormHome
         object Panel26: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 217
+          Top = 102
           Width = 858
           Height = 41
           Align = alBottom
@@ -2951,7 +2841,7 @@ object FormHome: TFormHome
         object Panel30: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 261
+          Top = 146
           Width = 858
           Height = 41
           Margins.Top = 0
@@ -3057,7 +2947,7 @@ object FormHome: TFormHome
         object Panel33: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 124
+          Top = 9
           Width = 858
           Height = 49
           Margins.Bottom = 0
@@ -3175,11 +3065,11 @@ object FormHome: TFormHome
         object Panel35: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 579
+          Top = 378
           Width = 858
           Height = 73
-          Margins.Top = 40
-          Margins.Bottom = 40
+          Margins.Top = 5
+          Margins.Bottom = 10
           Align = alBottom
           BevelOuter = bvNone
           Color = clWhite
@@ -3276,7 +3166,7 @@ object FormHome: TFormHome
         object Panel1: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 403
+          Top = 288
           Width = 858
           Height = 41
           Align = alBottom
@@ -3321,7 +3211,7 @@ object FormHome: TFormHome
         object Panel2: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 447
+          Top = 332
           Width = 858
           Height = 41
           Margins.Top = 0
@@ -3425,7 +3315,7 @@ object FormHome: TFormHome
         object Panel3: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 305
+          Top = 190
           Width = 858
           Height = 41
           Align = alBottom
@@ -3467,19 +3357,79 @@ object FormHome: TFormHome
             ExplicitHeight = 31
           end
         end
-        object Panel9: TPanel
-          AlignWithMargins = True
-          Left = 3
-          Top = 488
-          Width = 858
-          Height = 41
-          Margins.Top = 0
-          Margins.Bottom = 10
-          Align = alBottom
-          BevelOuter = bvNone
-          ParentColor = True
-          TabOrder = 10
-        end
+      end
+      object LswMotorista: TListView
+        AlignWithMargins = True
+        Left = 100
+        Top = 466
+        Width = 1292
+        Height = 225
+        Margins.Left = 100
+        Margins.Right = 100
+        Margins.Bottom = 5
+        Align = alBottom
+        Columns = <
+          item
+            Caption = 'id'
+            Width = 30
+          end
+          item
+            Alignment = taCenter
+            Caption = 'Nome'
+            MinWidth = 190
+            Width = 220
+          end
+          item
+            Alignment = taCenter
+            Caption = 'CPF'
+            MinWidth = 120
+            Width = 110
+          end
+          item
+            Alignment = taCenter
+            Caption = 'Id Transportadora'
+            Width = 130
+          end
+          item
+            Alignment = taCenter
+            Caption = 'Telefone'
+            Width = 120
+          end
+          item
+            Alignment = taCenter
+            Caption = 'E-mail'
+            Width = 220
+          end
+          item
+            Alignment = taCenter
+            Caption = 'Cargo'
+            Width = 100
+          end
+          item
+            Alignment = taCenter
+            Caption = 'Categoria CNH'
+            Width = 110
+          end
+          item
+            Alignment = taCenter
+            Caption = 'Numero CNH'
+            Width = 110
+          end
+          item
+            Alignment = taCenter
+            Caption = 'Validade Cnh'
+            Width = 110
+          end>
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 2
+        ViewStyle = vsReport
+        ExplicitLeft = 40
+        ExplicitWidth = 1412
       end
     end
     object TabSheetCarregador: TTabSheet
@@ -3977,17 +3927,18 @@ object FormHome: TFormHome
               Height = 29
               Margins.Right = 10
               Align = alClient
+              Alignment = taCenter
               BorderStyle = bsNone
-              EditMask = '!99.999.999/9999-99;1;_'
+              EditMask = '999.999.999-99'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -23
               Font.Name = 'Segoe UI'
               Font.Style = []
-              MaxLength = 18
+              MaxLength = 14
               ParentFont = False
               TabOrder = 0
-              Text = '  .   .   /    -  '
+              Text = '   .   .   -  '
             end
           end
         end
@@ -4164,6 +4115,7 @@ object FormHome: TFormHome
               Height = 29
               Margins.Left = 10
               Align = alClient
+              Alignment = taCenter
               BevelInner = bvNone
               BevelOuter = bvNone
               BorderStyle = bsNone

@@ -7,11 +7,14 @@ uUsuario, system.Generics.Collections, BCrypt, System.SysUtils,userRepository,mo
     procedure cadastrarUsuario(aUsuario:TUsuario);
     function mostrarUser(const aCargo: string): TObjectList<Tusuario>;
     procedure editarUser (aUsuario:TUsuario);
-    procedure excluirUser(aUsuario:TUsuario);
+    procedure excluirUser(aUsuario: TUsuario); overload;
+    procedure excluirUser(aMotorista: TmotoristaDto); overload;
     function MostrarUserInativo(const aCargo: string): TObjectList<Tusuario>;
     procedure recuperarUser(aUsuario:Tusuario);
 // =============MOTORISTA======================================================
     procedure cadastrarMotorista(motorista:TmotoristaDto);
+    function mostrarMotorista:Tlist<TmotoristaDto>;
+
   end;
 
 implementation
@@ -50,10 +53,8 @@ begin
     raise Exception.Create('A categoria da CNH é obrigatória.');
   end;
 
-  validadeLimpa := StringReplace(dateToStr(motorista.ValidadeCNH), '-', '', [rfReplaceAll]);
-  validadeLimpa:= StringReplace(dateToStr(validadeLimpa), '.', '', [rfReplaceAll]);
 
-  if trim(dateToStr(motorista.ValidadeCNH)) = '' then begin
+ if motorista.ValidadeCNH = 0 then begin
     raise Exception.Create('A validade da CNH é obrigatória.');
   end;
 
@@ -156,13 +157,40 @@ begin
   end;
 
 end;
+
+
+procedure TuserService.excluirUser(aMotorista: TmotoristaDto);
+var
+  userRepo: TUserRepository;
+begin
+
+  userRepo := TUserRepository.create;
+  try
+    userRepo.excluirUser(aMotorista.IdUsuario);
+  finally
+    userRepo.free;
+  end;
+end;
+
 procedure TuserService.excluirUser(aUsuario: TUsuario);
 var
-userRepo:TuserRepository;
+  userRepo: TUserRepository;
+begin
+  userRepo := TUserRepository.create;
+  try
+    userRepo.excluirUser(aUsuario.GetID);
+  finally
+    userRepo.free;
+  end;
+end;
+
+function TuserService.mostrarMotorista: Tlist<TmotoristaDto>;
+var
+userRepo : TuserRepository;
 begin
 userRepo := TuserRepository.create;
   try
-    userRepo.excluirUser(aUsuario);
+    result := userRepo.mostrarMotorista;
   finally
     userRepo.free;
   end;
