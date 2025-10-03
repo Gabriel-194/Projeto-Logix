@@ -27,7 +27,6 @@ uses
   homeController in 'src\controller\homeController.pas',
   uCliente in 'src\model\uCliente.pas',
   EnderecoDto in 'src\DTO\EnderecoDto.pas',
-  cepRepository in 'src\repository\cepRepository.pas',
   enderecoRepository in 'src\repository\enderecoRepository.pas',
   enderecoService in 'src\service\enderecoService.pas',
   clienteRepository in 'src\repository\clienteRepository.pas',

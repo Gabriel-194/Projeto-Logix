@@ -11,7 +11,7 @@ type
     procedure editarUser(aUsuario: TUsuario);
     procedure excluirUser(aID: Integer);
     function MostrarUserInativo(const aCargo: string): TObjectList<Tusuario>;
-    procedure recuperarUser(aUsuario:Tusuario);
+    procedure recuperarUser(aID: Integer);
     procedure editarUserNotSenha(aUsuario: TUsuario);
 //====================MOTORISTA=================================================
   procedure cadastrarMotorista(motorista: TmotoristaDto);
@@ -176,6 +176,7 @@ begin
     FDQuery.ExecSQL;
   finally
     FDQuery.free;
+    aUsuario.free;
   end;
 end;
 
@@ -299,20 +300,24 @@ begin
   end;
 end;
 
-procedure TUserRepository.recuperarUser(aUsuario: Tusuario);
+procedure TUserRepository.recuperarUser(aID: Integer);
 var
+  motorista:TmotoristaDto;
    FDQuery: TFDQuery;
+   usuario:Tusuario;
 begin
+  usuario:=Tusuario.create;
   FDQuery := TFDQuery.Create(nil);
   try
     FDQuery.Connection := datamodule2.FDConnection1;
 
      FDQuery.SQL.Text := 'UPDATE public.usuarios SET ativo = true WHERE id_usuario = :id_usuario';
-     FDQuery.ParamByName('id_usuario').AsInteger := aUsuario.getId;
+     FDQuery.ParamByName('id_usuario').AsInteger := aID;
 
     FDQuery.ExecSQL;
   finally
     FDQuery.free;
+    usuario.free;
   end;
 end;
 

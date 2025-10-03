@@ -10,7 +10,8 @@ uUsuario, system.Generics.Collections, BCrypt, System.SysUtils,userRepository,mo
     procedure excluirUser(aUsuario: TUsuario); overload;
     procedure excluirUser(aMotorista: TmotoristaDto); overload;
     function MostrarUserInativo(const aCargo: string): TObjectList<Tusuario>;
-    procedure recuperarUser(aUsuario:Tusuario);
+    procedure recuperarUser(aUsuario:Tusuario);overload;
+    procedure recuperarUser(aMotorista: TmotoristaDto); overload;
 // =============MOTORISTA======================================================
     procedure cadastrarMotorista(motorista:TmotoristaDto);
     function mostrarMotorista:Tlist<TmotoristaDto>;
@@ -220,16 +221,27 @@ userRepo := TuserRepository.create;
   end;
 end;
 
+procedure TuserService.recuperarUser(aMotorista: TmotoristaDto);
+var
+userRepo : TuserRepository;
+begin
+userRepo := TuserRepository.create;
+  try
+    userRepo.recuperarUser(aMotorista.IdUsuario);
+  finally
+    userRepo.free;
+  end;
+end;
+
 procedure TuserService.recuperarUser(aUsuario: Tusuario);
 var
 userRepo : TuserRepository;
 begin
 userRepo := TuserRepository.create;
   try
-    userRepo.recuperarUser(aUsuario);
+    userRepo.recuperarUser(aUsuario.GetID);
   finally
     userRepo.free;
   end;
 end;
-
 end.

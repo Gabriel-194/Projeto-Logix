@@ -350,6 +350,7 @@ type
     procedure lblBtnCadastrarMotoristaConfClick(Sender: TObject);
     procedure MostrarMotorista;
     procedure lblBtnExcluirMotoristaClick(Sender: TObject);
+    procedure lblBtnRecuperarMotoristaConfClick(Sender: TObject);
 
 
 
@@ -697,7 +698,7 @@ procedure TFormHome.lblBtnRecuperaGerenteConfirmClick(Sender: TObject);
 var
 controller : THomeController;
 user : Tusuario;
-codParaExcluir: Integer;
+codParaRecuperar: Integer;
 begin
   if lswGerente.selected = nil then begin
     showMessage('selecione um gerente na lista para recuperar.');
@@ -710,9 +711,9 @@ begin
       exit;
     end;
 
-  codParaExcluir := StrToInt(lswGerente.Selected.Caption);
+  codParaRecuperar := StrToInt(lswGerente.Selected.Caption);
   user := Tusuario.create;
-  user.setId(codParaExcluir);
+  user.setId(codParaRecuperar);
 
   controller := THomeController.Create;
   try
@@ -785,6 +786,17 @@ procedure TFormHome.lblBtnRecuperarMotoristaClick(Sender: TObject);
 begin
   pnlBtnRecuperarMototistaConf.Visible:=true;
   pnlBtnExcluirMotoristaConf.visible := false;
+end;
+
+procedure TFormHome.lblBtnRecuperarMotoristaConfClick(Sender: TObject);
+var
+controller: ThomeController;
+codParaEditar :Integer;
+motorista:TmotoristaDto;
+begin
+if lswMotorista.selected = nil then begin
+  showMessage('selecione um motorista na lista para recuperar');
+end;
 end;
 
 procedure TFormHome.ImgFechaOptionsMotoristaClick(Sender: TObject);

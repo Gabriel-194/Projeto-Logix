@@ -11,7 +11,8 @@ type THomeController = class
   procedure excluirUser(aUsuario: TUsuario); overload;
   procedure excluirUser(aMotorista: TmotoristaDto); overload;
   function MostrarUserInativo(const aCargo: string): TObjectList<Tusuario>;
-  procedure recuperarUser(aUsuario:Tusuario);
+  procedure recuperarUser(aUsuario:Tusuario)overload;
+  procedure recuperaUser(aMotorista: TmotoristaDto); overload;
   function ContarUsuariosPorCargo(const aCargo: string): Integer;
 //=============== motorista ==============
  procedure cadastrarMotorista(motorista:TmotoristaDto);
@@ -142,6 +143,18 @@ begin
 service := TuserService.create;
   try
     service.recuperarUser(aUsuario);
+  finally
+    service.free;
+  end;
+end;
+
+procedure THomeController.recuperaUser(aMotorista: TmotoristaDto);
+var
+service : TuserService;
+begin
+service := TuserService.create;
+  try
+    service.recuperarUser(aMotorista);
   finally
     service.free;
   end;

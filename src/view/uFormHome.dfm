@@ -2518,6 +2518,7 @@ object FormHome: TFormHome
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
+            OnClick = lblBtnRecuperarMotoristaConfClick
             ExplicitWidth = 107
             ExplicitHeight = 25
           end
@@ -2688,7 +2689,6 @@ object FormHome: TFormHome
               ParentFont = False
               TabOrder = 0
               Text = '   .   .   -  '
-              ExplicitWidth = 276
             end
           end
         end
@@ -3383,7 +3383,7 @@ object FormHome: TFormHome
             Alignment = taCenter
             Caption = 'CPF'
             MinWidth = 120
-            Width = 110
+            Width = 120
           end
           item
             Alignment = taCenter
@@ -3428,8 +3428,6 @@ object FormHome: TFormHome
         ParentFont = False
         TabOrder = 2
         ViewStyle = vsReport
-        ExplicitLeft = 40
-        ExplicitWidth = 1412
       end
     end
     object TabSheetCarregador: TTabSheet
