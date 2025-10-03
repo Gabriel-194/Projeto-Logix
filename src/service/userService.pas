@@ -15,6 +15,8 @@ uUsuario, system.Generics.Collections, BCrypt, System.SysUtils,userRepository,mo
 // =============MOTORISTA======================================================
     procedure cadastrarMotorista(motorista:TmotoristaDto);
     function mostrarMotorista:Tlist<TmotoristaDto>;
+    function mostrarMotoristaInativo:Tlist<TmotoristaDto>;
+    procedure editarMotorista(motorista:TmotoristaDto);
 
   end;
 
@@ -55,7 +57,7 @@ begin
   end;
 
 
- if motorista.ValidadeCNH = 0 then begin
+  if motorista.ValidadeCNH = 0 then begin
     raise Exception.Create('A validade da CNH é obrigatória.');
   end;
 
@@ -113,6 +115,65 @@ begin
   finally
     userRepo.Free;
   end;
+end;
+
+procedure TuserService.editarMotorista(motorista: TmotoristaDto);
+var
+  userRepo: TuserRepository;
+  HashedSenha : String;
+  validadeLimpa : integer;
+begin
+  if Trim(motorista.nome) = '' then begin
+    raise Exception.Create('Nome é obrigatório.');
+  end;
+
+  if Trim(motorista.email) = '' then begin
+    raise Exception.Create('E-mail é obrigatório.');
+  end;
+
+  if Trim(motorista.cpf) = '' then begin
+    raise Exception.Create('CPF é obrigatório.');
+  end;
+
+  if Trim(motorista.telefone) = '' then begin
+    raise Exception.Create('Telefone é obrigatório.');
+  end;
+
+  if Trim(motorista.NumeroCNH) = '' then begin
+    raise Exception.Create('O numero da CNH é obrigatório.');
+  end;
+
+  if Trim(motorista.CategoriaCNH) = '' then begin
+    raise Exception.Create('A categoria da CNH é obrigatória.');
+  end;
+
+
+  if motorista.ValidadeCNH = 0 then begin
+    raise Exception.Create('A validade da CNH é obrigatória.');
+  end;
+
+  if Trim(motorista.senha) = '' then begin
+    userRepo:= TuserRepository.create;
+    try
+      userRepo.editarMotoristaNotSenha(motorista);
+      raise Exception.Create('motorista editado, mas segue com sua senha original.');
+
+    finally
+      userRepo.free;
+    end;
+  end else begin
+    HashedSenha := TBCrypt.HashPassword(motorista.senha);
+    motorista.senha := HashedSenha;
+
+    userRepo := TuserRepository.Create;
+    try
+      userRepo.editarMotorista(motorista);
+    finally
+      userRepo.Free;
+    end;
+  end;
+
+
 end;
 
 procedure TuserService.editarUser(aUsuario: TUsuario);
@@ -192,6 +253,18 @@ begin
 userRepo := TuserRepository.create;
   try
     result := userRepo.mostrarMotorista;
+  finally
+    userRepo.free;
+  end;
+end;
+
+function TuserService.mostrarMotoristaInativo: Tlist<TmotoristaDto>;
+var
+userRepo : TuserRepository;
+begin
+userRepo := TuserRepository.create;
+  try
+    result := userRepo.mostrarMotoristaInativo;
   finally
     userRepo.free;
   end;

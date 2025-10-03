@@ -279,19 +279,20 @@ object FormHome: TFormHome
     end
     object veiculosCadastrados: TPanel
       AlignWithMargins = True
-      Left = 1237
+      Left = 1167
       Top = 43
       Width = 213
       Height = 161
       Margins.Left = 15
       Margins.Top = 0
-      Margins.Right = 30
+      Margins.Right = 100
       Margins.Bottom = 15
       Align = alRight
       BevelOuter = bvNone
       Color = clWhite
       ParentBackground = False
       TabOrder = 0
+      ExplicitLeft = 1237
       object Shape7: TShape
         Left = 0
         Top = 0
@@ -417,19 +418,20 @@ object FormHome: TFormHome
     end
     object pedidosFeitos: TPanel
       AlignWithMargins = True
-      Left = 22
+      Left = 135
       Top = 43
       Width = 213
       Height = 161
       Margins.Left = 15
       Margins.Top = 0
-      Margins.Right = 15
+      Margins.Right = 30
       Margins.Bottom = 15
       Align = alRight
       BevelOuter = bvNone
       Color = clWhite
       ParentBackground = False
       TabOrder = 1
+      ExplicitLeft = 22
       object Shape8: TShape
         Left = 0
         Top = 0
@@ -585,201 +587,22 @@ object FormHome: TFormHome
         ParentFont = False
       end
     end
-    object clientesCadastrados: TPanel
+    object gerentesCadastrados: TPanel
       AlignWithMargins = True
-      Left = 265
+      Left = 393
       Top = 43
       Width = 213
       Height = 161
       Margins.Left = 15
       Margins.Top = 0
-      Margins.Right = 15
+      Margins.Right = 30
       Margins.Bottom = 15
       Align = alRight
       BevelOuter = bvNone
       Color = clWhite
       ParentBackground = False
       TabOrder = 2
-      object Shape9: TShape
-        Left = 0
-        Top = 0
-        Width = 213
-        Height = 161
-        Align = alClient
-        Shape = stRoundRect
-        ExplicitLeft = 72
-        ExplicitTop = 48
-        ExplicitWidth = 65
-        ExplicitHeight = 65
-      end
-      object Image4: TImage
-        Left = 0
-        Top = 0
-        Width = 89
-        Height = 81
-        Center = True
-        Picture.Data = {
-          0954506E67496D61676589504E470D0A1A0A0000000D49484452000000400000
-          00400806000000AA6971DE000000097048597300000EC300000EC301C76FA864
-          0000001974455874536F667477617265007777772E696E6B73636170652E6F72
-          679BEE3C1A00000E134944415478DADD5B0B7453451A9EB937690BF252DA266D
-          B1149AA4BC44B4E2035845545CF0B122A2A228AF24055C50D023BAAB1ED65D57
-          DD5D54E0809294565179E3CACA11DC5510051411D6459E4D0A456869DA0AE559
-          DAE6DE7FBF49724B5A52284DD256E79C69E7CE9D3BF3CF37FFFCAF9970F64B4A
-          23986C686F9ACC98349D719AEB71BAFE126E97BC29E94F98946694BD31138868
-          2046EEC88857A2BA12CF2ECEF93E6294C74872795B290547E7B84F886F4C934D
-          B127AAA46E92428389B32C54A56BFD1163134B9CAE777E110024DA4C7772262D
-          06D9975FC26715C871C17472E26B99C4960034271EBD00ACA7277BDF81160940
-          B2BD6BAAC2748319512F3CDA7D93E16C9642F2DB4CA123AD632B7455D4BABDEA
-          55CC12273311CFE09C6560650D68D70E4BDC06AB7E4C52F90195A9DFCA8C2F3B
-          92EDDA23FA36D82CCF03CCBF0291A51E87FBE1160540FCB88CB63A99E682A547
-          E25117F46A0AF6ED9CC8809BDC5AA1CBC4CA77D0AB31498717EC3ADA22004898
-          D4B38D545DB509C5DED8E3C58CABB9287FCBB8EE80C7B1F7C7488E65B0990026
-          FF3D807EBCC4E97EBF45009068B3CCE58C26A1EBF5D571EA7D9A308B46325A4D
-          0F10E7CBB165FE066138BDD901308E3525908E1F42B1827BC9529CEB2E8DD6E4
-          7DE3D94C3D89F19D282EC6D67AA4F901B09AC74268E570626F1767BB264573F2
-          5A32D82D564EEA37C54EF7AE660740637FB0E40360C9954D0140B829A2004035
-          2D836A1AC1B8DC3BD2022F649A31509750521A573A6FD7A9960180D5FC397ABC
-          4DF6AAA945B9F987B4FAA4F15D3AAB927C5B7C79EC07BB96EFAA8AD87836D33F
-          31859B3C29299DD88C2FBDCD0F80CDFC1DFEF585004CAC118058254361E15694
-          FA20EFE15C7DA2D891BF3EDCB18C59A61EA4FA0460BE27C595C16630B5F901B0
-          9AB632CEAF93394F2872E495F908B599A64352BFC6FC666D2B5F4362DFE0EF1C
-          593ABDAAC85174A631741BAD964F89D36F51B47B9C79CEC6D21C55008C76D308
-          98B78BC4E46545EAEB95A90784E42B78EE1EF804A0F07F0391F59CF1CD6DE2D4
-          1DEE39EECA8B8D936837BF084DF3328AAEB671745543BE893A00C26B3B79968B
-          2DD09B880D874D7F17CAA37D2F893FEAC9CE5BAA8D69B066DCCA983A9EF9DBB4
-          0FEA066C4C87D0DE0D87271FFF0B50E5417D19A9F2CF4C47A738D193E0A0B1A8
-          3B2D917ACB91ECFC6DE1D01D36007E01A79B8DA2988C5CA7FB6358A951C5D979
-          9F86FC18F2C15878B8BFCAF9CD687703A881F9CC52F046BAD8B850B5DB755C19
-          56E4D8FF53B301D0614C5A8758BDFE7F28A6229723EB912F435E020237A88AF4
-          6159CEBE9397D2A7E0A43395521795513A53791ABCC078CE7947109A8C3E87A3
-          C96926DC603FE7E4577125F39863FFF16601007BFE29ECF937D1CD2A0F6F3BC2
-          A01EDF5C5708462A25DB2DF10A51295CEBEFE38FC7F62FEB50B51CD5F7223F05
-          337856B300906835BF8BBD3E1A826D204CD10DA1B48096A00DDE53E11AC2421C
-          7B4150EDE6F990046D3CD9AE47EB03C093EDEE6BB4A7DF4A24ADC30C723D0ED7
-          B866010086CF2CF43005F95110B1089620DC60EAA7EAAB934AE71514D76A6B33
-          8BAD7016AB9570913ECBD05F0CDAB50BAE8FB7774F92C95B04923743EDF54FB4
-          9A46616BBC8FB66F61ECA9CD020038E00E7000D4187331591D803D3B1B92FB21
-          55A56B4B17B8FF5B1B00CB3A80538E89DD7F41006C968FD14E8F767705D72759
-          D333552E7D2F22404CA2294C9136A2DACC247EBB677EDE17CD02804846BB7925
-          D49E985489085F419A67A0D727B12AB3C3EDBB163076F31488FE5918631FC6B8
-          025509207E65B1D3F54038FD860D40A7A99D5A794FB69A09C2ACCCAF0544DA8A
-          15BC81F9B4554412C716DA82FF7D03CFD5B02E9DADABAB9E2E78B7E06CB302A0
-          2511F2E655FA7ED8127FC6630F610C9564BB3E8A44DF8936F37010BA02C5DDE8
-          F74568C14D25D9073C91E83BE221316882DF4113601FB3BD3053FB8434536730
-          C95868B9D3AB706143309D447D8A3BE5AD0DE5D0A48D498B3B13A3FFC1B7B554
-          BAD7B3C0FD4924E98D4A54188ECA1AE1A8403D2E847A1C7DDE7B9BE941B0F0D2
-          E03ACEE9C162877BF9F96D2D0B89D163C86B4A9CEEA191A6352A0088ED2055FB
-          2CC44480F01C40783DF87DEAC4D4CB2BBD317066F8ADA0007363EB2BABAB5F2A
-          7FB7A03CB85D4DEC9F310F91F7EA48B17DD40110092BD7173313EAA92D2638DB
-          73DC358D2D674A833E1667801D2CF01A49447ACF1053EF2871E66F8E069D513D
-          190A586B421E08A366356C85F19E77F24B2EF44DA2B58B81713917EEF1103C1E
-          87F7775F71B6FBCB68D118F5B3C140E4660D3BE730CD04108EBA401826A42792
-          C22760E2D398CFD1A1835C62438BE7BB774793BE26391C85119313F0E1B5A4E0
-          F93B1809793E223824BC5FC79F73A7C3B4F15B2800341EAE7E2FC654588EBC73
-          ED567410EF6037A83BF16EC1AF1200CED5415A4034D16E4A975476A5D002A448
-          873C3979FB457DA4BCBC160140BCAD9B45474A7F92D83400D0AB21D6211CACFB
-          B1255682B29D5C656F78B9BCA9CCB937AFE503E00F6F6560F5FA63020360080D
-          C4A4AFACD34AD8EDCFD517C048B45A1E8741348FF9A34AC14908CCEFC02C1B15
-          2E6D6A1FAB6E0D27101A310012B34C37490A1F0247E83778BC1EB9755DC231C0
-          4222DAC8250E7098B8D3A387F05B51555D6DD30C1F115A8BD1EB9D682B3CBB6A
-          00F802A9B40FFEFE00B47D5C0C55A7DF333E40887D0D5BE3534FB6FBDB260520
-          795C468622A9B9F8FAA6A06A3199CD8CF826E2EA41A8B36C3CCB2AE7834A1D79
-          C27767C6F196EB49A6C5E08CAE782CC0EE1FE9A7822FC6DF34F4B79F2B7C64F1
-          823C115D660976CB0089681D8A0A266AE52475669CFAE3B99FC02D681A9B1526
-          8D6DCC56B9640092B232AE5355F53314E193F36D58855C92A4AF3CC97B77053B
-          33069B699C4F9A337644E1BACC32C79E23A2FE8AC9A676FAB37C3E8AE25A4B75
-          A0B970A39754C75196769F2010011221EF24A13D3C4E774E0D1170A60C45DD7A
-          7255BD19DC27B44B2640FD5996687091C3BD3D6A00D4268ABFE949C97BE64247
-          52F0E1C50DAE2C0CB2B198B71BC41CDBAAFD47654582E8B7D8B92D0396E64F79
-          5292737D677CF64CBD914EAC03FB0F00850E6883AC7A89F299CDE699283D895C
-          A4EAAB33EB86E3220600262458F5E1809737865D24E011382CD980A2088ECC81
-          0CF812FB5B9C0C75F37DCB6999AF21F10703B4EC459B3FA2CD409427236F814B
-          7D4B03041E37D82D0BB1A546A1D7457503AA110140083CAEF24DF8E230AB68D5
-          DDF3FE8ED30DF9AE36D7D4A4CF25529FD34E750CE3D37B31497A15C5BB83DA94
-          E888320BB3DD871B328EFFD2546B98CD3C551CB4687227620060F5850133B03E
-          BFFD422960DCACC6707BA0119E872DF09F9020FB82AC1C405077184D775FEA29
-          B2C16A79085CB5045CF005B8E0F68801609CD02D8D1445586A059E1497A93147
-          D122B2D3D0F8DDA5B4AD9584702C34E7A3942AA9DEAE47161C38181600495673
-          7785D3B59CF850B41497903EC77EBDA4D5AF675482AA5C57E2700B627D871E2A
-          D1DDA88C09BF6F1A81BF62F53F1451241D97B61539F2F65E120086C77A5FC6E3
-          2ADE0B9CC5452B6D814578A36F3CED80256A892F6367E3C685925BA10108A82F
-          6471F22AAEA184157A3E2F892098441F43BD6DF18D37CED2954B3486780438A0
-          F640E29EF130E4D4FA6EAE9D0780C19AD1857155B06651ACAEF2AA9FDEFEE958
-          64896ADAD4697CCF2BAAA52A71612B0972A14B5DB9703E0036B350459F5CD400
-          F9052558A50E4CD586E23DD876AB2F0880E68E424EBD0163E7E9501D8AD3A0C3
-          6F1EAE08391A2471632F2CD54D294F74EB585941B16539FB8A6A2603F924C59C
-          8CAFB3923C75626A8D6F704A17A3045FD135DA4C3361754D0BE58E371C0061C2
-          16154EC7EE9D2868432EC7C74BE418F985C2B97B7FF611E73F14F94085D628CD
-          CEFBBAF62A5820996929271AAE0539136DE667D087B840E50F85F98FBE855749
-          FE6FCCE232550FA6F06BB48009FA598AD7C3B03D0DDAF6443BE19B0C0E1E2FF8
-          FE702400E0469B7979402B88D07681181759DCE79F50E270CDF74FC8F412BCC0
-          3F9DE7BC30DF21EAB320E075F4FB04FA9D17207C15FEDD8B7E0F63CC2A717B0C
-          2C3AEA1C686637FEA5FB7C8972D7401156077D1BD0F666992B9DB5EB3130805E
-          65BE1B63BEAB78823377629C7F609C65110120D16EB90F2B076DC0F215260F15
-          6EA7FF3701CA9036716C9566AB371A0092AE2EC9DEB7A32E2D1A007E4AE9798F
-          C3FD5A28004412F4C8B20AB6A71F3176EF5A63870D807613E4226670181CB002
-          FD1F8599FC5189D3FD590800841A9648E2D7338566373900814B0BD8DFEC464D
-          77471280A066ABB105EE390F00A2A9FEBB480475C64534E886A605C06E7A0526
-          F01FB0DFFF8EFDFE6CD0A0C931BA93E5DA6DCF4603403C0B62305F95F55B822F
-          3E6B00785252F486C24271B852E3E0342900BE1F3F912C4E685AA1A377B8AAAE
-          2599F78175F5023AC82976BA2606030079319364694DAC7476BB26A92F0A0067
-          FB1585EFAEA5F23400CA5DBA94F6A6242F977668BF3A6B5200FC9D5886C0825D
-          C2FCE77C5AC2CAD3480CF8AFC056D14E73B5B4042C3D32C0455331D13782EFF6
-          42B3ACA8ED6FF06378D7919D53833500080D60B09B1FC19B0FC53B45915282C1
-          0AFC88EA243EFC01EA2F33E200F808F29DDFC9A3244666E274505294C5C10649
-          F2D8F42BBD7A3E1D5CA017F6BE24B14547E6BBBE12EF52ACA64E0A675349A6D7
-          B573C1445B7A3FCEA59AFB03E2F6A7A65203A0633BA969C1770C441DC63686B2
-          5205C898E4EE6041DA68007C313F67DE34F62B48E04C701E4D6D1000708606C1
-          19FA02207C54EC7045D31D6E4200CC62D2C3828FE6EA0700B6368BAB1071B8B6
-          10660FC36C5DD1DC13082705AEE32CC2544FC8FC54A7BABF4FE0A13F328FC17E
-          CC09BC3F8ABFE50D19ACC525F21D9E883B85E07E1A1DEAC795F586C48C56CB50
-          089B1751BC0639B6B9E7D2C8540910B6ABB2FA72E9FCFCB5A11AFC1FAC6263AA
-          1B3C18590000000049454E44AE426082}
-      end
-      object Label7: TLabel
-        Left = 95
-        Top = 24
-        Width = 102
-        Height = 37
-        Caption = 'Clientes'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = 2450711
-        Font.Height = -27
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object lblCountCliente: TLabel
-        Left = 8
-        Top = 104
-        Width = 18
-        Height = 45
-        Alignment = taCenter
-        Caption = '0'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = 6957870
-        Font.Height = -32
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-    end
-    object gerentesCadastrados: TPanel
-      AlignWithMargins = True
-      Left = 508
-      Top = 43
-      Width = 213
-      Height = 161
-      Margins.Left = 15
-      Margins.Top = 0
-      Margins.Right = 15
-      Margins.Bottom = 15
-      Align = alRight
-      BevelOuter = bvNone
-      Color = clWhite
-      ParentBackground = False
-      TabOrder = 3
+      ExplicitLeft = 508
       object Shape10: TShape
         Left = 0
         Top = 0
@@ -934,19 +757,20 @@ object FormHome: TFormHome
     end
     object carregadoresCadastrados: TPanel
       AlignWithMargins = True
-      Left = 751
+      Left = 651
       Top = 43
       Width = 213
       Height = 161
       Margins.Left = 15
       Margins.Top = 0
-      Margins.Right = 15
+      Margins.Right = 30
       Margins.Bottom = 15
       Align = alRight
       BevelOuter = bvNone
       Color = clWhite
       ParentBackground = False
-      TabOrder = 4
+      TabOrder = 3
+      ExplicitLeft = 751
       object Shape11: TShape
         Left = 0
         Top = 0
@@ -1074,19 +898,20 @@ object FormHome: TFormHome
     end
     object motoristasCadastrados: TPanel
       AlignWithMargins = True
-      Left = 994
+      Left = 909
       Top = 43
       Width = 213
       Height = 161
       Margins.Left = 15
       Margins.Top = 0
-      Margins.Right = 15
+      Margins.Right = 30
       Margins.Bottom = 15
       Align = alRight
       BevelOuter = bvNone
       Color = clWhite
       ParentBackground = False
-      TabOrder = 5
+      TabOrder = 4
+      ExplicitLeft = 994
       object Shape12: TShape
         Left = 0
         Top = 0
@@ -1277,7 +1102,7 @@ object FormHome: TFormHome
     Top = 84
     Width = 1500
     Height = 756
-    ActivePage = TabSheetMotoristas
+    ActivePage = TabSheetVeiculos
     Align = alTop
     Font.Charset = DEFAULT_CHARSET
     Font.Color = 6957870
@@ -1290,6 +1115,7 @@ object FormHome: TFormHome
     TabWidth = 150
     Visible = False
     OnChange = PageControlCadastrarChange
+    ExplicitTop = 83
     object TabSheetGerente: TTabSheet
       Caption = 'Gerentes'
       Font.Charset = DEFAULT_CHARSET
@@ -3158,6 +2984,7 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
+              OnClick = lblBtnEditarMotoristaConfClick
               ExplicitWidth = 65
               ExplicitHeight = 25
             end
@@ -4795,7 +4622,7 @@ object FormHome: TFormHome
         object Panel12: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 199
+          Top = 131
           Width = 858
           Height = 41
           Margins.Top = 0
@@ -4804,6 +4631,7 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 0
+          ExplicitTop = 199
           object pnlEdtModeloVeiculo: TPanel
             AlignWithMargins = True
             Left = 480
@@ -4899,13 +4727,15 @@ object FormHome: TFormHome
         object Panel31: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 331
+          Top = 263
           Width = 858
           Height = 41
           Align = alBottom
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 2
+          ExplicitLeft = 1
+          ExplicitTop = 492
           object Label25: TLabel
             AlignWithMargins = True
             Left = 80
@@ -4927,15 +4757,16 @@ object FormHome: TFormHome
         object Panel32: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 375
+          Top = 307
           Width = 858
           Height = 41
           Margins.Top = 0
-          Margins.Bottom = 120
+          Margins.Bottom = 10
           Align = alBottom
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 3
+          ExplicitTop = 375
           object pnlEdtCapacidadeVeiculo: TPanel
             AlignWithMargins = True
             Left = 80
@@ -4980,7 +4811,7 @@ object FormHome: TFormHome
               TextHint = 'insira a capacidade do veiculo'
             end
           end
-          object ComboBoxUnidadeMed: TComboBox
+          object cbUnidadeMedida: TComboBox
             AlignWithMargins = True
             Left = 480
             Top = 3
@@ -5008,13 +4839,14 @@ object FormHome: TFormHome
         object Panel38: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 243
+          Top = 175
           Width = 858
           Height = 41
           Align = alBottom
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 4
+          ExplicitTop = 243
           object Label30: TLabel
             AlignWithMargins = True
             Left = 80
@@ -5053,7 +4885,7 @@ object FormHome: TFormHome
         object Panel39: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 287
+          Top = 219
           Width = 858
           Height = 41
           Margins.Top = 0
@@ -5062,6 +4894,7 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 5
+          ExplicitTop = 287
           object pnlEdtAnoVeiculo: TPanel
             AlignWithMargins = True
             Left = 80
@@ -5095,16 +4928,17 @@ object FormHome: TFormHome
               Align = alClient
               Alignment = taCenter
               BorderStyle = bsNone
-              EditMask = '!00/00/0000;1;_'
+              EditMask = '9999;1;_'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -23
               Font.Name = 'Segoe UI'
               Font.Style = []
-              MaxLength = 10
+              MaxLength = 4
               ParentFont = False
               TabOrder = 0
-              Text = '  /  /    '
+              Text = '    '
+              ExplicitWidth = 283
             end
           end
           object pnlEdtTipoCargaVeiculo: TPanel
@@ -5157,7 +4991,7 @@ object FormHome: TFormHome
         object Panel42: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 150
+          Top = 82
           Width = 858
           Height = 49
           Margins.Bottom = 0
@@ -5165,6 +4999,7 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 1
+          ExplicitTop = 150
           object Label32: TLabel
             AlignWithMargins = True
             Left = 80
@@ -5251,6 +5086,7 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
+              OnClick = lblBtnCadastrarVeiculoConfClick
               ExplicitWidth = 111
               ExplicitHeight = 25
             end
@@ -5369,6 +5205,76 @@ object FormHome: TFormHome
             Stretch = True
             OnClick = imgFechaOptionsVeiculoClick
             ExplicitHeight = 153
+          end
+        end
+        object Panel4: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 361
+          Width = 858
+          Height = 41
+          Align = alBottom
+          BevelOuter = bvNone
+          ParentColor = True
+          TabOrder = 8
+          ExplicitLeft = 1
+          ExplicitTop = 583
+          object Label6: TLabel
+            AlignWithMargins = True
+            Left = 80
+            Top = 3
+            Width = 245
+            Height = 35
+            Margins.Left = 80
+            Align = alLeft
+            Caption = 'Motorista do veiculo:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -24
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ExplicitHeight = 32
+          end
+        end
+        object Panel5: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 405
+          Width = 858
+          Height = 41
+          Margins.Top = 0
+          Margins.Bottom = 90
+          Align = alBottom
+          BevelOuter = bvNone
+          ParentColor = True
+          TabOrder = 9
+          ExplicitLeft = -2
+          ExplicitTop = 355
+          object cbMotorista4Veiculo: TComboBox
+            AlignWithMargins = True
+            Left = 80
+            Top = 3
+            Width = 298
+            Height = 36
+            Hint = 'unidade de medida'
+            Margins.Left = 80
+            Align = alLeft
+            BevelInner = bvNone
+            BevelOuter = bvNone
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -20
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            TextHint = 'Selecione o motorista'
+            Items.Strings = (
+              'Quilograma (KG)'
+              'Litros (L)'
+              'Metros Cubicos (m'#179')')
+            ExplicitLeft = 480
           end
         end
       end

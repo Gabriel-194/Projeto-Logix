@@ -16,6 +16,9 @@ type
 //====================MOTORISTA=================================================
   procedure cadastrarMotorista(motorista: TmotoristaDto);
   function mostrarMotorista:Tlist<TmotoristaDto>;
+  function mostrarMotoristaInativo:Tlist<TmotoristaDto>;
+  procedure editarMotorista(motorista: TmotoristaDto);
+  procedure editarMotoristaNotSenha(motorista: TmotoristaDto);
   end;
 
 
@@ -115,6 +118,137 @@ begin
 
 end;
 
+procedure TUserRepository.editarMotorista(motorista: TmotoristaDto);
+var
+  FDQuery: TFDQuery;
+  idNovoUsuario: Integer;
+begin
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+    FDQuery.Connection.StartTransaction;
+
+    try
+      FDQuery.SQL.Text :=
+      'UPDATE public.usuarios SET ' +
+      'nome = :nome, cpf = :cpf, telefone = :telefone, email = :email, senha_hash = :senha_hash, ' +
+      'data_atualizacao = NOW()' +
+      'WHERE id_usuario = :id_usuario ' +
+      'RETURNING id_usuario';
+
+      FDQuery.ParamByName('id_usuario').AsInteger := motorista.IdUsuario;
+      FDQuery.ParamByName('nome').AsString := motorista.nome;
+      FDQuery.ParamByName('cpf').AsString := motorista.cpf;
+      FDQuery.ParamByName('telefone').AsString := motorista.telefone;
+      FDQuery.ParamByName('email').AsString := motorista.email;
+      FDQuery.ParamByName('senha_hash').AsString := motorista.senha;
+
+      FDQuery.Open;
+
+      if not FDQuery.IsEmpty then
+      begin
+        idNovoUsuario := FDQuery.FieldByName('id_usuario').AsInteger;
+      end
+      else
+      begin
+        raise Exception.Create('Falha ao obter o ID do novo usuário após a inserção.');
+      end;
+
+      FDQuery.Close;
+
+      FDQuery.SQL.Text :=
+      'UPDATE public.motorista SET ' +
+      'numero_cnh = :numero_cnh, categoria_cnh = :categoria_cnh, ' +
+      'validade_cnh = :validade_cnh, data_atualizacao = NOW() ' +
+      'WHERE id_usuario = :id_usuario';
+
+      FDQuery.ParamByName('id_usuario').AsInteger := idNovoUsuario;
+      FDQuery.ParamByName('numero_cnh').AsString := motorista.NumeroCNH;
+      FDQuery.ParamByName('categoria_cnh').AsString := motorista.CategoriaCNH;
+      FDQuery.ParamByName('validade_cnh').AsDate := motorista.ValidadeCNH;
+
+      FDQuery.ExecSQL;
+
+      FDQuery.Connection.Commit;
+
+    except
+      on E: Exception do
+      begin
+        FDQuery.Connection.Rollback;
+        raise Exception.Create('Erro ao editar motorista: ' + E.Message);
+      end;
+    end;
+
+  finally
+    FDQuery.Free;
+  end;
+end;
+
+procedure TUserRepository.editarMotoristaNotSenha(motorista: TmotoristaDto);
+var
+  FDQuery: TFDQuery;
+  idNovoUsuario: Integer;
+begin
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+    FDQuery.Connection.StartTransaction;
+
+    try
+      FDQuery.SQL.Text :=
+      'UPDATE public.usuarios SET ' +
+      'nome = :nome, cpf = :cpf, telefone = :telefone, email = :email,' +
+      'data_atualizacao = NOW()' +
+      'WHERE id_usuario = :id_usuario ' +
+      'RETURNING id_usuario';
+
+      FDQuery.ParamByName('id_usuario').AsInteger:= motorista.idUsuario;
+      FDQuery.ParamByName('nome').AsString := motorista.nome;
+      FDQuery.ParamByName('cpf').AsString := motorista.cpf;
+      FDQuery.ParamByName('telefone').AsString := motorista.telefone;
+      FDQuery.ParamByName('email').AsString := motorista.email;
+
+      FDQuery.Open;
+
+      if not FDQuery.IsEmpty then
+      begin
+        idNovoUsuario := FDQuery.FieldByName('id_usuario').AsInteger;
+      end
+      else
+      begin
+        raise Exception.Create('Falha ao obter o ID do novo usuário após a inserção.');
+      end;
+
+      FDQuery.Close;
+
+      FDQuery.SQL.Text :=
+      'UPDATE public.motorista SET ' +
+      'numero_cnh = :numero_cnh, categoria_cnh = :categoria_cnh, ' +
+      'validade_cnh = :validade_cnh, data_atualizacao = NOW() ' +
+      'WHERE id_usuario = :id_usuario';
+
+      FDQuery.ParamByName('id_usuario').AsInteger := idNovoUsuario;
+      FDQuery.ParamByName('numero_cnh').AsString := motorista.NumeroCNH;
+      FDQuery.ParamByName('categoria_cnh').AsString := motorista.CategoriaCNH;
+      FDQuery.ParamByName('validade_cnh').AsDate := motorista.ValidadeCNH;
+
+      FDQuery.ExecSQL;
+
+      FDQuery.Connection.Commit;
+
+    except
+      on E: Exception do
+      begin
+        FDQuery.Connection.Rollback;
+        raise Exception.Create('Erro ao editar motorista: ' + E.Message);
+      end;
+    end;
+
+  finally
+    FDQuery.Free;
+  end;
+end;
+
 procedure TUserRepository.editarUser(aUsuario: TUsuario);
 var
   FDquery: TFDQuery;
@@ -195,6 +329,50 @@ begin
   'SELECT u.id_usuario, u.nome, u.cpf, u.telefone, u.email, u.cargo_descricao, ' +
   'u.id_transportadora, m.categoria_cnh, m.numero_cnh, m.validade_cnh ' +
   'FROM usuarios u JOIN motorista m ON u.id_usuario = m.id_usuario where ativo = true ORDER BY id_usuario';
+
+
+    FDQuery.Open;
+
+    motorista := Default(TmotoristaDto);
+
+    while not FDQuery.Eof do
+    begin
+
+      motorista.IdUsuario:= FDQuery.FieldByName('id_usuario').AsInteger;
+      motorista.Nome:= FDQuery.FieldByName('nome').AsString;
+      motorista.CPF := FDQuery.FieldByName('cpf').AsString;
+      motorista.idTransportadora := FDQuery.FieldByName('id_transportadora').AsInteger;
+      motorista.Telefone := FDQuery.FieldByName('telefone').AsString;
+      motorista.Email := FDQuery.FieldByName('email').AsString;
+      motorista.cargo := FDQuery.FieldByName('cargo_descricao').AsString;
+      motorista.CategoriaCNH := FDQuery.FieldByName('categoria_cnh').AsString;
+      motorista.NumeroCNH := FDQuery.FieldByName('numero_cnh').AsString;
+      motorista.validadeCnh := FDQuery.FieldByName('validade_cnh').AsDateTime;
+
+      lista.Add(motorista);
+      FDQuery.Next;
+    end;
+    Result := Lista;
+  finally
+    FDQuery.free;
+  end;
+end;
+
+function TUserRepository.mostrarMotoristaInativo: Tlist<TmotoristaDto>;
+var
+  motorista: TmotoristaDto;
+  FDQuery : TFDQuery;
+  Lista: TList<TmotoristaDto>;
+begin
+  lista := Tlist<TmotoristaDto>.Create;
+  FDQuery := TFDQuery.create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+
+  FDQuery.SQL.Text :=
+  'SELECT u.id_usuario, u.nome, u.cpf, u.telefone, u.email, u.cargo_descricao, ' +
+  'u.id_transportadora, m.categoria_cnh, m.numero_cnh, m.validade_cnh ' +
+  'FROM usuarios u JOIN motorista m ON u.id_usuario = m.id_usuario where ativo = false ORDER BY id_usuario';
 
 
     FDQuery.Open;

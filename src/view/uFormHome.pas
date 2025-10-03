@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
   Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask, usuarioLogado,uUsuario,
-  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController,system.Generics.Collections,motoristaDto;
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController,system.Generics.Collections,motoristaDto, uVeiculo;
 
 type
   TFormHome = class(TForm)
@@ -34,11 +34,6 @@ type
     Image3: TImage;
     Label5: TLabel;
     lblCountPedidos: TLabel;
-    clientesCadastrados: TPanel;
-    Shape9: TShape;
-    Image4: TImage;
-    Label7: TLabel;
-    lblCountCliente: TLabel;
     gerentesCadastrados: TPanel;
     Shape10: TShape;
     Image5: TImage;
@@ -188,6 +183,7 @@ type
     Panel3: TPanel;
     Label3: TLabel;
     Label18: TLabel;
+    LswMotorista: TListView;
     TabSheetCarregador: TTabSheet;
     PanelButtonsCarregador: TPanel;
     ImgFechaPageCoontrolCadastrar: TImage;
@@ -285,7 +281,7 @@ type
     pnlEdtCapacidadeVeiculo: TPanel;
     Shape67: TShape;
     EdtCapacidadeVeiculo: TEdit;
-    ComboBoxUnidadeMed: TComboBox;
+    cbUnidadeMedida: TComboBox;
     Panel38: TPanel;
     Label30: TLabel;
     Label31: TLabel;
@@ -309,7 +305,10 @@ type
     PanelFechaOptionsVeiculo: TPanel;
     Shape72: TShape;
     imgFechaOptionsVeiculo: TImage;
-    LswMotorista: TListView;
+    Panel4: TPanel;
+    Label6: TLabel;
+    Panel5: TPanel;
+    cbMotorista4Veiculo: TComboBox;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -349,8 +348,11 @@ type
     procedure lblBtnRecuperarCarregadorConfClick(Sender: TObject);
     procedure lblBtnCadastrarMotoristaConfClick(Sender: TObject);
     procedure MostrarMotorista;
+    procedure mostrarMotoristaInativo;
     procedure lblBtnExcluirMotoristaClick(Sender: TObject);
     procedure lblBtnRecuperarMotoristaConfClick(Sender: TObject);
+    procedure lblBtnEditarMotoristaConfClick(Sender: TObject);
+    procedure lblBtnCadastrarVeiculoConfClick(Sender: TObject);
 
 
 
@@ -468,6 +470,39 @@ begin
   controller := ThomeController.Create;
   try
     ListaMotorista := controller.mostrarMotorista;
+
+    lswMotorista.Items.Clear;
+
+    for motorista in ListaMotorista do
+    begin
+      Item := lswMotorista.Items.Add;
+      Item.Caption := IntToStr(motorista.IdUsuario);
+      Item.SubItems.Add(motorista.nome);
+      Item.SubItems.Add(motorista.cpf);
+      Item.SubItems.Add(IntToStr(motorista.idTransportadora));
+      Item.SubItems.Add(motorista.telefone);
+      Item.SubItems.Add(motorista.email);
+      Item.SubItems.Add(motorista.cargo);
+      Item.SubItems.Add(motorista.CategoriaCNH);
+      Item.SubItems.Add(motorista.NumeroCNH);
+      Item.SubItems.Add(DateToStr(motorista.ValidadeCNH));
+    end;
+
+  finally
+    controller.Free;
+  end;
+end;
+
+procedure TFormHome.mostrarMotoristaInativo;
+var
+  controller: ThomeController;
+  ListaMotorista: TList<TmotoristaDto>;
+  motorista: TmotoristaDto;
+  Item: TListItem;
+begin
+  controller := ThomeController.Create;
+  try
+    ListaMotorista := controller.mostrarMotoristaInativo;
 
     lswMotorista.Items.Clear;
 
@@ -741,9 +776,54 @@ panelOptionsMotoristas.Visible := true;
 pnlBtnCadastrarMotoristaConf.visible := false;
 pnlBtnEditarMotoristaConf.Visible := true;
 pnlBtnCadastrarMotoristaConf.visible := false;
-pnlBtnEditarMotoristaConf.Visible := false;
+pnlBtnEditarMotoristaConf.Visible := true;
 
-MostrarMotorista;
+  if lswMotorista.Selected = nil then begin
+  showMessage('selecione um motorista da lista para editar');
+  MostrarMotorista;
+  exit;
+  end;
+
+  edtNomeMotorista.text := lswMotorista.selected.subItems[0];
+  MaskEditCpfMotorista.text := lswMotorista.selected.SubItems[1];
+  MaskEditTelefoneMotorista.Text := lswMotorista.selected.subItems[3];
+  EdtEmailMotorista.Text := lswMotorista.selected.subItems[4];
+  edtCategoriaCnh.text := lswMotorista.selected.subItems[6];
+  edtNumCnh.text := lswMotorista.selected.subItems[7];
+  MaskEditValidadeCnh.text := lswMotorista.selected.subItems[8];
+
+end;
+
+procedure TFormHome.lblBtnEditarMotoristaConfClick(Sender: TObject);
+var
+controller : ThomeController;
+motorista: TMotoristaDto;
+codParaEditar: Integer;
+begin
+  codParaEditar := StrToInt(lswMotorista.selected.caption);
+  motorista.IdUsuario := codParaEditar;
+
+  motorista.Nome := edtNomeMotorista.text;
+  motorista.cpf := MaskEditCpfMotorista.text;
+  motorista.telefone := MaskEditTelefoneMotorista.text;
+  motorista.Email := EdtEmailMotorista.text;
+  motorista.senha := EdtSenhaMotorista.text;
+  motorista.NumeroCNH := EdtNumCnh.text;
+  motorista.CategoriaCNH := edtCategoriaCnh.text;
+  motorista.ValidadeCNH := StrToDate(MaskEditValidadeCnh.text);
+  motorista.cargo := 'motorista';
+//  motorista.idTransportadora := UsuarioLogado.UserLogado.getIdTransportadora;
+  // jeito para teste ->
+ motorista.idTransportadora:= 1;
+
+ controller := ThomeController.create;
+ try
+  controller.EditarMotorista(motorista);
+  showMessage('Motorista editado com sucesso!!');
+  mostrarMotorista;
+ finally
+  controller.free;
+ end;
 end;
 
 procedure TFormHome.lblBtnExcluirMotoristaClick(Sender: TObject);
@@ -758,12 +838,12 @@ motorista : TmotoristaDto;
 codParaExcluir: Integer;
 begin
   if lswMotorista.selected = nil then begin
-    showMessage('selecione um gerente na lista para Excluir.');
+    showMessage('selecione um motorista na lista para Excluir.');
     mostrarMotorista;
     exit;
   end;
 
-  if MessageDlg('Tem certeza que deseja excluir o gerente selecionado?',mtConfirmation, [mbYes, mbNo], 0) = mrNo then
+  if MessageDlg('Tem certeza que deseja excluir o motorista selecionado?',mtConfirmation, [mbYes, mbNo], 0) = mrNo then
     begin
       exit;
     end;
@@ -786,6 +866,9 @@ procedure TFormHome.lblBtnRecuperarMotoristaClick(Sender: TObject);
 begin
   pnlBtnRecuperarMototistaConf.Visible:=true;
   pnlBtnExcluirMotoristaConf.visible := false;
+
+  showMessage('Agora a tabela ira mostrar os motoristas excluidos');
+  mostrarMotoristaInativo;
 end;
 
 procedure TFormHome.lblBtnRecuperarMotoristaConfClick(Sender: TObject);
@@ -794,9 +877,28 @@ controller: ThomeController;
 codParaEditar :Integer;
 motorista:TmotoristaDto;
 begin
-if lswMotorista.selected = nil then begin
-  showMessage('selecione um motorista na lista para recuperar');
-end;
+  if lswMotorista.selected = nil then begin
+    showMessage('selecione um motorista na lista para recuperar');
+    mostrarMotoristaInativo;
+  end;
+
+  if MessageDlg('Tem certeza que deseja recuperar o gerente selecionado?',mtConfirmation, [mbYes, mbNo], 0) = mrNo then
+  begin
+    exit;
+  end;
+
+  codParaEditar := StrToInt(lswMotorista.Selected.Caption);
+  motorista.IdUsuario := codParaEditar;
+
+  controller := ThomeController.create;
+  try
+    controller.recuperarUser(motorista);
+    showMessage('Motorista recuperado com sucesso!');
+    mostrarMotoristaInativo;
+    AtualizarDashboards;
+  finally
+    controller.free;
+  end;
 end;
 
 procedure TFormHome.ImgFechaOptionsMotoristaClick(Sender: TObject);
@@ -1030,6 +1132,11 @@ end;
 
 
 procedure TFormHome.lblBtnCadastrarVeiculoClick(Sender: TObject);
+var
+  Controller: ThomeController;
+  listamotorista: TList<TmotoristaDto>;
+  motorista: TmotoristaDto;
+
 begin
 pnlOptionsVeiculo.visible := true;
 lblOptionsVeiculo.caption := 'cadastrar veiculo';
@@ -1037,6 +1144,55 @@ pnlBtnCadastrarVeiculoConf.visible := true;
 pnlBtnEditarVeiculoConf.visible := false;
 pnlBtnRecuperarVeiculoConf.visible := false;
 pnlBtnExcluirVeiculoConf.visible := false;
+
+  Controller := ThomeController.Create;
+  try
+    ListaMotorista := Controller.mostrarMotorista;
+    try
+      cbMotorista4Veiculo.Items.Clear;
+
+      for motorista in ListaMotorista do
+        cbMotorista4Veiculo.Items.Add(
+          motorista.IdUsuario.ToString + ' - ' + motorista.Nome
+        );
+    finally
+      ListaMotorista.Free;
+    end;
+  finally
+    Controller.Free;
+  end;
+end;
+
+
+procedure TFormHome.lblBtnCadastrarVeiculoConfClick(Sender: TObject);
+var
+controller:THomeController;
+veiculo :Tveiculo;
+begin
+veiculo := Tveiculo.Create;
+  veiculo.setPlaca(MaskEditPlacaVeiculo.Text);
+  veiculo.setAno(StrToInt(MaskEditAnoVeiculo.text));
+  veiculo.setmodelo (edtModeloVeiculo.text);
+  veiculo.setTipo_carga(cbUnidadeMedida.Text);
+  veiculo.setCapacidade(StrToInt(EdtCapacidadeVeiculo.text));
+  veiculo.setUnidade_medida(cbUnidadeMedida.text);
+  veiculo.setId_motorista(strToInt(cbMotorista4Veiculo.text));
+//  usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
+// jeito para teste ->
+veiculo.SetIdTransportadora(1);
+
+
+
+  controller := THomeController.Create;
+  try
+      controller.CadastrarVeiculo(veiculo);
+      ShowMessage('veiculo cadastrado com sucesso!');
+      mostrarUser('gerente',lswGerente);
+      AtualizarDashboards;
+    finally
+      controller.Free;
+  end;
+    veiculo.Free;
 end;
 
 procedure TFormHome.lblBtnEditarVeiculoClick(Sender: TObject);

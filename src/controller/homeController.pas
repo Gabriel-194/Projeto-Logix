@@ -2,21 +2,25 @@ unit homeController;
 
 interface
 uses
-data.DB,homeService, uUsuario, userService, System.SysUtils, system.Generics.Collections,MotoristaDto;
+data.DB,homeService, uUsuario, userService, System.SysUtils, system.Generics.Collections,MotoristaDto,uVeiculo,veiculoService;
 
 type THomeController = class
   procedure cadastrarUsuario(aUsuario:TUsuario);
   function MostrarUser(const aCargo: string): TObjectList<Tusuario>;
-  procedure EditarUser(aUsuario:TUsuario);
+  procedure EditarUser(aUsuario:TUsuario);overload;
   procedure excluirUser(aUsuario: TUsuario); overload;
   procedure excluirUser(aMotorista: TmotoristaDto); overload;
   function MostrarUserInativo(const aCargo: string): TObjectList<Tusuario>;
   procedure recuperarUser(aUsuario:Tusuario)overload;
-  procedure recuperaUser(aMotorista: TmotoristaDto); overload;
+  procedure recuperarUser(aMotorista:TmotoristaDto)overload;
   function ContarUsuariosPorCargo(const aCargo: string): Integer;
 //=============== motorista ==============
  procedure cadastrarMotorista(motorista:TmotoristaDto);
  function mostrarMotorista:Tlist<TmotoristaDto>;
+ function mostrarMotoristaInativo:Tlist<TmotoristaDto>;
+ procedure editarMotorista(motorista:TmotoristaDto);
+//================veiculo===============================
+procedure cadastrarVeiculo(veiculo:Tveiculo);
 
   end;
 
@@ -52,6 +56,18 @@ begin
   end;
 end;
 
+procedure THomeController.cadastrarVeiculo(veiculo: Tveiculo);
+var
+Service: TveiculoService;
+begin
+Service:= TveiculoService.create;
+  try
+    service.cadastrarVeiculo(veiculo);
+  finally
+    service.free;
+  end;
+end;
+
 function THomeController.ContarUsuariosPorCargo(const aCargo: string): Integer;
 var
 homeService:Thomeservice;
@@ -61,6 +77,18 @@ begin
     result := homeService.ContarUsuariosPorCargo(aCargo);
   finally
     homeService.free;
+  end;
+end;
+
+procedure THomeController.editarMotorista(motorista: TmotoristaDto);
+var
+service :TuserService;
+begin
+service := TuserService.create;
+  try
+    service.editarMotorista(motorista);
+  finally
+    service.free;
   end;
 end;
 
@@ -112,6 +140,17 @@ begin
  end;
 end;
 
+function THomeController.mostrarMotoristaInativo: Tlist<TmotoristaDto>;
+var
+service : TuserService;
+begin
+ service := TuserService.create;
+ try
+   result := service.mostrarMotoristaInativo;
+ finally
+  service.free;
+ end;
+end;
 function THomeController.mostrarUser(const aCargo: string): TObjectList<Tusuario>;
 var
 service : TuserService;
@@ -148,7 +187,7 @@ service := TuserService.create;
   end;
 end;
 
-procedure THomeController.recuperaUser(aMotorista: TmotoristaDto);
+procedure THomeController.recuperarUser(aMotorista: TmotoristaDto);
 var
 service : TuserService;
 begin
@@ -159,5 +198,7 @@ service := TuserService.create;
     service.free;
   end;
 end;
+
+
 
 end.

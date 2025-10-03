@@ -32,7 +32,10 @@ uses
   clienteRepository in 'src\repository\clienteRepository.pas',
   clienteService in 'src\service\clienteService.pas',
   uFormHomeCliente in 'src\view\uFormHomeCliente.pas' {Form1},
-  motoristaDto in 'src\DTO\motoristaDto.pas';
+  motoristaDto in 'src\DTO\motoristaDto.pas',
+  uVeiculo in 'src\model\uVeiculo.pas',
+  veiculoService in 'src\service\veiculoService.pas',
+  veiculoRepository in 'src\repository\veiculoRepository.pas';
 
 {$R *.res}
 

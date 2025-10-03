@@ -268,6 +268,7 @@ type
     procedure imgEyeClick(Sender: TObject);
     procedure lblBtnCadastrarClienteClick(Sender: TObject);
 
+
   private
     { Private declarations }
     procedure mostrarAdmins;
@@ -566,6 +567,7 @@ begin
   pnlBtnRecuperarConfirm.Visible := False;
   pnlBtnExcluirConfirm.Visible := true;
 end;
+
 
 procedure TFormLogin.imgVoltarMenuAdminClick(Sender: TObject);
 begin

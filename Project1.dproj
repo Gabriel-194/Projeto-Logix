@@ -169,6 +169,9 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\DTO\motoristaDto.pas"/>
+        <DCCReference Include="src\model\uVeiculo.pas"/>
+        <DCCReference Include="src\service\veiculoService.pas"/>
+        <DCCReference Include="src\repository\veiculoRepository.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

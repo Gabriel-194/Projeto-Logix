@@ -8,11 +8,15 @@ CREATE TABLE IF NOT EXISTS {schema}.veiculo (
     modelo VARCHAR(50),
     ano INTEGER,
     tipo_carga VARCHAR(50),
-    capacidade INTEGER NOT NULL,
-    unidade_medida VARCHAR(20) NOT NULL,
+    capacidade INTEGER,
+    unidade_medida VARCHAR(20),
     ativo BOOLEAN DEFAULT TRUE,
-    data_cadastro TIMESTAMP WITH TIME ZONE DEFAULT now(),
-    data_atualizacao TIMESTAMP WITH TIME ZONE DEFAULT now()
+    data_cadastro TIMESTAMPTZ DEFAULT NOW(),
+    data_atualizacao TIMESTAMPTZ DEFAULT NOW(),
+    id_motorista INTEGER,
+    CONSTRAINT fk_veiculo_motorista
+        FOREIGN KEY (id_motorista)
+        REFERENCES public.motorista (id_usuario)
 );
 
 -- Tipo de carga
@@ -26,7 +30,7 @@ CREATE TABLE IF NOT EXISTS {schema}.tipo_carga (
 -- Pedido (cliente vem do PUBLIC)
 CREATE TABLE IF NOT EXISTS {schema}.pedido (
   id_pedido SERIAL PRIMARY KEY,
-  id_cliente INT NOT NULL REFERENCES public.cliente(id_cliente), -- cliente global
+  id_cliente INT NOT NULL REFERENCES public.cliente(id_cliente), 
   endereco_origem VARCHAR(100),
   endereco_destino VARCHAR(100),
   data_pedido TIMESTAMP DEFAULT now(),
