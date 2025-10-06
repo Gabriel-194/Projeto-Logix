@@ -21,7 +21,8 @@ type THomeController = class
  procedure editarMotorista(motorista:TmotoristaDto);
 //================veiculo===============================
 procedure cadastrarVeiculo(veiculo:Tveiculo);
-
+function mostrarVeiculo: TobjectList<Tveiculo>;
+function mostrarVeiculoInativo: TobjectList<Tveiculo>;
   end;
 
 implementation
@@ -173,6 +174,30 @@ begin
  finally
   service.free;
  end;
+end;
+
+function THomeController.mostrarVeiculo: TobjectList<Tveiculo>;
+var
+service : TveiculoService;
+begin
+service := TveiculoService.create;
+  try
+    result := service.mostrarVeiuclo;
+  finally
+    service.free;
+  end;
+end;
+
+function THomeController.mostrarVeiculoInativo: TobjectList<Tveiculo>;
+var
+service : TveiculoService;
+begin
+service := TveiculoService.create;
+  try
+    result := service.mostrarVeiuclo;
+  finally
+    service.free;
+  end;
 end;
 
 procedure THomeController.recuperarUser(aUsuario: Tusuario);

@@ -28,7 +28,7 @@ type
     lblDashBoards: TLabel;
     Image2: TImage;
     Label4: TLabel;
-    contadorVeiculos: TLabel;
+    lblCountVeiculos: TLabel;
     pedidosFeitos: TPanel;
     Shape8: TShape;
     Image3: TImage;
@@ -353,9 +353,8 @@ type
     procedure lblBtnRecuperarMotoristaConfClick(Sender: TObject);
     procedure lblBtnEditarMotoristaConfClick(Sender: TObject);
     procedure lblBtnCadastrarVeiculoConfClick(Sender: TObject);
-
-
-
+    procedure mostrarVeiculo;
+    procedure mostrarVeiculoInativo;
   private
     { Private declarations }
   public
@@ -419,6 +418,10 @@ begin
   else if PageControlCadastrar.ActivePage = TabSheetMotoristas then
   begin
     MostrarMotorista;
+  end
+  else if PageControlCadastrar.ActivePage = TabSheetVeiculos then
+  begin
+    MostrarVeiculo;
   end;
 
 end;
@@ -458,6 +461,70 @@ begin
   finally
     controller.Free;
   end;
+end;
+
+procedure TFormHome.mostrarVeiculo;
+var
+controller:ThomeController;
+listaVeiculo: TobjectList<Tveiculo>;
+veiculo : Tveiculo;
+item: TlistItem;
+begin
+  controller := ThomeController.create;
+  try
+    listaVeiculo := controller.mostrarVeiculo;
+
+    lswVeiculos.items.clear;
+
+    for veiculo in listaVeiculo do
+    begin
+      item := lswVeiculos.items.add;
+      Item.Caption := veiculo.getId_veiculo.ToString;
+      Item.subitems.Add(veiculo.getPlaca);
+      Item.SubItems.Add(veiculo.getModelo);
+      Item.SubItems.Add(veiculo.getAno.ToString);
+      Item.SubItems.Add(veiculo.getId_motorista.ToString);
+      Item.SubItems.Add(veiculo.getTipo_carga);
+      Item.SubItems.Add(veiculo.getCapacidade.ToString);
+      Item.SubItems.Add(veiculo.getUnidade_medida);
+
+    end;
+  finally
+    listaVeiculo.Free;
+  end;
+  controller.free;
+end;
+
+procedure TFormHome.mostrarVeiculoInativo;
+var
+controller:ThomeController;
+listaVeiculo: TobjectList<Tveiculo>;
+veiculo : Tveiculo;
+item: TlistItem;
+begin
+  controller := ThomeController.create;
+  try
+    listaVeiculo := controller.mostrarVeiculoInativo;
+
+    lswVeiculos.items.clear;
+
+    for veiculo in listaVeiculo do
+    begin
+      item := lswVeiculos.items.add;
+      Item.Caption := veiculo.getId_veiculo.ToString;
+      Item.subitems.Add(veiculo.getPlaca);
+      Item.SubItems.Add(veiculo.getModelo);
+      Item.SubItems.Add(veiculo.getAno.ToString);
+      Item.SubItems.Add(veiculo.getId_motorista.ToString);
+      Item.SubItems.Add(veiculo.getTipo_carga);
+      Item.SubItems.Add(veiculo.getCapacidade.ToString);
+      Item.SubItems.Add(veiculo.getUnidade_medida);
+
+    end;
+  finally
+    listaVeiculo.Free;
+  end;
+  controller.free;
 end;
 
 procedure TFormHome.MostrarMotorista;
@@ -537,7 +604,7 @@ begin
     lblCountGerente.Caption := controller.ContarUsuariosPorCargo('gerente').ToString;
     lblCountCarregador.Caption := controller.ContarUsuariosPorCargo('Carregador').ToString;
     lblCountMotorista.Caption := controller.ContarUsuariosPorCargo('motorista').ToString;
-
+    lblCountVeiculos.Caption := controller.ContarUsuariosPorCargo('motorista').ToString;
   finally
     controller.Free;
   end;
@@ -1168,16 +1235,21 @@ procedure TFormHome.lblBtnCadastrarVeiculoConfClick(Sender: TObject);
 var
 controller:THomeController;
 veiculo :Tveiculo;
+idMotorista:String;
 begin
 veiculo := Tveiculo.Create;
   veiculo.setPlaca(MaskEditPlacaVeiculo.Text);
   veiculo.setAno(StrToInt(MaskEditAnoVeiculo.text));
   veiculo.setmodelo (edtModeloVeiculo.text);
-  veiculo.setTipo_carga(cbUnidadeMedida.Text);
+  veiculo.setTipo_carga(EditTipoCargaVeiculo.text);
   veiculo.setCapacidade(StrToInt(EdtCapacidadeVeiculo.text));
   veiculo.setUnidade_medida(cbUnidadeMedida.text);
-  veiculo.setId_motorista(strToInt(cbMotorista4Veiculo.text));
-//  usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
+
+  idMotorista := cbMotorista4Veiculo.text;
+  idMotorista := idMotorista.Remove(idMotorista.IndexOf('-')-1);
+  veiculo.setId_motorista(strToInt(idMotorista));
+
+// veiculo.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
 // jeito para teste ->
 veiculo.SetIdTransportadora(1);
 
@@ -1187,7 +1259,7 @@ veiculo.SetIdTransportadora(1);
   try
       controller.CadastrarVeiculo(veiculo);
       ShowMessage('veiculo cadastrado com sucesso!');
-      mostrarUser('gerente',lswGerente);
+      mostrarVeiculo;
       AtualizarDashboards;
     finally
       controller.Free;

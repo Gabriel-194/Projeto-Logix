@@ -292,7 +292,6 @@ object FormHome: TFormHome
       Color = clWhite
       ParentBackground = False
       TabOrder = 0
-      ExplicitLeft = 1237
       object Shape7: TShape
         Left = 0
         Top = 0
@@ -401,7 +400,7 @@ object FormHome: TFormHome
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object contadorVeiculos: TLabel
+      object lblCountVeiculos: TLabel
         Left = 8
         Top = 104
         Width = 18
@@ -431,7 +430,6 @@ object FormHome: TFormHome
       Color = clWhite
       ParentBackground = False
       TabOrder = 1
-      ExplicitLeft = 22
       object Shape8: TShape
         Left = 0
         Top = 0
@@ -602,7 +600,6 @@ object FormHome: TFormHome
       Color = clWhite
       ParentBackground = False
       TabOrder = 2
-      ExplicitLeft = 508
       object Shape10: TShape
         Left = 0
         Top = 0
@@ -770,7 +767,6 @@ object FormHome: TFormHome
       Color = clWhite
       ParentBackground = False
       TabOrder = 3
-      ExplicitLeft = 751
       object Shape11: TShape
         Left = 0
         Top = 0
@@ -911,7 +907,6 @@ object FormHome: TFormHome
       Color = clWhite
       ParentBackground = False
       TabOrder = 4
-      ExplicitLeft = 994
       object Shape12: TShape
         Left = 0
         Top = 0
@@ -1115,7 +1110,6 @@ object FormHome: TFormHome
     TabWidth = 150
     Visible = False
     OnChange = PageControlCadastrarChange
-    ExplicitTop = 83
     object TabSheetGerente: TTabSheet
       Caption = 'Gerentes'
       Font.Charset = DEFAULT_CHARSET
@@ -4352,12 +4346,12 @@ object FormHome: TFormHome
         end
         object lswVeiculos: TListView
           AlignWithMargins = True
-          Left = 40
+          Left = 10
           Top = 456
-          Width = 541
+          Width = 601
           Height = 225
-          Margins.Left = 40
-          Margins.Right = 40
+          Margins.Left = 10
+          Margins.Right = 10
           Margins.Bottom = 15
           Align = alBottom
           Columns = <
@@ -4367,26 +4361,38 @@ object FormHome: TFormHome
             end
             item
               Alignment = taCenter
-              Caption = 'Nome'
-              MinWidth = 190
-              Width = 190
+              Caption = 'placa'
+              MinWidth = 100
+              Width = 100
             end
             item
               Alignment = taCenter
-              Caption = 'CPF'
+              Caption = 'modelo'
               MinWidth = 110
               Width = 110
             end
             item
-              Caption = 'id Transportadora'
+              Alignment = taCenter
+              Caption = 'ano'
+              Width = 70
+            end
+            item
+              Alignment = taCenter
+              Caption = 'motorista'
               Width = 100
             end
             item
-              Caption = 'telefone'
-              Width = 60
+              Alignment = taCenter
+              Caption = 'Carga'
+              Width = 70
             end
             item
-              Caption = 'E- mail'
+              Alignment = taCenter
+              Caption = 'capacidade'
+              Width = 80
+            end
+            item
+              Caption = 'unidade de medida'
               Width = 100
             end>
           Font.Charset = DEFAULT_CHARSET
@@ -4631,7 +4637,6 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 0
-          ExplicitTop = 199
           object pnlEdtModeloVeiculo: TPanel
             AlignWithMargins = True
             Left = 480
@@ -4734,8 +4739,6 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 2
-          ExplicitLeft = 1
-          ExplicitTop = 492
           object Label25: TLabel
             AlignWithMargins = True
             Left = 80
@@ -4766,7 +4769,6 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 3
-          ExplicitTop = 375
           object pnlEdtCapacidadeVeiculo: TPanel
             AlignWithMargins = True
             Left = 80
@@ -4846,7 +4848,6 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 4
-          ExplicitTop = 243
           object Label30: TLabel
             AlignWithMargins = True
             Left = 80
@@ -4894,7 +4895,6 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 5
-          ExplicitTop = 287
           object pnlEdtAnoVeiculo: TPanel
             AlignWithMargins = True
             Left = 80
@@ -4938,7 +4938,6 @@ object FormHome: TFormHome
               ParentFont = False
               TabOrder = 0
               Text = '    '
-              ExplicitWidth = 283
             end
           end
           object pnlEdtTipoCargaVeiculo: TPanel
@@ -4999,7 +4998,6 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 1
-          ExplicitTop = 150
           object Label32: TLabel
             AlignWithMargins = True
             Left = 80
@@ -5217,8 +5215,6 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 8
-          ExplicitLeft = 1
-          ExplicitTop = 583
           object Label6: TLabel
             AlignWithMargins = True
             Left = 80
@@ -5249,8 +5245,6 @@ object FormHome: TFormHome
           BevelOuter = bvNone
           ParentColor = True
           TabOrder = 9
-          ExplicitLeft = -2
-          ExplicitTop = 355
           object cbMotorista4Veiculo: TComboBox
             AlignWithMargins = True
             Left = 80
@@ -5274,7 +5268,6 @@ object FormHome: TFormHome
               'Quilograma (KG)'
               'Litros (L)'
               'Metros Cubicos (m'#179')')
-            ExplicitLeft = 480
           end
         end
       end
