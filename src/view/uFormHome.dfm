@@ -1293,6 +1293,7 @@ object FormHome: TFormHome
           Font.Height = -13
           Font.Name = 'Segoe UI'
           Font.Style = []
+          Items.ItemData = {050000000000000000}
           ParentFont = False
           TabOrder = 2
           ViewStyle = vsReport
@@ -3246,6 +3247,7 @@ object FormHome: TFormHome
         Font.Height = -13
         Font.Name = 'Segoe UI'
         Font.Style = []
+        Items.ItemData = {050000000000000000}
         ParentFont = False
         TabOrder = 2
         ViewStyle = vsReport
@@ -3330,7 +3332,6 @@ object FormHome: TFormHome
             ParentFont = False
             OnClick = lblBtnEditarCarregadorClick
             ExplicitTop = 7
-            ExplicitWidth = 363
           end
         end
         object PnlBtnCadastrarCarregador: TPanel
@@ -3430,6 +3431,7 @@ object FormHome: TFormHome
           Font.Height = -13
           Font.Name = 'Segoe UI'
           Font.Style = []
+          Items.ItemData = {050000000000000000}
           ParentFont = False
           TabOrder = 2
           ViewStyle = vsReport
@@ -4536,6 +4538,7 @@ object FormHome: TFormHome
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
+            OnClick = lblBtnRecuperarVeiculoConfClick
             ExplicitWidth = 107
             ExplicitHeight = 25
           end
@@ -4582,7 +4585,7 @@ object FormHome: TFormHome
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            OnClick = lblBtnExcluirMotoristaConfClick
+            OnClick = lblBtnExcluirVeiculoConfClick
             ExplicitWidth = 76
             ExplicitHeight = 25
           end
@@ -5128,6 +5131,7 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
+              OnClick = lblBtnEditarVeiculoConfClick
               ExplicitWidth = 65
               ExplicitHeight = 25
             end

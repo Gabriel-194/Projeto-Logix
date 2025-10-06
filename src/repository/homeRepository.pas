@@ -2,10 +2,12 @@ unit homeRepository;
 
 interface
 uses
-data.DB,System.SysUtils, FireDAC.Comp.Client, unit2,System.Generics.Collections;
+data.DB,System.SysUtils, FireDAC.Comp.Client, unit2,System.Generics.Collections,System.Classes;
 type ThomeRepository = class
   function mostrarPermissoes : TDataSet;
   function ContarUsuariosPorCargo(const aCargo: string): Integer;
+  function ContarRegistrosAtivos(  const ATabela: string;AIdTransportadora: Integer = 0;const AColunaFiltroAdicional: string = '';const AValorFiltroAdicional: string = ''
+):Integer;
 end;
 
 implementation
@@ -48,6 +50,57 @@ begin
   finally
 
   Result := FDQuery;
+  end;
+end;
+
+function ThomeRepository.ContarRegistrosAtivos(
+  const ATabela: string;
+  AIdTransportadora: Integer = 0;
+  const AColunaFiltroAdicional: string = '';
+  const AValorFiltroAdicional: string = ''
+): Integer;
+var
+  FDQuery: TFDQuery;
+  SchemaName: string;
+  SQL: TStringList;
+begin
+  Result := 0;
+  FDQuery := TFDQuery.Create(nil);
+  SQL := TStringList.Create;
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+
+    if AIdTransportadora > 0 then
+    begin
+      FDQuery.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id';
+      FDQuery.ParamByName('id').AsInteger := AIdTransportadora;
+      FDQuery.Open;
+
+      if FDQuery.IsEmpty then Exit;
+      SchemaName := FDQuery.FieldByName('schema_name').AsString;
+      FDQuery.Close;
+
+      FDQuery.ExecSQL('SET search_path TO ' + QuotedStr(SchemaName) + ', public');
+    end;
+
+    SQL.Text := Format('SELECT COUNT(*) FROM %s WHERE ativo = TRUE', [ATabela]);
+
+
+    if (AColunaFiltroAdicional <> '') and (AValorFiltroAdicional <> '') then
+    begin
+      SQL.Add(Format('AND %s = :filtro', [AColunaFiltroAdicional]));
+      FDQuery.ParamByName('filtro').AsString := AValorFiltroAdicional;
+    end;
+
+    FDQuery.SQL.Text := SQL.Text;
+    FDQuery.Open;
+
+    if not FDQuery.IsEmpty then begin
+      Result := FDQuery.Fields[0].AsInteger;
+    end;
+  finally
+    FDQuery.Free;
+    SQL.Free;
   end;
 end;
 

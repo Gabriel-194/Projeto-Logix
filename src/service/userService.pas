@@ -5,7 +5,7 @@ uses
 uUsuario, system.Generics.Collections, BCrypt, System.SysUtils,userRepository,motoristaDto;
   type TuserService = class
     procedure cadastrarUsuario(aUsuario:TUsuario);
-    function mostrarUser(const aCargo: string): TObjectList<Tusuario>;
+    function mostrarUser(const aCargo: string;aIdTransportadora:Integer): TObjectList<Tusuario>;
     procedure editarUser (aUsuario:TUsuario);
     procedure excluirUser(aUsuario: TUsuario); overload;
     procedure excluirUser(aMotorista: TmotoristaDto); overload;
@@ -14,8 +14,8 @@ uUsuario, system.Generics.Collections, BCrypt, System.SysUtils,userRepository,mo
     procedure recuperarUser(aMotorista: TmotoristaDto); overload;
 // =============MOTORISTA======================================================
     procedure cadastrarMotorista(motorista:TmotoristaDto);
-    function mostrarMotorista:Tlist<TmotoristaDto>;
-    function mostrarMotoristaInativo:Tlist<TmotoristaDto>;
+    function mostrarMotorista(aIdTransportadora:Integer): Tlist<TmotoristaDto>;
+    function mostrarMotoristaInativo(aIdTransportadora:Integer): Tlist<TmotoristaDto>;
     procedure editarMotorista(motorista:TmotoristaDto);
 
   end;
@@ -246,37 +246,37 @@ begin
   end;
 end;
 
-function TuserService.mostrarMotorista: Tlist<TmotoristaDto>;
+function TuserService.mostrarMotorista(aIdTransportadora:Integer): Tlist<TmotoristaDto>;
 var
 userRepo : TuserRepository;
 begin
 userRepo := TuserRepository.create;
   try
-    result := userRepo.mostrarMotorista;
+    result := userRepo.mostrarMotorista(aIdTransportadora);
   finally
     userRepo.free;
   end;
 end;
 
-function TuserService.mostrarMotoristaInativo: Tlist<TmotoristaDto>;
+function TuserService.mostrarMotoristaInativo(aIdTransportadora:Integer): Tlist<TmotoristaDto>;
 var
 userRepo : TuserRepository;
 begin
 userRepo := TuserRepository.create;
   try
-    result := userRepo.mostrarMotoristaInativo;
+    result := userRepo.mostrarMotoristaInativo(aIdTransportadora);
   finally
     userRepo.free;
   end;
 end;
 
-function TuserService.mostrarUser(const aCargo: string): TObjectList<Tusuario>;
+function TuserService.mostrarUser(const aCargo: string;aIdTransportadora:Integer): TObjectList<Tusuario>;
 var
 userRepo : TuserRepository;
 begin
 userRepo := TuserRepository.create;
   try
-    result := userRepo.mostrarUser(aCargo);
+    result := userRepo.mostrarUser(aCargo,aIdTransportadora);
   finally
     userRepo.free;
   end;

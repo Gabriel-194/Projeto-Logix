@@ -334,7 +334,7 @@ type
     procedure lblBtnRecuperarVeiculoClick(Sender: TObject);
     procedure lblBtnExcluirVeiculoClick(Sender: TObject);
     procedure lblBtnCadastrarGerenteConfClick(Sender: TObject);
-    procedure mostrarUser(const aCargo: string; aListView: TListView);
+    procedure mostrarUser(const aCargo: string; aListView: TListView;aIdTransportadora:integer);
     procedure MostrarUserInativo(const aCargo: string; aListView: TListView);
     procedure lblBtnEditarGerenteConfClick(Sender: TObject);
     procedure lblBtnExcluirGerenteConfirmClick(Sender: TObject);
@@ -355,6 +355,9 @@ type
     procedure lblBtnCadastrarVeiculoConfClick(Sender: TObject);
     procedure mostrarVeiculo;
     procedure mostrarVeiculoInativo;
+    procedure lblBtnExcluirVeiculoConfClick(Sender: TObject);
+    procedure lblBtnRecuperarVeiculoConfClick(Sender: TObject);
+    procedure lblBtnEditarVeiculoConfClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -369,20 +372,21 @@ implementation
 {$R *.dfm}
 
 // procedure de atualizar tabelas
-procedure TFormHome.mostrarUser(const aCargo: string; aListView: TListView);
+procedure TFormHome.mostrarUser(const aCargo: string; aListView: TListView;aIdTransportadora:integer);
 var
   controller: ThomeController;
   ListaUser: TObjectList<Tusuario>;
   user: Tusuario;
   Item: TListItem;
+  idTransportadoraUsuario:Integer;
 begin
   if not Assigned(aListView) then
     Exit;
 
   controller := ThomeController.Create;
   try
-
-    ListaUser := controller.MostrarUser(aCargo);
+    idTransportadoraUsuario := usuarioLogado.UserLogado.getIdTransportadora;
+    ListaUser := controller.MostrarUser(aCargo, idTransportadoraUsuario);
     try
       aListView.Items.Clear;
 
@@ -409,11 +413,11 @@ procedure TFormHome.PageControlCadastrarChange(Sender: TObject);
 begin
   if PageControlCadastrar.ActivePage = TabSheetGerente then
   begin
-    mostrarUser('gerente', lswGerente);
+    mostrarUser('gerente', lswGerente,usuarioLogado.userLogado.getIdTransportadora);
   end
   else if PageControlCadastrar.ActivePage = TabSheetCarregador then
   begin
-    mostrarUser('Carregador', lswCarregador);
+    mostrarUser('Carregador', lswCarregador,usuarioLogado.userLogado.getIdTransportadora);
   end
   else if PageControlCadastrar.ActivePage = TabSheetMotoristas then
   begin
@@ -533,10 +537,12 @@ var
   ListaMotorista: TList<TmotoristaDto>;
   motorista: TmotoristaDto;
   Item: TListItem;
+  idTransportadoraUsuario:Integer;
 begin
   controller := ThomeController.Create;
   try
-    ListaMotorista := controller.mostrarMotorista;
+    idTransportadoraUsuario := usuarioLogado.UserLogado.getIdTransportadora;
+    ListaMotorista := controller.mostrarMotorista(idTransportadoraUsuario);
 
     lswMotorista.Items.Clear;
 
@@ -566,10 +572,12 @@ var
   ListaMotorista: TList<TmotoristaDto>;
   motorista: TmotoristaDto;
   Item: TListItem;
+  idTransportadoraUsuario:integer;
 begin
   controller := ThomeController.Create;
   try
-    ListaMotorista := controller.mostrarMotoristaInativo;
+    idTransportadoraUsuario := usuarioLogado.UserLogado.getIdTransportadora;
+    ListaMotorista := controller.mostrarMotoristaInativo(idTransportadoraUsuario);
 
     lswMotorista.Items.Clear;
 
@@ -600,7 +608,6 @@ var
 begin
   controller := THomeController.Create;
   try
-    // --- Contadores baseados em Cargos de Usuários ---
     lblCountGerente.Caption := controller.ContarUsuariosPorCargo('gerente').ToString;
     lblCountCarregador.Caption := controller.ContarUsuariosPorCargo('Carregador').ToString;
     lblCountMotorista.Caption := controller.ContarUsuariosPorCargo('motorista').ToString;
@@ -662,9 +669,9 @@ usuario := TUsuario.Create;
   usuario.Setcpf(MaskEditCpfGerente.Text);
   usuario.setTelefone (MaskEditTelefoneGerente.text);
   usuario.setCargo_descricao('gerente');
-//  usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
+  usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
 // jeito para teste ->
- usuario.SetIdTransportadora(1);
+// usuario.SetIdTransportadora(1);
 
 
 
@@ -672,7 +679,7 @@ usuario := TUsuario.Create;
   try
       controller.CadastrarUsuario(usuario);
       ShowMessage('Gerente cadastrado com sucesso!');
-      mostrarUser('gerente',lswGerente);
+      mostrarUser('gerente', lswGerente,usuarioLogado.userLogado.getIdTransportadora);
       AtualizarDashboards;
     finally
       controller.Free;
@@ -694,7 +701,7 @@ pnlBtnExcluirGerenteConfirm.visible := false;
 
     if lswgerente.selected = nil then begin
     showMessage('selecione um gerente na lista para editar.');
-    mostrarUser('gerente',lswGerente);
+    mostrarUser('gerente', lswGerente,usuarioLogado.userLogado.getIdTransportadora);
     exit;
     end;
 
@@ -723,14 +730,15 @@ begin
     usuario.Setcpf(MaskEditCpfGerente.Text);
     usuario.setTelefone (MaskEditTelefoneGerente.text);
     usuario.setCargo_descricao('gerente');
-    //  usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
+      usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
     // jeito para teste ->
+    //usuario.SetIdTransportadora(1);
 
     controller := ThomeController.create;
     try
       controller.EditarUser(usuario);
       showMessage('Gerente editado com sucesso!!');
-      mostrarUser('gerente',lswGerente);
+      mostrarUser('gerente', lswGerente,usuarioLogado.userLogado.getIdTransportadora);
     finally
       controller.free;
     end;
@@ -761,7 +769,7 @@ procedure TFormHome.lblBtnExcluirGerenteClick(Sender: TObject);
 begin
 pnlBtnRecuperarGerenteConfirm.visible := false;
 pnlBtnExcluirGerenteConfirm.visible := true;
-mostrarUser('gerente',lswGerente);
+mostrarUser('gerente', lswGerente,usuarioLogado.userLogado.getIdTransportadora);
 end;
 
 procedure TFormHome.lblBtnExcluirGerenteConfirmClick(Sender: TObject);
@@ -772,7 +780,7 @@ codParaExcluir: Integer;
 begin
   if lswGerente.selected = nil then begin
     showMessage('selecione um gerente na lista para Excluir.');
-    mostrarUser('gerente',lswGerente);
+    mostrarUser('gerente', lswGerente,usuarioLogado.userLogado.getIdTransportadora);
     exit;
   end;
 
@@ -789,7 +797,7 @@ begin
   try
     controller.excluirUser(user);
     showMessage('gerente excluido com sucesso.');
-    mostrarUser('gerente',lswGerente);
+    mostrarUser('gerente', lswGerente,usuarioLogado.userLogado.getIdTransportadora);
     AtualizarDashboards;
   finally
     controller.free;
@@ -879,9 +887,9 @@ begin
   motorista.CategoriaCNH := edtCategoriaCnh.text;
   motorista.ValidadeCNH := StrToDate(MaskEditValidadeCnh.text);
   motorista.cargo := 'motorista';
-//  motorista.idTransportadora := UsuarioLogado.UserLogado.getIdTransportadora;
+   motorista.idTransportadora := UsuarioLogado.UserLogado.getIdTransportadora;
   // jeito para teste ->
- motorista.idTransportadora:= 1;
+ //motorista.idTransportadora:= 1;
 
  controller := ThomeController.create;
  try
@@ -987,16 +995,16 @@ begin
   motorista.CategoriaCNH := edtCategoriaCnh.text;
   motorista.ValidadeCNH := StrToDate(MaskEditValidadeCnh.text);
   motorista.cargo := 'motorista';
-//  motorista.idTransportadora := UsuarioLogado.UserLogado.getIdTransportadora;
+   motorista.idTransportadora := UsuarioLogado.UserLogado.getIdTransportadora;
   // jeito para teste ->
- motorista.idTransportadora:= 1;
+ //motorista.idTransportadora:= 1;
 
  controller := ThomeController.Create;
 
   try
       controller.CadastrarMotorista(motorista);
       ShowMessage('Motorista cadastrado com sucesso!');
-      mostrarUser('motorista',lswMotorista);
+      mostrarUser('gerente', lswGerente,usuarioLogado.userLogado.getIdTransportadora);
       mostrarMotorista;
       AtualizarDashboards;
     finally
@@ -1029,9 +1037,9 @@ usuario := TUsuario.Create;
   usuario.Setcpf(MaskEditCpfCarregador.Text);
   usuario.setTelefone (MaskEditTelefoneCarregador.text);
   usuario.setCargo_descricao('Carregador');
-//  usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
+ usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
 // jeito para teste ->
- usuario.SetIdTransportadora(1);
+ //usuario.SetIdTransportadora(1);
 
 
 
@@ -1039,7 +1047,7 @@ usuario := TUsuario.Create;
   try
       controller.CadastrarUsuario(usuario);
       ShowMessage('Carregador cadastrado com sucesso!');
-      mostrarUser('Carregador',lswCarregador);
+      mostrarUser('Carregador', lswCarregador,usuarioLogado.userLogado.getIdTransportadora);
       AtualizarDashboards;
     finally
       controller.Free;
@@ -1058,7 +1066,7 @@ pnlBtnExcluirCarregadorConf.visible := false;
 
      if lswCarregador.selected = nil then begin
     showMessage('selecione um carregador na lista para editar.');
-    mostrarUser('Carregador',lswcarregador);
+    mostrarUser('Carregador', lswCarregador,usuarioLogado.userLogado.getIdTransportadora);
     exit;
     end;
 
@@ -1085,14 +1093,15 @@ begin
     usuario.Setcpf(MaskEditCpfCarregador.Text);
     usuario.setTelefone (MaskEditTelefoneCarregador.text);
     usuario.setCargo_descricao('Carregador');
-    //  usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
+      usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
     // jeito para teste ->
+    //usuario.SetIdTransportadora(1);
 
     controller := ThomeController.create;
     try
       controller.EditarUser(usuario);
       showMessage('Carregador editado com sucesso!!');
-      mostrarUser('Carregador',lswcarregador);
+      mostrarUser('Carregador', lswCarregador,usuarioLogado.userLogado.getIdTransportadora);
     finally
       controller.free;
     end;
@@ -1166,7 +1175,7 @@ codParaExcluir: Integer;
 begin
   if lswCarregador.selected = nil then begin
     showMessage('selecione um carregador na lista para Excluir.');
-    mostrarUser('Carregador',lswCarregador);
+    mostrarUser('Carregador', lswCarregador,usuarioLogado.userLogado.getIdTransportadora);
     exit;
   end;
 
@@ -1183,7 +1192,7 @@ begin
   try
     controller.excluirUser(user);
     showMessage('Carregador excluido com sucesso.');
-    mostrarUser('Carregador',lswCarregador);
+   mostrarUser('Carregador', lswCarregador,usuarioLogado.userLogado.getIdTransportadora);
     AtualizarDashboards;
   finally
     controller.free;
@@ -1203,7 +1212,7 @@ var
   Controller: ThomeController;
   listamotorista: TList<TmotoristaDto>;
   motorista: TmotoristaDto;
-
+  idTransportadoraUsuario:Integer;
 begin
 pnlOptionsVeiculo.visible := true;
 lblOptionsVeiculo.caption := 'cadastrar veiculo';
@@ -1214,7 +1223,8 @@ pnlBtnExcluirVeiculoConf.visible := false;
 
   Controller := ThomeController.Create;
   try
-    ListaMotorista := Controller.mostrarMotorista;
+    idTransportadoraUsuario := usuarioLogado.UserLogado.getIdTransportadora;
+    ListaMotorista := Controller.mostrarMotorista(idTransportadoraUsuario);
     try
       cbMotorista4Veiculo.Items.Clear;
 
@@ -1249,9 +1259,9 @@ veiculo := Tveiculo.Create;
   idMotorista := idMotorista.Remove(idMotorista.IndexOf('-')-1);
   veiculo.setId_motorista(strToInt(idMotorista));
 
-// veiculo.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
+veiculo.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
 // jeito para teste ->
-veiculo.SetIdTransportadora(1);
+//veiculo.SetIdTransportadora(1);
 
 
 
@@ -1268,6 +1278,11 @@ veiculo.SetIdTransportadora(1);
 end;
 
 procedure TFormHome.lblBtnEditarVeiculoClick(Sender: TObject);
+var
+  Controller: ThomeController;
+  listamotorista: TList<TmotoristaDto>;
+  motorista: TmotoristaDto;
+  idTransportadoraUsuario:Integer;
 begin
 pnlOptionsVeiculo.visible := true;
 lblOptionsVeiculo.caption := 'Editar veiculo';
@@ -1275,6 +1290,78 @@ pnlBtnCadastrarVeiculoConf.visible := false;
 pnlBtnEditarVeiculoConf.visible := true;
 pnlBtnRecuperarVeiculoConf.visible := false;
 pnlBtnExcluirVeiculoConf.visible := false;
+
+  if lswVeiculos.selected = nil then begin
+    showMessage('Selecione um veiculo na lista para editar');
+    mostrarVeiculo;
+    exit;
+  end;
+
+  Controller := ThomeController.Create;
+  try
+    idTransportadoraUsuario := usuarioLogado.UserLogado.getIdTransportadora;
+    ListaMotorista := Controller.mostrarMotorista(idTransportadoraUsuario);
+    try
+      cbMotorista4Veiculo.Items.Clear;
+
+      for motorista in ListaMotorista do
+        cbMotorista4Veiculo.Items.Add(
+          motorista.IdUsuario.ToString + ' - ' + motorista.Nome
+        );
+    finally
+      ListaMotorista.Free;
+    end;
+  finally
+    Controller.Free;
+  end;
+
+  MaskEditPlacaVeiculo.Text := lswVeiculos.selected.subItems[0];
+  edtModeloVeiculo.Text := lswVeiculos.selected.subItems[1];
+  MaskEditAnoVeiculo.Text := lswVeiculos.selected.subItems[2];
+  cbMotorista4Veiculo.Text := lswVeiculos.selected.subItems[3];
+  EditTipoCargaVeiculo.Text := lswVeiculos.selected.subItems[4];
+  EdtCapacidadeVeiculo.Text := lswVeiculos.selected.subItems[5];
+  cbUnidadeMedida.Text := lswVeiculos.selected.subItems[6];
+end;
+
+procedure TFormHome.lblBtnEditarVeiculoConfClick(Sender: TObject);
+var
+controller:THomeController;
+veiculo :Tveiculo;
+idMotorista:String;
+codParaEditar:Integer;
+begin
+veiculo := Tveiculo.Create;
+  veiculo.setPlaca(MaskEditPlacaVeiculo.Text);
+  veiculo.setAno(StrToInt(MaskEditAnoVeiculo.text));
+  veiculo.setmodelo (edtModeloVeiculo.text);
+  veiculo.setTipo_carga(EditTipoCargaVeiculo.text);
+  veiculo.setCapacidade(StrToInt(EdtCapacidadeVeiculo.text));
+  veiculo.setUnidade_medida(cbUnidadeMedida.text);
+
+  idMotorista := cbMotorista4Veiculo.text;
+  idMotorista := idMotorista.Remove(idMotorista.IndexOf('-')-1);
+  veiculo.setId_motorista(strToInt(idMotorista));
+
+ veiculo.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
+// jeito para teste ->
+//veiculo.SetIdTransportadora(1);
+
+  codParaEditar := (StrToInt(lswVeiculos.Selected.Caption));
+  veiculo.setId_veiculo(codParaEditar);
+
+
+
+  controller := THomeController.Create;
+  try
+      controller.editarVeiculo(veiculo);
+      ShowMessage('veiculo editado com sucesso!');
+      mostrarVeiculo;
+      AtualizarDashboards;
+    finally
+      controller.Free;
+  end;
+    veiculo.Free;
 end;
 
 procedure TFormHome.imgFechaOptionsVeiculoClick(Sender: TObject);
@@ -1286,6 +1373,41 @@ procedure TFormHome.lblBtnRecuperarVeiculoClick(Sender: TObject);
 begin
 pnlBtnRecuperarVeiculoConf.visible := true;
 pnlBtnExcluirVeiculoConf.visible := false;
+
+showMessage('agora a tabela vai mostrar os veiculos inativos para recuperar');
+mostrarVeiculoInativo;
+end;
+
+procedure TFormHome.lblBtnRecuperarVeiculoConfClick(Sender: TObject);
+var
+controller : THomeController;
+veiculo:Tveiculo;
+codPararecuperar: Integer;
+begin
+  if lswVeiculos.selected = nil then begin
+    showMessage('selecione um veiculo na lista para recuperar.');
+    mostrarVeiculoInativo;
+    exit;
+  end;
+
+  if MessageDlg('Tem certeza que deseja recuperar o veiculo selecionado?',mtConfirmation, [mbYes, mbNo], 0) = mrNo then
+    begin
+      exit;
+    end;
+
+  codPararecuperar := StrToInt(lswVeiculos.Selected.Caption);
+  veiculo:=Tveiculo.create;
+  veiculo.setId_veiculo(codPararecuperar);
+
+  controller := THomeController.Create;
+  try
+    controller.recuperarVeiculo(veiculo);
+    showMessage('veiculo recuperado com sucesso!!');
+    mostrarVeiculoInativo;
+    AtualizarDashboards;
+  finally
+    controller.free;
+  end;
 end;
 
 procedure TFormHome.lblBtnExcluirVeiculoClick(Sender: TObject);
@@ -1294,7 +1416,36 @@ pnlBtnRecuperarVeiculoConf.visible := false;
 pnlBtnExcluirVeiculoConf.visible := true;
 end;
 
+procedure TFormHome.lblBtnExcluirVeiculoConfClick(Sender: TObject);
+var
+controller : THomeController;
+veiculo:Tveiculo;
+codParaExcluir: Integer;
+begin
+  if lswVeiculos.selected = nil then begin
+    showMessage('selecione um veiculo na lista para Excluir.');
+    mostrarVeiculo;
+    exit;
+  end;
 
+  if MessageDlg('Tem certeza que deseja excluir o veiculo selecionado?',mtConfirmation, [mbYes, mbNo], 0) = mrNo then
+    begin
+      exit;
+    end;
 
+  codParaExcluir := StrToInt(lswVeiculos.Selected.Caption);
+  veiculo:=Tveiculo.create;
+  veiculo.setId_veiculo(codParaExcluir);
+
+  controller := THomeController.Create;
+  try
+    controller.excluirVeiculo(veiculo);
+    showMessage('veiculo excluido com sucesso.');
+    mostrarVeiculo;
+    AtualizarDashboards;
+  finally
+    controller.free;
+  end;
+end;
 
 end.

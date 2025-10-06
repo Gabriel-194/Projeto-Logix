@@ -6,7 +6,7 @@ data.DB,homeService, uUsuario, userService, System.SysUtils, system.Generics.Col
 
 type THomeController = class
   procedure cadastrarUsuario(aUsuario:TUsuario);
-  function MostrarUser(const aCargo: string): TObjectList<Tusuario>;
+  function mostrarUser(const aCargo: string;aIdTransportadora:Integer): TObjectList<Tusuario>;
   procedure EditarUser(aUsuario:TUsuario);overload;
   procedure excluirUser(aUsuario: TUsuario); overload;
   procedure excluirUser(aMotorista: TmotoristaDto); overload;
@@ -16,13 +16,16 @@ type THomeController = class
   function ContarUsuariosPorCargo(const aCargo: string): Integer;
 //=============== motorista ==============
  procedure cadastrarMotorista(motorista:TmotoristaDto);
- function mostrarMotorista:Tlist<TmotoristaDto>;
- function mostrarMotoristaInativo:Tlist<TmotoristaDto>;
+ function mostrarMotorista(aIdTransportadora:Integer): Tlist<TmotoristaDto>;
+ function mostrarMotoristaInativo(aIdTransportadora:Integer):Tlist<TmotoristaDto>;
  procedure editarMotorista(motorista:TmotoristaDto);
 //================veiculo===============================
 procedure cadastrarVeiculo(veiculo:Tveiculo);
 function mostrarVeiculo: TobjectList<Tveiculo>;
 function mostrarVeiculoInativo: TobjectList<Tveiculo>;
+procedure excluirVeiculo(veiculo:Tveiculo);
+procedure recuperarVeiculo(veiculo:Tveiculo);
+procedure editarVeiculo(veiculo:Tveiculo);
   end;
 
 implementation
@@ -105,6 +108,18 @@ service := TuserService.create;
   end;
 end;
 
+procedure THomeController.editarVeiculo(veiculo: Tveiculo);
+var
+Service: TveiculoService;
+begin
+Service:= TveiculoService.create;
+  try
+    service.editarVeiculo(veiculo);
+  finally
+    service.free;
+  end;
+end;
+
 procedure THomeController.excluirUser(aMotorista: TmotoristaDto);
 var
   service: TuserService;
@@ -112,6 +127,18 @@ begin
   service := TuserService.create;
   try
     service.excluirUser(aMotorista);
+  finally
+    service.free;
+  end;
+end;
+
+procedure THomeController.excluirVeiculo(veiculo: Tveiculo);
+var
+service : TveiculoService;
+begin
+service := TveiculoService.create;
+  try
+    service.excluirVeiculo(veiculo);
   finally
     service.free;
   end;
@@ -129,36 +156,36 @@ service := TuserService.create;
   end;
 end;
 
-function THomeController.mostrarMotorista: Tlist<TmotoristaDto>;
+function THomeController.mostrarMotorista(aIdTransportadora:Integer): Tlist<TmotoristaDto>;
 var
 service : TuserService;
 begin
  service := TuserService.create;
  try
-   result := service.mostrarMotorista;
+   result := service.mostrarMotorista(aIdTransportadora);
  finally
   service.free;
  end;
 end;
 
-function THomeController.mostrarMotoristaInativo: Tlist<TmotoristaDto>;
+function THomeController.mostrarMotoristaInativo(aIdTransportadora:Integer): Tlist<TmotoristaDto>;
 var
 service : TuserService;
 begin
  service := TuserService.create;
  try
-   result := service.mostrarMotoristaInativo;
+   result := service.mostrarMotoristaInativo(aIdTransportadora);
  finally
   service.free;
  end;
 end;
-function THomeController.mostrarUser(const aCargo: string): TObjectList<Tusuario>;
+function THomeController.mostrarUser(const aCargo: string;aIdTransportadora:Integer): TObjectList<Tusuario>;
 var
 service : TuserService;
 begin
  service := TuserService.create;
  try
-   result := service.mostrarUser(aCargo);
+   result := service.mostrarUser(aCargo,aIdtransportadora);
  finally
   service.free;
  end;
@@ -194,7 +221,7 @@ service : TveiculoService;
 begin
 service := TveiculoService.create;
   try
-    result := service.mostrarVeiuclo;
+    result := service.mostrarVeiculoInativo;
   finally
     service.free;
   end;
@@ -225,5 +252,17 @@ service := TuserService.create;
 end;
 
 
+
+procedure THomeController.recuperarVeiculo(veiculo: Tveiculo);
+var
+service : TveiculoService;
+begin
+service := TveiculoService.create;
+  try
+    service.recuperarVeiculo(veiculo);
+  finally
+    service.free;
+  end;
+end;
 
 end.
