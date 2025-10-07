@@ -7,7 +7,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
   Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.Mask, transpController, uTransportadora, uUsuario,loginController,
   Vcl.ComCtrls,System.Generics.Collections, LoginDto, System.ImageList,
-  Vcl.ImgList, adminController, adminDto, uFormHome,UsuarioLogado,enderecoDto,uCliente,uFormHomeCliente;
+  Vcl.ImgList, adminController, adminDto, uFormHome,UsuarioLogado,enderecoDto,uCliente,uFormHomeCliente,tipoCargaDto,
+  Vcl.CheckLst, Vcl.Grids;
 
 type
   TFormLogin = class(TForm)
@@ -235,6 +236,8 @@ type
     imgFechaPainelAdm: TImage;
     imgEyeBLock: TImage;
     imgEye: TImage;
+    Label12: TLabel;
+    StringGridTiposCarga: TStringGrid;
     procedure lick(Sender: TObject);
     procedure btnchangeCadastrarClick(Sender: TObject);
     procedure voltarImageClick(Sender: TObject);
@@ -354,7 +357,6 @@ var
   Controller: TloginController;
   Endereco: TEndereco;
 begin
-  Shape50.pen.color := clWhite;
   Controller := TloginController.Create;
   try
     Endereco := Controller.getByCep(MaskEditCepCliente.Text);
@@ -601,6 +603,15 @@ begin
   panelForTransp.Visible:= true;
   pnlButtonChoseAdmin.Visible:= false;
   pnlButtonChoseTransp.Visible:= false;
+
+  StringGridTiposCarga.Cells[0, 0] := 'Tipo de Carga';
+  StringGridTiposCarga.Cells[1, 0] := 'Preço Base (R$/km)';
+
+  StringGridTiposCarga.Cells[0, 1] := 'Seca';
+  StringGridTiposCarga.Cells[0, 2] := 'Refrigerada';
+  StringGridTiposCarga.Cells[0, 3] := 'Líquida';
+  StringGridTiposCarga.Cells[0, 4] := 'Gás';
+
 end;
 
 procedure TFormLogin.lblBtnCadastrarAdmClick(Sender: TObject);
@@ -829,8 +840,13 @@ procedure TFormLogin.lick(Sender: TObject);
 var
   Controller: TTranspController;
   Transp: TTransportadora;
+  ListaTiposCarga:TList<TTipoCargaDto>;
+  tipoCargaDto:TtipoCargaDto;
+  i: integer;
+  preco:double;
 begin
     Transp := TTransportadora.create;
+    ListaTiposCarga:=TList<TTipoCargaDto>.create;
   try
     Transp.setNome(edtNome.Text);
     Transp.setCNPJ(MaskEditCNPJ.Text);
@@ -838,11 +854,22 @@ begin
     Transp.setEmail(edtEmail.Text);
     Transp.setCep(MaskEditCEP.Text);
 
+    for i := 1 to StringGridTiposCarga.RowCount - 1 do
+    begin
+      Preco := StrToFloatDef(Trim(StringGridTiposCarga.Cells[1, i]), 0);
 
+      if Preco > 0 then
+      begin
+        tipoCargaDto.TipoCarga := StringGridTiposCarga.Cells[0, i];
+        tipoCargaDto.precoBaseKmCarga:= Preco;
+
+        ListaTiposCarga.Add(tipoCargaDto);
+      end;
+    end;
 
     Controller := TTranspController.Create;
     try
-      Controller.CadastrarTransportadora(Transp);
+      Controller.CadastrarTransportadora(Transp,ListaTiposCarga);
       ShowMessage('Transportadora cadastrada com sucesso!');
       PanelOptionsTransp.Visible:=false;
       atualizarTabela;
@@ -854,11 +881,13 @@ begin
       maskEditTelefone.clear;
       edtEmail.clear;
       maskEditCep.clear;
+
   except
     on E: Exception do
       ShowMessage('Erro: ' + E.Message);
   end;
     Transp.Free;
+    ListaTiposCarga.Free;
 end;
 
 
@@ -895,14 +924,21 @@ begin
   end;
 end;
 
+
+
 procedure TFormLogin.lblButtonEditarClick(Sender: TObject);
 var
 controller : TtranspController;
 transp : TTransportadora;
 codParaEditar : integer;
+ListaTiposCarga:TList<TTipoCargaDto>;
+tipoCargaDto:TtipoCargaDto;
+preco : double;
+i:integer;
 begin
   codParaEditar := StrToInt(lswTransp.Selected.Caption);
   transp := TTransportadora.create;
+  ListaTiposCarga:=TList<TTipoCargaDto>.create;
   try
     Transp.setId(codParaEditar);
     Transp.setNome(edtNome.Text);
@@ -911,9 +947,23 @@ begin
     Transp.setEmail(edtEmail.Text);
     Transp.setCep(MaskEditCEP.Text);
 
+
+    for i := 1 to StringGridTiposCarga.RowCount - 1 do
+    begin
+      Preco := StrToFloatDef(Trim(StringGridTiposCarga.Cells[1, i]), 0);
+
+      if Preco > 0 then
+      begin
+        tipoCargaDto.TipoCarga := StringGridTiposCarga.Cells[0, i];
+        tipoCargaDto.precoBaseKmCarga:= Preco;
+
+        ListaTiposCarga.Add(tipoCargaDto);
+      end;
+    end;
+
     controller := TTranspController.create;
     try
-      controller.EditarTranportadora(Transp);
+      controller.EditarTranportadora(Transp,listaTiposCarga);
       showMessage('Transportadora editada com sucesso!!');
     finally
       controller.free;
@@ -1039,6 +1089,7 @@ begin
   atualizarTabela;
   pnlBtnRecuperarConfirm.Visible := False;
   pnlBtnExcluirConfirm.Visible := false;
+
 end;
 
 

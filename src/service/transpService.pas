@@ -3,7 +3,7 @@ unit transpService;
 interface
 
 uses
-  System.SysUtils, transpRepository,uTransportadora,System.Generics.Collections;
+  System.SysUtils, transpRepository,uTransportadora,System.Generics.Collections,TipoCargaDto;
 
 type
   TTranspService = class
@@ -11,9 +11,9 @@ type
     TransRepo: TTranspRepository;
     function ExtrairApenasNumeros (const AValor: string) : String;
   public
-    procedure CadastrarTransportadora(ATransp: TTransportadora);
+    procedure CadastrarTransportadora(aTransportadora: TTransportadora; aTiposCarga: TList<TTipoCargaDto>);
     function atualizarTabela: TObjectList<TTransportadora>;
-    procedure EditarTransportadora (ATransp: TTransportadora);
+    procedure EditarTransportadora(ATransp: TTransportadora;aTiposCarga: TList<TTipoCargaDto>);
     procedure ExcluirTransportadora (ATransp: TTransportadora);
     function tabelaInativo: TObjectList<TTransportadora>;
     procedure RecuperarTransportadora(ATransp: TTransportadora);
@@ -25,9 +25,10 @@ implementation
 
 
 
-procedure TTranspService.EditarTransportadora(ATransp: TTransportadora);
+procedure TTranspService.EditarTransportadora(ATransp: TTransportadora;aTiposCarga: TList<TTipoCargaDto>);
 var
   OnlyDigitsCNPJ, OnlyDigitsFone, OnlyDigitsCEP: string;
+  dto: TTipoCargaDto;
 begin
   if ATransp.getNome.Trim = '' then begin
     raise Exception.Create('Nome da transportadora é obrigatório.');
@@ -64,10 +65,12 @@ begin
   OnlyDigitsCEP := ExtrairApenasNumeros(ATransp.getCep.Trim);
 
   if length(OnlyDigitsCEP) <> 8  then begin
-    raise exception.Create('CnpjInvalido');
+    raise exception.Create('Cep Invalido');
   end;
 
-  TransRepo.editarTransportadora(Atransp);
+  TransRepo.editarTransportadora(Atransp,aTiposCarga);
+
+  TransRepo.free;
 end;
 
 procedure TTranspService.ExcluirTransportadora(ATransp: TTransportadora);
@@ -123,50 +126,45 @@ begin
   Result := TransRepo.atualizarTabela;
 end;
 
-procedure TTranspService.CadastrarTransportadora(ATransp: TTransportadora);
+procedure TTranspService.CadastrarTransportadora(aTransportadora: TTransportadora; aTiposCarga: TList<TTipoCargaDto>);
 var
   OnlyDigitsCNPJ, OnlyDigitsFone, OnlyDigitsCEP: string;
+  dto: TTipoCargaDto;
 begin
-  if ATransp.getNome.Trim = '' then begin
+  // ======== VALIDAÇÕES ========
+  if aTransportadora.getNome.Trim = '' then
     raise Exception.Create('Nome da transportadora é obrigatório.');
-  end;
 
-  if ATransp.getCnpj.Trim = '' then begin
-    raise Exception.Create('Cnpj da transportadora é obrigatório.');
-  end;
+  if aTransportadora.getCnpj.Trim = '' then
+    raise Exception.Create('CNPJ da transportadora é obrigatório.');
 
-  OnlyDigitsCNPJ := ExtrairApenasNumeros(ATransp.getCnpj.Trim);
+  OnlyDigitsCNPJ := ExtrairApenasNumeros(aTransportadora.getCnpj.Trim);
+  if Length(OnlyDigitsCNPJ) <> 14 then
+    raise Exception.Create('CNPJ inválido, deve conter 14 dígitos.');
 
-  if Length(OnlyDigitsCNPJ) <> 14 then begin
-    raise Exception.Create('CNPJ invalido, deve conter 14 dígitos.');
-  end;
-
-  if ATransp.getTelefone.Trim = '' then begin
+  if aTransportadora.getTelefone.Trim = '' then
     raise Exception.Create('O campo Telefone é obrigatório.');
-  end;
 
-  OnlyDigitsFone := ExtrairApenasNumeros(Atransp.getTelefone.Trim);
+  OnlyDigitsFone := ExtrairApenasNumeros(aTransportadora.getTelefone.Trim);
+  if Length(OnlyDigitsFone) <> 11 then
+    raise Exception.Create('Telefone inválido.');
 
-  if Length(OnlyDigitsFone) <> 11 then begin
-    raise Exception.Create('Telefone Invalido');
-  end;
-
-  if ATransp.getEmail.Trim = '' then begin
+  if aTransportadora.getEmail.Trim = '' then
     raise Exception.Create('E-mail é obrigatório.');
-  end;
 
-  if Atransp.getCep.trim = '' then begin
-    raise exception.Create('CEP é obrigatorio');
-  end;
+  if aTransportadora.getCep.Trim = '' then
+    raise Exception.Create('CEP é obrigatório.');
 
-  OnlyDigitsCEP := ExtrairApenasNumeros(ATransp.getCep.Trim);
+  OnlyDigitsCEP := ExtrairApenasNumeros(aTransportadora.getCep.Trim);
+  if Length(OnlyDigitsCEP) <> 8 then
+    raise Exception.Create('CEP inválido.');
 
-  if length(OnlyDigitsCEP) <> 8  then begin
-    raise exception.Create('CnpjInvalido');
-  end;
+  TransRepo.CadastrarTransportadora(aTransportadora,aTiposCarga);
 
-  TransRepo.CadastrarTransportadora(ATransp);
+  TransRepo.free;
+
 end;
+
 
 end.
 

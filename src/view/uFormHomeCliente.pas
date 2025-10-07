@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
-  Vcl.StdCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.Mask;
+  Vcl.StdCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.Mask,HomeClienteController,enderecoDto;
 
 type
   TFormHomeCliente = class(TForm)
@@ -52,7 +52,7 @@ type
     TabSheetEditarPedido: TTabSheet;
     pnlCriarPedidoConf: TPanel;
     Shape40: TShape;
-    lblBtnCadastrarClienteConf: TLabel;
+    lblBtnCalcularFrete: TLabel;
     Panel49: TPanel;
     Label12: TLabel;
     Label26: TLabel;
@@ -60,23 +60,23 @@ type
     Panel41: TPanel;
     Panel42: TPanel;
     Shape52: TShape;
-    Edit2: TEdit;
+    edtMunicipioOrigem: TEdit;
     Panel43: TPanel;
     Shape53: TShape;
-    MaskEdit1: TMaskEdit;
+    MaskEditCepOrigem: TMaskEdit;
     Panel44: TPanel;
     Shape54: TShape;
-    Image5: TImage;
+    imgBuscaCepOrigem: TImage;
     Panel45: TPanel;
     Shape55: TShape;
-    Edit3: TEdit;
+    edtEstadoOrigem: TEdit;
     Panel46: TPanel;
     Shape56: TShape;
-    Edit4: TEdit;
+    edtEnderecoOrigem: TEdit;
     lblEndOrigem: TLabel;
     Panel13: TPanel;
     Shape41: TShape;
-    edtNumeroEnderecoCliente: TEdit;
+    edtNumeroEnderecoOrigem: TEdit;
     Label21: TLabel;
     Label6: TLabel;
     imgFecharPanelCadastroCliente: TImage;
@@ -90,25 +90,38 @@ type
     Panel2: TPanel;
     Panel3: TPanel;
     Shape3: TShape;
-    Edit1: TEdit;
+    edtMunicipioDestino: TEdit;
     Panel4: TPanel;
     Shape4: TShape;
-    MaskEdit2: TMaskEdit;
+    MaskEditCepDestino: TMaskEdit;
     Panel5: TPanel;
     Shape9: TShape;
-    Image6: TImage;
+    imgCepDestino: TImage;
     Panel6: TPanel;
     Shape10: TShape;
-    Edit5: TEdit;
+    edtEstadoDestino: TEdit;
     Panel7: TPanel;
     Shape11: TShape;
-    Edit6: TEdit;
+    edtEnderecoDestino: TEdit;
     Panel8: TPanel;
     Shape13: TShape;
-    Edit7: TEdit;
+    edtNumeroEnderecoDestino: TEdit;
     cbUnidadeMedida: TComboBox;
+    cbTransp4Admin: TComboBox;
+    Panel9: TPanel;
+    Label3: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Panel10: TPanel;
+    Shape14: TShape;
+    edtPrecoFinal: TEdit;
+    pnlConfPedido: TPanel;
+    Shape15: TShape;
+    Label16: TLabel;
     procedure Image8Click(Sender: TObject);
     procedure imgFecharPanelCadastroClienteClick(Sender: TObject);
+    procedure imgBuscaCepOrigemClick(Sender: TObject);
+    procedure imgCepDestinoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -121,6 +134,41 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TFormHomeCliente.imgBuscaCepOrigemClick(Sender: TObject);
+var
+  Controller: ThomeClientecontroller;
+  Endereco: TEndereco;
+begin
+  Controller := ThomeClientecontroller.Create;
+  try
+    Endereco := Controller.getByCep(MaskEditCepOrigem.text);
+
+    edtEstadoOrigem.Text := Endereco.endereco;
+    edtMunicipioOrigem.Text := Endereco.municipio;
+    edtEnderecoOrigem.Text := Endereco.estado;
+  finally
+    Controller.Free;
+  end;
+end;
+
+procedure TFormHomeCliente.imgCepDestinoClick(Sender: TObject);
+var
+  Controller: ThomeClientecontroller;
+  Endereco: TEndereco;
+begin
+  Controller := ThomeClientecontroller.Create;
+  try
+    Endereco := Controller.getByCep(MaskEditCepDestino.text);
+
+    edtEstadoDestino.Text := Endereco.endereco;
+    edtMunicipioDestino.Text := Endereco.municipio;
+    edtEnderecoDestino.Text := Endereco.estado;
+
+  finally
+    Controller.Free;
+  end;
+end;
 
 procedure TFormHomeCliente.Image8Click(Sender: TObject);
 begin

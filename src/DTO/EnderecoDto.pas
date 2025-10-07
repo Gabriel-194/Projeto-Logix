@@ -7,6 +7,8 @@ type Tendereco = record
   municipio:string;
   endereco:string;
   numero :integer;
+  Latitude: Double;
+  Longitude: Double;
 end;
 
 implementation

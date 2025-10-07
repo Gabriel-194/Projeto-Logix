@@ -23,8 +23,9 @@ CREATE TABLE IF NOT EXISTS {schema}.veiculo (
 CREATE TABLE IF NOT EXISTS {schema}.tipo_carga (
   id_carga SERIAL PRIMARY KEY,
   tipo VARCHAR(50),
-  descricao VARCHAR(255),
-  preco_base_km DECIMAL(10,2)
+  preco_base_km DECIMAL(10,2),
+id_transportadora INTEGER NOT NULL 
+-- FOREIGN KEY (id_transportadora) REFERENCES public.transportadora(id)
 );
 
 -- Pedido (cliente vem do PUBLIC)

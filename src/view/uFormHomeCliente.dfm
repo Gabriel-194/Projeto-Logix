@@ -290,7 +290,6 @@
       Color = clWhite
       ParentBackground = False
       TabOrder = 0
-      ExplicitLeft = 777
       object Shape12: TShape
         Left = 0
         Top = 0
@@ -490,7 +489,6 @@
       Color = clWhite
       ParentBackground = False
       TabOrder = 1
-      ExplicitLeft = 121
       object Shape8: TShape
         Left = 0
         Top = 0
@@ -661,7 +659,6 @@
       Color = clWhite
       ParentBackground = False
       TabOrder = 2
-      ExplicitLeft = 375
       object Shape2: TShape
         Left = 0
         Top = 0
@@ -861,7 +858,6 @@
       Color = clWhite
       ParentBackground = False
       TabOrder = 3
-      ExplicitLeft = 1105
       object Shape7: TShape
         Left = 0
         Top = 0
@@ -1099,50 +1095,65 @@
           ParentFont = False
           ExplicitWidth = 201
         end
+        object Label15: TLabel
+          AlignWithMargins = True
+          Left = 3
+          Top = 480
+          Width = 148
+          Height = 37
+          Margins.Right = 300
+          Caption = 'Pre'#231'o Final:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -27
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
         object pnlCriarPedidoConf: TPanel
           AlignWithMargins = True
-          Left = 500
-          Top = 608
-          Width = 469
+          Left = 1000
+          Top = 546
+          Width = 369
           Height = 29
-          Margins.Left = 500
-          Margins.Right = 500
+          Margins.Left = 1000
+          Margins.Right = 100
           Margins.Bottom = 30
           Align = alBottom
           BevelOuter = bvNone
           TabOrder = 0
-          ExplicitLeft = 501
-          ExplicitTop = 629
-          ExplicitWidth = 214
+          ExplicitLeft = 500
+          ExplicitTop = 608
+          ExplicitWidth = 469
           object Shape40: TShape
             Left = 0
             Top = 0
-            Width = 469
+            Width = 369
             Height = 29
             Align = alClient
-            Brush.Color = 6957870
-            Pen.Color = clBlue
+            Brush.Color = 1996824
+            Pen.Color = clLime
             Shape = stRoundRect
             ExplicitTop = 8
             ExplicitWidth = 117
             ExplicitHeight = 33
           end
-          object lblBtnCadastrarClienteConf: TLabel
+          object lblBtnCalcularFrete: TLabel
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 463
+            Width = 363
             Height = 23
             Align = alClient
             Alignment = taCenter
-            Caption = 'CADASTRAR'
+            Caption = 'CALCULAR FRETE'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWhite
             Font.Height = -19
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            ExplicitWidth = 111
+            ExplicitWidth = 154
             ExplicitHeight = 25
           end
         end
@@ -1159,7 +1170,6 @@
           Color = clWhite
           ParentBackground = False
           TabOrder = 1
-          ExplicitTop = 454
           object Label12: TLabel
             AlignWithMargins = True
             Left = 3
@@ -1209,7 +1219,7 @@
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            ExplicitLeft = 657
+            ExplicitHeight = 32
           end
           object Label21: TLabel
             AlignWithMargins = True
@@ -1226,7 +1236,6 @@
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            ExplicitLeft = 1005
             ExplicitHeight = 32
           end
           object Label6: TLabel
@@ -1244,7 +1253,6 @@
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            ExplicitLeft = 1007
             ExplicitHeight = 32
           end
         end
@@ -1261,9 +1269,6 @@
           Color = clWhite
           ParentBackground = False
           TabOrder = 2
-          ExplicitLeft = 4
-          ExplicitTop = 165
-          ExplicitWidth = 1335
           object Panel42: TPanel
             AlignWithMargins = True
             Left = 606
@@ -1276,7 +1281,6 @@
             Color = clWhite
             ParentBackground = False
             TabOrder = 0
-            ExplicitLeft = 659
             object Shape52: TShape
               Left = 0
               Top = 0
@@ -1290,7 +1294,7 @@
               ExplicitWidth = 65
               ExplicitHeight = 65
             end
-            object Edit2: TEdit
+            object edtMunicipioOrigem: TEdit
               AlignWithMargins = True
               Left = 10
               Top = 3
@@ -1335,7 +1339,7 @@
               ExplicitWidth = 65
               ExplicitHeight = 65
             end
-            object MaskEdit1: TMaskEdit
+            object MaskEditCepOrigem: TMaskEdit
               AlignWithMargins = True
               Left = 3
               Top = 3
@@ -1355,6 +1359,7 @@
               ParentFont = False
               TabOrder = 0
               Text = '  .   -   '
+              ExplicitTop = 5
             end
           end
           object Panel44: TPanel
@@ -1381,7 +1386,7 @@
               ExplicitWidth = 55
               ExplicitHeight = 41
             end
-            object Image5: TImage
+            object imgBuscaCepOrigem: TImage
               Left = 0
               Top = 2
               Width = 39
@@ -1409,6 +1414,7 @@
                 17EF8F68F35F905F31B2F1EBDA5130EC8F5C3B6EB8C20D8FEFC3BD55B825F08F
                 ABED31E4A880D6C7B6AD65785FF89B763D841C1917C50F9F5BCF5B91F0000000
                 0049454E44AE426082}
+              OnClick = imgBuscaCepOrigemClick
             end
           end
           object Panel45: TPanel
@@ -1436,7 +1442,7 @@
               ExplicitWidth = 65
               ExplicitHeight = 65
             end
-            object Edit3: TEdit
+            object edtEstadoOrigem: TEdit
               AlignWithMargins = True
               Left = 3
               Top = 3
@@ -1455,7 +1461,6 @@
               ParentFont = False
               TabOrder = 0
               TextHint = 'Digite o estado'
-              ExplicitWidth = 248
             end
           end
           object Panel46: TPanel
@@ -1470,7 +1475,6 @@
             Color = clWhite
             ParentBackground = False
             TabOrder = 4
-            ExplicitLeft = 966
             object Shape56: TShape
               Left = 0
               Top = 0
@@ -1484,7 +1488,7 @@
               ExplicitWidth = 65
               ExplicitHeight = 65
             end
-            object Edit4: TEdit
+            object edtEnderecoOrigem: TEdit
               AlignWithMargins = True
               Left = 10
               Top = 3
@@ -1518,7 +1522,6 @@
             Color = clWhite
             ParentBackground = False
             TabOrder = 5
-            ExplicitLeft = 1288
             object Shape41: TShape
               Left = 0
               Top = 0
@@ -1532,7 +1535,7 @@
               ExplicitWidth = 65
               ExplicitHeight = 65
             end
-            object edtNumeroEnderecoCliente: TEdit
+            object edtNumeroEnderecoOrigem: TEdit
               AlignWithMargins = True
               Left = 10
               Top = 3
@@ -1552,7 +1555,6 @@
               ParentFont = False
               TabOrder = 0
               TextHint = 'Digite o numero'
-              ExplicitWidth = 241
             end
           end
         end
@@ -1569,7 +1571,6 @@
           Color = clWhite
           ParentBackground = False
           TabOrder = 3
-          ExplicitTop = 351
           object Label7: TLabel
             AlignWithMargins = True
             Left = 3
@@ -1669,8 +1670,6 @@
           Color = clWhite
           ParentBackground = False
           TabOrder = 4
-          ExplicitLeft = 11
-          ExplicitTop = 398
           object Panel3: TPanel
             AlignWithMargins = True
             Left = 606
@@ -1696,7 +1695,7 @@
               ExplicitWidth = 65
               ExplicitHeight = 65
             end
-            object Edit1: TEdit
+            object edtMunicipioDestino: TEdit
               AlignWithMargins = True
               Left = 10
               Top = 3
@@ -1741,7 +1740,7 @@
               ExplicitWidth = 65
               ExplicitHeight = 65
             end
-            object MaskEdit2: TMaskEdit
+            object MaskEditCepDestino: TMaskEdit
               AlignWithMargins = True
               Left = 3
               Top = 3
@@ -1787,7 +1786,7 @@
               ExplicitWidth = 55
               ExplicitHeight = 41
             end
-            object Image6: TImage
+            object imgCepDestino: TImage
               Left = 0
               Top = 2
               Width = 39
@@ -1815,6 +1814,7 @@
                 17EF8F68F35F905F31B2F1EBDA5130EC8F5C3B6EB8C20D8FEFC3BD55B825F08F
                 ABED31E4A880D6C7B6AD65785FF89B763D841C1917C50F9F5BCF5B91F0000000
                 0049454E44AE426082}
+              OnClick = imgCepDestinoClick
             end
           end
           object Panel6: TPanel
@@ -1842,7 +1842,7 @@
               ExplicitWidth = 65
               ExplicitHeight = 65
             end
-            object Edit5: TEdit
+            object edtEstadoDestino: TEdit
               AlignWithMargins = True
               Left = 3
               Top = 3
@@ -1888,7 +1888,7 @@
               ExplicitWidth = 65
               ExplicitHeight = 65
             end
-            object Edit6: TEdit
+            object edtEnderecoDestino: TEdit
               AlignWithMargins = True
               Left = 10
               Top = 3
@@ -1935,7 +1935,7 @@
               ExplicitWidth = 65
               ExplicitHeight = 65
             end
-            object Edit7: TEdit
+            object edtNumeroEnderecoDestino: TEdit
               AlignWithMargins = True
               Left = 10
               Top = 3
@@ -1955,13 +1955,15 @@
               ParentFont = False
               TabOrder = 0
               TextHint = 'Digite o numero'
+              ExplicitLeft = 7
+              ExplicitTop = 6
             end
           end
         end
         object cbUnidadeMedida: TComboBox
           AlignWithMargins = True
-          Left = 1080
-          Top = 447
+          Left = 3
+          Top = 421
           Width = 283
           Height = 36
           Hint = 'unidade de medida'
@@ -1975,11 +1977,172 @@
           Font.Style = []
           ParentFont = False
           TabOrder = 5
-          TextHint = 'unidade de medida'
+          Text = 'selecione o tipo da carga'
+          TextHint = 'selecione o tipo da carga'
           Items.Strings = (
-            'Quilograma (KG)'
-            'Litros (L)'
-            'Metros Cubicos (m'#179')')
+            'seca'
+            'refrigerada'
+            'liquida'
+            'g'#225's')
+        end
+        object cbTransp4Admin: TComboBox
+          AlignWithMargins = True
+          Left = 355
+          Top = 421
+          Width = 262
+          Height = 36
+          Margins.Right = 40
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -20
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 6
+          Text = 'selecione a transportadora'
+          TextHint = 'selecione a transportadora'
+        end
+        object Panel9: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 371
+          Width = 1463
+          Height = 47
+          Margins.Top = 15
+          Margins.Bottom = 0
+          Align = alTop
+          BevelOuter = bvNone
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 7
+          ExplicitLeft = -13
+          ExplicitTop = 420
+          object Label3: TLabel
+            AlignWithMargins = True
+            Left = 3
+            Top = 3
+            Width = 82
+            Height = 41
+            Margins.Right = 300
+            Align = alLeft
+            Caption = 'Carga:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -27
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ExplicitHeight = 37
+          end
+          object Label14: TLabel
+            AlignWithMargins = True
+            Left = 388
+            Top = 3
+            Width = 184
+            Height = 41
+            Margins.Right = 160
+            Align = alLeft
+            Caption = 'Transportadora:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -24
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ExplicitHeight = 32
+          end
+        end
+        object Panel10: TPanel
+          AlignWithMargins = True
+          Left = 11
+          Top = 523
+          Width = 231
+          Height = 46
+          Margins.Right = 50
+          BevelOuter = bvNone
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 8
+          object Shape14: TShape
+            Left = 0
+            Top = 0
+            Width = 231
+            Height = 46
+            Align = alClient
+            Pen.Color = clGreen
+            Shape = stRoundRect
+            ExplicitLeft = 64
+            ExplicitTop = -8
+            ExplicitWidth = 65
+            ExplicitHeight = 65
+          end
+          object edtPrecoFinal: TEdit
+            AlignWithMargins = True
+            Left = 3
+            Top = 3
+            Width = 225
+            Height = 40
+            Align = alClient
+            Alignment = taCenter
+            BevelInner = bvNone
+            BevelOuter = bvNone
+            BorderStyle = bsNone
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -23
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            ExplicitWidth = 195
+            ExplicitHeight = 175
+          end
+        end
+        object pnlConfPedido: TPanel
+          AlignWithMargins = True
+          Left = 1000
+          Top = 608
+          Width = 369
+          Height = 29
+          Margins.Left = 1000
+          Margins.Right = 100
+          Margins.Bottom = 30
+          Align = alBottom
+          BevelOuter = bvNone
+          TabOrder = 9
+          ExplicitLeft = 500
+          ExplicitWidth = 469
+          object Shape15: TShape
+            Left = 0
+            Top = 0
+            Width = 369
+            Height = 29
+            Align = alClient
+            Brush.Color = 6957870
+            Pen.Color = clBlue
+            Shape = stRoundRect
+            ExplicitTop = 8
+            ExplicitWidth = 117
+            ExplicitHeight = 33
+          end
+          object Label16: TLabel
+            AlignWithMargins = True
+            Left = 3
+            Top = 3
+            Width = 363
+            Height = 23
+            Align = alClient
+            Alignment = taCenter
+            Caption = 'CONFIRMAR PEDIDO'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -19
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ExplicitWidth = 187
+            ExplicitHeight = 25
+          end
         end
       end
       object TabSheetEditarPedido: TTabSheet

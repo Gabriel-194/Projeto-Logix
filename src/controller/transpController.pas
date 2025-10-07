@@ -3,14 +3,14 @@ unit transpController;
 interface
 
 uses
-  System.SysUtils, transpService,uTransportadora,System.Generics.Collections;
+  System.SysUtils, transpService,uTransportadora,System.Generics.Collections,tipoCargaDto;
 
 type
   TTranspController = class
   public
-    procedure CadastrarTransportadora(ATransp: TTransportadora);
+    procedure CadastrarTransportadora(aTransportadora: TTransportadora; aTiposCarga: TList<TtipoCargaDto>);
     function atualizarTabela: TObjectList<TTransportadora>;
-    procedure EditarTranportadora(ATransp: TTransportadora);
+    procedure EditarTranportadora(aTransportadora: TTransportadora; aTiposCarga: TList<TtipoCargaDto>);
     procedure ExcluirTransportadora (ATransp: TTransportadora);
     function tabelaInativo: TObjectList<TTransportadora>;
     procedure recuperarTransportadora (ATransp: TTransportadora);
@@ -34,21 +34,21 @@ begin
   end;
 end;
 
-procedure TTranspController.CadastrarTransportadora(ATransp: TTransportadora);
+procedure TTranspController.CadastrarTransportadora(aTransportadora: TTransportadora; aTiposCarga: TList<TtipoCargaDto>);
 begin
   service := TTranspService.create;
  try
-    Service.CadastrarTransportadora(ATransp);
+    Service.CadastrarTransportadora(ATransportadora,aTiposCarga);
   finally
     Service.Free;
   end;
 end;
 
-procedure TTranspController.EditarTranportadora(ATransp: TTransportadora);
+procedure TTranspController.EditarTranportadora(aTransportadora: TTransportadora; aTiposCarga: TList<TtipoCargaDto>);
 begin
   service := TTranspService.create;
   try
-    service.EditarTransportadora(Atransp);
+    service.EditarTransportadora(aTransportadora,aTiposCarga);
   finally
     service.Free;
   end;

@@ -35,16 +35,18 @@ uses
   motoristaDto in 'src\DTO\motoristaDto.pas',
   uVeiculo in 'src\model\uVeiculo.pas',
   veiculoService in 'src\service\veiculoService.pas',
-  veiculoRepository in 'src\repository\veiculoRepository.pas';
+  veiculoRepository in 'src\repository\veiculoRepository.pas',
+  tipoCargaDto in 'src\DTO\tipoCargaDto.pas',
+  HomeClienteController in 'src\controller\HomeClienteController.pas';
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TFormHomeCliente, FormHomeCliente);
   Application.CreateForm(TFormLogin, FormLogin);
   Application.CreateForm(TFormHome, FormHome);
   Application.CreateForm(TDataModule2, DataModule2);
-  Application.CreateForm(TFormHomeCliente, FormHomeCliente);
   Application.Run;
 end.
