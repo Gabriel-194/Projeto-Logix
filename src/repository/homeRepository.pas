@@ -70,32 +70,51 @@ begin
   try
     FDQuery.Connection := DataModule2.FDConnection1;
 
-    if AIdTransportadora > 0 then
+    if (AIdTransportadora > 0) and (Pos('.', ATabela) = 0) then
     begin
       FDQuery.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id';
       FDQuery.ParamByName('id').AsInteger := AIdTransportadora;
       FDQuery.Open;
+      if FDQuery.IsEmpty then begin
+              Exit;
+      end;
 
-      if FDQuery.IsEmpty then Exit;
       SchemaName := FDQuery.FieldByName('schema_name').AsString;
       FDQuery.Close;
-
       FDQuery.ExecSQL('SET search_path TO ' + QuotedStr(SchemaName) + ', public');
     end;
+
 
     SQL.Text := Format('SELECT COUNT(*) FROM %s WHERE ativo = TRUE', [ATabela]);
 
 
+    if (AIdTransportadora > 0) and (ATabela = 'public.usuarios') then
+    begin
+      SQL.Add('AND id_transportadora = :id_transportadora');
+    end;
+
     if (AColunaFiltroAdicional <> '') and (AValorFiltroAdicional <> '') then
     begin
-      SQL.Add(Format('AND %s = :filtro', [AColunaFiltroAdicional]));
-      FDQuery.ParamByName('filtro').AsString := AValorFiltroAdicional;
+      SQL.Add(Format('AND %s = :filtro_adicional', [AColunaFiltroAdicional]));
     end;
 
     FDQuery.SQL.Text := SQL.Text;
+
+
+    if (AIdTransportadora > 0) and (ATabela = 'public.usuarios') then
+    begin
+      FDQuery.ParamByName('id_transportadora').AsInteger := AIdTransportadora;
+    end;
+
+    if (AColunaFiltroAdicional <> '') and (AValorFiltroAdicional <> '') then
+    begin
+      FDQuery.ParamByName('filtro_adicional').AsString := AValorFiltroAdicional;
+    end;
+
     FDQuery.Open;
 
-    if not FDQuery.IsEmpty then begin
+    if not FDQuery.IsEmpty then
+    begin
       Result := FDQuery.Fields[0].AsInteger;
     end;
   finally

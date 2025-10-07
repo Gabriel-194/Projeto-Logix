@@ -31,7 +31,7 @@ uses
   enderecoService in 'src\service\enderecoService.pas',
   clienteRepository in 'src\repository\clienteRepository.pas',
   clienteService in 'src\service\clienteService.pas',
-  uFormHomeCliente in 'src\view\uFormHomeCliente.pas' {Form1},
+  uFormHomeCliente in 'src\view\uFormHomeCliente.pas' {FormHomeCliente},
   motoristaDto in 'src\DTO\motoristaDto.pas',
   uVeiculo in 'src\model\uVeiculo.pas',
   veiculoService in 'src\service\veiculoService.pas',
@@ -45,6 +45,6 @@ begin
   Application.CreateForm(TFormLogin, FormLogin);
   Application.CreateForm(TFormHome, FormHome);
   Application.CreateForm(TDataModule2, DataModule2);
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFormHomeCliente, FormHomeCliente);
   Application.Run;
 end.

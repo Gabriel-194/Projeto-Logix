@@ -183,21 +183,21 @@ object FormHome: TFormHome
         Shape = stRoundRect
         ExplicitWidth = 153
       end
-      object lblClientesBtn: TLabel
+      object lblPedidosBtn: TLabel
         Left = 0
         Top = 0
         Width = 113
         Height = 39
         Align = alClient
         Alignment = taCenter
-        Caption = 'Clientes'
+        Caption = 'Pedidos'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -21
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
-        ExplicitWidth = 73
+        ExplicitWidth = 72
         ExplicitHeight = 30
       end
     end
@@ -246,7 +246,7 @@ object FormHome: TFormHome
       end
     end
   end
-  object pnlDashboard: TPanel
+  object pnlDashboardCadastros: TPanel
     AlignWithMargins = True
     Left = 10
     Top = 850
@@ -1293,7 +1293,6 @@ object FormHome: TFormHome
           Font.Height = -13
           Font.Name = 'Segoe UI'
           Font.Style = []
-          Items.ItemData = {050000000000000000}
           ParentFont = False
           TabOrder = 2
           ViewStyle = vsReport
@@ -3247,7 +3246,6 @@ object FormHome: TFormHome
         Font.Height = -13
         Font.Name = 'Segoe UI'
         Font.Style = []
-        Items.ItemData = {050000000000000000}
         ParentFont = False
         TabOrder = 2
         ViewStyle = vsReport
@@ -3431,7 +3429,6 @@ object FormHome: TFormHome
           Font.Height = -13
           Font.Name = 'Segoe UI'
           Font.Style = []
-          Items.ItemData = {050000000000000000}
           ParentFont = False
           TabOrder = 2
           ViewStyle = vsReport

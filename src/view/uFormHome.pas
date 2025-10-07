@@ -18,11 +18,11 @@ type
     lblPermissoesbtn: TLabel;
     PanelClientes: TPanel;
     Shape5: TShape;
-    lblClientesBtn: TLabel;
+    lblPedidosBtn: TLabel;
     pnlCadastros: TPanel;
     Shape6: TShape;
     lblCadastrosBtn: TLabel;
-    pnlDashboard: TPanel;
+    pnlDashboardCadastros: TPanel;
     veiculosCadastrados: TPanel;
     Shape7: TShape;
     lblDashBoards: TLabel;
@@ -605,13 +605,30 @@ end;
 procedure TFormHome.AtualizarDashboards;
 var
   controller: THomeController;
+  IdTransportadoraLogada: Integer;
 begin
   controller := THomeController.Create;
   try
-    lblCountGerente.Caption := controller.ContarUsuariosPorCargo('gerente').ToString;
-    lblCountCarregador.Caption := controller.ContarUsuariosPorCargo('Carregador').ToString;
-    lblCountMotorista.Caption := controller.ContarUsuariosPorCargo('motorista').ToString;
-    lblCountVeiculos.Caption := controller.ContarUsuariosPorCargo('motorista').ToString;
+
+    IdTransportadoraLogada := UsuarioLogado.UserLogado.getIdTransportadora;
+
+
+    lblCountGerente.Caption := controller.ContarRegistrosAtivos(
+      'public.usuarios', IdTransportadoraLogada, 'cargo_descricao', 'gerente'
+    ).ToString;
+
+    lblCountCarregador.Caption := controller.ContarRegistrosAtivos(
+      'public.usuarios', IdTransportadoraLogada, 'cargo_descricao', 'Carregador'
+    ).ToString;
+
+    lblCountMotorista.Caption := controller.ContarRegistrosAtivos(
+      'public.usuarios', IdTransportadoraLogada, 'cargo_descricao', 'motorista'
+    ).ToString;
+
+    lblCountVeiculos.Caption := controller.ContarRegistrosAtivos(
+      'veiculo', IdTransportadoraLogada, '', ''
+    ).ToString;
+
   finally
     controller.Free;
   end;
@@ -620,9 +637,8 @@ end;
 
 procedure TFormHome.FormShow(Sender: TObject);
 begin
-  AtualizarDashboards;
+    AtualizarDashboards;
 end;
-
 
 
 //============HEADER =====================================================

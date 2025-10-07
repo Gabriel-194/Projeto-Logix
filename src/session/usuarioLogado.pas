@@ -1,9 +1,10 @@
 unit usuarioLogado;
 
 interface
-uses uUsuario;
+uses uUsuario,uCliente;
 var
     UserLogado: TUsuario;
+    clienteLogado:Tcliente;
 
 
 

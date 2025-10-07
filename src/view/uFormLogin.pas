@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
   Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.Mask, transpController, uTransportadora, uUsuario,loginController,
   Vcl.ComCtrls,System.Generics.Collections, LoginDto, System.ImageList,
-  Vcl.ImgList, adminController, adminDto, uFormHome,UsuarioLogado,enderecoDto,uCliente;
+  Vcl.ImgList, adminController, adminDto, uFormHome,UsuarioLogado,enderecoDto,uCliente,uFormHomeCliente;
 
 type
   TFormLogin = class(TForm)
@@ -423,6 +423,7 @@ procedure TFormLogin.btnEntrarClick(Sender: TObject);
 var
 controlLogin : TloginController;
 user : Tusuario;
+cliente:Tcliente;
 resultado : TLoginResult;
 LoginDto:TLoginDto;
 begin
@@ -471,8 +472,8 @@ begin
         lrSucessocliente:
         begin
           ShowMessage('Bem vindo de volta cliente!!');
-          UsuarioLogado.userLogado := user;
-          FormHome.ShowModal;
+          UsuarioLogado.clienteLogado := cliente;
+          FormHomeCliente.ShowModal;
           Close;
         end;
       end;

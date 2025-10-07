@@ -14,6 +14,10 @@ type THomeController = class
   procedure recuperarUser(aUsuario:Tusuario)overload;
   procedure recuperarUser(aMotorista:TmotoristaDto)overload;
   function ContarUsuariosPorCargo(const aCargo: string): Integer;
+  function ContarRegistrosAtivos(const ATabela: string;
+  AIdTransportadora: Integer; const AColunaFiltroAdicional,
+  AValorFiltroAdicional: string): Integer;
+
 //=============== motorista ==============
  procedure cadastrarMotorista(motorista:TmotoristaDto);
  function mostrarMotorista(aIdTransportadora:Integer): Tlist<TmotoristaDto>;
@@ -71,6 +75,23 @@ Service:= TveiculoService.create;
     service.free;
   end;
 end;
+
+function THomeController.ContarRegistrosAtivos(const ATabela: string;
+  AIdTransportadora: Integer; const AColunaFiltroAdicional,
+  AValorFiltroAdicional: string): Integer;
+var
+Service: ThomeService;
+begin
+Service:= ThomeService.create;
+
+  Result := Service.ContarRegistrosAtivos(
+    ATabela,
+    AIdTransportadora,
+    AColunaFiltroAdicional,
+    AValorFiltroAdicional
+  );
+end;
+
 
 function THomeController.ContarUsuariosPorCargo(const aCargo: string): Integer;
 var
