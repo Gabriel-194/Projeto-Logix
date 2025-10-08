@@ -110,18 +110,26 @@ type
     cbTransp4Admin: TComboBox;
     Panel9: TPanel;
     Label3: TLabel;
-    Label14: TLabel;
     Label15: TLabel;
-    Panel10: TPanel;
-    Shape14: TShape;
-    edtPrecoFinal: TEdit;
     pnlConfPedido: TPanel;
     Shape15: TShape;
     Label16: TLabel;
+    Label17: TLabel;
+    Label14: TLabel;
+    Panel11: TPanel;
+    Shape16: TShape;
+    edtDistanciaKm: TEdit;
+    Panel10: TPanel;
+    Shape14: TShape;
+    edtPrecoFinal: TEdit;
+    Panel12: TPanel;
+    Shape17: TShape;
+    lblBtnCalcularDistancia: TLabel;
     procedure Image8Click(Sender: TObject);
     procedure imgFecharPanelCadastroClienteClick(Sender: TObject);
     procedure imgBuscaCepOrigemClick(Sender: TObject);
     procedure imgCepDestinoClick(Sender: TObject);
+    procedure lblBtnCalcularFreteClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -144,9 +152,9 @@ begin
   try
     Endereco := Controller.getByCep(MaskEditCepOrigem.text);
 
-    edtEstadoOrigem.Text := Endereco.endereco;
+    edtEstadoOrigem.Text := Endereco.estado;
     edtMunicipioOrigem.Text := Endereco.municipio;
-    edtEnderecoOrigem.Text := Endereco.estado;
+    edtEnderecoOrigem.Text := Endereco.endereco;
   finally
     Controller.Free;
   end;
@@ -161,14 +169,15 @@ begin
   try
     Endereco := Controller.getByCep(MaskEditCepDestino.text);
 
-    edtEstadoDestino.Text := Endereco.endereco;
+    edtEstadoDestino.Text := Endereco.estado;
     edtMunicipioDestino.Text := Endereco.municipio;
-    edtEnderecoDestino.Text := Endereco.estado;
+    edtEnderecoDestino.Text := Endereco.endereco;
 
   finally
     Controller.Free;
   end;
 end;
+
 
 procedure TFormHomeCliente.Image8Click(Sender: TObject);
 begin
@@ -178,6 +187,25 @@ end;
 procedure TFormHomeCliente.imgFecharPanelCadastroClienteClick(Sender: TObject);
 begin
 PageControlPedidos.visible:= false;
+end;
+
+procedure TFormHomeCliente.lblBtnCalcularFreteClick(Sender: TObject);
+var
+  Controller: THomeClienteController;
+  Endereco: TEndereco;
+  Distancia: Double;
+begin
+  Controller := THomeClienteController.Create;
+  try
+    Endereco.cep := MaskEditCepOrigem.Text;
+    Endereco.cepDestino := MaskEditCepDestino.Text;
+
+    Distancia := Controller.CalcularDistanciaEntreCEPs(Endereco.cep, Endereco.cepDestino);
+
+    edtDistanciaKm.Text := FormatFloat('0.00', Distancia);
+  finally
+    Controller.Free;
+  end;
 end;
 
 end.

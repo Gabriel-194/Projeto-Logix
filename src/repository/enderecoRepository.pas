@@ -2,10 +2,12 @@ unit enderecoRepository;
 
 interface
 uses
-  EnderecoDto,System.Threading;
+  EnderecoDto,System.Threading,Math, IdURI;
 type TEnderecoRepository = class
    function GetByCEP(const ACep: string): TEndereco;
    function GetCoordenadasPorCEP(const ACep: string): TEndereco;
+   function CalcularDistancia(const Lat1, Lon1, Lat2, Lon2: Double): Double;
+
 end;
 
 implementation
@@ -61,16 +63,12 @@ var
   LResponse: IHTTPResponse;
   LJsonArray: TJSONArray;
   LJsonObject: TJSONObject;
-  LUrl, LCepLimpo: string;
+  LUrl: string;
 begin
-
   Result := Default(TEndereco);
-  LCepLimpo := StringReplace(ACep, '-', '', [rfReplaceAll]);
 
-  if Length(LCepLimpo) <> 8 then
-    Exit;
 
-  LUrl := Format('https://nominatim.openstreetmap.org/search?q=%s, Brazil&format=json&limit=1', [LCepLimpo]);
+  LUrl := 'https://nominatim.openstreetmap.org/search?postalcode=' + ACep + '&country=Brazil&format=json&limit=1';
 
   LHttpClient := THTTPClient.Create;
   try
@@ -80,10 +78,9 @@ begin
     if LResponse.StatusCode = 200 then
     begin
       LJsonArray := TJSONObject.ParseJSONValue(LResponse.ContentAsString) as TJSONArray;
-      if (LJsonArray <> nil) and (LJsonArray.Count > 0) then
+      if Assigned(LJsonArray) and (LJsonArray.Count > 0) then
       try
         LJsonObject := LJsonArray.Items[0] as TJSONObject;
-
         Result.Latitude := StrToFloatDef(LJsonObject.GetValue<string>('lat'), 0);
         Result.Longitude := StrToFloatDef(LJsonObject.GetValue<string>('lon'), 0);
       finally
@@ -94,5 +91,23 @@ begin
     LHttpClient.Free;
   end;
 end;
+
+
+function TEnderecoRepository.CalcularDistancia(
+  const Lat1, Lon1, Lat2, Lon2: Double): Double;
+const
+  RaioTerra = 6371;
+var
+  dLat, dLon, a, c: Double;
+begin
+  dLat := DegToRad(Lat2 - Lat1);
+  dLon := DegToRad(Lon2 - Lon1);
+  a := Sin(dLat / 2) * Sin(dLat / 2) +
+       Cos(DegToRad(Lat1)) * Cos(DegToRad(Lat2)) *
+       Sin(dLon / 2) * Sin(dLon / 2);
+  c := 2 * ArcTan2(Sqrt(a), Sqrt(1 - a));
+  Result := RaioTerra * c;
+end;
+
 
 end.

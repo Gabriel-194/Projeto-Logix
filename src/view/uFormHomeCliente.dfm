@@ -1097,8 +1097,8 @@
         end
         object Label15: TLabel
           AlignWithMargins = True
-          Left = 3
-          Top = 480
+          Left = 1099
+          Top = 417
           Width = 148
           Height = 37
           Margins.Right = 300
@@ -1106,6 +1106,21 @@
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -27
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label14: TLabel
+          AlignWithMargins = True
+          Left = 3
+          Top = 485
+          Width = 199
+          Height = 32
+          Margins.Right = 160
+          Caption = 'Distancia em Km:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -24
           Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
           ParentFont = False
@@ -1122,9 +1137,6 @@
           Align = alBottom
           BevelOuter = bvNone
           TabOrder = 0
-          ExplicitLeft = 500
-          ExplicitTop = 608
-          ExplicitWidth = 469
           object Shape40: TShape
             Left = 0
             Top = 0
@@ -1153,6 +1165,7 @@
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
+            OnClick = lblBtnCalcularFreteClick
             ExplicitWidth = 154
             ExplicitHeight = 25
           end
@@ -1359,7 +1372,6 @@
               ParentFont = False
               TabOrder = 0
               Text = '  .   -   '
-              ExplicitTop = 5
             end
           end
           object Panel44: TPanel
@@ -1955,8 +1967,6 @@
               ParentFont = False
               TabOrder = 0
               TextHint = 'Digite o numero'
-              ExplicitLeft = 7
-              ExplicitTop = 6
             end
           end
         end
@@ -2015,8 +2025,6 @@
           Color = clWhite
           ParentBackground = False
           TabOrder = 7
-          ExplicitLeft = -13
-          ExplicitTop = 420
           object Label3: TLabel
             AlignWithMargins = True
             Left = 3
@@ -2034,7 +2042,7 @@
             ParentFont = False
             ExplicitHeight = 37
           end
-          object Label14: TLabel
+          object Label17: TLabel
             AlignWithMargins = True
             Left = 388
             Top = 3
@@ -2052,52 +2060,6 @@
             ExplicitHeight = 32
           end
         end
-        object Panel10: TPanel
-          AlignWithMargins = True
-          Left = 11
-          Top = 523
-          Width = 231
-          Height = 46
-          Margins.Right = 50
-          BevelOuter = bvNone
-          Color = clWhite
-          ParentBackground = False
-          TabOrder = 8
-          object Shape14: TShape
-            Left = 0
-            Top = 0
-            Width = 231
-            Height = 46
-            Align = alClient
-            Pen.Color = clGreen
-            Shape = stRoundRect
-            ExplicitLeft = 64
-            ExplicitTop = -8
-            ExplicitWidth = 65
-            ExplicitHeight = 65
-          end
-          object edtPrecoFinal: TEdit
-            AlignWithMargins = True
-            Left = 3
-            Top = 3
-            Width = 225
-            Height = 40
-            Align = alClient
-            Alignment = taCenter
-            BevelInner = bvNone
-            BevelOuter = bvNone
-            BorderStyle = bsNone
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -23
-            Font.Name = 'Segoe UI'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 0
-            ExplicitWidth = 195
-            ExplicitHeight = 175
-          end
-        end
         object pnlConfPedido: TPanel
           AlignWithMargins = True
           Left = 1000
@@ -2109,9 +2071,7 @@
           Margins.Bottom = 30
           Align = alBottom
           BevelOuter = bvNone
-          TabOrder = 9
-          ExplicitLeft = 500
-          ExplicitWidth = 469
+          TabOrder = 8
           object Shape15: TShape
             Left = 0
             Top = 0
@@ -2142,6 +2102,144 @@
             ParentFont = False
             ExplicitWidth = 187
             ExplicitHeight = 25
+          end
+        end
+        object Panel11: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 523
+          Width = 199
+          Height = 38
+          Margins.Right = 50
+          BevelOuter = bvNone
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 9
+          object Shape16: TShape
+            Left = 0
+            Top = 0
+            Width = 199
+            Height = 38
+            Align = alClient
+            Pen.Color = clGreen
+            Shape = stRoundRect
+            ExplicitLeft = 64
+            ExplicitTop = -8
+            ExplicitWidth = 65
+            ExplicitHeight = 65
+          end
+          object edtDistanciaKm: TEdit
+            AlignWithMargins = True
+            Left = 3
+            Top = 3
+            Width = 193
+            Height = 32
+            Align = alClient
+            Alignment = taCenter
+            BevelInner = bvNone
+            BevelOuter = bvNone
+            BorderStyle = bsNone
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -23
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            ExplicitTop = -8
+            ExplicitWidth = 196
+            ExplicitHeight = 43
+          end
+        end
+        object Panel10: TPanel
+          AlignWithMargins = True
+          Left = 1099
+          Top = 456
+          Width = 148
+          Height = 33
+          Margins.Right = 50
+          BevelOuter = bvNone
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 10
+          object Shape14: TShape
+            Left = 0
+            Top = 0
+            Width = 148
+            Height = 33
+            Align = alClient
+            Pen.Color = clGreen
+            Shape = stRoundRect
+            ExplicitLeft = 64
+            ExplicitTop = -8
+            ExplicitWidth = 65
+            ExplicitHeight = 65
+          end
+          object edtPrecoFinal: TEdit
+            AlignWithMargins = True
+            Left = 3
+            Top = 3
+            Width = 142
+            Height = 27
+            Align = alClient
+            Alignment = taCenter
+            BevelInner = bvNone
+            BevelOuter = bvNone
+            BorderStyle = bsNone
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -23
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            ExplicitWidth = 225
+            ExplicitHeight = 32
+          end
+        end
+        object Panel12: TPanel
+          AlignWithMargins = True
+          Left = 240
+          Top = 523
+          Width = 225
+          Height = 30
+          Margins.Left = 1000
+          Margins.Right = 100
+          Margins.Bottom = 30
+          BevelOuter = bvNone
+          TabOrder = 11
+          object Shape17: TShape
+            Left = 0
+            Top = 0
+            Width = 225
+            Height = 30
+            Align = alClient
+            Brush.Color = 1996824
+            Pen.Color = clLime
+            Shape = stRoundRect
+            ExplicitTop = 8
+            ExplicitWidth = 117
+            ExplicitHeight = 33
+          end
+          object lblBtnCalcularDistancia: TLabel
+            AlignWithMargins = True
+            Left = 3
+            Top = 3
+            Width = 219
+            Height = 24
+            Align = alClient
+            Alignment = taCenter
+            Caption = 'CALCULAR DISTANCIA'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -19
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            OnClick = lblBtnCalcularFreteClick
+            ExplicitTop = 0
+            ExplicitWidth = 300
+            ExplicitHeight = 26
           end
         end
       end
