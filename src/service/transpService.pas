@@ -17,13 +17,24 @@ type
     procedure ExcluirTransportadora (ATransp: TTransportadora);
     function tabelaInativo: TObjectList<TTransportadora>;
     procedure RecuperarTransportadora(ATransp: TTransportadora);
+    function BuscarTransportadorasPorTipoCarga(const TipoCarga: string): TList<TTransportadora>;
   end;
 
 implementation
 
 { TTranspService }
 
-
+ function TTranspService.BuscarTransportadorasPorTipoCarga(const TipoCarga: string): TList<TTransportadora>;
+var
+  Repository: TTranspRepository;
+begin
+  Repository := TTranspRepository.Create;
+  try
+    Result := Repository.BuscarPorTipoCargaTodosSchemas(TipoCarga);
+  finally
+    Repository.Free;
+  end;
+end;
 
 procedure TTranspService.EditarTransportadora(ATransp: TTransportadora;aTiposCarga: TList<TTipoCargaDto>);
 var

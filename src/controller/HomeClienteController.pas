@@ -2,30 +2,43 @@ unit HomeClienteController;
 
 interface
 uses
-enderecoDto,enderecoService;
+enderecoDto,enderecoService,transpService,uTransportadora,System.Generics.Collections;
 
 type ThomeClientecontroller = class
+  function atualizarTabela: TObjectList<TTransportadora>;
   function getByCep(const ACep: string): TEndereco;
-  function CalcularDistanciaEntreCEPs(const ACepOrigem, ACepDestino: string): Double;
+  function BuscarTransportadorasPorTipoCarga(const TipoCarga: string): TList<TTransportadora>;
 end;
 
 implementation
 
 { ThomeClientecontroller }
 
-function THomeClienteController.CalcularDistanciaEntreCEPs(
-  const ACepOrigem, ACepDestino: string): Double;
+
+
+function THomeClienteController.BuscarTransportadorasPorTipoCarga(const TipoCarga: string): TList<TTransportadora>;
 var
-  Service: TEnderecoService;
+  Service: TTranspService;
 begin
-  Service := TEnderecoService.Create;
+  Service := TTranspService.Create;
   try
-    Result := Service.CalcularDistanciaEntreCEPs(ACepOrigem, ACepDestino);
+    Result := Service.BuscarTransportadorasPorTipoCarga(TipoCarga); // retorna lista, owner será view
   finally
     Service.Free;
   end;
 end;
 
+function ThomeClientecontroller.atualizarTabela: TObjectList<TTransportadora>;
+var
+  service :TTranspService;
+begin
+  service := TTranspService.create;
+  try
+    result :=service.atualizarTabela;
+  finally
+    Service.Free;
+  end;
+end;
 
 function ThomeClientecontroller.getByCep(const ACep: string): TEndereco;
 var

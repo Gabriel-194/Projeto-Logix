@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
-  Vcl.StdCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.Mask,HomeClienteController,enderecoDto;
+  Vcl.StdCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.Mask,HomeClienteController,enderecoDto,utransportadora,System.Generics.Collections;
 
 type
   TFormHomeCliente = class(TForm)
@@ -106,8 +106,8 @@ type
     Panel8: TPanel;
     Shape13: TShape;
     edtNumeroEnderecoDestino: TEdit;
-    cbUnidadeMedida: TComboBox;
-    cbTransp4Admin: TComboBox;
+    cbTipoCarga: TComboBox;
+    cbTransp4Pedido: TComboBox;
     Panel9: TPanel;
     Label3: TLabel;
     Label15: TLabel;
@@ -124,12 +124,14 @@ type
     edtPrecoFinal: TEdit;
     Panel12: TPanel;
     Shape17: TShape;
-    lblBtnCalcularDistancia: TLabel;
+    lblBtnTranspDisposniveis: TLabel;
     procedure Image8Click(Sender: TObject);
     procedure imgFecharPanelCadastroClienteClick(Sender: TObject);
     procedure imgBuscaCepOrigemClick(Sender: TObject);
     procedure imgCepDestinoClick(Sender: TObject);
-    procedure lblBtnCalcularFreteClick(Sender: TObject);
+    procedure lblCadastrosBtnClick(Sender: TObject);
+    procedure lblBtnTranspDisposniveisClick(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -142,7 +144,7 @@ var
 implementation
 
 {$R *.dfm}
-
+// ================  criar pedido ==================================
 procedure TFormHomeCliente.imgBuscaCepOrigemClick(Sender: TObject);
 var
   Controller: ThomeClientecontroller;
@@ -189,20 +191,50 @@ begin
 PageControlPedidos.visible:= false;
 end;
 
-procedure TFormHomeCliente.lblBtnCalcularFreteClick(Sender: TObject);
+
+procedure TFormHomeCliente.lblBtnTranspDisposniveisClick(Sender: TObject);
+
 var
+  TipoCarga: string;
+  ListaTransp: TList<TTransportadora>;
   Controller: THomeClienteController;
-  Endereco: TEndereco;
-  Distancia: Double;
 begin
+
+  TipoCarga := cbTipoCarga.Text;
+
   Controller := THomeClienteController.Create;
+
+
+  ListaTransp := Controller.BuscarTransportadorasPorTipoCarga(TipoCarga);
+
+  cbTransp4Pedido.Items.Clear;
+  for var Transp in ListaTransp do
+    cbTransp4Pedido.Items.Add(Format('%d - %s', [Transp.getId, Transp.getNome]));
+
+  cbTransp4Pedido.ItemIndex := 0;
+  ListaTransp.Free;
+end;
+
+procedure TFormHomeCliente.lblCadastrosBtnClick(Sender: TObject);
+var
+  Controller: ThomeClientecontroller;
+  Lista: TObjectList<TTransportadora>;
+  Transp: TTransportadora;
+begin
+PageControlPedidos.Visible := true;
+Controller := ThomeClientecontroller.Create;
   try
-    Endereco.cep := MaskEditCepOrigem.Text;
-    Endereco.cepDestino := MaskEditCepDestino.Text;
+    Lista := Controller.atualizarTabela;
+    try
+      cbTransp4Pedido.Items.Clear;
 
-    Distancia := Controller.CalcularDistanciaEntreCEPs(Endereco.cep, Endereco.cepDestino);
-
-    edtDistanciaKm.Text := FormatFloat('0.00', Distancia);
+      for Transp in Lista do
+        cbTransp4pedido.Items.Add(
+          Transp.getId.ToString + ' - ' + Transp.getNome
+        );
+    finally
+      Lista.Free;
+    end;
   finally
     Controller.Free;
   end;

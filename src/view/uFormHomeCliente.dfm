@@ -239,8 +239,9 @@
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
-        ExplicitWidth = 72
-        ExplicitHeight = 30
+        OnClick = lblCadastrosBtnClick
+        ExplicitLeft = 224
+        ExplicitTop = 93
       end
     end
   end
@@ -1023,6 +1024,9 @@
       TabHeight = 55
       TabOrder = 0
       TabWidth = 150
+      Visible = False
+      ExplicitLeft = 0
+      ExplicitTop = 0
       object TabSheetCriarPedido: TTabSheet
         Caption = 'Criar Pedido'
         Font.Charset = EASTEUROPE_CHARSET
@@ -1114,10 +1118,10 @@
           AlignWithMargins = True
           Left = 3
           Top = 485
-          Width = 199
+          Width = 276
           Height = 32
           Margins.Right = 160
-          Caption = 'Distancia em Km:'
+          Caption = 'Distancia media em Km:'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -24
@@ -1165,7 +1169,6 @@
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            OnClick = lblBtnCalcularFreteClick
             ExplicitWidth = 154
             ExplicitHeight = 25
           end
@@ -1970,7 +1973,7 @@
             end
           end
         end
-        object cbUnidadeMedida: TComboBox
+        object cbTipoCarga: TComboBox
           AlignWithMargins = True
           Left = 3
           Top = 421
@@ -1992,10 +1995,10 @@
           Items.Strings = (
             'seca'
             'refrigerada'
-            'liquida'
+            'l'#237'quida'
             'g'#225's')
         end
-        object cbTransp4Admin: TComboBox
+        object cbTransp4Pedido: TComboBox
           AlignWithMargins = True
           Left = 355
           Top = 421
@@ -2146,9 +2149,6 @@
             Font.Style = []
             ParentFont = False
             TabOrder = 0
-            ExplicitTop = -8
-            ExplicitWidth = 196
-            ExplicitHeight = 43
           end
         end
         object Panel10: TPanel
@@ -2193,16 +2193,14 @@
             Font.Style = []
             ParentFont = False
             TabOrder = 0
-            ExplicitWidth = 225
-            ExplicitHeight = 32
           end
         end
         object Panel12: TPanel
           AlignWithMargins = True
-          Left = 240
-          Top = 523
-          Width = 225
-          Height = 30
+          Left = 632
+          Top = 421
+          Width = 265
+          Height = 36
           Margins.Left = 1000
           Margins.Right = 100
           Margins.Bottom = 30
@@ -2211,8 +2209,8 @@
           object Shape17: TShape
             Left = 0
             Top = 0
-            Width = 225
-            Height = 30
+            Width = 265
+            Height = 36
             Align = alClient
             Brush.Color = 1996824
             Pen.Color = clLime
@@ -2221,25 +2219,23 @@
             ExplicitWidth = 117
             ExplicitHeight = 33
           end
-          object lblBtnCalcularDistancia: TLabel
+          object lblBtnTranspDisposniveis: TLabel
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 219
-            Height = 24
+            Width = 259
+            Height = 30
             Align = alClient
             Alignment = taCenter
-            Caption = 'CALCULAR DISTANCIA'
+            Caption = 'transportadoras disponiveis'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWhite
             Font.Height = -19
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            OnClick = lblBtnCalcularFreteClick
+            OnClick = lblBtnTranspDisposniveisClick
             ExplicitTop = 0
-            ExplicitWidth = 300
-            ExplicitHeight = 26
           end
         end
       end

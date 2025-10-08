@@ -3,7 +3,6 @@ unit EnderecoDto;
 interface
 type Tendereco = record
   cep: String;
-  cepDestino:string;
   estado :string;
   municipio:string;
   endereco:string;

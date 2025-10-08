@@ -18,12 +18,61 @@ type
     function tabelaInativo: TObjectList<TTransportadora>;
     procedure RecuperarTransportadora(Atransp:TTransportadora);
     procedure InserirTipoCarga(aTiposCarga: TList<TTipoCargaDto>);
+    function BuscarPorTipoCargaTodosSchemas(const TipoCarga: string): TList<TTransportadora>;
   end;
 
 implementation
 
 { TTranspRepository }
 
+function TTranspRepository.BuscarPorTipoCargaTodosSchemas(const TipoCarga: string): TList<TTransportadora>;
+var
+  QrySchemas, QryBusca: TFDQuery;
+  Lista: TList<TTransportadora>;
+  Schema: string;
+  Sql: string;
+begin
+  Lista := TList<TTransportadora>.Create;
+  QrySchemas := TFDQuery.Create(nil);
+  QryBusca := TFDQuery.Create(nil);
+  try
+    QrySchemas.Connection :=  DataModule2.FDConnection1;
+    QryBusca.Connection :=  DataModule2.FDConnection1;
+
+    QrySchemas.SQL.Text :=
+      'SELECT nspname ' +
+      'FROM pg_namespace ' +
+      'WHERE nspname NOT IN (''public'',''pg_catalog'',''information_schema'',''pg_toast'') ' +
+      'ORDER BY nspname';
+    QrySchemas.Open;
+    while not QrySchemas.Eof do
+    begin
+      Schema := QrySchemas.FieldByName('nspname').AsString;
+      Sql :=
+        'SELECT t.id, t.nome ' +
+        'FROM public.transportadora t ' +
+        'JOIN ' + Schema + '.tipo_carga tc ON tc.id_transportadora = t.id ' +
+        'WHERE LOWER(tc.tipo) = LOWER(:tipo_carga)';
+      QryBusca.SQL.Text := Sql;
+      QryBusca.ParamByName('tipo_carga').AsString := TipoCarga;
+      QryBusca.Open;
+      while not QryBusca.Eof do
+      begin
+        var transp := TTransportadora.Create;
+        transp.setId(QryBusca.FieldByName('id').AsInteger);
+        transp.setNome(QryBusca.FieldByName('nome').AsString);
+        Lista.Add(transp);
+        QryBusca.Next;
+      end;
+      QryBusca.Close;
+      QrySchemas.Next;
+    end;
+    Result := Lista;
+  finally
+    QryBusca.Free;
+    QrySchemas.Free;
+  end;
+end;
 
 function TTranspRepository.atualizarTabela:TObjectList<TTransportadora>;
 var
