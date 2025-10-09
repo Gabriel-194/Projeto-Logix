@@ -125,12 +125,16 @@ type
     Panel12: TPanel;
     Shape17: TShape;
     lblBtnTranspDisposniveis: TLabel;
+    Panel14: TPanel;
+    Shape18: TShape;
+    lblBtnCalcularDistancia: TLabel;
     procedure Image8Click(Sender: TObject);
     procedure imgFecharPanelCadastroClienteClick(Sender: TObject);
     procedure imgBuscaCepOrigemClick(Sender: TObject);
     procedure imgCepDestinoClick(Sender: TObject);
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure lblBtnTranspDisposniveisClick(Sender: TObject);
+    procedure lblBtnCalcularDistanciaClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -191,6 +195,36 @@ begin
 PageControlPedidos.visible:= false;
 end;
 
+
+procedure TFormHomeCliente.lblBtnCalcularDistanciaClick(Sender: TObject);
+var
+  Controller: THomeClienteController;
+  Distancia: Double;
+  CepOrigem, CepDestino: string;
+begin
+  Controller := THomeClienteController.Create;
+  try
+
+    CepOrigem := MaskEditCepOrigem.Text;
+    CepDestino := MaskEditCepDestino.Text;
+
+    if (Trim(CepOrigem) = '') or (Trim(CepDestino) = '') then
+    begin
+      ShowMessage('Informe os dois CEPs para calcular a distância.');
+      Exit;
+    end;
+
+    Distancia := Controller.CalcularDistanciaEntreCEPs(CepOrigem, CepDestino);
+
+    edtDistanciaKm.Text := FormatFloat('0.00', Distancia);
+
+  except
+    on E: Exception do
+      ShowMessage('Erro ao calcular distância: ' + E.Message);
+  end;
+
+  Controller.Free;
+end;
 
 procedure TFormHomeCliente.lblBtnTranspDisposniveisClick(Sender: TObject);
 

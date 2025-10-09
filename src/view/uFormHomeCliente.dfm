@@ -240,8 +240,8 @@
         Font.Style = []
         ParentFont = False
         OnClick = lblCadastrosBtnClick
-        ExplicitLeft = 224
-        ExplicitTop = 93
+        ExplicitWidth = 72
+        ExplicitHeight = 30
       end
     end
   end
@@ -1025,8 +1025,6 @@
       TabOrder = 0
       TabWidth = 150
       Visible = False
-      ExplicitLeft = 0
-      ExplicitTop = 0
       object TabSheetCriarPedido: TTabSheet
         Caption = 'Criar Pedido'
         Font.Charset = EASTEUROPE_CHARSET
@@ -2235,7 +2233,52 @@
             Font.Style = [fsBold]
             ParentFont = False
             OnClick = lblBtnTranspDisposniveisClick
-            ExplicitTop = 0
+            ExplicitWidth = 249
+            ExplicitHeight = 25
+          end
+        end
+        object Panel14: TPanel
+          AlignWithMargins = True
+          Left = 232
+          Top = 523
+          Width = 169
+          Height = 38
+          Margins.Left = 1000
+          Margins.Right = 100
+          Margins.Bottom = 30
+          BevelOuter = bvNone
+          TabOrder = 12
+          object Shape18: TShape
+            Left = 0
+            Top = 0
+            Width = 169
+            Height = 38
+            Align = alClient
+            Brush.Color = 1996824
+            Pen.Color = clLime
+            Shape = stRoundRect
+            ExplicitTop = 8
+            ExplicitWidth = 117
+            ExplicitHeight = 33
+          end
+          object lblBtnCalcularDistancia: TLabel
+            AlignWithMargins = True
+            Left = 3
+            Top = 3
+            Width = 163
+            Height = 32
+            Align = alClient
+            Alignment = taCenter
+            Caption = 'Calcular distancia'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -19
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            OnClick = lblBtnCalcularDistanciaClick
+            ExplicitWidth = 154
+            ExplicitHeight = 25
           end
         end
       end

@@ -8,6 +8,7 @@ type ThomeClientecontroller = class
   function atualizarTabela: TObjectList<TTransportadora>;
   function getByCep(const ACep: string): TEndereco;
   function BuscarTransportadorasPorTipoCarga(const TipoCarga: string): TList<TTransportadora>;
+  function CalcularDistanciaEntreCEPs(const ACepOrigem, ACepDestino: string): Double;
 end;
 
 implementation
@@ -23,6 +24,20 @@ begin
   Service := TTranspService.Create;
   try
     Result := Service.BuscarTransportadorasPorTipoCarga(TipoCarga); // retorna lista, owner será view
+  finally
+    Service.Free;
+  end;
+end;
+
+
+function THomeClienteController.CalcularDistanciaEntreCEPs(
+  const ACepOrigem, ACepDestino: string): Double;
+var
+  Service: TEnderecoService;
+begin
+  Service := TEnderecoService.Create;
+  try
+    Result := Service.CalcularDistanciaEntreCEPs(ACepOrigem, ACepDestino);
   finally
     Service.Free;
   end;
