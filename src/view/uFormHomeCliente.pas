@@ -216,7 +216,7 @@ begin
 
     Distancia := Controller.CalcularDistanciaEntreCEPs(CepOrigem, CepDestino);
 
-    edtDistanciaKm.Text := FormatFloat('0.00', Distancia);
+    edtDistanciaKm.Text := FormatFloat('0.', Distancia);
 
   except
     on E: Exception do

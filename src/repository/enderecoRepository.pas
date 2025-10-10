@@ -28,7 +28,7 @@ var
   LJsonViaCep, LJsonObject: TJSONObject;
   LJsonNominatim: TJSONValue;
   LJsonArray: TJSONArray;
-  LUrlViaCep, LUrlNominatim, Logradouro, Cidade, Estado,EnderecoCompleto: string;
+  LUrlViaCep, LUrlNominatim, Logradouro, Cidade, Estado,EnderecoCompleto,lat,long: string;
 begin
 
   Result := Default(TEndereco);
@@ -84,8 +84,9 @@ begin
          if (LJsonNominatim is TJSONArray) and ((LJsonNominatim as TJSONArray).Count > 0) then
           begin
             LJsonObject := (LJsonNominatim as TJSONArray).Items[0] as TJSONObject;
-            Result.Latitude  := StrToFloatDef(LJsonObject.GetValue<string>('lat'), 0);
-            Result.Longitude := StrToFloatDef(LJsonObject.GetValue<string>('lon'), 0);
+
+            result.Latitude := StrToFloatDef(LJsonObject.GetValue<string>('lat'), 0, TFormatSettings.Invariant);
+            result.longitude := StrToFloatDef(LJsonObject.GetValue<string>('lon'), 0, TFormatSettings.Invariant);
           end;
         finally
           LJsonNominatim.Free;
