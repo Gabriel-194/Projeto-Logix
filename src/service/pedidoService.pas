@@ -6,7 +6,7 @@ pedidoRepository,pedidoDto,system.Generics.Collections,System.SysUtils;
 
 type TPedidoService = class
   function CalcularFrete(const schemaName: string; tipo:string; distancia: Double;peso:double): Double;
-  procedure confirmarPedido(Apedido: TPedidoDto; const schemaName: string);
+  procedure confirmarPedido(pedidoDto: TPedidoDto; const schemaName: string);
 end;
 
 implementation
@@ -35,7 +35,7 @@ begin
 
 end;
 
-procedure TPedidoService.confirmarPedido(Apedido: TPedidoDto; const schemaName: string);
+procedure TPedidoService.confirmarPedido(pedidoDto: TPedidoDto; const schemaName: string);
 var
   Repo: TpedidoRepository;
 begin

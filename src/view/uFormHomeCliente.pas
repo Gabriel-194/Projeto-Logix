@@ -232,9 +232,10 @@ begin
   nomeTransp := cbTransp4Pedido.Text;
   idxSeparador := Pos(' - ', nomeTransp);
   if idxSeparador > 0 then begin
+    PedidoDto.IdTransportadora := StrToIntDef(Trim(Copy(nomeTransp, 1, idxSeparador - 1)), 0);
     nomeTransp := Copy(nomeTransp, idxSeparador + 3, Length(nomeTransp));
     schemaName := StringReplace(Trim(nomeTransp), ' ', '_', [rfReplaceAll]);
-    PedidoDto.IdTransportadora := StrToIntDef(Trim(Copy(nomeTransp, 1, idxSeparador - 1)), 0)
+
   end else
     PedidoDto.IdTransportadora := 0;
 

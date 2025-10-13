@@ -22,10 +22,10 @@ CREATE TABLE IF NOT EXISTS {schema}.veiculo (
 -- Tipo de carga
 CREATE TABLE IF NOT EXISTS {schema}.tipo_carga (
   id_carga SERIAL PRIMARY KEY,
-  tipo VARCHAR(50),
+  tipo VARCHAR (50) UNIQUE,
   preco_base_km DECIMAL(10,2),
-id_transportadora INTEGER NOT NULL 
--- FOREIGN KEY (id_transportadora) REFERENCES public.transportadora(id)
+id_transportadora INTEGER NOT NULL,
+FOREIGN KEY (id_transportadora) REFERENCES public.transportadora(id)
 );
 
 -- Pedido (cliente vem do PUBLIC)
@@ -34,24 +34,25 @@ CREATE TABLE IF NOT EXISTS {schema}.pedido (
   id_cliente INT NOT NULL REFERENCES public.cliente(id_cliente),
   
   -- Origem
-  cep_origem VARCHAR(9),
+  cep_origem VARCHAR(15),
   estado_origem VARCHAR(2),
   municipio_origem VARCHAR(50),
   endereco_origem VARCHAR(100),
   numero_origem VARCHAR(10),
   
   -- Destino
-  cep_destino VARCHAR(9),
+  cep_destino VARCHAR(15),
   estado_destino VARCHAR(2),
   municipio_destino VARCHAR(50),
   endereco_destino VARCHAR(100),
   numero_destino VARCHAR(10),
-
+	
+  distancia_km float,
   data_pedido TIMESTAMP DEFAULT now(),
   peso FLOAT,
-  tipo_carga INT NOT NULL REFERENCES {schema}.tipo_carga(tipo),
-  preco DECIMAL(10,2)
-  id_transportadora INT NOT NULL REFERENCES public.transportadora(id)
+  tipo_carga varchar(50) NOT NULL REFERENCES {schema}.tipo_carga(tipo),
+  preco DECIMAL(10,2),
+  id_transportadora INT NOT NULL REFERENCES public.transportadora(id),
   status VARCHAR(20) DEFAULT 'confirmado'
 );
 

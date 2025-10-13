@@ -19,15 +19,15 @@ begin
   try
     FDQuery.Connection := DataModule2.FDConnection1;
     FDQuery.SQL.Text :=
-      'INSERT INTO pedido (' +
-      'id_cliente, cep_origem, estado_origem, municipio_origem, endereco_origem, numero_origem, ' +
-      'cep_destino, estado_destino, municipio_destino, endereco_destino, numero_destino, ' +
-      'data_pedido, peso, distancia_km, tipo_carga, id_transportadora, preco, status' +
-      ') VALUES (' +
-      ':id_cliente, :cep_origem, :estado_origem, :municipio_origem, :endereco_origem, :numero_origem, ' +
-      ':cep_destino, :estado_destino, :municipio_destino, :endereco_destino, :numero_destino, ' +
-      'NOW(), :peso, :distancia_km, :tipo_carga, :id_transportadora, :preco, :status' +
-      ')';
+    'INSERT INTO ' + schemaName + '.pedido (' +
+    'id_cliente, cep_origem, estado_origem, municipio_origem, endereco_origem, numero_origem, ' +
+    'cep_destino, estado_destino, municipio_destino, endereco_destino, numero_destino, ' +
+    'data_pedido, peso, distancia_km, tipo_carga, id_transportadora, preco, status' +
+    ') VALUES (' +
+    ':id_cliente, :cep_origem, :estado_origem, :municipio_origem, :endereco_origem, :numero_origem, ' +
+    ':cep_destino, :estado_destino, :municipio_destino, :endereco_destino, :numero_destino, ' +
+    'NOW(), :peso, :distancia_km, :tipo_carga, :id_transportadora, :preco, :status' +
+    ')';
 
     FDQuery.ParamByName('id_cliente').AsInteger         := Apedido.IdCliente;
     FDQuery.ParamByName('cep_origem').AsString          := Apedido.CepOrigem;
