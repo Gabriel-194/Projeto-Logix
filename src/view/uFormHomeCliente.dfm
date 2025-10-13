@@ -1099,8 +1099,8 @@
         end
         object Label15: TLabel
           AlignWithMargins = True
-          Left = 1099
-          Top = 417
+          Left = 1116
+          Top = 416
           Width = 148
           Height = 37
           Margins.Right = 300
@@ -1115,11 +1115,41 @@
         object Label14: TLabel
           AlignWithMargins = True
           Left = 3
-          Top = 485
+          Top = 383
           Width = 276
           Height = 32
           Margins.Right = 160
           Caption = 'Distancia media em Km:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -24
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label18: TLabel
+          AlignWithMargins = True
+          Left = 464
+          Top = 383
+          Width = 268
+          Height = 32
+          Margins.Right = 160
+          Caption = 'Peso conforme a carga:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -24
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label3: TLabel
+          AlignWithMargins = True
+          Left = 3
+          Top = 479
+          Width = 163
+          Height = 32
+          Margins.Right = 160
+          Caption = 'Tipo da carga:'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -24
@@ -1167,6 +1197,7 @@
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
+            OnClick = lblBtnCalcularFreteClick
             ExplicitWidth = 154
             ExplicitHeight = 25
           end
@@ -1974,7 +2005,7 @@
         object cbTipoCarga: TComboBox
           AlignWithMargins = True
           Left = 3
-          Top = 421
+          Top = 528
           Width = 283
           Height = 36
           Hint = 'unidade de medida'
@@ -1991,16 +2022,16 @@
           Text = 'selecione o tipo da carga'
           TextHint = 'selecione o tipo da carga'
           Items.Strings = (
-            'seca'
-            'refrigerada'
-            'l'#237'quida'
-            'g'#225's')
+            'Seca'
+            'Refrigerada'
+            'L'#237'quida'
+            'G'#225's')
         end
         object cbTransp4Pedido: TComboBox
           AlignWithMargins = True
-          Left = 355
-          Top = 421
-          Width = 262
+          Left = 3
+          Top = 582
+          Width = 283
           Height = 36
           Margins.Right = 40
           Font.Charset = DEFAULT_CHARSET
@@ -2013,54 +2044,6 @@
           Text = 'selecione a transportadora'
           TextHint = 'selecione a transportadora'
         end
-        object Panel9: TPanel
-          AlignWithMargins = True
-          Left = 3
-          Top = 371
-          Width = 1463
-          Height = 47
-          Margins.Top = 15
-          Margins.Bottom = 0
-          Align = alTop
-          BevelOuter = bvNone
-          Color = clWhite
-          ParentBackground = False
-          TabOrder = 7
-          object Label3: TLabel
-            AlignWithMargins = True
-            Left = 3
-            Top = 3
-            Width = 82
-            Height = 41
-            Margins.Right = 300
-            Align = alLeft
-            Caption = 'Carga:'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -27
-            Font.Name = 'Segoe UI'
-            Font.Style = [fsBold]
-            ParentFont = False
-            ExplicitHeight = 37
-          end
-          object Label17: TLabel
-            AlignWithMargins = True
-            Left = 388
-            Top = 3
-            Width = 184
-            Height = 41
-            Margins.Right = 160
-            Align = alLeft
-            Caption = 'Transportadora:'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -24
-            Font.Name = 'Segoe UI'
-            Font.Style = [fsBold]
-            ParentFont = False
-            ExplicitHeight = 32
-          end
-        end
         object pnlConfPedido: TPanel
           AlignWithMargins = True
           Left = 1000
@@ -2072,7 +2055,7 @@
           Margins.Bottom = 30
           Align = alBottom
           BevelOuter = bvNone
-          TabOrder = 8
+          TabOrder = 7
           object Shape15: TShape
             Left = 0
             Top = 0
@@ -2086,7 +2069,7 @@
             ExplicitWidth = 117
             ExplicitHeight = 33
           end
-          object Label16: TLabel
+          object lblBtnConfirmarPedido: TLabel
             AlignWithMargins = True
             Left = 3
             Top = 3
@@ -2101,6 +2084,7 @@
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
+            OnClick = lblBtnConfirmarPedidoClick
             ExplicitWidth = 187
             ExplicitHeight = 25
           end
@@ -2108,19 +2092,19 @@
         object Panel11: TPanel
           AlignWithMargins = True
           Left = 3
-          Top = 523
+          Top = 421
           Width = 199
-          Height = 38
+          Height = 32
           Margins.Right = 50
           BevelOuter = bvNone
           Color = clWhite
           ParentBackground = False
-          TabOrder = 9
+          TabOrder = 8
           object Shape16: TShape
             Left = 0
             Top = 0
             Width = 199
-            Height = 38
+            Height = 32
             Align = alClient
             Pen.Color = clGreen
             Shape = stRoundRect
@@ -2134,12 +2118,13 @@
             Left = 3
             Top = 3
             Width = 193
-            Height = 32
+            Height = 26
             Align = alClient
             Alignment = taCenter
             BevelInner = bvNone
             BevelOuter = bvNone
             BorderStyle = bsNone
+            Enabled = False
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -23
@@ -2151,7 +2136,7 @@
         end
         object Panel10: TPanel
           AlignWithMargins = True
-          Left = 1099
+          Left = 1116
           Top = 456
           Width = 148
           Height = 33
@@ -2159,7 +2144,7 @@
           BevelOuter = bvNone
           Color = clWhite
           ParentBackground = False
-          TabOrder = 10
+          TabOrder = 9
           object Shape14: TShape
             Left = 0
             Top = 0
@@ -2195,20 +2180,20 @@
         end
         object Panel12: TPanel
           AlignWithMargins = True
-          Left = 632
-          Top = 421
-          Width = 265
-          Height = 36
+          Left = 304
+          Top = 528
+          Width = 281
+          Height = 37
           Margins.Left = 1000
           Margins.Right = 100
           Margins.Bottom = 30
           BevelOuter = bvNone
-          TabOrder = 11
+          TabOrder = 10
           object Shape17: TShape
             Left = 0
             Top = 0
-            Width = 265
-            Height = 36
+            Width = 281
+            Height = 37
             Align = alClient
             Brush.Color = 1996824
             Pen.Color = clLime
@@ -2221,8 +2206,8 @@
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 259
-            Height = 30
+            Width = 275
+            Height = 31
             Align = alClient
             Alignment = taCenter
             Caption = 'transportadoras disponiveis'
@@ -2240,19 +2225,19 @@
         object Panel14: TPanel
           AlignWithMargins = True
           Left = 232
-          Top = 523
+          Top = 421
           Width = 169
-          Height = 38
+          Height = 36
           Margins.Left = 1000
           Margins.Right = 100
           Margins.Bottom = 30
           BevelOuter = bvNone
-          TabOrder = 12
+          TabOrder = 11
           object Shape18: TShape
             Left = 0
             Top = 0
             Width = 169
-            Height = 38
+            Height = 36
             Align = alClient
             Brush.Color = 1996824
             Pen.Color = clLime
@@ -2266,7 +2251,7 @@
             Left = 3
             Top = 3
             Width = 163
-            Height = 32
+            Height = 30
             Align = alClient
             Alignment = taCenter
             Caption = 'Calcular distancia'
@@ -2279,6 +2264,50 @@
             OnClick = lblBtnCalcularDistanciaClick
             ExplicitWidth = 154
             ExplicitHeight = 25
+          end
+        end
+        object Panel15: TPanel
+          AlignWithMargins = True
+          Left = 467
+          Top = 421
+          Width = 268
+          Height = 33
+          Margins.Right = 50
+          BevelOuter = bvNone
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 12
+          object Shape19: TShape
+            Left = 0
+            Top = 0
+            Width = 268
+            Height = 33
+            Align = alClient
+            Pen.Color = clGreen
+            Shape = stRoundRect
+            ExplicitLeft = 64
+            ExplicitTop = -8
+            ExplicitWidth = 65
+            ExplicitHeight = 65
+          end
+          object edtPesoPedido: TEdit
+            AlignWithMargins = True
+            Left = 3
+            Top = 3
+            Width = 262
+            Height = 27
+            Align = alClient
+            Alignment = taCenter
+            BevelInner = bvNone
+            BevelOuter = bvNone
+            BorderStyle = bsNone
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -23
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
           end
         end
       end

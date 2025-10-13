@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
-  Vcl.StdCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.Mask,HomeClienteController,enderecoDto,utransportadora,System.Generics.Collections;
+  Vcl.StdCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.Mask,HomeClienteController,enderecoDto,utransportadora,System.Generics.Collections,pedidoDto,usuarioLogado;
 
 type
   TFormHomeCliente = class(TForm)
@@ -108,13 +108,10 @@ type
     edtNumeroEnderecoDestino: TEdit;
     cbTipoCarga: TComboBox;
     cbTransp4Pedido: TComboBox;
-    Panel9: TPanel;
-    Label3: TLabel;
     Label15: TLabel;
     pnlConfPedido: TPanel;
     Shape15: TShape;
-    Label16: TLabel;
-    Label17: TLabel;
+    lblBtnConfirmarPedido: TLabel;
     Label14: TLabel;
     Panel11: TPanel;
     Shape16: TShape;
@@ -128,6 +125,11 @@ type
     Panel14: TPanel;
     Shape18: TShape;
     lblBtnCalcularDistancia: TLabel;
+    Label18: TLabel;
+    Panel15: TPanel;
+    Shape19: TShape;
+    edtPesoPedido: TEdit;
+    Label3: TLabel;
     procedure Image8Click(Sender: TObject);
     procedure imgFecharPanelCadastroClienteClick(Sender: TObject);
     procedure imgBuscaCepOrigemClick(Sender: TObject);
@@ -135,6 +137,8 @@ type
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure lblBtnTranspDisposniveisClick(Sender: TObject);
     procedure lblBtnCalcularDistanciaClick(Sender: TObject);
+    procedure lblBtnCalcularFreteClick(Sender: TObject);
+    procedure lblBtnConfirmarPedidoClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -196,6 +200,58 @@ PageControlPedidos.visible:= false;
 end;
 
 
+procedure TFormHomeCliente.lblBtnConfirmarPedidoClick(Sender: TObject);
+var
+  PedidoDto: TPedidoDto;
+  Controller: THomeClienteController;
+  nomeTransp :String;
+  idxSeparador: Integer;
+  schemaName :String;
+begin
+
+//  PedidoDto.IdCliente := UsuarioLogado.clienteLogado.getId;
+  PedidoDto.IdCliente := 1;
+  PedidoDto.CepOrigem := maskEditCepOrigem.Text;
+  PedidoDto.EstadoOrigem := edtEstadoOrigem.Text;
+  PedidoDto.MunicipioOrigem := edtMunicipioOrigem.Text;
+  PedidoDto.EnderecoOrigem := edtEnderecoOrigem.Text;
+  PedidoDto.NumeroOrigem := edtNumeroEnderecoOrigem.Text;
+
+  PedidoDto.CepDestino := maskEditCepDestino.Text;
+  PedidoDto.EstadoDestino := edtEstadoDestino.Text;
+  PedidoDto.MunicipioDestino := edtMunicipioDestino.Text;
+  PedidoDto.EnderecoDestino := edtEnderecoDestino.Text;
+  PedidoDto.NumeroDestino := edtNumeroEnderecoDestino.Text;
+
+
+  PedidoDto.Peso := StrToFloatDef(edtPesoPedido.Text, 0);
+  PedidoDto.DistanciaKm := StrToFloatDef(StringReplace(edtDistanciaKm.Text, 'km', '', [rfIgnoreCase, rfReplaceAll]), 0);
+
+  PedidoDto.TipoCarga := cbTipoCarga.Text;
+
+  nomeTransp := cbTransp4Pedido.Text;
+  idxSeparador := Pos(' - ', nomeTransp);
+  if idxSeparador > 0 then begin
+    nomeTransp := Copy(nomeTransp, idxSeparador + 3, Length(nomeTransp));
+    schemaName := StringReplace(Trim(nomeTransp), ' ', '_', [rfReplaceAll]);
+    PedidoDto.IdTransportadora := StrToIntDef(Trim(Copy(nomeTransp, 1, idxSeparador - 1)), 0)
+  end else
+    PedidoDto.IdTransportadora := 0;
+
+
+  PedidoDto.Preco := StrToFloatDef(edtPrecoFinal.Text, 0);
+  PedidoDto.Status := 'aberto';
+
+  Controller := THomeClienteController.Create;
+  try
+    controller.confirmarPedido(pedidoDto,schemaName);
+    ShowMessage('Pedido confirmado com sucesso!');
+  finally
+    Controller.Free;
+  end;
+end;
+
+
 procedure TFormHomeCliente.lblBtnCalcularDistanciaClick(Sender: TObject);
 var
   Controller: THomeClienteController;
@@ -216,7 +272,7 @@ begin
 
     Distancia := Controller.CalcularDistanciaEntreCEPs(CepOrigem, CepDestino);
 
-    edtDistanciaKm.Text := FormatFloat('0.', Distancia);
+    edtDistanciaKm.Text := FormatFloat('0.'+'km', Distancia);
 
   except
     on E: Exception do
@@ -224,6 +280,44 @@ begin
   end;
 
   Controller.Free;
+end;
+
+procedure TFormHomeCliente.lblBtnCalcularFreteClick(Sender: TObject);
+var
+  precoFinal: Double;
+  controller: ThomeClienteController;
+  schemaName: string;
+  distancia: string;
+  distanciaLimpa : double;
+  nomeTransp : String;
+  idxSeparador: Integer;
+  tipo : String;
+  pesoStr : string;
+  pesoLimpo:double;
+begin
+  controller := ThomeClienteController.Create;
+  try
+
+     nomeTransp := cbTransp4Pedido.Text;
+    idxSeparador := Pos(' - ', nomeTransp);
+    if idxSeparador > 0 then
+      nomeTransp := Copy(nomeTransp, idxSeparador + 3, Length(nomeTransp));
+
+    schemaName := StringReplace(Trim(nomeTransp), ' ', '_', [rfReplaceAll]);
+    tipo := cbTipoCarga.text;
+
+    pesoStr := edtPesoPedido.text;
+    pesoLimpo := strToFloat(StringReplace(pesoStr, '.', '', [rfIgnoreCase, rfReplaceAll]));
+
+    distancia := edtDistanciaKm.Text;
+    distanciaLimpa := strToFloat(StringReplace(distancia, 'km', '', [rfIgnoreCase, rfReplaceAll]));
+
+    precoFinal := controller.CalcularFrete(schemaName, tipo, distanciaLimpa,pesoLimpo);
+
+    edtPrecoFinal.Text := FormatFloat('0.00', precoFinal);
+  finally
+    controller.Free;
+  end;
 end;
 
 procedure TFormHomeCliente.lblBtnTranspDisposniveisClick(Sender: TObject);

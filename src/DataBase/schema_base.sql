@@ -31,13 +31,28 @@ id_transportadora INTEGER NOT NULL
 -- Pedido (cliente vem do PUBLIC)
 CREATE TABLE IF NOT EXISTS {schema}.pedido (
   id_pedido SERIAL PRIMARY KEY,
-  id_cliente INT NOT NULL REFERENCES public.cliente(id_cliente), 
+  id_cliente INT NOT NULL REFERENCES public.cliente(id_cliente),
+  
+  -- Origem
+  cep_origem VARCHAR(9),
+  estado_origem VARCHAR(2),
+  municipio_origem VARCHAR(50),
   endereco_origem VARCHAR(100),
+  numero_origem VARCHAR(10),
+  
+  -- Destino
+  cep_destino VARCHAR(9),
+  estado_destino VARCHAR(2),
+  municipio_destino VARCHAR(50),
   endereco_destino VARCHAR(100),
+  numero_destino VARCHAR(10),
+
   data_pedido TIMESTAMP DEFAULT now(),
   peso FLOAT,
-  id_carga INT NOT NULL REFERENCES {schema}.tipo_carga(id_carga),
+  tipo_carga INT NOT NULL REFERENCES {schema}.tipo_carga(tipo),
   preco DECIMAL(10,2)
+  id_transportadora INT NOT NULL REFERENCES public.transportadora(id)
+  status VARCHAR(20) DEFAULT 'confirmado'
 );
 
 -- Viagem (ligando motorista, veículo e pedido)

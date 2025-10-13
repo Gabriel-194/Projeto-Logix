@@ -70,21 +70,25 @@ RaioTerra := 6371; // km
   DLon := DegToRad(Destino.Longitude - Origem.Longitude);
 
   A := Power(Sin(DLat / 2), 2) +
-       Cos(DegToRad(Origem.Latitude)) * Cos(DegToRad(Destino.Latitude)) *
-       Power(Sin(DLon / 2), 2);
+     Cos(DegToRad(Origem.Latitude)) * Cos(DegToRad(Destino.Latitude)) *
+     Power(Sin(DLon / 2), 2);
 
   C := 2 * ArcTan2(Sqrt(A), Sqrt(1 - A));
   Distancia := RaioTerra * C;
 
 
-  if Distancia < 10 then
-    Result := Distancia + 1.50
+  if Distancia < 5 then
+    Result := Distancia + 2.50
+  else if Distancia < 20 then
+    Result := Distancia * 1.15 // +15%
   else if Distancia < 50 then
-    Result := Distancia * 1.10 // 10-50 km: +25%
+    Result := Distancia * 1.25 // +25%
   else if Distancia < 200 then
-    Result := Distancia * 1.15 // 50-200 km: +15%
+    Result := Distancia * 1.10 // +10%
+  else if Distancia < 500 then
+    Result := Distancia * 1.075 // +7.5%
   else
-    Result := Distancia * 1.10; // >=200 km: +10%
+    Result := Distancia * 1.05; // +5%
 
   if Result < 0 then
     Result := 0;

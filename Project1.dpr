@@ -37,7 +37,10 @@ uses
   veiculoService in 'src\service\veiculoService.pas',
   veiculoRepository in 'src\repository\veiculoRepository.pas',
   tipoCargaDto in 'src\DTO\tipoCargaDto.pas',
-  HomeClienteController in 'src\controller\HomeClienteController.pas';
+  HomeClienteController in 'src\controller\HomeClienteController.pas',
+  pedidoDto in 'src\DTO\pedidoDto.pas',
+  pedidoService in 'src\service\pedidoService.pas',
+  pedidoRepository in 'src\repository\pedidoRepository.pas';
 
 {$R *.res}
 

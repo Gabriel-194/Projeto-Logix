@@ -174,6 +174,9 @@
         <DCCReference Include="src\repository\veiculoRepository.pas"/>
         <DCCReference Include="src\DTO\tipoCargaDto.pas"/>
         <DCCReference Include="src\controller\HomeClienteController.pas"/>
+        <DCCReference Include="src\DTO\pedidoDto.pas"/>
+        <DCCReference Include="src\service\pedidoService.pas"/>
+        <DCCReference Include="src\repository\pedidoRepository.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
