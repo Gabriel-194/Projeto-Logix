@@ -53,7 +53,8 @@ CREATE TABLE IF NOT EXISTS {schema}.pedido (
   tipo_carga varchar(50) NOT NULL REFERENCES {schema}.tipo_carga(tipo),
   preco DECIMAL(10,2),
   id_transportadora INT NOT NULL REFERENCES public.transportadora(id),
-  status VARCHAR(20) DEFAULT 'confirmado'
+  status VARCHAR(20) DEFAULT 'confirmado',
+  ativo boolean default true
 );
 
 -- Viagem (ligando motorista, veículo e pedido)

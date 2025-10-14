@@ -78,17 +78,17 @@ RaioTerra := 6371; // km
 
 
   if Distancia < 5 then
-    Result := Distancia + 2.50
+    Result := Distancia + 1.10
   else if Distancia < 20 then
-    Result := Distancia * 1.15 // +15%
+    Result := Distancia * 1.15
   else if Distancia < 50 then
-    Result := Distancia * 1.25 // +25%
+    Result := Distancia * 1.20
   else if Distancia < 200 then
-    Result := Distancia * 1.10 // +10%
+    Result := Distancia * 1.25
   else if Distancia < 500 then
-    Result := Distancia * 1.075 // +7.5%
+    Result := Distancia * 1.30
   else
-    Result := Distancia * 1.05; // +5%
+    Result := Distancia * 1.35;
 
   if Result < 0 then
     Result := 0;

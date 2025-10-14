@@ -629,6 +629,10 @@ begin
       'veiculo', IdTransportadoraLogada, '', ''
     ).ToString;
 
+    lblCountPedidos.Caption := controller.ContarRegistrosAtivos(
+      'pedido', IdTransportadoraLogada, '', ''
+    ).ToString;
+
   finally
     controller.Free;
   end;
@@ -1275,10 +1279,9 @@ veiculo := Tveiculo.Create;
   idMotorista := idMotorista.Remove(idMotorista.IndexOf('-')-1);
   veiculo.setId_motorista(strToInt(idMotorista));
 
-veiculo.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
+  veiculo.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
 // jeito para teste ->
 //veiculo.SetIdTransportadora(1);
-
 
 
   controller := THomeController.Create;

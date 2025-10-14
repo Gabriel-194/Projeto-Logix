@@ -5500,6 +5500,7 @@ object FormLogin: TFormLogin
               ParentFont = False
               TabOrder = 0
               Text = '  .   -   '
+              OnClick = MaskEditCEPClick
             end
           end
         end

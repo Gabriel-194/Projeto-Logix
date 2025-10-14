@@ -1025,6 +1025,8 @@
       TabOrder = 0
       TabWidth = 150
       Visible = False
+      ExplicitLeft = 2
+      ExplicitTop = 0
       object TabSheetCriarPedido: TTabSheet
         Caption = 'Criar Pedido'
         Font.Charset = EASTEUROPE_CHARSET
@@ -1035,12 +1037,11 @@
         ParentFont = False
         object lblEndOrigem: TLabel
           AlignWithMargins = True
-          Left = 3
-          Top = 50
-          Width = 1463
+          Left = 1
+          Top = 42
+          Width = 198
           Height = 32
           Margins.Top = 50
-          Align = alTop
           Alignment = taCenter
           Caption = 'Endere'#231'o Origem'
           Color = 6957870
@@ -1051,11 +1052,10 @@
           Font.Style = [fsBold]
           ParentColor = False
           ParentFont = False
-          ExplicitWidth = 198
         end
         object imgFecharPanelCadastroCliente: TImage
-          Left = 3
-          Top = 11
+          Left = 1
+          Top = 3
           Width = 41
           Height = 41
           Center = True
@@ -1079,12 +1079,11 @@
         end
         object lblEndDestino: TLabel
           AlignWithMargins = True
-          Left = 3
-          Top = 223
-          Width = 1463
+          Left = 1
+          Top = 215
+          Width = 201
           Height = 32
           Margins.Top = 40
-          Align = alTop
           Alignment = taCenter
           Caption = 'Endere'#231'o Destino'
           Color = 6957870
@@ -1095,12 +1094,11 @@
           Font.Style = [fsBold]
           ParentColor = False
           ParentFont = False
-          ExplicitWidth = 201
         end
         object Label15: TLabel
           AlignWithMargins = True
-          Left = 1116
-          Top = 416
+          Left = 1114
+          Top = 408
           Width = 148
           Height = 37
           Margins.Right = 300
@@ -1114,8 +1112,8 @@
         end
         object Label14: TLabel
           AlignWithMargins = True
-          Left = 3
-          Top = 383
+          Left = 1
+          Top = 375
           Width = 276
           Height = 32
           Margins.Right = 160
@@ -1129,8 +1127,8 @@
         end
         object Label18: TLabel
           AlignWithMargins = True
-          Left = 464
-          Top = 383
+          Left = 462
+          Top = 375
           Width = 268
           Height = 32
           Margins.Right = 160
@@ -1144,8 +1142,8 @@
         end
         object Label3: TLabel
           AlignWithMargins = True
-          Left = 3
-          Top = 479
+          Left = 1
+          Top = 471
           Width = 163
           Height = 32
           Margins.Right = 160
@@ -1157,16 +1155,176 @@
           Font.Style = [fsBold]
           ParentFont = False
         end
+        object Panel9: TPanel
+          Left = 327
+          Top = 51
+          Width = 769
+          Height = 466
+          BevelOuter = bvNone
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 14
+          Visible = False
+          object Shape20: TShape
+            Left = 0
+            Top = 0
+            Width = 769
+            Height = 466
+            Align = alClient
+            Pen.Color = clBlue
+            Shape = stRoundRect
+            ExplicitTop = 2
+            ExplicitWidth = 767
+            ExplicitHeight = 464
+          end
+          object Label16: TLabel
+            Left = 216
+            Top = 29
+            Width = 350
+            Height = 32
+            Caption = 'Instru'#231#245'es para fazer o pedido'
+            Font.Charset = EASTEUROPE_CHARSET
+            Font.Color = 6957870
+            Font.Height = -24
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object Label17: TLabel
+            Left = 65
+            Top = 74
+            Width = 661
+            Height = 30
+            Caption = 
+              '1 - Adicione o CEP de origem e clique na lupa para pesquisar os ' +
+              'dados '
+            Font.Charset = EASTEUROPE_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -21
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label19: TLabel
+            Left = 65
+            Top = 124
+            Width = 664
+            Height = 30
+            Caption = 
+              '2 - Adicione o CEP de destino e clique na lupa para pesquisar os' +
+              ' dados '
+            Font.Charset = EASTEUROPE_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -21
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label20: TLabel
+            Left = 65
+            Top = 176
+            Width = 289
+            Height = 30
+            Caption = '3 - Clique em calcular distancia'
+            Font.Charset = EASTEUROPE_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -21
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label22: TLabel
+            Left = 65
+            Top = 232
+            Width = 590
+            Height = 60
+            Caption = 
+              '4 - Escolha o tipo de carga e clique para ver as transportadoras' +
+              ' '#13#10'que prestam esse servi'#231'o '
+            Font.Charset = EASTEUROPE_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -21
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label23: TLabel
+            Left = 65
+            Top = 318
+            Width = 257
+            Height = 30
+            Caption = '5 - informe o peso da carga'
+            Font.Charset = EASTEUROPE_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -21
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label24: TLabel
+            Left = 65
+            Top = 362
+            Width = 630
+            Height = 30
+            Caption = 
+              '6 - clique em calcular frete para ver o pre'#231'o estimado para o pe' +
+              'dido'
+            Font.Charset = EASTEUROPE_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -21
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label25: TLabel
+            Left = 65
+            Top = 415
+            Width = 649
+            Height = 30
+            Caption = 
+              '7 - Com o pre'#231'o calculado clique em confirmar o pedido para fina' +
+              'lizar'
+            Font.Charset = EASTEUROPE_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -21
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Image5: TImage
+            Left = 35
+            Top = 20
+            Width = 41
+            Height = 41
+            Center = True
+            Picture.Data = {
+              0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
+              00200806000000737A7AF400000009704859730000167F0000167F01A413BABF
+              0000001974455874536F667477617265007777772E696E6B73636170652E6F72
+              679BEE3C1A0000015C4944415478DAED95C14AC3401086B32711A1AFA03E867A
+              EA4108E62078F7A81EF202BE81F42C48513C7996D29B20288A78F709C4675011
+              44AC5FDA089B90DDCC4C412F19F89976B699FF4BBA9975C93F87EB003A80D0C2
+              64B6B6872EF8F061694E8F45D22E3A73D3AF4280D2FC18E5E81E6D5178579A2F
+              902E5186CED13E3DBEA50047A443AF748DB6A54FA2BCF331DAF4CA0357ED1905
+              58235DA19E57163D89DA9DFF46714DC6B57722002B84D63C0AA085B098B70248
+              21ACE622803608F46535170344201ED01B4A2DE62A8008841F2A7335400B84DA
+              DC0A506CB81BB45E5B7A421BDA89A9FD0B9A76BB1FEAB1ADD9844DE6C5682EE6
+              FB921542FA1A06DF73F49918C7B608403264E6393BDA46B178C259216287917A
+              BC5A2042C7B179B66B21420043D281577A45293F7E4C0411803875D59E518055
+              D22D5AD69A07205E509F1ECF2280B2C10A698472AD790DE204ED34994701FE2A
+              3A800EE007DA4794219C6C6FCB0000000049454E44AE426082}
+            OnClick = Image5Click
+          end
+        end
         object pnlCriarPedidoConf: TPanel
           AlignWithMargins = True
-          Left = 1000
-          Top = 546
+          Left = 998
+          Top = 538
           Width = 369
           Height = 29
           Margins.Left = 1000
           Margins.Right = 100
           Margins.Bottom = 30
-          Align = alBottom
           BevelOuter = bvNone
           TabOrder = 0
           object Shape40: TShape
@@ -1204,13 +1362,12 @@
         end
         object Panel49: TPanel
           AlignWithMargins = True
-          Left = 3
-          Top = 95
+          Left = 1
+          Top = 87
           Width = 1463
           Height = 47
           Margins.Top = 10
           Margins.Bottom = 0
-          Align = alTop
           BevelOuter = bvNone
           Color = clWhite
           ParentBackground = False
@@ -1303,13 +1460,12 @@
         end
         object Panel41: TPanel
           AlignWithMargins = True
-          Left = 3
-          Top = 142
+          Left = 1
+          Top = 134
           Width = 1463
           Height = 41
           Margins.Top = 0
           Margins.Bottom = 0
-          Align = alTop
           BevelOuter = bvNone
           Color = clWhite
           ParentBackground = False
@@ -1604,13 +1760,12 @@
         end
         object Panel1: TPanel
           AlignWithMargins = True
-          Left = 3
-          Top = 268
+          Left = 1
+          Top = 260
           Width = 1463
           Height = 47
           Margins.Top = 10
           Margins.Bottom = 0
-          Align = alTop
           BevelOuter = bvNone
           Color = clWhite
           ParentBackground = False
@@ -1703,13 +1858,12 @@
         end
         object Panel2: TPanel
           AlignWithMargins = True
-          Left = 3
-          Top = 315
+          Left = 1
+          Top = 307
           Width = 1463
           Height = 41
           Margins.Top = 0
           Margins.Bottom = 0
-          Align = alTop
           BevelOuter = bvNone
           Color = clWhite
           ParentBackground = False
@@ -2004,8 +2158,8 @@
         end
         object cbTipoCarga: TComboBox
           AlignWithMargins = True
-          Left = 3
-          Top = 528
+          Left = 1
+          Top = 520
           Width = 283
           Height = 36
           Hint = 'unidade de medida'
@@ -2029,8 +2183,8 @@
         end
         object cbTransp4Pedido: TComboBox
           AlignWithMargins = True
-          Left = 3
-          Top = 582
+          Left = 1
+          Top = 574
           Width = 283
           Height = 36
           Margins.Right = 40
@@ -2046,14 +2200,13 @@
         end
         object pnlConfPedido: TPanel
           AlignWithMargins = True
-          Left = 1000
-          Top = 608
+          Left = 998
+          Top = 600
           Width = 369
           Height = 29
           Margins.Left = 1000
           Margins.Right = 100
           Margins.Bottom = 30
-          Align = alBottom
           BevelOuter = bvNone
           TabOrder = 7
           object Shape15: TShape
@@ -2091,8 +2244,8 @@
         end
         object Panel11: TPanel
           AlignWithMargins = True
-          Left = 3
-          Top = 421
+          Left = 1
+          Top = 413
           Width = 199
           Height = 32
           Margins.Right = 50
@@ -2136,8 +2289,8 @@
         end
         object Panel10: TPanel
           AlignWithMargins = True
-          Left = 1116
-          Top = 456
+          Left = 1114
+          Top = 448
           Width = 148
           Height = 33
           Margins.Right = 50
@@ -2180,8 +2333,8 @@
         end
         object Panel12: TPanel
           AlignWithMargins = True
-          Left = 304
-          Top = 528
+          Left = 302
+          Top = 520
           Width = 281
           Height = 37
           Margins.Left = 1000
@@ -2224,8 +2377,8 @@
         end
         object Panel14: TPanel
           AlignWithMargins = True
-          Left = 232
-          Top = 421
+          Left = 230
+          Top = 413
           Width = 169
           Height = 36
           Margins.Left = 1000
@@ -2268,8 +2421,8 @@
         end
         object Panel15: TPanel
           AlignWithMargins = True
-          Left = 467
-          Top = 421
+          Left = 465
+          Top = 413
           Width = 268
           Height = 33
           Margins.Right = 50
@@ -2308,6 +2461,51 @@
             Font.Style = []
             ParentFont = False
             TabOrder = 0
+          end
+        end
+        object pnlInstrucoesPedido: TPanel
+          AlignWithMargins = True
+          Left = 1206
+          Top = 3
+          Width = 249
+          Height = 28
+          Margins.Right = 350
+          Margins.Bottom = 10
+          BevelOuter = bvNone
+          Constraints.MaxWidth = 598
+          TabOrder = 13
+          object Shape37: TShape
+            Left = 0
+            Top = 0
+            Width = 249
+            Height = 28
+            Align = alClient
+            Pen.Color = clWhite
+            Shape = stRoundRect
+            ExplicitWidth = 262
+            ExplicitHeight = 297
+          end
+          object lblBtnInstrucoesPedido: TLabel
+            AlignWithMargins = True
+            Left = 3
+            Top = 3
+            Width = 243
+            Height = 22
+            Align = alClient
+            Alignment = taCenter
+            AutoSize = False
+            Caption = 'Para instru'#231#245'es clique aqui!'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = 6957870
+            Font.Height = -17
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            OnClick = lblBtnInstrucoesPedidoClick
+            OnMouseEnter = lblBtnInstrucoesPedidoMouseEnter
+            OnMouseLeave = lblBtnInstrucoesPedidoMouseLeave
+            ExplicitLeft = 48
+            ExplicitWidth = 310
           end
         end
       end

@@ -12,7 +12,7 @@ end;
 implementation
 
 
-function TpedidoService.CalcularFrete(const schemaName: string; tipo:string; distancia: Double;peso:double): Double;
+function TpedidoService.CalcularFrete(const schemaName: string; tipo: string; distancia: Double; peso: double): Double;
 var
   preco_base_km: Double;
   repo: TpedidoRepository;
@@ -23,15 +23,14 @@ begin
   finally
     repo.Free;
   end;
-  Result := distancia * preco_base_km;
+  Result := distancia * preco_base_km + 150;
 
-   if peso >= 10000 then begin
+  if peso >= 10000 then
     Result := Result * 1.50
-   end  else if peso >= 6000 then begin
+  else if peso >= 6000 then
     Result := Result * 1.30
-   end  else if peso >= 3000 then begin
-    Result := Result * 1.20
-   end;
+  else if peso >= 3000 then
+    Result := Result * 1.20;
 
 end;
 
@@ -39,7 +38,6 @@ procedure TPedidoService.confirmarPedido(pedidoDto: TPedidoDto; const schemaName
 var
   Repo: TpedidoRepository;
 begin
-  // Validação dos obrigatórios
   if pedidoDto.CepOrigem = '' then
     raise Exception.Create('Preencha o CEP de origem.');
   if Trim(pedidoDto.EstadoOrigem) = '' then

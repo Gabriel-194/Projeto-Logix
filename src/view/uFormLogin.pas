@@ -270,6 +270,7 @@ type
     procedure imgEyeBLockClick(Sender: TObject);
     procedure imgEyeClick(Sender: TObject);
     procedure lblBtnCadastrarClienteClick(Sender: TObject);
+    procedure MaskEditCEPClick(Sender: TObject);
 
 
   private
@@ -891,6 +892,11 @@ begin
 end;
 
 
+
+procedure TFormLogin.MaskEditCEPClick(Sender: TObject);
+begin
+maskEditCep.SelStart := 0;
+end;
 
 procedure TFormLogin.mostrarAdmins;
 var

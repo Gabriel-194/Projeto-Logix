@@ -106,6 +106,7 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_UnitSearchPath>C:\Users\gabriel kuchma\Documents\Embarcadero\Studio\Projects\Projeto-Logix\bcrypt-for-delphi-master;C:\Users\gabri\OneDrive\Documents\Embarcadero\Studio\Projects\Projeto-Logix\bcrypt-for-delphi-master;C:\Users\gabri\OneDrive\Documents\Embarcadero\Studio\Projects\Projeto-Logix\src\bcrypt-for-delphi-master;C:\Users\kuchma.2973\Documents\Embarcadero\Studio\Projects\Projeto-Logix\src\bcrypt-for-delphi-master;C:\Users\gabriel kuchma\Documents\Embarcadero\Studio\Projects\Projeto-Logix\src\bcrypt-for-delphi-master;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <Icon_MainIcon>Project1_Icon1.ico</Icon_MainIcon>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>

@@ -130,6 +130,20 @@ type
     Shape19: TShape;
     edtPesoPedido: TEdit;
     Label3: TLabel;
+    pnlInstrucoesPedido: TPanel;
+    Shape37: TShape;
+    lblBtnInstrucoesPedido: TLabel;
+    Panel9: TPanel;
+    Shape20: TShape;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label19: TLabel;
+    Label20: TLabel;
+    Label22: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
+    Label25: TLabel;
+    Image5: TImage;
     procedure Image8Click(Sender: TObject);
     procedure imgFecharPanelCadastroClienteClick(Sender: TObject);
     procedure imgBuscaCepOrigemClick(Sender: TObject);
@@ -139,6 +153,10 @@ type
     procedure lblBtnCalcularDistanciaClick(Sender: TObject);
     procedure lblBtnCalcularFreteClick(Sender: TObject);
     procedure lblBtnConfirmarPedidoClick(Sender: TObject);
+    procedure lblBtnInstrucoesPedidoMouseEnter(Sender: TObject);
+    procedure lblBtnInstrucoesPedidoMouseLeave(Sender: TObject);
+    procedure Image5Click(Sender: TObject);
+    procedure lblBtnInstrucoesPedidoClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -188,6 +206,11 @@ begin
   end;
 end;
 
+
+procedure TFormHomeCliente.Image5Click(Sender: TObject);
+begin
+panel9.visible := false;
+end;
 
 procedure TFormHomeCliente.Image8Click(Sender: TObject);
 begin
@@ -252,6 +275,22 @@ begin
   end;
 end;
 
+
+procedure TFormHomeCliente.lblBtnInstrucoesPedidoClick(Sender: TObject);
+begin
+panel9.visible := true;
+end;
+
+procedure TFormHomeCliente.lblBtnInstrucoesPedidoMouseEnter(Sender: TObject);
+begin
+  shape37.pen.color := clBlue;
+end;
+
+
+procedure TFormHomeCliente.lblBtnInstrucoesPedidoMouseLeave(Sender: TObject);
+begin
+shape37.pen.color := clWhite;
+end;
 
 procedure TFormHomeCliente.lblBtnCalcularDistanciaClick(Sender: TObject);
 var
