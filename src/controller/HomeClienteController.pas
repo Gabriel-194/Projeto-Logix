@@ -11,6 +11,8 @@ type ThomeClientecontroller = class
   function CalcularDistanciaEntreCEPs(const ACepOrigem, ACepDestino: string): Double;
   function CalcularFrete(const schemaName: string; tipo: String; distancia: Double; peso:double): Double;
   procedure confirmarPedido(Apedido: TPedidoDto; const schemaName: string);
+  function BuscarPedidos(aidCliente:Integer): TList<TPedidoDto>;
+
 end;
 
 implementation
@@ -39,6 +41,17 @@ begin
     service.confirmarPedido(aPedido,schemaName);
   finally
     Service.Free;
+  end;
+end;
+
+function ThomeCLienteController.BuscarPedidos(aIdCliente:Integer): TList<TPedidoDto>;
+var service: TPedidoService;
+begin
+  service := TPedidoService.Create;
+  try
+    Result := service.BuscarPedidos(aIdCLiente);
+  finally
+    service.Free;
   end;
 end;
 

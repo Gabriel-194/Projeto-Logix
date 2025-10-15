@@ -33,7 +33,7 @@ public
   procedure setSenha_hash(aSenha_hash: String);
   function getSenha_hash: String;
 
-  procedure setEndereco(aEndereco: TEndereco); // 2. O novo "setter"
+  procedure setEndereco(aEndereco: TEndereco);
   function getEndereco: TEndereco;
 
 end;

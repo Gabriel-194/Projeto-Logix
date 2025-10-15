@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage, DBClient,
   Vcl.StdCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.Mask,HomeClienteController,enderecoDto,utransportadora,System.Generics.Collections,pedidoDto,usuarioLogado;
 
 type
@@ -144,6 +144,9 @@ type
     Label24: TLabel;
     Label25: TLabel;
     Image5: TImage;
+    TabSheetMeusPedidos: TTabSheet;
+    DBGridMeusPedidos: TDBGrid;
+    DataSourcePedidos: TDataSource;
     procedure Image8Click(Sender: TObject);
     procedure imgFecharPanelCadastroClienteClick(Sender: TObject);
     procedure imgBuscaCepOrigemClick(Sender: TObject);
@@ -157,6 +160,8 @@ type
     procedure lblBtnInstrucoesPedidoMouseLeave(Sender: TObject);
     procedure Image5Click(Sender: TObject);
     procedure lblBtnInstrucoesPedidoClick(Sender: TObject);
+    procedure mostrarPedidos;
+    procedure PageControlPedidosChange(Sender: TObject);
 
   private
     { Private declarations }
@@ -170,7 +175,74 @@ var
 implementation
 
 {$R *.dfm}
-// ================  criar pedido ==================================
+
+
+//================= mostrar pedidos ==================================
+
+
+procedure TFormHomeCliente.mostrarPedidos;
+var
+  controller: THomeClienteController;
+  pedidos: TList<TPedidoDto>;
+  i: Integer;
+  cds: TClientDataSet;
+begin
+  controller := THomeClienteController.Create;
+  try
+    pedidos := controller.BuscarPedidos(2);
+
+    cds := TClientDataSet.Create(nil);
+    try
+      cds.FieldDefs.Add('idPedido', ftInteger);
+      cds.FieldDefs.Add('cepOrigem', ftString, 12);
+      cds.FieldDefs.Add('estadoOrigem', ftString, 20);
+      cds.FieldDefs.Add('cepDestino', ftString, 12);
+      cds.FieldDefs.Add('estadoDestino', ftString, 20);
+      cds.FieldDefs.Add('transportadora', ftString, 50);
+      cds.FieldDefs.Add('tipoDeCarga', ftString, 30);
+      cds.FieldDefs.Add('dataPedido', ftDateTime);
+      cds.FieldDefs.Add('distanciaKm', ftFloat);
+      cds.FieldDefs.Add('preco', ftFloat);
+      cds.FieldDefs.Add('status', ftString, 20);
+      cds.CreateDataSet;
+
+      for i := 0 to pedidos.Count - 1 do
+      begin
+        cds.Append;
+        cds.FieldByName('idPedido').AsInteger      := pedidos[i].IdPedido;
+        cds.FieldByName('cepOrigem').AsString      := pedidos[i].CepOrigem;
+        cds.FieldByName('estadoOrigem').AsString   := pedidos[i].EstadoOrigem;
+        cds.FieldByName('cepDestino').AsString     := pedidos[i].CepDestino;
+        cds.FieldByName('estadoDestino').AsString  := pedidos[i].EstadoDestino;
+        cds.FieldByName('transportadora').AsString := pedidos[i].NomeTransportadora;
+        cds.FieldByName('tipoDeCarga').AsString    := pedidos[i].TipoCarga;
+        cds.FieldByName('dataPedido').AsDateTime   := pedidos[i].DataPedido;
+        cds.FieldByName('distanciaKm').AsFloat     := pedidos[i].DistanciaKm;
+        cds.FieldByName('preco').AsFloat           := pedidos[i].Preco;
+        cds.FieldByName('status').AsString         := pedidos[i].Status;
+        cds.Post;
+      end;
+
+      DataSourcePedidos.DataSet := cds;
+      DBGridMeusPedidos.DataSource := DataSourcePedidos;
+    finally
+      cds.Free;
+      pedidos.Free;
+    end;
+  finally
+    controller.Free;
+  end;
+end;
+
+procedure TFormHomeCliente.PageControlPedidosChange(Sender: TObject);
+begin
+ if PageControlPedidos.activePage = TabSheetMeusPedidos  then begin
+   mostrarPedidos;
+ end;
+
+end;
+
+// ================  criar pedido ====================================
 procedure TFormHomeCliente.imgBuscaCepOrigemClick(Sender: TObject);
 var
   Controller: ThomeClientecontroller;
@@ -233,7 +305,7 @@ var
 begin
 
 //  PedidoDto.IdCliente := UsuarioLogado.clienteLogado.getId;
-  PedidoDto.IdCliente := 1;
+ PedidoDto.IdCliente := 2;
   PedidoDto.CepOrigem := maskEditCepOrigem.Text;
   PedidoDto.EstadoOrigem := edtEstadoOrigem.Text;
   PedidoDto.MunicipioOrigem := edtMunicipioOrigem.Text;
@@ -264,7 +336,7 @@ begin
 
 
   PedidoDto.Preco := StrToFloatDef(edtPrecoFinal.Text, 0);
-  PedidoDto.Status := 'aberto';
+  PedidoDto.Status := 'confirmado';
 
   Controller := THomeClienteController.Create;
   try
@@ -407,5 +479,6 @@ Controller := ThomeClientecontroller.Create;
     Controller.Free;
   end;
 end;
+
 
 end.

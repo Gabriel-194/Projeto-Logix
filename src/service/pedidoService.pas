@@ -7,10 +7,22 @@ pedidoRepository,pedidoDto,system.Generics.Collections,System.SysUtils;
 type TPedidoService = class
   function CalcularFrete(const schemaName: string; tipo:string; distancia: Double;peso:double): Double;
   procedure confirmarPedido(pedidoDto: TPedidoDto; const schemaName: string);
+  function BuscarPedidos(aIdCliente:Integer): TList<TPedidoDto>;
 end;
 
 implementation
 
+
+function TPedidoService.BuscarPedidos(aIdCliente:Integer): TList<TPedidoDto>;
+var repo: TPedidoRepository;
+begin
+  repo := TPedidoRepository.Create;
+  try
+    Result := repo.BuscarPedidos(aIdCliente);
+  finally
+    repo.Free;
+  end;
+end;
 
 function TpedidoService.CalcularFrete(const schemaName: string; tipo: string; distancia: Double; peso: double): Double;
 var
