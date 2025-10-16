@@ -162,6 +162,9 @@ type
     procedure lblBtnInstrucoesPedidoClick(Sender: TObject);
     procedure mostrarPedidos;
     procedure PageControlPedidosChange(Sender: TObject);
+    procedure DBGridMeusPedidosDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
 
   private
     { Private declarations }
@@ -198,7 +201,7 @@ begin
       cds.FieldDefs.Add('estadoOrigem', ftString, 20);
       cds.FieldDefs.Add('cepDestino', ftString, 12);
       cds.FieldDefs.Add('estadoDestino', ftString, 20);
-      cds.FieldDefs.Add('transportadora', ftString, 50);
+      cds.FieldDefs.Add('transportadora', ftInteger);
       cds.FieldDefs.Add('tipoDeCarga', ftString, 30);
       cds.FieldDefs.Add('dataPedido', ftDateTime);
       cds.FieldDefs.Add('distanciaKm', ftFloat);
@@ -214,7 +217,7 @@ begin
         cds.FieldByName('estadoOrigem').AsString   := pedidos[i].EstadoOrigem;
         cds.FieldByName('cepDestino').AsString     := pedidos[i].CepDestino;
         cds.FieldByName('estadoDestino').AsString  := pedidos[i].EstadoDestino;
-        cds.FieldByName('transportadora').AsString := pedidos[i].NomeTransportadora;
+        cds.FieldByName('transportadora').AsInteger := pedidos[i].idTransportadora;
         cds.FieldByName('tipoDeCarga').AsString    := pedidos[i].TipoCarga;
         cds.FieldByName('dataPedido').AsDateTime   := pedidos[i].DataPedido;
         cds.FieldByName('distanciaKm').AsFloat     := pedidos[i].DistanciaKm;
@@ -226,7 +229,7 @@ begin
       DataSourcePedidos.DataSet := cds;
       DBGridMeusPedidos.DataSource := DataSourcePedidos;
     finally
-      cds.Free;
+//      cds.Free;
       pedidos.Free;
     end;
   finally
@@ -239,7 +242,32 @@ begin
  if PageControlPedidos.activePage = TabSheetMeusPedidos  then begin
    mostrarPedidos;
  end;
+end;
 
+procedure TFormHomeCliente.DBGridMeusPedidosDrawColumnCell(
+  Sender: TObject; const Rect: TRect; DataCol: Integer;
+  Column: TColumn; State: TGridDrawState);
+var
+  value: string;
+  x, y: Integer;
+  txtWidth, txtHeight: Integer;
+begin
+  value := '';
+
+  if Column.FieldName = 'dataPedido' then
+    value := FormatDateTime('dd/mm/yyyy', Column.Field.AsDateTime)
+  else if Column.FieldName = 'distanciaKm' then
+    value := FormatFloat('0.', Column.Field.AsFloat) + ' km'
+  else
+    value := Column.Field.AsString;
+
+  DBGridMeusPedidos.Canvas.FillRect(Rect);
+  txtWidth := DBGridMeusPedidos.Canvas.TextWidth(value);
+  txtHeight := DBGridMeusPedidos.Canvas.TextHeight(value);
+  x := Rect.Left + (Rect.Right - Rect.Left - txtWidth) div 2;
+  y := Rect.Top + (Rect.Bottom - Rect.Top - txtHeight) div 2;
+
+  DBGridMeusPedidos.Canvas.TextRect(Rect, x, y, value);
 end;
 
 // ================  criar pedido ====================================

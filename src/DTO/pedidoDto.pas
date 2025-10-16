@@ -3,7 +3,6 @@ unit pedidoDto;
 interface
 type TpedidoDto = record
    IdPedido: Integer;
-
     IdCliente: Integer;
 
     CepOrigem: string;

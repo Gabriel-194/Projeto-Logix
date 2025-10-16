@@ -764,6 +764,7 @@
     Color = 6957870
     ParentBackground = False
     TabOrder = 0
+    ExplicitLeft = -5
     object lblLogix: TLabel
       AlignWithMargins = True
       Left = 21
@@ -1013,7 +1014,7 @@
       Top = 1
       Width = 1477
       Height = 732
-      ActivePage = TabSheetCriarPedido
+      ActivePage = TabSheetMeusPedidos
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -2538,56 +2539,82 @@
           TitleFont.Height = -18
           TitleFont.Name = 'Segoe UI'
           TitleFont.Style = [fsBold]
+          OnDrawColumnCell = DBGridMeusPedidosDrawColumnCell
           Columns = <
             item
               Alignment = taCenter
               Expanded = False
               FieldName = 'idPedido'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -2155
-              Font.Name = 'Segoe UI'
-              Font.Style = [fsBold]
-              Title.Caption = 'id pedido'
-              Title.Font.Charset = DEFAULT_CHARSET
-              Title.Font.Color = clWindowText
-              Title.Font.Height = -18
-              Title.Font.Name = 'Segoe UI'
-              Title.Font.Style = [fsBold]
+              Title.Alignment = taCenter
+              Title.Caption = 'id Pedido'
               Width = 85
               Visible = True
             end
             item
+              Alignment = taCenter
               Expanded = False
               FieldName = 'cepOrigem'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -22
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Alignment = taCenter
               Title.Caption = 'CEP origem'
               Width = 130
               Visible = True
             end
             item
+              Alignment = taCenter
               Expanded = False
               FieldName = 'estadoOrigem'
-              Title.Caption = 'Estado origem'
-              Width = 150
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -22
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'UF Origem'
+              Width = 95
               Visible = True
             end
             item
+              Alignment = taCenter
               Expanded = False
               FieldName = 'cepDestino'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -22
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Alignment = taCenter
               Title.Caption = 'CEP destino'
-              Width = 150
+              Width = 130
               Visible = True
             end
             item
+              Alignment = taCenter
               Expanded = False
               FieldName = 'estadoDestino'
-              Title.Caption = 'Estado destino'
-              Width = 150
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -22
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Caption = 'UF Destino'
+              Width = 95
               Visible = True
             end
             item
+              Alignment = taCenter
               Expanded = False
               FieldName = 'transportadora'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -22
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Alignment = taCenter
               Title.Caption = 'Transportadora'
               Width = 150
               Visible = True
@@ -2596,36 +2623,70 @@
               Alignment = taCenter
               Expanded = False
               FieldName = 'tipoDeCarga'
-              Title.Caption = 'Tipo de carga'
-              Width = 150
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -22
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'Tipo Carga'
+              Width = 110
               Visible = True
             end
             item
+              Alignment = taCenter
               Expanded = False
               FieldName = 'dataPedido'
-              Title.Caption = 'Data do pedido'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -22
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'Data Pedido'
               Width = 150
               Visible = True
             end
             item
+              Alignment = taCenter
               Expanded = False
               FieldName = 'distanciaKm'
-              Title.Caption = 'Distancia em Km'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -22
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'Distancia '
               Width = 150
               Visible = True
             end
             item
+              Alignment = taCenter
               Expanded = False
               FieldName = 'preco'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -22
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Alignment = taCenter
               Title.Caption = 'Pre'#231'o'
-              Width = 80
+              Width = 100
               Visible = True
             end
             item
+              Alignment = taCenter
               Expanded = False
               FieldName = 'status'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -22
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Alignment = taCenter
               Title.Caption = 'Status'
-              Width = 75
+              Width = 130
               Visible = True
             end>
         end
