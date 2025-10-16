@@ -139,7 +139,7 @@ begin
     // Criação do schema
     DataModule2.FDConnection1.ExecSQL('CREATE SCHEMA IF NOT EXISTS ' + SchemaName);
 
-    SQLFile.LoadFromFile('C:\Users\gabriel kuchma\Documents\Embarcadero\Studio\Projects\Projeto-Logix\src\DataBase\schema_base.sql');
+    SQLFile.LoadFromFile('C:\Users\kuchma.2973\Documents\Embarcadero\Studio\Projects\Projeto-Logix\src\DataBase\schema_base.sql');
     Script := StringReplace(SQLFile.Text, '{schema}', SchemaName, [rfReplaceAll]);
 
     DataModule2.FDConnection1.ExecSQL(Script);

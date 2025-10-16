@@ -9,7 +9,7 @@ uses
     private
      loginRepo : TloginRepository;
     public
-    function verificaLogin(aLoginDto: TLoginDto; var user: TUsuario): TLoginResult;
+    function verificaLogin(aLoginDto: TLoginDto; var user: TUsuario; var cliente:Tcliente): TLoginResult;
 
   end;
 
@@ -18,7 +18,7 @@ implementation
 
 { TadminService }
 
-function TloginService.verificaLogin(aLoginDto: TLoginDto; var user: TUsuario): TLoginResult;
+function TloginService.verificaLogin(aLoginDto: TLoginDto; var user: TUsuario; var cliente:Tcliente): TLoginResult;
 var
   userId: Integer;
   senhaHashDoBanco: string;
@@ -26,7 +26,6 @@ var
   transportadoraId: Integer;
   aClienteId: Integer;
   cargo: string;
-  cliente: TCliente;
   nomeCliente: string;
 begin
   if aLoginDto.email.Trim = '' then

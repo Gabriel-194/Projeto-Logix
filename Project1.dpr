@@ -40,7 +40,9 @@ uses
   HomeClienteController in 'src\controller\HomeClienteController.pas',
   pedidoDto in 'src\DTO\pedidoDto.pas',
   pedidoService in 'src\service\pedidoService.pas',
-  pedidoRepository in 'src\repository\pedidoRepository.pas';
+  pedidoRepository in 'src\repository\pedidoRepository.pas',
+  homeClienteService in 'src\service\homeClienteService.pas',
+  homeClienteRepository in 'src\repository\homeClienteRepository.pas';
 
 {$R *.res}
 

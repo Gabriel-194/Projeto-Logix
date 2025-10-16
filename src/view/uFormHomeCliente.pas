@@ -28,7 +28,7 @@ type
     Shape12: TShape;
     Image7: TImage;
     Label13: TLabel;
-    lblCountPedidoEntregado: TLabel;
+    lblCountPedidoFinalizados: TLabel;
     pedidosFeitos: TPanel;
     Shape8: TShape;
     Image3: TImage;
@@ -38,7 +38,7 @@ type
     Shape2: TShape;
     Image4: TImage;
     Label1: TLabel;
-    Label2: TLabel;
+    lblCountPedidoPreparando: TLabel;
     pedidoEmRota: TPanel;
     Shape7: TShape;
     Image2: TImage;
@@ -165,6 +165,8 @@ type
     procedure DBGridMeusPedidosDrawColumnCell(Sender: TObject;
       const Rect: TRect; DataCol: Integer; Column: TColumn;
       State: TGridDrawState);
+    procedure atualizarDashBoards;
+    procedure FormShow(Sender: TObject);
 
   private
     { Private declarations }
@@ -179,9 +181,31 @@ implementation
 
 {$R *.dfm}
 
+// ==================== on show do form==============================
+procedure TFormHomeCliente.atualizarDashBoards;
+var
+controller : ThomeClienteController;
+idCliente :integer;
+begin
+  controller := ThomeClienteController.create;
+  idCliente := usuarioLogado.clienteLogado.getId;
+
+  lblCountPedidos.caption := IntToStr(controller.ContarPedidos(idCliente,'Confirmado'));
+
+  lblCountPedidoPreparando.caption := IntToStr(controller.ContarPedidos(idCliente,'Em preparo'));
+
+  lblCountPedidoEmRota.caption := IntToStr(controller.ContarPedidos(idCliente,'Em rota'));
+
+  lblCountPedidoFinalizados.caption := IntToStr(controller.ContarPedidos(idCliente,'Finalizados'));
+
+end;
+
+procedure TFormHomeCliente.FormShow(Sender: TObject);
+begin
+  atualizarDashboards;
+end;
 
 //================= mostrar pedidos ==================================
-
 
 procedure TFormHomeCliente.mostrarPedidos;
 var
@@ -192,7 +216,7 @@ var
 begin
   controller := THomeClienteController.Create;
   try
-    pedidos := controller.BuscarPedidos(2);
+    pedidos := controller.BuscarPedidos(usuarioLogado.clienteLogado.getId);
 
     cds := TClientDataSet.Create(nil);
     try
@@ -332,8 +356,8 @@ var
   schemaName :String;
 begin
 
-//  PedidoDto.IdCliente := UsuarioLogado.clienteLogado.getId;
- PedidoDto.IdCliente := 2;
+  PedidoDto.IdCliente := UsuarioLogado.clienteLogado.getId;
+// PedidoDto.IdCliente := 2;
   PedidoDto.CepOrigem := maskEditCepOrigem.Text;
   PedidoDto.EstadoOrigem := edtEstadoOrigem.Text;
   PedidoDto.MunicipioOrigem := edtMunicipioOrigem.Text;
@@ -370,6 +394,7 @@ begin
   try
     controller.confirmarPedido(pedidoDto,schemaName);
     ShowMessage('Pedido confirmado com sucesso!');
+    atualizarDashboards;
   finally
     Controller.Free;
   end;
@@ -489,6 +514,7 @@ var
   Lista: TObjectList<TTransportadora>;
   Transp: TTransportadora;
 begin
+pnlCriarPedido.Visible := true;
 PageControlPedidos.Visible := true;
 Controller := ThomeClientecontroller.Create;
   try

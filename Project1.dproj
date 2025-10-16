@@ -178,6 +178,8 @@
         <DCCReference Include="src\DTO\pedidoDto.pas"/>
         <DCCReference Include="src\service\pedidoService.pas"/>
         <DCCReference Include="src\repository\pedidoRepository.pas"/>
+        <DCCReference Include="src\service\homeClienteService.pas"/>
+        <DCCReference Include="src\repository\homeClienteRepository.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -12,6 +12,7 @@
   Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poScreenCenter
+  OnShow = FormShow
   TextHeight = 15
   object pnlDashboardPedidos: TPanel
     AlignWithMargins = True
@@ -46,7 +47,7 @@
     end
     object pedidoEntregados: TPanel
       AlignWithMargins = True
-      Left = 430
+      Left = 1130
       Top = 43
       Width = 250
       Height = 161
@@ -59,6 +60,7 @@
       Color = clWhite
       ParentBackground = False
       TabOrder = 0
+      ExplicitLeft = 430
       object Shape12: TShape
         Left = 0
         Top = 0
@@ -218,9 +220,9 @@
       object Label13: TLabel
         Left = 95
         Top = 24
-        Width = 129
+        Width = 127
         Height = 32
-        Caption = 'Entregados'
+        Caption = 'Finalizados'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = 2450711
         Font.Height = -24
@@ -228,7 +230,7 @@
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object lblCountPedidoEntregado: TLabel
+      object lblCountPedidoFinalizados: TLabel
         Left = 8
         Top = 104
         Width = 18
@@ -415,7 +417,7 @@
     end
     object pedidoEmPreparo: TPanel
       AlignWithMargins = True
-      Left = 1130
+      Left = 430
       Top = 43
       Width = 250
       Height = 161
@@ -428,6 +430,7 @@
       Color = clWhite
       ParentBackground = False
       TabOrder = 2
+      ExplicitLeft = 1130
       object Shape2: TShape
         Left = 0
         Top = 0
@@ -597,7 +600,7 @@
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object Label2: TLabel
+      object lblCountPedidoPreparando: TLabel
         Left = 8
         Top = 104
         Width = 18
@@ -764,7 +767,6 @@
     Color = 6957870
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = -5
     object lblLogix: TLabel
       AlignWithMargins = True
       Left = 21
@@ -1009,12 +1011,13 @@
     Width = 1479
     Height = 734
     TabOrder = 4
+    Visible = False
     object PageControlPedidos: TPageControl
       Left = 1
       Top = 1
       Width = 1477
       Height = 732
-      ActivePage = TabSheetMeusPedidos
+      ActivePage = TabSheetCriarPedido
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -2521,7 +2524,7 @@
           Left = 10
           Top = 30
           Width = 1449
-          Height = 291
+          Height = 347
           Margins.Left = 10
           Margins.Top = 30
           Margins.Right = 10
@@ -2694,7 +2697,7 @@
     end
   end
   object DataSourcePedidos: TDataSource
-    Left = 496
-    Top = 113
+    Left = 608
+    Top = 25
   end
 end

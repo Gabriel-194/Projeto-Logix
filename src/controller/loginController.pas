@@ -6,7 +6,7 @@ uses
     type
     TloginController = class
     public
-      function verificaLogin(ALoginDto: TLoginDto; out aUser: TUsuario): TloginResult;
+      function verificaLogin(ALoginDto: TLoginDto; out aUser: TUsuario; out cliente:Tcliente): TloginResult;
       function getByCep(const ACep: string): TEndereco;
       procedure cadastrarCliente(aCliente:Tcliente);
     end;
@@ -38,13 +38,13 @@ begin
   end;
 end;
 
-function TloginController.verificaLogin(ALoginDto: TLoginDto; out aUser: TUsuario): TloginResult;
+function TloginController.verificaLogin(ALoginDto: TLoginDto; out aUser: TUsuario; out cliente:Tcliente): TloginResult;
 var
  service : TloginService;
 begin
   service := TloginService.Create;
   try
-    Result := service.verificaLogin(ALoginDto, aUser);
+    Result := service.verificaLogin(ALoginDto, aUser,cliente);
   finally
     service.Free;
   end;

@@ -2,7 +2,7 @@ unit HomeClienteController;
 
 interface
 uses
-enderecoDto,enderecoService,transpService,uTransportadora,System.Generics.Collections,pedidoService,pedidoDto;
+enderecoDto,enderecoService,transpService,uTransportadora,System.Generics.Collections,pedidoService,pedidoDto,homeCLienteService;
 
 type ThomeClientecontroller = class
   function atualizarTabela: TObjectList<TTransportadora>;
@@ -11,7 +11,8 @@ type ThomeClientecontroller = class
   function CalcularDistanciaEntreCEPs(const ACepOrigem, ACepDestino: string): Double;
   function CalcularFrete(const schemaName: string; tipo: String; distancia: Double; peso:double): Double;
   procedure confirmarPedido(Apedido: TPedidoDto; const schemaName: string);
-  function BuscarPedidos(aidCliente:Integer): TList<TPedidoDto>;
+  function BuscarPedidos(aIdCliente:Integer): TList<TPedidoDto>;
+  function ContarPedidos(aIdCliente: Integer; const aStatus: String): Integer;
 
 end;
 
@@ -42,6 +43,19 @@ begin
   finally
     Service.Free;
   end;
+end;
+
+function ThomeClientecontroller.ContarPedidos(aIdCliente: Integer; const aStatus: String): Integer;
+var
+service: ThomeClienteService;
+begin
+Service:= ThomeClienteService.create;
+  try
+    Result := Service.ContarPedidos(aIdCliente,aStatus);
+  finally
+    service.free;
+  end;
+
 end;
 
 function ThomeCLienteController.BuscarPedidos(aIdCliente:Integer): TList<TPedidoDto>;

@@ -432,13 +432,14 @@ LoginDto:TLoginDto;
 begin
   controlLogin := nil;
   user := nil;
+  cliente := nil;
   try
     LoginDto.email:=edtEmailLogin.text;
     LoginDto.Senha:=edtSenhaLogin.text;
 
     controlLogin := TloginController.Create;
     try
-      resultado := controlLogin.verificaLogin(LoginDto,user);
+      resultado := controlLogin.verificaLogin(LoginDto,user,cliente);
       case resultado of
         lrFalhou:
         ShowMessage('Usuário ou senha inválidos.');
