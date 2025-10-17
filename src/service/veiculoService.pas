@@ -2,7 +2,7 @@ unit veiculoService;
 
 interface
 uses
-veiculoRepository,uVeiculo,System.Generics.Collections,System.SysUtils, DateUtils;
+veiculoRepository,uVeiculo,System.Generics.Collections,System.SysUtils, DateUtils,tipoCargaDto;
 
 type TveiculoService = class
   procedure cadastrarVeiculo(veiculo:Tveiculo);
@@ -11,6 +11,7 @@ type TveiculoService = class
   procedure excluirVeiculo(veiculo:Tveiculo);
   procedure recuperarVeiculo(veiculo:Tveiculo);
   procedure editarVeiculo(veiculo:Tveiculo);
+  function cargasDisponiveis(aIdTransportadora:Integer):tlist<TtipoCargaDto>;
 end;
 
 implementation
@@ -58,6 +59,19 @@ begin
     veiculoRepo.CadastrarVeiculo(veiculo);
   finally
     veiculoRepo.free;
+  end;
+end;
+
+function TveiculoService.cargasDisponiveis(
+  aIdTransportadora: Integer): tlist<TtipoCargaDto>;
+var
+repo:TveiculoRepository;
+begin
+repo:=TveiculoRepository.create;
+  try
+    result := repo.cargasDisponiveis(aidTransportadora);
+  finally
+    repo.free;
   end;
 end;
 

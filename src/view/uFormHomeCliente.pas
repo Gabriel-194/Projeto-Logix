@@ -147,6 +147,7 @@ type
     TabSheetMeusPedidos: TTabSheet;
     DBGridMeusPedidos: TDBGrid;
     DataSourcePedidos: TDataSource;
+    Image6: TImage;
     procedure Image8Click(Sender: TObject);
     procedure imgFecharPanelCadastroClienteClick(Sender: TObject);
     procedure imgBuscaCepOrigemClick(Sender: TObject);
@@ -190,7 +191,7 @@ begin
   controller := ThomeClienteController.create;
   idCliente := usuarioLogado.clienteLogado.getId;
 
-  lblCountPedidos.caption := IntToStr(controller.ContarPedidos(idCliente,'Confirmado'));
+  lblCountPedidos.caption := IntToStr(controller.ContarPedidos(idCliente,''));
 
   lblCountPedidoPreparando.caption := IntToStr(controller.ContarPedidos(idCliente,'Em preparo'));
 
@@ -343,6 +344,7 @@ end;
 
 procedure TFormHomeCliente.imgFecharPanelCadastroClienteClick(Sender: TObject);
 begin
+pnlCriarPedido.visible := false;
 PageControlPedidos.visible:= false;
 end;
 
@@ -388,7 +390,7 @@ begin
 
 
   PedidoDto.Preco := StrToFloatDef(edtPrecoFinal.Text, 0);
-  PedidoDto.Status := 'confirmado';
+  PedidoDto.Status := 'Confirmado';
 
   Controller := THomeClienteController.Create;
   try

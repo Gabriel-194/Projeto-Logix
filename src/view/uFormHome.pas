@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
   Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask, usuarioLogado,uUsuario,
-  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController,system.Generics.Collections,motoristaDto, uVeiculo;
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController,system.Generics.Collections,motoristaDto, uVeiculo,tipoCargaDto;
 
 type
   TFormHome = class(TForm)
@@ -289,9 +289,6 @@ type
     pnlEdtAnoVeiculo: TPanel;
     Shape68: TShape;
     MaskEditAnoVeiculo: TMaskEdit;
-    pnlEdtTipoCargaVeiculo: TPanel;
-    Shape69: TShape;
-    EditTipoCargaVeiculo: TEdit;
     Panel42: TPanel;
     Label32: TLabel;
     Label33: TLabel;
@@ -309,6 +306,7 @@ type
     Label6: TLabel;
     Panel5: TPanel;
     cbMotorista4Veiculo: TComboBox;
+    cbTipoCarga4veiculo: TComboBox;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -1233,6 +1231,9 @@ var
   listamotorista: TList<TmotoristaDto>;
   motorista: TmotoristaDto;
   idTransportadoraUsuario:Integer;
+  Carga: TtipoCargaDto;
+  listaTipoCarga : TList<TtipoCargaDto>;
+
 begin
 pnlOptionsVeiculo.visible := true;
 lblOptionsVeiculo.caption := 'cadastrar veiculo';
@@ -1245,6 +1246,7 @@ pnlBtnExcluirVeiculoConf.visible := false;
   try
     idTransportadoraUsuario := usuarioLogado.UserLogado.getIdTransportadora;
     ListaMotorista := Controller.mostrarMotorista(idTransportadoraUsuario);
+    listaTipoCarga := controller.cargasDisponiveis(idTransportadoraUsuario);
     try
       cbMotorista4Veiculo.Items.Clear;
 
@@ -1254,6 +1256,15 @@ pnlBtnExcluirVeiculoConf.visible := false;
         );
     finally
       ListaMotorista.Free;
+    end;
+
+    try
+      cbTipoCarga4veiculo.items.clear;
+
+      for carga in listaTipoCarga do
+        cbTipoCarga4veiculo.items.add(carga.TipoCarga);
+    finally
+      listaTipoCarga.free;
     end;
   finally
     Controller.Free;
@@ -1271,7 +1282,7 @@ veiculo := Tveiculo.Create;
   veiculo.setPlaca(MaskEditPlacaVeiculo.Text);
   veiculo.setAno(StrToInt(MaskEditAnoVeiculo.text));
   veiculo.setmodelo (edtModeloVeiculo.text);
-  veiculo.setTipo_carga(EditTipoCargaVeiculo.text);
+  veiculo.setTipo_carga(cbTipoCarga4Veiculo.text);
   veiculo.setCapacidade(StrToInt(EdtCapacidadeVeiculo.text));
   veiculo.setUnidade_medida(cbUnidadeMedida.text);
 
@@ -1338,7 +1349,7 @@ pnlBtnExcluirVeiculoConf.visible := false;
   edtModeloVeiculo.Text := lswVeiculos.selected.subItems[1];
   MaskEditAnoVeiculo.Text := lswVeiculos.selected.subItems[2];
   cbMotorista4Veiculo.Text := lswVeiculos.selected.subItems[3];
-  EditTipoCargaVeiculo.Text := lswVeiculos.selected.subItems[4];
+  cbTipoCarga4Veiculo.text := lswVeiculos.selected.subItems[4];
   EdtCapacidadeVeiculo.Text := lswVeiculos.selected.subItems[5];
   cbUnidadeMedida.Text := lswVeiculos.selected.subItems[6];
 end;
@@ -1354,7 +1365,7 @@ veiculo := Tveiculo.Create;
   veiculo.setPlaca(MaskEditPlacaVeiculo.Text);
   veiculo.setAno(StrToInt(MaskEditAnoVeiculo.text));
   veiculo.setmodelo (edtModeloVeiculo.text);
-  veiculo.setTipo_carga(EditTipoCargaVeiculo.text);
+  veiculo.setTipo_carga(cbTipoCarga4Veiculo.text);
   veiculo.setCapacidade(StrToInt(EdtCapacidadeVeiculo.text));
   veiculo.setUnidade_medida(cbUnidadeMedida.text);
 

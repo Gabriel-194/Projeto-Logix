@@ -1,4 +1,4 @@
-unit pedidoService;
+ï»¿unit pedidoService;
 
 interface
 uses
@@ -26,7 +26,7 @@ end;
 
 function TpedidoService.CalcularFrete(const schemaName: string; tipo: string; distancia: Double; peso: double): Double;
 var
-  preco_base_km: Double;
+  preco_base_km, custoPorKm: Double;
   repo: TpedidoRepository;
 begin
   repo := TpedidoRepository.Create;
@@ -35,15 +35,29 @@ begin
   finally
     repo.Free;
   end;
-  Result := distancia * preco_base_km + 150;
 
-  if peso >= 10000 then
-    Result := Result * 1.50
-  else if peso >= 6000 then
-    Result := Result * 1.30
-  else if peso >= 3000 then
-    Result := Result * 1.20;
 
+  if distancia <= 100 then
+    custoPorKm := 0.50
+  else if distancia <= 300 then
+    custoPorKm := 0.70
+  else if distancia <= 600 then
+    custoPorKm := 0.90
+  else
+    custoPorKm := 1.20;
+
+
+  preco_base_km := preco_base_km + custoPorKm;
+
+
+  Result := (Distancia * Preco_Base_KM) + 100;
+
+  if Peso >= 10000 then
+    Result := Result * 1.40
+  else if Peso >= 6000 then
+    Result := Result * 1.25
+  else if Peso >= 3000 then
+    Result := Result * 1.15;
 end;
 
 procedure TPedidoService.confirmarPedido(pedidoDto: TPedidoDto; const schemaName: string);
@@ -55,33 +69,33 @@ begin
   if Trim(pedidoDto.EstadoOrigem) = '' then
     raise Exception.Create('Preencha o Estado de origem.');
   if Trim(pedidoDto.MunicipioOrigem) = '' then
-    raise Exception.Create('Preencha o Município de origem.');
+    raise Exception.Create('Preencha o MunicÃ­pio de origem.');
   if Trim(pedidoDto.EnderecoOrigem) = '' then
-    raise Exception.Create('Preencha o Endereço de origem.');
+    raise Exception.Create('Preencha o EndereÃ§o de origem.');
   if Trim(pedidoDto.NumeroOrigem) = '' then
-    raise Exception.Create('Preencha o Número de origem.');
+    raise Exception.Create('Preencha o NÃºmero de origem.');
 
   if Trim(pedidoDto.CepDestino) = '' then
     raise Exception.Create('Preencha o CEP de destino.');
   if Trim(pedidoDto.EstadoDestino) = '' then
     raise Exception.Create('Preencha o Estado de destino.');
   if Trim(pedidoDto.MunicipioDestino) = '' then
-    raise Exception.Create('Preencha o Município de destino.');
+    raise Exception.Create('Preencha o MunicÃ­pio de destino.');
   if Trim(pedidoDto.EnderecoDestino) = '' then
-    raise Exception.Create('Preencha o Endereço de destino.');
+    raise Exception.Create('Preencha o EndereÃ§o de destino.');
   if Trim(pedidoDto.NumeroDestino) = '' then
-    raise Exception.Create('Preencha o Número de destino.');
+    raise Exception.Create('Preencha o NÃºmero de destino.');
 
   if pedidoDto.Peso <= 0 then
     raise Exception.Create('Preencha o peso.');
   if pedidoDto.DistanciaKm <= 0 then
-    raise Exception.Create('Preencha a distância.');
+    raise Exception.Create('Preencha a distÃ¢ncia.');
   if Trim(pedidoDto.TipoCarga) = '' then
     raise Exception.Create('Selecione o tipo de carga.');
   if pedidoDto.IdTransportadora = 0 then
     raise Exception.Create('Selecione a transportadora.');
   if pedidoDto.Preco <= 0 then
-    raise Exception.Create('Calcule o preço final antes de confirmar o pedido.');
+    raise Exception.Create('Calcule o preÃ§o final antes de confirmar o pedido.');
 
 
   Repo := TPedidoRepository.Create;

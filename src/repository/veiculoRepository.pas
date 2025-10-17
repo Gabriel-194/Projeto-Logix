@@ -2,7 +2,7 @@ unit veiculoRepository;
 
 interface
 uses
-System.SysUtils, FireDAC.Comp.Client,uVeiculo ,unit2,System.Generics.Collections,usuarioLogado;
+System.SysUtils, FireDAC.Comp.Client,uVeiculo ,unit2,System.Generics.Collections,usuarioLogado,tipoCargaDto;
 
 type TveiculoRepository = class
   procedure CadastrarVeiculo(veiculo:Tveiculo);
@@ -11,6 +11,7 @@ type TveiculoRepository = class
   procedure excluirVeiculo(veiculo:Tveiculo);
   procedure RecuperarVeiculo(veiculo:Tveiculo);
   procedure editarVeiculo(veiculo:Tveiculo);
+  function cargasDisponiveis(aIdTransportadora:Integer):Tlist<TtipocargaDto>;
 end;
 
 implementation
@@ -53,6 +54,50 @@ begin
 
   finally
     FDQuery.Free;
+  end;
+end;
+
+function TveiculoRepository.cargasDisponiveis(
+  aIdTransportadora: Integer): Tlist<TtipocargaDto>;
+var
+  carga: TtipoCargaDto;
+  FDQuery : TFDQuery;
+  Lista: TList<TtipoCargaDto>;
+  SchemaName: string;
+begin
+  FDQuery := TFDQuery.Create(nil);
+  Lista := TList<TtipoCargaDto>.Create;
+ try
+    FDQuery.Connection := DataModule2.FDConnection1;
+
+      FDQuery.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id_transportadora';
+      FDQuery.ParamByName('id_transportadora').AsInteger := aIdTransportadora;
+      FDQuery.Open;
+
+      SchemaName := FDQuery.FieldByName('schema_name').AsString;
+      FDQuery.Close;
+
+      FDQuery.ExecSQL('SET search_path TO ' + (SchemaName) + ', public');
+
+    FDQuery.SQL.Text :=
+    'SELECT tipo FROM tipo_carga where id_transportadora = :id_transportadora ORDER BY id_carga';
+
+    FDQuery.ParamByName('id_transportadora').AsInteger := aIdTransportadora;
+
+    FDQuery.Open;
+
+    carga := Default(TtipoCargaDto);
+
+    while not FDQuery.Eof do
+    begin
+      carga.TipoCarga := FDQuery.FieldByName('tipo').AsString;
+
+      lista.Add(carga);
+      FDQuery.Next;
+    end;
+    Result := Lista;
+  finally
+    FDQuery.free;
   end;
 end;
 

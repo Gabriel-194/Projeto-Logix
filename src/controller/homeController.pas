@@ -2,7 +2,7 @@ unit homeController;
 
 interface
 uses
-data.DB,homeService, uUsuario, userService, System.SysUtils, system.Generics.Collections,MotoristaDto,uVeiculo,veiculoService;
+data.DB,homeService, uUsuario, userService, System.SysUtils, system.Generics.Collections,MotoristaDto,uVeiculo,veiculoService,tipocargaDto;
 
 type THomeController = class
   procedure cadastrarUsuario(aUsuario:TUsuario);
@@ -30,6 +30,8 @@ function mostrarVeiculoInativo: TobjectList<Tveiculo>;
 procedure excluirVeiculo(veiculo:Tveiculo);
 procedure recuperarVeiculo(veiculo:Tveiculo);
 procedure editarVeiculo(veiculo:Tveiculo);
+function cargasDisponiveis(aIdTransportadora:Integer):tlist<TtipoCargaDto>;
+
   end;
 
 implementation
@@ -74,6 +76,21 @@ Service:= TveiculoService.create;
   finally
     service.free;
   end;
+end;
+
+function THomeController.cargasDisponiveis(
+  aIdTransportadora: Integer): tlist<TtipoCargaDto>;
+var
+  service:TveiculoService;
+begin
+service:=TveiculoService.create;
+
+  try
+    result := service.cargasDisponiveis(aIdTransportadora);
+  finally
+    service.free;
+  end;
+
 end;
 
 function THomeController.ContarRegistrosAtivos(const ATabela: string;

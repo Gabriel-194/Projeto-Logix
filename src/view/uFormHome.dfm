@@ -4940,51 +4940,22 @@ object FormHome: TFormHome
               Text = '    '
             end
           end
-          object pnlEdtTipoCargaVeiculo: TPanel
+          object cbTipoCarga4veiculo: TComboBox
             AlignWithMargins = True
             Left = 480
             Top = 3
             Width = 298
-            Height = 35
+            Height = 36
             Margins.Right = 80
             Align = alRight
-            BevelOuter = bvNone
-            Caption = 'pnlEditEmailCadastro'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -20
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
             TabOrder = 1
-            object Shape69: TShape
-              Left = 0
-              Top = 0
-              Width = 298
-              Height = 35
-              Align = alClient
-              Pen.Color = 6957870
-              Shape = stRoundRect
-              ExplicitLeft = 64
-              ExplicitTop = -8
-              ExplicitWidth = 65
-              ExplicitHeight = 65
-            end
-            object EditTipoCargaVeiculo: TEdit
-              AlignWithMargins = True
-              Left = 1
-              Top = 3
-              Width = 287
-              Height = 29
-              Margins.Left = 1
-              Margins.Right = 10
-              Align = alClient
-              BevelInner = bvNone
-              BevelOuter = bvNone
-              BorderStyle = bsNone
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -23
-              Font.Name = 'Segoe UI'
-              Font.Style = []
-              ParentFont = False
-              TabOrder = 0
-              TextHint = 'Digite a carga do veiculo'
-            end
+            TextHint = 'Selecione o tipo de carga'
           end
         end
         object Panel42: TPanel
