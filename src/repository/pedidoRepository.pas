@@ -9,6 +9,8 @@ function GetPrecoBasePorKm(const schemaName, tipo: string): Double;
 procedure confirmarPedido(Apedido: TPedidoDto; const schemaName: string);
 function BuscarPedidos(aIdCliente:Integer): TList<TPedidoDto>;
 function BuscarPedidosPorTransp(aIdTransportadora:Integer):Tlist<TpedidoDto>;
+function buscarPedidosPorStatus(aIdTransportadora:Integer; aStatus:String):Integer;
+function buscarPedidosOrdens(aIdTransportadora:Integer):Tlist<TpedidoDto>;
 
 end;
 implementation
@@ -73,6 +75,95 @@ begin
   finally
     QryPedidos.Free;
     QrySchemas.Free;
+  end;
+end;
+
+
+function TpedidoRepository.buscarPedidosOrdens(aIdTransportadora: Integer): TList<TPedidoDto>;
+var
+  FDQuery: TFDQuery;
+  SchemaName: string;
+  Pedido: TPedidoDto;
+  Lista: TList<TPedidoDto>;
+begin
+  Lista := TList<TPedidoDto>.Create;
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+
+    FDQuery.SQL.Text :=
+      'SELECT schema_name FROM public.transportadora WHERE id = :id_transportadora';
+    FDQuery.ParamByName('id_transportadora').AsInteger := aIdTransportadora;
+    FDQuery.Open;
+
+    SchemaName := FDQuery.FieldByName('schema_name').AsString;
+    FDQuery.Close;
+
+    FDQuery.ExecSQL('SET search_path TO ' + SchemaName + ', public');
+
+
+    FDQuery.SQL.Text :='SELECT id_pedido, id_cliente, cep_origem, cep_destino, tipo_carga, data_pedido, distancia_km, status FROM ' + SchemaName + '.pedido WHERE status = :status';
+    FDQuery.ParamByName('status').AsString := 'confirmado';
+    FDQuery.Open;
+
+    while not FDQuery.Eof do
+    begin
+      Pedido.IdPedido     := FDQuery.FieldByName('id_pedido').AsInteger;
+      Pedido.IdCliente    := FDQuery.FieldByName('id_cliente').AsInteger;
+      Pedido.CepOrigem    := FDQuery.FieldByName('cep_origem').AsString;
+      Pedido.CepDestino   := FDQuery.FieldByName('cep_destino').AsString;
+      Pedido.TipoCarga    := FDQuery.FieldByName('tipo_carga').AsString;
+      Pedido.DataPedido   := FDQuery.FieldByName('data_pedido').AsDateTime;
+      Pedido.DistanciaKm  := FDQuery.FieldByName('distancia_km').AsFloat;
+      Pedido.Status       := FDQuery.FieldByName('status').AsString;
+      Lista.Add(Pedido);
+
+      FDQuery.Next;
+    end;
+
+    Result := Lista;
+  finally
+    FDQuery.Free;
+  end;
+end;
+
+function TpedidoRepository.buscarPedidosPorStatus(aIdTransportadora: Integer; aStatus: String): Integer;
+var
+  FDQuery, QryPedidos: TFDQuery;
+  SchemaName: string;
+  Total: Integer;
+  SQL: string;
+begin
+  FDQuery := TFDQuery.Create(nil);
+  QryPedidos := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+    QryPedidos.Connection := DataModule2.FDConnection1;
+
+    FDQuery.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id_transportadora';
+    FDQuery.ParamByName('id_transportadora').AsInteger := aIdTransportadora;
+    FDQuery.Open;
+    SchemaName := FDQuery.FieldByName('schema_name').AsString;
+    FDQuery.Close;
+
+    FDQuery.ExecSQL('SET search_path TO ' + SchemaName + ', public');
+
+    SQL := 'SELECT COUNT(*) AS qtd FROM ' + SchemaName + '.pedido';
+    if aStatus <> '' then
+      SQL := SQL + ' WHERE status = :status';
+
+    QryPedidos.SQL.Text := SQL;
+    if aStatus <> '' then
+      QryPedidos.ParamByName('status').AsString := aStatus;
+
+    QryPedidos.Open;
+
+    Total := QryPedidos.FieldByName('qtd').AsInteger;
+
+    Result := Total;
+  finally
+    FDQuery.Free;
+    QryPedidos.Free;
   end;
 end;
 

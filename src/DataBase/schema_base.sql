@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS {schema}.veiculo (
     CONSTRAINT fk_veiculo_motorista
         FOREIGN KEY (id_motorista)
         REFERENCES public.motorista (id_usuario)
+   status varchar(50)
 );
 
 -- Tipo de carga

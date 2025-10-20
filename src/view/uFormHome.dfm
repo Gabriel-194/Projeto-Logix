@@ -975,7 +975,6 @@ object FormHome: TFormHome
       Color = 6957870
       ParentBackground = False
       TabOrder = 0
-      ExplicitLeft = 394
       object Shape1: TShape
         Left = 0
         Top = 0
@@ -5300,15 +5299,6 @@ object FormHome: TFormHome
       end
     end
   end
-  object panelCriarOrdens: TPanel
-    Left = 0
-    Top = 83
-    Width = 1500
-    Height = 756
-    Color = clWhite
-    ParentBackground = False
-    TabOrder = 3
-  end
   object pnlPedidos: TPanel
     Left = 1
     Top = 86
@@ -5316,7 +5306,7 @@ object FormHome: TFormHome
     Height = 753
     Color = clWhite
     ParentBackground = False
-    TabOrder = 4
+    TabOrder = 3
     Visible = False
     object Image4: TImage
       Left = 9
@@ -5340,6 +5330,7 @@ object FormHome: TFormHome
         BC5A2042C7B179B66B21420043D281577A45293F7E4C0411803875D59E518055
         D22D5AD69A07205E509F1ECF2280B2C10A698472AD790DE204ED34994701FE2A
         3A800EE007DA4794219C6C6FCB0000000049454E44AE426082}
+      OnClick = Image4Click
     end
     object DBGridMeusPedidos: TDBGrid
       AlignWithMargins = True
@@ -5525,9 +5516,6 @@ object FormHome: TFormHome
       Color = clWhite
       ParentBackground = False
       TabOrder = 1
-      ExplicitLeft = 10
-      ExplicitTop = 94
-      ExplicitWidth = 1480
       object Label7: TLabel
         AlignWithMargins = True
         Left = 3
@@ -5535,14 +5523,14 @@ object FormHome: TFormHome
         Width = 1471
         Height = 37
         Align = alTop
-        Caption = 'DashBoards de pedidos:'
+        Caption = 'Pedidos:'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = 6957870
         Font.Height = -27
         Font.Name = 'Segoe UI'
         Font.Style = [fsBold]
         ParentFont = False
-        ExplicitWidth = 308
+        ExplicitWidth = 109
       end
       object pedidoEntregados: TPanel
         AlignWithMargins = True
@@ -5833,7 +5821,7 @@ object FormHome: TFormHome
           Font.Style = [fsBold]
           ParentFont = False
         end
-        object Label12: TLabel
+        object lblCountTotalPedidos: TLabel
           Left = 8
           Top = 104
           Width = 18
@@ -6123,8 +6111,267 @@ object FormHome: TFormHome
       end
     end
   end
+  object pnlOrdens: TPanel
+    Left = 0
+    Top = 83
+    Width = 1500
+    Height = 757
+    Color = clWhite
+    ParentBackground = False
+    TabOrder = 4
+    Visible = False
+    object pageControlOrdens: TPageControl
+      Left = 1
+      Top = 1
+      Width = 1498
+      Height = 755
+      ActivePage = TabSheet1
+      Align = alClient
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabHeight = 50
+      TabOrder = 0
+      object TabSheet1: TTabSheet
+        Caption = 'Criar Ordens'
+        object Image14: TImage
+          Left = 17
+          Top = 19
+          Width = 41
+          Height = 41
+          Center = True
+          Picture.Data = {
+            0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
+            00200806000000737A7AF400000009704859730000167F0000167F01A413BABF
+            0000001974455874536F667477617265007777772E696E6B73636170652E6F72
+            679BEE3C1A0000015C4944415478DAED95C14AC3401086B32711A1AFA03E867A
+            EA4108E62078F7A81EF202BE81F42C48513C7996D29B20288A78F709C4675011
+            44AC5FDA089B90DDCC4C412F19F89976B699FF4BBA9975C93F87EB003A80D0C2
+            64B6B6872EF8F061694E8F45D22E3A73D3AF4280D2FC18E5E81E6D5178579A2F
+            902E5186CED13E3DBEA50047A443AF748DB6A54FA2BCF331DAF4CA0357ED1905
+            58235DA19E57163D89DA9DFF46714DC6B57722002B84D63C0AA085B098B70248
+            21ACE622803608F46535170344201ED01B4A2DE62A8008841F2A7335400B84DA
+            DC0A506CB81BB45E5B7A421BDA89A9FD0B9A76BB1FEAB1ADD9844DE6C5682EE6
+            FB921542FA1A06DF73F49918C7B608403264E6393BDA46B178C259216287917A
+            BC5A2042C7B179B66B21420043D281577A45293F7E4C0411803875D59E518055
+            D22D5AD69A07205E509F1ECF2280B2C10A698472AD790DE204ED34994701FE2A
+            3A800EE007DA4794219C6C6FCB0000000049454E44AE426082}
+          OnClick = Image14Click
+        end
+        object DBGridPedidosOrdens: TDBGrid
+          AlignWithMargins = True
+          Left = 190
+          Top = 3
+          Width = 1110
+          Height = 400
+          Margins.Left = 190
+          Margins.Right = 190
+          Align = alTop
+          DataSource = DataSourcePedidosOrdens
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -21
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -18
+          TitleFont.Name = 'Segoe UI'
+          TitleFont.Style = [fsBold]
+          OnDrawColumnCell = DBGridPedidosOrdensDrawColumnCell
+          Columns = <
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'idPedido'
+              Title.Alignment = taCenter
+              Title.Caption = 'id Pedido'
+              Width = 100
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'idCliente'
+              Title.Alignment = taCenter
+              Title.Caption = 'Id cliente'
+              Width = 100
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'cepOrigem'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -22
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'CEP origem'
+              Width = 150
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'cepDestino'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -22
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'CEP destino'
+              Width = 150
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'tipoDeCarga'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -22
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'Tipo Carga'
+              Width = 150
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'dataPedido'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -22
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'Data Pedido'
+              Width = 150
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'distanciaKm'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -22
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'Distancia '
+              Width = 140
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'status'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -22
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'Status'
+              Width = 130
+              Visible = True
+            end>
+        end
+        object pnlConfPedido: TPanel
+          AlignWithMargins = True
+          Left = 998
+          Top = 600
+          Width = 369
+          Height = 29
+          Margins.Left = 1000
+          Margins.Right = 100
+          Margins.Bottom = 30
+          BevelOuter = bvNone
+          TabOrder = 1
+          object Shape69: TShape
+            Left = 0
+            Top = 0
+            Width = 369
+            Height = 29
+            Align = alClient
+            Brush.Color = 6957870
+            Pen.Color = clBlue
+            Shape = stRoundRect
+            ExplicitTop = 8
+            ExplicitWidth = 117
+            ExplicitHeight = 33
+          end
+          object lblBtnConfirmarPedido: TLabel
+            AlignWithMargins = True
+            Left = 3
+            Top = 3
+            Width = 363
+            Height = 23
+            Align = alClient
+            Alignment = taCenter
+            Caption = 'CONFIRMAR PEDIDO'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -19
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ExplicitWidth = 187
+            ExplicitHeight = 25
+          end
+        end
+        object cbCarregador4Ordens: TComboBox
+          Left = 190
+          Top = 456
+          Width = 272
+          Height = 33
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -19
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 2
+          TextHint = 'Selecione o carregador'
+        end
+        object cbVeiculo4Ordens: TComboBox
+          Left = 190
+          Top = 544
+          Width = 272
+          Height = 33
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -19
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 3
+          TextHint = 'selecione o veiculo'
+        end
+      end
+      object TabSheet2: TTabSheet
+        Caption = 'Editar Ordens'
+        ImageIndex = 1
+      end
+    end
+  end
   object DataSourcePedidos: TDataSource
-    Left = 1304
-    Top = 25
+    Left = 1272
+    Top = 17
+  end
+  object DataSourcePedidosOrdens: TDataSource
+    Left = 1120
+    Top = 16
   end
 end

@@ -886,7 +886,7 @@
       Top = 1
       Width = 1498
       Height = 754
-      ActivePage = TabSheetMeusPedidos
+      ActivePage = TabSheetCriarPedido
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -899,8 +899,6 @@
       TabWidth = 150
       Visible = False
       OnChange = PageControlPedidosChange
-      ExplicitWidth = 1477
-      ExplicitHeight = 732
       object TabSheetCriarPedido: TTabSheet
         Caption = 'Criar Pedido'
         Font.Charset = EASTEUROPE_CHARSET
@@ -1037,7 +1035,7 @@
           BevelOuter = bvNone
           Color = clWhite
           ParentBackground = False
-          TabOrder = 14
+          TabOrder = 13
           Visible = False
           object Shape20: TShape
             Left = 0
@@ -1434,6 +1432,7 @@
               ParentFont = False
               TabOrder = 0
               Text = '  .   -   '
+              ExplicitTop = 0
             end
           end
           object Panel44: TPanel
@@ -2049,6 +2048,7 @@
           TabOrder = 5
           Text = 'selecione o tipo da carga'
           TextHint = 'selecione o tipo da carga'
+          OnSelect = cbTipoCargaSelect
           Items.Strings = (
             'Seca'
             'Refrigerada'
@@ -2205,50 +2205,6 @@
             TabOrder = 0
           end
         end
-        object Panel12: TPanel
-          AlignWithMargins = True
-          Left = 302
-          Top = 520
-          Width = 281
-          Height = 37
-          Margins.Left = 1000
-          Margins.Right = 100
-          Margins.Bottom = 30
-          BevelOuter = bvNone
-          TabOrder = 10
-          object Shape17: TShape
-            Left = 0
-            Top = 0
-            Width = 281
-            Height = 37
-            Align = alClient
-            Brush.Color = 1996824
-            Pen.Color = clLime
-            Shape = stRoundRect
-            ExplicitTop = 8
-            ExplicitWidth = 117
-            ExplicitHeight = 33
-          end
-          object lblBtnTranspDisposniveis: TLabel
-            AlignWithMargins = True
-            Left = 3
-            Top = 3
-            Width = 275
-            Height = 31
-            Align = alClient
-            Alignment = taCenter
-            Caption = 'transportadoras disponiveis'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWhite
-            Font.Height = -19
-            Font.Name = 'Segoe UI'
-            Font.Style = [fsBold]
-            ParentFont = False
-            OnClick = lblBtnTranspDisposniveisClick
-            ExplicitWidth = 249
-            ExplicitHeight = 25
-          end
-        end
         object Panel14: TPanel
           AlignWithMargins = True
           Left = 230
@@ -2259,7 +2215,7 @@
           Margins.Right = 100
           Margins.Bottom = 30
           BevelOuter = bvNone
-          TabOrder = 11
+          TabOrder = 10
           object Shape18: TShape
             Left = 0
             Top = 0
@@ -2303,7 +2259,7 @@
           BevelOuter = bvNone
           Color = clWhite
           ParentBackground = False
-          TabOrder = 12
+          TabOrder = 11
           object Shape19: TShape
             Left = 0
             Top = 0
@@ -2347,7 +2303,7 @@
           Margins.Bottom = 10
           BevelOuter = bvNone
           Constraints.MaxWidth = 598
-          TabOrder = 13
+          TabOrder = 12
           object Shape37: TShape
             Left = 0
             Top = 0

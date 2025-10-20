@@ -33,6 +33,8 @@ procedure editarVeiculo(veiculo:Tveiculo);
 function cargasDisponiveis(aIdTransportadora:Integer):tlist<TtipoCargaDto>;
 //=================== pedidos ==========================
 function BuscarPedidosPorTransp(aIdTransportadora:Integer):Tlist<TpedidoDto>;
+function buscarPedidosPorStatus(aIdTransportadora:Integer; aStatus:String):Integer;
+function BuscarPedidosOrdens(aIdTransportadora:Integer):Tlist<TpedidoDto>;
 
   end;
 
@@ -43,6 +45,36 @@ implementation
 
 
 { THomeController }
+
+function THomeController.BuscarPedidosOrdens(
+  aIdTransportadora: Integer): Tlist<TpedidoDto>;
+var
+  service:TpedidoService;
+begin
+service:=TpedidoService.create;
+
+  try
+    result := service.BuscarPedidosOrdens(aIdTransportadora);
+  finally
+    service.free;
+  end;
+
+end;
+
+function THomeController.buscarPedidosPorStatus(aIdTransportadora: Integer;
+  aStatus: String): Integer;
+var
+  service:TpedidoService;
+begin
+service:=TpedidoService.create;
+
+  try
+    result := service.BuscarPedidosPorStatus(aIdTransportadora,aStatus);
+  finally
+    service.free;
+  end;
+
+end;
 
 function THomeController.BuscarPedidosPorTransp(aIdTransportadora:Integer):Tlist<TpedidoDto>;
 var

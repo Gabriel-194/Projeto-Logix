@@ -119,9 +119,6 @@ type
     Panel10: TPanel;
     Shape14: TShape;
     edtPrecoFinal: TEdit;
-    Panel12: TPanel;
-    Shape17: TShape;
-    lblBtnTranspDisposniveis: TLabel;
     Panel14: TPanel;
     Shape18: TShape;
     lblBtnCalcularDistancia: TLabel;
@@ -153,7 +150,7 @@ type
     procedure imgBuscaCepOrigemClick(Sender: TObject);
     procedure imgCepDestinoClick(Sender: TObject);
     procedure lblCadastrosBtnClick(Sender: TObject);
-    procedure lblBtnTranspDisposniveisClick(Sender: TObject);
+
     procedure lblBtnCalcularDistanciaClick(Sender: TObject);
     procedure lblBtnCalcularFreteClick(Sender: TObject);
     procedure lblBtnConfirmarPedidoClick(Sender: TObject);
@@ -168,6 +165,7 @@ type
       State: TGridDrawState);
     procedure atualizarDashBoards;
     procedure FormShow(Sender: TObject);
+    procedure cbTipoCargaSelect(Sender: TObject);
 
   private
     { Private declarations }
@@ -268,6 +266,7 @@ begin
    mostrarPedidos;
  end;
 end;
+
 
 procedure TFormHomeCliente.DBGridMeusPedidosDrawColumnCell(
   Sender: TObject; const Rect: TRect; DataCol: Integer;
@@ -487,7 +486,7 @@ begin
   end;
 end;
 
-procedure TFormHomeCliente.lblBtnTranspDisposniveisClick(Sender: TObject);
+procedure TFormHomeCliente.cbTipoCargaSelect(Sender: TObject);
 
 var
   TipoCarga: string;

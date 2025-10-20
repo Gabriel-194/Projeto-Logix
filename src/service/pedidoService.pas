@@ -9,6 +9,8 @@ type TPedidoService = class
   procedure confirmarPedido(pedidoDto: TPedidoDto; const schemaName: string);
   function BuscarPedidos(aIdCliente:Integer): TList<TPedidoDto>;
   function BuscarPedidosPorTransp(aIdTransportadora:Integer):Tlist<TpedidoDto>;
+  function buscarPedidosPorStatus(aIdTransportadora:Integer; aStatus:String):Integer;
+  function BuscarPedidosOrdens(aIdTransportadora:Integer):Tlist<TpedidoDto>;
 end;
 
 implementation
@@ -20,6 +22,30 @@ begin
   repo := TPedidoRepository.Create;
   try
     Result := repo.BuscarPedidos(aIdCliente);
+  finally
+    repo.Free;
+  end;
+end;
+
+function TPedidoService.BuscarPedidosOrdens(
+  aIdTransportadora: Integer): Tlist<TpedidoDto>;
+var repo: TPedidoRepository;
+begin
+  repo := TPedidoRepository.Create;
+  try
+    Result := repo.BuscarPedidosOrdens(aIdTransportadora);
+  finally
+    repo.Free;
+  end;
+end;
+
+function TPedidoService.buscarPedidosPorStatus(aIdTransportadora: Integer;
+  aStatus: String): Integer;
+var repo: TPedidoRepository;
+begin
+  repo := TPedidoRepository.Create;
+  try
+    Result := repo.BuscarPedidosPorStatus(aIdTransportadora,aStatus);
   finally
     repo.Free;
   end;

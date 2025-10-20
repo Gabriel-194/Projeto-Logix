@@ -308,7 +308,6 @@ type
     Label6: TLabel;
     Panel5: TPanel;
     cbMotorista4Veiculo: TComboBox;
-    panelCriarOrdens: TPanel;
     PanelPedidos: TPanel;
     Shape2: TShape;
     lblpedidosBtn: TLabel;
@@ -326,7 +325,7 @@ type
     Shape17: TShape;
     Image11: TImage;
     Label10: TLabel;
-    Label12: TLabel;
+    lblCountTotalPedidos: TLabel;
     pedidoEmRota: TPanel;
     Shape29: TShape;
     Image12: TImage;
@@ -338,6 +337,18 @@ type
     Label19: TLabel;
     lblCountPedidoPreparando: TLabel;
     DataSourcePedidos: TDataSource;
+    pnlOrdens: TPanel;
+    DataSourcePedidosOrdens: TDataSource;
+    pageControlOrdens: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    DBGridPedidosOrdens: TDBGrid;
+    Image14: TImage;
+    pnlConfPedido: TPanel;
+    Shape69: TShape;
+    lblBtnConfirmarPedido: TLabel;
+    cbCarregador4Ordens: TComboBox;
+    cbVeiculo4Ordens: TComboBox;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -391,6 +402,12 @@ type
     procedure mostrarPedidosPorTransp;
     procedure lblpedidosBtnClick(Sender: TObject);
     procedure DBGridMeusPedidosDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
+    procedure Image4Click(Sender: TObject);
+    procedure mostrarPedidosOrdens;
+    procedure Image14Click(Sender: TObject);
+    procedure DBGridPedidosOrdensDrawColumnCell(Sender: TObject;
       const Rect: TRect; DataCol: Integer; Column: TColumn;
       State: TGridDrawState);
   private
@@ -510,6 +527,7 @@ veiculo : Tveiculo;
 item: TlistItem;
 begin
   controller := ThomeController.create;
+  listaVeiculo.create;
   try
     listaVeiculo := controller.mostrarVeiculo;
 
@@ -541,6 +559,7 @@ listaVeiculo: TobjectList<Tveiculo>;
 veiculo : Tveiculo;
 item: TlistItem;
 begin
+  listaVeiculo.create;
   controller := ThomeController.create;
   try
     listaVeiculo := controller.mostrarVeiculoInativo;
@@ -636,6 +655,53 @@ begin
   end;
 end;
 
+procedure TFormHome.mostrarPedidosOrdens;
+var
+  controller: THomeController;
+  pedidos: TList<TPedidoDto>;
+  i: Integer;
+  clientDataSet: TClientDataSet;
+begin
+  controller := THomeController.Create;
+  try
+    pedidos := controller.BuscarPedidosOrdens(usuarioLogado.userLogado.getIdTransportadora);
+
+    clientDataSet := TClientDataSet.Create(nil);
+    try
+      clientDataSet.FieldDefs.Add('idPedido', ftInteger);
+      clientDataSet.FieldDefs.Add('idCliente', ftInteger);
+      clientDataSet.FieldDefs.Add('cepOrigem', ftString, 12);
+      clientDataSet.FieldDefs.Add('cepDestino', ftString, 12);
+      clientDataSet.FieldDefs.Add('tipoDeCarga', ftString, 30);
+      clientDataSet.FieldDefs.Add('dataPedido', ftDateTime);
+      clientDataSet.FieldDefs.Add('distanciaKm', ftFloat);
+      clientDataSet.FieldDefs.Add('status', ftString, 20);
+      clientDataSet.CreateDataSet;
+
+      for i := 0 to pedidos.Count - 1 do
+      begin
+        clientDataSet.Append;
+        clientDataSet.FieldByName('idPedido').AsInteger      := pedidos[i].IdPedido;
+        clientDataSet.FieldByName('idCliente').AsInteger      := pedidos[i].IdCliente;
+        clientDataSet.FieldByName('cepOrigem').AsString      := pedidos[i].CepOrigem;
+        clientDataSet.FieldByName('cepDestino').AsString     := pedidos[i].CepDestino;
+        clientDataSet.FieldByName('tipoDeCarga').AsString    := pedidos[i].TipoCarga;
+        clientDataSet.FieldByName('dataPedido').AsDateTime   := pedidos[i].DataPedido;
+        clientDataSet.FieldByName('distanciaKm').AsFloat     := pedidos[i].DistanciaKm;
+        clientDataSet.FieldByName('status').AsString         := pedidos[i].Status;
+        clientDataSet.Post;
+      end;
+
+      DataSourcePedidosOrdens.DataSet := clientDataSet;
+      DBGridPedidosOrdens.DataSource := DataSourcePedidosOrdens;
+    finally
+      pedidos.Free;
+    end;
+  finally
+    controller.Free;
+  end;
+end;
+
 procedure TFormHome.mostrarPedidosPorTransp;
 var
   controller: THomeController;
@@ -682,7 +748,6 @@ begin
       DataSourcePedidos.DataSet := cds;
       DBGridMeusPedidos.DataSource := DataSourcePedidos;
     finally
-//      cds.Free;
       pedidos.Free;
     end;
   finally
@@ -714,6 +779,31 @@ begin
 
   DBGridMeusPedidos.Canvas.TextRect(Rect, x, y, value);
 end;
+procedure TFormHome.DBGridPedidosOrdensDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+  value: string;
+  x, y: Integer;
+  txtWidth, txtHeight: Integer;
+begin
+  value := '';
+
+  if Column.FieldName = 'dataPedido' then
+    value := FormatDateTime('dd/mm/yyyy', Column.Field.AsDateTime)
+  else if Column.FieldName = 'distanciaKm' then
+    value := FormatFloat('0.', Column.Field.AsFloat) + ' km'
+  else
+    value := Column.Field.AsString;
+
+  DBGridPedidosOrdens.Canvas.FillRect(Rect);
+  txtWidth := DBGridMeusPedidos.Canvas.TextWidth(value);
+  txtHeight := DBGridMeusPedidos.Canvas.TextHeight(value);
+  x := Rect.Left + (Rect.Right - Rect.Left - txtWidth) div 2;
+  y := Rect.Top + (Rect.Bottom - Rect.Top - txtHeight) div 2;
+
+  DBGridPedidosOrdens.Canvas.TextRect(Rect, x, y, value);
+end;
+
 // ====================== on show form home ============================
 procedure TFormHome.AtualizarDashboards;
 var
@@ -724,7 +814,6 @@ begin
   try
 
     IdTransportadoraLogada := UsuarioLogado.UserLogado.getIdTransportadora;
-
 
     lblCountGerente.Caption := controller.ContarRegistrosAtivos(
       'public.usuarios', IdTransportadoraLogada, 'cargo_descricao', 'gerente'
@@ -746,12 +835,29 @@ begin
       'pedido', IdTransportadoraLogada, '', ''
     ).ToString;
 
+    lblCountTotalPedidos.caption := controller.ContarRegistrosAtivos(
+      'pedido', IdTransportadoraLogada, '', ''
+    ).ToString;
+
+    lblCountPedidoPreparando.caption := IntToStr(controller.buscarPedidosporStatus(IdTransportadoraLogada, 'Em preparo'));
+    lblCountPedidoEmRota.caption := IntToStr(controller.buscarPedidosporStatus(IdTransportadoraLogada, 'Em rota'));
+    lblCountPedidoFinalizados.caption := IntToStr(controller.buscarPedidosporStatus(IdTransportadoraLogada, 'Finalizados'));
+
+
   finally
     controller.Free;
   end;
 end;
 
+procedure TFormHome.Image14Click(Sender: TObject);
+begin
+pnlOrdens.visible := false;
+end;
 
+procedure TFormHome.Image4Click(Sender: TObject);
+begin
+pnlPedidos.visible := false;
+end;
 
 
 procedure TFormHome.FormShow(Sender: TObject);
@@ -768,18 +874,54 @@ pagecontrolCadastrar.visible := true;
 end;
 
 procedure TFormHome.lblOrdensBtnClick(Sender: TObject);
+var
+  controller:ThomeController;
+  idTransportadoraUsuario:integer;
+  listaCarregador:TobjectList<Tusuario>;
+  carregador:Tusuario;
+  veiculo : Tveiculo;
+  listaVeiculo:TobjectList<Tveiculo>;
+
 begin
-panelCriarOrdens.visible := true;
+pnlOrdens.visible := true;
+mostrarPedidosOrdens;
+
+  Controller := ThomeController.Create;
+  try
+    idTransportadoraUsuario := usuarioLogado.UserLogado.getIdTransportadora;
+    listaCarregador := Controller.mostrarUser('Carregador',idTransportadoraUsuario);
+    listaVeiculo := controller.mostrarVeiculo;
+
+    try
+      cbCarregador4Ordens.items.clear;
+
+      for carregador in listaCarregador do
+        cbCarregador4Ordens.items.add(carregador.getId.ToString + ' - ' + carregador.getNome);
+    finally
+      listaCarregador.free;
+    end;
+
+    try
+      cbVeiculo4Ordens.items.clear;
+
+      for veiculo in listaVeiculo do
+        cbVeiculo4Ordens.items.add(veiculo.getId_veiculo.toString + ' - '+ veiculo.getModelo)
+    finally
+      listaVeiculo.free;
+    end;
+  finally
+    Controller.Free;
+  end;
 end;
 
 procedure TFormHome.lblpedidosBtnClick(Sender: TObject);
 begin
 pnlPedidos.visible := true;
 mostrarPedidosPorTransp;
+atualizarDashboards;
 end;
 
 //=================== GERENTE ============================================
-
 
 procedure TFormHome.Image8Click(Sender: TObject);
 begin
@@ -788,7 +930,7 @@ end;
 
 procedure TFormHome.imgFecharPageControlClick(Sender: TObject);
 begin
-pagecontrolCadastrar.visible := False;
+panelCadastrar.visible := False;
 end;
 
 procedure TFormHome.lblBtnCadastrarGerenteClick(Sender: TObject);
