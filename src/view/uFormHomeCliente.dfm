@@ -875,18 +875,18 @@
     TabOrder = 3
   end
   object pnlCriarPedido: TPanel
-    Left = 8
-    Top = 97
-    Width = 1479
-    Height = 734
+    Left = 0
+    Top = 83
+    Width = 1500
+    Height = 756
     TabOrder = 4
     Visible = False
     object PageControlPedidos: TPageControl
       Left = 1
       Top = 1
-      Width = 1477
-      Height = 732
-      ActivePage = TabSheetCriarPedido
+      Width = 1498
+      Height = 754
+      ActivePage = TabSheetMeusPedidos
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -899,6 +899,8 @@
       TabWidth = 150
       Visible = False
       OnChange = PageControlPedidosChange
+      ExplicitWidth = 1477
+      ExplicitHeight = 732
       object TabSheetCriarPedido: TTabSheet
         Caption = 'Criar Pedido'
         Font.Charset = EASTEUROPE_CHARSET
@@ -2416,7 +2418,7 @@
           AlignWithMargins = True
           Left = 10
           Top = 60
-          Width = 1449
+          Width = 1470
           Height = 347
           Margins.Left = 10
           Margins.Top = 60

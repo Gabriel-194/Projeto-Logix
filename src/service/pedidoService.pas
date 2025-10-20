@@ -8,6 +8,7 @@ type TPedidoService = class
   function CalcularFrete(const schemaName: string; tipo:string; distancia: Double;peso:double): Double;
   procedure confirmarPedido(pedidoDto: TPedidoDto; const schemaName: string);
   function BuscarPedidos(aIdCliente:Integer): TList<TPedidoDto>;
+  function BuscarPedidosPorTransp(aIdTransportadora:Integer):Tlist<TpedidoDto>;
 end;
 
 implementation
@@ -19,6 +20,18 @@ begin
   repo := TPedidoRepository.Create;
   try
     Result := repo.BuscarPedidos(aIdCliente);
+  finally
+    repo.Free;
+  end;
+end;
+
+function TPedidoService.BuscarPedidosPorTransp(
+  aIdTransportadora: Integer): Tlist<TpedidoDto>;
+var repo: TPedidoRepository;
+begin
+  repo := TPedidoRepository.Create;
+  try
+    Result := repo.BuscarPedidosPorTransp(aIdTransportadora);
   finally
     repo.Free;
   end;

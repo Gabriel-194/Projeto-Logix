@@ -8,6 +8,7 @@ type TpedidoRepository = class
 function GetPrecoBasePorKm(const schemaName, tipo: string): Double;
 procedure confirmarPedido(Apedido: TPedidoDto; const schemaName: string);
 function BuscarPedidos(aIdCliente:Integer): TList<TPedidoDto>;
+function BuscarPedidosPorTransp(aIdTransportadora:Integer):Tlist<TpedidoDto>;
 
 end;
 implementation
@@ -75,6 +76,58 @@ begin
   end;
 end;
 
+
+function TpedidoRepository.BuscarPedidosPorTransp(
+  aIdTransportadora: Integer): Tlist<TpedidoDto>;
+var
+  FDQuery: TFDQuery;
+  SchemaName: string;
+  pedido: TpedidoDto;
+  IdTransportadoraLogada: Integer;
+  Lista: TList<TPedidoDto>;
+begin
+  Lista := TList<TPedidoDto>.Create;
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+
+    FDQuery.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id_transportadora';
+     FDQuery.ParamByName('id_transportadora').AsInteger := aIdTransportadora;
+    FDQuery.Open;
+
+
+    SchemaName := FDQuery.FieldByName('schema_name').AsString;
+    FDQuery.Close;
+
+    FDQuery.ExecSQL('SET search_path TO ' + (SchemaName) + ', public');
+
+    FDQuery.SQL.Text := 'SELECT id_pedido,id_cliente,  cep_origem, estado_origem, cep_destino, estado_destino, ' +
+      'tipo_carga, data_pedido, distancia_km, preco, status ' + 'FROM ' + (SchemaName) + '.pedido ';
+    FDQuery.Open;
+
+    FDQuery.First;
+    while not FDQuery.Eof do
+    begin
+        Pedido.IdPedido           := FDQuery.FieldByName('id_pedido').AsInteger;
+        pedido.IdCliente          := FDQuery.FieldByName('id_cliente').AsInteger;
+        Pedido.CepOrigem          := FDQuery.FieldByName('cep_origem').AsString;
+        Pedido.EstadoOrigem       := FDQuery.FieldByName('estado_origem').AsString;
+        Pedido.CepDestino         := FDQuery.FieldByName('cep_destino').AsString;
+        Pedido.EstadoDestino      := FDQuery.FieldByName('estado_destino').AsString;
+        Pedido.TipoCarga          := FDQuery.FieldByName('tipo_carga').AsString;
+        Pedido.DataPedido         := FDQuery.FieldByName('data_pedido').AsDateTime;
+        Pedido.DistanciaKm        := FDQuery.FieldByName('distancia_km').AsFloat;
+        Pedido.Preco              := FDQuery.FieldByName('preco').AsFloat;
+        Pedido.Status             := FDQuery.FieldByName('status').AsString;
+        Lista.Add(Pedido);
+
+      FDQuery.Next;
+    end;
+    result := lista
+  finally
+    FDQuery.Free;
+  end;
+end;
 
 procedure TpedidoRepository.confirmarPedido(Apedido: TPedidoDto; const schemaName: string);
 var

@@ -2,7 +2,7 @@ unit homeController;
 
 interface
 uses
-data.DB,homeService, uUsuario, userService, System.SysUtils, system.Generics.Collections,MotoristaDto,uVeiculo,veiculoService,tipocargaDto;
+data.DB,homeService,pedidoDto,pedidoService, uUsuario, userService, System.SysUtils, system.Generics.Collections,MotoristaDto,uVeiculo,veiculoService,tipocargaDto;
 
 type THomeController = class
   procedure cadastrarUsuario(aUsuario:TUsuario);
@@ -31,6 +31,8 @@ procedure excluirVeiculo(veiculo:Tveiculo);
 procedure recuperarVeiculo(veiculo:Tveiculo);
 procedure editarVeiculo(veiculo:Tveiculo);
 function cargasDisponiveis(aIdTransportadora:Integer):tlist<TtipoCargaDto>;
+//=================== pedidos ==========================
+function BuscarPedidosPorTransp(aIdTransportadora:Integer):Tlist<TpedidoDto>;
 
   end;
 
@@ -41,6 +43,20 @@ implementation
 
 
 { THomeController }
+
+function THomeController.BuscarPedidosPorTransp(aIdTransportadora:Integer):Tlist<TpedidoDto>;
+var
+  service:TpedidoService;
+begin
+service:=TpedidoService.create;
+
+  try
+    result := service.BuscarPedidosPorTransp(aIdTransportadora);
+  finally
+    service.free;
+  end;
+
+end;
 
 procedure THomeController.cadastrarMotorista(motorista: TmotoristaDto);
 var

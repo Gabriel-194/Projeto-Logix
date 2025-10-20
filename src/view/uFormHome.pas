@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
   Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask, usuarioLogado,uUsuario,
-  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController,system.Generics.Collections,motoristaDto, uVeiculo,tipoCargaDto;
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController,system.Generics.Collections,motoristaDto, uVeiculo,tipoCargaDto,pedidoDto;
 
 type
   TFormHome = class(TForm)
@@ -16,9 +16,9 @@ type
     PanelPermissoes: TPanel;
     Shape1: TShape;
     lblPermissoesbtn: TLabel;
-    PanelClientes: TPanel;
+    PanelOrdens: TPanel;
     Shape5: TShape;
-    lblPedidosBtn: TLabel;
+    lblOrdensBtn: TLabel;
     pnlCadastros: TPanel;
     Shape6: TShape;
     lblCadastrosBtn: TLabel;
@@ -50,6 +50,7 @@ type
     Label13: TLabel;
     lblCountMotorista: TLabel;
     Image8: TImage;
+    PanelCadastrar: TPanel;
     PageControlCadastrar: TPageControl;
     TabSheetGerente: TTabSheet;
     PanelButtonGerentes: TPanel;
@@ -289,6 +290,7 @@ type
     pnlEdtAnoVeiculo: TPanel;
     Shape68: TShape;
     MaskEditAnoVeiculo: TMaskEdit;
+    cbTipoCarga4veiculo: TComboBox;
     Panel42: TPanel;
     Label32: TLabel;
     Label33: TLabel;
@@ -306,7 +308,36 @@ type
     Label6: TLabel;
     Panel5: TPanel;
     cbMotorista4Veiculo: TComboBox;
-    cbTipoCarga4veiculo: TComboBox;
+    panelCriarOrdens: TPanel;
+    PanelPedidos: TPanel;
+    Shape2: TShape;
+    lblpedidosBtn: TLabel;
+    pnlPedidos: TPanel;
+    DBGridMeusPedidos: TDBGrid;
+    Image4: TImage;
+    pnlDashboardPedidos: TPanel;
+    Label7: TLabel;
+    pedidoEntregados: TPanel;
+    Shape9: TShape;
+    Image10: TImage;
+    Label8: TLabel;
+    lblCountPedidoFinalizados: TLabel;
+    Panel6: TPanel;
+    Shape17: TShape;
+    Image11: TImage;
+    Label10: TLabel;
+    Label12: TLabel;
+    pedidoEmRota: TPanel;
+    Shape29: TShape;
+    Image12: TImage;
+    Label14: TLabel;
+    lblCountPedidoEmRota: TLabel;
+    pedidoEmPreparo: TPanel;
+    Shape50: TShape;
+    Image13: TImage;
+    Label19: TLabel;
+    lblCountPedidoPreparando: TLabel;
+    DataSourcePedidos: TDataSource;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -356,6 +387,12 @@ type
     procedure lblBtnExcluirVeiculoConfClick(Sender: TObject);
     procedure lblBtnRecuperarVeiculoConfClick(Sender: TObject);
     procedure lblBtnEditarVeiculoConfClick(Sender: TObject);
+    procedure lblOrdensBtnClick(Sender: TObject);
+    procedure mostrarPedidosPorTransp;
+    procedure lblpedidosBtnClick(Sender: TObject);
+    procedure DBGridMeusPedidosDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -599,6 +636,84 @@ begin
   end;
 end;
 
+procedure TFormHome.mostrarPedidosPorTransp;
+var
+  controller: THomeController;
+  pedidos: TList<TPedidoDto>;
+  i: Integer;
+  cds: TClientDataSet;
+begin
+  controller := THomeController.Create;
+  try
+    pedidos := controller.BuscarPedidosPorTransp(usuarioLogado.userLogado.getIdTransportadora);
+
+    cds := TClientDataSet.Create(nil);
+    try
+      cds.FieldDefs.Add('idPedido', ftInteger);
+      cds.FieldDefs.Add('idCliente', ftInteger);
+      cds.FieldDefs.Add('cepOrigem', ftString, 12);
+      cds.FieldDefs.Add('estadoOrigem', ftString, 20);
+      cds.FieldDefs.Add('cepDestino', ftString, 12);
+      cds.FieldDefs.Add('estadoDestino', ftString, 20);
+      cds.FieldDefs.Add('tipoDeCarga', ftString, 30);
+      cds.FieldDefs.Add('dataPedido', ftDateTime);
+      cds.FieldDefs.Add('distanciaKm', ftFloat);
+      cds.FieldDefs.Add('preco', ftFloat);
+      cds.FieldDefs.Add('status', ftString, 20);
+      cds.CreateDataSet;
+
+      for i := 0 to pedidos.Count - 1 do
+      begin
+        cds.Append;
+        cds.FieldByName('idPedido').AsInteger      := pedidos[i].IdPedido;
+        cds.FieldByName('idCliente').AsInteger      := pedidos[i].IdCliente;
+        cds.FieldByName('cepOrigem').AsString      := pedidos[i].CepOrigem;
+        cds.FieldByName('estadoOrigem').AsString   := pedidos[i].EstadoOrigem;
+        cds.FieldByName('cepDestino').AsString     := pedidos[i].CepDestino;
+        cds.FieldByName('estadoDestino').AsString  := pedidos[i].EstadoDestino;
+        cds.FieldByName('tipoDeCarga').AsString    := pedidos[i].TipoCarga;
+        cds.FieldByName('dataPedido').AsDateTime   := pedidos[i].DataPedido;
+        cds.FieldByName('distanciaKm').AsFloat     := pedidos[i].DistanciaKm;
+        cds.FieldByName('preco').AsFloat           := pedidos[i].Preco;
+        cds.FieldByName('status').AsString         := pedidos[i].Status;
+        cds.Post;
+      end;
+
+      DataSourcePedidos.DataSet := cds;
+      DBGridMeusPedidos.DataSource := DataSourcePedidos;
+    finally
+//      cds.Free;
+      pedidos.Free;
+    end;
+  finally
+    controller.Free;
+  end;
+end;
+
+procedure TFormHome.DBGridMeusPedidosDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+  value: string;
+  x, y: Integer;
+  txtWidth, txtHeight: Integer;
+begin
+  value := '';
+
+  if Column.FieldName = 'dataPedido' then
+    value := FormatDateTime('dd/mm/yyyy', Column.Field.AsDateTime)
+  else if Column.FieldName = 'distanciaKm' then
+    value := FormatFloat('0.', Column.Field.AsFloat) + ' km'
+  else
+    value := Column.Field.AsString;
+
+  DBGridMeusPedidos.Canvas.FillRect(Rect);
+  txtWidth := DBGridMeusPedidos.Canvas.TextWidth(value);
+  txtHeight := DBGridMeusPedidos.Canvas.TextHeight(value);
+  x := Rect.Left + (Rect.Right - Rect.Left - txtWidth) div 2;
+  y := Rect.Top + (Rect.Bottom - Rect.Top - txtHeight) div 2;
+
+  DBGridMeusPedidos.Canvas.TextRect(Rect, x, y, value);
+end;
 // ====================== on show form home ============================
 procedure TFormHome.AtualizarDashboards;
 var
@@ -637,6 +752,8 @@ begin
 end;
 
 
+
+
 procedure TFormHome.FormShow(Sender: TObject);
 begin
     AtualizarDashboards;
@@ -646,9 +763,20 @@ end;
 //============HEADER =====================================================
 procedure TFormHome.lblCadastrosBtnClick(Sender: TObject);
 begin
+panelCadastrar.Visible := true;
 pagecontrolCadastrar.visible := true;
 end;
 
+procedure TFormHome.lblOrdensBtnClick(Sender: TObject);
+begin
+panelCriarOrdens.visible := true;
+end;
+
+procedure TFormHome.lblpedidosBtnClick(Sender: TObject);
+begin
+pnlPedidos.visible := true;
+mostrarPedidosPorTransp;
+end;
 
 //=================== GERENTE ============================================
 
