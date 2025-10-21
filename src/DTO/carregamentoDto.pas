@@ -8,6 +8,8 @@ type TcarregamentoDto = record
   idVeiculo:integer;
   sCarregador: string;
   sVeiculo: string;
+  status:String;
+  dataCadastro: TDateTime;
 end;
 
 implementation

@@ -2,7 +2,7 @@ unit homeController;
 
 interface
 uses
-data.DB,homeService,pedidoDto,pedidoService, uUsuario,carregamentoDto,OrdensService, userService, System.SysUtils, system.Generics.Collections,MotoristaDto,uVeiculo,veiculoService,tipocargaDto;
+homeService,pedidoDto,pedidoService, uUsuario,carregamentoDto,OrdensService, userService, System.SysUtils, system.Generics.Collections,MotoristaDto,uVeiculo,veiculoService,tipocargaDto;
 
 type THomeController = class
   procedure cadastrarUsuario(aUsuario:TUsuario);
@@ -37,6 +37,7 @@ function buscarPedidosPorStatus(aIdTransportadora:Integer; aStatus:String):Integ
 function BuscarPedidosOrdens(aIdTransportadora:Integer):Tlist<TpedidoDto>;
 //==================== ORDENS ====================
 procedure criarOrdemCarregamento(acarregamento:TcarregamentoDto; aIdTransportadora:Integer);
+function buscarOrdensCarregPorTransp (aIdTransportadora:Integer):Tlist<TcarregamentoDto>;
 
   end;
 
@@ -47,6 +48,20 @@ implementation
 
 
 { THomeController }
+
+function THomeController.buscarOrdensCarregPorTransp(
+  aIdTransportadora: Integer): Tlist<TcarregamentoDto>;
+var
+  service : TOrdemService;
+begin
+  service := TOrdemService.create;
+  try
+    result := service.buscarOrdensCarregPorTransp(aIdTransportadora);
+  finally
+    service.free;
+  end;
+end;
+
 
 function THomeController.BuscarPedidosOrdens(
   aIdTransportadora: Integer): Tlist<TpedidoDto>;

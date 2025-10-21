@@ -102,12 +102,13 @@ begin
     FDQuery.ExecSQL('SET search_path TO ' + SchemaName + ', public');
 
 
-    FDQuery.SQL.Text :='SELECT id_pedido, id_cliente, cep_origem, cep_destino, tipo_carga, data_pedido, distancia_km, status FROM ' + SchemaName + '.pedido WHERE status = :status';
+    FDQuery.SQL.Text := 'SELECT id_pedido, id_cliente, cep_origem, cep_destino, tipo_carga, peso, data_pedido, distancia_km, status FROM pedido WHERE status = :status';
     FDQuery.ParamByName('status').AsString := 'confirmado';
     FDQuery.Open;
 
     while not FDQuery.Eof do
     begin
+      FillChar(Pedido, SizeOf(Pedido), 0);
       Pedido.IdPedido     := FDQuery.FieldByName('id_pedido').AsInteger;
       Pedido.IdCliente    := FDQuery.FieldByName('id_cliente').AsInteger;
       Pedido.CepOrigem    := FDQuery.FieldByName('cep_origem').AsString;
@@ -116,6 +117,7 @@ begin
       Pedido.DataPedido   := FDQuery.FieldByName('data_pedido').AsDateTime;
       Pedido.DistanciaKm  := FDQuery.FieldByName('distancia_km').AsFloat;
       Pedido.Status       := FDQuery.FieldByName('status').AsString;
+      Pedido.Peso := FDQuery.FieldByName('peso').AsFloat;
       Lista.Add(Pedido);
 
       FDQuery.Next;

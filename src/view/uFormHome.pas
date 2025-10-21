@@ -350,6 +350,9 @@ type
     cbCarregador4Ordens: TComboBox;
     cbVeiculo4Ordens: TComboBox;
     Label12: TLabel;
+    DataSourceOrdensCarregCriadas: TDataSource;
+    DBGridOrdensCarreg: TDBGrid;
+    Label34: TLabel;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -412,6 +415,7 @@ type
       const Rect: TRect; DataCol: Integer; Column: TColumn;
       State: TGridDrawState);
     procedure lblBtnConfCarregamentoClick(Sender: TObject);
+    procedure mostrarOrdensCarreg;
   private
     { Private declarations }
   public
@@ -483,6 +487,7 @@ begin
   end;
 
 end;
+
 
 procedure TFormHome.mostrarUserInativo;
 var
@@ -657,6 +662,50 @@ begin
   end;
 end;
 
+procedure TFormHome.mostrarOrdensCarreg;
+var
+controller :ThomeController;
+ordensCarregamentos:Tlist<TcarregamentoDto>;
+carregamento:TcarregamentoDto;
+i:integer;
+carregamentoDataSet:TclientDataSet;
+begin
+controller:=ThomeController.create;
+  try
+    ordensCarregamentos := controller.buscarOrdensCarregPorTransp(usuarioLogado.UserLogado.getIdTransportadora);
+
+    carregamentoDataSet:=TclientDataSet.create(nil);
+    try
+      carregamentoDataSet.FieldDefs.Add('id', ftInteger);
+      carregamentoDataSet.FieldDefs.Add('idPedido', ftInteger);
+      carregamentoDataSet.FieldDefs.Add('veiculo', ftString, 30);
+      carregamentoDataSet.FieldDefs.Add('carregador', ftString, 90);
+      carregamentoDataSet.FieldDefs.Add('status', ftString, 30);
+      carregamentoDataSet.FieldDefs.Add('dataCadastro', ftDateTime);
+      carregamentoDataSet.CreateDataSet;
+
+      for i := 0 to ordensCarregamentos.Count - 1 do
+      begin
+        carregamentoDataSet.Append;
+        carregamentoDataSet.FieldByName('id').AsInteger      := ordensCarregamentos[i].idCarregamento;
+        carregamentoDataSet.FieldByName('idPedido').AsInteger      := ordensCarregamentos[i].IdPedido;
+        carregamentoDataSet.FieldByName('veiculo').AsString      := ordensCarregamentos[i].sVeiculo;
+        carregamentoDataSet.FieldByName('carregador').AsString     := ordensCarregamentos[i].sCarregador;
+        carregamentoDataSet.FieldByName('status').AsString    := ordensCarregamentos[i].status;
+        carregamentoDataSet.FieldByName('dataCadastro').AsDateTime   := ordensCarregamentos[i].dataCadastro;
+        carregamentoDataSet.Post;
+      end;
+
+      DataSourceOrdensCarregCriadas.DataSet := carregamentoDataSet;
+      DBGridOrdensCarreg.DataSource := DataSourceOrdensCarregCriadas;
+    finally
+      ordensCarregamentos.free;
+    end;
+  finally
+    controller.free;
+  end;
+end;
+
 procedure TFormHome.mostrarPedidosOrdens;
 var
   controller: THomeController;
@@ -673,6 +722,7 @@ begin
       clientDataSet.FieldDefs.Add('idPedido', ftInteger);
       clientDataSet.FieldDefs.Add('idCliente', ftInteger);
       clientDataSet.FieldDefs.Add('cepOrigem', ftString, 12);
+      clientDataSet.FieldDefs.Add('peso', ftFloat);
       clientDataSet.FieldDefs.Add('cepDestino', ftString, 12);
       clientDataSet.FieldDefs.Add('tipoDeCarga', ftString, 30);
       clientDataSet.FieldDefs.Add('dataPedido', ftDateTime);
@@ -686,6 +736,7 @@ begin
         clientDataSet.FieldByName('idPedido').AsInteger      := pedidos[i].IdPedido;
         clientDataSet.FieldByName('idCliente').AsInteger      := pedidos[i].IdCliente;
         clientDataSet.FieldByName('cepOrigem').AsString      := pedidos[i].CepOrigem;
+        clientDataSet.FieldByName('peso').AsFloat := pedidos[i].Peso;
         clientDataSet.FieldByName('cepDestino').AsString     := pedidos[i].CepDestino;
         clientDataSet.FieldByName('tipoDeCarga').AsString    := pedidos[i].TipoCarga;
         clientDataSet.FieldByName('dataPedido').AsDateTime   := pedidos[i].DataPedido;
@@ -896,39 +947,46 @@ end;
 
 procedure TFormHome.lblOrdensBtnClick(Sender: TObject);
 var
-  controller:ThomeController;
-  idTransportadoraUsuario:integer;
-  listaCarregador:TobjectList<Tusuario>;
-  carregador:Tusuario;
-  veiculo : Tveiculo;
-  listaVeiculo:TobjectList<Tveiculo>;
-
+  controller: ThomeController;
+  idTransportadoraUsuario: Integer;
+  listaCarregador: TObjectList<Tusuario>;
+  carregador: Tusuario;
+  veiculo: Tveiculo;
+  listaVeiculo: TObjectList<Tveiculo>;
 begin
-pnlOrdens.visible := true;
-mostrarPedidosOrdens;
+  listaCarregador:= tobjectList<Tusuario>.create;
+  listaCarregador:= TObjectList<Tusuario>.create;
+  pnlOrdens.Visible := true;
+  mostrarPedidosOrdens;
+  mostrarOrdensCarreg;
 
   Controller := ThomeController.Create;
   try
     idTransportadoraUsuario := usuarioLogado.UserLogado.getIdTransportadora;
-    listaCarregador := Controller.mostrarUser('Carregador',idTransportadoraUsuario);
-    listaVeiculo := controller.mostrarVeiculo;
+
+    listaCarregador := Controller.mostrarUser('Carregador', idTransportadoraUsuario);
+    listaVeiculo := Controller.mostrarVeiculo;
+
+    if not Assigned(listaCarregador) then
+      raise Exception.Create('A lista de carregadores não foi inicializada!');
+
+    if not Assigned(listaVeiculo) then
+      raise Exception.Create('A lista de veículos não foi inicializada!');
 
     try
-      cbCarregador4Ordens.items.clear;
-
+      cbCarregador4Ordens.Items.Clear;
       for carregador in listaCarregador do
-        cbCarregador4Ordens.items.add(carregador.getId.ToString + ' - ' + carregador.getNome);
+        cbCarregador4Ordens.Items.Add(carregador.getId.ToString + ' - ' + carregador.getNome);
     finally
-      listaCarregador.free;
+      listaCarregador.Free;
     end;
 
     try
-      cbVeiculo4Ordens.items.clear;
-
+      cbVeiculo4Ordens.Items.Clear;
       for veiculo in listaVeiculo do
-        cbVeiculo4Ordens.items.add(veiculo.getId_veiculo.toString + ' - '+ veiculo.getModelo)
+        cbVeiculo4Ordens.Items.Add(veiculo.getId_veiculo.ToString + ' - ' + veiculo.getModelo);
     finally
-      listaVeiculo.free;
+      listaVeiculo.Free;
     end;
   finally
     Controller.Free;
@@ -1785,6 +1843,7 @@ begin
   try
     controller.criarOrdemCarregamento(carregamento,usuarioLogado.UserLogado.getIdTransportadora);
     showMessage('Ordem criada com sucesso!');
+    mostrarOrdensCarreg;
   finally
     controller.free;
   end;

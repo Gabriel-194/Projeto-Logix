@@ -6138,8 +6138,8 @@ object FormHome: TFormHome
       object TabSheet1: TTabSheet
         Caption = 'Ordens de carregamentos'
         object Image14: TImage
-          Left = 17
-          Top = 19
+          Left = 3
+          Top = 10
           Width = 41
           Height = 41
           Center = True
@@ -6163,13 +6163,12 @@ object FormHome: TFormHome
         end
         object Label12: TLabel
           AlignWithMargins = True
-          Left = 3
-          Top = 30
-          Width = 1484
+          Left = 234
+          Top = 10
+          Width = 436
           Height = 32
           Margins.Top = 30
           Margins.Bottom = 30
-          Align = alTop
           Alignment = taCenter
           Caption = 'Selecione o pedido para criar a ordem'
           Font.Charset = DEFAULT_CHARSET
@@ -6178,16 +6177,33 @@ object FormHome: TFormHome
           Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
           ParentFont = False
-          ExplicitWidth = 436
+        end
+        object Label34: TLabel
+          AlignWithMargins = True
+          Left = 966
+          Top = 10
+          Width = 372
+          Height = 32
+          Margins.Top = 30
+          Margins.Bottom = 30
+          Alignment = taCenter
+          Caption = 'Ordens de carregamento criadas'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 6957870
+          Font.Height = -24
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
         end
         object DBGridPedidosOrdens: TDBGrid
           AlignWithMargins = True
-          Left = 190
-          Top = 95
-          Width = 1110
+          Left = 40
+          Top = 60
+          Width = 800
           Height = 400
-          Margins.Left = 190
-          Margins.Right = 190
+          Margins.Left = 40
+          Margins.Top = 60
+          Margins.Right = 650
           Align = alTop
           DataSource = DataSourcePedidosOrdens
           Font.Charset = DEFAULT_CHARSET
@@ -6226,34 +6242,6 @@ object FormHome: TFormHome
             item
               Alignment = taCenter
               Expanded = False
-              FieldName = 'cepOrigem'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -22
-              Font.Name = 'Segoe UI'
-              Font.Style = []
-              Title.Alignment = taCenter
-              Title.Caption = 'CEP origem'
-              Width = 150
-              Visible = True
-            end
-            item
-              Alignment = taCenter
-              Expanded = False
-              FieldName = 'cepDestino'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -22
-              Font.Name = 'Segoe UI'
-              Font.Style = []
-              Title.Alignment = taCenter
-              Title.Caption = 'CEP destino'
-              Width = 150
-              Visible = True
-            end
-            item
-              Alignment = taCenter
-              Expanded = False
               FieldName = 'tipoDeCarga'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
@@ -6268,14 +6256,9 @@ object FormHome: TFormHome
             item
               Alignment = taCenter
               Expanded = False
-              FieldName = 'dataPedido'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -22
-              Font.Name = 'Segoe UI'
-              Font.Style = []
+              FieldName = 'peso'
               Title.Alignment = taCenter
-              Title.Caption = 'Data Pedido'
+              Title.Caption = 'Peso'
               Width = 150
               Visible = True
             end
@@ -6306,6 +6289,48 @@ object FormHome: TFormHome
               Title.Caption = 'Status'
               Width = 130
               Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'dataPedido'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -22
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'Data Pedido'
+              Width = 150
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'cepOrigem'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -22
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'CEP origem'
+              Width = 150
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'cepDestino'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -22
+              Font.Name = 'Segoe UI'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'CEP destino'
+              Width = 150
+              Visible = True
             end>
         end
         object pnlConfOrdemCarreg: TPanel
@@ -6320,9 +6345,6 @@ object FormHome: TFormHome
           Align = alBottom
           BevelOuter = bvNone
           TabOrder = 1
-          ExplicitLeft = 190
-          ExplicitTop = 600
-          ExplicitWidth = 550
           object Shape69: TShape
             Left = 0
             Top = 0
@@ -6352,14 +6374,13 @@ object FormHome: TFormHome
             Font.Style = [fsBold]
             ParentFont = False
             OnClick = lblBtnConfCarregamentoClick
-            ExplicitWidth = 185
-            ExplicitHeight = 25
+            ExplicitTop = 6
           end
         end
         object cbCarregador4Ordens: TComboBox
           AlignWithMargins = True
           Left = 400
-          Top = 548
+          Top = 513
           Width = 272
           Height = 33
           Margins.Left = 400
@@ -6373,13 +6394,12 @@ object FormHome: TFormHome
           ParentFont = False
           TabOrder = 2
           TextHint = 'Selecione o carregador'
-          ExplicitLeft = 190
-          ExplicitTop = 525
+          ExplicitTop = 548
         end
         object cbVeiculo4Ordens: TComboBox
           AlignWithMargins = True
           Left = 768
-          Top = 548
+          Top = 513
           Width = 272
           Height = 33
           Margins.Top = 50
@@ -6393,8 +6413,76 @@ object FormHome: TFormHome
           ParentFont = False
           TabOrder = 3
           TextHint = 'selecione o veiculo'
-          ExplicitLeft = 1028
-          ExplicitTop = 528
+          ExplicitTop = 548
+        end
+        object DBGridOrdensCarreg: TDBGrid
+          Left = 894
+          Top = 60
+          Width = 593
+          Height = 400
+          DataSource = DataSourceOrdensCarregCriadas
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -21
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 4
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -19
+          TitleFont.Name = 'Segoe UI'
+          TitleFont.Style = [fsBold]
+          Columns = <
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'id'
+              Title.Alignment = taCenter
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'idPedido'
+              Title.Alignment = taCenter
+              Title.Caption = 'Id pedido'
+              Width = 100
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'veiculo'
+              Title.Alignment = taCenter
+              Width = 100
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'carregador'
+              Title.Alignment = taCenter
+              Title.Caption = 'Carregador'
+              Width = 200
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'status'
+              Title.Alignment = taCenter
+              Width = 100
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'dataCadastro'
+              Title.Alignment = taCenter
+              Title.Caption = 'Data Cadastro'
+              Width = 130
+              Visible = True
+            end>
         end
       end
       object TabSheet2: TTabSheet
@@ -6410,5 +6498,9 @@ object FormHome: TFormHome
   object DataSourcePedidosOrdens: TDataSource
     Left = 1120
     Top = 16
+  end
+  object DataSourceOrdensCarregCriadas: TDataSource
+    Left = 928
+    Top = 24
   end
 end
