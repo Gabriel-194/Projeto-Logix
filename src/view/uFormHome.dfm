@@ -6136,7 +6136,7 @@ object FormHome: TFormHome
       TabHeight = 50
       TabOrder = 0
       object TabSheet1: TTabSheet
-        Caption = 'Criar Ordens'
+        Caption = 'Ordens de carregamentos'
         object Image14: TImage
           Left = 17
           Top = 19
@@ -6161,10 +6161,29 @@ object FormHome: TFormHome
             3A800EE007DA4794219C6C6FCB0000000049454E44AE426082}
           OnClick = Image14Click
         end
+        object Label12: TLabel
+          AlignWithMargins = True
+          Left = 3
+          Top = 30
+          Width = 1484
+          Height = 32
+          Margins.Top = 30
+          Margins.Bottom = 30
+          Align = alTop
+          Alignment = taCenter
+          Caption = 'Selecione o pedido para criar a ordem'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 6957870
+          Font.Height = -24
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          ExplicitWidth = 436
+        end
         object DBGridPedidosOrdens: TDBGrid
           AlignWithMargins = True
           Left = 190
-          Top = 3
+          Top = 95
           Width = 1110
           Height = 400
           Margins.Left = 190
@@ -6176,6 +6195,7 @@ object FormHome: TFormHome
           Font.Height = -21
           Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
           ParentFont = False
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
@@ -6288,21 +6308,25 @@ object FormHome: TFormHome
               Visible = True
             end>
         end
-        object pnlConfPedido: TPanel
+        object pnlConfOrdemCarreg: TPanel
           AlignWithMargins = True
-          Left = 998
-          Top = 600
-          Width = 369
+          Left = 500
+          Top = 636
+          Width = 440
           Height = 29
-          Margins.Left = 1000
-          Margins.Right = 100
+          Margins.Left = 500
+          Margins.Right = 550
           Margins.Bottom = 30
+          Align = alBottom
           BevelOuter = bvNone
           TabOrder = 1
+          ExplicitLeft = 190
+          ExplicitTop = 600
+          ExplicitWidth = 550
           object Shape69: TShape
             Left = 0
             Top = 0
-            Width = 369
+            Width = 440
             Height = 29
             Align = alClient
             Brush.Color = 6957870
@@ -6312,30 +6336,35 @@ object FormHome: TFormHome
             ExplicitWidth = 117
             ExplicitHeight = 33
           end
-          object lblBtnConfirmarPedido: TLabel
+          object lblBtnConfCarregamento: TLabel
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 363
+            Width = 434
             Height = 23
             Align = alClient
             Alignment = taCenter
-            Caption = 'CONFIRMAR PEDIDO'
+            Caption = 'CONFIRMAR ORDEM'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWhite
             Font.Height = -19
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            ExplicitWidth = 187
+            OnClick = lblBtnConfCarregamentoClick
+            ExplicitWidth = 185
             ExplicitHeight = 25
           end
         end
         object cbCarregador4Ordens: TComboBox
-          Left = 190
-          Top = 456
+          AlignWithMargins = True
+          Left = 400
+          Top = 548
           Width = 272
           Height = 33
+          Margins.Left = 400
+          Margins.Top = 50
+          Align = alLeft
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -19
@@ -6344,12 +6373,18 @@ object FormHome: TFormHome
           ParentFont = False
           TabOrder = 2
           TextHint = 'Selecione o carregador'
+          ExplicitLeft = 190
+          ExplicitTop = 525
         end
         object cbVeiculo4Ordens: TComboBox
-          Left = 190
-          Top = 544
+          AlignWithMargins = True
+          Left = 768
+          Top = 548
           Width = 272
           Height = 33
+          Margins.Top = 50
+          Margins.Right = 450
+          Align = alRight
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -19
@@ -6358,10 +6393,12 @@ object FormHome: TFormHome
           ParentFont = False
           TabOrder = 3
           TextHint = 'selecione o veiculo'
+          ExplicitLeft = 1028
+          ExplicitTop = 528
         end
       end
       object TabSheet2: TTabSheet
-        Caption = 'Editar Ordens'
+        Caption = 'Ordens de viagens'
         ImageIndex = 1
       end
     end

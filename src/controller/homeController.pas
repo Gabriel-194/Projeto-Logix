@@ -2,7 +2,7 @@ unit homeController;
 
 interface
 uses
-data.DB,homeService,pedidoDto,pedidoService, uUsuario, userService, System.SysUtils, system.Generics.Collections,MotoristaDto,uVeiculo,veiculoService,tipocargaDto;
+data.DB,homeService,pedidoDto,pedidoService, uUsuario,carregamentoDto,OrdensService, userService, System.SysUtils, system.Generics.Collections,MotoristaDto,uVeiculo,veiculoService,tipocargaDto;
 
 type THomeController = class
   procedure cadastrarUsuario(aUsuario:TUsuario);
@@ -35,6 +35,8 @@ function cargasDisponiveis(aIdTransportadora:Integer):tlist<TtipoCargaDto>;
 function BuscarPedidosPorTransp(aIdTransportadora:Integer):Tlist<TpedidoDto>;
 function buscarPedidosPorStatus(aIdTransportadora:Integer; aStatus:String):Integer;
 function BuscarPedidosOrdens(aIdTransportadora:Integer):Tlist<TpedidoDto>;
+//==================== ORDENS ====================
+procedure criarOrdemCarregamento(acarregamento:TcarregamentoDto; aIdTransportadora:Integer);
 
   end;
 
@@ -167,6 +169,18 @@ begin
     result := homeService.ContarUsuariosPorCargo(aCargo);
   finally
     homeService.free;
+  end;
+end;
+
+procedure THomeController.criarOrdemCarregamento(acarregamento:TcarregamentoDto; aIdTransportadora:Integer);
+var
+service : TOrdemService;
+begin
+  service := TOrdemService.create;
+  try
+    service.criarOrdemCarregamento(aCarregamento,aIdTransportadora);
+  finally
+    service.free;
   end;
 end;
 

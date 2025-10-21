@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
-  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask, usuarioLogado,uUsuario,
+  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask, usuarioLogado,uUsuario,carregamentoDto,
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController,system.Generics.Collections,motoristaDto, uVeiculo,tipoCargaDto,pedidoDto;
 
 type
@@ -344,11 +344,12 @@ type
     TabSheet2: TTabSheet;
     DBGridPedidosOrdens: TDBGrid;
     Image14: TImage;
-    pnlConfPedido: TPanel;
+    pnlConfOrdemCarreg: TPanel;
     Shape69: TShape;
-    lblBtnConfirmarPedido: TLabel;
+    lblBtnConfCarregamento: TLabel;
     cbCarregador4Ordens: TComboBox;
     cbVeiculo4Ordens: TComboBox;
+    Label12: TLabel;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -410,6 +411,7 @@ type
     procedure DBGridPedidosOrdensDrawColumnCell(Sender: TObject;
       const Rect: TRect; DataCol: Integer; Column: TColumn;
       State: TGridDrawState);
+    procedure lblBtnConfCarregamentoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -786,6 +788,25 @@ var
   x, y: Integer;
   txtWidth, txtHeight: Integer;
 begin
+    if (gdSelected in State) then
+  begin
+
+    DBGridPedidosOrdens.Canvas.Brush.Color := clHighlight;
+    DBGridPedidosOrdens.Canvas.FillRect(Rect);
+
+    DBGridPedidosOrdens.Canvas.Font.Color := clHighlightText;
+
+
+    DBGridPedidosOrdens.Canvas.TextOut(Rect.Left + 2, Rect.Top + 2, Column.Field.AsString);
+
+    DBGridPedidosOrdens.DefaultDrawing := False;
+  end
+  else
+  begin
+
+    DBGridPedidosOrdens.DefaultDrawing := True;
+  end;
+
   value := '';
 
   if Column.FieldName = 'dataPedido' then
@@ -802,8 +823,8 @@ begin
   y := Rect.Top + (Rect.Bottom - Rect.Top - txtHeight) div 2;
 
   DBGridPedidosOrdens.Canvas.TextRect(Rect, x, y, value);
-end;
 
+end;
 // ====================== on show form home ============================
 procedure TFormHome.AtualizarDashboards;
 var
@@ -1577,6 +1598,7 @@ veiculo := Tveiculo.Create;
     veiculo.Free;
 end;
 
+
 procedure TFormHome.lblBtnEditarVeiculoClick(Sender: TObject);
 var
   Controller: ThomeController;
@@ -1743,6 +1765,26 @@ begin
     showMessage('veiculo excluido com sucesso.');
     mostrarVeiculo;
     AtualizarDashboards;
+  finally
+    controller.free;
+  end;
+end;
+
+//================== criar ordem de carregamento================================
+procedure TFormHome.lblBtnConfCarregamentoClick(Sender: TObject);
+var
+carregamento:TcarregamentoDto;
+controller:ThomeController;
+begin
+  controller:=ThomeController.create;
+
+  carregamento.sCarregador := cbCarregador4Ordens.Text;
+  carregamento.sVeiculo    := cbVeiculo4Ordens.Text;
+  Carregamento.idPedido     := DataSourcePedidosOrdens.DataSet.FieldByName('idPedido').AsInteger;
+
+  try
+    controller.criarOrdemCarregamento(carregamento,usuarioLogado.UserLogado.getIdTransportadora);
+    showMessage('Ordem criada com sucesso!');
   finally
     controller.free;
   end;

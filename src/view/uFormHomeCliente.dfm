@@ -1432,7 +1432,6 @@
               ParentFont = False
               TabOrder = 0
               Text = '  .   -   '
-              ExplicitTop = 0
             end
           end
           object Panel44: TPanel

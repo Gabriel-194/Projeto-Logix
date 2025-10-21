@@ -42,7 +42,10 @@ uses
   pedidoService in 'src\service\pedidoService.pas',
   pedidoRepository in 'src\repository\pedidoRepository.pas',
   homeClienteService in 'src\service\homeClienteService.pas',
-  homeClienteRepository in 'src\repository\homeClienteRepository.pas';
+  homeClienteRepository in 'src\repository\homeClienteRepository.pas',
+  carregamentoDto in 'src\DTO\carregamentoDto.pas',
+  OrdensService in 'src\service\OrdensService.pas',
+  OrdemRepository in 'src\repository\OrdemRepository.pas';
 
 {$R *.res}
 

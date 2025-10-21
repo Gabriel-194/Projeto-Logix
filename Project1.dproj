@@ -119,7 +119,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
-        <DCC_UnitSearchPath>C:\Users\gabriel kuchma\Documents\Embarcadero\Studio\Projects\Projeto-Logix\src\bcrypt-for-delphi-master;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>C:\Users\gabriel kuchma\Documents\Embarcadero\Studio\Projects\Projeto-Logix\src\bcrypt-for-delphi-master;C:\Users\gabri\OneDrive\Documents\Embarcadero\Studio\Projects\Projeto-Logix\src\bcrypt-for-delphi-master;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Icon_MainIcon>Project1_Icon.ico</Icon_MainIcon>
@@ -184,6 +184,9 @@
         <DCCReference Include="src\repository\pedidoRepository.pas"/>
         <DCCReference Include="src\service\homeClienteService.pas"/>
         <DCCReference Include="src\repository\homeClienteRepository.pas"/>
+        <DCCReference Include="src\DTO\carregamentoDto.pas"/>
+        <DCCReference Include="src\service\OrdensService.pas"/>
+        <DCCReference Include="src\repository\OrdemRepository.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -211,6 +214,12 @@
             </Delphi.Personality>
             <Deployment Version="4">
                 <DeployFile LocalName="Win32\Debug\Project1.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>Project1.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Release\Project1.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>Project1.exe</RemoteName>
                         <Overwrite>true</Overwrite>

@@ -58,35 +58,27 @@ CREATE TABLE IF NOT EXISTS {schema}.pedido (
   ativo boolean default true
 );
 
--- Viagem (ligando motorista, veículo e pedido)
-CREATE TABLE IF NOT EXISTS {schema}.viagem (
-  id_viagem SERIAL PRIMARY KEY,
-  id_veiculo INT NOT NULL REFERENCES {schema}.veiculo(id_veiculo),
-  id_motorista INT NOT NULL REFERENCES public.motorista(id_motorista),
-  data_saida_cd TIMESTAMP,
-  data_chegada_cd TIMESTAMP,
-  status VARCHAR(30),
-  id_pedido INT NOT NULL REFERENCES {schema}.pedido(id_pedido),
-  preco_frete DECIMAL(10,2),
-  data_cadastro TIMESTAMP DEFAULT now(),
-  data_atualizacao TIMESTAMP DEFAULT now()
-);
-
--- Carregamento
 CREATE TABLE IF NOT EXISTS {schema}.carregamento (
   id_carregamento SERIAL PRIMARY KEY,
-  id_viagem INT NOT NULL REFERENCES {schema}.viagem(id_viagem),
-  id_carregador INT, -- pode futuramente ser um usuário com cargo "carregador"
+  id_pedido      INT NOT NULL REFERENCES {schema}.pedido(id_pedido),
+  id_veiculo     INT NOT NULL REFERENCES {schema}.veiculo(id_veiculo),
+  id_carregador  INT NOT NULL REFERENCES public.usuario(id_usuario), -- ou sua tabela carregador
   data_hora_inicio TIMESTAMP,
   data_hora_fim TIMESTAMP,
-  status VARCHAR(30),
+  status VARCHAR(30) DEFAULT 'Aguardando',
   data_cadastro TIMESTAMP DEFAULT now(),
   data_atualizacao TIMESTAMP DEFAULT now()
 );
 
--- Carregamento_produto
-CREATE TABLE IF NOT EXISTS {schema}.carregamento_produto (
-  id_carregamento INT REFERENCES {schema}.carregamento(id_carregamento),
-  id_pedido INT REFERENCES {schema}.pedido(id_pedido),
-  PRIMARY KEY (id_carregamento, id_pedido)
+CREATE TABLE IF NOT EXISTS {schema}.viagem (
+  id_viagem        SERIAL PRIMARY KEY,
+  id_carregamento  INT NOT NULL REFERENCES {schema}.carregamento(id_carregamento),
+  id_veiculo       INT NOT NULL REFERENCES {schema}.veiculo(id_veiculo), -- aqui!
+  id_motorista     INT NOT NULL REFERENCES public.motorista(id_motorista),
+  data_saida_cd    TIMESTAMP,
+  data_chegada_cd  TIMESTAMP,
+  status VARCHAR(30) DEFAULT 'Aguardando',
+  data_cadastro    TIMESTAMP DEFAULT now(),
+  data_atualizacao TIMESTAMP DEFAULT now()
 );
+
