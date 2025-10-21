@@ -416,6 +416,7 @@ type
       State: TGridDrawState);
     procedure lblBtnConfCarregamentoClick(Sender: TObject);
     procedure mostrarOrdensCarreg;
+    procedure DBGridPedidosOrdensCellClick(Column: TColumn);
   private
     { Private declarations }
   public
@@ -534,9 +535,9 @@ veiculo : Tveiculo;
 item: TlistItem;
 begin
   controller := ThomeController.create;
-  listaVeiculo.create;
+  listaVeiculo:= TobjectList<Tveiculo>.create;
   try
-    listaVeiculo := controller.mostrarVeiculo;
+    listaVeiculo := controller.mostrarVeiculo(usuarioLogado.UserLogado.getIdTransportadora);
 
     lswVeiculos.items.clear;
 
@@ -569,7 +570,7 @@ begin
   listaVeiculo.create;
   controller := ThomeController.create;
   try
-    listaVeiculo := controller.mostrarVeiculoInativo;
+    listaVeiculo := controller.mostrarVeiculoInativo(usuarioLogado.userLogado.getIdTransportadora);
 
     lswVeiculos.items.clear;
 
@@ -832,6 +833,8 @@ begin
 
   DBGridMeusPedidos.Canvas.TextRect(Rect, x, y, value);
 end;
+
+
 procedure TFormHome.DBGridPedidosOrdensDrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
 var
@@ -965,13 +968,8 @@ begin
     idTransportadoraUsuario := usuarioLogado.UserLogado.getIdTransportadora;
 
     listaCarregador := Controller.mostrarUser('Carregador', idTransportadoraUsuario);
-    listaVeiculo := Controller.mostrarVeiculo;
+    listaVeiculo := Controller.mostrarVeiculo(usuarioLogado.UserLogado.getIdTransportadora);
 
-    if not Assigned(listaCarregador) then
-      raise Exception.Create('A lista de carregadores não foi inicializada!');
-
-    if not Assigned(listaVeiculo) then
-      raise Exception.Create('A lista de veículos não foi inicializada!');
 
     try
       cbCarregador4Ordens.Items.Clear;
@@ -1847,6 +1845,42 @@ begin
   finally
     controller.free;
   end;
+end;
+
+procedure TFormHome.DBGridPedidosOrdensCellClick(Column: TColumn);
+var
+  pesoPedido: Double;
+  tipoCargaPedido: string;
+  veiculo: TVeiculo;
+  listaVeiculos:TobjectList<Tveiculo>;
+  i: Integer;
+  controller:ThomeController;
+begin
+  controller:=ThomeController.create;
+
+  pesoPedido := DataSourcePedidosOrdens.DataSet.FieldByName('peso').AsFloat;
+  tipoCargaPedido := DataSourcePedidosOrdens.DataSet.FieldByName('tipoDeCarga').AsString;
+
+  cbVeiculo4Ordens.Clear;
+
+
+  listaVeiculos := controller.buscarVeiculosDisponiveis(usuarioLogado.UserLogado.getIdTransportadora,pesoPedido, tipoCargaPedido);
+
+  try
+    for i := 0 to listaVeiculos.Count - 1 do
+    begin
+      veiculo := listaVeiculos[i];
+      cbVeiculo4Ordens.Items.Add(
+        IntToStr(veiculo.getId_veiculo) + ' - ' + veiculo.getModelo
+      );
+    end;
+
+    if cbVeiculo4Ordens.Items.Count = 0 then
+      ShowMessage('Nenhum veículo disponível para este tipo de carga e peso.');
+  finally
+    listaVeiculos.Free;
+  end;
+  controller.free;
 end;
 
 end.

@@ -25,8 +25,8 @@ type THomeController = class
  procedure editarMotorista(motorista:TmotoristaDto);
 //================veiculo===============================
 procedure cadastrarVeiculo(veiculo:Tveiculo);
-function mostrarVeiculo: TobjectList<Tveiculo>;
-function mostrarVeiculoInativo: TobjectList<Tveiculo>;
+function mostrarVeiculo (aIdTransportadora:Integer):TobjectList<Tveiculo>;
+function mostrarVeiculoInativo(aIdTransportadora:Integer):TobjectList<Tveiculo>;
 procedure excluirVeiculo(veiculo:Tveiculo);
 procedure recuperarVeiculo(veiculo:Tveiculo);
 procedure editarVeiculo(veiculo:Tveiculo);
@@ -38,6 +38,7 @@ function BuscarPedidosOrdens(aIdTransportadora:Integer):Tlist<TpedidoDto>;
 //==================== ORDENS ====================
 procedure criarOrdemCarregamento(acarregamento:TcarregamentoDto; aIdTransportadora:Integer);
 function buscarOrdensCarregPorTransp (aIdTransportadora:Integer):Tlist<TcarregamentoDto>;
+function buscarVeiculosDisponiveis(aIdTransportadora:integer; apeso:double;atipoCarga:string):TobjectList<Tveiculo>;
 
   end;
 
@@ -105,6 +106,19 @@ service:=TpedidoService.create;
     service.free;
   end;
 
+end;
+
+function THomeController.buscarVeiculosDisponiveis(aIdTransportadora: integer;
+  apeso: double; atipoCarga: string): TobjectList<Tveiculo>;
+var
+service:TveiculoService;
+begin
+service:=TveiculoService.create;
+ try
+   result := service.buscarVeiculosDisponiveis(aIdTransportadora,aPeso,aTipoCarga);
+ finally
+  service.free;
+ end;
 end;
 
 procedure THomeController.cadastrarMotorista(motorista: TmotoristaDto);
@@ -318,25 +332,25 @@ begin
  end;
 end;
 
-function THomeController.mostrarVeiculo: TobjectList<Tveiculo>;
+function THomeController.mostrarVeiculo(aIdTransportadora:Integer):TobjectList<Tveiculo>;
 var
 service : TveiculoService;
 begin
 service := TveiculoService.create;
   try
-    result := service.mostrarVeiuclo;
+    result := service.mostrarVeiuclo(aidTransportadora);
   finally
     service.free;
   end;
 end;
 
-function THomeController.mostrarVeiculoInativo: TobjectList<Tveiculo>;
+function THomeController.mostrarVeiculoInativo(aIdTransportadora:Integer):TobjectList<Tveiculo>;
 var
 service : TveiculoService;
 begin
 service := TveiculoService.create;
   try
-    result := service.mostrarVeiculoInativo;
+    result := service.mostrarVeiculoInativo(aIdTransportadora);
   finally
     service.free;
   end;

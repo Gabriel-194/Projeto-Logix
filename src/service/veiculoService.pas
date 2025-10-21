@@ -6,17 +6,32 @@ veiculoRepository,uVeiculo,System.Generics.Collections,System.SysUtils, DateUtil
 
 type TveiculoService = class
   procedure cadastrarVeiculo(veiculo:Tveiculo);
-  function mostrarVeiuclo:TobjectList<Tveiculo>;
-  function mostrarVeiculoInativo: TobjectList<Tveiculo>;
+  function mostrarVeiuclo(aIdTransportadora:Integer):TobjectList<Tveiculo>;
+  function mostrarVeiculoInativo(aIdTransportadora:Integer):TobjectList<Tveiculo>;
   procedure excluirVeiculo(veiculo:Tveiculo);
   procedure recuperarVeiculo(veiculo:Tveiculo);
   procedure editarVeiculo(veiculo:Tveiculo);
   function cargasDisponiveis(aIdTransportadora:Integer):tlist<TtipoCargaDto>;
+  function buscarVeiculosDisponiveis(aIdTransportadora:integer; apeso:double;atipoCarga:string):TobjectList<Tveiculo>;
 end;
 
 implementation
 
 { TveiculoService }
+
+function TveiculoService.buscarVeiculosDisponiveis(aIdTransportadora: integer;
+  apeso: double; atipoCarga: string): TobjectList<Tveiculo>;
+var
+repo:TveiculoRepository;
+begin
+repo:=TveiculoRepository.create;
+
+  try
+    result := repo.buscarVeiculosDisponiveis(aIdTransportadora, aPeso,aTipoCarga);
+  finally
+    repo.free;
+  end;
+end;
 
 procedure TveiculoService.cadastrarVeiculo(veiculo:Tveiculo);
 var
@@ -29,7 +44,7 @@ begin
   if Trim(veiculo.getPlaca) = '' then
     raise Exception.Create('A placa do veículo não pode estar vazia.');
 
-  if veiculo.getAno < 1900 then
+  if (veiculo.getAno < 1900) and (veiculo.getAno > 2025) then
     raise Exception.Create('Ano do veículo inválido.');
 
   if veiculo.getAno > anoAtual then
@@ -101,25 +116,25 @@ veiculoRepo:=TveiculoRepository.create;
   end;
 end;
 
-function TveiculoService.mostrarVeiuclo: TobjectList<Tveiculo>;
+function TveiculoService.mostrarVeiuclo(aIdTransportadora:Integer):TobjectList<Tveiculo>;
 var
 veiculoRepo:TveiculoRepository;
 begin
   veiculoRepo:=TveiculoRepository.create;
   try
-    result := veiculoRepo.mostrarVeiuclo;
+    result := veiculoRepo.mostrarVeiuclo(aIdtransportadora);
   finally
     veiculoRepo.free;
   end;
 end;
 
-function TveiculoService.mostrarVeiculoInativo: TobjectList<Tveiculo>;
+function TveiculoService.mostrarVeiculoInativo(aIdTransportadora:Integer):TobjectList<Tveiculo>;
 var
 veiculoRepo:TveiculoRepository;
 begin
   veiculoRepo:=TveiculoRepository.create;
   try
-    result := veiculoRepo.mostrarVeiculoInativo;
+    result := veiculoRepo.mostrarVeiculoInativo(aIdtransportadora);
   finally
     veiculoRepo.free;
   end;

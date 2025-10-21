@@ -6,15 +6,65 @@ System.SysUtils, FireDAC.Comp.Client,uVeiculo ,unit2,System.Generics.Collections
 
 type TveiculoRepository = class
   procedure CadastrarVeiculo(veiculo:Tveiculo);
-  function mostrarVeiuclo:TobjectList<Tveiculo>;
-  function mostrarVeiculoInativo:TobjectList<Tveiculo>;
+  function mostrarVeiuclo(aIdTransportadora:Integer):TobjectList<Tveiculo>;
+  function mostrarVeiculoInativo(aIdTransportadora:Integer):TobjectList<Tveiculo>;
   procedure excluirVeiculo(veiculo:Tveiculo);
   procedure RecuperarVeiculo(veiculo:Tveiculo);
   procedure editarVeiculo(veiculo:Tveiculo);
   function cargasDisponiveis(aIdTransportadora:Integer):Tlist<TtipocargaDto>;
+  function buscarVeiculosDisponiveis(aIdTransportadora:integer; apeso:double;atipoCarga:string):TobjectList<Tveiculo>;
 end;
 
 implementation
+
+function TveiculoRepository.buscarVeiculosDisponiveis(
+  aIdTransportadora: integer; apeso: double;
+  atipoCarga: string): TobjectList<Tveiculo>;
+var
+  FDQuery: TFDQuery;
+  SchemaName: string;
+  veiculo: TVeiculo;
+  lista: TObjectList<TVeiculo>;
+begin
+  lista:=TObjectList<TVeiculo>.create;
+  FDQuery := TFDQuery.Create(nil);
+ try
+    FDQuery.Connection := DataModule2.FDConnection1;
+
+      FDQuery.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id_transportadora';
+      FDQuery.ParamByName('id_transportadora').AsInteger := aIdTransportadora;
+      FDQuery.Open;
+
+      SchemaName := FDQuery.FieldByName('schema_name').AsString;
+      FDQuery.Close;
+
+      FDQuery.ExecSQL('SET search_path TO ' + (SchemaName) + ', public');
+
+
+    FDQuery.SQL.Text := 'SELECT id_veiculo, modelo ' +'FROM veiculo WHERE ativo = TRUE ' +
+      '  AND capacidade >= :capacidade ' +
+      '  AND tipo_carga = :tipo_carga ' +
+      '  AND status = ''disponivel'' ' +
+      'ORDER BY id_veiculo';
+
+    FDQuery.ParamByName('capacidade').AsFloat := aPeso;
+    FDQuery.ParamByName('tipo_carga').AsString := aTipoCarga;
+    FDQuery.Open;
+
+    while not FDQuery.Eof do
+    begin
+      veiculo := TVeiculo.Create;
+      veiculo.setId_veiculo(FDQuery.FieldByName('id_veiculo').AsInteger);
+      veiculo.setModelo(FDQuery.FieldByName('modelo').AsString);
+      lista.Add(veiculo);
+      FDQuery.Next;
+    end;
+
+    Result := lista;
+  finally
+    FDQuery.Free;
+  end;
+end;
 
 { ThomeRepository }
 
@@ -38,9 +88,9 @@ begin
 
       FDQuery.SQL.Text :=
         'INSERT INTO veiculo ' +
-        '(placa, modelo, ano, tipo_carga, capacidade, unidade_medida, id_motorista, ativo, data_cadastro, data_atualizacao) ' +
+        '(placa, modelo, ano, tipo_carga, capacidade, unidade_medida, id_motorista, ativo, data_cadastro, data_atualizacao,status) ' +
         'VALUES ' +
-        '(:placa, :modelo, :ano, :tipo_carga, :capacidade, :unidade_medida, :id_motorista, TRUE, NOW(), NOW())';
+        '(:placa, :modelo, :ano, :tipo_carga, :capacidade, :unidade_medida, :id_motorista, TRUE, NOW(), NOW(), ''disponivel'')';
 
       FDQuery.ParamByName('placa').AsString := veiculo.getPlaca;
       FDQuery.ParamByName('modelo').AsString := veiculo.getModelo;
@@ -166,16 +216,12 @@ begin
   end;
 end;
 
-function TveiculoRepository.mostrarVeiuclo: TobjectList<Tveiculo>;
+function TveiculoRepository.mostrarVeiuclo(aIdTransportadora:Integer):TobjectList<Tveiculo>;
 var
   FDQuery: TFDQuery;
   SchemaName: string;
   veiculo: Tveiculo;
-  IdTransportadoraLogada: Integer;
 begin
-  IdTransportadoraLogada := UsuarioLogado.UserLogado.getIdTransportadora;
-//jeito para teste
-// IdTransportadoraLogada := 1;
   veiculo := Tveiculo.create;
   Result := TObjectList<Tveiculo>.Create(True);
   FDQuery := TFDQuery.Create(nil);
@@ -183,7 +229,7 @@ begin
     FDQuery.Connection := DataModule2.FDConnection1;
 
     FDQuery.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id_transportadora';
-     FDQuery.ParamByName('id_transportadora').AsInteger := IdTransportadoraLogada;
+     FDQuery.ParamByName('id_transportadora').AsInteger := aIdTransportadora;
     FDQuery.Open;
 
 
@@ -218,16 +264,13 @@ begin
   end;
 end;
 
-function TveiculoRepository.mostrarveiculoInativo: TobjectList<Tveiculo>;
+function TveiculoRepository.mostrarveiculoInativo(aIdTransportadora:Integer):TobjectList<Tveiculo>;
 var
   FDQuery: TFDQuery;
   SchemaName: string;
   veiculo: Tveiculo;
   IdTransportadoraLogada: Integer;
 begin
- IdTransportadoraLogada := UsuarioLogado.UserLogado.getIdTransportadora;
-//jeito para teste
-//  IdTransportadoraLogada := 1;
   veiculo := Tveiculo.create;
   Result := TObjectList<Tveiculo>.Create(True);
   FDQuery := TFDQuery.Create(nil);
@@ -235,7 +278,7 @@ begin
     FDQuery.Connection := DataModule2.FDConnection1;
 
     FDQuery.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id_transportadora';
-     FDQuery.ParamByName('id_transportadora').AsInteger := IdTransportadoraLogada;
+     FDQuery.ParamByName('id_transportadora').AsInteger := aIdTransportadora;
     FDQuery.Open;
 
 

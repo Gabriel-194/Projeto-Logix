@@ -24,6 +24,7 @@ var
   lista:Tlist<TcarregamentoDto>;
   carregamento:TcarregamentoDto;
 begin
+  lista:=Tlist<TcarregamentoDto>.create;
   FDQuery := TFDQuery.Create(nil);
   try
     FDQuery.Connection := DataModule2.FDConnection1;
