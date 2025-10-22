@@ -4,7 +4,7 @@
         <ProjectVersion>20.1</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <ProjectName Condition="'$(ProjectName)'==''">Project1</ProjectName>
         <TargetedPlatforms>3</TargetedPlatforms>
@@ -187,6 +187,7 @@
         <DCCReference Include="src\DTO\carregamentoDto.pas"/>
         <DCCReference Include="src\service\OrdensService.pas"/>
         <DCCReference Include="src\repository\OrdemRepository.pas"/>
+        <DCCReference Include="src\DTO\viagemDto.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

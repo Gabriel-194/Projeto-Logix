@@ -45,7 +45,8 @@ uses
   homeClienteRepository in 'src\repository\homeClienteRepository.pas',
   carregamentoDto in 'src\DTO\carregamentoDto.pas',
   OrdensService in 'src\service\OrdensService.pas',
-  OrdemRepository in 'src\repository\OrdemRepository.pas';
+  OrdemRepository in 'src\repository\OrdemRepository.pas',
+  viagemDto in 'src\DTO\viagemDto.pas';
 
 {$R *.res}
 

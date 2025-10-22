@@ -10,6 +10,7 @@ type TcarregamentoDto = record
   sVeiculo: string;
   status:String;
   dataCadastro: TDateTime;
+  distanciaKm:double;
 end;
 
 implementation

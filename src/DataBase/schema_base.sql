@@ -74,11 +74,12 @@ CREATE TABLE IF NOT EXISTS {schema}.viagem (
   id_viagem        SERIAL PRIMARY KEY,
   id_carregamento  INT NOT NULL REFERENCES {schema}.carregamento(id_carregamento),
   id_veiculo       INT NOT NULL REFERENCES {schema}.veiculo(id_veiculo), -- aqui!
-  id_motorista     INT NOT NULL REFERENCES public.motorista(id_motorista),
+  id_motorista     INT NOT NULL REFERENCES public.usuarios(id_usuario),
   data_saida_cd    TIMESTAMP,
   data_chegada_cd  TIMESTAMP,
   status VARCHAR(30) DEFAULT 'Aguardando',
   data_cadastro    TIMESTAMP DEFAULT now(),
-  data_atualizacao TIMESTAMP DEFAULT now()
+  data_atualizacao TIMESTAMP DEFAULT now(),
+  distancia_km DOUBLE PRECISION
 );
 

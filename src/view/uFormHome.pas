@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
-  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask, usuarioLogado,uUsuario,carregamentoDto,
+  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask,viagemDto, usuarioLogado,uUsuario,carregamentoDto,
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController,system.Generics.Collections,motoristaDto, uVeiculo,tipoCargaDto,pedidoDto;
 
 type
@@ -353,6 +353,17 @@ type
     DataSourceOrdensCarregCriadas: TDataSource;
     DBGridOrdensCarreg: TDBGrid;
     Label34: TLabel;
+    DBGridOrdensCarreg4viagens: TDBGrid;
+    Image15: TImage;
+    Label35: TLabel;
+    DataSourceOrdensCarreg4viagens: TDataSource;
+    DBGridOrdensViagens: TDBGrid;
+    Label36: TLabel;
+    cbMotorista4viagem: TComboBox;
+    Panel7: TPanel;
+    Shape73: TShape;
+    lblCriarOrdemViagem: TLabel;
+    DataSourceOrdensViagens: TDataSource;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -417,6 +428,7 @@ type
     procedure lblBtnConfCarregamentoClick(Sender: TObject);
     procedure mostrarOrdensCarreg;
     procedure DBGridPedidosOrdensCellClick(Column: TColumn);
+    procedure lblCriarOrdemViagemClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -665,17 +677,17 @@ end;
 
 procedure TFormHome.mostrarOrdensCarreg;
 var
-controller :ThomeController;
-ordensCarregamentos:Tlist<TcarregamentoDto>;
-carregamento:TcarregamentoDto;
-i:integer;
-carregamentoDataSet:TclientDataSet;
+  controller :ThomeController;
+  ordensCarregamentos: Tlist<TcarregamentoDto>;
+  i: integer;
+  carregamentoDataSet, dsProntos: TClientDataSet;
 begin
-controller:=ThomeController.create;
+  controller := ThomeController.create;
   try
     ordensCarregamentos := controller.buscarOrdensCarregPorTransp(usuarioLogado.UserLogado.getIdTransportadora);
 
-    carregamentoDataSet:=TclientDataSet.create(nil);
+    carregamentoDataSet := TClientDataSet.create(nil);
+    dsProntos := TClientDataSet.create(nil);
     try
       carregamentoDataSet.FieldDefs.Add('id', ftInteger);
       carregamentoDataSet.FieldDefs.Add('idPedido', ftInteger);
@@ -683,27 +695,48 @@ controller:=ThomeController.create;
       carregamentoDataSet.FieldDefs.Add('carregador', ftString, 90);
       carregamentoDataSet.FieldDefs.Add('status', ftString, 30);
       carregamentoDataSet.FieldDefs.Add('dataCadastro', ftDateTime);
+      carregamentoDataSet.FieldDefs.Add('distanciaKm', ftFloat);
       carregamentoDataSet.CreateDataSet;
+
+      dsProntos.FieldDefs.Assign(carregamentoDataSet.FieldDefs);
+      dsProntos.CreateDataSet;
 
       for i := 0 to ordensCarregamentos.Count - 1 do
       begin
         carregamentoDataSet.Append;
         carregamentoDataSet.FieldByName('id').AsInteger      := ordensCarregamentos[i].idCarregamento;
-        carregamentoDataSet.FieldByName('idPedido').AsInteger      := ordensCarregamentos[i].IdPedido;
-        carregamentoDataSet.FieldByName('veiculo').AsString      := ordensCarregamentos[i].sVeiculo;
-        carregamentoDataSet.FieldByName('carregador').AsString     := ordensCarregamentos[i].sCarregador;
-        carregamentoDataSet.FieldByName('status').AsString    := ordensCarregamentos[i].status;
-        carregamentoDataSet.FieldByName('dataCadastro').AsDateTime   := ordensCarregamentos[i].dataCadastro;
+        carregamentoDataSet.FieldByName('idPedido').AsInteger := ordensCarregamentos[i].idPedido;
+        carregamentoDataSet.FieldByName('veiculo').AsString  := ordensCarregamentos[i].sVeiculo;
+        carregamentoDataSet.FieldByName('carregador').AsString := ordensCarregamentos[i].sCarregador;
+        carregamentoDataSet.FieldByName('status').AsString   := ordensCarregamentos[i].status;
+        carregamentoDataSet.FieldByName('dataCadastro').AsDateTime := ordensCarregamentos[i].dataCadastro;
         carregamentoDataSet.Post;
+
+        if SameText(ordensCarregamentos[i].status, 'pronto') then
+        begin
+          dsProntos.Append;
+          dsProntos.FieldByName('id').AsInteger      := ordensCarregamentos[i].idCarregamento;
+          dsProntos.FieldByName('idPedido').AsInteger := ordensCarregamentos[i].idPedido;
+          dsProntos.FieldByName('veiculo').AsString  := ordensCarregamentos[i].sVeiculo;
+          dsProntos.FieldByName('carregador').AsString := ordensCarregamentos[i].sCarregador;
+          dsProntos.FieldByName('status').AsString   := ordensCarregamentos[i].status;
+          dsProntos.FieldByName('dataCadastro').AsDateTime := ordensCarregamentos[i].dataCadastro;
+          dsProntos.FieldByName('distanciakm').AsFloat := ordensCarregamentos[i].distanciaKm;
+          dsProntos.Post;
+        end;
       end;
 
       DataSourceOrdensCarregCriadas.DataSet := carregamentoDataSet;
       DBGridOrdensCarreg.DataSource := DataSourceOrdensCarregCriadas;
+
+      DataSourceOrdensCarreg4viagens.DataSet := dsProntos;
+      DBGridOrdensCarreg4viagens.DataSource := DataSourceOrdensCarreg4viagens;
+
     finally
-      ordensCarregamentos.free;
+      ordensCarregamentos.Free;
     end;
   finally
-    controller.free;
+    controller.Free;
   end;
 end;
 
@@ -956,6 +989,8 @@ var
   carregador: Tusuario;
   veiculo: Tveiculo;
   listaVeiculo: TObjectList<Tveiculo>;
+  listaMotorista: Tlist<TmotoristaDto>;
+  motorista:TmotoristaDto;
 begin
   listaCarregador:= tobjectList<Tusuario>.create;
   listaCarregador:= TObjectList<Tusuario>.create;
@@ -969,6 +1004,7 @@ begin
 
     listaCarregador := Controller.mostrarUser('Carregador', idTransportadoraUsuario);
     listaVeiculo := Controller.mostrarVeiculo(usuarioLogado.UserLogado.getIdTransportadora);
+    listaMotorista := controller.mostrarMotorista(idTransportadoraUsuario);
 
 
     try
@@ -985,6 +1021,14 @@ begin
         cbVeiculo4Ordens.Items.Add(veiculo.getId_veiculo.ToString + ' - ' + veiculo.getModelo);
     finally
       listaVeiculo.Free;
+    end;
+
+    try
+      cbMotorista4viagem.items.clear;
+      for motorista in listaMotorista do
+        cbMotorista4viagem.items.add(motorista.IdUsuario.ToString + ' - ' + motorista.Nome);
+    finally
+      listaMotorista.free;
     end;
   finally
     Controller.Free;
@@ -1847,6 +1891,29 @@ begin
   end;
 end;
 
+procedure TFormHome.lblCriarOrdemViagemClick(Sender: TObject);
+var
+  controller:ThomeController;
+  viagem:TviagemDto;
+  idPedido: Integer;
+  distancia: Double;
+begin
+  controller:= tHomeController.create;
+
+  viagem.idCarregamento := DataSourceOrdensCarreg4viagens.DataSet.FieldByName('id').AsInteger;
+  viagem.veiculo := DataSourceOrdensCarreg4viagens.DataSet.FieldByName('veiculo').AsString;
+  viagem.motorista := cbMotorista4viagem.text;
+  viagem.distancia_km :=  DataSourceOrdensCarreg4viagens.DataSet.FieldByName('distanciaKm').AsFloat;;
+
+  try
+    controller.criarOrdemViagem(viagem,usuarioLogado.UserLogado.getIdTransportadora);
+    showMessage('Ordem criada com sucesso!');
+    mostrarOrdensCarreg;
+  finally
+    controller.free;
+  end;
+end;
+
 procedure TFormHome.DBGridPedidosOrdensCellClick(Column: TColumn);
 var
   pesoPedido: Double;
@@ -1863,7 +1930,6 @@ begin
 
   cbVeiculo4Ordens.Clear;
 
-
   listaVeiculos := controller.buscarVeiculosDisponiveis(usuarioLogado.UserLogado.getIdTransportadora,pesoPedido, tipoCargaPedido);
 
   try
@@ -1874,7 +1940,6 @@ begin
         IntToStr(veiculo.getId_veiculo) + ' - ' + veiculo.getModelo
       );
     end;
-
     if cbVeiculo4Ordens.Items.Count = 0 then
       ShowMessage('Nenhum veículo disponível para este tipo de carga e peso.');
   finally

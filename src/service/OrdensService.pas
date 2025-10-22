@@ -2,11 +2,12 @@ unit OrdensService;
 
 interface
 uses
-  system.Generics.Collections, carregamentoDto,OrdemRepository,System.SysUtils;
+  system.Generics.Collections,viagemDto, carregamentoDto,OrdemRepository,System.SysUtils;
 
 type TordemService = class
   procedure criarOrdemCarregamento(aCarregamento:TcarregamentoDto;aIdTransportadora:Integer);
   function buscarOrdensCarregPorTransp(aIdTransportadora: Integer): Tlist<TcarregamentoDto>;
+  procedure criarOrdemViagem(aviagem:TviagemDto; aIdTransportadora:Integer);
 end;
 
 implementation
@@ -72,4 +73,39 @@ begin
     repo.Free;
   end;
 end;
+
+procedure TordemService.criarOrdemViagem(aViagem: TviagemDto; aIdTransportadora: Integer);
+var
+  repo: TOrdemRepository;
+  idxSeparador: Integer;
+begin
+  repo := TOrdemRepository.Create;
+
+  idxSeparador := Pos(' - ', aViagem.Motorista);
+  if idxSeparador > 0 then
+    aViagem.idMotorista := StrToInt(Trim(Copy(aViagem.Motorista, 1, idxSeparador - 1)))
+  else
+    aViagem.idMotorista := StrToInt(Trim(aViagem.Motorista));
+
+  idxSeparador := Pos(' - ', aViagem.Veiculo);
+  if idxSeparador > 0 then
+    aViagem.idVeiculo := StrToInt(Trim(Copy(aViagem.Veiculo, 1, idxSeparador - 1)))
+  else
+    aViagem.idVeiculo := StrToInt(Trim(aViagem.Veiculo));
+
+
+  if (aViagem.idCarregamento <= 0) then
+    raise Exception.Create('Selecione o carregamento.');
+  if (aViagem.idMotorista <= 0) then
+    raise Exception.Create('Selecione o motorista.');
+  if (aViagem.idVeiculo <= 0) then
+    raise Exception.Create('Selecione o veículo.');
+
+  try
+    repo.criarOrdemViagem(aViagem, aIdTransportadora);
+  finally
+    repo.Free;
+  end;
+end;
+
 end.
