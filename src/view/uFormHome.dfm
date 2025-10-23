@@ -874,8 +874,6 @@ object FormHome: TFormHome
     Color = 6957870
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = -5
-    ExplicitTop = -4
     object lblLogix: TLabel
       AlignWithMargins = True
       Left = 21
@@ -978,7 +976,6 @@ object FormHome: TFormHome
       Color = 6957870
       ParentBackground = False
       TabOrder = 0
-      ExplicitLeft = 520
       object Shape1: TShape
         Left = 0
         Top = 0
@@ -1022,7 +1019,6 @@ object FormHome: TFormHome
       Color = 6957870
       ParentBackground = False
       TabOrder = 1
-      ExplicitLeft = 268
       object Shape5: TShape
         Left = 0
         Top = 0
@@ -1111,7 +1107,6 @@ object FormHome: TFormHome
       Color = 6957870
       ParentBackground = False
       TabOrder = 3
-      ExplicitLeft = 394
       object Shape2: TShape
         Left = 0
         Top = 0
@@ -7117,7 +7112,7 @@ object FormHome: TFormHome
             item
               Alignment = taCenter
               Expanded = False
-              FieldName = 'dataInicio'
+              FieldName = 'data_hora_inicio'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -20
@@ -7125,13 +7120,13 @@ object FormHome: TFormHome
               Font.Style = []
               Title.Alignment = taCenter
               Title.Caption = 'Data inicio'
-              Width = 180
+              Width = 190
               Visible = True
             end
             item
               Alignment = taCenter
               Expanded = False
-              FieldName = 'dataFim'
+              FieldName = 'data_hora_fim'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -20
@@ -7139,7 +7134,7 @@ object FormHome: TFormHome
               Font.Style = []
               Title.Alignment = taCenter
               Title.Caption = 'Data fim'
-              Width = 180
+              Width = 190
               Visible = True
             end
             item
@@ -7171,16 +7166,12 @@ object FormHome: TFormHome
           Color = clWhite
           ParentBackground = False
           TabOrder = 1
-          ExplicitLeft = 312
-          ExplicitTop = 397
-          ExplicitWidth = 1033
           object Shape75: TShape
             Left = 0
             Top = 0
             Width = 890
             Height = 276
             Align = alClient
-            Brush.Color = 6957870
             Pen.Color = clBlue
             Shape = stRoundRect
             ExplicitTop = 8
@@ -7478,6 +7469,7 @@ object FormHome: TFormHome
               129EA5524600E1A0AD8AE6BE177F9BE1350D84CCCB858CCC2558EA4330EEF206
               1213E2C2846B01A3B3819350833743ACEFDBDCEFE72FEE9EE1621D0735497901
               1844C610409AF37F048BE5DB3B82699B0000000049454E44AE426082}
+            OnClick = imgIniciarCarregamentoClick
           end
           object Label38: TLabel
             AlignWithMargins = True
@@ -7489,7 +7481,7 @@ object FormHome: TFormHome
             Alignment = taCenter
             Caption = 'Iniciar carregamento:'
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWhite
+            Font.Color = 6957870
             Font.Height = -24
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
@@ -7499,13 +7491,13 @@ object FormHome: TFormHome
             AlignWithMargins = True
             Left = 507
             Top = 34
-            Width = 283
+            Width = 290
             Height = 32
             Margins.Top = 30
             Alignment = taCenter
-            Caption = 'Carregamento concluido'
+            Caption = 'Carregamento concluido:'
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWhite
+            Font.Color = 6957870
             Font.Height = -24
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]

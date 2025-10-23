@@ -9,6 +9,7 @@ type TordemService = class
   function buscarOrdensCarregPorTransp(aIdTransportadora: Integer): Tlist<TcarregamentoDto>;
   procedure criarOrdemViagem(aviagem:TviagemDto; aIdTransportadora:Integer);
   function mostrarOrdensCarregParaCarreg(aIdTransportadora: Integer;aIdCarregador:Integer): Tlist<TcarregamentoDto>;
+procedure iniciarCarregamento(aIdTransportadora,aIdCarregamento,aIdPedido: Integer);
 end;
 
 implementation
@@ -106,6 +107,18 @@ begin
     repo.criarOrdemViagem(aViagem, aIdTransportadora);
   finally
     repo.Free;
+  end;
+end;
+
+procedure TordemService.iniciarCarregamento(aIdTransportadora,aIdCarregamento,aIdPedido: Integer);
+var
+  repos: TOrdemRepository;
+begin
+  repos := TOrdemRepository.Create;
+  try
+    repos.iniciarCarregamento(aidTransportadora,aIdCarregamento,aIdPedido);
+  finally
+    repos.Free;
   end;
 end;
 

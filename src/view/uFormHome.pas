@@ -449,6 +449,7 @@ type
     procedure ordensCarregamento4Carregadores;
     procedure lblBtnMinhasOrdensClick(Sender: TObject);
     procedure Image16Click(Sender: TObject);
+    procedure imgIniciarCarregamentoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -780,8 +781,8 @@ begin
     carregamentoDataSet.FieldDefs.Add('status', ftString, 30);
     carregamentoDataSet.FieldDefs.Add('dataCadastro', ftDateTime);
     carregamentoDataSet.FieldDefs.Add('distanciaKm', ftFloat);
-    carregamentoDataSet.FieldDefs.Add('dataInicio', ftDateTime);
-    carregamentoDataSet.FieldDefs.Add('dataFIm', ftDateTime);
+    carregamentoDataSet.FieldDefs.Add('data_hora_inicio', ftDateTime);
+    carregamentoDataSet.FieldDefs.Add('data_hora_fim', ftDateTime);
     carregamentoDataSet.FieldDefs.Add('carga', ftString, 90);
     carregamentoDataSet.CreateDataSet;
 
@@ -794,14 +795,17 @@ begin
         carregamentoDataSet.FieldByName('carregador').AsString := ordensCarregamentos[i].sCarregador;
         carregamentoDataSet.FieldByName('status').AsString   := ordensCarregamentos[i].status;
         carregamentoDataSet.FieldByName('dataCadastro').AsDateTime := ordensCarregamentos[i].dataCadastro;
-      if (ordensCarregamentos[i].dataInicio <= 0) or (YearOf(ordensCarregamentos[i].dataInicio) = 1899) then
-      carregamentoDataSet.FieldByName('dataInicio').Clear
-      else
-      carregamentoDataSet.FieldByName('dataInicio').AsDateTime := ordensCarregamentos[i].dataInicio;
-      if (ordensCarregamentos[i].dataFim <= 0) or (YearOf(ordensCarregamentos[i].dataFim) = 1899) then
-        carregamentoDataSet.FieldByName('dataFim').Clear
-      else
-        carregamentoDataSet.FieldByName('dataFim').AsDateTime := ordensCarregamentos[i].dataFim;
+
+        if ordensCarregamentos[i].data_hora_inicio <= 0 then
+          carregamentoDataSet.FieldByName('data_hora_inicio').Clear
+        else
+          carregamentoDataSet.FieldByName('data_hora_inicio').AsDateTime := ordensCarregamentos[i].data_hora_inicio;
+
+        if ordensCarregamentos[i].data_hora_fim <= 0 then
+          carregamentoDataSet.FieldByName('data_hora_fim').Clear
+        else
+          carregamentoDataSet.FieldByName('data_hora_fim').AsDateTime := ordensCarregamentos[i].data_hora_fim;
+
         carregamentoDataSet.FieldByName('carga').AsString := ordensCarregamentos[i].carga;
         carregamentoDataSet.Post;
     end;
@@ -1481,9 +1485,7 @@ begin
   motorista.CategoriaCNH := edtCategoriaCnh.text;
   motorista.ValidadeCNH := StrToDate(MaskEditValidadeCnh.text);
   motorista.cargo := 'motorista';
-   motorista.idTransportadora := UsuarioLogado.UserLogado.getIdTransportadora;
-  // jeito para teste ->
- //motorista.idTransportadora:= 1;
+  motorista.idTransportadora := UsuarioLogado.UserLogado.getIdTransportadora;
 
  controller := ThomeController.Create;
 
@@ -2029,6 +2031,29 @@ begin
     listaVeiculos.Free;
   end;
   controller.free;
+end;
+
+procedure TFormHome.imgIniciarCarregamentoClick(Sender: TObject);
+var
+  controller:ThomeController;
+  carregamento:TcarregamentoDto;
+  aIdPedido, aIdCarregamento:integer;
+
+begin
+  controller:=ThomeController.create;
+
+  carregamento.idCarregamento := DTordensCarreg4Carreg.dataSet.FieldByName('id').AsInteger;
+  aIdCarregamento := carregamento.idCarregamento;
+
+  carregamento.idPedido := DTordensCarreg4Carreg.dataSet.FieldByName('idPedido').AsInteger;
+  aIdPedido:= carregamento.IdPedido;
+
+  try
+    controller.iniciarCarregamento(usuarioLogado.UserLogado.getIdTransportadora,aIdCarregamento,aIdPedido);
+    ordensCarregamento4Carregadores;
+  finally
+    controller.free;
+  end;
 end;
 
 end.

@@ -8,6 +8,7 @@ type TordemRepository = class
   function buscarOrdensCarregPorTransp(aIdTransportadora: Integer): Tlist<TcarregamentoDto>;
   procedure criarOrdemViagem(aviagem:TviagemDto; aIdTransportadora:Integer);
   function mostrarOrdensCarregParaCarreg(aIdTransportadora: Integer;aIdCarregador:Integer): Tlist<TcarregamentoDto>;
+  procedure iniciarCarregamento(aIdTransportadora, aIdCarregamento, aidPedido:Integer);
 end;
 
 implementation
@@ -150,6 +151,33 @@ begin
 end;
 
 
+procedure TordemRepository.iniciarCarregamento(aIdTransportadora, aIdCarregamento, aidPedido:Integer);
+var
+  FDQuery: TFDQuery;
+  SchemaName: string;
+begin
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+    FDQuery.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id_transportadora';
+    FDQuery.ParamByName('id_transportadora').AsInteger := aIdTransportadora;
+    FDQuery.Open;
+    SchemaName := FDQuery.FieldByName('schema_name').AsString;
+    FDQuery.Close;
+    FDQuery.ExecSQL('SET search_path TO ' + SchemaName + ', public');
+
+    FDQuery.SQL.Text := 'UPDATE carregamento SET status = ''Em preparo'', data_hora_inicio = Now() WHERE id_carregamento = :id_carregamento';
+    FDQuery.ParamByName('id_carregamento').AsInteger := aIdCarregamento;
+    FDQuery.ExecSQL;
+
+    FDQuery.SQL.Text :='UPDATE pedido SET status = ''Em preparo'' WHERE id_pedido = :id_pedido';
+    FDQuery.ParamByName('id_pedido').AsInteger := aIdpedido;
+    FDQuery.ExecSQL;
+  finally
+    FDQuery.Free;
+  end;
+end;
+
 function TordemRepository.mostrarOrdensCarregParaCarreg(aIdTransportadora,
   aIdCarregador: Integer): Tlist<TcarregamentoDto>;
 var
@@ -179,6 +207,8 @@ begin
     'usuarios.nome, ' +
     'carregamento.status, ' +
     'carregamento.data_cadastro, ' +
+    'carregamento.data_hora_inicio, ' +
+    'carregamento.data_hora_fim, ' +
     'pedido.distancia_km, ' +
     'pedido.tipo_carga ' +
     'FROM carregamento ' +
@@ -204,6 +234,8 @@ begin
       carregamento.dataCadastro   := FDQuery.FieldByName('data_cadastro').AsDateTime;
       carregamento.distanciaKm    := FDQuery.FieldByName('distancia_km').AsFloat;
       carregamento.carga          := FDQuery.FieldByName('tipo_carga').AsString;
+      carregamento.data_hora_inicio:= FDQuery.FieldByName('data_hora_inicio').AsDateTime;
+      carregamento.data_hora_fim:= FDQuery.FieldByName('data_hora_fim').AsDateTime;
       lista.Add(carregamento);
       FDQuery.Next;
     end;

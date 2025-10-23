@@ -41,6 +41,7 @@ function buscarOrdensCarregPorTransp (aIdTransportadora:Integer):Tlist<Tcarregam
 function buscarVeiculosDisponiveis(aIdTransportadora:integer; apeso:double;atipoCarga:string):TobjectList<Tveiculo>;
 procedure criarOrdemViagem(aviagem:TviagemDto; aIdTransportadora:Integer);
 function OrdensCarreg4Carreg(aIdTransportadora: Integer;aIdCarregador:Integer): Tlist<TcarregamentoDto>;
+procedure iniciarCarregamento(aIdTransportadora,aIdCarregamento,aIdPedido: Integer);
 
   end;
 
@@ -283,6 +284,20 @@ begin
 service := TveiculoService.create;
   try
     service.excluirVeiculo(veiculo);
+  finally
+    service.free;
+  end;
+end;
+
+procedure THomeController.iniciarCarregamento(aIdTransportadora,
+  aIdCarregamento,aIdPedido: Integer);
+var
+  service:TordemService;
+begin
+  service:=TordemService.create;
+
+  try
+    service.iniciarCarregamento(aIdTransportadora,aIdCarregamento,aIdPedido);
   finally
     service.free;
   end;

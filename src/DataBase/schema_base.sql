@@ -14,10 +14,10 @@ CREATE TABLE IF NOT EXISTS {schema}.veiculo (
     data_cadastro TIMESTAMPTZ DEFAULT NOW(),
     data_atualizacao TIMESTAMPTZ DEFAULT NOW(),
     id_motorista INTEGER,
+    status varchar(50),
     CONSTRAINT fk_veiculo_motorista
         FOREIGN KEY (id_motorista)
         REFERENCES public.motorista (id_usuario)
-   status varchar(50)
 );
 
 -- Tipo de carga
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS {schema}.carregamento (
   id_carregamento SERIAL PRIMARY KEY,
   id_pedido      INT NOT NULL REFERENCES {schema}.pedido(id_pedido),
   id_veiculo     INT NOT NULL REFERENCES {schema}.veiculo(id_veiculo),
-  id_carregador  INT NOT NULL REFERENCES public.usuario(id_usuario), -- ou sua tabela carregador
+  id_carregador  INT NOT NULL REFERENCES public.usuarios(id_usuario),
   data_hora_inicio TIMESTAMP,
   data_hora_fim TIMESTAMP,
   status VARCHAR(30) DEFAULT 'Aguardando',
