@@ -6,7 +6,8 @@ uses
 type TordemRepository = class
   procedure criarOrdemCarregamento(aCarregamento:TcarregamentoDto; aIdTransportadora:integer);
   function buscarOrdensCarregPorTransp(aIdTransportadora: Integer): Tlist<TcarregamentoDto>;
-    procedure criarOrdemViagem(aviagem:TviagemDto; aIdTransportadora:Integer);
+  procedure criarOrdemViagem(aviagem:TviagemDto; aIdTransportadora:Integer);
+  function mostrarOrdensCarregParaCarreg(aIdTransportadora: Integer;aIdCarregador:Integer): Tlist<TcarregamentoDto>;
 end;
 
 implementation
@@ -52,6 +53,7 @@ begin
   'INNER JOIN veiculo ON veiculo.id_veiculo = carregamento.id_veiculo ' +
   'INNER JOIN pedido ON pedido.id_pedido = carregamento.id_pedido ' +
   'ORDER BY carregamento.id_carregamento DESC';
+
 
     FDQuery.Open;
     while not FDQuery.Eof do
@@ -142,6 +144,71 @@ begin
     FDQuery.ParamByName('distancia_km').AsFloat      := aViagem.distancia_km;
 
     FDQuery.ExecSQL;
+  finally
+    FDQuery.Free;
+  end;
+end;
+
+
+function TordemRepository.mostrarOrdensCarregParaCarreg(aIdTransportadora,
+  aIdCarregador: Integer): Tlist<TcarregamentoDto>;
+var
+  FDQuery: TFDQuery;
+  SchemaName: string;
+  lista:Tlist<TcarregamentoDto>;
+  carregamento:TcarregamentoDto;
+begin
+  lista:=Tlist<TcarregamentoDto>.create;
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+    FDQuery.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id_transportadora';
+    FDQuery.ParamByName('id_transportadora').AsInteger := aIdTransportadora;
+    FDQuery.Open;
+    SchemaName := FDQuery.FieldByName('schema_name').AsString;
+    FDQuery.Close;
+    FDQuery.ExecSQL('SET search_path TO ' + SchemaName + ', public');
+
+
+    FDQuery.SQL.Text :=
+    'SELECT carregamento.id_carregamento, ' +
+    'carregamento.id_pedido, ' +
+    'veiculo.id_veiculo, ' +
+    'veiculo.modelo, ' +
+    'carregamento.id_carregador, ' +
+    'usuarios.nome, ' +
+    'carregamento.status, ' +
+    'carregamento.data_cadastro, ' +
+    'pedido.distancia_km, ' +
+    'pedido.tipo_carga ' +
+    'FROM carregamento ' +
+    'INNER JOIN public.usuarios ON usuarios.id_usuario = carregamento.id_carregador ' +
+    'INNER JOIN veiculo ON veiculo.id_veiculo = carregamento.id_veiculo ' +
+    'INNER JOIN pedido ON pedido.id_pedido = carregamento.id_pedido ' +
+    'WHERE public.usuarios.id_usuario = :id_carregador ' +
+    'ORDER BY carregamento.id_carregamento DESC';
+
+    FDQuery.ParamByName('id_carregador').AsInteger := aIdCarregador;
+
+    FDQuery.Open;
+    while not FDQuery.Eof do
+    begin
+      FillChar(carregamento, SizeOf(carregamento), 0);
+      carregamento.idCarregamento := FDQuery.FieldByName('id_carregamento').AsInteger;
+      carregamento.idPedido       := FDQuery.FieldByName('id_pedido').AsInteger;
+      carregamento.idVeiculo      := FDQuery.FieldByName('id_veiculo').AsInteger;
+      carregamento.sVeiculo       := FDQuery.FieldByName('modelo').AsString;
+      carregamento.idCarregador   := FDQuery.FieldByName('id_carregador').AsInteger;
+      carregamento.sCarregador    := FDQuery.FieldByName('nome').AsString;
+      carregamento.status         := FDQuery.FieldByName('status').AsString;
+      carregamento.dataCadastro   := FDQuery.FieldByName('data_cadastro').AsDateTime;
+      carregamento.distanciaKm    := FDQuery.FieldByName('distancia_km').AsFloat;
+      carregamento.carga          := FDQuery.FieldByName('tipo_carga').AsString;
+      lista.Add(carregamento);
+      FDQuery.Next;
+    end;
+    FDQuery.Close;
+    Result := lista;
   finally
     FDQuery.Free;
   end;

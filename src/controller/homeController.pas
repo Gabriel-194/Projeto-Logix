@@ -40,6 +40,7 @@ procedure criarOrdemCarregamento(acarregamento:TcarregamentoDto; aIdTransportado
 function buscarOrdensCarregPorTransp (aIdTransportadora:Integer):Tlist<TcarregamentoDto>;
 function buscarVeiculosDisponiveis(aIdTransportadora:integer; apeso:double;atipoCarga:string):TobjectList<Tveiculo>;
 procedure criarOrdemViagem(aviagem:TviagemDto; aIdTransportadora:Integer);
+function OrdensCarreg4Carreg(aIdTransportadora: Integer;aIdCarregador:Integer): Tlist<TcarregamentoDto>;
 
   end;
 
@@ -322,6 +323,19 @@ begin
   service.free;
  end;
 end;
+function THomeController.OrdensCarreg4Carreg(aIdTransportadora,
+  aIdCarregador: Integer): Tlist<TcarregamentoDto>;
+var
+service : TOrdemService;
+begin
+  service := TOrdemService.create;
+  try
+    result := service.mostrarOrdensCarregParaCarreg(aIdTransportadora,aIdCarregador);
+  finally
+    service.free;
+  end;
+end;
+
 function THomeController.mostrarUser(const aCargo: string;aIdTransportadora:Integer): TObjectList<Tusuario>;
 var
 service : TuserService;

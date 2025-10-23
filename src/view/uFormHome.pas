@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,dateUtils,
   Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask,viagemDto, usuarioLogado,uUsuario,carregamentoDto,
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController,system.Generics.Collections,motoristaDto, uVeiculo,tipoCargaDto,pedidoDto;
 
@@ -364,6 +364,23 @@ type
     Shape73: TShape;
     lblCriarOrdemViagem: TLabel;
     DataSourceOrdensViagens: TDataSource;
+    pnlMinhasOrdens: TPanel;
+    Shape74: TShape;
+    lblBtnMinhasOrdens: TLabel;
+    PanelMinhasOrdens: TPanel;
+    PageControlMinhasOrdens: TPageControl;
+    TabSheet3: TTabSheet;
+    TabSheet4: TTabSheet;
+    Image16: TImage;
+    Label37: TLabel;
+    Label38: TLabel;
+    Label39: TLabel;
+    imgFimCarregamento: TImage;
+    imgIniciarCarregamento: TImage;
+    Panel8: TPanel;
+    Shape75: TShape;
+    DbGridOrdensCarreg4Carreg: TDBGrid;
+    DTordensCarreg4Carreg: TDataSource;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -429,6 +446,9 @@ type
     procedure mostrarOrdensCarreg;
     procedure DBGridPedidosOrdensCellClick(Column: TColumn);
     procedure lblCriarOrdemViagemClick(Sender: TObject);
+    procedure ordensCarregamento4Carregadores;
+    procedure lblBtnMinhasOrdensClick(Sender: TObject);
+    procedure Image16Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -740,6 +760,58 @@ begin
   end;
 end;
 
+procedure TFormHome.ordensCarregamento4Carregadores;
+var
+  controller :ThomeController;
+  ordensCarregamentos: Tlist<TcarregamentoDto>;
+  i: integer;
+  carregamentoDataSet: TClientDataSet;
+begin
+  controller := ThomeController.create;
+
+  ordensCarregamentos:= controller.OrdensCarreg4Carreg(usuarioLogado.userLogado.getIdTransportadora,usuarioLogado.userLogado.getId);
+
+  carregamentoDataSet:=TclientDataSet.create(nil);
+  try
+    carregamentoDataSet.FieldDefs.Add('id', ftInteger);
+    carregamentoDataSet.FieldDefs.Add('idPedido', ftInteger);
+    carregamentoDataSet.FieldDefs.Add('veiculo', ftString, 30);
+    carregamentoDataSet.FieldDefs.Add('carregador', ftString, 90);
+    carregamentoDataSet.FieldDefs.Add('status', ftString, 30);
+    carregamentoDataSet.FieldDefs.Add('dataCadastro', ftDateTime);
+    carregamentoDataSet.FieldDefs.Add('distanciaKm', ftFloat);
+    carregamentoDataSet.FieldDefs.Add('dataInicio', ftDateTime);
+    carregamentoDataSet.FieldDefs.Add('dataFIm', ftDateTime);
+    carregamentoDataSet.FieldDefs.Add('carga', ftString, 90);
+    carregamentoDataSet.CreateDataSet;
+
+    for i := 0 to ordensCarregamentos.Count - 1 do
+    begin
+        carregamentoDataSet.Append;
+        carregamentoDataSet.FieldByName('id').AsInteger      := ordensCarregamentos[i].idCarregamento;
+        carregamentoDataSet.FieldByName('idPedido').AsInteger := ordensCarregamentos[i].idPedido;
+        carregamentoDataSet.FieldByName('veiculo').AsString  := ordensCarregamentos[i].sVeiculo;
+        carregamentoDataSet.FieldByName('carregador').AsString := ordensCarregamentos[i].sCarregador;
+        carregamentoDataSet.FieldByName('status').AsString   := ordensCarregamentos[i].status;
+        carregamentoDataSet.FieldByName('dataCadastro').AsDateTime := ordensCarregamentos[i].dataCadastro;
+      if (ordensCarregamentos[i].dataInicio <= 0) or (YearOf(ordensCarregamentos[i].dataInicio) = 1899) then
+      carregamentoDataSet.FieldByName('dataInicio').Clear
+      else
+      carregamentoDataSet.FieldByName('dataInicio').AsDateTime := ordensCarregamentos[i].dataInicio;
+      if (ordensCarregamentos[i].dataFim <= 0) or (YearOf(ordensCarregamentos[i].dataFim) = 1899) then
+        carregamentoDataSet.FieldByName('dataFim').Clear
+      else
+        carregamentoDataSet.FieldByName('dataFim').AsDateTime := ordensCarregamentos[i].dataFim;
+        carregamentoDataSet.FieldByName('carga').AsString := ordensCarregamentos[i].carga;
+        carregamentoDataSet.Post;
+    end;
+
+    DTordensCarreg4Carreg.DataSet := carregamentoDataSet;
+    DbGridOrdensCarreg4Carreg.DataSource := DTordensCarreg4Carreg;
+  finally
+  end;
+end;
+
 procedure TFormHome.mostrarPedidosOrdens;
 var
   controller: THomeController;
@@ -960,6 +1032,11 @@ end;
 procedure TFormHome.Image14Click(Sender: TObject);
 begin
 pnlOrdens.visible := false;
+end;
+
+procedure TFormHome.Image16Click(Sender: TObject);
+begin
+panelMinhasOrdens.Visible:=true;
 end;
 
 procedure TFormHome.Image4Click(Sender: TObject);
@@ -1870,7 +1947,13 @@ begin
   end;
 end;
 
-//================== criar ordem de carregamento================================
+procedure TFormHome.lblBtnMinhasOrdensClick(Sender: TObject);
+begin
+panelMinhasOrdens.Visible:=true;
+ordensCarregamento4Carregadores;
+end;
+
+//================== criar ordens================================
 procedure TFormHome.lblBtnConfCarregamentoClick(Sender: TObject);
 var
 carregamento:TcarregamentoDto;

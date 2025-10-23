@@ -2,12 +2,13 @@ unit OrdensService;
 
 interface
 uses
-  system.Generics.Collections,viagemDto, carregamentoDto,OrdemRepository,System.SysUtils;
+  system.Generics.Collections,viagemDto, carregamentoDto,OrdemRepository,System.SysUtils,dateUtils;
 
 type TordemService = class
   procedure criarOrdemCarregamento(aCarregamento:TcarregamentoDto;aIdTransportadora:Integer);
   function buscarOrdensCarregPorTransp(aIdTransportadora: Integer): Tlist<TcarregamentoDto>;
   procedure criarOrdemViagem(aviagem:TviagemDto; aIdTransportadora:Integer);
+  function mostrarOrdensCarregParaCarreg(aIdTransportadora: Integer;aIdCarregador:Integer): Tlist<TcarregamentoDto>;
 end;
 
 implementation
@@ -105,6 +106,34 @@ begin
     repo.criarOrdemViagem(aViagem, aIdTransportadora);
   finally
     repo.Free;
+  end;
+end;
+
+function TordemService.mostrarOrdensCarregParaCarreg(aIdTransportadora,
+  aIdCarregador: Integer): Tlist<TcarregamentoDto>;
+var
+  repos: TOrdemRepository;
+  listaOrigem, listaDestino: TList<TCarregamentoDto>;
+  i: Integer;
+  dto: TCarregamentoDto;
+begin
+  repos := TOrdemRepository.Create;
+  listaOrigem := nil;
+  listaDestino := TList<TCarregamentoDto>.Create;
+  try
+    listaOrigem := repos.mostrarOrdensCarregParaCarreg(aIdTransportadora, aIdCarregador);
+    for i := 0 to listaOrigem.Count - 1 do
+    begin
+      dto := listaOrigem[i];
+      dto.sVeiculo    := IntToStr(dto.idVeiculo)      + ' - ' + dto.sVeiculo;
+      dto.sCarregador := IntToStr(dto.idCarregador)   + ' - ' + dto.sCarregador;
+
+      listaDestino.Add(dto);
+    end;
+    Result := listaDestino;
+    listaOrigem.Free;
+  finally
+    repos.Free;
   end;
 end;
 
