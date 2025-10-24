@@ -9,7 +9,9 @@ type TordemService = class
   function buscarOrdensCarregPorTransp(aIdTransportadora: Integer): Tlist<TcarregamentoDto>;
   procedure criarOrdemViagem(aviagem:TviagemDto; aIdTransportadora:Integer);
   function mostrarOrdensCarregParaCarreg(aIdTransportadora: Integer;aIdCarregador:Integer): Tlist<TcarregamentoDto>;
-procedure iniciarCarregamento(aIdTransportadora,aIdCarregamento,aIdPedido: Integer);
+procedure iniciarCarregamento(aIdTransportadora,aIdCarregamento,aIdPedido: Integer; aStatus:String);
+function buscarOrdensPorStatus(aIdTransportadora,aIdCarregador:Integer;aStatus,aTabela:string):Integer;
+procedure finalizarCarregamento(aIdTransportadora,aIdCarregamento, aIdPedido: Integer; aStatus:String);
 end;
 
 implementation
@@ -40,6 +42,18 @@ begin
     listaOrigem.Free;
   finally
     repos.Free;
+  end;
+end;
+
+function TordemService.buscarOrdensPorStatus(aIdTransportadora,aIdCarregador:Integer;aStatus,aTabela:string):Integer;
+var
+repo:TordemRepository;
+begin
+  repo:= TordemRepository.create;
+  try
+    result:= repo.buscarOrdensPorStatus(aIdTransportadora,aIdCarregador,aStatus,aTabela);
+  finally
+    repo.free;
   end;
 end;
 
@@ -110,11 +124,34 @@ begin
   end;
 end;
 
-procedure TordemService.iniciarCarregamento(aIdTransportadora,aIdCarregamento,aIdPedido: Integer);
+procedure TordemService.finalizarCarregamento(aIdTransportadora,
+  aIdCarregamento, aIdPedido: Integer; aStatus:String);
 var
   repos: TOrdemRepository;
 begin
   repos := TOrdemRepository.Create;
+
+  if aStatus <> 'Em preparo' then begin
+    raise Exception.Create('Essa ordem não foi iniciada ou ja está pronta!');
+  end;
+
+  try
+    repos.finalizarCarregamento(aidTransportadora,aIdCarregamento,aIdPedido);
+  finally
+    repos.Free;
+  end;
+end;
+
+procedure TordemService.iniciarCarregamento(aIdTransportadora,aIdCarregamento,aIdPedido: Integer; aStatus:String);
+var
+  repos: TOrdemRepository;
+begin
+  repos := TOrdemRepository.Create;
+
+  if aStatus <> 'Aguardando' then begin
+    raise Exception.Create('Essa ordem já está em execução ou está pronta!');
+  end;
+
   try
     repos.iniciarCarregamento(aidTransportadora,aIdCarregamento,aIdPedido);
   finally

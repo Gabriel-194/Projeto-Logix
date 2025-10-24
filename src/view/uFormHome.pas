@@ -381,6 +381,21 @@ type
     Shape75: TShape;
     DbGridOrdensCarreg4Carreg: TDBGrid;
     DTordensCarreg4Carreg: TDataSource;
+    Panel10: TPanel;
+    Shape77: TShape;
+    Image18: TImage;
+    Label42: TLabel;
+    lblCountOrdensCarregProcesso: TLabel;
+    Panel9: TPanel;
+    Shape76: TShape;
+    Image17: TImage;
+    Label40: TLabel;
+    lblCountOrdensCarregPendentes: TLabel;
+    Panel13: TPanel;
+    Shape78: TShape;
+    Image19: TImage;
+    Label41: TLabel;
+    lblCountOrdensCarregFeitas: TLabel;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -450,6 +465,7 @@ type
     procedure lblBtnMinhasOrdensClick(Sender: TObject);
     procedure Image16Click(Sender: TObject);
     procedure imgIniciarCarregamentoClick(Sender: TObject);
+    procedure imgFimCarregamentoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -1027,6 +1043,10 @@ begin
     lblCountPedidoEmRota.caption := IntToStr(controller.buscarPedidosporStatus(IdTransportadoraLogada, 'Em rota'));
     lblCountPedidoFinalizados.caption := IntToStr(controller.buscarPedidosporStatus(IdTransportadoraLogada, 'Finalizados'));
 
+    lblCountOrdensCarregPendentes.Caption:= IntToStr(controller.buscarOrdensporStatus(IdTransportadoraLogada,usuarioLogado.UserLogado.getId, 'Aguardando','carregamento'));
+    lblCountOrdensCarregProcesso.Caption:= IntToStr(controller.buscarOrdensporStatus(IdTransportadoraLogada,usuarioLogado.UserLogado.getId,'Em preparo','carregamento'));
+    lblCountOrdensCarregFeitas.Caption:= IntToStr(controller.buscarOrdensporStatus(IdTransportadoraLogada,usuarioLogado.UserLogado.getId,'Pronto','carregamento'));
+
 
   finally
     controller.Free;
@@ -1040,7 +1060,7 @@ end;
 
 procedure TFormHome.Image16Click(Sender: TObject);
 begin
-panelMinhasOrdens.Visible:=true;
+panelMinhasOrdens.Visible:=false;
 end;
 
 procedure TFormHome.Image4Click(Sender: TObject);
@@ -1160,10 +1180,6 @@ usuario := TUsuario.Create;
   usuario.setTelefone (MaskEditTelefoneGerente.text);
   usuario.setCargo_descricao('gerente');
   usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
-// jeito para teste ->
-// usuario.SetIdTransportadora(1);
-
-
 
   controller := THomeController.Create;
   try
@@ -2038,7 +2054,7 @@ var
   controller:ThomeController;
   carregamento:TcarregamentoDto;
   aIdPedido, aIdCarregamento:integer;
-
+  aStatus:String;
 begin
   controller:=ThomeController.create;
 
@@ -2048,9 +2064,40 @@ begin
   carregamento.idPedido := DTordensCarreg4Carreg.dataSet.FieldByName('idPedido').AsInteger;
   aIdPedido:= carregamento.IdPedido;
 
+  carregamento.status := DTordensCarreg4Carreg.dataSet.FieldByName('status').asString;;
+  aStatus:= carregamento.status;
+
   try
-    controller.iniciarCarregamento(usuarioLogado.UserLogado.getIdTransportadora,aIdCarregamento,aIdPedido);
+    controller.iniciarCarregamento(usuarioLogado.UserLogado.getIdTransportadora,aIdCarregamento,aIdPedido,aStatus);
     ordensCarregamento4Carregadores;
+    atualizarDashBoards;
+  finally
+    controller.free;
+  end;
+end;
+
+procedure TFormHome.imgFimCarregamentoClick(Sender: TObject);
+var
+  controller:ThomeController;
+  carregamento:TcarregamentoDto;
+  aIdPedido, aIdCarregamento:integer;
+  aStatus:String;
+begin
+  controller:=ThomeController.create;
+
+  carregamento.idCarregamento := DTordensCarreg4Carreg.dataSet.FieldByName('id').AsInteger;
+  aIdCarregamento := carregamento.idCarregamento;
+
+  carregamento.idPedido := DTordensCarreg4Carreg.dataSet.FieldByName('idPedido').AsInteger;
+  aIdPedido:= carregamento.IdPedido;
+
+  carregamento.status := DTordensCarreg4Carreg.dataSet.FieldByName('status').asString;;
+  aStatus:= carregamento.status;
+
+  try
+    controller.finalizarCarregamento(usuarioLogado.UserLogado.getIdTransportadora,aIdCarregamento,aIdPedido,aStatus);
+    ordensCarregamento4Carregadores;
+    atualizarDashBoards;
   finally
     controller.free;
   end;
