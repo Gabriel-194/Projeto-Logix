@@ -396,6 +396,31 @@ type
     Image19: TImage;
     Label41: TLabel;
     lblCountOrdensCarregFeitas: TLabel;
+    Image20: TImage;
+    Label43: TLabel;
+    DBGridMinhasOrdensViagens: TDBGrid;
+    Panel18: TPanel;
+    Shape79: TShape;
+    imgFinalizarOrdemViagem: TImage;
+    imgIniciarOrdemViagem: TImage;
+    Label44: TLabel;
+    Label45: TLabel;
+    pnlOrdensViagensProcesso: TPanel;
+    Shape80: TShape;
+    Image23: TImage;
+    Label46: TLabel;
+    lblCountViagensEmRota: TLabel;
+    pnlOrdensViagensPendentes: TPanel;
+    Shape81: TShape;
+    Image24: TImage;
+    Label48: TLabel;
+    lblCountOrdensViagensPendentes: TLabel;
+    pnlOrdensViagensFinalizadas: TPanel;
+    Shape82: TShape;
+    Image25: TImage;
+    Label50: TLabel;
+    lblOrdensViagensFinalizadas: TLabel;
+    DTOrdensMinhasOrdensViagens: TDataSource;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -466,6 +491,9 @@ type
     procedure Image16Click(Sender: TObject);
     procedure imgIniciarCarregamentoClick(Sender: TObject);
     procedure imgFimCarregamentoClick(Sender: TObject);
+    procedure ordensViagens4Motoristas;
+    procedure imgIniciarOrdemViagemClick(Sender: TObject);
+    procedure imgFinalizarOrdemViagemClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -824,12 +852,66 @@ begin
 
         carregamentoDataSet.FieldByName('carga').AsString := ordensCarregamentos[i].carga;
         carregamentoDataSet.Post;
+        carregamentoDataSet.First;
     end;
 
     DTordensCarreg4Carreg.DataSet := carregamentoDataSet;
     DbGridOrdensCarreg4Carreg.DataSource := DTordensCarreg4Carreg;
   finally
   end;
+end;
+
+procedure TFormHome.ordensViagens4Motoristas;
+var
+   controller :ThomeController;
+   ordensViagens: Tlist<TviagemDto>;
+   viagemDataSet: TClientDataSet;
+   i:integer;
+begin
+    controller := THomeController.Create;
+    try
+      ordensViagens:= controller.buscarMinhasOrdensViagens(usuarioLogado.userLogado.getIdTransportadora,usuarioLogado.userLogado.getId);
+      viagemDataSet:= TClientDataSet.create(nil);
+
+      viagemDataSet.FieldDefs.Add('id', ftInteger);
+      viagemDataSet.FieldDefs.Add('idCarregamento', ftInteger);
+      viagemDataSet.FieldDefs.Add('motorista',ftString, 90);
+      viagemDataSet.FieldDefs.Add('veiculo',ftString, 90);
+      viagemDataSet.FieldDefs.Add('status',ftString, 30);
+      viagemDataSet.FieldDefs.Add('distancia_km',ftFloat);
+      viagemDataSet.FieldDefs.Add('dataCadastro', ftDateTime);
+      viagemDataSet.FieldDefs.Add('data_saida', ftDateTime);
+      viagemDataSet.FieldDefs.Add('data_chegada', ftDateTime);
+      viagemDataSet.CreateDataSet;
+
+      for i := 0 to ordensViagens.count -1 do begin
+        viagemDataSet.Append;
+        viagemDataSet.FieldByName('id').AsInteger := ordensViagens[i].idViagem;
+        viagemDataSet.FieldByName('idCarregamento').AsInteger := ordensViagens[i].idCarregamento;
+        viagemDataSet.FieldByName('motorista').AsString := ordensViagens[i].motorista;
+        viagemDataSet.FieldByName('veiculo').AsString := ordensViagens[i].veiculo;
+        viagemDataSet.FieldByName('status').AsString := ordensViagens[i].status;
+        viagemDataSet.FieldByName('distancia_km').Asfloat := ordensViagens[i].distancia_km;
+        viagemDataSet.FieldByName('dataCadastro').AsDateTime := ordensViagens[i].dataCadastro;
+
+        if ordensViagens[i].dataSaida <= 0 then
+          viagemDataSet.FieldByName('data_saida').Clear
+        else
+          viagemDataSet.FieldByName('data_saida').AsDateTime := ordensViagens[i].dataSaida;
+
+        if ordensViagens[i].dataChegada <= 0 then
+          viagemDataSet.FieldByName('data_chegada').Clear
+        else
+          viagemDataSet.FieldByName('data_chegada').AsDateTime := ordensViagens[i].dataChegada;
+
+        viagemDataSet.post;
+        viagemDataSet.First;
+      end;
+
+      DTOrdensMinhasOrdensViagens.dataSet := viagemDataSet;
+      DBGridMinhasOrdensViagens.DataSource := DTOrdensMinhasOrdensViagens;
+    finally
+    end;
 end;
 
 procedure TFormHome.mostrarPedidosOrdens;
@@ -1041,12 +1123,15 @@ begin
 
     lblCountPedidoPreparando.caption := IntToStr(controller.buscarPedidosporStatus(IdTransportadoraLogada, 'Em preparo'));
     lblCountPedidoEmRota.caption := IntToStr(controller.buscarPedidosporStatus(IdTransportadoraLogada, 'Em rota'));
-    lblCountPedidoFinalizados.caption := IntToStr(controller.buscarPedidosporStatus(IdTransportadoraLogada, 'Finalizados'));
+    lblCountPedidoFinalizados.caption := IntToStr(controller.buscarPedidosporStatus(IdTransportadoraLogada, 'Finalizado'));
 
     lblCountOrdensCarregPendentes.Caption:= IntToStr(controller.buscarOrdensporStatus(IdTransportadoraLogada,usuarioLogado.UserLogado.getId, 'Aguardando','carregamento'));
     lblCountOrdensCarregProcesso.Caption:= IntToStr(controller.buscarOrdensporStatus(IdTransportadoraLogada,usuarioLogado.UserLogado.getId,'Em preparo','carregamento'));
     lblCountOrdensCarregFeitas.Caption:= IntToStr(controller.buscarOrdensporStatus(IdTransportadoraLogada,usuarioLogado.UserLogado.getId,'Pronto','carregamento'));
 
+    lblCountOrdensViagensPendentes.Caption := intToStr(controller.buscarOrdensporStatus(IdTransportadoraLogada,usuarioLogado.UserLogado.getId,'Aguardando','viagem'));
+    lblCountViagensEmRota.Caption := intToStr(controller.buscarOrdensporStatus(IdTransportadoraLogada,usuarioLogado.UserLogado.getId,'Em rota','viagem'));
+    lblOrdensViagensFinalizadas.caption := intToStr(controller.buscarOrdensporStatus(IdTransportadoraLogada,usuarioLogado.UserLogado.getId,'Finalizada','viagem'));
 
   finally
     controller.Free;
@@ -1861,8 +1946,6 @@ veiculo := Tveiculo.Create;
   veiculo.setId_motorista(strToInt(idMotorista));
 
  veiculo.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
-// jeito para teste ->
-//veiculo.SetIdTransportadora(1);
 
   codParaEditar := (StrToInt(lswVeiculos.Selected.Caption));
   veiculo.setId_veiculo(codParaEditar);
@@ -1969,6 +2052,7 @@ procedure TFormHome.lblBtnMinhasOrdensClick(Sender: TObject);
 begin
 panelMinhasOrdens.Visible:=true;
 ordensCarregamento4Carregadores;
+ordensViagens4Motoristas;
 end;
 
 //================== criar ordens================================
@@ -2076,6 +2160,33 @@ begin
   end;
 end;
 
+procedure TFormHome.imgIniciarOrdemViagemClick(Sender: TObject);
+var
+  controller:ThomeController;
+  viagem:TviagemDto;
+  aIdcarregamento, aIdviagem:integer;
+  aStatus:String;
+begin
+  controller:=ThomeController.create;
+
+  viagem.idviagem := DTOrdensMinhasOrdensViagens.dataSet.FieldByName('id').AsInteger;
+  aIdviagem:= viagem.idviagem;
+
+  viagem.idCarregamento := DTOrdensMinhasOrdensViagens.dataSet.FieldByName('idCarregamento').AsInteger;
+  aIdcarregamento := viagem.Idcarregamento;
+
+  viagem.status := DTOrdensMinhasOrdensViagens.dataSet.FieldByName('status').asString;
+  aStatus:= viagem.status;
+
+  try
+    controller.iniciarviagem(usuarioLogado.UserLogado.getIdTransportadora,aIdCarregamento,aIdviagem,aStatus);
+    ordensViagens4Motoristas;
+    atualizarDashBoards;
+  finally
+    controller.free;
+  end;
+end;
+
 procedure TFormHome.imgFimCarregamentoClick(Sender: TObject);
 var
   controller:ThomeController;
@@ -2097,6 +2208,33 @@ begin
   try
     controller.finalizarCarregamento(usuarioLogado.UserLogado.getIdTransportadora,aIdCarregamento,aIdPedido,aStatus);
     ordensCarregamento4Carregadores;
+    atualizarDashBoards;
+  finally
+    controller.free;
+  end;
+end;
+
+procedure TFormHome.imgFinalizarOrdemViagemClick(Sender: TObject);
+var
+  controller:ThomeController;
+  viagem:TviagemDto;
+  aIdcarregamento, aIdviagem:integer;
+  aStatus:String;
+begin
+  controller:=ThomeController.create;
+
+  viagem.idviagem := DTOrdensMinhasOrdensViagens.dataSet.FieldByName('id').AsInteger;
+  aIdviagem:= viagem.idviagem;
+
+  viagem.idCarregamento := DTOrdensMinhasOrdensViagens.dataSet.FieldByName('idCarregamento').AsInteger;
+  aIdcarregamento := viagem.Idcarregamento;
+
+  viagem.status := DTOrdensMinhasOrdensViagens.dataSet.FieldByName('status').asString;
+  aStatus:= viagem.status;
+
+  try
+    controller.finalizarviagem(usuarioLogado.UserLogado.getIdTransportadora,aIdCarregamento,aIdviagem,aStatus);
+    ordensViagens4Motoristas;
     atualizarDashBoards;
   finally
     controller.free;

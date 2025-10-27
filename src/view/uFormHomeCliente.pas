@@ -145,12 +145,12 @@ type
     DBGridMeusPedidos: TDBGrid;
     DataSourcePedidos: TDataSource;
     Image6: TImage;
+    imgAtualizarDashboard: TImage;
     procedure Image8Click(Sender: TObject);
     procedure imgFecharPanelCadastroClienteClick(Sender: TObject);
     procedure imgBuscaCepOrigemClick(Sender: TObject);
     procedure imgCepDestinoClick(Sender: TObject);
     procedure lblCadastrosBtnClick(Sender: TObject);
-
     procedure lblBtnCalcularDistanciaClick(Sender: TObject);
     procedure lblBtnCalcularFreteClick(Sender: TObject);
     procedure lblBtnConfirmarPedidoClick(Sender: TObject);
@@ -166,6 +166,7 @@ type
     procedure atualizarDashBoards;
     procedure FormShow(Sender: TObject);
     procedure cbTipoCargaSelect(Sender: TObject);
+    procedure imgAtualizarDashboardClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -195,7 +196,7 @@ begin
 
   lblCountPedidoEmRota.caption := IntToStr(controller.ContarPedidos(idCliente,'Em rota'));
 
-  lblCountPedidoFinalizados.caption := IntToStr(controller.ContarPedidos(idCliente,'Finalizados'));
+  lblCountPedidoFinalizados.caption := IntToStr(controller.ContarPedidos(idCliente,'Finalizado'));
 
 end;
 
@@ -295,6 +296,11 @@ begin
 end;
 
 // ================  criar pedido ====================================
+procedure TFormHomeCliente.imgAtualizarDashboardClick(Sender: TObject);
+begin
+  atualizarDashBoards;
+end;
+
 procedure TFormHomeCliente.imgBuscaCepOrigemClick(Sender: TObject);
 var
   Controller: ThomeClientecontroller;

@@ -9,8 +9,11 @@ type TordemRepository = class
   procedure criarOrdemViagem(aviagem:TviagemDto; aIdTransportadora:Integer);
   function mostrarOrdensCarregParaCarreg(aIdTransportadora: Integer;aIdCarregador:Integer): Tlist<TcarregamentoDto>;
   procedure iniciarCarregamento(aIdTransportadora, aIdCarregamento, aidPedido:Integer);
-  function buscarOrdensPorStatus(aIdTransportadora,aIdCarregador:Integer;aStatus,aTabela:string):Integer;
+  function buscarOrdensPorStatus(aIdTransportadora,aIdUsuario:Integer;aStatus,aTabela:string):Integer;
   procedure finalizarCarregamento(aIdTransportadora, aIdCarregamento, aidPedido:Integer);
+  function buscarMinhasOrdensViagens(aIdTransportadora: Integer;aIdmotorista:Integer): Tlist<TviagemDto>;
+  procedure iniciarViagem(aIdTransportadora, aIdCarregamento, aIdViagem:Integer);
+  procedure FinalizarViagem(aIdTransportadora,aIdViagem,aIdCarregamento: Integer);
 end;
 
 implementation
@@ -20,6 +23,64 @@ implementation
 
 
 { TordemRepository }
+
+function TordemRepository.buscarMinhasOrdensViagens(aIdTransportadora,
+  aIdmotorista: Integer): Tlist<TviagemDto>;
+var
+  FDQuery: TFDQuery;
+  SchemaName: string;
+  lista:Tlist<TviagemDto>;
+  viagem:TviagemDto;
+begin
+  lista:=Tlist<TviagemDto>.create;
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+    FDQuery.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id_transportadora';
+    FDQuery.ParamByName('id_transportadora').AsInteger := aIdTransportadora;
+    FDQuery.Open;
+    SchemaName := FDQuery.FieldByName('schema_name').AsString;
+    FDQuery.Close;
+    FDQuery.ExecSQL('SET search_path TO ' + SchemaName + ', public');
+
+
+    FDQuery.SQL.Text :=
+    'SELECT viagem.id_viagem,carregamento.id_carregamento,veiculo.id_veiculo,veiculo.modelo,viagem.id_motorista,usuarios.nome, ' +
+    'viagem.status, viagem.data_cadastro,viagem.data_saida_cd, viagem.data_chegada, viagem.distancia_km ' +
+    'FROM viagem ' +
+    'INNER JOIN public.usuarios ON usuarios.id_usuario = viagem.id_motorista ' +
+    'INNER JOIN veiculo ON veiculo.id_veiculo = viagem.id_veiculo ' +
+    'INNER JOIN carregamento ON carregamento.id_carregamento = viagem.id_carregamento ' +
+    'INNER JOIN pedido ON carregamento.id_pedido = pedido.id_pedido ' +
+    'WHERE public.usuarios.id_usuario = :id_motorista ' +
+    'ORDER BY viagem.id_viagem DESC';
+
+    FDQuery.ParamByName('id_motorista').AsInteger := aIdMotorista;
+
+    FDQuery.Open;
+    while not FDQuery.Eof do
+    begin
+      FillChar(viagem, SizeOf(viagem), 0);
+      viagem.idviagem       := FDQuery.FieldByName('id_viagem').AsInteger;
+      viagem.idCarregamento := FDQuery.FieldByName('id_carregamento').AsInteger;
+      viagem.idVeiculo      := FDQuery.FieldByName('id_veiculo').AsInteger;
+      viagem.Veiculo       := FDQuery.FieldByName('modelo').AsString;
+      viagem.idmotorista   := FDQuery.FieldByName('id_motorista').AsInteger;
+      viagem.motorista := FDQuery.FieldByName('nome').AsString;
+      viagem.status         := FDQuery.FieldByName('status').AsString;
+      viagem.dataCadastro   := FDQuery.FieldByName('data_cadastro').AsDateTime;
+      viagem.distancia_Km    := FDQuery.FieldByName('distancia_km').AsFloat;
+      viagem. dataSaida:= FDQuery.FieldByName('data_saida_cd').AsDateTime;
+      viagem.dataChegada:= FDQuery.FieldByName('data_chegada').AsDateTime;
+      lista.Add(viagem);
+      FDQuery.Next;
+    end;
+    FDQuery.Close;
+    Result := lista;
+  finally
+    FDQuery.Free;
+  end;
+end;
 
 function TordemRepository.buscarOrdensCarregPorTransp(
   aIdTransportadora: Integer): Tlist<TcarregamentoDto>;
@@ -82,13 +143,14 @@ begin
 end;
 
 function TordemRepository.buscarOrdensPorStatus(
-  aIdTransportadora, aIdCarregador: Integer;
+  aIdTransportadora, aIdUsuario: Integer;
   aStatus, aTabela: string
 ): Integer;
 var
   FDQuery: TFDQuery;
   SchemaName: string;
   Total: Integer;
+  id:String;
 begin
   FDQuery := TFDQuery.Create(nil);
   try
@@ -105,10 +167,15 @@ begin
     FDQuery.SQL.Text := 'SET search_path TO ' + SchemaName + ', public';
     FDQuery.ExecSQL;
 
-    FDQuery.SQL.Text :=
-      'SELECT COUNT(*) AS qtd FROM '+ aTabela + ' WHERE id_carregador = :id_carregador AND status = :status';
+    if aTabela = 'carregamento' then begin
+      id := 'id_carregador';
+    end else if aTabela = 'viagem' then begin
+      id := 'id_motorista';
+    end;
 
-    FDQuery.ParamByName('id_carregador').AsInteger := aIdCarregador;
+    FDQuery.SQL.Text := 'SELECT COUNT(*) AS qtd FROM '+ aTabela + ' WHERE '+ id +' = :id_usuario AND status = :status';
+
+    FDQuery.ParamByName('id_usuario').AsInteger := aIdusuario;
     FDQuery.ParamByName('status').AsString := aStatus;
     FDQuery.Open;
 
@@ -219,6 +286,34 @@ begin
   end;
 end;
 
+procedure TordemRepository.FinalizarViagem(aIdTransportadora, aIdViagem,
+  aIdCarregamento: Integer);
+var
+  FDQuery: TFDQuery;
+  SchemaName: string;
+begin
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+    FDQuery.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id_transportadora';
+    FDQuery.ParamByName('id_transportadora').AsInteger := aIdTransportadora;
+    FDQuery.Open;
+    SchemaName := FDQuery.FieldByName('schema_name').AsString;
+    FDQuery.Close;
+    FDQuery.ExecSQL('SET search_path TO ' + SchemaName + ', public');
+
+    FDQuery.SQL.Text := 'UPDATE viagem SET status = ''Finalizada'', data_chegada = Now() WHERE id_viagem = :id_viagem';
+    FDQuery.ParamByName('id_viagem').AsInteger := aIdviagem;
+    FDQuery.ExecSQL;
+
+    FDQuery.SQL.Text :='UPDATE pedido SET status = ''Finalizado'' WHERE id_pedido = (SELECT id_pedido FROM carregamento WHERE id_carregamento = :id_carregamento)';
+    FDQuery.ParamByName('id_carregamento').AsInteger := aIdCarregamento;
+    FDQuery.ExecSQL;
+  finally
+    FDQuery.Free;
+  end;
+end;
+
 procedure TordemRepository.iniciarCarregamento(aIdTransportadora, aIdCarregamento, aidPedido:Integer);
 var
   FDQuery: TFDQuery;
@@ -240,6 +335,34 @@ begin
 
     FDQuery.SQL.Text :='UPDATE pedido SET status = ''Em preparo'' WHERE id_pedido = :id_pedido';
     FDQuery.ParamByName('id_pedido').AsInteger := aIdpedido;
+    FDQuery.ExecSQL;
+  finally
+    FDQuery.Free;
+  end;
+end;
+
+procedure TordemRepository.iniciarViagem(aIdTransportadora, aIdCarregamento,
+  aIdViagem: Integer);
+var
+  FDQuery: TFDQuery;
+  SchemaName: string;
+begin
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+    FDQuery.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id_transportadora';
+    FDQuery.ParamByName('id_transportadora').AsInteger := aIdTransportadora;
+    FDQuery.Open;
+    SchemaName := FDQuery.FieldByName('schema_name').AsString;
+    FDQuery.Close;
+    FDQuery.ExecSQL('SET search_path TO ' + SchemaName + ', public');
+
+    FDQuery.SQL.Text := 'UPDATE viagem SET status = ''Em rota'', data_saida_cd = Now() WHERE id_viagem = :id_viagem';
+    FDQuery.ParamByName('id_viagem').AsInteger := aIdviagem;
+    FDQuery.ExecSQL;
+
+    FDQuery.SQL.Text :='UPDATE pedido SET status = ''Em rota'' WHERE id_pedido = (SELECT id_pedido FROM carregamento WHERE id_carregamento = :id_carregamento)';
+    FDQuery.ParamByName('id_carregamento').AsInteger := aIdCarregamento;
     FDQuery.ExecSQL;
   finally
     FDQuery.Free;

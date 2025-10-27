@@ -103,7 +103,7 @@ begin
 
 
     FDQuery.SQL.Text := 'SELECT id_pedido, id_cliente, cep_origem, cep_destino, tipo_carga, peso, data_pedido, distancia_km, status FROM pedido WHERE status = :status';
-    FDQuery.ParamByName('status').AsString := 'confirmado';
+    FDQuery.ParamByName('status').AsString := 'Confirmado';
     FDQuery.Open;
 
     while not FDQuery.Eof do

@@ -12,11 +12,43 @@ type TordemService = class
 procedure iniciarCarregamento(aIdTransportadora,aIdCarregamento,aIdPedido: Integer; aStatus:String);
 function buscarOrdensPorStatus(aIdTransportadora,aIdCarregador:Integer;aStatus,aTabela:string):Integer;
 procedure finalizarCarregamento(aIdTransportadora,aIdCarregamento, aIdPedido: Integer; aStatus:String);
+function buscarMinhasOrdensViagens(aIdTransportadora: Integer;aIdmotorista:Integer): Tlist<TviagemDto>;
+procedure iniciarViagem(aIdTransportadora,aIdCarregamento,aIdviagem: Integer; aStatus:String);
+procedure FinalizarViagem(aIdTransportadora,aIdViagem,aIdCarregamento: Integer; aStatus:String);
+
 end;
 
 implementation
 
 { TordemService }
+
+function TordemService.buscarMinhasOrdensViagens(aIdTransportadora,
+  aIdmotorista: Integer): Tlist<TviagemDto>;
+var
+  repos: TOrdemRepository;
+  listaOrigem, listaDestino: TList<TviagemDto>;
+  i: Integer;
+  dto: TviagemDto;
+begin
+  repos := TOrdemRepository.Create;
+  listaOrigem := nil;
+  listaDestino := TList<TviagemDto>.Create;
+  try
+    listaOrigem := repos.buscarMinhasOrdensViagens(aIdTransportadora, aIdmotorista);
+    for i := 0 to listaOrigem.Count - 1 do
+    begin
+      dto := listaOrigem[i];
+      dto.Veiculo    := IntToStr(dto.idVeiculo)      + ' - ' + dto.veiculo;
+      dto.motorista := IntToStr(dto.idMotorista)   + ' - ' + dto.motorista;
+
+      listaDestino.Add(dto);
+    end;
+    Result := listaDestino;
+    listaOrigem.Free;
+  finally
+    repos.Free;
+  end;
+end;
 
 function TOrdemService.buscarOrdensCarregPorTransp(aIdTransportadora: Integer): TList<TCarregamentoDto>;
 var
@@ -142,6 +174,23 @@ begin
   end;
 end;
 
+procedure TordemService.FinalizarViagem(aIdTransportadora, aIdViagem,
+  aIdCarregamento: Integer; aStatus: String);
+var
+  repos: TOrdemRepository;
+begin
+  repos := TOrdemRepository.Create;
+
+  if aStatus <> 'Em rota' then begin
+    raise Exception.Create('Essa ordem não foi iniciada ou ja está pronta!');
+  end;
+
+  try
+    repos.finalizarViagem(aidTransportadora,aIdCarregamento,aIdViagem);
+  finally
+    repos.Free;
+  end;
+end;
 procedure TordemService.iniciarCarregamento(aIdTransportadora,aIdCarregamento,aIdPedido: Integer; aStatus:String);
 var
   repos: TOrdemRepository;
@@ -154,6 +203,24 @@ begin
 
   try
     repos.iniciarCarregamento(aidTransportadora,aIdCarregamento,aIdPedido);
+  finally
+    repos.Free;
+  end;
+end;
+
+procedure TordemService.iniciarViagem(aIdTransportadora, aIdCarregamento,
+  aIdviagem: Integer; aStatus: String);
+var
+  repos: TOrdemRepository;
+begin
+  repos := TOrdemRepository.Create;
+
+  if aStatus <> 'Aguardando' then begin
+    raise Exception.Create('Essa ordem já está em execução ou está pronta!');
+  end;
+
+  try
+    repos.iniciarViagem(aidTransportadora,aIdCarregamento,aIdViagem);
   finally
     repos.Free;
   end;

@@ -44,6 +44,9 @@ function OrdensCarreg4Carreg(aIdTransportadora: Integer;aIdCarregador:Integer): 
 procedure iniciarCarregamento(aIdTransportadora,aIdCarregamento,aIdPedido: Integer; aStatus:String);
 function buscarOrdensPorStatus(aIdTransportadora,aIdCarregador:Integer;aStatus,aTabela:string):Integer;
 procedure finalizarCarregamento(aIdTransportadora,aIdCarregamento, aIdPedido: Integer; aStatus:String);
+function buscarMinhasOrdensViagens(aIdTransportadora: Integer;aIdmotorista:Integer): Tlist<TviagemDto>;
+procedure iniciarViagem(aIdTransportadora,aIdViagem,aIdCarregamento: Integer; aStatus:String);
+procedure FinalizarViagem(aIdTransportadora,aIdViagem,aIdCarregamento: Integer; aStatus:String);
 end;
 
 implementation
@@ -53,6 +56,19 @@ implementation
 
 
 { THomeController }
+
+function THomeController.buscarMinhasOrdensViagens(aIdTransportadora,
+  aIdmotorista: Integer): Tlist<TviagemDto>;
+var
+service:TordemService;
+begin
+  service := TOrdemService.create;
+  try
+    result := service.buscarMinhasOrdensViagens(aIdTransportadora,aIdMotorista);
+  finally
+    service.free;
+  end;
+end;
 
 function THomeController.buscarOrdensCarregPorTransp(
   aIdTransportadora: Integer): Tlist<TcarregamentoDto>;
@@ -318,6 +334,20 @@ begin
   end;
 end;
 
+procedure THomeController.FinalizarViagem(aIdTransportadora, aIdViagem,
+  aIdCarregamento: Integer; aStatus: String);
+var
+  service:TordemService;
+begin
+  service:=TordemService.create;
+
+  try
+    service.finalizarViagem(aIdTransportadora,aIdviagem,aIdCarregamento,aStatus);
+  finally
+    service.free;
+  end;
+end;
+
 procedure THomeController.iniciarCarregamento(aIdTransportadora,
   aIdCarregamento,aIdPedido: Integer; aStatus:String);
 var
@@ -327,6 +357,20 @@ begin
 
   try
     service.iniciarCarregamento(aIdTransportadora,aIdCarregamento,aIdPedido,aStatus);
+  finally
+    service.free;
+  end;
+end;
+
+procedure THomeController.iniciarViagem(aIdTransportadora, aIdViagem,
+  aIdCarregamento: Integer; aStatus: String);
+var
+  service:TordemService;
+begin
+  service:=TordemService.create;
+
+  try
+    service.iniciarViagem(aIdTransportadora,aIdviagem,aIdCarregamento,aStatus);
   finally
     service.free;
   end;

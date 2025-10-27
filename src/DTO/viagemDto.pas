@@ -15,6 +15,7 @@ type
     dataCadastro: TDateTime;
     veiculo:string;
     distancia_km:double;
+    idPedido:integer;
   end;
 
 implementation
