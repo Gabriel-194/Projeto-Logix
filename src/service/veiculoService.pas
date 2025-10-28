@@ -76,7 +76,7 @@ begin
   try
     veiculoRepo.CadastrarVeiculo(veiculo);
      SystemLog.Log(UserLogado.getSchemaName,
-    Format('Usuário %s do ID %d cadastrou um veiculo no dia %s e no horário %s',
+    Format('[CREATE] Usuário %s do ID %d cadastrou um veiculo no dia %s e no horário %s',
     [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     veiculoRepo.free;
@@ -107,7 +107,7 @@ systemLog:=Tlogger.create;
   try
     veiculoRepo.editarVeiculo(veiculo);
          SystemLog.Log(UserLogado.getSchemaName,
-    Format('Usuário %s do ID %d editou um veiculo no dia %s e no horário %s',
+    Format('[EDIT] Usuário %s do ID %d editou um veiculo no dia %s e no horário %s',
     [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     veiculoRepo.free;
@@ -124,7 +124,7 @@ systemLog:=Tlogger.create;
   try
     veiculoRepo.excluirVeiculo(veiculo);
     SystemLog.Log(UserLogado.getSchemaName,
-    Format('Usuário %s do ID %d excluiu um veiculo no dia %s e no horário %s',
+    Format('[DELETE] Usuário %s do ID %d excluiu um veiculo no dia %s e no horário %s',
     [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     veiculoRepo.free;
@@ -165,7 +165,7 @@ systemLog:=Tlogger.create;
   try
     veiculoRepo.recuperarVeiculo(veiculo);
          SystemLog.Log(UserLogado.getSchemaName,
-    Format('Usuário %s do ID %d recuperou um veiculo no dia %s e no horário %s',
+    Format('[RECOVER] Usuário %s do ID %d recuperou um veiculo no dia %s e no horário %s',
     [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     veiculoRepo.free;

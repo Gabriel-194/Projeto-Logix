@@ -41,7 +41,7 @@ begin
       user := TUsuario.Create;
       user.setId(userId);
       user.setEmail(aLoginDto.email);
-      user.setNome(loginRepo.BuscaNomePorId(userId));
+      user.setNome(loginRepo.BuscaNomePorId(userId,0));
       user.setIdTransportadora(transportadoraId);
       user.setCargo_descricao(cargo);
       user.setSchemaName(SchemaName);
@@ -62,7 +62,7 @@ begin
       cliente := TCliente.Create;
       cliente.setId(aClienteId);
       cliente.setEmail(aLoginDto.email);
-      cliente.setNome(nomeCliente);
+      cliente.setNome(loginRepo.BuscaNomePorId(0,aClienteid));
 
       Exit(lrSucessoCliente);
     end

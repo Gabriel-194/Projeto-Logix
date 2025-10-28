@@ -124,7 +124,7 @@ begin
   try
     userRepo.CadastrarUsuario(aUsuario);
     SystemLog.Log(UserLogado.getSchemaName,
-    Format('Usuário %s do ID %d cadastrou um %s no dia %s e no horário %s',
+    Format('[CREATE] Usuário %s do ID %d cadastrou um %s no dia %s e no horário %s',
     [UserLogado.getNome, UserLogado.getId,aUsuario.getCargo_descricao, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     userRepo.Free;
@@ -173,7 +173,7 @@ begin
     try
       userRepo.editarMotoristaNotSenha(motorista);
        SystemLog.Log(UserLogado.getSchemaName,
-      Format('Usuário %s do ID %d editou um motorista no dia %s e no horário %s',
+      Format('[EDIT] Usuário %s do ID %d editou um motorista no dia %s e no horário %s',
       [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
       raise Exception.Create('motorista editado, mas segue com sua senha original.');
 
@@ -188,7 +188,7 @@ begin
     try
       userRepo.editarMotorista(motorista);
       SystemLog.Log(UserLogado.getSchemaName,
-    Format('Usuário %s do ID %d editou um motorista no dia %s e no horário %s',
+    Format('[EDIT] Usuário %s do ID %d editou um motorista no dia %s e no horário %s',
     [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
     finally
       userRepo.Free;
@@ -231,7 +231,7 @@ begin
   begin
     userRepo.editarUserNotSenha(aUsuario);
     SystemLog.Log(UserLogado.getSchemaName,
-    Format('Usuário %s do ID %d editou um %s no dia %s e no horário %s',
+    Format('[EDIT] Usuário %s do ID %d editou um %s no dia %s e no horário %s',
     [UserLogado.getNome, UserLogado.getId,aUsuario.getCargo_descricao, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
    raise Exception.Create('usuario editado, mantendo a mesma senha');
    userRepo.free;
@@ -242,7 +242,7 @@ begin
     try
     userRepo.editarUser(aUsuario);
     SystemLog.Log(UserLogado.getSchemaName,
-    Format('Usuário %s do ID %d editou um %s no dia %s e no horário %s',
+    Format('[EDIT] Usuário %s do ID %d editou um %s no dia %s e no horário %s',
     [UserLogado.getNome, UserLogado.getId,aUsuario.getCargo_descricao, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
     finally
     userRepo.Free;
@@ -263,7 +263,7 @@ begin
   try
     userRepo.excluirUser(aMotorista.IdUsuario);
     SystemLog.Log(UserLogado.getSchemaName,
-    Format('Usuário %s do ID %d excluiu um motorista no dia %s e no horário %s',
+    Format('[DELETE] Usuário %s do ID %d excluiu um motorista no dia %s e no horário %s',
     [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     userRepo.free;
@@ -280,7 +280,7 @@ begin
   try
     userRepo.excluirUser(aUsuario.GetID);
     SystemLog.Log(UserLogado.getSchemaName,
-    Format('Usuário %s do ID %d excluiu um %s no dia %s e no horário %s',
+    Format('[DELETE] Usuário %s do ID %d excluiu um %s no dia %s e no horário %s',
     [UserLogado.getNome, UserLogado.getId,aUsuario.getCargo_descricao, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     userRepo.free;
@@ -345,7 +345,7 @@ systemLog:=Tlogger.create;
   try
     userRepo.recuperarUser(aMotorista.IdUsuario);
     SystemLog.Log(UserLogado.getSchemaName,
-    Format('Usuário %s do ID %d recuperou um motorista no dia %s e no horário %s',
+    Format('[RECOVER] Usuário %s do ID %d recuperou um motorista no dia %s e no horário %s',
     [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     userRepo.free;
@@ -362,7 +362,7 @@ systemLog:=Tlogger.create;
   try
     userRepo.recuperarUser(aUsuario.GetID);
     SystemLog.Log(UserLogado.getSchemaName,
-    Format('Usuário %s do ID %d recuperou um %s no dia %s e no horário %s',
+    Format('[RECOVER] Usuário %s do ID %d recuperou um %s no dia %s e no horário %s',
     [UserLogado.getNome, UserLogado.getId,aUsuario.getCargo_descricao, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     userRepo.free;

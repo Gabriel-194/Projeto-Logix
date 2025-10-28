@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage, DBClient,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage, DBClient,uCleanFields,
   Vcl.StdCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.Mask,HomeClienteController,enderecoDto,utransportadora,System.Generics.Collections,pedidoDto,usuarioLogado;
 
 type
@@ -364,7 +364,6 @@ var
 begin
 
   PedidoDto.IdCliente := UsuarioLogado.clienteLogado.getId;
-// PedidoDto.IdCliente := 2;
   PedidoDto.CepOrigem := maskEditCepOrigem.Text;
   PedidoDto.EstadoOrigem := edtEstadoOrigem.Text;
   PedidoDto.MunicipioOrigem := edtMunicipioOrigem.Text;
@@ -401,6 +400,7 @@ begin
   try
     controller.confirmarPedido(pedidoDto,schemaName);
     ShowMessage('Pedido confirmado com sucesso!');
+    CleanFields(Self);
     atualizarDashboards;
   finally
     Controller.Free;

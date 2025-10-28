@@ -2,7 +2,7 @@ unit adminService;
 
 interface
 uses
-  System.SysUtils, adminRepository, AdminDto, uUsuario,system.Generics.Collections, BCrypt;
+  System.SysUtils, adminRepository, AdminDto, uUsuario,system.Generics.Collections, BCrypt,uLog,usuarioLogado;
   type TadminService = class
     procedure cadastrarAdmin(AadminDto:TadminDto);
     function MostrarAdmin:Tlist<TadminDto>;
@@ -13,7 +13,8 @@ uses
   end;
 
 implementation
-
+var
+  systemLog:Tlogger;
 { TadminService }
 
 procedure TadminService.cadastrarAdmin(AadminDto: TadminDto);
@@ -49,10 +50,15 @@ begin
   AAdminDto.senha := HashedSenha;
 
   adminRepo := TadminRepository.Create;
+  systemlog:=Tlogger.create;
   try
     adminRepo.cadastrarAdmin(AadminDto);
+    SystemLog.Log('',
+    Format('[CREATE] Usuario %s do ID %d cadastrou um Admin no dia %s e no horário %s',
+    [clienteLogado.getNome, clienteLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     adminRepo.Free;
+    systemLog.free;
   end;
 end;
 
@@ -88,10 +94,15 @@ begin
   HashedSenha := TBCrypt.HashPassword(AAdminDto.senha);
   AAdminDto.senha := HashedSenha;
   adminRepo := TadminRepository.create;
+  systemLog:=Tlogger.create;
   try
     adminRepo.EditarAdmin(AadminDto);
+    SystemLog.Log('',
+    Format('[EDIT] Usuario %s do ID %d editou um Admin no dia %s e no horário %s',
+    [clienteLogado.getNome, clienteLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     adminRepo.free;
+    systemLog.free;
   end;
 end;
 
@@ -101,10 +112,15 @@ var
 adminRepo : TadminRepository;
 begin
 adminRepo := TadminRepository.create;
+systemLog:=Tlogger.create;
   try
     adminRepo.ExcluirAdmin(AadminDto);
+    SystemLog.Log('',
+    Format('[DELETE] Usuario %s do ID %d excluiu um Admin no dia %s e no horário %s',
+    [clienteLogado.getNome, clienteLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     adminRepo.free;
+    systemLog.free;
   end;
 end;
 
@@ -126,10 +142,15 @@ var
 adminRepo : TadminRepository;
 begin
 adminRepo := TadminRepository.create;
+systemlog:=Tlogger.create;
   try
     adminRepo.recuperarAdmin(AadminDto);
+    SystemLog.Log('',
+    Format('[RECOVER] Usuario %s do ID %d recuperou um Admin no dia %s e no horário %s',
+    [clienteLogado.getNome, clienteLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     adminRepo.free;
+    systemLog.free;
   end;
 end;
 

@@ -8,7 +8,7 @@ uses
   Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.Mask, transpController, uTransportadora, uUsuario,loginController,
   Vcl.ComCtrls,System.Generics.Collections, LoginDto, System.ImageList,
   Vcl.ImgList, adminController, adminDto, uFormHome,UsuarioLogado,enderecoDto,uCliente,uFormHomeCliente,tipoCargaDto,
-  Vcl.CheckLst, Vcl.Grids;
+  Vcl.CheckLst, Vcl.Grids,uCleanFields;
 
 type
   TFormLogin = class(TForm)
@@ -325,20 +325,10 @@ cliente := Tcliente.create;
     try
       controller.cadastrarCliente(cliente);
       showMessage('Seu cadastro foi realizado com sucesso, volte para a tela de login para entrar no sistema');
+      CleanFields(Self);
     finally
      controller.free
     end;
-
-    edtNomeCliente.clear;
-    MaskEditCpfCliente.clear;
-    edtEmailCliente.clear;
-    MaskEditTelefoneCliente.clear;
-    edtSenhaCliente.clear;
-    MaskEditCepCliente.clear;
-    edtEnderecoCliente.clear;
-    edtNumeroEnderecoCliente.clear;
-    edtMunicipioCliente.clear;
-    edtEstadoCliente.clear;
   finally
    cliente.free;
   end;
@@ -475,7 +465,7 @@ begin
 
         lrSucessocliente:
         begin
-          ShowMessage('Bem vindo de volta cliente!!');
+          ShowMessage('Bem vindo ' + cliente.getNome+' !!');
           UsuarioLogado.clienteLogado := cliente;
           FormHomeCliente.ShowModal;
           Close;
@@ -637,6 +627,7 @@ begin
   try
     controller.cadastrarAdmin(adminDto);
     ShowMessage('Admnistrador criado com sucesso!');
+    CleanFields(Self);
     paneloptionsAdmins.visible := false;
     mostrarAdmins;
   finally
@@ -701,6 +692,7 @@ begin
     try
       controller.EditarAdmin(adminDto);
       showMessage('administrador editado com sucesso!!');
+      CleanFields(Self);
       mostrarAdmins;
     finally
       controller.free;
@@ -875,6 +867,7 @@ begin
       ShowMessage('Transportadora cadastrada com sucesso!');
       PanelOptionsTransp.Visible:=false;
       atualizarTabela;
+      CleanFields(Self);
     finally
       Controller.Free;
     end;
@@ -972,17 +965,14 @@ begin
     try
       controller.EditarTranportadora(Transp,listaTiposCarga);
       showMessage('Transportadora editada com sucesso!!');
+      CleanFields(Self);
+      atualizarTabela;
     finally
       controller.free;
     end;
   finally
     transp.free;
     PanelOptionsTransp.Visible:=false;
-    edtNome.clear;
-    maskEditCnpj.clear;
-    maskEditTelefone.clear;
-    edtEmail.clear;
-    maskEditCep.clear;
   end;
 end;
 

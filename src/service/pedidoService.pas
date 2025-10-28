@@ -2,7 +2,7 @@
 
 interface
 uses
-pedidoRepository,pedidoDto,system.Generics.Collections,System.SysUtils;
+pedidoRepository,pedidoDto,system.Generics.Collections,System.SysUtils,uLog,usuarioLogado;
 
 type TPedidoService = class
   function CalcularFrete(const schemaName: string; tipo:string; distancia: Double;peso:double): Double;
@@ -14,6 +14,8 @@ type TPedidoService = class
 end;
 
 implementation
+var
+systemlog:Tlogger;
 
 
 function TPedidoService.BuscarPedidos(aIdCliente:Integer): TList<TPedidoDto>;
@@ -97,6 +99,17 @@ begin
     Result := Result * 1.25
   else if Peso >= 3000 then
     Result := Result * 1.15;
+
+    systemLog:=Tlogger.create;
+    try
+          SystemLog.Log('',
+      Format('[CREATE] cliente %s do ID %d fez um orçamento no dia %s e no horário %s',
+      [clienteLogado.getNome, clienteLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
+    finally
+
+    systemLog.free;
+    end;
+
 end;
 
 procedure TPedidoService.confirmarPedido(pedidoDto: TPedidoDto; const schemaName: string);
@@ -138,10 +151,15 @@ begin
 
 
   Repo := TPedidoRepository.Create;
+  systemLog:=Tlogger.create;
   try
     Repo.confirmarPedido(pedidoDto,schemaName);
+     SystemLog.Log('',
+    Format('[CREATE] cliente %s do ID %d confirmou um pedido no dia %s e no horário %s',
+    [clienteLogado.getNome, clienteLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     Repo.Free;
+    systemLog.free;
   end;
 end;
 

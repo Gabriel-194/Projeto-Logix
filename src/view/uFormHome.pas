@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,dateUtils,
-  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask,viagemDto, usuarioLogado,uUsuario,carregamentoDto,
+  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask,viagemDto, usuarioLogado,uUsuario,carregamentoDto,uCleanFIelds,
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController,system.Generics.Collections,motoristaDto, uVeiculo,tipoCargaDto,pedidoDto;
 
 type
@@ -1273,6 +1273,7 @@ usuario := TUsuario.Create;
       ShowMessage('Gerente cadastrado com sucesso!');
       mostrarUser('gerente', lswGerente,usuarioLogado.userLogado.getIdTransportadora);
       AtualizarDashboards;
+      CleanFields(Self);
     finally
       controller.Free;
   end;
@@ -1322,15 +1323,14 @@ begin
     usuario.Setcpf(MaskEditCpfGerente.Text);
     usuario.setTelefone (MaskEditTelefoneGerente.text);
     usuario.setCargo_descricao('gerente');
-      usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
-    // jeito para teste ->
-    //usuario.SetIdTransportadora(1);
+    usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
 
     controller := ThomeController.create;
     try
       controller.EditarUser(usuario);
       showMessage('Gerente editado com sucesso!!');
       mostrarUser('gerente', lswGerente,usuarioLogado.userLogado.getIdTransportadora);
+      CleanFields(Self);
     finally
       controller.free;
     end;
@@ -1482,14 +1482,14 @@ begin
   motorista.ValidadeCNH := StrToDate(MaskEditValidadeCnh.text);
   motorista.cargo := 'motorista';
    motorista.idTransportadora := UsuarioLogado.UserLogado.getIdTransportadora;
-  // jeito para teste ->
- //motorista.idTransportadora:= 1;
+
 
  controller := ThomeController.create;
  try
   controller.EditarMotorista(motorista);
   showMessage('Motorista editado com sucesso!!');
   mostrarMotorista;
+  CleanFields(Self);
  finally
   controller.free;
  end;
@@ -1599,6 +1599,7 @@ begin
       mostrarUser('gerente', lswGerente,usuarioLogado.userLogado.getIdTransportadora);
       mostrarMotorista;
       AtualizarDashboards;
+      CleanFields(Self);
     finally
       controller.Free;
   end;
@@ -1641,6 +1642,7 @@ usuario := TUsuario.Create;
       ShowMessage('Carregador cadastrado com sucesso!');
       mostrarUser('Carregador', lswCarregador,usuarioLogado.userLogado.getIdTransportadora);
       AtualizarDashboards;
+      CleanFields(Self);
     finally
       controller.Free;
   end;
@@ -1694,6 +1696,7 @@ begin
       controller.EditarUser(usuario);
       showMessage('Carregador editado com sucesso!!');
       mostrarUser('Carregador', lswCarregador,usuarioLogado.userLogado.getIdTransportadora);
+      CleanFields(Self);
     finally
       controller.free;
     end;
@@ -1867,8 +1870,7 @@ veiculo := Tveiculo.Create;
   veiculo.setId_motorista(strToInt(idMotorista));
 
   veiculo.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
-// jeito para teste ->
-//veiculo.SetIdTransportadora(1);
+
 
 
   controller := THomeController.Create;
@@ -1877,6 +1879,7 @@ veiculo := Tveiculo.Create;
       ShowMessage('veiculo cadastrado com sucesso!');
       mostrarVeiculo;
       AtualizarDashboards;
+      CleanFields(Self);
     finally
       controller.Free;
   end;
@@ -1963,6 +1966,7 @@ veiculo := Tveiculo.Create;
       ShowMessage('veiculo editado com sucesso!');
       mostrarVeiculo;
       AtualizarDashboards;
+      CleanFields(Self);
     finally
       controller.Free;
   end;
@@ -2075,6 +2079,7 @@ begin
   try
     controller.criarOrdemCarregamento(carregamento,usuarioLogado.UserLogado.getIdTransportadora);
     showMessage('Ordem criada com sucesso!');
+    CleanFields(Self);
     mostrarOrdensCarreg;
   finally
     controller.free;
@@ -2098,6 +2103,7 @@ begin
   try
     controller.criarOrdemViagem(viagem,usuarioLogado.UserLogado.getIdTransportadora);
     showMessage('Ordem criada com sucesso!');
+    CleanFields(Self);
     mostrarOrdensCarreg;
   finally
     controller.free;

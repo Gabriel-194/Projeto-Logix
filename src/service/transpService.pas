@@ -3,7 +3,7 @@ unit transpService;
 interface
 
 uses
-  System.SysUtils, transpRepository,uTransportadora,System.Generics.Collections,TipoCargaDto;
+  System.SysUtils, transpRepository,uTransportadora,System.Generics.Collections,TipoCargaDto,uLog,usuarioLogado;
 
 type
   TTranspService = class
@@ -21,7 +21,8 @@ type
   end;
 
 implementation
-
+var
+systemLog:Tlogger;
 { TTranspService }
 
  function TTranspService.BuscarTransportadorasPorTipoCarga(const TipoCarga: string): TList<TTransportadora>;
@@ -80,7 +81,12 @@ begin
   end;
 
   TransRepo.editarTransportadora(Atransp,aTiposCarga);
+  systemLog:=Tlogger.create;
+    SystemLog.Log('',
+    Format('[EDIT] Usuario %s do ID %d editou uma transportadora no dia %s e no horário %s',
+    [clienteLogado.getNome, clienteLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
 
+  systemLog.free;
   TransRepo.free;
 end;
 
@@ -94,8 +100,13 @@ transRepo := TTranspRepository.Create;
     end;
 
     transRepo.ExcluirTransportadora(Atransp);
+    systemLog:=Tlogger.create;
+    SystemLog.Log('',
+    Format('[DELETE] Usuario %s do ID %d excluiu uma transportadora no dia %s e no horário %s',
+    [clienteLogado.getNome, clienteLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     transRepo.Free;
+    systemLog.free;
   end;
 end;
 
@@ -122,8 +133,14 @@ transRepo := TTranspRepository.Create;
     end;
 
     transRepo.RecuperarTransportadora(Atransp);
+
+    systemlog:=Tlogger.create;
+    SystemLog.Log('',
+    Format('[RECOVER] Usuario %s do ID %d recuperou uma transportadora no dia %s e no horário %s',
+    [clienteLogado.getNome, clienteLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     transRepo.Free;
+    systemLog.free;
   end;
 end;
 
@@ -171,8 +188,14 @@ begin
     raise Exception.Create('CEP inválido.');
 
   TransRepo.CadastrarTransportadora(aTransportadora,aTiposCarga);
+  systemLog:=Tlogger.create;
+
+    SystemLog.Log('',
+    Format('[CREATE] Usuario %s do ID %d cadastrou uma transportadora no dia %s e no horário %s',
+    [clienteLogado.getNome, clienteLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
 
   TransRepo.free;
+  systemLog.free;
 
 end;
 

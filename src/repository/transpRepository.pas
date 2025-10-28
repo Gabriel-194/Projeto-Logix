@@ -136,14 +136,13 @@ begin
     FDQuery.Open;
     NovoIdTransportadora := FDQuery.FieldByName('id').AsInteger;
 
-    // Criação do schema
     DataModule2.FDConnection1.ExecSQL('CREATE SCHEMA IF NOT EXISTS ' + SchemaName);
 
-    SQLFile.LoadFromFile('C:\Users\gabri\OneDrive\Documents\Embarcadero\Studio\Projects\Projeto-Logix\src\DataBase\schema_base.sql');
+    SQLFile.LoadFromFile(expandFileName(extractFilePath(paramStr(0)) + '..\..\src\DataBase\schema_base.sql'));
     Script := StringReplace(SQLFile.Text, '{schema}', SchemaName, [rfReplaceAll]);
 
-    DataModule2.FDConnection1.ExecSQL(Script);
 
+    DataModule2.FDConnection1.ExecSQL(Script);
     FDQuery.SQL.Text := 'INSERT INTO ' + (SchemaName) + '.tipo_carga (tipo, preco_base_km, id_transportadora) ' +
                           'VALUES (:tipo, :preco_base_km, :id_transportadora)';
 

@@ -121,7 +121,7 @@ begin
   try
     repo.criarOrdemCarregamento(aCarregamento, aIdTransportadora);
     SystemLog.Log(UserLogado.getSchemaName,
-    Format('Usuário %s do ID %d criou uma ordem de carregamento no dia %s e no horário %s',
+    Format('[CREATE] Usuário %s do ID %d criou uma ordem de carregamento no dia %s e no horário %s',
     [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     repo.Free;
@@ -160,7 +160,7 @@ begin
   try
     repo.criarOrdemViagem(aViagem, aIdTransportadora);
     SystemLog.Log(UserLogado.getSchemaName,
-    Format('Usuário %s do ID %d criou uma ordem de viagem no dia %s e no horário %s',
+    Format('[CREATE] Usuário %s do ID %d criou uma ordem de viagem no dia %s e no horário %s',
     [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     repo.Free;
@@ -183,7 +183,7 @@ begin
   try
     repos.finalizarCarregamento(aidTransportadora,aIdCarregamento,aIdPedido);
     SystemLog.Log(UserLogado.getSchemaName,
-    Format('Usuário %s do ID %d finalizou uma ordem de carregamento no dia %s e no horário %s',
+    Format('[CHECK] Usuário %s do ID %d finalizou uma ordem de carregamento no dia %s e no horário %s',
     [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     repos.Free;
@@ -206,7 +206,7 @@ begin
   try
     repos.finalizarViagem(aidTransportadora,aIdCarregamento,aIdViagem);
     SystemLog.Log(UserLogado.getSchemaName,
-    Format('Usuário %s do ID %d finalizou uma ordem de viagem no dia %s e no horário %s',
+    Format('[CHECK] Usuário %s do ID %d finalizou uma ordem de viagem no dia %s e no horário %s',
     [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     repos.Free;
@@ -227,7 +227,7 @@ begin
   try
     repos.iniciarCarregamento(aidTransportadora,aIdCarregamento,aIdPedido);
     SystemLog.Log(UserLogado.getSchemaName,
-    Format('Usuário %s do ID %d iniciou uma ordem de carregamento no dia %s e no horário %s',
+    Format('[CHECK] Usuário %s do ID %d iniciou uma ordem de carregamento no dia %s e no horário %s',
     [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     repos.Free;
@@ -250,7 +250,7 @@ begin
   try
     repos.iniciarViagem(aidTransportadora,aIdCarregamento,aIdViagem);
     SystemLog.Log(UserLogado.getSchemaName,
-    Format('Usuário %s do ID %d iniciou uma ordem de viagem no dia %s e no horário %s',
+    Format('[CHECK] Usuário %s do ID %d iniciou uma ordem de viagem no dia %s e no horário %s',
     [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     repos.Free;

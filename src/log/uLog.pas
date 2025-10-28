@@ -12,16 +12,19 @@ implementation
 { TLogger }
 
 procedure TLogger.Log(const SchemaName: string; const Msg: string);
-const
-  LogFolder = 'C:\Users\gabri\OneDrive\Documents\Embarcadero\Studio\Projects\Projeto-Logix\src\log\';
 var
+  LogFolder: string;
   LogFile: TextFile;
   FileName, Path: string;
 begin
-  FileName := SchemaName + '_log.txt';
-  Path := LogFolder + FileName;
+  LogFolder := expandFileName(extractFilePath(paramStr(0)) + '..\..\src\log\');
+  // Se SchemaName estiver vazio, escreve no sistema_logix_Log.txt
+  if Trim(SchemaName) = '' then
+    FileName := 'sistema_logix_Log.txt'
+  else
+    FileName := SchemaName + '_log.txt';
 
-  // Garante que a pasta existe
+  Path := LogFolder + FileName;
   if not DirectoryExists(LogFolder) then
     ForceDirectories(LogFolder);
 

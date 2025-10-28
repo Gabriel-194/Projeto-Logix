@@ -15,6 +15,7 @@ type
     FDConnection1: TFDConnection;
     FDQuery1: TFDQuery;
     FDPhysPgDriverLink1: TFDPhysPgDriverLink;
+    procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -29,5 +30,10 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+
+procedure TDataModule2.DataModuleCreate(Sender: TObject);
+begin
+  FDPhysPgDriverLink1.VendorLib:= expandFileName(extractFilePath(paramStr(0))+ '..\..\lib\libpq.dll');
+end;
 
 end.

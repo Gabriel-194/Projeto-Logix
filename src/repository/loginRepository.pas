@@ -12,7 +12,7 @@ type
 //    function VerificaAdmin(AUsuario: TUsuario): Boolean;
     function FindByEmail(AEmail: string; out AUserId: Integer;out ASenhaHash: string;  out ATransportadoraId: Integer;
   out ACargo: string;out ASchemaName: string): Boolean;
-    function BuscaNomePorId(const aUserId: Integer): string;
+    function BuscaNomePorId(aUserId: Integer; clienteId: Integer): string;
     function findByEmailCliente(AEmail: string; out AClienteId: Integer;out ASenhaHash: string):boolean;
   end;
 
@@ -75,7 +75,7 @@ var
  try
   FDQuery.Connection := DataModule2.FDConnection1;
 
-  FDQuery.SQL.Text := 'SELECT id_cliente, senha_hash FROM public.cliente WHERE email = :email';
+  FDQuery.SQL.Text := 'SELECT id_cliente, senha_hash, nome FROM public.cliente WHERE email = :email';
     FDQuery.ParamByName('email').AsString := AEmail;
     FDQuery.Open;
 
@@ -92,7 +92,7 @@ var
 
 end;
 
-function TLoginRepository.BuscaNomePorId(const aUserId: Integer): string;
+function TLoginRepository.BuscaNomePorId(aUserId: Integer; clienteId: Integer): string;
 var
   FDQuery: TFDQuery;
 begin
@@ -101,11 +101,22 @@ begin
   try
     FDQuery.Connection := DataModule2.FDConnection1;
 
-    FDQuery.SQL.Text :=
-      'SELECT nome FROM usuarios WHERE id_usuario = :id_usuario';
-    FDQuery.ParamByName('id_usuario').AsInteger := aUserId;
-    FDQuery.Open;
+    if (aUserId > 0) then
+    begin
+      FDQuery.SQL.Text :=
+        'SELECT nome FROM usuarios WHERE id_usuario = :id_usuario';
+      FDQuery.ParamByName('id_usuario').AsInteger := aUserId;
+    end
+    else if (clienteId > 0) then
+    begin
+      FDQuery.SQL.Text :=
+        'SELECT nome FROM cliente WHERE id_cliente = :id_cliente';
+      FDQuery.ParamByName('id_cliente').AsInteger := clienteId;
+    end
+    else
+      Exit;
 
+    FDQuery.Open;
     if not FDQuery.IsEmpty then
       Result := FDQuery.FieldByName('nome').AsString;
   finally

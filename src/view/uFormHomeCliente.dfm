@@ -1072,167 +1072,6 @@
           Font.Style = [fsBold]
           ParentFont = False
         end
-        object Panel9: TPanel
-          Left = 327
-          Top = 51
-          Width = 769
-          Height = 466
-          BevelOuter = bvNone
-          Color = clWhite
-          ParentBackground = False
-          TabOrder = 13
-          Visible = False
-          object Shape20: TShape
-            Left = 0
-            Top = 0
-            Width = 769
-            Height = 466
-            Align = alClient
-            Pen.Color = clBlue
-            Shape = stRoundRect
-            ExplicitTop = 2
-            ExplicitWidth = 767
-            ExplicitHeight = 464
-          end
-          object Label16: TLabel
-            Left = 216
-            Top = 29
-            Width = 350
-            Height = 32
-            Caption = 'Instru'#231#245'es para fazer o pedido'
-            Font.Charset = EASTEUROPE_CHARSET
-            Font.Color = 6957870
-            Font.Height = -24
-            Font.Name = 'Segoe UI'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label17: TLabel
-            Left = 65
-            Top = 74
-            Width = 661
-            Height = 30
-            Caption = 
-              '1 - Adicione o CEP de origem e clique na lupa para pesquisar os ' +
-              'dados '
-            Font.Charset = EASTEUROPE_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -21
-            Font.Name = 'Segoe UI'
-            Font.Style = []
-            ParentFont = False
-          end
-          object Label19: TLabel
-            Left = 65
-            Top = 124
-            Width = 664
-            Height = 30
-            Caption = 
-              '2 - Adicione o CEP de destino e clique na lupa para pesquisar os' +
-              ' dados '
-            Font.Charset = EASTEUROPE_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -21
-            Font.Name = 'Segoe UI'
-            Font.Style = []
-            ParentFont = False
-          end
-          object Label20: TLabel
-            Left = 65
-            Top = 176
-            Width = 289
-            Height = 30
-            Caption = '3 - Clique em calcular distancia'
-            Font.Charset = EASTEUROPE_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -21
-            Font.Name = 'Segoe UI'
-            Font.Style = []
-            ParentFont = False
-          end
-          object Label22: TLabel
-            Left = 65
-            Top = 232
-            Width = 590
-            Height = 60
-            Caption = 
-              '4 - Escolha o tipo de carga e clique para ver as transportadoras' +
-              ' '#13#10'que prestam esse servi'#231'o '
-            Font.Charset = EASTEUROPE_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -21
-            Font.Name = 'Segoe UI'
-            Font.Style = []
-            ParentFont = False
-          end
-          object Label23: TLabel
-            Left = 65
-            Top = 318
-            Width = 257
-            Height = 30
-            Caption = '5 - informe o peso da carga'
-            Font.Charset = EASTEUROPE_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -21
-            Font.Name = 'Segoe UI'
-            Font.Style = []
-            ParentFont = False
-          end
-          object Label24: TLabel
-            Left = 65
-            Top = 362
-            Width = 630
-            Height = 30
-            Caption = 
-              '6 - clique em calcular frete para ver o pre'#231'o estimado para o pe' +
-              'dido'
-            Font.Charset = EASTEUROPE_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -21
-            Font.Name = 'Segoe UI'
-            Font.Style = []
-            ParentFont = False
-          end
-          object Label25: TLabel
-            Left = 65
-            Top = 415
-            Width = 649
-            Height = 30
-            Caption = 
-              '7 - Com o pre'#231'o calculado clique em confirmar o pedido para fina' +
-              'lizar'
-            Font.Charset = EASTEUROPE_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -21
-            Font.Name = 'Segoe UI'
-            Font.Style = []
-            ParentFont = False
-          end
-          object Image5: TImage
-            Left = 35
-            Top = 20
-            Width = 41
-            Height = 41
-            Center = True
-            Picture.Data = {
-              0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
-              00200806000000737A7AF400000009704859730000167F0000167F01A413BABF
-              0000001974455874536F667477617265007777772E696E6B73636170652E6F72
-              679BEE3C1A0000015C4944415478DAED95C14AC3401086B32711A1AFA03E867A
-              EA4108E62078F7A81EF202BE81F42C48513C7996D29B20288A78F709C4675011
-              44AC5FDA089B90DDCC4C412F19F89976B699FF4BBA9975C93F87EB003A80D0C2
-              64B6B6872EF8F061694E8F45D22E3A73D3AF4280D2FC18E5E81E6D5178579A2F
-              902E5186CED13E3DBEA50047A443AF748DB6A54FA2BCF331DAF4CA0357ED1905
-              58235DA19E57163D89DA9DFF46714DC6B57722002B84D63C0AA085B098B70248
-              21ACE622803608F46535170344201ED01B4A2DE62A8008841F2A7335400B84DA
-              DC0A506CB81BB45E5B7A421BDA89A9FD0B9A76BB1FEAB1ADD9844DE6C5682EE6
-              FB921542FA1A06DF73F49918C7B608403264E6393BDA46B178C259216287917A
-              BC5A2042C7B179B66B21420043D281577A45293F7E4C0411803875D59E518055
-              D22D5AD69A07205E509F1ECF2280B2C10A698472AD790DE204ED34994701FE2A
-              3A800EE007DA4794219C6C6FCB0000000049454E44AE426082}
-            OnClick = Image5Click
-          end
-        end
         object pnlCriarPedidoConf: TPanel
           AlignWithMargins = True
           Left = 998
@@ -2380,6 +2219,165 @@
             OnMouseLeave = lblBtnInstrucoesPedidoMouseLeave
             ExplicitLeft = 48
             ExplicitWidth = 310
+          end
+        end
+        object Panel9: TPanel
+          Left = 327
+          Top = 51
+          Width = 769
+          Height = 466
+          BevelOuter = bvNone
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 13
+          Visible = False
+          object Shape20: TShape
+            Left = 0
+            Top = 0
+            Width = 769
+            Height = 466
+            Align = alClient
+            Pen.Color = clBlue
+            Shape = stRoundRect
+            ExplicitTop = 3
+          end
+          object Label16: TLabel
+            Left = 216
+            Top = 29
+            Width = 350
+            Height = 32
+            Caption = 'Instru'#231#245'es para fazer o pedido'
+            Font.Charset = EASTEUROPE_CHARSET
+            Font.Color = 6957870
+            Font.Height = -24
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object Label17: TLabel
+            Left = 65
+            Top = 74
+            Width = 661
+            Height = 30
+            Caption = 
+              '1 - Adicione o CEP de origem e clique na lupa para pesquisar os ' +
+              'dados '
+            Font.Charset = EASTEUROPE_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -21
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label19: TLabel
+            Left = 65
+            Top = 124
+            Width = 664
+            Height = 30
+            Caption = 
+              '2 - Adicione o CEP de destino e clique na lupa para pesquisar os' +
+              ' dados '
+            Font.Charset = EASTEUROPE_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -21
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label20: TLabel
+            Left = 65
+            Top = 176
+            Width = 289
+            Height = 30
+            Caption = '3 - Clique em calcular distancia'
+            Font.Charset = EASTEUROPE_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -21
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label22: TLabel
+            Left = 65
+            Top = 232
+            Width = 590
+            Height = 60
+            Caption = 
+              '4 - Escolha o tipo de carga e clique para ver as transportadoras' +
+              ' '#13#10'que prestam esse servi'#231'o '
+            Font.Charset = EASTEUROPE_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -21
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label23: TLabel
+            Left = 65
+            Top = 318
+            Width = 257
+            Height = 30
+            Caption = '5 - informe o peso da carga'
+            Font.Charset = EASTEUROPE_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -21
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label24: TLabel
+            Left = 65
+            Top = 362
+            Width = 630
+            Height = 30
+            Caption = 
+              '6 - clique em calcular frete para ver o pre'#231'o estimado para o pe' +
+              'dido'
+            Font.Charset = EASTEUROPE_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -21
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label25: TLabel
+            Left = 65
+            Top = 415
+            Width = 649
+            Height = 30
+            Caption = 
+              '7 - Com o pre'#231'o calculado clique em confirmar o pedido para fina' +
+              'lizar'
+            Font.Charset = EASTEUROPE_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -21
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Image5: TImage
+            Left = 35
+            Top = 20
+            Width = 41
+            Height = 41
+            Center = True
+            Picture.Data = {
+              0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
+              00200806000000737A7AF400000009704859730000167F0000167F01A413BABF
+              0000001974455874536F667477617265007777772E696E6B73636170652E6F72
+              679BEE3C1A0000015C4944415478DAED95C14AC3401086B32711A1AFA03E867A
+              EA4108E62078F7A81EF202BE81F42C48513C7996D29B20288A78F709C4675011
+              44AC5FDA089B90DDCC4C412F19F89976B699FF4BBA9975C93F87EB003A80D0C2
+              64B6B6872EF8F061694E8F45D22E3A73D3AF4280D2FC18E5E81E6D5178579A2F
+              902E5186CED13E3DBEA50047A443AF748DB6A54FA2BCF331DAF4CA0357ED1905
+              58235DA19E57163D89DA9DFF46714DC6B57722002B84D63C0AA085B098B70248
+              21ACE622803608F46535170344201ED01B4A2DE62A8008841F2A7335400B84DA
+              DC0A506CB81BB45E5B7A421BDA89A9FD0B9A76BB1FEAB1ADD9844DE6C5682EE6
+              FB921542FA1A06DF73F49918C7B608403264E6393BDA46B178C259216287917A
+              BC5A2042C7B179B66B21420043D281577A45293F7E4C0411803875D59E518055
+              D22D5AD69A07205E509F1ECF2280B2C10A698472AD790DE204ED34994701FE2A
+              3A800EE007DA4794219C6C6FCB0000000049454E44AE426082}
+            OnClick = Image5Click
           end
         end
       end

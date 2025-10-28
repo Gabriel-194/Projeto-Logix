@@ -47,7 +47,8 @@ uses
   OrdensService in 'src\service\OrdensService.pas',
   OrdemRepository in 'src\repository\OrdemRepository.pas',
   viagemDto in 'src\DTO\viagemDto.pas',
-  uLog in 'src\log\uLog.pas';
+  uLog in 'src\log\uLog.pas',
+  uCleanFields in 'src\view\uCleanFields.pas';
 
 {$R *.res}
 

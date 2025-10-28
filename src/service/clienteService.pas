@@ -2,13 +2,15 @@ unit clienteService;
 
 interface
 uses
-system.Generics.Collections, BCrypt, System.SysUtils,uCliente, clienteRepository;
+system.Generics.Collections, BCrypt, System.SysUtils,uCliente, clienteRepository,uLog,usuarioLogado;
 
 type TclienteService = class
   procedure cadastrarCliente(aCliente:Tcliente);
 end;
 
 implementation
+var
+systemLog:Tlogger;
 
 { TclienteService }
 
@@ -56,8 +58,12 @@ begin
   ClienteRepo := TClienteRepository.Create;
   try
     clienteRepo.cadastrarCliente(aCliente);
+    SystemLog.Log('',
+    Format('[CREATE] Um cliente se cadastrou no dia %s e no horário %s',
+    [FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     clienteRepo.Free;
+    systemLog.free;
   end;
 end;
 
