@@ -14,6 +14,7 @@ type
     email : String;
     senha_hash : String;
     idTransportadora :Integer;
+    SchemaName:String;
    public
 
    procedure setId(aId : Integer);
@@ -39,6 +40,9 @@ type
 
     procedure SetIdTransportadora(aIdTransportadora :Integer);
     function getIdTransportadora : Integer;
+
+    procedure setSchemaName(aSchemaName:String);
+    function getSchemaName:String;
 
 
  end;
@@ -111,6 +115,11 @@ begin
 result := Self.idTransportadora;
 end;
 
+procedure Tusuario.setSchemaName(aSchemaName: String);
+begin
+    Self.schemaName := aSchemaName;
+end;
+
 procedure TUsuario.setSenha_hash(aSenha_hash: String);
 begin
   Self.senha_hash := aSenha_hash;
@@ -119,6 +128,11 @@ end;
 procedure Tusuario.setTelefone(aTelefone: String);
 begin
    Self.telefone := aTelefone;
+end;
+
+function Tusuario.getSchemaName: String;
+begin
+result := self.SchemaName;
 end;
 
 function TUsuario.getSenha_hash: String;

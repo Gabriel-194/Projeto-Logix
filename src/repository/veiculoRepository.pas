@@ -287,7 +287,7 @@ begin
 
     FDQuery.ExecSQL('SET search_path TO ' + (SchemaName) + ', public');
 
-    FDQuery.SQL.Text := 'SELECT * FROM '+(SchemaName) +'.veiculo WHERE ativo = false ORDER BY id_veiculo';
+    FDQuery.SQL.Text := 'SELECT * FROM veiculo WHERE ativo = false ORDER BY id_veiculo';
     FDQuery.Open;
 
     FDQuery.First;

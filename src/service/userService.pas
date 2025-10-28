@@ -2,7 +2,7 @@ unit userService;
 
 interface
 uses
-uUsuario, system.Generics.Collections, BCrypt, System.SysUtils,userRepository,motoristaDto;
+uUsuario, system.Generics.Collections,uLog, BCrypt, System.SysUtils,userRepository,motoristaDto,usuarioLogado;
   type TuserService = class
     procedure cadastrarUsuario(aUsuario:TUsuario);
     function mostrarUser(const aCargo: string;aIdTransportadora:Integer): TObjectList<Tusuario>;
@@ -18,9 +18,13 @@ uUsuario, system.Generics.Collections, BCrypt, System.SysUtils,userRepository,mo
     function mostrarMotoristaInativo(aIdTransportadora:Integer): Tlist<TmotoristaDto>;
     procedure editarMotorista(motorista:TmotoristaDto);
 
-  end;
+
+
+end;
 
 implementation
+var
+SystemLog: Tlogger;
 
 procedure TuserService.cadastrarMotorista(motorista: TmotoristaDto);
 var
@@ -65,11 +69,17 @@ begin
   motorista.senha := HashedSenha;
 
   userRepo := TuserRepository.Create;
+  SystemLog:=Tlogger.create;
   try
     userRepo.cadastrarMotorista(motorista);
+      SystemLog.Log(UserLogado.getSchemaName,
+    Format('Usuário %s do ID %d cadastrou um motorista no dia %s e no horário %s',
+    [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     userRepo.Free;
+    systemLog.free
   end;
+
 end;
 
 { TuserSerive }
@@ -110,10 +120,15 @@ begin
   aUsuario.setSenha_hash(HashedSenha);
 
   userRepo := TuserRepository.Create;
+  SystemLog:=Tlogger.create;
   try
     userRepo.CadastrarUsuario(aUsuario);
+    SystemLog.Log(UserLogado.getSchemaName,
+    Format('Usuário %s do ID %d cadastrou um %s no dia %s e no horário %s',
+    [UserLogado.getNome, UserLogado.getId,aUsuario.getCargo_descricao, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     userRepo.Free;
+    systemLog.free;
   end;
 end;
 
@@ -154,8 +169,12 @@ begin
 
   if Trim(motorista.senha) = '' then begin
     userRepo:= TuserRepository.create;
+    systemLog:=Tlogger.create;
     try
       userRepo.editarMotoristaNotSenha(motorista);
+       SystemLog.Log(UserLogado.getSchemaName,
+      Format('Usuário %s do ID %d editou um motorista no dia %s e no horário %s',
+      [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
       raise Exception.Create('motorista editado, mas segue com sua senha original.');
 
     finally
@@ -168,8 +187,12 @@ begin
     userRepo := TuserRepository.Create;
     try
       userRepo.editarMotorista(motorista);
+      SystemLog.Log(UserLogado.getSchemaName,
+    Format('Usuário %s do ID %d editou um motorista no dia %s e no horário %s',
+    [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
     finally
       userRepo.Free;
+      systemLog.free;
     end;
   end;
 
@@ -202,20 +225,29 @@ begin
     raise Exception.Create('O telefone é obrigatório.');
   end;
 
+  userRepo := TuserRepository.Create;
+  systemLog:=Tlogger.create;
   if Trim(aUsuario.getSenha_hash) = '' then
   begin
-   userRepo.editarUserNotSenha(aUsuario);
+    userRepo.editarUserNotSenha(aUsuario);
+    SystemLog.Log(UserLogado.getSchemaName,
+    Format('Usuário %s do ID %d editou um %s no dia %s e no horário %s',
+    [UserLogado.getNome, UserLogado.getId,aUsuario.getCargo_descricao, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
    raise Exception.Create('usuario editado, mantendo a mesma senha');
+   userRepo.free;
+   systemLog.free;
   end else begin
     HashedSenha := TBCrypt.HashPassword(aUsuario.getSenha_hash);
     aUsuario.setSenha_hash(HashedSenha);
-
-    userRepo := TuserRepository.Create;
-  try
+    try
     userRepo.editarUser(aUsuario);
-  finally
+    SystemLog.Log(UserLogado.getSchemaName,
+    Format('Usuário %s do ID %d editou um %s no dia %s e no horário %s',
+    [UserLogado.getNome, UserLogado.getId,aUsuario.getCargo_descricao, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
+    finally
     userRepo.Free;
-  end;
+    systemLog.free;
+    end;
   end;
 
 end;
@@ -227,10 +259,15 @@ var
 begin
 
   userRepo := TUserRepository.create;
+  systemLog:=Tlogger.create;
   try
     userRepo.excluirUser(aMotorista.IdUsuario);
+    SystemLog.Log(UserLogado.getSchemaName,
+    Format('Usuário %s do ID %d excluiu um motorista no dia %s e no horário %s',
+    [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     userRepo.free;
+    systemLog.free;
   end;
 end;
 
@@ -239,10 +276,15 @@ var
   userRepo: TUserRepository;
 begin
   userRepo := TUserRepository.create;
+  systemLog:=Tlogger.create;
   try
     userRepo.excluirUser(aUsuario.GetID);
+    SystemLog.Log(UserLogado.getSchemaName,
+    Format('Usuário %s do ID %d excluiu um %s no dia %s e no horário %s',
+    [UserLogado.getNome, UserLogado.getId,aUsuario.getCargo_descricao, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     userRepo.free;
+    systemLog.free;
   end;
 end;
 
@@ -299,10 +341,15 @@ var
 userRepo : TuserRepository;
 begin
 userRepo := TuserRepository.create;
+systemLog:=Tlogger.create;
   try
     userRepo.recuperarUser(aMotorista.IdUsuario);
+    SystemLog.Log(UserLogado.getSchemaName,
+    Format('Usuário %s do ID %d recuperou um motorista no dia %s e no horário %s',
+    [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     userRepo.free;
+    systemLog.free;
   end;
 end;
 
@@ -311,10 +358,15 @@ var
 userRepo : TuserRepository;
 begin
 userRepo := TuserRepository.create;
+systemLog:=Tlogger.create;
   try
     userRepo.recuperarUser(aUsuario.GetID);
+    SystemLog.Log(UserLogado.getSchemaName,
+    Format('Usuário %s do ID %d recuperou um %s no dia %s e no horário %s',
+    [UserLogado.getNome, UserLogado.getId,aUsuario.getCargo_descricao, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     userRepo.free;
+    systemLog.free;
   end;
 end;
 end.

@@ -47,6 +47,8 @@ procedure finalizarCarregamento(aIdTransportadora,aIdCarregamento, aIdPedido: In
 function buscarMinhasOrdensViagens(aIdTransportadora: Integer;aIdmotorista:Integer): Tlist<TviagemDto>;
 procedure iniciarViagem(aIdTransportadora,aIdViagem,aIdCarregamento: Integer; aStatus:String);
 procedure FinalizarViagem(aIdTransportadora,aIdViagem,aIdCarregamento: Integer; aStatus:String);
+
+
 end;
 
 implementation

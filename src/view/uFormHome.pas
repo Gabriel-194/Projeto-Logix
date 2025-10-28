@@ -639,36 +639,37 @@ end;
 
 procedure TFormHome.mostrarVeiculoInativo;
 var
-controller:ThomeController;
-listaVeiculo: TobjectList<Tveiculo>;
-veiculo : Tveiculo;
-item: TlistItem;
+  controller: THomeController;
+  listaVeiculo: TObjectList<TVeiculo>;
+  veiculo: TVeiculo;
+  item: TListItem;
 begin
-  listaVeiculo.create;
-  controller := ThomeController.create;
+  controller := THomeController.Create;
   try
     listaVeiculo := controller.mostrarVeiculoInativo(usuarioLogado.userLogado.getIdTransportadora);
+    try
+      lswVeiculos.Items.Clear;
 
-    lswVeiculos.items.clear;
-
-    for veiculo in listaVeiculo do
-    begin
-      item := lswVeiculos.items.add;
-      Item.Caption := veiculo.getId_veiculo.ToString;
-      Item.subitems.Add(veiculo.getPlaca);
-      Item.SubItems.Add(veiculo.getModelo);
-      Item.SubItems.Add(veiculo.getAno.ToString);
-      Item.SubItems.Add(veiculo.getId_motorista.ToString);
-      Item.SubItems.Add(veiculo.getTipo_carga);
-      Item.SubItems.Add(veiculo.getCapacidade.ToString);
-      Item.SubItems.Add(veiculo.getUnidade_medida);
-
+      for veiculo in listaVeiculo do
+      begin
+        item := lswVeiculos.Items.Add;
+        item.Caption := veiculo.getId_veiculo.ToString;
+        item.SubItems.Add(veiculo.getPlaca);
+        item.SubItems.Add(veiculo.getModelo);
+        item.SubItems.Add(veiculo.getAno.ToString);
+        item.SubItems.Add(veiculo.getId_motorista.ToString);
+        item.SubItems.Add(veiculo.getTipo_carga);
+        item.SubItems.Add(veiculo.getCapacidade.ToString);
+        item.SubItems.Add(veiculo.getUnidade_medida);
+      end;
+    finally
+      listaVeiculo.Free;
     end;
   finally
-    listaVeiculo.Free;
+    controller.Free;
   end;
-  controller.free;
 end;
+
 
 procedure TFormHome.MostrarMotorista;
 var
@@ -1383,6 +1384,7 @@ begin
   codParaExcluir := StrToInt(lswGerente.Selected.Caption);
   user := Tusuario.create;
   user.setId(codParaExcluir);
+  user.setCargo_descricao('Gerente');
 
   controller := THomeController.Create;
   try
@@ -1415,6 +1417,7 @@ begin
   codParaRecuperar := StrToInt(lswGerente.Selected.Caption);
   user := Tusuario.create;
   user.setId(codParaRecuperar);
+  user.setCargo_descricao('Gerente');
 
   controller := THomeController.Create;
   try
@@ -1739,6 +1742,7 @@ begin
   codParaExcluir := StrToInt(lswCarregador.Selected.Caption);
   user := Tusuario.create;
   user.setId(codParaExcluir);
+  user.setCargo_descricao('Carregador');
 
   controller := THomeController.Create;
   try
@@ -1776,6 +1780,7 @@ begin
   codParaExcluir := StrToInt(lswCarregador.Selected.Caption);
   user := Tusuario.create;
   user.setId(codParaExcluir);
+  user.setCargo_descricao('Carregador');
 
   controller := THomeController.Create;
   try

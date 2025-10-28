@@ -46,7 +46,8 @@ uses
   carregamentoDto in 'src\DTO\carregamentoDto.pas',
   OrdensService in 'src\service\OrdensService.pas',
   OrdemRepository in 'src\repository\OrdemRepository.pas',
-  viagemDto in 'src\DTO\viagemDto.pas';
+  viagemDto in 'src\DTO\viagemDto.pas',
+  uLog in 'src\log\uLog.pas';
 
 {$R *.res}
 

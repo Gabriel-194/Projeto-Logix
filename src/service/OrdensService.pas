@@ -2,7 +2,7 @@ unit OrdensService;
 
 interface
 uses
-  system.Generics.Collections,viagemDto, carregamentoDto,OrdemRepository,System.SysUtils,dateUtils;
+  system.Generics.Collections,viagemDto, carregamentoDto,OrdemRepository,System.SysUtils,dateUtils,uLog,usuarioLogado;
 
 type TordemService = class
   procedure criarOrdemCarregamento(aCarregamento:TcarregamentoDto;aIdTransportadora:Integer);
@@ -19,6 +19,8 @@ procedure FinalizarViagem(aIdTransportadora,aIdViagem,aIdCarregamento: Integer; 
 end;
 
 implementation
+var
+systemLog:Tlogger;
 
 { TordemService }
 
@@ -115,10 +117,15 @@ begin
   if (aCarregamento.idPedido <= 0) then
     raise Exception.Create('Selecione um pedido.');
 
+  systemLog:=Tlogger.create;
   try
     repo.criarOrdemCarregamento(aCarregamento, aIdTransportadora);
+    SystemLog.Log(UserLogado.getSchemaName,
+    Format('Usuário %s do ID %d criou uma ordem de carregamento no dia %s e no horário %s',
+    [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     repo.Free;
+    systemLog.free;
   end;
 end;
 
@@ -149,10 +156,15 @@ begin
   if (aViagem.idVeiculo <= 0) then
     raise Exception.Create('Selecione o veículo.');
 
+  systemLog:=Tlogger.create;
   try
     repo.criarOrdemViagem(aViagem, aIdTransportadora);
+    SystemLog.Log(UserLogado.getSchemaName,
+    Format('Usuário %s do ID %d criou uma ordem de viagem no dia %s e no horário %s',
+    [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     repo.Free;
+    systemLog.free;
   end;
 end;
 
@@ -167,10 +179,15 @@ begin
     raise Exception.Create('Essa ordem não foi iniciada ou ja está pronta!');
   end;
 
+  systemLog:=Tlogger.create;
   try
     repos.finalizarCarregamento(aidTransportadora,aIdCarregamento,aIdPedido);
+    SystemLog.Log(UserLogado.getSchemaName,
+    Format('Usuário %s do ID %d finalizou uma ordem de carregamento no dia %s e no horário %s',
+    [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     repos.Free;
+    systemLog.free;
   end;
 end;
 
@@ -185,10 +202,15 @@ begin
     raise Exception.Create('Essa ordem não foi iniciada ou ja está pronta!');
   end;
 
+  systemLog:=Tlogger.create;
   try
     repos.finalizarViagem(aidTransportadora,aIdCarregamento,aIdViagem);
+    SystemLog.Log(UserLogado.getSchemaName,
+    Format('Usuário %s do ID %d finalizou uma ordem de viagem no dia %s e no horário %s',
+    [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     repos.Free;
+    systemLog.free;
   end;
 end;
 procedure TordemService.iniciarCarregamento(aIdTransportadora,aIdCarregamento,aIdPedido: Integer; aStatus:String);
@@ -201,10 +223,15 @@ begin
     raise Exception.Create('Essa ordem já está em execução ou está pronta!');
   end;
 
+  systemLog:=Tlogger.create;
   try
     repos.iniciarCarregamento(aidTransportadora,aIdCarregamento,aIdPedido);
+    SystemLog.Log(UserLogado.getSchemaName,
+    Format('Usuário %s do ID %d iniciou uma ordem de carregamento no dia %s e no horário %s',
+    [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     repos.Free;
+    systemLog.free;
   end;
 end;
 
@@ -219,10 +246,15 @@ begin
     raise Exception.Create('Essa ordem já está em execução ou está pronta!');
   end;
 
+  systemLog:=Tlogger.create;
   try
     repos.iniciarViagem(aidTransportadora,aIdCarregamento,aIdViagem);
+    SystemLog.Log(UserLogado.getSchemaName,
+    Format('Usuário %s do ID %d iniciou uma ordem de viagem no dia %s e no horário %s',
+    [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     repos.Free;
+    systemLog.free;
   end;
 end;
 

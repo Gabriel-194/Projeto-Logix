@@ -188,6 +188,7 @@
         <DCCReference Include="src\service\OrdensService.pas"/>
         <DCCReference Include="src\repository\OrdemRepository.pas"/>
         <DCCReference Include="src\DTO\viagemDto.pas"/>
+        <DCCReference Include="src\log\uLog.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

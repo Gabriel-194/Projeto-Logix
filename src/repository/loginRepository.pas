@@ -11,7 +11,7 @@ type
     function VerificaLogin(AUsuario: TUsuario): Boolean;
 //    function VerificaAdmin(AUsuario: TUsuario): Boolean;
     function FindByEmail(AEmail: string; out AUserId: Integer;out ASenhaHash: string;  out ATransportadoraId: Integer;
-  out ACargo: string): Boolean;
+  out ACargo: string;out ASchemaName: string): Boolean;
     function BuscaNomePorId(const aUserId: Integer): string;
     function findByEmailCliente(AEmail: string; out AClienteId: Integer;out ASenhaHash: string):boolean;
   end;
@@ -23,9 +23,9 @@ implementation
 
 
 
-function TLoginRepository.FindByEmail(AEmail: string; out AUserId: Integer;
-  out ASenhaHash: string;  out ATransportadoraId: Integer;
-  out ACargo: string): Boolean;
+function TLoginRepository.FindByEmail(AEmail: string;out AUserId: Integer;out ASenhaHash: string;out ATransportadoraId: Integer;out ACargo: string;
+  out ASchemaName: string
+): Boolean;
 var
   FDQuery: TFDQuery;
 begin
@@ -34,22 +34,25 @@ begin
   ASenhaHash := '';
   ATransportadoraId := 0;
   ACargo := '';
+  ASchemaName := '';
 
   FDQuery := TFDQuery.Create(nil);
-
   try
     FDQuery.Connection := DataModule2.FDConnection1;
-    FDQuery.SQL.Text := 'SELECT id_usuario, senha_hash, cargo_descricao, id_transportadora FROM public.usuarios WHERE email = :email';
+    FDQuery.SQL.Text :=
+      'SELECT u.id_usuario, u.senha_hash, u.cargo_descricao, u.id_transportadora, t.schema_name ' +
+      'FROM public.usuarios u ' +
+      'JOIN public.transportadora t ON t.id = u.id_transportadora ' +
+      'WHERE u.email = :email';
     FDQuery.ParamByName('email').AsString := AEmail;
     FDQuery.Open;
-
     if not FDQuery.IsEmpty then
     begin
-      AUserId    := FDQuery.FieldByName('id_usuario').AsInteger;
-      ASenhaHash := FDQuery.FieldByName('senha_hash').AsString;
-      ACargo := FDQuery.FieldByName('cargo_descricao').AsString;
+      AUserId           := FDQuery.FieldByName('id_usuario').AsInteger;
+      ASenhaHash        := FDQuery.FieldByName('senha_hash').AsString;
+      ACargo            := FDQuery.FieldByName('cargo_descricao').AsString;
       ATransportadoraId := FDQuery.FieldByName('id_transportadora').AsInteger;
-
+      ASchemaName       := FDQuery.FieldByName('schema_name').AsString;
       Result := True;
     end;
   finally

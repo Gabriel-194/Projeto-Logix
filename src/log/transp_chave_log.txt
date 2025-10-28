@@ -1,0 +1,13 @@
+Usuário jota do ID 2 cadastrou um motorista no dia 27/10/2025 e no horário 21:21:27
+Usuário jota do ID 2 cadastrou um Carregador no dia 28/10/2025 e no horário 10:16:04
+Usuário jota do ID 2 cadastrou um Carregador no dia 28/10/2025 e no horário 10:17:11
+Usuário jota do ID 2 editou um Carregador no dia 28/10/2025 e no horário 10:18:24
+Usuário jota do ID 2 cadastrou um veiculo no dia 28/10/2025 e no horário 10:20:54
+Usuário jota do ID 2 cadastrou um veiculo no dia 28/10/2025 e no horário 10:23:14
+Usuário jota do ID 2 cadastrou um veiculo no dia 28/10/2025 e no horário 10:24:36
+Usuário jota do ID 2 excluiu um veiculo no dia 28/10/2025 e no horário 10:25:00
+Usuário jota do ID 2 recuperou um veiculo no dia 28/10/2025 e no horário 10:36:02
+Usuário jota do ID 2 excluiu um Gerente no dia 28/10/2025 e no horário 10:42:19
+Usuário jota do ID 2 recuperou um Gerente no dia 28/10/2025 e no horário 10:42:41
+Usuário jota do ID 2 excluiu um Carregador no dia 28/10/2025 e no horário 10:42:50
+Usuário jota do ID 2 recuperou um Carregador no dia 28/10/2025 e no horário 10:43:00

@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS {schema}.carregamento (
 CREATE TABLE IF NOT EXISTS {schema}.viagem (
   id_viagem        SERIAL PRIMARY KEY,
   id_carregamento  INT NOT NULL REFERENCES {schema}.carregamento(id_carregamento),
-  id_veiculo       INT NOT NULL REFERENCES {schema}.veiculo(id_veiculo), -- aqui!
+  id_veiculo       INT NOT NULL REFERENCES {schema}.veiculo(id_veiculo), 
   id_motorista     INT NOT NULL REFERENCES public.usuarios(id_usuario),
   data_saida_cd    TIMESTAMP,
   data_chegada  TIMESTAMP,
