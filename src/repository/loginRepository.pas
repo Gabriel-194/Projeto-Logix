@@ -40,10 +40,10 @@ begin
   try
     FDQuery.Connection := DataModule2.FDConnection1;
     FDQuery.SQL.Text :=
-      'SELECT u.id_usuario, u.senha_hash, u.cargo_descricao, u.id_transportadora, t.schema_name ' +
-      'FROM public.usuarios u ' +
-      'JOIN public.transportadora t ON t.id = u.id_transportadora ' +
-      'WHERE u.email = :email';
+  'SELECT u.id_usuario, u.senha_hash, u.cargo_descricao, u.id_transportadora, t.schema_name ' +
+  'FROM public.usuarios u ' +
+  'LEFT JOIN public.transportadora t ON t.id = u.id_transportadora ' +
+  'WHERE u.email = :email';
     FDQuery.ParamByName('email').AsString := AEmail;
     FDQuery.Open;
     if not FDQuery.IsEmpty then
