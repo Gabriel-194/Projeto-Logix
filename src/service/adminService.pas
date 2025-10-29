@@ -54,8 +54,8 @@ begin
   try
     adminRepo.cadastrarAdmin(AadminDto);
     SystemLog.Log('',
-    Format('[CREATE] Usuario %s do ID %d cadastrou um Admin no dia %s e no horário %s',
-    [clienteLogado.getNome, clienteLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
+    Format('[CREATE] Usuário %s do ID %d cadastrou um Admin no dia %s e no horário %s',
+    [userLogado.getNome, userLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     adminRepo.Free;
     systemLog.free;
@@ -98,8 +98,8 @@ begin
   try
     adminRepo.EditarAdmin(AadminDto);
     SystemLog.Log('',
-    Format('[EDIT] Usuario %s do ID %d editou um Admin no dia %s e no horário %s',
-    [clienteLogado.getNome, clienteLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
+    Format('[EDIT] Usuário %s do ID %d editou um Admin no dia %s e no horário %s',
+    [userLogado.getNome, userLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     adminRepo.free;
     systemLog.free;
@@ -116,8 +116,8 @@ systemLog:=Tlogger.create;
   try
     adminRepo.ExcluirAdmin(AadminDto);
     SystemLog.Log('',
-    Format('[DELETE] Usuario %s do ID %d excluiu um Admin no dia %s e no horário %s',
-    [clienteLogado.getNome, clienteLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
+    Format('[DELETE] Usuário %s do ID %d excluiu um Admin no dia %s e no horário %s',
+    [userLogado.getNome, userLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     adminRepo.free;
     systemLog.free;
@@ -146,8 +146,8 @@ systemlog:=Tlogger.create;
   try
     adminRepo.recuperarAdmin(AadminDto);
     SystemLog.Log('',
-    Format('[RECOVER] Usuario %s do ID %d recuperou um Admin no dia %s e no horário %s',
-    [clienteLogado.getNome, clienteLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
+    Format('[RECOVER] Usuário %s do ID %d recuperou um Admin no dia %s e no horário %s',
+    [userLogado.getNome, userLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     adminRepo.free;
     systemLog.free;

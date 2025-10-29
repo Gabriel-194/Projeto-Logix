@@ -27,6 +27,17 @@ CREATE TABLE IF NOT EXISTS public.transportadora (
     data_atualizacao TIMESTAMP DEFAULT now()
 );
 
+CREATE TABLE grupo (
+  id_grupo SERIAL PRIMARY KEY,
+  nome VARCHAR(50) UNIQUE NOT NULL
+);
+
+INSERT INTO grupo (nome) VALUES
+  ('Admin'),
+  ('Gerente'),
+  ('Carregador'),
+  ('Motorista');
+
 -- Usuários (administradores, funcionários e motoristas)
 CREATE TABLE IF NOT EXISTS public.usuarios (
     id_usuario        SERIAL PRIMARY KEY,
@@ -52,11 +63,6 @@ CREATE TABLE IF NOT EXISTS public.motorista (
     validade_cnh    DATE NOT NULL,
     data_cadastro   TIMESTAMP DEFAULT now(),
     data_atualizacao TIMESTAMP DEFAULT now()
-);
-
-CREATE TABLE grupo (
-  id_grupo SERIAL PRIMARY KEY,
-  nome VARCHAR(50) UNIQUE NOT NULL
 );
 
 -- Clientes globais (um cadastro único que pode usar qualquer transportadora)
@@ -87,10 +93,7 @@ VALUES (
     'adminLogix',
     NULL
 )
-INSERT INTO grupo (nome) VALUES
-  ('Admin'),
-  ('Gerente'),
-  ('Carregador'),
-  ('Motorista');
-
 ON CONFLICT (email) DO NOTHING;
+
+
+

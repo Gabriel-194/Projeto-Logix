@@ -1,0 +1,4 @@
+[CREATE] Usuário jota do ID 2 cadastrou um gerente no dia 29/10/2025 e no horário 14:43:17
+[CREATE] Usuário jota do ID 2 cadastrou um motorista no dia 29/10/2025 e no horário 14:53:16
+[CREATE] Usuário ertal do ID 4 cadastrou um Carregador no dia 29/10/2025 e no horário 15:48:48
+[CREATE] Usuário jota do ID 2 cadastrou um veiculo no dia 29/10/2025 e no horário 16:24:09

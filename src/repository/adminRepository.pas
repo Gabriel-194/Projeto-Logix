@@ -28,8 +28,8 @@ begin
 
     FDQuery.SQL.Text :=
       'INSERT INTO public.usuarios ' +
-      '(nome, cpf, telefone, email, senha_hash, cargo_descricao, ativo, data_cadastro, data_atualizacao, id_transportadora) ' +
-      'VALUES (:nome, :cpf, :telefone, :email, :senha_hash, :cargo_descricao, TRUE, NOW(), NOW(), :id_transportadora)';
+      '(nome, cpf, telefone, email, senha_hash, cargo_descricao,id_grupo, ativo, data_cadastro, data_atualizacao, id_transportadora) ' +
+      'VALUES (:nome, :cpf, :telefone, :email, :senha_hash, :cargo_descricao,:id_grupo, TRUE, NOW(), NOW(), :id_transportadora)';
 
     FDQuery.ParamByName('nome').AsString := AadminDto.nome;
     FDQuery.ParamByName('cpf').AsString := AadminDto.cpf;
@@ -37,6 +37,7 @@ begin
     FDQuery.ParamByName('email').AsString := AadminDto.email;
     FDQuery.ParamByName('senha_hash').AsString := AadminDto.senha;
     FDQuery.ParamByName('cargo_descricao').AsString := 'ADMIN';
+    FDQuery.ParamByName('id_grupo').AsInteger := 1;
     FDQuery.ParamByName('id_transportadora').AsInteger := AadminDto.idTransportadora;
 
     FDQuery.ExecSQL;

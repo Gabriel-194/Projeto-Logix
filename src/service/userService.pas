@@ -73,7 +73,7 @@ begin
   try
     userRepo.cadastrarMotorista(motorista);
       SystemLog.Log(UserLogado.getSchemaName,
-    Format('Usuário %s do ID %d cadastrou um motorista no dia %s e no horário %s',
+    Format('[CREATE] Usuário %s do ID %d cadastrou um motorista no dia %s e no horário %s',
     [UserLogado.getNome, UserLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
   finally
     userRepo.Free;

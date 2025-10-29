@@ -88,9 +88,9 @@ begin
 
       FDQuery.SQL.Text :=
         'INSERT INTO veiculo ' +
-        '(placa, modelo, ano, tipo_carga, capacidade, unidade_medida, id_motorista, ativo, data_cadastro, data_atualizacao,status) ' +
+        '(placa, modelo, ano, tipo_carga, capacidade, unidade_medida, ativo, data_cadastro, data_atualizacao,status) ' +
         'VALUES ' +
-        '(:placa, :modelo, :ano, :tipo_carga, :capacidade, :unidade_medida, :id_motorista, TRUE, NOW(), NOW(), ''disponivel'')';
+        '(:placa, :modelo, :ano, :tipo_carga, :capacidade, :unidade_medida, TRUE, NOW(), NOW(), ''disponivel'')';
 
       FDQuery.ParamByName('placa').AsString := veiculo.getPlaca;
       FDQuery.ParamByName('modelo').AsString := veiculo.getModelo;
@@ -98,7 +98,6 @@ begin
       FDQuery.ParamByName('tipo_carga').AsString := veiculo.getTipo_carga;
       FDQuery.ParamByName('capacidade').AsInteger := Trunc(veiculo.getCapacidade);
       FDQuery.ParamByName('unidade_medida').AsString := veiculo.getUnidade_medida;
-      FDQuery.ParamByName('id_motorista').AsInteger := veiculo.getId_motorista;
 
       FDQuery.ExecSQL;
 
@@ -170,7 +169,7 @@ begin
       FDQuery.ExecSQL('SET search_path TO ' + (SchemaName) + ', public');
 
       FDQuery.SQL.Text :='UPDATE veiculo SET placa = :placa, modelo = :modelo,ano = :ano, tipo_carga = :tipo_carga,capacidade = :capacidade, unidade_medida = :unidade_medida, ' +
-      'id_motorista = :id_motorista,data_atualizacao = NOW() WHERE id_veiculo = :id_veiculo';
+      'data_atualizacao = NOW() WHERE id_veiculo = :id_veiculo';
 
       FDQuery.ParamByName('id_veiculo').AsInteger := veiculo.getId_veiculo;
       FDQuery.ParamByName('placa').AsString := veiculo.getPlaca;
@@ -179,10 +178,7 @@ begin
       FDQuery.ParamByName('tipo_carga').AsString := veiculo.getTipo_carga;
       FDQuery.ParamByName('capacidade').AsInteger := Trunc(veiculo.getCapacidade);
       FDQuery.ParamByName('unidade_medida').AsString := veiculo.getUnidade_medida;
-      FDQuery.ParamByName('id_motorista').AsInteger := veiculo.getId_motorista;
-
       FDQuery.ExecSQL;
-
   finally
     FDQuery.Free;
   end;
@@ -252,7 +248,6 @@ begin
       veiculo.setTipo_carga(FDQuery.FieldByName('tipo_carga').AsString);
       veiculo.setCapacidade(FDQuery.FieldByName('capacidade').AsInteger);
       veiculo.setUnidade_medida(FDQuery.FieldByName('unidade_medida').AsString);
-      veiculo.setId_motorista(FDQuery.FieldByName('id_motorista').AsInteger);
 
       Result.Add(veiculo);
 
@@ -301,7 +296,6 @@ begin
       veiculo.setTipo_carga(FDQuery.FieldByName('tipo_carga').AsString);
       veiculo.setCapacidade(FDQuery.FieldByName('capacidade').AsInteger);
       veiculo.setUnidade_medida(FDQuery.FieldByName('unidade_medida').AsString);
-      veiculo.setId_motorista(FDQuery.FieldByName('id_motorista').AsInteger);
 
       Result.Add(veiculo);
 

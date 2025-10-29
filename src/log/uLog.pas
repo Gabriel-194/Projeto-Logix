@@ -18,7 +18,6 @@ var
   FileName, Path: string;
 begin
   LogFolder := expandFileName(extractFilePath(paramStr(0)) + '..\..\src\log\');
-  // Se SchemaName estiver vazio, escreve no sistema_logix_Log.txt
   if Trim(SchemaName) = '' then
     FileName := 'sistema_logix_Log.txt'
   else

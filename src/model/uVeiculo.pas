@@ -15,7 +15,6 @@ type
     tipo_carga: String;
     capacidade: integer;
     unidade_medida: String;
-    id_motorista: Integer;
     idTransportadora :Integer;
 
   public
@@ -40,9 +39,6 @@ type
     procedure setUnidade_medida(aUnidade: String);
     function getUnidade_medida: String;
 
-    procedure setId_motorista(aIdMotorista: Integer);
-    function getId_motorista: Integer;
-
     procedure SetIdTransportadora(aIdTransportadora :Integer);
     function getIdTransportadora : Integer;
   end;
@@ -66,10 +62,6 @@ begin
 result := Self.idTransportadora;
 end;
 
-function TVeiculo.getId_motorista: Integer;
-begin
-  Result := Self.id_motorista;
-end;
 
 function TVeiculo.getId_veiculo: Integer;
 begin
@@ -109,11 +101,6 @@ end;
 procedure TVeiculo.SetIdTransportadora(aIdTransportadora: Integer);
 begin
 Self.IdTransportadora := aIdTransportadora;
-end;
-
-procedure TVeiculo.setId_motorista(aIdMotorista: Integer);
-begin
-  Self.id_motorista := aIdMotorista;
 end;
 
 procedure TVeiculo.setId_veiculo(aId: Integer);

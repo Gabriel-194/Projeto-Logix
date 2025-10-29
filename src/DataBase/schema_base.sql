@@ -13,12 +13,8 @@ CREATE TABLE IF NOT EXISTS {schema}.veiculo (
     ativo BOOLEAN DEFAULT TRUE,
     data_cadastro TIMESTAMPTZ DEFAULT NOW(),
     data_atualizacao TIMESTAMPTZ DEFAULT NOW(),
-    id_motorista INTEGER,
     status varchar(50),
-    CONSTRAINT fk_veiculo_motorista
-        FOREIGN KEY (id_motorista)
-        REFERENCES public.motorista (id_usuario)
-);
+ );
 
 -- Tipo de carga
 CREATE TABLE IF NOT EXISTS {schema}.tipo_carga (

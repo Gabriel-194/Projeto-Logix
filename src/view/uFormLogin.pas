@@ -473,6 +473,7 @@ begin
       end;
     finally
       controlLogin.Free;
+      cleanFields(self);
     end;
   except
     on E: Exception do
@@ -871,12 +872,6 @@ begin
     finally
       Controller.Free;
     end;
-      edtNome.clear;
-      maskEditCnpj.clear;
-      maskEditTelefone.clear;
-      edtEmail.clear;
-      maskEditCep.clear;
-
   except
     on E: Exception do
       ShowMessage('Erro: ' + E.Message);

@@ -28,13 +28,14 @@ var
   cargo: string;
   nomeCliente: string;
   schemaName:string;
+  idGrupo:Integer;
 begin
   if aLoginDto.email.Trim = '' then
     raise Exception.Create('E-mail é obrigatório.');
   if aLoginDto.Senha.Trim = '' then
     raise Exception.Create('Senha é obrigatória.');
 
-  if loginRepo.FindByEmail(aLoginDto.email, userId, senhaHashDoBanco, transportadoraId, cargo, schemaName) then
+  if loginRepo.FindByEmail(aLoginDto.email, userId, senhaHashDoBanco, transportadoraId, cargo, schemaName,idGrupo) then
   begin
     if TBCrypt.CheckPassword(aLoginDto.Senha, senhaHashDoBanco, rehashNecessario) then
     begin
@@ -45,6 +46,7 @@ begin
       user.setIdTransportadora(transportadoraId);
       user.setCargo_descricao(cargo);
       user.setSchemaName(SchemaName);
+      user.setIdGrupo(idGrupo);
 
       if SameText(cargo, 'adminLogix') then
         Exit(lrSucessoAdmin)

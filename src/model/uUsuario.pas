@@ -15,6 +15,7 @@ type
     senha_hash : String;
     idTransportadora :Integer;
     SchemaName:String;
+    id_grupo:Integer;
    public
 
    procedure setId(aId : Integer);
@@ -43,6 +44,9 @@ type
 
     procedure setSchemaName(aSchemaName:String);
     function getSchemaName:String;
+
+    procedure setIdGrupo(aIdGrupo:integer);
+    function getIdGrupo:integer;
 
 
  end;
@@ -144,6 +148,16 @@ end;
 function Tusuario.getTelefone: String;
 begin
 result := Self.telefone;
+end;
+
+function Tusuario.getIdGrupo: integer;
+begin
+result := self.id_grupo;
+end;
+
+procedure Tusuario.setIdGrupo(aIdGrupo: integer);
+begin
+  self.id_grupo := aIdGrupo;
 end;
 
 end.

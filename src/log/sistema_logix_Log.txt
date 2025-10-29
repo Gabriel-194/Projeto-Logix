@@ -1,0 +1,6 @@
+[CREATE] Usuário administrador Logix do ID 1 cadastrou uma transportadora no dia 29/10/2025 e no horário 14:03:53
+[CREATE] Usuário administrador Logix do ID 1 cadastrou um Admin no dia 29/10/2025 e no horário 14:06:46
+[CREATE] Usuario administrador logix do ID 1 cadastrou um Admin no dia 29/10/2025 e no horário 14:08:27
+[CREATE] Um cliente se cadastrou no dia 29/10/2025 e no horário 16:54:45
+[CREATE] Um cliente se cadastrou no dia 29/10/2025 e no horário 16:56:40
+[CREATE] Um cliente se cadastrou no dia 29/10/2025 e no horário 17:00:57

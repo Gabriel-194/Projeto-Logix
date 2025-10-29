@@ -304,10 +304,6 @@ type
     PanelFechaOptionsVeiculo: TPanel;
     Shape72: TShape;
     imgFechaOptionsVeiculo: TImage;
-    Panel4: TPanel;
-    Label6: TLabel;
-    Panel5: TPanel;
-    cbMotorista4Veiculo: TComboBox;
     PanelPedidos: TPanel;
     Shape2: TShape;
     lblpedidosBtn: TLabel;
@@ -369,8 +365,8 @@ type
     lblBtnMinhasOrdens: TLabel;
     PanelMinhasOrdens: TPanel;
     PageControlMinhasOrdens: TPageControl;
-    TabSheet3: TTabSheet;
-    TabSheet4: TTabSheet;
+    TabSheetOrdensCarregamento: TTabSheet;
+    TabSheetOrdensViagens: TTabSheet;
     Image16: TImage;
     Label37: TLabel;
     Label38: TLabel;
@@ -479,9 +475,6 @@ type
     procedure Image4Click(Sender: TObject);
     procedure mostrarPedidosOrdens;
     procedure Image14Click(Sender: TObject);
-    procedure DBGridPedidosOrdensDrawColumnCell(Sender: TObject;
-      const Rect: TRect; DataCol: Integer; Column: TColumn;
-      State: TGridDrawState);
     procedure lblBtnConfCarregamentoClick(Sender: TObject);
     procedure mostrarOrdensCarreg;
     procedure DBGridPedidosOrdensCellClick(Column: TColumn);
@@ -494,6 +487,7 @@ type
     procedure ordensViagens4Motoristas;
     procedure imgIniciarOrdemViagemClick(Sender: TObject);
     procedure imgFinalizarOrdemViagemClick(Sender: TObject);
+    procedure verificarPermissoes;
   private
     { Private declarations }
   public
@@ -625,7 +619,6 @@ begin
       Item.subitems.Add(veiculo.getPlaca);
       Item.SubItems.Add(veiculo.getModelo);
       Item.SubItems.Add(veiculo.getAno.ToString);
-      Item.SubItems.Add(veiculo.getId_motorista.ToString);
       Item.SubItems.Add(veiculo.getTipo_carga);
       Item.SubItems.Add(veiculo.getCapacidade.ToString);
       Item.SubItems.Add(veiculo.getUnidade_medida);
@@ -657,7 +650,6 @@ begin
         item.SubItems.Add(veiculo.getPlaca);
         item.SubItems.Add(veiculo.getModelo);
         item.SubItems.Add(veiculo.getAno.ToString);
-        item.SubItems.Add(veiculo.getId_motorista.ToString);
         item.SubItems.Add(veiculo.getTipo_carga);
         item.SubItems.Add(veiculo.getCapacidade.ToString);
         item.SubItems.Add(veiculo.getUnidade_medida);
@@ -1042,51 +1034,6 @@ begin
   DBGridMeusPedidos.Canvas.TextRect(Rect, x, y, value);
 end;
 
-
-procedure TFormHome.DBGridPedidosOrdensDrawColumnCell(Sender: TObject;
-  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
-var
-  value: string;
-  x, y: Integer;
-  txtWidth, txtHeight: Integer;
-begin
-    if (gdSelected in State) then
-  begin
-
-    DBGridPedidosOrdens.Canvas.Brush.Color := clHighlight;
-    DBGridPedidosOrdens.Canvas.FillRect(Rect);
-
-    DBGridPedidosOrdens.Canvas.Font.Color := clHighlightText;
-
-
-    DBGridPedidosOrdens.Canvas.TextOut(Rect.Left + 2, Rect.Top + 2, Column.Field.AsString);
-
-    DBGridPedidosOrdens.DefaultDrawing := False;
-  end
-  else
-  begin
-
-    DBGridPedidosOrdens.DefaultDrawing := True;
-  end;
-
-  value := '';
-
-  if Column.FieldName = 'dataPedido' then
-    value := FormatDateTime('dd/mm/yyyy', Column.Field.AsDateTime)
-  else if Column.FieldName = 'distanciaKm' then
-    value := FormatFloat('0.', Column.Field.AsFloat) + ' km'
-  else
-    value := Column.Field.AsString;
-
-  DBGridPedidosOrdens.Canvas.FillRect(Rect);
-  txtWidth := DBGridMeusPedidos.Canvas.TextWidth(value);
-  txtHeight := DBGridMeusPedidos.Canvas.TextHeight(value);
-  x := Rect.Left + (Rect.Right - Rect.Left - txtWidth) div 2;
-  y := Rect.Top + (Rect.Bottom - Rect.Top - txtHeight) div 2;
-
-  DBGridPedidosOrdens.Canvas.TextRect(Rect, x, y, value);
-
-end;
 // ====================== on show form home ============================
 procedure TFormHome.AtualizarDashboards;
 var
@@ -1134,6 +1081,7 @@ begin
     lblCountViagensEmRota.Caption := intToStr(controller.buscarOrdensporStatus(IdTransportadoraLogada,usuarioLogado.UserLogado.getId,'Em rota','viagem'));
     lblOrdensViagensFinalizadas.caption := intToStr(controller.buscarOrdensporStatus(IdTransportadoraLogada,usuarioLogado.UserLogado.getId,'Finalizada','viagem'));
 
+    verificarPermissoes;
   finally
     controller.Free;
   end;
@@ -1160,6 +1108,27 @@ begin
     AtualizarDashboards;
 end;
 
+procedure TFormHome.verificarPermissoes;
+begin
+  if userLogado.getIdGrupo = 2 then begin
+    TabSheetGerente.PageControl := nil;
+    TabSheetVeiculos.PageControl := nil;
+    pnlMinhasOrdens.visible:=false;
+
+  end else if userLogado.getIdGrupo = 3 then begin
+    pnlCadastros.Visible:=false;
+    PanelOrdens.visible:=false;
+    TabSheetOrdensViagens.PageControl := nil;
+
+  end else if userLogado.getIdGrupo = 4 then begin
+    pnlCadastros.Visible:=false;
+    PanelOrdens.visible:=false;
+    TabSheetOrdensCarregamento.PageControl := nil;
+
+  end;
+
+
+end;
 
 //============HEADER =====================================================
 procedure TFormHome.lblCadastrosBtnClick(Sender: TObject);
@@ -1265,6 +1234,7 @@ usuario := TUsuario.Create;
   usuario.Setcpf(MaskEditCpfGerente.Text);
   usuario.setTelefone (MaskEditTelefoneGerente.text);
   usuario.setCargo_descricao('gerente');
+  usuario.setIdGrupo(2);
   usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
 
   controller := THomeController.Create;
@@ -1630,11 +1600,8 @@ usuario := TUsuario.Create;
   usuario.Setcpf(MaskEditCpfCarregador.Text);
   usuario.setTelefone (MaskEditTelefoneCarregador.text);
   usuario.setCargo_descricao('Carregador');
- usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
-// jeito para teste ->
- //usuario.SetIdTransportadora(1);
-
-
+  usuario.setIdGrupo(3);
+  usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
 
   controller := THomeController.Create;
   try
@@ -1807,55 +1774,34 @@ end;
 procedure TFormHome.lblBtnCadastrarVeiculoClick(Sender: TObject);
 var
   Controller: ThomeController;
-  listamotorista: TList<TmotoristaDto>;
-  motorista: TmotoristaDto;
-  idTransportadoraUsuario:Integer;
   Carga: TtipoCargaDto;
   listaTipoCarga : TList<TtipoCargaDto>;
-
 begin
-pnlOptionsVeiculo.visible := true;
-lblOptionsVeiculo.caption := 'cadastrar veiculo';
-pnlBtnCadastrarVeiculoConf.visible := true;
-pnlBtnEditarVeiculoConf.visible := false;
-pnlBtnRecuperarVeiculoConf.visible := false;
-pnlBtnExcluirVeiculoConf.visible := false;
+  pnlOptionsVeiculo.visible := true;
+  lblOptionsVeiculo.caption := 'cadastrar veiculo';
+  pnlBtnCadastrarVeiculoConf.visible := true;
+  pnlBtnEditarVeiculoConf.visible := false;
+  pnlBtnRecuperarVeiculoConf.visible := false;
+  pnlBtnExcluirVeiculoConf.visible := false;
 
   Controller := ThomeController.Create;
+  listaTipoCarga := controller.cargasDisponiveis(userLogado.getIdTransportadora);
   try
-    idTransportadoraUsuario := usuarioLogado.UserLogado.getIdTransportadora;
-    ListaMotorista := Controller.mostrarMotorista(idTransportadoraUsuario);
-    listaTipoCarga := controller.cargasDisponiveis(idTransportadoraUsuario);
-    try
-      cbMotorista4Veiculo.Items.Clear;
-
-      for motorista in ListaMotorista do
-        cbMotorista4Veiculo.Items.Add(
-          motorista.IdUsuario.ToString + ' - ' + motorista.Nome
-        );
-    finally
-      ListaMotorista.Free;
-    end;
-
-    try
-      cbTipoCarga4veiculo.items.clear;
-
-      for carga in listaTipoCarga do
-        cbTipoCarga4veiculo.items.add(carga.TipoCarga);
-    finally
-      listaTipoCarga.free;
-    end;
+    cbTipoCarga4veiculo.items.clear;
+    for carga in listaTipoCarga do
+    cbTipoCarga4veiculo.items.add(carga.TipoCarga);
   finally
-    Controller.Free;
+    listaTipoCarga.free;
   end;
+  Controller.Free;
 end;
+
 
 
 procedure TFormHome.lblBtnCadastrarVeiculoConfClick(Sender: TObject);
 var
 controller:THomeController;
 veiculo :Tveiculo;
-idMotorista:String;
 begin
 veiculo := Tveiculo.Create;
   veiculo.setPlaca(MaskEditPlacaVeiculo.Text);
@@ -1864,11 +1810,6 @@ veiculo := Tveiculo.Create;
   veiculo.setTipo_carga(cbTipoCarga4Veiculo.text);
   veiculo.setCapacidade(StrToInt(EdtCapacidadeVeiculo.text));
   veiculo.setUnidade_medida(cbUnidadeMedida.text);
-
-  idMotorista := cbMotorista4Veiculo.text;
-  idMotorista := idMotorista.Remove(idMotorista.IndexOf('-')-1);
-  veiculo.setId_motorista(strToInt(idMotorista));
-
   veiculo.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
 
 
@@ -1907,28 +1848,9 @@ pnlBtnExcluirVeiculoConf.visible := false;
     exit;
   end;
 
-  Controller := ThomeController.Create;
-  try
-    idTransportadoraUsuario := usuarioLogado.UserLogado.getIdTransportadora;
-    ListaMotorista := Controller.mostrarMotorista(idTransportadoraUsuario);
-    try
-      cbMotorista4Veiculo.Items.Clear;
-
-      for motorista in ListaMotorista do
-        cbMotorista4Veiculo.Items.Add(
-          motorista.IdUsuario.ToString + ' - ' + motorista.Nome
-        );
-    finally
-      ListaMotorista.Free;
-    end;
-  finally
-    Controller.Free;
-  end;
-
   MaskEditPlacaVeiculo.Text := lswVeiculos.selected.subItems[0];
   edtModeloVeiculo.Text := lswVeiculos.selected.subItems[1];
   MaskEditAnoVeiculo.Text := lswVeiculos.selected.subItems[2];
-  cbMotorista4Veiculo.Text := lswVeiculos.selected.subItems[3];
   cbTipoCarga4Veiculo.text := lswVeiculos.selected.subItems[4];
   EdtCapacidadeVeiculo.Text := lswVeiculos.selected.subItems[5];
   cbUnidadeMedida.Text := lswVeiculos.selected.subItems[6];
@@ -1948,17 +1870,10 @@ veiculo := Tveiculo.Create;
   veiculo.setTipo_carga(cbTipoCarga4Veiculo.text);
   veiculo.setCapacidade(StrToInt(EdtCapacidadeVeiculo.text));
   veiculo.setUnidade_medida(cbUnidadeMedida.text);
-
-  idMotorista := cbMotorista4Veiculo.text;
-  idMotorista := idMotorista.Remove(idMotorista.IndexOf('-')-1);
-  veiculo.setId_motorista(strToInt(idMotorista));
-
  veiculo.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
 
   codParaEditar := (StrToInt(lswVeiculos.Selected.Caption));
   veiculo.setId_veiculo(codParaEditar);
-
-
 
   controller := THomeController.Create;
   try

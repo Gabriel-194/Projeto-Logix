@@ -39,8 +39,8 @@ begin
     try
       FDQuery.SQL.Text :=
         'INSERT INTO public.usuarios ' +
-        '(nome, cpf, telefone, email, senha_hash, cargo_descricao, ativo, data_cadastro, data_atualizacao, id_transportadora) ' +
-        'VALUES (:nome, :cpf, :telefone, :email, :senha_hash, :cargo_descricao, TRUE, NOW(), NOW(), :id_transportadora) ' +
+        '(nome, cpf, telefone, email, senha_hash, cargo_descricao,id_grupo, ativo, data_cadastro, data_atualizacao, id_transportadora) ' +
+        'VALUES (:nome, :cpf, :telefone, :email, :senha_hash, :cargo_descricao,:id_grupo, TRUE, NOW(), NOW(), :id_transportadora) ' +
         'RETURNING id_usuario';
 
       FDQuery.ParamByName('nome').AsString := motorista.nome;
@@ -49,6 +49,7 @@ begin
       FDQuery.ParamByName('email').AsString := motorista.email;
       FDQuery.ParamByName('senha_hash').AsString := motorista.senha;
       FDQuery.ParamByName('cargo_descricao').AsString := 'motorista';
+      FDQuery.ParamByName('id_grupo').AsInteger := 4;
       FDQuery.ParamByName('id_transportadora').AsInteger := motorista.idTransportadora;
 
       FDQuery.Open;
@@ -100,8 +101,8 @@ begin
     FDQuery.Connection := DataModule2.FDConnection1;
 
     FDQuery.SQL.Text :=
-    'INSERT INTO USUARIOS (nome, cpf, telefone, email, senha_hash, cargo_descricao, ativo, data_cadastro, data_atualizacao, id_transportadora) ' +
-    'VALUES (:nome, :cpf, :telefone, :email, :senha_hash, :cargo_descricao, TRUE, NOW(), NOW(), :id_transportadora)';
+    'INSERT INTO USUARIOS (nome, cpf, telefone, email, senha_hash, cargo_descricao,id_grupo, ativo, data_cadastro, data_atualizacao, id_transportadora) ' +
+    'VALUES (:nome, :cpf, :telefone, :email, :senha_hash, :cargo_descricao,:id_grupo, TRUE, NOW(), NOW(), :id_transportadora)';
 
   FDQuery.ParamByName('NOME').AsString := aUsuario.getNome;
   FDQuery.ParamByName('EMAIL').AsString := aUsuario.getemail;
@@ -109,6 +110,7 @@ begin
   FDQuery.ParamByName('CPF').AsString := aUsuario.getcpf;
   FDQuery.ParamByName('TELEFONE').AsString := aUsuario.getTelefone;
   FDQuery.ParamByName('cargo_descricao').AsString := aUsuario.getCargo_descricao;
+  FDQuery.ParamByName('id_grupo').AsInteger := aUsuario.getIdGrupo;
   FDQuery.ParamByName('id_transportadora').AsInteger := aUsuario.getidTransportadora;
 
   FDQuery.ExecSQL;

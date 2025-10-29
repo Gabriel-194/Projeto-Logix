@@ -64,9 +64,6 @@ begin
   if Trim(veiculo.getUnidade_medida) = '' then
     raise Exception.Create('A unidade de medida do veículo não pode estar vazia.');
 
-  if veiculo.getId_motorista <= 0 then
-    raise Exception.Create('O motorista do veículo não foi selecionado.');
-
   if veiculo.getIdTransportadora <= 0 then
     raise Exception.Create('Transportadora não informada.');
 

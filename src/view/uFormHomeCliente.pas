@@ -49,7 +49,6 @@ type
     pnlCriarPedido: TPanel;
     PageControlPedidos: TPageControl;
     TabSheetCriarPedido: TTabSheet;
-    TabSheetEditarPedido: TTabSheet;
     pnlCriarPedidoConf: TPanel;
     Shape40: TShape;
     lblBtnCalcularFrete: TLabel;
@@ -146,6 +145,10 @@ type
     DataSourcePedidos: TDataSource;
     Image6: TImage;
     imgAtualizarDashboard: TImage;
+    Label2: TLabel;
+    imgCancelarPedid: TImage;
+    Label28: TLabel;
+    edtMotivoCancelaPedido: TEdit;
     procedure Image8Click(Sender: TObject);
     procedure imgFecharPanelCadastroClienteClick(Sender: TObject);
     procedure imgBuscaCepOrigemClick(Sender: TObject);
