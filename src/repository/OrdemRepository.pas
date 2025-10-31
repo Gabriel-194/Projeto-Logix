@@ -278,8 +278,18 @@ begin
     FDQuery.ParamByName('id_carregamento').AsInteger := aIdCarregamento;
     FDQuery.ExecSQL;
 
-    FDQuery.SQL.Text :='UPDATE pedido SET status = ''Em preparo'' WHERE id_pedido = :id_pedido';
+    FDQuery.SQL.Text :='UPDATE pedido SET status = ''Em preparo'' data_atualizacao = Now() WHERE id_pedido = :id_pedido';
     FDQuery.ParamByName('id_pedido').AsInteger := aIdpedido;
+    FDQuery.ExecSQL;
+
+    FDQuery.SQL.Text :=
+      'INSERT INTO ' + SchemaName + '.mensagemCliente (id_pedido, id_transportadora, id_cliente, data_mensagem, texto) ' +
+      'SELECT :id_pedido, :id_transportadora, id_cliente, NOW(), :texto ' +
+      'FROM ' + SchemaName + '.pedido WHERE id_pedido = :id_pedido';
+
+    FDQuery.ParamByName('id_pedido').AsInteger := aIdPedido;
+    FDQuery.ParamByName('id_transportadora').AsInteger := aIdTransportadora;
+    FDQuery.ParamByName('texto').AsString := 'O carregamento foi finalizado para o pedido #' + IntToStr(aIdPedido);
     FDQuery.ExecSQL;
   finally
     FDQuery.Free;
@@ -306,7 +316,7 @@ begin
     FDQuery.ParamByName('id_viagem').AsInteger := aIdviagem;
     FDQuery.ExecSQL;
 
-    FDQuery.SQL.Text :='UPDATE pedido SET status = ''Finalizado'' WHERE id_pedido = (SELECT id_pedido FROM carregamento WHERE id_carregamento = :id_carregamento)';
+    FDQuery.SQL.Text :='UPDATE pedido SET status = ''Finalizado'', data_atualizacao = Now(), WHERE id_pedido = (SELECT id_pedido FROM carregamento WHERE id_carregamento = :id_carregamento)';
     FDQuery.ParamByName('id_carregamento').AsInteger := aIdCarregamento;
     FDQuery.ExecSQL;
   finally
@@ -333,8 +343,18 @@ begin
     FDQuery.ParamByName('id_carregamento').AsInteger := aIdCarregamento;
     FDQuery.ExecSQL;
 
-    FDQuery.SQL.Text :='UPDATE pedido SET status = ''Em preparo'' WHERE id_pedido = :id_pedido';
+    FDQuery.SQL.Text :='UPDATE pedido SET status = ''Em preparo'', data_atualizacao = Now() WHERE id_pedido = :id_pedido';
     FDQuery.ParamByName('id_pedido').AsInteger := aIdpedido;
+    FDQuery.ExecSQL;
+
+    FDQuery.SQL.Text :=
+      'INSERT INTO ' + SchemaName + '.mensagemCliente (id_pedido, id_transportadora, id_cliente, data_mensagem, texto) ' +
+      'SELECT :id_pedido, :id_transportadora, id_cliente, NOW(), :texto ' +
+      'FROM ' + SchemaName + '.pedido WHERE id_pedido = :id_pedido';
+
+    FDQuery.ParamByName('id_pedido').AsInteger := aIdPedido;
+    FDQuery.ParamByName('id_transportadora').AsInteger := aIdTransportadora;
+    FDQuery.ParamByName('texto').AsString := 'O carregamento foi iniciado para o pedido #' + IntToStr(aIdPedido);
     FDQuery.ExecSQL;
   finally
     FDQuery.Free;
@@ -361,7 +381,7 @@ begin
     FDQuery.ParamByName('id_viagem').AsInteger := aIdviagem;
     FDQuery.ExecSQL;
 
-    FDQuery.SQL.Text :='UPDATE pedido SET status = ''Em rota'' WHERE id_pedido = (SELECT id_pedido FROM carregamento WHERE id_carregamento = :id_carregamento)';
+    FDQuery.SQL.Text :='UPDATE pedido SET status = ''Em rota'', data_atualizacao = Now(), WHERE id_pedido = (SELECT id_pedido FROM carregamento WHERE id_carregamento = :id_carregamento)';
     FDQuery.ParamByName('id_carregamento').AsInteger := aIdCarregamento;
     FDQuery.ExecSQL;
   finally

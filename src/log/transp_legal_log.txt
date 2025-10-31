@@ -2,3 +2,11 @@
 [CREATE] Usuário jota do ID 2 cadastrou um motorista no dia 29/10/2025 e no horário 14:53:16
 [CREATE] Usuário ertal do ID 4 cadastrou um Carregador no dia 29/10/2025 e no horário 15:48:48
 [CREATE] Usuário jota do ID 2 cadastrou um veiculo no dia 29/10/2025 e no horário 16:24:09
+[CREATE] Usuário jota@gmail.com do ID 7 cadastrou um gerente no dia 31/10/2025 e no horário 15:56:55
+[CREATE] Usuário jota@gmail.com do ID 7 cadastrou um motorista no dia 31/10/2025 e no horário 15:57:55
+[CREATE] Usuário jota@gmail.com do ID 7 cadastrou um Carregador no dia 31/10/2025 e no horário 15:58:14
+[CREATE] Usuário jota@gmail.com do ID 7 cadastrou um veiculo no dia 31/10/2025 e no horário 15:58:33
+[EDIT] Usuário jota@gmail.com do ID 7 editou um veiculo no dia 31/10/2025 e no horário 15:59:33
+[CREATE] Usuário jota@gmail.com do ID 7 criou uma ordem de carregamento no dia 31/10/2025 e no horário 16:02:20
+[CHECK] Usuário lucas do ID 11 iniciou uma ordem de carregamento no dia 31/10/2025 e no horário 16:04:26
+[CHECK] Usuário lucas do ID 11 finalizou uma ordem de carregamento no dia 31/10/2025 e no horário 16:05:43

@@ -2,7 +2,7 @@ unit pedidoRepository;
 
 interface
 uses
-System.SysUtils, FireDAC.Comp.Client,unit2,System.Generics.Collections,pedidoDto,data.db;
+System.SysUtils, FireDAC.Comp.Client,unit2,System.Generics.Collections,pedidoDto,data.db,messageDto;
 
 type TpedidoRepository = class
 function GetPrecoBasePorKm(const schemaName, tipo: string): Double;
@@ -13,6 +13,8 @@ function buscarPedidosPorStatus(aIdTransportadora:Integer; aStatus:String):Integ
 function buscarPedidosOrdens(aIdTransportadora:Integer):Tlist<TpedidoDto>;
 procedure cancelaPedido(aIdTransportadora,aIdPedido:Integer;aMotivoCancela:String);
 function BuscarAtualizacoesDiarias(aIdCliente: Integer): TList<TPedidoDto>;
+function BuscarMensagensCliente(aIdCliente: Integer): TList<TmessageDto>;
+
 
 
 end;
@@ -69,6 +71,58 @@ begin
   end;
 end;
 
+
+function TPedidoRepository.BuscarMensagensCliente(aIdCliente: Integer): TList<TmessageDto>;
+var
+  QrySchemas, QryMsg: TFDQuery;
+  Schema: string;
+  Mensagem: TmessageDto;
+  Lista: TList<TmessageDto>;
+begin
+  Lista := TList<TmessageDto>.Create;
+  QrySchemas := TFDQuery.Create(nil);
+  QryMsg := TFDQuery.Create(nil);
+  try
+    QrySchemas.Connection := DataModule2.FDConnection1;
+    QryMsg.Connection := DataModule2.FDConnection1;
+
+    QrySchemas.SQL.Text :=
+      'SELECT nspname FROM pg_namespace ' +
+      'WHERE nspname NOT IN (''public'',''pg_catalog'',''information_schema'',''pg_toast'')';
+    QrySchemas.Open;
+
+    while not QrySchemas.Eof do
+    begin
+      Schema := QrySchemas.FieldByName('nspname').AsString;
+      QryMsg.SQL.Text :=
+        'SELECT id_mensagem, id_pedido, id_transportadora, id_cliente, data_mensagem, texto ' +
+        'FROM ' + Schema + '.mensagemCliente ' +
+        'WHERE id_cliente = :id_cliente ' +
+        'ORDER BY data_mensagem DESC';
+      QryMsg.ParamByName('id_cliente').AsInteger := aIdCliente;
+      QryMsg.Open;
+      while not QryMsg.Eof do
+      begin
+        Mensagem.id_message := QryMsg.FieldByName('id_mensagem').AsInteger;
+        Mensagem.id_pedido := QryMsg.FieldByName('id_pedido').AsInteger;
+        Mensagem.id_transportadora := QryMsg.FieldByName('id_transportadora').AsInteger;
+        Mensagem.id_cliente := QryMsg.FieldByName('id_cliente').AsInteger;
+        Mensagem.data_menssagem := QryMsg.FieldByName('data_mensagem').AsDateTime;
+        Mensagem.texto := QryMsg.FieldByName('texto').AsString;
+        Lista.Add(Mensagem);
+        QryMsg.Next;
+      end;
+      QryMsg.Close;
+      QrySchemas.Next;
+    end;
+
+    QrySchemas.Close;
+    Result := Lista;
+  finally
+    QrySchemas.Free;
+    QryMsg.Free;
+  end;
+end;
 
 function TPedidoRepository.BuscarPedidos(aIdCliente: Integer): TList<TPedidoDto>;
 var

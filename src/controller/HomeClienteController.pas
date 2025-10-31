@@ -2,7 +2,7 @@ unit HomeClienteController;
 
 interface
 uses
-enderecoDto,enderecoService,transpService,uTransportadora,System.Generics.Collections,pedidoService,pedidoDto,homeCLienteService,data.db;
+enderecoDto,enderecoService,transpService,uTransportadora,System.Generics.Collections,messageDto,pedidoService,pedidoDto,homeCLienteService,data.db;
 
 type ThomeClientecontroller = class
   function atualizarTabela: TObjectList<TTransportadora>;
@@ -16,6 +16,7 @@ type ThomeClientecontroller = class
   procedure verificaStatusPedido(aStatusPedido:String);
   procedure cancelaPedido(aIdTransportadora,aIdPedido:Integer;aMotivoCancela:String);
   function BuscarAtualizacoesDiarias(aIdCliente: Integer): Tlist<TpedidoDto>;
+  function buscarMessagensCLiente(aIdCliente:Integer):Tlist<TmessageDto>;
 
 end;
 
@@ -80,6 +81,18 @@ begin
   service := TPedidoService.Create;
   try
     Result := service.BuscarAtualizacoesDiarias(aIdCliente);
+  finally
+    service.Free;
+  end;
+end;
+
+function ThomeClientecontroller.buscarMessagensCLiente(
+  aIdCliente: Integer): Tlist<TmessageDto>;
+var service: TPedidoService;
+begin
+  service := TPedidoService.Create;
+  try
+    Result := service.BuscarMensagensCliente(aIdCLiente);
   finally
     service.Free;
   end;

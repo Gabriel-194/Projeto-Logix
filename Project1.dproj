@@ -190,6 +190,7 @@
         <DCCReference Include="src\DTO\viagemDto.pas"/>
         <DCCReference Include="src\log\uLog.pas"/>
         <DCCReference Include="src\view\uCleanFields.pas"/>
+        <DCCReference Include="src\DTO\messageDto.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

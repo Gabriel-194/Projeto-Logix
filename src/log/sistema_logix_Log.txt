@@ -9,3 +9,5 @@
 [CREATE] cliente gui do ID 1 fez um orçamento no dia 31/10/2025 e no horário 10:17:47
 [CREATE] cliente gui do ID 1 confirmou um pedido no dia 31/10/2025 e no horário 10:17:48
 [DELETE] cliente gui do ID 1 cancelou um pedido no dia 31/10/2025 e no horário 10:36:19
+[CREATE] Usuário administrador logix do ID 1 cadastrou um Admin no dia 31/10/2025 e no horário 15:55:48
+[CREATE] Usuário administrador logix do ID 1 cadastrou um Admin no dia 31/10/2025 e no horário 15:56:16

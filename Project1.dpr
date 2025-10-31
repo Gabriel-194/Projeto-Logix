@@ -48,7 +48,8 @@ uses
   OrdemRepository in 'src\repository\OrdemRepository.pas',
   viagemDto in 'src\DTO\viagemDto.pas',
   uLog in 'src\log\uLog.pas',
-  uCleanFields in 'src\view\uCleanFields.pas';
+  uCleanFields in 'src\view\uCleanFields.pas',
+  messageDto in 'src\DTO\messageDto.pas';
 
 {$R *.res}
 

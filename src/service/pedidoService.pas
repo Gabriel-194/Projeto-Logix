@@ -2,7 +2,7 @@
 
 interface
 uses
-pedidoRepository,pedidoDto,system.Generics.Collections,System.SysUtils,uLog,usuarioLogado,data.db;
+pedidoRepository,pedidoDto,system.Generics.Collections,System.SysUtils,uLog,usuarioLogado,data.db,messageDto;
 
 type TPedidoService = class
   function CalcularFrete(const schemaName: string; tipo:string; distancia: Double;peso:double): Double;
@@ -14,6 +14,8 @@ type TPedidoService = class
   procedure verificaStatusPedido(aStatusPedido:String);
   procedure cancelaPedido(aIdTransportadora,aIdPedido:Integer;aMotivoCancela:String);
   function BuscarAtualizacoesDiarias(aIdCliente: Integer): Tlist<TpedidoDto>;
+  function BuscarMensagensCliente(aIdCliente: Integer): TList<TmessageDto>;
+
 end;
 
 implementation
@@ -27,6 +29,18 @@ begin
   repo := TPedidoRepository.Create;
   try
     Result := repo.BuscarAtualizacoesDiarias(aIdCliente);
+  finally
+    repo.Free;
+  end;
+end;
+
+function TPedidoService.BuscarMensagensCliente(
+  aIdCliente: Integer): TList<TmessageDto>;
+var repo: TPedidoRepository;
+begin
+  repo := TPedidoRepository.Create;
+  try
+    Result := repo.BuscarMensagensCliente(aIdCLiente);
   finally
     repo.Free;
   end;

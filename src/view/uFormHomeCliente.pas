@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage, DBClient,uCleanFields,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage, DBClient,uCleanFields,messageDto,
   Vcl.StdCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.Mask,HomeClienteController,enderecoDto,utransportadora,System.Generics.Collections,pedidoDto,usuarioLogado;
 
 type
@@ -22,29 +22,6 @@ type
     pnl: TPanel;
     Shape6: TShape;
     lblCadastrosBtn: TLabel;
-    pnlDashboardPedidos: TPanel;
-    lblDashBoards: TLabel;
-    pedidoEntregados: TPanel;
-    Shape12: TShape;
-    Image7: TImage;
-    Label13: TLabel;
-    lblCountPedidoFinalizados: TLabel;
-    pedidosFeitos: TPanel;
-    Shape8: TShape;
-    Image3: TImage;
-    Label5: TLabel;
-    lblCountPedidos: TLabel;
-    pedidoEmPreparo: TPanel;
-    Shape2: TShape;
-    Image4: TImage;
-    Label1: TLabel;
-    lblCountPedidoPreparando: TLabel;
-    pedidoEmRota: TPanel;
-    Shape7: TShape;
-    Image2: TImage;
-    Label4: TLabel;
-    lblCountPedidoEmRota: TLabel;
-    pnlAçõesRapidas: TPanel;
     pnlCriarPedido: TPanel;
     PageControlPedidos: TPageControl;
     TabSheetCriarPedido: TTabSheet;
@@ -143,13 +120,40 @@ type
     DBGridMeusPedidos: TDBGrid;
     DataSourcePedidos: TDataSource;
     Image6: TImage;
-    imgAtualizarDashboard: TImage;
     Label2: TLabel;
     imgCancelarPedid: TImage;
     Label28: TLabel;
     edtMotivoCancelaPedido: TEdit;
     DataSourceAtualizaçoesDiarias: TDataSource;
+    pnlHome: TPanel;
+    pnlDashboardPedidos: TPanel;
+    lblDashBoards: TLabel;
+    imgAtualizarDashboard: TImage;
+    pedidoEntregados: TPanel;
+    Shape12: TShape;
+    Image7: TImage;
+    Label13: TLabel;
+    lblCountPedidoFinalizados: TLabel;
+    pedidosFeitos: TPanel;
+    Shape8: TShape;
+    Image3: TImage;
+    Label5: TLabel;
+    lblCountPedidos: TLabel;
+    pedidoEmRota: TPanel;
+    Shape7: TShape;
+    Image2: TImage;
+    Label4: TLabel;
+    lblCountPedidoEmRota: TLabel;
+    pedidoEmPreparo: TPanel;
+    Shape2: TShape;
+    Image4: TImage;
+    Label1: TLabel;
+    lblCountPedidoPreparando: TLabel;
+    pnlmessages: TPanel;
+    imgReloadMessages: TImage;
+    lwMenssagens: TListView;
     DBGridAtualizacoesDiarias: TDBGrid;
+    Label29: TLabel;
     procedure Image8Click(Sender: TObject);
     procedure imgFecharPanelCadastroClienteClick(Sender: TObject);
     procedure imgBuscaCepOrigemClick(Sender: TObject);
@@ -174,6 +178,8 @@ type
     procedure DBGridMeusPedidosCellClick(Column: TColumn);
     procedure imgCancelarPedidClick(Sender: TObject);
     procedure AtualizarGridAtualizacoesDiarias;
+    procedure buscarMenssagensCLiente;
+    procedure imgReloadMessagesClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -211,6 +217,32 @@ procedure TFormHomeCliente.FormShow(Sender: TObject);
 begin
   atualizarDashboards;
   AtualizarGridAtualizacoesDiarias;
+  buscarMenssagensCLiente;
+end;
+
+procedure TFormHomeCliente.buscarMenssagensCLiente;
+var
+  Lista: TList<TmessageDto>;
+  Mensagem: TmessageDto;
+  I: Integer;
+  controller : ThomeClienteController;
+begin
+  controller := ThomeClienteController.create;
+  LwMenssagens.Items.Clear;
+  Lista := controller.buscarMessagensCLiente(clienteLogado.getId);
+  try
+    for I := 0 to Lista.Count - 1 do
+    begin
+      Mensagem := Lista[I];
+      with LwMenssagens.Items.Add do
+      begin
+        Caption := FormatDateTime('dd/MM/yyyy HH:mm', Mensagem.data_menssagem) +
+             ' - ' + Mensagem.texto;
+      end;
+    end;
+  finally
+    Lista.Free;
+  end;
 end;
 
 //================= mostrar pedidos ==================================
@@ -359,6 +391,11 @@ pnlCriarPedido.visible := false;
 PageControlPedidos.visible:= false;
 end;
 
+
+procedure TFormHomeCliente.imgReloadMessagesClick(Sender: TObject);
+begin
+buscarMenssagensCLiente;
+end;
 
 procedure TFormHomeCliente.lblBtnConfirmarPedidoClick(Sender: TObject);
 var

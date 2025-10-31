@@ -79,3 +79,24 @@ CREATE TABLE IF NOT EXISTS {schema}.viagem (
   distancia_km DOUBLE PRECISION
 );
 
+CREATE TABLE {schema}.mensagemCliente (
+    id_mensagem SERIAL PRIMARY KEY,
+    id_pedido INT NOT NULL,
+    id_transportadora INT NOT NULL,
+    id_cliente INT NOT NULL,
+    data_mensagem TIMESTAMP NOT NULL,
+    texto VARCHAR(255),
+
+    -- Chave estrangeira para pedido
+    CONSTRAINT fk_mensagem_pedido 
+      FOREIGN KEY (id_pedido) REFERENCES {schema}.pedido(id_pedido),
+
+    -- Chave estrangeira para transportadora
+    CONSTRAINT fk_mensagem_transportadora 
+      FOREIGN KEY (id_transportadora) REFERENCES public.transportadora(id),
+
+    -- Chave estrangeira para cliente
+    CONSTRAINT fk_mensagem_cliente 
+      FOREIGN KEY (id_cliente) REFERENCES public.cliente(id_cliente)
+);
+
