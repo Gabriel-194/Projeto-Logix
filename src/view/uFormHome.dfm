@@ -7497,7 +7497,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 0
-            ExplicitTop = 131
             object pnlEdtModeloVeiculo: TPanel
               AlignWithMargins = True
               Left = 480
@@ -7600,7 +7599,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 2
-            ExplicitTop = 263
             object Label25: TLabel
               AlignWithMargins = True
               Left = 80
@@ -7631,7 +7629,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 3
-            ExplicitTop = 317
             object pnlEdtCapacidadeVeiculo: TPanel
               AlignWithMargins = True
               Left = 80
@@ -7711,7 +7708,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 4
-            ExplicitTop = 175
             object Label30: TLabel
               AlignWithMargins = True
               Left = 80
@@ -7759,7 +7755,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 5
-            ExplicitTop = 219
             object pnlEdtAnoVeiculo: TPanel
               AlignWithMargins = True
               Left = 80
@@ -7834,7 +7829,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 1
-            ExplicitTop = 82
             object Label32: TLabel
               AlignWithMargins = True
               Left = 80

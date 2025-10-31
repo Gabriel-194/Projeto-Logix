@@ -44,7 +44,6 @@ type
     Image2: TImage;
     Label4: TLabel;
     lblCountPedidoEmRota: TLabel;
-    DBGrid1: TDBGrid;
     pnlAçõesRapidas: TPanel;
     pnlCriarPedido: TPanel;
     PageControlPedidos: TPageControl;
@@ -149,6 +148,8 @@ type
     imgCancelarPedid: TImage;
     Label28: TLabel;
     edtMotivoCancelaPedido: TEdit;
+    DataSourceAtualizaçoesDiarias: TDataSource;
+    DBGridAtualizacoesDiarias: TDBGrid;
     procedure Image8Click(Sender: TObject);
     procedure imgFecharPanelCadastroClienteClick(Sender: TObject);
     procedure imgBuscaCepOrigemClick(Sender: TObject);
@@ -170,6 +171,9 @@ type
     procedure FormShow(Sender: TObject);
     procedure cbTipoCargaSelect(Sender: TObject);
     procedure imgAtualizarDashboardClick(Sender: TObject);
+    procedure DBGridMeusPedidosCellClick(Column: TColumn);
+    procedure imgCancelarPedidClick(Sender: TObject);
+    procedure AtualizarGridAtualizacoesDiarias;
 
   private
     { Private declarations }
@@ -206,6 +210,7 @@ end;
 procedure TFormHomeCliente.FormShow(Sender: TObject);
 begin
   atualizarDashboards;
+  AtualizarGridAtualizacoesDiarias;
 end;
 
 //================= mostrar pedidos ==================================
@@ -256,7 +261,6 @@ begin
       DataSourcePedidos.DataSet := cds;
       DBGridMeusPedidos.DataSource := DataSourcePedidos;
     finally
-//      cds.Free;
       pedidos.Free;
     end;
   finally
@@ -270,7 +274,6 @@ begin
    mostrarPedidos;
  end;
 end;
-
 
 procedure TFormHomeCliente.DBGridMeusPedidosDrawColumnCell(
   Sender: TObject; const Rect: TRect; DataCol: Integer;
@@ -495,6 +498,53 @@ begin
   end;
 end;
 
+procedure TFormHomeCliente.AtualizarGridAtualizacoesDiarias;
+var
+  Controller: THomeClienteController;
+  Lista: TList<TPedidoDto>;
+  i: Integer;
+  cds: TClientDataSet;
+begin
+  Controller := THomeClienteController.Create;
+  try
+    Lista := Controller.BuscarAtualizacoesDiarias(clienteLogado.getId);
+    cds := TClientDataSet.Create(nil);
+    try
+      with cds.FieldDefs do
+      begin
+        Add('data_atualizacao', ftDateTime);
+        Add('idPedido', ftInteger);
+        Add('transportadora', ftString, 100);
+        Add('status', ftString, 30);
+        Add('dataCadastro', ftDate);
+        Add('preco', ftFloat);
+        Add('distanciaKm', ftFloat);
+      end;
+      cds.CreateDataSet;
+      TDateTimeField(cds.FieldByName('dataCadastro')).DisplayFormat := 'dd/mm/yyyy';
+      for i := 0 to Lista.Count - 1 do
+      begin
+        cds.Append;
+        cds.FieldByName('data_atualizacao').AsDateTime := Lista[i].data_atualizacao;
+        cds.FieldByName('idPedido').AsInteger := Lista[i].idpedido;
+        cds.FieldByName('transportadora').AsString := Lista[i].NomeTransportadora;
+        cds.FieldByName('status').AsString := Lista[i].status;
+        cds.FieldByName('dataCadastro').AsDateTime := Lista[i].DataPedido;
+        cds.FieldByName('preco').AsFloat := Lista[i].preco;
+        cds.FieldByName('distanciaKm').AsFloat := Lista[i].distanciaKm;
+        cds.Post;
+      end;
+      DataSourceAtualizaçoesDiarias.DataSet := cds;
+      DBGridAtualizacoesDiarias.DataSource := DataSourceAtualizaçoesDiarias;
+    finally
+      Lista.Free;
+    end;
+  finally
+    Controller.Free;
+  end;
+end;
+
+
 procedure TFormHomeCliente.cbTipoCargaSelect(Sender: TObject);
 
 var
@@ -543,6 +593,47 @@ Controller := ThomeClientecontroller.Create;
     Controller.Free;
   end;
 end;
+//========= excluir pedido
+procedure TFormHomeCliente.DBGridMeusPedidosCellClick(Column: TColumn);
+var
+  statusPedido: string;
+  controller:ThomeClienteController;
+begin
+  controller:=ThomeCLienteController.create;
+  statusPedido := DataSourcePedidos.DataSet.FieldByName('status').AsString;
+  try
+    controller.verificaStatusPedido(statusPedido);
+  finally
+    controller.free;
+  end;
+end;
 
+procedure TFormHomeCliente.imgCancelarPedidClick(Sender: TObject);
+var
+controller:ThomeCLienteController;
+idPedido:Integer;
+motivoCancela:String;
+idTransp:integer;
+begin
+  idpedido := DataSourcePedidos.DataSet.FieldByName('idPedido').AsInteger;
+  motivoCancela:= edtMotivoCancelaPedido.text;
+  idTransp := DataSourcePedidos.DataSet.FieldByName('transportadora').AsInteger;
+
+  controller:=ThomeCLienteController.create;
+  try
+    if MessageDlg('Tem certeza que deseja cancelar esse pedido?',mtConfirmation, [mbYes, mbNo], 0) = mrNo then
+    begin
+      exit;
+    end;
+    controller.cancelaPedido(idTransp,idPedido,motivoCancela);
+    showMessage('Pedido cancelado com sucesso!');
+    atualizarDashBoards;
+    mostrarPedidos;
+    AtualizarGridAtualizacoesDiarias;
+
+  finally
+    controller.free;
+  end;
+end;
 
 end.

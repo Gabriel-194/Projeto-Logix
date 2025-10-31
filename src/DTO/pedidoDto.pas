@@ -17,7 +17,6 @@ type TpedidoDto = record
     EnderecoDestino: string;
     NumeroDestino: string;
 
-
     DataPedido: TDateTime;
     Peso: Double;
     DistanciaKm: Double;
@@ -27,6 +26,9 @@ type TpedidoDto = record
     NomeTransportadora: string;
     Preco: Double;
     Status: string;
+
+    motiv_cancelamento:String;
+    data_atualizacao:TdateTime;
   end;
 
 

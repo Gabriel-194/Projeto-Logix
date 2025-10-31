@@ -2,7 +2,7 @@
 
 interface
 uses
-pedidoRepository,pedidoDto,system.Generics.Collections,System.SysUtils,uLog,usuarioLogado;
+pedidoRepository,pedidoDto,system.Generics.Collections,System.SysUtils,uLog,usuarioLogado,data.db;
 
 type TPedidoService = class
   function CalcularFrete(const schemaName: string; tipo:string; distancia: Double;peso:double): Double;
@@ -11,12 +11,26 @@ type TPedidoService = class
   function BuscarPedidosPorTransp(aIdTransportadora:Integer):Tlist<TpedidoDto>;
   function buscarPedidosPorStatus(aIdTransportadora:Integer; aStatus:String):Integer;
   function BuscarPedidosOrdens(aIdTransportadora:Integer):Tlist<TpedidoDto>;
+  procedure verificaStatusPedido(aStatusPedido:String);
+  procedure cancelaPedido(aIdTransportadora,aIdPedido:Integer;aMotivoCancela:String);
+  function BuscarAtualizacoesDiarias(aIdCliente: Integer): Tlist<TpedidoDto>;
 end;
 
 implementation
 var
 systemlog:Tlogger;
 
+
+function TPedidoService.BuscarAtualizacoesDiarias(aIdCliente: Integer): Tlist<TpedidoDto>;
+var repo: TPedidoRepository;
+begin
+  repo := TPedidoRepository.Create;
+  try
+    Result := repo.BuscarAtualizacoesDiarias(aIdCliente);
+  finally
+    repo.Free;
+  end;
+end;
 
 function TPedidoService.BuscarPedidos(aIdCliente:Integer): TList<TPedidoDto>;
 var repo: TPedidoRepository;
@@ -112,6 +126,22 @@ begin
 
 end;
 
+procedure TPedidoService.cancelaPedido(aIdTransportadora, aIdPedido: Integer;
+  aMotivoCancela: String);
+var
+  Repo: TpedidoRepository;
+begin
+  Repo:= TpedidoRepository.create;
+  try
+    repo.cancelaPedido(aIdTransportadora,aIdPedido,aMotivoCancela);
+     SystemLog.Log('',
+    Format('[DELETE] cliente %s do ID %d cancelou um pedido no dia %s e no horário %s',
+    [clienteLogado.getNome, clienteLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
+  finally
+    repo.free;
+  end;
+end;
+
 procedure TPedidoService.confirmarPedido(pedidoDto: TPedidoDto; const schemaName: string);
 var
   Repo: TpedidoRepository;
@@ -161,6 +191,13 @@ begin
     Repo.Free;
     systemLog.free;
   end;
+end;
+
+procedure TPedidoService.verificaStatusPedido(aStatusPedido: String);
+begin
+ if aStatusPedido <> 'Confirmado' then begin
+    raise Exception.Create('Este pedido ja esta em preparo ou ja saiu para entrega por tanto não é possivel cancelar.');
+ end;
 end;
 
 end.

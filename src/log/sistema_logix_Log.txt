@@ -4,3 +4,8 @@
 [CREATE] Um cliente se cadastrou no dia 29/10/2025 e no horário 16:54:45
 [CREATE] Um cliente se cadastrou no dia 29/10/2025 e no horário 16:56:40
 [CREATE] Um cliente se cadastrou no dia 29/10/2025 e no horário 17:00:57
+[CREATE] cliente gui do ID 1 fez um orçamento no dia 31/10/2025 e no horário 09:52:53
+[CREATE] cliente gui do ID 1 confirmou um pedido no dia 31/10/2025 e no horário 09:52:57
+[CREATE] cliente gui do ID 1 fez um orçamento no dia 31/10/2025 e no horário 10:17:47
+[CREATE] cliente gui do ID 1 confirmou um pedido no dia 31/10/2025 e no horário 10:17:48
+[DELETE] cliente gui do ID 1 cancelou um pedido no dia 31/10/2025 e no horário 10:36:19

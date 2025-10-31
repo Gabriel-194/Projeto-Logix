@@ -2,7 +2,7 @@ unit HomeClienteController;
 
 interface
 uses
-enderecoDto,enderecoService,transpService,uTransportadora,System.Generics.Collections,pedidoService,pedidoDto,homeCLienteService;
+enderecoDto,enderecoService,transpService,uTransportadora,System.Generics.Collections,pedidoService,pedidoDto,homeCLienteService,data.db;
 
 type ThomeClientecontroller = class
   function atualizarTabela: TObjectList<TTransportadora>;
@@ -13,6 +13,9 @@ type ThomeClientecontroller = class
   procedure confirmarPedido(Apedido: TPedidoDto; const schemaName: string);
   function BuscarPedidos(aIdCliente:Integer): TList<TPedidoDto>;
   function ContarPedidos(aIdCliente: Integer; const aStatus: String): Integer;
+  procedure verificaStatusPedido(aStatusPedido:String);
+  procedure cancelaPedido(aIdTransportadora,aIdPedido:Integer;aMotivoCancela:String);
+  function BuscarAtualizacoesDiarias(aIdCliente: Integer): Tlist<TpedidoDto>;
 
 end;
 
@@ -30,6 +33,19 @@ begin
     Result := service.CalcularFrete(schemaName, tipo, distancia,peso);
   finally
     service.Free;
+  end;
+end;
+
+procedure ThomeClientecontroller.cancelaPedido(aIdTransportadora,
+  aIdPedido: Integer; aMotivoCancela: String);
+var
+  Service: TpedidoService;
+begin
+  Service := TpedidoService.Create;
+  try
+    service.cancelaPedido(aIdtransportadora,aidPedido,aMotivoCancela);
+  finally
+    Service.Free;
   end;
 end;
 
@@ -56,6 +72,17 @@ Service:= ThomeClienteService.create;
     service.free;
   end;
 
+end;
+
+function ThomeClientecontroller.BuscarAtualizacoesDiarias(aIdCliente: Integer): Tlist<TpedidoDto>;
+var service: TPedidoService;
+begin
+  service := TPedidoService.Create;
+  try
+    Result := service.BuscarAtualizacoesDiarias(aIdCliente);
+  finally
+    service.Free;
+  end;
 end;
 
 function ThomeCLienteController.BuscarPedidos(aIdCliente:Integer): TList<TPedidoDto>;
@@ -114,6 +141,17 @@ begin
   service := TEnderecoService.Create;
   try
     Result := service.BuscarPorCEP(ACep);
+  finally
+    service.Free;
+  end;
+end;
+
+procedure ThomeClientecontroller.verificaStatusPedido(aStatusPedido: String);
+var service: TPedidoService;
+begin
+  service := TPedidoService.Create;
+  try
+    service.verificaStatusPedido(aStatusPedido);
   finally
     service.Free;
   end;

@@ -2,7 +2,7 @@ unit pedidoRepository;
 
 interface
 uses
-System.SysUtils, FireDAC.Comp.Client,unit2,System.Generics.Collections,pedidoDto;
+System.SysUtils, FireDAC.Comp.Client,unit2,System.Generics.Collections,pedidoDto,data.db;
 
 type TpedidoRepository = class
 function GetPrecoBasePorKm(const schemaName, tipo: string): Double;
@@ -11,9 +11,64 @@ function BuscarPedidos(aIdCliente:Integer): TList<TPedidoDto>;
 function BuscarPedidosPorTransp(aIdTransportadora:Integer):Tlist<TpedidoDto>;
 function buscarPedidosPorStatus(aIdTransportadora:Integer; aStatus:String):Integer;
 function buscarPedidosOrdens(aIdTransportadora:Integer):Tlist<TpedidoDto>;
+procedure cancelaPedido(aIdTransportadora,aIdPedido:Integer;aMotivoCancela:String);
+function BuscarAtualizacoesDiarias(aIdCliente: Integer): TList<TPedidoDto>;
+
 
 end;
 implementation
+
+function TPedidoRepository.BuscarAtualizacoesDiarias(aIdCliente: Integer): TList<TPedidoDto>;
+var
+  QSchemas, QPedidos: TFDQuery;
+  Schema: string;
+  Pedido: TPedidoDto;
+begin
+  Result := TList<TPedidoDto>.Create;
+  QSchemas := TFDQuery.Create(nil);
+  QPedidos := TFDQuery.Create(nil);
+  try
+    QSchemas.Connection := DataModule2.FDConnection1;
+    QPedidos.Connection := DataModule2.FDConnection1;
+
+    QSchemas.SQL.Text :=
+      'SELECT nspname FROM pg_namespace ' +
+      'WHERE nspname NOT IN (''public'',''pg_catalog'',''information_schema'',''pg_toast'')';
+    QSchemas.Open;
+
+    while not QSchemas.Eof do
+    begin
+      Schema := QSchemas.FieldByName('nspname').AsString;
+      QPedidos.SQL.Text :=
+        'SELECT data_atualizacao, id_pedido, ''' + Schema + ''' AS transportadora, ' +
+        'status, data_pedido, preco, distancia_km ' +
+        'FROM ' + Schema + '.pedido ' +
+        'WHERE id_cliente = :id AND data_atualizacao::date = CURRENT_DATE';
+      QPedidos.ParamByName('id').AsInteger := aIdCliente;
+      QPedidos.Open;
+
+      while not QPedidos.Eof do
+      begin
+        Pedido.data_atualizacao := QPedidos.FieldByName('data_atualizacao').AsDateTime;
+        Pedido.idpedido := QPedidos.FieldByName('id_pedido').AsInteger;
+        Pedido.NomeTransportadora := Schema;
+        Pedido.status := QPedidos.FieldByName('status').AsString;
+        Pedido.dataPedido := QPedidos.FieldByName('data_pedido').AsDateTime;
+        Pedido.preco := QPedidos.FieldByName('preco').AsFloat;
+        Pedido.distanciakm := QPedidos.FieldByName('distancia_km').AsFloat;
+        Result.Add(Pedido);
+        QPedidos.Next;
+      end;
+
+      QPedidos.Close;
+      QSchemas.Next;
+    end;
+  finally
+    QSchemas.Free;
+    QPedidos.Free;
+  end;
+end;
+
 
 function TPedidoRepository.BuscarPedidos(aIdCliente: Integer): TList<TPedidoDto>;
 var
@@ -219,6 +274,37 @@ begin
     result := lista
   finally
     FDQuery.Free;
+  end;
+end;
+
+procedure TPedidoRepository.cancelaPedido(aIdTransportadora, aIdPedido: Integer; aMotivoCancela: String);
+var
+  QrySchemas, QryUpdate: TFDQuery;
+  Schema: string;
+begin
+  QrySchemas := TFDQuery.Create(nil);
+  QryUpdate := TFDQuery.Create(nil);
+  try
+    QrySchemas.Connection := DataModule2.FDConnection1;
+    QryUpdate.Connection := DataModule2.FDConnection1;
+
+    QrySchemas.SQL.Text :=
+      'SELECT schema_name FROM public.transportadora WHERE id = :id';
+    QrySchemas.ParamByName('id').AsInteger := aIdTransportadora;
+    QrySchemas.Open;
+    if QrySchemas.IsEmpty then
+      raise Exception.Create('Transportadora não encontrada.');
+    Schema := QrySchemas.FieldByName('schema_name').AsString;
+    QrySchemas.Close;
+
+    QryUpdate.SQL.Text :='UPDATE ' + Schema + '.pedido SET motiv_cancelamento = :motivo, ativo = false, status = ''Cancelado'', data_atualizacao = NOW()' +
+    'WHERE id_pedido = :id_pedido';
+    QryUpdate.ParamByName('motivo').AsString := aMotivoCancela;
+    QryUpdate.ParamByName('id_pedido').AsInteger := aIdPedido;
+    QryUpdate.ExecSQL;
+  finally
+    QrySchemas.Free;
+    QryUpdate.Free;
   end;
 end;
 
