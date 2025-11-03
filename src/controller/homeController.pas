@@ -47,6 +47,7 @@ procedure finalizarCarregamento(aIdTransportadora,aIdCarregamento, aIdPedido: In
 function buscarMinhasOrdensViagens(aIdTransportadora: Integer;aIdmotorista:Integer): Tlist<TviagemDto>;
 procedure iniciarViagem(aIdTransportadora,aIdViagem,aIdCarregamento: Integer; aStatus:String);
 procedure FinalizarViagem(aIdTransportadora,aIdViagem,aIdCarregamento: Integer; aStatus:String);
+function buscarOrdensViagensPorTransp (aIdTransportadora:Integer):Tlist<TviagemDto>;
 
 
 end;
@@ -98,6 +99,19 @@ service:=TOrdemService.create;
     service.free;
   end;
 
+end;
+
+function THomeController.buscarOrdensViagensPorTransp(
+  aIdTransportadora: Integer): Tlist<TviagemDto>;
+var
+  service : TOrdemService;
+begin
+  service := TOrdemService.create;
+  try
+    result := service.buscarOrdensViagensPorTransp(aIdTransportadora);
+  finally
+    service.free;
+  end;
 end;
 
 function THomeController.BuscarPedidosOrdens(

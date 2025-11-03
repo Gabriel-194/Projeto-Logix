@@ -10,3 +10,6 @@
 [CREATE] Usuário jota@gmail.com do ID 7 criou uma ordem de carregamento no dia 31/10/2025 e no horário 16:02:20
 [CHECK] Usuário lucas do ID 11 iniciou uma ordem de carregamento no dia 31/10/2025 e no horário 16:04:26
 [CHECK] Usuário lucas do ID 11 finalizou uma ordem de carregamento no dia 31/10/2025 e no horário 16:05:43
+[CREATE] Usuário kauan@gmail.com do ID 9 criou uma ordem de viagem no dia 03/11/2025 e no horário 09:46:24
+[CHECK] Usuário sergio1 do ID 10 iniciou uma ordem de viagem no dia 03/11/2025 e no horário 10:50:45
+[CHECK] Usuário sergio1 do ID 10 finalizou uma ordem de viagem no dia 03/11/2025 e no horário 10:51:30

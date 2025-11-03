@@ -2,12 +2,10 @@
 -- PostgreSQL database dump
 --
 
-\restrict n0qduYbLEa4yyiRpeSSG3TF2XqsmTLTsHMTgGv6nu2KqxcFqCwvNNcwnDYalQVy
+-- Dumped from database version 17.5
+-- Dumped by pg_dump version 17.5
 
--- Dumped from database version 18.0
--- Dumped by pg_dump version 18.0
-
--- Started on 2025-10-31 17:41:07
+-- Started on 2025-11-03 11:16:22
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -32,7 +30,7 @@ SET row_security = off;
 ALTER SCHEMA public OWNER TO postgres;
 
 --
--- TOC entry 5403 (class 0 OID 0)
+-- TOC entry 5333 (class 0 OID 0)
 -- Dependencies: 9
 -- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
 --
@@ -41,7 +39,7 @@ COMMENT ON SCHEMA public IS '';
 
 
 --
--- TOC entry 5 (class 2615 OID 26515)
+-- TOC entry 5 (class 2615 OID 35931)
 -- Name: transp_feia; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -51,7 +49,7 @@ CREATE SCHEMA transp_feia;
 ALTER SCHEMA transp_feia OWNER TO postgres;
 
 --
--- TOC entry 6 (class 2615 OID 26516)
+-- TOC entry 6 (class 2615 OID 35932)
 -- Name: transp_inteligente; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -61,7 +59,7 @@ CREATE SCHEMA transp_inteligente;
 ALTER SCHEMA transp_inteligente OWNER TO postgres;
 
 --
--- TOC entry 7 (class 2615 OID 26517)
+-- TOC entry 7 (class 2615 OID 35933)
 -- Name: transp_legal; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -71,7 +69,7 @@ CREATE SCHEMA transp_legal;
 ALTER SCHEMA transp_legal OWNER TO postgres;
 
 --
--- TOC entry 8 (class 2615 OID 26518)
+-- TOC entry 8 (class 2615 OID 35934)
 -- Name: transp_paia; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -85,7 +83,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 223 (class 1259 OID 26519)
+-- TOC entry 221 (class 1259 OID 35935)
 -- Name: cliente; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -110,7 +108,7 @@ CREATE TABLE public.cliente (
 ALTER TABLE public.cliente OWNER TO postgres;
 
 --
--- TOC entry 224 (class 1259 OID 26532)
+-- TOC entry 222 (class 1259 OID 35943)
 -- Name: cliente_id_cliente_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -126,8 +124,8 @@ CREATE SEQUENCE public.cliente_id_cliente_seq
 ALTER SEQUENCE public.cliente_id_cliente_seq OWNER TO postgres;
 
 --
--- TOC entry 5405 (class 0 OID 0)
--- Dependencies: 224
+-- TOC entry 5335 (class 0 OID 0)
+-- Dependencies: 222
 -- Name: cliente_id_cliente_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -135,7 +133,7 @@ ALTER SEQUENCE public.cliente_id_cliente_seq OWNED BY public.cliente.id_cliente;
 
 
 --
--- TOC entry 225 (class 1259 OID 26533)
+-- TOC entry 223 (class 1259 OID 35944)
 -- Name: grupo; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -148,7 +146,7 @@ CREATE TABLE public.grupo (
 ALTER TABLE public.grupo OWNER TO postgres;
 
 --
--- TOC entry 226 (class 1259 OID 26538)
+-- TOC entry 224 (class 1259 OID 35947)
 -- Name: grupo_id_grupo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -164,8 +162,8 @@ CREATE SEQUENCE public.grupo_id_grupo_seq
 ALTER SEQUENCE public.grupo_id_grupo_seq OWNER TO postgres;
 
 --
--- TOC entry 5406 (class 0 OID 0)
--- Dependencies: 226
+-- TOC entry 5336 (class 0 OID 0)
+-- Dependencies: 224
 -- Name: grupo_id_grupo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -173,7 +171,7 @@ ALTER SEQUENCE public.grupo_id_grupo_seq OWNED BY public.grupo.id_grupo;
 
 
 --
--- TOC entry 227 (class 1259 OID 26539)
+-- TOC entry 225 (class 1259 OID 35948)
 -- Name: motorista; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -191,7 +189,7 @@ CREATE TABLE public.motorista (
 ALTER TABLE public.motorista OWNER TO postgres;
 
 --
--- TOC entry 228 (class 1259 OID 26549)
+-- TOC entry 226 (class 1259 OID 35953)
 -- Name: motorista_id_motorista_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -207,8 +205,8 @@ CREATE SEQUENCE public.motorista_id_motorista_seq
 ALTER SEQUENCE public.motorista_id_motorista_seq OWNER TO postgres;
 
 --
--- TOC entry 5407 (class 0 OID 0)
--- Dependencies: 228
+-- TOC entry 5337 (class 0 OID 0)
+-- Dependencies: 226
 -- Name: motorista_id_motorista_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -216,7 +214,7 @@ ALTER SEQUENCE public.motorista_id_motorista_seq OWNED BY public.motorista.id_mo
 
 
 --
--- TOC entry 229 (class 1259 OID 26550)
+-- TOC entry 227 (class 1259 OID 35954)
 -- Name: transportadora; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -237,7 +235,7 @@ CREATE TABLE public.transportadora (
 ALTER TABLE public.transportadora OWNER TO postgres;
 
 --
--- TOC entry 230 (class 1259 OID 26560)
+-- TOC entry 228 (class 1259 OID 35960)
 -- Name: transportadora_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -253,8 +251,8 @@ CREATE SEQUENCE public.transportadora_id_seq
 ALTER SEQUENCE public.transportadora_id_seq OWNER TO postgres;
 
 --
--- TOC entry 5408 (class 0 OID 0)
--- Dependencies: 230
+-- TOC entry 5338 (class 0 OID 0)
+-- Dependencies: 228
 -- Name: transportadora_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -262,7 +260,7 @@ ALTER SEQUENCE public.transportadora_id_seq OWNED BY public.transportadora.id;
 
 
 --
--- TOC entry 231 (class 1259 OID 26561)
+-- TOC entry 229 (class 1259 OID 35961)
 -- Name: usuarios; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -285,7 +283,7 @@ CREATE TABLE public.usuarios (
 ALTER TABLE public.usuarios OWNER TO postgres;
 
 --
--- TOC entry 232 (class 1259 OID 26574)
+-- TOC entry 230 (class 1259 OID 35969)
 -- Name: usuarios_id_usuario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -301,8 +299,8 @@ CREATE SEQUENCE public.usuarios_id_usuario_seq
 ALTER SEQUENCE public.usuarios_id_usuario_seq OWNER TO postgres;
 
 --
--- TOC entry 5409 (class 0 OID 0)
--- Dependencies: 232
+-- TOC entry 5339 (class 0 OID 0)
+-- Dependencies: 230
 -- Name: usuarios_id_usuario_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -310,7 +308,7 @@ ALTER SEQUENCE public.usuarios_id_usuario_seq OWNED BY public.usuarios.id_usuari
 
 
 --
--- TOC entry 233 (class 1259 OID 26575)
+-- TOC entry 231 (class 1259 OID 35970)
 -- Name: carregamento; Type: TABLE; Schema: transp_feia; Owner: postgres
 --
 
@@ -330,7 +328,7 @@ CREATE TABLE transp_feia.carregamento (
 ALTER TABLE transp_feia.carregamento OWNER TO postgres;
 
 --
--- TOC entry 234 (class 1259 OID 26585)
+-- TOC entry 232 (class 1259 OID 35976)
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE; Schema: transp_feia; Owner: postgres
 --
 
@@ -346,8 +344,8 @@ CREATE SEQUENCE transp_feia.carregamento_id_carregamento_seq
 ALTER SEQUENCE transp_feia.carregamento_id_carregamento_seq OWNER TO postgres;
 
 --
--- TOC entry 5410 (class 0 OID 0)
--- Dependencies: 234
+-- TOC entry 5340 (class 0 OID 0)
+-- Dependencies: 232
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE OWNED BY; Schema: transp_feia; Owner: postgres
 --
 
@@ -355,7 +353,7 @@ ALTER SEQUENCE transp_feia.carregamento_id_carregamento_seq OWNED BY transp_feia
 
 
 --
--- TOC entry 276 (class 1259 OID 27140)
+-- TOC entry 233 (class 1259 OID 35977)
 -- Name: mensagemcliente; Type: TABLE; Schema: transp_feia; Owner: postgres
 --
 
@@ -372,7 +370,7 @@ CREATE TABLE transp_feia.mensagemcliente (
 ALTER TABLE transp_feia.mensagemcliente OWNER TO postgres;
 
 --
--- TOC entry 275 (class 1259 OID 27139)
+-- TOC entry 234 (class 1259 OID 35980)
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE; Schema: transp_feia; Owner: postgres
 --
 
@@ -388,8 +386,8 @@ CREATE SEQUENCE transp_feia.mensagemcliente_id_mensagem_seq
 ALTER SEQUENCE transp_feia.mensagemcliente_id_mensagem_seq OWNER TO postgres;
 
 --
--- TOC entry 5411 (class 0 OID 0)
--- Dependencies: 275
+-- TOC entry 5341 (class 0 OID 0)
+-- Dependencies: 234
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE OWNED BY; Schema: transp_feia; Owner: postgres
 --
 
@@ -397,7 +395,7 @@ ALTER SEQUENCE transp_feia.mensagemcliente_id_mensagem_seq OWNED BY transp_feia.
 
 
 --
--- TOC entry 235 (class 1259 OID 26586)
+-- TOC entry 235 (class 1259 OID 35981)
 -- Name: pedido; Type: TABLE; Schema: transp_feia; Owner: postgres
 --
 
@@ -430,7 +428,7 @@ CREATE TABLE transp_feia.pedido (
 ALTER TABLE transp_feia.pedido OWNER TO postgres;
 
 --
--- TOC entry 236 (class 1259 OID 26598)
+-- TOC entry 236 (class 1259 OID 35989)
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE; Schema: transp_feia; Owner: postgres
 --
 
@@ -446,7 +444,7 @@ CREATE SEQUENCE transp_feia.pedido_id_pedido_seq
 ALTER SEQUENCE transp_feia.pedido_id_pedido_seq OWNER TO postgres;
 
 --
--- TOC entry 5412 (class 0 OID 0)
+-- TOC entry 5342 (class 0 OID 0)
 -- Dependencies: 236
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE OWNED BY; Schema: transp_feia; Owner: postgres
 --
@@ -455,7 +453,7 @@ ALTER SEQUENCE transp_feia.pedido_id_pedido_seq OWNED BY transp_feia.pedido.id_p
 
 
 --
--- TOC entry 237 (class 1259 OID 26599)
+-- TOC entry 237 (class 1259 OID 35990)
 -- Name: tipo_carga; Type: TABLE; Schema: transp_feia; Owner: postgres
 --
 
@@ -470,7 +468,7 @@ CREATE TABLE transp_feia.tipo_carga (
 ALTER TABLE transp_feia.tipo_carga OWNER TO postgres;
 
 --
--- TOC entry 238 (class 1259 OID 26604)
+-- TOC entry 238 (class 1259 OID 35993)
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE; Schema: transp_feia; Owner: postgres
 --
 
@@ -486,7 +484,7 @@ CREATE SEQUENCE transp_feia.tipo_carga_id_carga_seq
 ALTER SEQUENCE transp_feia.tipo_carga_id_carga_seq OWNER TO postgres;
 
 --
--- TOC entry 5413 (class 0 OID 0)
+-- TOC entry 5343 (class 0 OID 0)
 -- Dependencies: 238
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE OWNED BY; Schema: transp_feia; Owner: postgres
 --
@@ -495,7 +493,7 @@ ALTER SEQUENCE transp_feia.tipo_carga_id_carga_seq OWNED BY transp_feia.tipo_car
 
 
 --
--- TOC entry 239 (class 1259 OID 26605)
+-- TOC entry 239 (class 1259 OID 35994)
 -- Name: veiculo; Type: TABLE; Schema: transp_feia; Owner: postgres
 --
 
@@ -518,7 +516,7 @@ CREATE TABLE transp_feia.veiculo (
 ALTER TABLE transp_feia.veiculo OWNER TO postgres;
 
 --
--- TOC entry 240 (class 1259 OID 26613)
+-- TOC entry 240 (class 1259 OID 36000)
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE; Schema: transp_feia; Owner: postgres
 --
 
@@ -534,7 +532,7 @@ CREATE SEQUENCE transp_feia.veiculo_id_veiculo_seq
 ALTER SEQUENCE transp_feia.veiculo_id_veiculo_seq OWNER TO postgres;
 
 --
--- TOC entry 5414 (class 0 OID 0)
+-- TOC entry 5344 (class 0 OID 0)
 -- Dependencies: 240
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE OWNED BY; Schema: transp_feia; Owner: postgres
 --
@@ -543,7 +541,7 @@ ALTER SEQUENCE transp_feia.veiculo_id_veiculo_seq OWNED BY transp_feia.veiculo.i
 
 
 --
--- TOC entry 241 (class 1259 OID 26614)
+-- TOC entry 241 (class 1259 OID 36001)
 -- Name: viagem; Type: TABLE; Schema: transp_feia; Owner: postgres
 --
 
@@ -564,7 +562,7 @@ CREATE TABLE transp_feia.viagem (
 ALTER TABLE transp_feia.viagem OWNER TO postgres;
 
 --
--- TOC entry 242 (class 1259 OID 26624)
+-- TOC entry 242 (class 1259 OID 36007)
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE; Schema: transp_feia; Owner: postgres
 --
 
@@ -580,7 +578,7 @@ CREATE SEQUENCE transp_feia.viagem_id_viagem_seq
 ALTER SEQUENCE transp_feia.viagem_id_viagem_seq OWNER TO postgres;
 
 --
--- TOC entry 5415 (class 0 OID 0)
+-- TOC entry 5345 (class 0 OID 0)
 -- Dependencies: 242
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE OWNED BY; Schema: transp_feia; Owner: postgres
 --
@@ -589,7 +587,7 @@ ALTER SEQUENCE transp_feia.viagem_id_viagem_seq OWNED BY transp_feia.viagem.id_v
 
 
 --
--- TOC entry 243 (class 1259 OID 26625)
+-- TOC entry 243 (class 1259 OID 36008)
 -- Name: carregamento; Type: TABLE; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -609,7 +607,7 @@ CREATE TABLE transp_inteligente.carregamento (
 ALTER TABLE transp_inteligente.carregamento OWNER TO postgres;
 
 --
--- TOC entry 244 (class 1259 OID 26635)
+-- TOC entry 244 (class 1259 OID 36014)
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -625,7 +623,7 @@ CREATE SEQUENCE transp_inteligente.carregamento_id_carregamento_seq
 ALTER SEQUENCE transp_inteligente.carregamento_id_carregamento_seq OWNER TO postgres;
 
 --
--- TOC entry 5416 (class 0 OID 0)
+-- TOC entry 5346 (class 0 OID 0)
 -- Dependencies: 244
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE OWNED BY; Schema: transp_inteligente; Owner: postgres
 --
@@ -634,7 +632,7 @@ ALTER SEQUENCE transp_inteligente.carregamento_id_carregamento_seq OWNED BY tran
 
 
 --
--- TOC entry 278 (class 1259 OID 27167)
+-- TOC entry 245 (class 1259 OID 36015)
 -- Name: mensagemcliente; Type: TABLE; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -651,7 +649,7 @@ CREATE TABLE transp_inteligente.mensagemcliente (
 ALTER TABLE transp_inteligente.mensagemcliente OWNER TO postgres;
 
 --
--- TOC entry 277 (class 1259 OID 27166)
+-- TOC entry 246 (class 1259 OID 36018)
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -667,8 +665,8 @@ CREATE SEQUENCE transp_inteligente.mensagemcliente_id_mensagem_seq
 ALTER SEQUENCE transp_inteligente.mensagemcliente_id_mensagem_seq OWNER TO postgres;
 
 --
--- TOC entry 5417 (class 0 OID 0)
--- Dependencies: 277
+-- TOC entry 5347 (class 0 OID 0)
+-- Dependencies: 246
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE OWNED BY; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -676,7 +674,7 @@ ALTER SEQUENCE transp_inteligente.mensagemcliente_id_mensagem_seq OWNED BY trans
 
 
 --
--- TOC entry 245 (class 1259 OID 26636)
+-- TOC entry 247 (class 1259 OID 36019)
 -- Name: pedido; Type: TABLE; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -709,7 +707,7 @@ CREATE TABLE transp_inteligente.pedido (
 ALTER TABLE transp_inteligente.pedido OWNER TO postgres;
 
 --
--- TOC entry 246 (class 1259 OID 26648)
+-- TOC entry 248 (class 1259 OID 36027)
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -725,8 +723,8 @@ CREATE SEQUENCE transp_inteligente.pedido_id_pedido_seq
 ALTER SEQUENCE transp_inteligente.pedido_id_pedido_seq OWNER TO postgres;
 
 --
--- TOC entry 5418 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 5348 (class 0 OID 0)
+-- Dependencies: 248
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE OWNED BY; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -734,7 +732,7 @@ ALTER SEQUENCE transp_inteligente.pedido_id_pedido_seq OWNED BY transp_inteligen
 
 
 --
--- TOC entry 247 (class 1259 OID 26649)
+-- TOC entry 249 (class 1259 OID 36028)
 -- Name: tipo_carga; Type: TABLE; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -749,7 +747,7 @@ CREATE TABLE transp_inteligente.tipo_carga (
 ALTER TABLE transp_inteligente.tipo_carga OWNER TO postgres;
 
 --
--- TOC entry 248 (class 1259 OID 26654)
+-- TOC entry 250 (class 1259 OID 36031)
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -765,8 +763,8 @@ CREATE SEQUENCE transp_inteligente.tipo_carga_id_carga_seq
 ALTER SEQUENCE transp_inteligente.tipo_carga_id_carga_seq OWNER TO postgres;
 
 --
--- TOC entry 5419 (class 0 OID 0)
--- Dependencies: 248
+-- TOC entry 5349 (class 0 OID 0)
+-- Dependencies: 250
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE OWNED BY; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -774,7 +772,7 @@ ALTER SEQUENCE transp_inteligente.tipo_carga_id_carga_seq OWNED BY transp_inteli
 
 
 --
--- TOC entry 249 (class 1259 OID 26655)
+-- TOC entry 251 (class 1259 OID 36032)
 -- Name: veiculo; Type: TABLE; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -797,7 +795,7 @@ CREATE TABLE transp_inteligente.veiculo (
 ALTER TABLE transp_inteligente.veiculo OWNER TO postgres;
 
 --
--- TOC entry 250 (class 1259 OID 26663)
+-- TOC entry 252 (class 1259 OID 36038)
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -813,8 +811,8 @@ CREATE SEQUENCE transp_inteligente.veiculo_id_veiculo_seq
 ALTER SEQUENCE transp_inteligente.veiculo_id_veiculo_seq OWNER TO postgres;
 
 --
--- TOC entry 5420 (class 0 OID 0)
--- Dependencies: 250
+-- TOC entry 5350 (class 0 OID 0)
+-- Dependencies: 252
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE OWNED BY; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -822,7 +820,7 @@ ALTER SEQUENCE transp_inteligente.veiculo_id_veiculo_seq OWNED BY transp_intelig
 
 
 --
--- TOC entry 251 (class 1259 OID 26664)
+-- TOC entry 253 (class 1259 OID 36039)
 -- Name: viagem; Type: TABLE; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -843,7 +841,7 @@ CREATE TABLE transp_inteligente.viagem (
 ALTER TABLE transp_inteligente.viagem OWNER TO postgres;
 
 --
--- TOC entry 252 (class 1259 OID 26674)
+-- TOC entry 254 (class 1259 OID 36045)
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -859,8 +857,8 @@ CREATE SEQUENCE transp_inteligente.viagem_id_viagem_seq
 ALTER SEQUENCE transp_inteligente.viagem_id_viagem_seq OWNER TO postgres;
 
 --
--- TOC entry 5421 (class 0 OID 0)
--- Dependencies: 252
+-- TOC entry 5351 (class 0 OID 0)
+-- Dependencies: 254
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE OWNED BY; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -868,7 +866,7 @@ ALTER SEQUENCE transp_inteligente.viagem_id_viagem_seq OWNED BY transp_inteligen
 
 
 --
--- TOC entry 253 (class 1259 OID 26675)
+-- TOC entry 255 (class 1259 OID 36046)
 -- Name: carregamento; Type: TABLE; Schema: transp_legal; Owner: postgres
 --
 
@@ -888,7 +886,7 @@ CREATE TABLE transp_legal.carregamento (
 ALTER TABLE transp_legal.carregamento OWNER TO postgres;
 
 --
--- TOC entry 254 (class 1259 OID 26685)
+-- TOC entry 256 (class 1259 OID 36052)
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE; Schema: transp_legal; Owner: postgres
 --
 
@@ -904,8 +902,8 @@ CREATE SEQUENCE transp_legal.carregamento_id_carregamento_seq
 ALTER SEQUENCE transp_legal.carregamento_id_carregamento_seq OWNER TO postgres;
 
 --
--- TOC entry 5422 (class 0 OID 0)
--- Dependencies: 254
+-- TOC entry 5352 (class 0 OID 0)
+-- Dependencies: 256
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE OWNED BY; Schema: transp_legal; Owner: postgres
 --
 
@@ -913,7 +911,7 @@ ALTER SEQUENCE transp_legal.carregamento_id_carregamento_seq OWNED BY transp_leg
 
 
 --
--- TOC entry 274 (class 1259 OID 27113)
+-- TOC entry 257 (class 1259 OID 36053)
 -- Name: mensagemcliente; Type: TABLE; Schema: transp_legal; Owner: postgres
 --
 
@@ -930,7 +928,7 @@ CREATE TABLE transp_legal.mensagemcliente (
 ALTER TABLE transp_legal.mensagemcliente OWNER TO postgres;
 
 --
--- TOC entry 273 (class 1259 OID 27112)
+-- TOC entry 258 (class 1259 OID 36056)
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE; Schema: transp_legal; Owner: postgres
 --
 
@@ -946,8 +944,8 @@ CREATE SEQUENCE transp_legal.mensagemcliente_id_mensagem_seq
 ALTER SEQUENCE transp_legal.mensagemcliente_id_mensagem_seq OWNER TO postgres;
 
 --
--- TOC entry 5423 (class 0 OID 0)
--- Dependencies: 273
+-- TOC entry 5353 (class 0 OID 0)
+-- Dependencies: 258
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE OWNED BY; Schema: transp_legal; Owner: postgres
 --
 
@@ -955,7 +953,7 @@ ALTER SEQUENCE transp_legal.mensagemcliente_id_mensagem_seq OWNED BY transp_lega
 
 
 --
--- TOC entry 255 (class 1259 OID 26686)
+-- TOC entry 259 (class 1259 OID 36057)
 -- Name: pedido; Type: TABLE; Schema: transp_legal; Owner: postgres
 --
 
@@ -988,7 +986,7 @@ CREATE TABLE transp_legal.pedido (
 ALTER TABLE transp_legal.pedido OWNER TO postgres;
 
 --
--- TOC entry 256 (class 1259 OID 26698)
+-- TOC entry 260 (class 1259 OID 36065)
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE; Schema: transp_legal; Owner: postgres
 --
 
@@ -1004,8 +1002,8 @@ CREATE SEQUENCE transp_legal.pedido_id_pedido_seq
 ALTER SEQUENCE transp_legal.pedido_id_pedido_seq OWNER TO postgres;
 
 --
--- TOC entry 5424 (class 0 OID 0)
--- Dependencies: 256
+-- TOC entry 5354 (class 0 OID 0)
+-- Dependencies: 260
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE OWNED BY; Schema: transp_legal; Owner: postgres
 --
 
@@ -1013,7 +1011,7 @@ ALTER SEQUENCE transp_legal.pedido_id_pedido_seq OWNED BY transp_legal.pedido.id
 
 
 --
--- TOC entry 257 (class 1259 OID 26699)
+-- TOC entry 261 (class 1259 OID 36066)
 -- Name: tipo_carga; Type: TABLE; Schema: transp_legal; Owner: postgres
 --
 
@@ -1028,7 +1026,7 @@ CREATE TABLE transp_legal.tipo_carga (
 ALTER TABLE transp_legal.tipo_carga OWNER TO postgres;
 
 --
--- TOC entry 258 (class 1259 OID 26704)
+-- TOC entry 262 (class 1259 OID 36069)
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE; Schema: transp_legal; Owner: postgres
 --
 
@@ -1044,8 +1042,8 @@ CREATE SEQUENCE transp_legal.tipo_carga_id_carga_seq
 ALTER SEQUENCE transp_legal.tipo_carga_id_carga_seq OWNER TO postgres;
 
 --
--- TOC entry 5425 (class 0 OID 0)
--- Dependencies: 258
+-- TOC entry 5355 (class 0 OID 0)
+-- Dependencies: 262
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE OWNED BY; Schema: transp_legal; Owner: postgres
 --
 
@@ -1053,7 +1051,7 @@ ALTER SEQUENCE transp_legal.tipo_carga_id_carga_seq OWNED BY transp_legal.tipo_c
 
 
 --
--- TOC entry 259 (class 1259 OID 26705)
+-- TOC entry 263 (class 1259 OID 36070)
 -- Name: veiculo; Type: TABLE; Schema: transp_legal; Owner: postgres
 --
 
@@ -1075,7 +1073,7 @@ CREATE TABLE transp_legal.veiculo (
 ALTER TABLE transp_legal.veiculo OWNER TO postgres;
 
 --
--- TOC entry 260 (class 1259 OID 26713)
+-- TOC entry 264 (class 1259 OID 36076)
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE; Schema: transp_legal; Owner: postgres
 --
 
@@ -1091,8 +1089,8 @@ CREATE SEQUENCE transp_legal.veiculo_id_veiculo_seq
 ALTER SEQUENCE transp_legal.veiculo_id_veiculo_seq OWNER TO postgres;
 
 --
--- TOC entry 5426 (class 0 OID 0)
--- Dependencies: 260
+-- TOC entry 5356 (class 0 OID 0)
+-- Dependencies: 264
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE OWNED BY; Schema: transp_legal; Owner: postgres
 --
 
@@ -1100,7 +1098,7 @@ ALTER SEQUENCE transp_legal.veiculo_id_veiculo_seq OWNED BY transp_legal.veiculo
 
 
 --
--- TOC entry 261 (class 1259 OID 26714)
+-- TOC entry 265 (class 1259 OID 36077)
 -- Name: viagem; Type: TABLE; Schema: transp_legal; Owner: postgres
 --
 
@@ -1121,7 +1119,7 @@ CREATE TABLE transp_legal.viagem (
 ALTER TABLE transp_legal.viagem OWNER TO postgres;
 
 --
--- TOC entry 262 (class 1259 OID 26724)
+-- TOC entry 266 (class 1259 OID 36083)
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE; Schema: transp_legal; Owner: postgres
 --
 
@@ -1137,8 +1135,8 @@ CREATE SEQUENCE transp_legal.viagem_id_viagem_seq
 ALTER SEQUENCE transp_legal.viagem_id_viagem_seq OWNER TO postgres;
 
 --
--- TOC entry 5427 (class 0 OID 0)
--- Dependencies: 262
+-- TOC entry 5357 (class 0 OID 0)
+-- Dependencies: 266
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE OWNED BY; Schema: transp_legal; Owner: postgres
 --
 
@@ -1146,7 +1144,7 @@ ALTER SEQUENCE transp_legal.viagem_id_viagem_seq OWNED BY transp_legal.viagem.id
 
 
 --
--- TOC entry 263 (class 1259 OID 26725)
+-- TOC entry 267 (class 1259 OID 36084)
 -- Name: carregamento; Type: TABLE; Schema: transp_paia; Owner: postgres
 --
 
@@ -1166,7 +1164,7 @@ CREATE TABLE transp_paia.carregamento (
 ALTER TABLE transp_paia.carregamento OWNER TO postgres;
 
 --
--- TOC entry 264 (class 1259 OID 26735)
+-- TOC entry 268 (class 1259 OID 36090)
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE; Schema: transp_paia; Owner: postgres
 --
 
@@ -1182,8 +1180,8 @@ CREATE SEQUENCE transp_paia.carregamento_id_carregamento_seq
 ALTER SEQUENCE transp_paia.carregamento_id_carregamento_seq OWNER TO postgres;
 
 --
--- TOC entry 5428 (class 0 OID 0)
--- Dependencies: 264
+-- TOC entry 5358 (class 0 OID 0)
+-- Dependencies: 268
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE OWNED BY; Schema: transp_paia; Owner: postgres
 --
 
@@ -1191,7 +1189,7 @@ ALTER SEQUENCE transp_paia.carregamento_id_carregamento_seq OWNED BY transp_paia
 
 
 --
--- TOC entry 280 (class 1259 OID 27194)
+-- TOC entry 269 (class 1259 OID 36091)
 -- Name: mensagemcliente; Type: TABLE; Schema: transp_paia; Owner: postgres
 --
 
@@ -1208,7 +1206,7 @@ CREATE TABLE transp_paia.mensagemcliente (
 ALTER TABLE transp_paia.mensagemcliente OWNER TO postgres;
 
 --
--- TOC entry 279 (class 1259 OID 27193)
+-- TOC entry 270 (class 1259 OID 36094)
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE; Schema: transp_paia; Owner: postgres
 --
 
@@ -1224,8 +1222,8 @@ CREATE SEQUENCE transp_paia.mensagemcliente_id_mensagem_seq
 ALTER SEQUENCE transp_paia.mensagemcliente_id_mensagem_seq OWNER TO postgres;
 
 --
--- TOC entry 5429 (class 0 OID 0)
--- Dependencies: 279
+-- TOC entry 5359 (class 0 OID 0)
+-- Dependencies: 270
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE OWNED BY; Schema: transp_paia; Owner: postgres
 --
 
@@ -1233,7 +1231,7 @@ ALTER SEQUENCE transp_paia.mensagemcliente_id_mensagem_seq OWNED BY transp_paia.
 
 
 --
--- TOC entry 265 (class 1259 OID 26736)
+-- TOC entry 271 (class 1259 OID 36095)
 -- Name: pedido; Type: TABLE; Schema: transp_paia; Owner: postgres
 --
 
@@ -1266,7 +1264,7 @@ CREATE TABLE transp_paia.pedido (
 ALTER TABLE transp_paia.pedido OWNER TO postgres;
 
 --
--- TOC entry 266 (class 1259 OID 26748)
+-- TOC entry 272 (class 1259 OID 36103)
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE; Schema: transp_paia; Owner: postgres
 --
 
@@ -1282,8 +1280,8 @@ CREATE SEQUENCE transp_paia.pedido_id_pedido_seq
 ALTER SEQUENCE transp_paia.pedido_id_pedido_seq OWNER TO postgres;
 
 --
--- TOC entry 5430 (class 0 OID 0)
--- Dependencies: 266
+-- TOC entry 5360 (class 0 OID 0)
+-- Dependencies: 272
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE OWNED BY; Schema: transp_paia; Owner: postgres
 --
 
@@ -1291,7 +1289,7 @@ ALTER SEQUENCE transp_paia.pedido_id_pedido_seq OWNED BY transp_paia.pedido.id_p
 
 
 --
--- TOC entry 267 (class 1259 OID 26749)
+-- TOC entry 273 (class 1259 OID 36104)
 -- Name: tipo_carga; Type: TABLE; Schema: transp_paia; Owner: postgres
 --
 
@@ -1306,7 +1304,7 @@ CREATE TABLE transp_paia.tipo_carga (
 ALTER TABLE transp_paia.tipo_carga OWNER TO postgres;
 
 --
--- TOC entry 268 (class 1259 OID 26754)
+-- TOC entry 274 (class 1259 OID 36107)
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE; Schema: transp_paia; Owner: postgres
 --
 
@@ -1322,8 +1320,8 @@ CREATE SEQUENCE transp_paia.tipo_carga_id_carga_seq
 ALTER SEQUENCE transp_paia.tipo_carga_id_carga_seq OWNER TO postgres;
 
 --
--- TOC entry 5431 (class 0 OID 0)
--- Dependencies: 268
+-- TOC entry 5361 (class 0 OID 0)
+-- Dependencies: 274
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE OWNED BY; Schema: transp_paia; Owner: postgres
 --
 
@@ -1331,7 +1329,7 @@ ALTER SEQUENCE transp_paia.tipo_carga_id_carga_seq OWNED BY transp_paia.tipo_car
 
 
 --
--- TOC entry 269 (class 1259 OID 26755)
+-- TOC entry 275 (class 1259 OID 36108)
 -- Name: veiculo; Type: TABLE; Schema: transp_paia; Owner: postgres
 --
 
@@ -1353,7 +1351,7 @@ CREATE TABLE transp_paia.veiculo (
 ALTER TABLE transp_paia.veiculo OWNER TO postgres;
 
 --
--- TOC entry 270 (class 1259 OID 26763)
+-- TOC entry 276 (class 1259 OID 36114)
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE; Schema: transp_paia; Owner: postgres
 --
 
@@ -1369,8 +1367,8 @@ CREATE SEQUENCE transp_paia.veiculo_id_veiculo_seq
 ALTER SEQUENCE transp_paia.veiculo_id_veiculo_seq OWNER TO postgres;
 
 --
--- TOC entry 5432 (class 0 OID 0)
--- Dependencies: 270
+-- TOC entry 5362 (class 0 OID 0)
+-- Dependencies: 276
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE OWNED BY; Schema: transp_paia; Owner: postgres
 --
 
@@ -1378,7 +1376,7 @@ ALTER SEQUENCE transp_paia.veiculo_id_veiculo_seq OWNED BY transp_paia.veiculo.i
 
 
 --
--- TOC entry 271 (class 1259 OID 26764)
+-- TOC entry 277 (class 1259 OID 36115)
 -- Name: viagem; Type: TABLE; Schema: transp_paia; Owner: postgres
 --
 
@@ -1399,7 +1397,7 @@ CREATE TABLE transp_paia.viagem (
 ALTER TABLE transp_paia.viagem OWNER TO postgres;
 
 --
--- TOC entry 272 (class 1259 OID 26774)
+-- TOC entry 278 (class 1259 OID 36121)
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE; Schema: transp_paia; Owner: postgres
 --
 
@@ -1415,8 +1413,8 @@ CREATE SEQUENCE transp_paia.viagem_id_viagem_seq
 ALTER SEQUENCE transp_paia.viagem_id_viagem_seq OWNER TO postgres;
 
 --
--- TOC entry 5433 (class 0 OID 0)
--- Dependencies: 272
+-- TOC entry 5363 (class 0 OID 0)
+-- Dependencies: 278
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE OWNED BY; Schema: transp_paia; Owner: postgres
 --
 
@@ -1424,7 +1422,7 @@ ALTER SEQUENCE transp_paia.viagem_id_viagem_seq OWNED BY transp_paia.viagem.id_v
 
 
 --
--- TOC entry 4954 (class 2604 OID 26775)
+-- TOC entry 4886 (class 2604 OID 36122)
 -- Name: cliente id_cliente; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1432,7 +1430,7 @@ ALTER TABLE ONLY public.cliente ALTER COLUMN id_cliente SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 4958 (class 2604 OID 26776)
+-- TOC entry 4890 (class 2604 OID 36123)
 -- Name: grupo id_grupo; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1440,7 +1438,7 @@ ALTER TABLE ONLY public.grupo ALTER COLUMN id_grupo SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 4959 (class 2604 OID 26777)
+-- TOC entry 4891 (class 2604 OID 36124)
 -- Name: motorista id_motorista; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1448,7 +1446,7 @@ ALTER TABLE ONLY public.motorista ALTER COLUMN id_motorista SET DEFAULT nextval(
 
 
 --
--- TOC entry 4962 (class 2604 OID 26778)
+-- TOC entry 4894 (class 2604 OID 36125)
 -- Name: transportadora id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1456,7 +1454,7 @@ ALTER TABLE ONLY public.transportadora ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 4966 (class 2604 OID 26779)
+-- TOC entry 4898 (class 2604 OID 36126)
 -- Name: usuarios id_usuario; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1464,7 +1462,7 @@ ALTER TABLE ONLY public.usuarios ALTER COLUMN id_usuario SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 4970 (class 2604 OID 26780)
+-- TOC entry 4902 (class 2604 OID 36127)
 -- Name: carregamento id_carregamento; Type: DEFAULT; Schema: transp_feia; Owner: postgres
 --
 
@@ -1472,7 +1470,7 @@ ALTER TABLE ONLY transp_feia.carregamento ALTER COLUMN id_carregamento SET DEFAU
 
 
 --
--- TOC entry 5039 (class 2604 OID 27143)
+-- TOC entry 4906 (class 2604 OID 36128)
 -- Name: mensagemcliente id_mensagem; Type: DEFAULT; Schema: transp_feia; Owner: postgres
 --
 
@@ -1480,7 +1478,7 @@ ALTER TABLE ONLY transp_feia.mensagemcliente ALTER COLUMN id_mensagem SET DEFAUL
 
 
 --
--- TOC entry 4974 (class 2604 OID 26781)
+-- TOC entry 4907 (class 2604 OID 36129)
 -- Name: pedido id_pedido; Type: DEFAULT; Schema: transp_feia; Owner: postgres
 --
 
@@ -1488,7 +1486,7 @@ ALTER TABLE ONLY transp_feia.pedido ALTER COLUMN id_pedido SET DEFAULT nextval('
 
 
 --
--- TOC entry 4978 (class 2604 OID 26782)
+-- TOC entry 4911 (class 2604 OID 36130)
 -- Name: tipo_carga id_carga; Type: DEFAULT; Schema: transp_feia; Owner: postgres
 --
 
@@ -1496,7 +1494,7 @@ ALTER TABLE ONLY transp_feia.tipo_carga ALTER COLUMN id_carga SET DEFAULT nextva
 
 
 --
--- TOC entry 4979 (class 2604 OID 26783)
+-- TOC entry 4912 (class 2604 OID 36131)
 -- Name: veiculo id_veiculo; Type: DEFAULT; Schema: transp_feia; Owner: postgres
 --
 
@@ -1504,7 +1502,7 @@ ALTER TABLE ONLY transp_feia.veiculo ALTER COLUMN id_veiculo SET DEFAULT nextval
 
 
 --
--- TOC entry 4983 (class 2604 OID 26784)
+-- TOC entry 4916 (class 2604 OID 36132)
 -- Name: viagem id_viagem; Type: DEFAULT; Schema: transp_feia; Owner: postgres
 --
 
@@ -1512,7 +1510,7 @@ ALTER TABLE ONLY transp_feia.viagem ALTER COLUMN id_viagem SET DEFAULT nextval('
 
 
 --
--- TOC entry 4987 (class 2604 OID 26785)
+-- TOC entry 4920 (class 2604 OID 36133)
 -- Name: carregamento id_carregamento; Type: DEFAULT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -1520,7 +1518,7 @@ ALTER TABLE ONLY transp_inteligente.carregamento ALTER COLUMN id_carregamento SE
 
 
 --
--- TOC entry 5040 (class 2604 OID 27170)
+-- TOC entry 4924 (class 2604 OID 36134)
 -- Name: mensagemcliente id_mensagem; Type: DEFAULT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -1528,7 +1526,7 @@ ALTER TABLE ONLY transp_inteligente.mensagemcliente ALTER COLUMN id_mensagem SET
 
 
 --
--- TOC entry 4991 (class 2604 OID 26786)
+-- TOC entry 4925 (class 2604 OID 36135)
 -- Name: pedido id_pedido; Type: DEFAULT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -1536,7 +1534,7 @@ ALTER TABLE ONLY transp_inteligente.pedido ALTER COLUMN id_pedido SET DEFAULT ne
 
 
 --
--- TOC entry 4995 (class 2604 OID 26787)
+-- TOC entry 4929 (class 2604 OID 36136)
 -- Name: tipo_carga id_carga; Type: DEFAULT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -1544,7 +1542,7 @@ ALTER TABLE ONLY transp_inteligente.tipo_carga ALTER COLUMN id_carga SET DEFAULT
 
 
 --
--- TOC entry 4996 (class 2604 OID 26788)
+-- TOC entry 4930 (class 2604 OID 36137)
 -- Name: veiculo id_veiculo; Type: DEFAULT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -1552,7 +1550,7 @@ ALTER TABLE ONLY transp_inteligente.veiculo ALTER COLUMN id_veiculo SET DEFAULT 
 
 
 --
--- TOC entry 5000 (class 2604 OID 26789)
+-- TOC entry 4934 (class 2604 OID 36138)
 -- Name: viagem id_viagem; Type: DEFAULT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -1560,7 +1558,7 @@ ALTER TABLE ONLY transp_inteligente.viagem ALTER COLUMN id_viagem SET DEFAULT ne
 
 
 --
--- TOC entry 5004 (class 2604 OID 26790)
+-- TOC entry 4938 (class 2604 OID 36139)
 -- Name: carregamento id_carregamento; Type: DEFAULT; Schema: transp_legal; Owner: postgres
 --
 
@@ -1568,7 +1566,7 @@ ALTER TABLE ONLY transp_legal.carregamento ALTER COLUMN id_carregamento SET DEFA
 
 
 --
--- TOC entry 5038 (class 2604 OID 27116)
+-- TOC entry 4942 (class 2604 OID 36140)
 -- Name: mensagemcliente id_mensagem; Type: DEFAULT; Schema: transp_legal; Owner: postgres
 --
 
@@ -1576,7 +1574,7 @@ ALTER TABLE ONLY transp_legal.mensagemcliente ALTER COLUMN id_mensagem SET DEFAU
 
 
 --
--- TOC entry 5008 (class 2604 OID 26791)
+-- TOC entry 4943 (class 2604 OID 36141)
 -- Name: pedido id_pedido; Type: DEFAULT; Schema: transp_legal; Owner: postgres
 --
 
@@ -1584,7 +1582,7 @@ ALTER TABLE ONLY transp_legal.pedido ALTER COLUMN id_pedido SET DEFAULT nextval(
 
 
 --
--- TOC entry 5012 (class 2604 OID 26792)
+-- TOC entry 4947 (class 2604 OID 36142)
 -- Name: tipo_carga id_carga; Type: DEFAULT; Schema: transp_legal; Owner: postgres
 --
 
@@ -1592,7 +1590,7 @@ ALTER TABLE ONLY transp_legal.tipo_carga ALTER COLUMN id_carga SET DEFAULT nextv
 
 
 --
--- TOC entry 5013 (class 2604 OID 26793)
+-- TOC entry 4948 (class 2604 OID 36143)
 -- Name: veiculo id_veiculo; Type: DEFAULT; Schema: transp_legal; Owner: postgres
 --
 
@@ -1600,7 +1598,7 @@ ALTER TABLE ONLY transp_legal.veiculo ALTER COLUMN id_veiculo SET DEFAULT nextva
 
 
 --
--- TOC entry 5017 (class 2604 OID 26794)
+-- TOC entry 4952 (class 2604 OID 36144)
 -- Name: viagem id_viagem; Type: DEFAULT; Schema: transp_legal; Owner: postgres
 --
 
@@ -1608,7 +1606,7 @@ ALTER TABLE ONLY transp_legal.viagem ALTER COLUMN id_viagem SET DEFAULT nextval(
 
 
 --
--- TOC entry 5021 (class 2604 OID 26795)
+-- TOC entry 4956 (class 2604 OID 36145)
 -- Name: carregamento id_carregamento; Type: DEFAULT; Schema: transp_paia; Owner: postgres
 --
 
@@ -1616,7 +1614,7 @@ ALTER TABLE ONLY transp_paia.carregamento ALTER COLUMN id_carregamento SET DEFAU
 
 
 --
--- TOC entry 5041 (class 2604 OID 27197)
+-- TOC entry 4960 (class 2604 OID 36146)
 -- Name: mensagemcliente id_mensagem; Type: DEFAULT; Schema: transp_paia; Owner: postgres
 --
 
@@ -1624,7 +1622,7 @@ ALTER TABLE ONLY transp_paia.mensagemcliente ALTER COLUMN id_mensagem SET DEFAUL
 
 
 --
--- TOC entry 5025 (class 2604 OID 26796)
+-- TOC entry 4961 (class 2604 OID 36147)
 -- Name: pedido id_pedido; Type: DEFAULT; Schema: transp_paia; Owner: postgres
 --
 
@@ -1632,7 +1630,7 @@ ALTER TABLE ONLY transp_paia.pedido ALTER COLUMN id_pedido SET DEFAULT nextval('
 
 
 --
--- TOC entry 5029 (class 2604 OID 26797)
+-- TOC entry 4965 (class 2604 OID 36148)
 -- Name: tipo_carga id_carga; Type: DEFAULT; Schema: transp_paia; Owner: postgres
 --
 
@@ -1640,7 +1638,7 @@ ALTER TABLE ONLY transp_paia.tipo_carga ALTER COLUMN id_carga SET DEFAULT nextva
 
 
 --
--- TOC entry 5030 (class 2604 OID 26798)
+-- TOC entry 4966 (class 2604 OID 36149)
 -- Name: veiculo id_veiculo; Type: DEFAULT; Schema: transp_paia; Owner: postgres
 --
 
@@ -1648,7 +1646,7 @@ ALTER TABLE ONLY transp_paia.veiculo ALTER COLUMN id_veiculo SET DEFAULT nextval
 
 
 --
--- TOC entry 5034 (class 2604 OID 26799)
+-- TOC entry 4970 (class 2604 OID 36150)
 -- Name: viagem id_viagem; Type: DEFAULT; Schema: transp_paia; Owner: postgres
 --
 
@@ -1656,8 +1654,8 @@ ALTER TABLE ONLY transp_paia.viagem ALTER COLUMN id_viagem SET DEFAULT nextval('
 
 
 --
--- TOC entry 5340 (class 0 OID 26519)
--- Dependencies: 223
+-- TOC entry 5270 (class 0 OID 35935)
+-- Dependencies: 221
 -- Data for Name: cliente; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1667,8 +1665,8 @@ COPY public.cliente (id_cliente, nome, cpf, telefone, email, data_cadastro, data
 
 
 --
--- TOC entry 5342 (class 0 OID 26533)
--- Dependencies: 225
+-- TOC entry 5272 (class 0 OID 35944)
+-- Dependencies: 223
 -- Data for Name: grupo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1681,8 +1679,8 @@ COPY public.grupo (id_grupo, nome) FROM stdin;
 
 
 --
--- TOC entry 5344 (class 0 OID 26539)
--- Dependencies: 227
+-- TOC entry 5274 (class 0 OID 35948)
+-- Dependencies: 225
 -- Data for Name: motorista; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1692,8 +1690,8 @@ COPY public.motorista (id_motorista, id_usuario, numero_cnh, categoria_cnh, vali
 
 
 --
--- TOC entry 5346 (class 0 OID 26550)
--- Dependencies: 229
+-- TOC entry 5276 (class 0 OID 35954)
+-- Dependencies: 227
 -- Data for Name: transportadora; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1706,8 +1704,8 @@ COPY public.transportadora (id, nome, cnpj, telefone, email, cep, ativo, schema_
 
 
 --
--- TOC entry 5348 (class 0 OID 26561)
--- Dependencies: 231
+-- TOC entry 5278 (class 0 OID 35961)
+-- Dependencies: 229
 -- Data for Name: usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1722,8 +1720,8 @@ COPY public.usuarios (id_usuario, nome, senha_hash, cpf, telefone, email, cargo_
 
 
 --
--- TOC entry 5350 (class 0 OID 26575)
--- Dependencies: 233
+-- TOC entry 5280 (class 0 OID 35970)
+-- Dependencies: 231
 -- Data for Name: carregamento; Type: TABLE DATA; Schema: transp_feia; Owner: postgres
 --
 
@@ -1732,8 +1730,8 @@ COPY transp_feia.carregamento (id_carregamento, id_pedido, id_veiculo, id_carreg
 
 
 --
--- TOC entry 5393 (class 0 OID 27140)
--- Dependencies: 276
+-- TOC entry 5282 (class 0 OID 35977)
+-- Dependencies: 233
 -- Data for Name: mensagemcliente; Type: TABLE DATA; Schema: transp_feia; Owner: postgres
 --
 
@@ -1742,7 +1740,7 @@ COPY transp_feia.mensagemcliente (id_mensagem, id_pedido, id_transportadora, id_
 
 
 --
--- TOC entry 5352 (class 0 OID 26586)
+-- TOC entry 5284 (class 0 OID 35981)
 -- Dependencies: 235
 -- Data for Name: pedido; Type: TABLE DATA; Schema: transp_feia; Owner: postgres
 --
@@ -1752,7 +1750,7 @@ COPY transp_feia.pedido (id_pedido, id_cliente, cep_origem, estado_origem, munic
 
 
 --
--- TOC entry 5354 (class 0 OID 26599)
+-- TOC entry 5286 (class 0 OID 35990)
 -- Dependencies: 237
 -- Data for Name: tipo_carga; Type: TABLE DATA; Schema: transp_feia; Owner: postgres
 --
@@ -1764,7 +1762,7 @@ COPY transp_feia.tipo_carga (id_carga, tipo, preco_base_km, id_transportadora) F
 
 
 --
--- TOC entry 5356 (class 0 OID 26605)
+-- TOC entry 5288 (class 0 OID 35994)
 -- Dependencies: 239
 -- Data for Name: veiculo; Type: TABLE DATA; Schema: transp_feia; Owner: postgres
 --
@@ -1774,7 +1772,7 @@ COPY transp_feia.veiculo (id_veiculo, placa, modelo, ano, tipo_carga, capacidade
 
 
 --
--- TOC entry 5358 (class 0 OID 26614)
+-- TOC entry 5290 (class 0 OID 36001)
 -- Dependencies: 241
 -- Data for Name: viagem; Type: TABLE DATA; Schema: transp_feia; Owner: postgres
 --
@@ -1784,7 +1782,7 @@ COPY transp_feia.viagem (id_viagem, id_carregamento, id_veiculo, id_motorista, d
 
 
 --
--- TOC entry 5360 (class 0 OID 26625)
+-- TOC entry 5292 (class 0 OID 36008)
 -- Dependencies: 243
 -- Data for Name: carregamento; Type: TABLE DATA; Schema: transp_inteligente; Owner: postgres
 --
@@ -1794,8 +1792,8 @@ COPY transp_inteligente.carregamento (id_carregamento, id_pedido, id_veiculo, id
 
 
 --
--- TOC entry 5395 (class 0 OID 27167)
--- Dependencies: 278
+-- TOC entry 5294 (class 0 OID 36015)
+-- Dependencies: 245
 -- Data for Name: mensagemcliente; Type: TABLE DATA; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -1804,8 +1802,8 @@ COPY transp_inteligente.mensagemcliente (id_mensagem, id_pedido, id_transportado
 
 
 --
--- TOC entry 5362 (class 0 OID 26636)
--- Dependencies: 245
+-- TOC entry 5296 (class 0 OID 36019)
+-- Dependencies: 247
 -- Data for Name: pedido; Type: TABLE DATA; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -1814,8 +1812,8 @@ COPY transp_inteligente.pedido (id_pedido, id_cliente, cep_origem, estado_origem
 
 
 --
--- TOC entry 5364 (class 0 OID 26649)
--- Dependencies: 247
+-- TOC entry 5298 (class 0 OID 36028)
+-- Dependencies: 249
 -- Data for Name: tipo_carga; Type: TABLE DATA; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -1828,8 +1826,8 @@ COPY transp_inteligente.tipo_carga (id_carga, tipo, preco_base_km, id_transporta
 
 
 --
--- TOC entry 5366 (class 0 OID 26655)
--- Dependencies: 249
+-- TOC entry 5300 (class 0 OID 36032)
+-- Dependencies: 251
 -- Data for Name: veiculo; Type: TABLE DATA; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -1838,8 +1836,8 @@ COPY transp_inteligente.veiculo (id_veiculo, placa, modelo, ano, tipo_carga, cap
 
 
 --
--- TOC entry 5368 (class 0 OID 26664)
--- Dependencies: 251
+-- TOC entry 5302 (class 0 OID 36039)
+-- Dependencies: 253
 -- Data for Name: viagem; Type: TABLE DATA; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -1848,8 +1846,8 @@ COPY transp_inteligente.viagem (id_viagem, id_carregamento, id_veiculo, id_motor
 
 
 --
--- TOC entry 5370 (class 0 OID 26675)
--- Dependencies: 253
+-- TOC entry 5304 (class 0 OID 36046)
+-- Dependencies: 255
 -- Data for Name: carregamento; Type: TABLE DATA; Schema: transp_legal; Owner: postgres
 --
 
@@ -1859,32 +1857,34 @@ COPY transp_legal.carregamento (id_carregamento, id_pedido, id_veiculo, id_carre
 
 
 --
--- TOC entry 5391 (class 0 OID 27113)
--- Dependencies: 274
+-- TOC entry 5306 (class 0 OID 36053)
+-- Dependencies: 257
 -- Data for Name: mensagemcliente; Type: TABLE DATA; Schema: transp_legal; Owner: postgres
 --
 
 COPY transp_legal.mensagemcliente (id_mensagem, id_pedido, id_transportadora, id_cliente, data_mensagem, texto) FROM stdin;
 1	1	1	1	2025-10-31 16:04:26.199607	O carregamento foi iniciado para o pedido 1
 2	1	1	1	2025-10-31 16:05:43.678133	O carregamento foi finalizado para o pedido 1
+3	1	1	1	2025-11-03 10:50:45.810134	A viagem foi iniciado para o pedido #1
+4	1	1	1	2025-11-03 10:51:30.45513	A viagem foi iniciado para o pedido #1
 \.
 
 
 --
--- TOC entry 5372 (class 0 OID 26686)
--- Dependencies: 255
+-- TOC entry 5308 (class 0 OID 36057)
+-- Dependencies: 259
 -- Data for Name: pedido; Type: TABLE DATA; Schema: transp_legal; Owner: postgres
 --
 
 COPY transp_legal.pedido (id_pedido, id_cliente, cep_origem, estado_origem, municipio_origem, endereco_origem, numero_origem, cep_destino, estado_destino, municipio_destino, endereco_destino, numero_destino, distancia_km, data_pedido, peso, tipo_carga, preco, id_transportadora, status, ativo, motiv_cancelamento, data_atualizacao) FROM stdin;
 2	1	01.001-000	SP	São Paulo	Praça da Sé	13	81.925-380	PR	Curitiba	Rua Maria Nicolas	65	408	2025-10-31 10:17:48.935231	5000	Seca	2883.28	1	Cancelado	f	motivo não informado	2025-10-31 11:28:05.802006
-1	1	81.925-380	PR	Curitiba	Rua Maria Nicolas	65	01.001-000	SP	São Paulo	Praça da Sé	123	409	2025-10-31 09:52:57.373734	5000	Seca	2890.07	1	Em preparo	t	\N	\N
+1	1	81.925-380	PR	Curitiba	Rua Maria Nicolas	65	01.001-000	SP	São Paulo	Praça da Sé	123	409	2025-10-31 09:52:57.373734	5000	Seca	2890.07	1	Finalizado	t	\N	2025-11-03 10:51:30.45373
 \.
 
 
 --
--- TOC entry 5374 (class 0 OID 26699)
--- Dependencies: 257
+-- TOC entry 5310 (class 0 OID 36066)
+-- Dependencies: 261
 -- Data for Name: tipo_carga; Type: TABLE DATA; Schema: transp_legal; Owner: postgres
 --
 
@@ -1895,8 +1895,8 @@ COPY transp_legal.tipo_carga (id_carga, tipo, preco_base_km, id_transportadora) 
 
 
 --
--- TOC entry 5376 (class 0 OID 26705)
--- Dependencies: 259
+-- TOC entry 5312 (class 0 OID 36070)
+-- Dependencies: 263
 -- Data for Name: veiculo; Type: TABLE DATA; Schema: transp_legal; Owner: postgres
 --
 
@@ -1907,18 +1907,19 @@ COPY transp_legal.veiculo (id_veiculo, placa, modelo, ano, tipo_carga, capacidad
 
 
 --
--- TOC entry 5378 (class 0 OID 26714)
--- Dependencies: 261
+-- TOC entry 5314 (class 0 OID 36077)
+-- Dependencies: 265
 -- Data for Name: viagem; Type: TABLE DATA; Schema: transp_legal; Owner: postgres
 --
 
 COPY transp_legal.viagem (id_viagem, id_carregamento, id_veiculo, id_motorista, data_saida_cd, data_chegada, status, data_cadastro, data_atualizacao, distancia_km) FROM stdin;
+1	1	1	10	2025-11-03 10:50:45.801239	2025-11-03 10:51:30.449366	Finalizada	2025-11-03 09:46:24.344	2025-11-03 09:46:24.345462	409
 \.
 
 
 --
--- TOC entry 5380 (class 0 OID 26725)
--- Dependencies: 263
+-- TOC entry 5316 (class 0 OID 36084)
+-- Dependencies: 267
 -- Data for Name: carregamento; Type: TABLE DATA; Schema: transp_paia; Owner: postgres
 --
 
@@ -1927,8 +1928,8 @@ COPY transp_paia.carregamento (id_carregamento, id_pedido, id_veiculo, id_carreg
 
 
 --
--- TOC entry 5397 (class 0 OID 27194)
--- Dependencies: 280
+-- TOC entry 5318 (class 0 OID 36091)
+-- Dependencies: 269
 -- Data for Name: mensagemcliente; Type: TABLE DATA; Schema: transp_paia; Owner: postgres
 --
 
@@ -1937,8 +1938,8 @@ COPY transp_paia.mensagemcliente (id_mensagem, id_pedido, id_transportadora, id_
 
 
 --
--- TOC entry 5382 (class 0 OID 26736)
--- Dependencies: 265
+-- TOC entry 5320 (class 0 OID 36095)
+-- Dependencies: 271
 -- Data for Name: pedido; Type: TABLE DATA; Schema: transp_paia; Owner: postgres
 --
 
@@ -1947,8 +1948,8 @@ COPY transp_paia.pedido (id_pedido, id_cliente, cep_origem, estado_origem, munic
 
 
 --
--- TOC entry 5384 (class 0 OID 26749)
--- Dependencies: 267
+-- TOC entry 5322 (class 0 OID 36104)
+-- Dependencies: 273
 -- Data for Name: tipo_carga; Type: TABLE DATA; Schema: transp_paia; Owner: postgres
 --
 
@@ -1959,8 +1960,8 @@ COPY transp_paia.tipo_carga (id_carga, tipo, preco_base_km, id_transportadora) F
 
 
 --
--- TOC entry 5386 (class 0 OID 26755)
--- Dependencies: 269
+-- TOC entry 5324 (class 0 OID 36108)
+-- Dependencies: 275
 -- Data for Name: veiculo; Type: TABLE DATA; Schema: transp_paia; Owner: postgres
 --
 
@@ -1969,8 +1970,8 @@ COPY transp_paia.veiculo (id_veiculo, placa, modelo, ano, tipo_carga, capacidade
 
 
 --
--- TOC entry 5388 (class 0 OID 26764)
--- Dependencies: 271
+-- TOC entry 5326 (class 0 OID 36115)
+-- Dependencies: 277
 -- Data for Name: viagem; Type: TABLE DATA; Schema: transp_paia; Owner: postgres
 --
 
@@ -1979,8 +1980,8 @@ COPY transp_paia.viagem (id_viagem, id_carregamento, id_veiculo, id_motorista, d
 
 
 --
--- TOC entry 5434 (class 0 OID 0)
--- Dependencies: 224
+-- TOC entry 5364 (class 0 OID 0)
+-- Dependencies: 222
 -- Name: cliente_id_cliente_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1988,8 +1989,8 @@ SELECT pg_catalog.setval('public.cliente_id_cliente_seq', 1, true);
 
 
 --
--- TOC entry 5435 (class 0 OID 0)
--- Dependencies: 226
+-- TOC entry 5365 (class 0 OID 0)
+-- Dependencies: 224
 -- Name: grupo_id_grupo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1997,8 +1998,8 @@ SELECT pg_catalog.setval('public.grupo_id_grupo_seq', 4, true);
 
 
 --
--- TOC entry 5436 (class 0 OID 0)
--- Dependencies: 228
+-- TOC entry 5366 (class 0 OID 0)
+-- Dependencies: 226
 -- Name: motorista_id_motorista_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -2006,8 +2007,8 @@ SELECT pg_catalog.setval('public.motorista_id_motorista_seq', 2, true);
 
 
 --
--- TOC entry 5437 (class 0 OID 0)
--- Dependencies: 230
+-- TOC entry 5367 (class 0 OID 0)
+-- Dependencies: 228
 -- Name: transportadora_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -2015,8 +2016,8 @@ SELECT pg_catalog.setval('public.transportadora_id_seq', 5, true);
 
 
 --
--- TOC entry 5438 (class 0 OID 0)
--- Dependencies: 232
+-- TOC entry 5368 (class 0 OID 0)
+-- Dependencies: 230
 -- Name: usuarios_id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -2024,8 +2025,8 @@ SELECT pg_catalog.setval('public.usuarios_id_usuario_seq', 11, true);
 
 
 --
--- TOC entry 5439 (class 0 OID 0)
--- Dependencies: 234
+-- TOC entry 5369 (class 0 OID 0)
+-- Dependencies: 232
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE SET; Schema: transp_feia; Owner: postgres
 --
 
@@ -2033,8 +2034,8 @@ SELECT pg_catalog.setval('transp_feia.carregamento_id_carregamento_seq', 1, fals
 
 
 --
--- TOC entry 5440 (class 0 OID 0)
--- Dependencies: 275
+-- TOC entry 5370 (class 0 OID 0)
+-- Dependencies: 234
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE SET; Schema: transp_feia; Owner: postgres
 --
 
@@ -2042,7 +2043,7 @@ SELECT pg_catalog.setval('transp_feia.mensagemcliente_id_mensagem_seq', 1, false
 
 
 --
--- TOC entry 5441 (class 0 OID 0)
+-- TOC entry 5371 (class 0 OID 0)
 -- Dependencies: 236
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE SET; Schema: transp_feia; Owner: postgres
 --
@@ -2051,7 +2052,7 @@ SELECT pg_catalog.setval('transp_feia.pedido_id_pedido_seq', 1, false);
 
 
 --
--- TOC entry 5442 (class 0 OID 0)
+-- TOC entry 5372 (class 0 OID 0)
 -- Dependencies: 238
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE SET; Schema: transp_feia; Owner: postgres
 --
@@ -2060,7 +2061,7 @@ SELECT pg_catalog.setval('transp_feia.tipo_carga_id_carga_seq', 2, true);
 
 
 --
--- TOC entry 5443 (class 0 OID 0)
+-- TOC entry 5373 (class 0 OID 0)
 -- Dependencies: 240
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE SET; Schema: transp_feia; Owner: postgres
 --
@@ -2069,7 +2070,7 @@ SELECT pg_catalog.setval('transp_feia.veiculo_id_veiculo_seq', 1, false);
 
 
 --
--- TOC entry 5444 (class 0 OID 0)
+-- TOC entry 5374 (class 0 OID 0)
 -- Dependencies: 242
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE SET; Schema: transp_feia; Owner: postgres
 --
@@ -2078,7 +2079,7 @@ SELECT pg_catalog.setval('transp_feia.viagem_id_viagem_seq', 1, false);
 
 
 --
--- TOC entry 5445 (class 0 OID 0)
+-- TOC entry 5375 (class 0 OID 0)
 -- Dependencies: 244
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE SET; Schema: transp_inteligente; Owner: postgres
 --
@@ -2087,8 +2088,8 @@ SELECT pg_catalog.setval('transp_inteligente.carregamento_id_carregamento_seq', 
 
 
 --
--- TOC entry 5446 (class 0 OID 0)
--- Dependencies: 277
+-- TOC entry 5376 (class 0 OID 0)
+-- Dependencies: 246
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE SET; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2096,8 +2097,8 @@ SELECT pg_catalog.setval('transp_inteligente.mensagemcliente_id_mensagem_seq', 1
 
 
 --
--- TOC entry 5447 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 5377 (class 0 OID 0)
+-- Dependencies: 248
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE SET; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2105,8 +2106,8 @@ SELECT pg_catalog.setval('transp_inteligente.pedido_id_pedido_seq', 1, false);
 
 
 --
--- TOC entry 5448 (class 0 OID 0)
--- Dependencies: 248
+-- TOC entry 5378 (class 0 OID 0)
+-- Dependencies: 250
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE SET; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2114,8 +2115,8 @@ SELECT pg_catalog.setval('transp_inteligente.tipo_carga_id_carga_seq', 4, true);
 
 
 --
--- TOC entry 5449 (class 0 OID 0)
--- Dependencies: 250
+-- TOC entry 5379 (class 0 OID 0)
+-- Dependencies: 252
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE SET; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2123,8 +2124,8 @@ SELECT pg_catalog.setval('transp_inteligente.veiculo_id_veiculo_seq', 1, false);
 
 
 --
--- TOC entry 5450 (class 0 OID 0)
--- Dependencies: 252
+-- TOC entry 5380 (class 0 OID 0)
+-- Dependencies: 254
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE SET; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2132,8 +2133,8 @@ SELECT pg_catalog.setval('transp_inteligente.viagem_id_viagem_seq', 1, false);
 
 
 --
--- TOC entry 5451 (class 0 OID 0)
--- Dependencies: 254
+-- TOC entry 5381 (class 0 OID 0)
+-- Dependencies: 256
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE SET; Schema: transp_legal; Owner: postgres
 --
 
@@ -2141,17 +2142,17 @@ SELECT pg_catalog.setval('transp_legal.carregamento_id_carregamento_seq', 1, tru
 
 
 --
--- TOC entry 5452 (class 0 OID 0)
--- Dependencies: 273
+-- TOC entry 5382 (class 0 OID 0)
+-- Dependencies: 258
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE SET; Schema: transp_legal; Owner: postgres
 --
 
-SELECT pg_catalog.setval('transp_legal.mensagemcliente_id_mensagem_seq', 2, true);
+SELECT pg_catalog.setval('transp_legal.mensagemcliente_id_mensagem_seq', 4, true);
 
 
 --
--- TOC entry 5453 (class 0 OID 0)
--- Dependencies: 256
+-- TOC entry 5383 (class 0 OID 0)
+-- Dependencies: 260
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE SET; Schema: transp_legal; Owner: postgres
 --
 
@@ -2159,8 +2160,8 @@ SELECT pg_catalog.setval('transp_legal.pedido_id_pedido_seq', 2, true);
 
 
 --
--- TOC entry 5454 (class 0 OID 0)
--- Dependencies: 258
+-- TOC entry 5384 (class 0 OID 0)
+-- Dependencies: 262
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE SET; Schema: transp_legal; Owner: postgres
 --
 
@@ -2168,8 +2169,8 @@ SELECT pg_catalog.setval('transp_legal.tipo_carga_id_carga_seq', 2, true);
 
 
 --
--- TOC entry 5455 (class 0 OID 0)
--- Dependencies: 260
+-- TOC entry 5385 (class 0 OID 0)
+-- Dependencies: 264
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE SET; Schema: transp_legal; Owner: postgres
 --
 
@@ -2177,17 +2178,17 @@ SELECT pg_catalog.setval('transp_legal.veiculo_id_veiculo_seq', 2, true);
 
 
 --
--- TOC entry 5456 (class 0 OID 0)
--- Dependencies: 262
+-- TOC entry 5386 (class 0 OID 0)
+-- Dependencies: 266
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE SET; Schema: transp_legal; Owner: postgres
 --
 
-SELECT pg_catalog.setval('transp_legal.viagem_id_viagem_seq', 1, false);
+SELECT pg_catalog.setval('transp_legal.viagem_id_viagem_seq', 1, true);
 
 
 --
--- TOC entry 5457 (class 0 OID 0)
--- Dependencies: 264
+-- TOC entry 5387 (class 0 OID 0)
+-- Dependencies: 268
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE SET; Schema: transp_paia; Owner: postgres
 --
 
@@ -2195,8 +2196,8 @@ SELECT pg_catalog.setval('transp_paia.carregamento_id_carregamento_seq', 1, fals
 
 
 --
--- TOC entry 5458 (class 0 OID 0)
--- Dependencies: 279
+-- TOC entry 5388 (class 0 OID 0)
+-- Dependencies: 270
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE SET; Schema: transp_paia; Owner: postgres
 --
 
@@ -2204,8 +2205,8 @@ SELECT pg_catalog.setval('transp_paia.mensagemcliente_id_mensagem_seq', 1, false
 
 
 --
--- TOC entry 5459 (class 0 OID 0)
--- Dependencies: 266
+-- TOC entry 5389 (class 0 OID 0)
+-- Dependencies: 272
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE SET; Schema: transp_paia; Owner: postgres
 --
 
@@ -2213,8 +2214,8 @@ SELECT pg_catalog.setval('transp_paia.pedido_id_pedido_seq', 1, false);
 
 
 --
--- TOC entry 5460 (class 0 OID 0)
--- Dependencies: 268
+-- TOC entry 5390 (class 0 OID 0)
+-- Dependencies: 274
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE SET; Schema: transp_paia; Owner: postgres
 --
 
@@ -2222,8 +2223,8 @@ SELECT pg_catalog.setval('transp_paia.tipo_carga_id_carga_seq', 2, true);
 
 
 --
--- TOC entry 5461 (class 0 OID 0)
--- Dependencies: 270
+-- TOC entry 5391 (class 0 OID 0)
+-- Dependencies: 276
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE SET; Schema: transp_paia; Owner: postgres
 --
 
@@ -2231,8 +2232,8 @@ SELECT pg_catalog.setval('transp_paia.veiculo_id_veiculo_seq', 1, false);
 
 
 --
--- TOC entry 5462 (class 0 OID 0)
--- Dependencies: 272
+-- TOC entry 5392 (class 0 OID 0)
+-- Dependencies: 278
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE SET; Schema: transp_paia; Owner: postgres
 --
 
@@ -2240,7 +2241,7 @@ SELECT pg_catalog.setval('transp_paia.viagem_id_viagem_seq', 1, false);
 
 
 --
--- TOC entry 5043 (class 2606 OID 26801)
+-- TOC entry 4975 (class 2606 OID 36152)
 -- Name: cliente cliente_cpf_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2249,7 +2250,7 @@ ALTER TABLE ONLY public.cliente
 
 
 --
--- TOC entry 5045 (class 2606 OID 26803)
+-- TOC entry 4977 (class 2606 OID 36154)
 -- Name: cliente cliente_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2258,7 +2259,7 @@ ALTER TABLE ONLY public.cliente
 
 
 --
--- TOC entry 5047 (class 2606 OID 26805)
+-- TOC entry 4979 (class 2606 OID 36156)
 -- Name: cliente cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2267,7 +2268,7 @@ ALTER TABLE ONLY public.cliente
 
 
 --
--- TOC entry 5049 (class 2606 OID 26807)
+-- TOC entry 4981 (class 2606 OID 36158)
 -- Name: grupo grupo_nome_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2276,7 +2277,7 @@ ALTER TABLE ONLY public.grupo
 
 
 --
--- TOC entry 5051 (class 2606 OID 26809)
+-- TOC entry 4983 (class 2606 OID 36160)
 -- Name: grupo grupo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2285,7 +2286,7 @@ ALTER TABLE ONLY public.grupo
 
 
 --
--- TOC entry 5053 (class 2606 OID 26811)
+-- TOC entry 4985 (class 2606 OID 36162)
 -- Name: motorista motorista_id_usuario_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2294,7 +2295,7 @@ ALTER TABLE ONLY public.motorista
 
 
 --
--- TOC entry 5055 (class 2606 OID 26813)
+-- TOC entry 4987 (class 2606 OID 36164)
 -- Name: motorista motorista_numero_cnh_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2303,7 +2304,7 @@ ALTER TABLE ONLY public.motorista
 
 
 --
--- TOC entry 5057 (class 2606 OID 26815)
+-- TOC entry 4989 (class 2606 OID 36166)
 -- Name: motorista motorista_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2312,7 +2313,7 @@ ALTER TABLE ONLY public.motorista
 
 
 --
--- TOC entry 5059 (class 2606 OID 26817)
+-- TOC entry 4991 (class 2606 OID 36168)
 -- Name: transportadora transportadora_cnpj_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2321,7 +2322,7 @@ ALTER TABLE ONLY public.transportadora
 
 
 --
--- TOC entry 5061 (class 2606 OID 26819)
+-- TOC entry 4993 (class 2606 OID 36170)
 -- Name: transportadora transportadora_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2330,7 +2331,7 @@ ALTER TABLE ONLY public.transportadora
 
 
 --
--- TOC entry 5063 (class 2606 OID 26821)
+-- TOC entry 4995 (class 2606 OID 36172)
 -- Name: transportadora transportadora_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2339,7 +2340,7 @@ ALTER TABLE ONLY public.transportadora
 
 
 --
--- TOC entry 5065 (class 2606 OID 26823)
+-- TOC entry 4997 (class 2606 OID 36174)
 -- Name: transportadora transportadora_schema_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2348,7 +2349,7 @@ ALTER TABLE ONLY public.transportadora
 
 
 --
--- TOC entry 5067 (class 2606 OID 26825)
+-- TOC entry 4999 (class 2606 OID 36176)
 -- Name: usuarios usuarios_cpf_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2357,7 +2358,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 5069 (class 2606 OID 26827)
+-- TOC entry 5001 (class 2606 OID 36178)
 -- Name: usuarios usuarios_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2366,7 +2367,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 5071 (class 2606 OID 26829)
+-- TOC entry 5003 (class 2606 OID 36180)
 -- Name: usuarios usuarios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2375,7 +2376,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 5073 (class 2606 OID 26831)
+-- TOC entry 5005 (class 2606 OID 36182)
 -- Name: carregamento carregamento_pkey; Type: CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2384,7 +2385,7 @@ ALTER TABLE ONLY transp_feia.carregamento
 
 
 --
--- TOC entry 5131 (class 2606 OID 27150)
+-- TOC entry 5007 (class 2606 OID 36184)
 -- Name: mensagemcliente mensagemcliente_pkey; Type: CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2393,7 +2394,7 @@ ALTER TABLE ONLY transp_feia.mensagemcliente
 
 
 --
--- TOC entry 5075 (class 2606 OID 26833)
+-- TOC entry 5009 (class 2606 OID 36186)
 -- Name: pedido pedido_pkey; Type: CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2402,7 +2403,7 @@ ALTER TABLE ONLY transp_feia.pedido
 
 
 --
--- TOC entry 5077 (class 2606 OID 26835)
+-- TOC entry 5011 (class 2606 OID 36188)
 -- Name: tipo_carga tipo_carga_pkey; Type: CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2411,7 +2412,7 @@ ALTER TABLE ONLY transp_feia.tipo_carga
 
 
 --
--- TOC entry 5079 (class 2606 OID 26837)
+-- TOC entry 5013 (class 2606 OID 36190)
 -- Name: tipo_carga tipo_carga_tipo_key; Type: CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2420,7 +2421,7 @@ ALTER TABLE ONLY transp_feia.tipo_carga
 
 
 --
--- TOC entry 5081 (class 2606 OID 26839)
+-- TOC entry 5015 (class 2606 OID 36192)
 -- Name: veiculo veiculo_pkey; Type: CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2429,7 +2430,7 @@ ALTER TABLE ONLY transp_feia.veiculo
 
 
 --
--- TOC entry 5083 (class 2606 OID 26841)
+-- TOC entry 5017 (class 2606 OID 36194)
 -- Name: veiculo veiculo_placa_key; Type: CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2438,7 +2439,7 @@ ALTER TABLE ONLY transp_feia.veiculo
 
 
 --
--- TOC entry 5085 (class 2606 OID 26843)
+-- TOC entry 5019 (class 2606 OID 36196)
 -- Name: viagem viagem_pkey; Type: CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2447,7 +2448,7 @@ ALTER TABLE ONLY transp_feia.viagem
 
 
 --
--- TOC entry 5087 (class 2606 OID 26845)
+-- TOC entry 5021 (class 2606 OID 36198)
 -- Name: carregamento carregamento_pkey; Type: CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2456,7 +2457,7 @@ ALTER TABLE ONLY transp_inteligente.carregamento
 
 
 --
--- TOC entry 5133 (class 2606 OID 27177)
+-- TOC entry 5023 (class 2606 OID 36200)
 -- Name: mensagemcliente mensagemcliente_pkey; Type: CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2465,7 +2466,7 @@ ALTER TABLE ONLY transp_inteligente.mensagemcliente
 
 
 --
--- TOC entry 5089 (class 2606 OID 26847)
+-- TOC entry 5025 (class 2606 OID 36202)
 -- Name: pedido pedido_pkey; Type: CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2474,7 +2475,7 @@ ALTER TABLE ONLY transp_inteligente.pedido
 
 
 --
--- TOC entry 5091 (class 2606 OID 26849)
+-- TOC entry 5027 (class 2606 OID 36204)
 -- Name: tipo_carga tipo_carga_pkey; Type: CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2483,7 +2484,7 @@ ALTER TABLE ONLY transp_inteligente.tipo_carga
 
 
 --
--- TOC entry 5093 (class 2606 OID 26851)
+-- TOC entry 5029 (class 2606 OID 36206)
 -- Name: tipo_carga tipo_carga_tipo_key; Type: CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2492,7 +2493,7 @@ ALTER TABLE ONLY transp_inteligente.tipo_carga
 
 
 --
--- TOC entry 5095 (class 2606 OID 26853)
+-- TOC entry 5031 (class 2606 OID 36208)
 -- Name: veiculo veiculo_pkey; Type: CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2501,7 +2502,7 @@ ALTER TABLE ONLY transp_inteligente.veiculo
 
 
 --
--- TOC entry 5097 (class 2606 OID 26855)
+-- TOC entry 5033 (class 2606 OID 36210)
 -- Name: veiculo veiculo_placa_key; Type: CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2510,7 +2511,7 @@ ALTER TABLE ONLY transp_inteligente.veiculo
 
 
 --
--- TOC entry 5099 (class 2606 OID 26857)
+-- TOC entry 5035 (class 2606 OID 36212)
 -- Name: viagem viagem_pkey; Type: CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2519,7 +2520,7 @@ ALTER TABLE ONLY transp_inteligente.viagem
 
 
 --
--- TOC entry 5101 (class 2606 OID 26859)
+-- TOC entry 5037 (class 2606 OID 36214)
 -- Name: carregamento carregamento_pkey; Type: CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -2528,7 +2529,7 @@ ALTER TABLE ONLY transp_legal.carregamento
 
 
 --
--- TOC entry 5129 (class 2606 OID 27123)
+-- TOC entry 5039 (class 2606 OID 36216)
 -- Name: mensagemcliente mensagemcliente_pkey; Type: CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -2537,7 +2538,7 @@ ALTER TABLE ONLY transp_legal.mensagemcliente
 
 
 --
--- TOC entry 5103 (class 2606 OID 26861)
+-- TOC entry 5041 (class 2606 OID 36218)
 -- Name: pedido pedido_pkey; Type: CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -2546,7 +2547,7 @@ ALTER TABLE ONLY transp_legal.pedido
 
 
 --
--- TOC entry 5105 (class 2606 OID 26863)
+-- TOC entry 5043 (class 2606 OID 36220)
 -- Name: tipo_carga tipo_carga_pkey; Type: CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -2555,7 +2556,7 @@ ALTER TABLE ONLY transp_legal.tipo_carga
 
 
 --
--- TOC entry 5107 (class 2606 OID 26865)
+-- TOC entry 5045 (class 2606 OID 36222)
 -- Name: tipo_carga tipo_carga_tipo_key; Type: CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -2564,7 +2565,7 @@ ALTER TABLE ONLY transp_legal.tipo_carga
 
 
 --
--- TOC entry 5109 (class 2606 OID 26867)
+-- TOC entry 5047 (class 2606 OID 36224)
 -- Name: veiculo veiculo_pkey; Type: CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -2573,7 +2574,7 @@ ALTER TABLE ONLY transp_legal.veiculo
 
 
 --
--- TOC entry 5111 (class 2606 OID 26869)
+-- TOC entry 5049 (class 2606 OID 36226)
 -- Name: veiculo veiculo_placa_key; Type: CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -2582,7 +2583,7 @@ ALTER TABLE ONLY transp_legal.veiculo
 
 
 --
--- TOC entry 5113 (class 2606 OID 26871)
+-- TOC entry 5051 (class 2606 OID 36228)
 -- Name: viagem viagem_pkey; Type: CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -2591,7 +2592,7 @@ ALTER TABLE ONLY transp_legal.viagem
 
 
 --
--- TOC entry 5115 (class 2606 OID 26873)
+-- TOC entry 5053 (class 2606 OID 36230)
 -- Name: carregamento carregamento_pkey; Type: CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -2600,7 +2601,7 @@ ALTER TABLE ONLY transp_paia.carregamento
 
 
 --
--- TOC entry 5135 (class 2606 OID 27204)
+-- TOC entry 5055 (class 2606 OID 36232)
 -- Name: mensagemcliente mensagemcliente_pkey; Type: CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -2609,7 +2610,7 @@ ALTER TABLE ONLY transp_paia.mensagemcliente
 
 
 --
--- TOC entry 5117 (class 2606 OID 26875)
+-- TOC entry 5057 (class 2606 OID 36234)
 -- Name: pedido pedido_pkey; Type: CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -2618,7 +2619,7 @@ ALTER TABLE ONLY transp_paia.pedido
 
 
 --
--- TOC entry 5119 (class 2606 OID 26877)
+-- TOC entry 5059 (class 2606 OID 36236)
 -- Name: tipo_carga tipo_carga_pkey; Type: CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -2627,7 +2628,7 @@ ALTER TABLE ONLY transp_paia.tipo_carga
 
 
 --
--- TOC entry 5121 (class 2606 OID 26879)
+-- TOC entry 5061 (class 2606 OID 36238)
 -- Name: tipo_carga tipo_carga_tipo_key; Type: CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -2636,7 +2637,7 @@ ALTER TABLE ONLY transp_paia.tipo_carga
 
 
 --
--- TOC entry 5123 (class 2606 OID 26881)
+-- TOC entry 5063 (class 2606 OID 36240)
 -- Name: veiculo veiculo_pkey; Type: CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -2645,7 +2646,7 @@ ALTER TABLE ONLY transp_paia.veiculo
 
 
 --
--- TOC entry 5125 (class 2606 OID 26883)
+-- TOC entry 5065 (class 2606 OID 36242)
 -- Name: veiculo veiculo_placa_key; Type: CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -2654,7 +2655,7 @@ ALTER TABLE ONLY transp_paia.veiculo
 
 
 --
--- TOC entry 5127 (class 2606 OID 26885)
+-- TOC entry 5067 (class 2606 OID 36244)
 -- Name: viagem viagem_pkey; Type: CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -2663,7 +2664,7 @@ ALTER TABLE ONLY transp_paia.viagem
 
 
 --
--- TOC entry 5136 (class 2606 OID 26886)
+-- TOC entry 5068 (class 2606 OID 36245)
 -- Name: motorista motorista_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2672,7 +2673,7 @@ ALTER TABLE ONLY public.motorista
 
 
 --
--- TOC entry 5137 (class 2606 OID 26891)
+-- TOC entry 5069 (class 2606 OID 36250)
 -- Name: usuarios usuarios_id_grupo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2681,7 +2682,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 5138 (class 2606 OID 26896)
+-- TOC entry 5070 (class 2606 OID 36255)
 -- Name: usuarios usuarios_id_transportadora_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2690,7 +2691,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 5139 (class 2606 OID 26901)
+-- TOC entry 5071 (class 2606 OID 36260)
 -- Name: carregamento carregamento_id_carregador_fkey; Type: FK CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2699,7 +2700,7 @@ ALTER TABLE ONLY transp_feia.carregamento
 
 
 --
--- TOC entry 5140 (class 2606 OID 26906)
+-- TOC entry 5072 (class 2606 OID 36265)
 -- Name: carregamento carregamento_id_pedido_fkey; Type: FK CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2708,7 +2709,7 @@ ALTER TABLE ONLY transp_feia.carregamento
 
 
 --
--- TOC entry 5141 (class 2606 OID 26911)
+-- TOC entry 5073 (class 2606 OID 36270)
 -- Name: carregamento carregamento_id_veiculo_fkey; Type: FK CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2717,7 +2718,7 @@ ALTER TABLE ONLY transp_feia.carregamento
 
 
 --
--- TOC entry 5184 (class 2606 OID 27161)
+-- TOC entry 5074 (class 2606 OID 36275)
 -- Name: mensagemcliente fk_mensagem_cliente; Type: FK CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2726,7 +2727,7 @@ ALTER TABLE ONLY transp_feia.mensagemcliente
 
 
 --
--- TOC entry 5185 (class 2606 OID 27151)
+-- TOC entry 5075 (class 2606 OID 36280)
 -- Name: mensagemcliente fk_mensagem_pedido; Type: FK CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2735,7 +2736,7 @@ ALTER TABLE ONLY transp_feia.mensagemcliente
 
 
 --
--- TOC entry 5186 (class 2606 OID 27156)
+-- TOC entry 5076 (class 2606 OID 36285)
 -- Name: mensagemcliente fk_mensagem_transportadora; Type: FK CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2744,7 +2745,7 @@ ALTER TABLE ONLY transp_feia.mensagemcliente
 
 
 --
--- TOC entry 5146 (class 2606 OID 26916)
+-- TOC entry 5081 (class 2606 OID 36290)
 -- Name: veiculo fk_veiculo_motorista; Type: FK CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2753,7 +2754,7 @@ ALTER TABLE ONLY transp_feia.veiculo
 
 
 --
--- TOC entry 5142 (class 2606 OID 26921)
+-- TOC entry 5077 (class 2606 OID 36295)
 -- Name: pedido pedido_id_cliente_fkey; Type: FK CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2762,7 +2763,7 @@ ALTER TABLE ONLY transp_feia.pedido
 
 
 --
--- TOC entry 5143 (class 2606 OID 26926)
+-- TOC entry 5078 (class 2606 OID 36300)
 -- Name: pedido pedido_id_transportadora_fkey; Type: FK CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2771,7 +2772,7 @@ ALTER TABLE ONLY transp_feia.pedido
 
 
 --
--- TOC entry 5144 (class 2606 OID 26931)
+-- TOC entry 5079 (class 2606 OID 36305)
 -- Name: pedido pedido_tipo_carga_fkey; Type: FK CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2780,7 +2781,7 @@ ALTER TABLE ONLY transp_feia.pedido
 
 
 --
--- TOC entry 5145 (class 2606 OID 26936)
+-- TOC entry 5080 (class 2606 OID 36310)
 -- Name: tipo_carga tipo_carga_id_transportadora_fkey; Type: FK CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2789,7 +2790,7 @@ ALTER TABLE ONLY transp_feia.tipo_carga
 
 
 --
--- TOC entry 5147 (class 2606 OID 26941)
+-- TOC entry 5082 (class 2606 OID 36315)
 -- Name: viagem viagem_id_carregamento_fkey; Type: FK CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2798,7 +2799,7 @@ ALTER TABLE ONLY transp_feia.viagem
 
 
 --
--- TOC entry 5148 (class 2606 OID 26946)
+-- TOC entry 5083 (class 2606 OID 36320)
 -- Name: viagem viagem_id_motorista_fkey; Type: FK CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2807,7 +2808,7 @@ ALTER TABLE ONLY transp_feia.viagem
 
 
 --
--- TOC entry 5149 (class 2606 OID 26951)
+-- TOC entry 5084 (class 2606 OID 36325)
 -- Name: viagem viagem_id_veiculo_fkey; Type: FK CONSTRAINT; Schema: transp_feia; Owner: postgres
 --
 
@@ -2816,7 +2817,7 @@ ALTER TABLE ONLY transp_feia.viagem
 
 
 --
--- TOC entry 5150 (class 2606 OID 26956)
+-- TOC entry 5085 (class 2606 OID 36330)
 -- Name: carregamento carregamento_id_carregador_fkey; Type: FK CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2825,7 +2826,7 @@ ALTER TABLE ONLY transp_inteligente.carregamento
 
 
 --
--- TOC entry 5151 (class 2606 OID 26961)
+-- TOC entry 5086 (class 2606 OID 36335)
 -- Name: carregamento carregamento_id_pedido_fkey; Type: FK CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2834,7 +2835,7 @@ ALTER TABLE ONLY transp_inteligente.carregamento
 
 
 --
--- TOC entry 5152 (class 2606 OID 26966)
+-- TOC entry 5087 (class 2606 OID 36340)
 -- Name: carregamento carregamento_id_veiculo_fkey; Type: FK CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2843,7 +2844,7 @@ ALTER TABLE ONLY transp_inteligente.carregamento
 
 
 --
--- TOC entry 5187 (class 2606 OID 27188)
+-- TOC entry 5088 (class 2606 OID 36345)
 -- Name: mensagemcliente fk_mensagem_cliente; Type: FK CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2852,7 +2853,7 @@ ALTER TABLE ONLY transp_inteligente.mensagemcliente
 
 
 --
--- TOC entry 5188 (class 2606 OID 27178)
+-- TOC entry 5089 (class 2606 OID 36350)
 -- Name: mensagemcliente fk_mensagem_pedido; Type: FK CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2861,7 +2862,7 @@ ALTER TABLE ONLY transp_inteligente.mensagemcliente
 
 
 --
--- TOC entry 5189 (class 2606 OID 27183)
+-- TOC entry 5090 (class 2606 OID 36355)
 -- Name: mensagemcliente fk_mensagem_transportadora; Type: FK CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2870,7 +2871,7 @@ ALTER TABLE ONLY transp_inteligente.mensagemcliente
 
 
 --
--- TOC entry 5157 (class 2606 OID 26971)
+-- TOC entry 5095 (class 2606 OID 36360)
 -- Name: veiculo fk_veiculo_motorista; Type: FK CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2879,7 +2880,7 @@ ALTER TABLE ONLY transp_inteligente.veiculo
 
 
 --
--- TOC entry 5153 (class 2606 OID 26976)
+-- TOC entry 5091 (class 2606 OID 36365)
 -- Name: pedido pedido_id_cliente_fkey; Type: FK CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2888,7 +2889,7 @@ ALTER TABLE ONLY transp_inteligente.pedido
 
 
 --
--- TOC entry 5154 (class 2606 OID 26981)
+-- TOC entry 5092 (class 2606 OID 36370)
 -- Name: pedido pedido_id_transportadora_fkey; Type: FK CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2897,7 +2898,7 @@ ALTER TABLE ONLY transp_inteligente.pedido
 
 
 --
--- TOC entry 5155 (class 2606 OID 26986)
+-- TOC entry 5093 (class 2606 OID 36375)
 -- Name: pedido pedido_tipo_carga_fkey; Type: FK CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2906,7 +2907,7 @@ ALTER TABLE ONLY transp_inteligente.pedido
 
 
 --
--- TOC entry 5156 (class 2606 OID 26991)
+-- TOC entry 5094 (class 2606 OID 36380)
 -- Name: tipo_carga tipo_carga_id_transportadora_fkey; Type: FK CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2915,7 +2916,7 @@ ALTER TABLE ONLY transp_inteligente.tipo_carga
 
 
 --
--- TOC entry 5158 (class 2606 OID 26996)
+-- TOC entry 5096 (class 2606 OID 36385)
 -- Name: viagem viagem_id_carregamento_fkey; Type: FK CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2924,7 +2925,7 @@ ALTER TABLE ONLY transp_inteligente.viagem
 
 
 --
--- TOC entry 5159 (class 2606 OID 27001)
+-- TOC entry 5097 (class 2606 OID 36390)
 -- Name: viagem viagem_id_motorista_fkey; Type: FK CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2933,7 +2934,7 @@ ALTER TABLE ONLY transp_inteligente.viagem
 
 
 --
--- TOC entry 5160 (class 2606 OID 27006)
+-- TOC entry 5098 (class 2606 OID 36395)
 -- Name: viagem viagem_id_veiculo_fkey; Type: FK CONSTRAINT; Schema: transp_inteligente; Owner: postgres
 --
 
@@ -2942,7 +2943,7 @@ ALTER TABLE ONLY transp_inteligente.viagem
 
 
 --
--- TOC entry 5161 (class 2606 OID 27011)
+-- TOC entry 5099 (class 2606 OID 36400)
 -- Name: carregamento carregamento_id_carregador_fkey; Type: FK CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -2951,7 +2952,7 @@ ALTER TABLE ONLY transp_legal.carregamento
 
 
 --
--- TOC entry 5162 (class 2606 OID 27016)
+-- TOC entry 5100 (class 2606 OID 36405)
 -- Name: carregamento carregamento_id_pedido_fkey; Type: FK CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -2960,7 +2961,7 @@ ALTER TABLE ONLY transp_legal.carregamento
 
 
 --
--- TOC entry 5163 (class 2606 OID 27021)
+-- TOC entry 5101 (class 2606 OID 36410)
 -- Name: carregamento carregamento_id_veiculo_fkey; Type: FK CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -2969,7 +2970,7 @@ ALTER TABLE ONLY transp_legal.carregamento
 
 
 --
--- TOC entry 5181 (class 2606 OID 27134)
+-- TOC entry 5102 (class 2606 OID 36415)
 -- Name: mensagemcliente fk_mensagem_cliente; Type: FK CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -2978,7 +2979,7 @@ ALTER TABLE ONLY transp_legal.mensagemcliente
 
 
 --
--- TOC entry 5182 (class 2606 OID 27124)
+-- TOC entry 5103 (class 2606 OID 36420)
 -- Name: mensagemcliente fk_mensagem_pedido; Type: FK CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -2987,7 +2988,7 @@ ALTER TABLE ONLY transp_legal.mensagemcliente
 
 
 --
--- TOC entry 5183 (class 2606 OID 27129)
+-- TOC entry 5104 (class 2606 OID 36425)
 -- Name: mensagemcliente fk_mensagem_transportadora; Type: FK CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -2996,7 +2997,7 @@ ALTER TABLE ONLY transp_legal.mensagemcliente
 
 
 --
--- TOC entry 5164 (class 2606 OID 27026)
+-- TOC entry 5105 (class 2606 OID 36430)
 -- Name: pedido pedido_id_cliente_fkey; Type: FK CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -3005,7 +3006,7 @@ ALTER TABLE ONLY transp_legal.pedido
 
 
 --
--- TOC entry 5165 (class 2606 OID 27031)
+-- TOC entry 5106 (class 2606 OID 36435)
 -- Name: pedido pedido_id_transportadora_fkey; Type: FK CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -3014,7 +3015,7 @@ ALTER TABLE ONLY transp_legal.pedido
 
 
 --
--- TOC entry 5166 (class 2606 OID 27036)
+-- TOC entry 5107 (class 2606 OID 36440)
 -- Name: pedido pedido_tipo_carga_fkey; Type: FK CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -3023,7 +3024,7 @@ ALTER TABLE ONLY transp_legal.pedido
 
 
 --
--- TOC entry 5167 (class 2606 OID 27041)
+-- TOC entry 5108 (class 2606 OID 36445)
 -- Name: tipo_carga tipo_carga_id_transportadora_fkey; Type: FK CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -3032,7 +3033,7 @@ ALTER TABLE ONLY transp_legal.tipo_carga
 
 
 --
--- TOC entry 5168 (class 2606 OID 27046)
+-- TOC entry 5109 (class 2606 OID 36450)
 -- Name: viagem viagem_id_carregamento_fkey; Type: FK CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -3041,7 +3042,7 @@ ALTER TABLE ONLY transp_legal.viagem
 
 
 --
--- TOC entry 5169 (class 2606 OID 27051)
+-- TOC entry 5110 (class 2606 OID 36455)
 -- Name: viagem viagem_id_motorista_fkey; Type: FK CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -3050,7 +3051,7 @@ ALTER TABLE ONLY transp_legal.viagem
 
 
 --
--- TOC entry 5170 (class 2606 OID 27056)
+-- TOC entry 5111 (class 2606 OID 36460)
 -- Name: viagem viagem_id_veiculo_fkey; Type: FK CONSTRAINT; Schema: transp_legal; Owner: postgres
 --
 
@@ -3059,7 +3060,7 @@ ALTER TABLE ONLY transp_legal.viagem
 
 
 --
--- TOC entry 5171 (class 2606 OID 27061)
+-- TOC entry 5112 (class 2606 OID 36465)
 -- Name: carregamento carregamento_id_carregador_fkey; Type: FK CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -3068,7 +3069,7 @@ ALTER TABLE ONLY transp_paia.carregamento
 
 
 --
--- TOC entry 5172 (class 2606 OID 27066)
+-- TOC entry 5113 (class 2606 OID 36470)
 -- Name: carregamento carregamento_id_pedido_fkey; Type: FK CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -3077,7 +3078,7 @@ ALTER TABLE ONLY transp_paia.carregamento
 
 
 --
--- TOC entry 5173 (class 2606 OID 27071)
+-- TOC entry 5114 (class 2606 OID 36475)
 -- Name: carregamento carregamento_id_veiculo_fkey; Type: FK CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -3086,7 +3087,7 @@ ALTER TABLE ONLY transp_paia.carregamento
 
 
 --
--- TOC entry 5190 (class 2606 OID 27215)
+-- TOC entry 5115 (class 2606 OID 36480)
 -- Name: mensagemcliente fk_mensagem_cliente; Type: FK CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -3095,7 +3096,7 @@ ALTER TABLE ONLY transp_paia.mensagemcliente
 
 
 --
--- TOC entry 5191 (class 2606 OID 27205)
+-- TOC entry 5116 (class 2606 OID 36485)
 -- Name: mensagemcliente fk_mensagem_pedido; Type: FK CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -3104,7 +3105,7 @@ ALTER TABLE ONLY transp_paia.mensagemcliente
 
 
 --
--- TOC entry 5192 (class 2606 OID 27210)
+-- TOC entry 5117 (class 2606 OID 36490)
 -- Name: mensagemcliente fk_mensagem_transportadora; Type: FK CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -3113,7 +3114,7 @@ ALTER TABLE ONLY transp_paia.mensagemcliente
 
 
 --
--- TOC entry 5174 (class 2606 OID 27076)
+-- TOC entry 5118 (class 2606 OID 36495)
 -- Name: pedido pedido_id_cliente_fkey; Type: FK CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -3122,7 +3123,7 @@ ALTER TABLE ONLY transp_paia.pedido
 
 
 --
--- TOC entry 5175 (class 2606 OID 27081)
+-- TOC entry 5119 (class 2606 OID 36500)
 -- Name: pedido pedido_id_transportadora_fkey; Type: FK CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -3131,7 +3132,7 @@ ALTER TABLE ONLY transp_paia.pedido
 
 
 --
--- TOC entry 5176 (class 2606 OID 27086)
+-- TOC entry 5120 (class 2606 OID 36505)
 -- Name: pedido pedido_tipo_carga_fkey; Type: FK CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -3140,7 +3141,7 @@ ALTER TABLE ONLY transp_paia.pedido
 
 
 --
--- TOC entry 5177 (class 2606 OID 27091)
+-- TOC entry 5121 (class 2606 OID 36510)
 -- Name: tipo_carga tipo_carga_id_transportadora_fkey; Type: FK CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -3149,7 +3150,7 @@ ALTER TABLE ONLY transp_paia.tipo_carga
 
 
 --
--- TOC entry 5178 (class 2606 OID 27096)
+-- TOC entry 5122 (class 2606 OID 36515)
 -- Name: viagem viagem_id_carregamento_fkey; Type: FK CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -3158,7 +3159,7 @@ ALTER TABLE ONLY transp_paia.viagem
 
 
 --
--- TOC entry 5179 (class 2606 OID 27101)
+-- TOC entry 5123 (class 2606 OID 36520)
 -- Name: viagem viagem_id_motorista_fkey; Type: FK CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -3167,7 +3168,7 @@ ALTER TABLE ONLY transp_paia.viagem
 
 
 --
--- TOC entry 5180 (class 2606 OID 27106)
+-- TOC entry 5124 (class 2606 OID 36525)
 -- Name: viagem viagem_id_veiculo_fkey; Type: FK CONSTRAINT; Schema: transp_paia; Owner: postgres
 --
 
@@ -3176,7 +3177,7 @@ ALTER TABLE ONLY transp_paia.viagem
 
 
 --
--- TOC entry 5404 (class 0 OID 0)
+-- TOC entry 5334 (class 0 OID 0)
 -- Dependencies: 9
 -- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -3184,11 +3185,9 @@ ALTER TABLE ONLY transp_paia.viagem
 REVOKE USAGE ON SCHEMA public FROM PUBLIC;
 
 
--- Completed on 2025-10-31 17:41:08
+-- Completed on 2025-11-03 11:16:22
 
 --
 -- PostgreSQL database dump complete
 --
-
-\unrestrict n0qduYbLEa4yyiRpeSSG3TF2XqsmTLTsHMTgGv6nu2KqxcFqCwvNNcwnDYalQVy
 

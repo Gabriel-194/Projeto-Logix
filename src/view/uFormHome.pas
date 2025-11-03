@@ -488,6 +488,7 @@ type
     procedure imgIniciarOrdemViagemClick(Sender: TObject);
     procedure imgFinalizarOrdemViagemClick(Sender: TObject);
     procedure verificarPermissoes;
+    procedure mostrarordensViagens;
   private
     { Private declarations }
   public
@@ -792,6 +793,51 @@ begin
 
     finally
       ordensCarregamentos.Free;
+    end;
+  finally
+    controller.Free;
+  end;
+end;
+
+procedure TFormHome.mostrarordensViagens;
+var
+  controller :ThomeController;
+  ordensviagens: Tlist<TviagemDto>;
+  i: integer;
+  viagemDataSet: TClientDataSet;
+begin
+  controller := ThomeController.create;
+  try
+    ordensviagens := controller.buscarOrdensViagensPorTransp(usuarioLogado.UserLogado.getIdTransportadora);
+
+    viagemDataSet := TClientDataSet.create(nil);
+    try
+      viagemDataSet.FieldDefs.Add('id', ftInteger);
+      viagemDataSet.FieldDefs.Add('idCarregamento', ftInteger);
+      viagemDataSet.FieldDefs.Add('veiculo', ftString, 30);
+      viagemDataSet.FieldDefs.Add('motorista', ftString, 90);
+      viagemDataSet.FieldDefs.Add('status', ftString, 30);
+      viagemDataSet.FieldDefs.Add('dataCadastro', ftDateTime);
+      viagemDataSet.FieldDefs.Add('distanciaKm', ftFloat);
+      viagemDataSet.CreateDataSet;
+
+      for i := 0 to ordensViagens.Count - 1 do
+      begin
+        viagemDataSet.Append;
+        viagemDataSet.FieldByName('id').AsInteger := ordensViagens[i].idviagem;
+        viagemDataSet.FieldByName('idCarregamento').AsInteger := ordensViagens[i].idCarregamento;
+        viagemDataSet.FieldByName('veiculo').AsString  := ordensViagens[i].Veiculo;
+        viagemDataSet.FieldByName('motorista').AsString := ordensViagens[i].motorista;
+        viagemDataSet.FieldByName('status').AsString   := ordensViagens[i].status;
+        viagemDataSet.FieldByName('distanciaKm').AsFloat := ordensViagens[i].distancia_km;
+        viagemDataSet.FieldByName('dataCadastro').AsDateTime := ordensViagens[i].dataCadastro;
+        viagemDataSet.Post;
+      end;
+
+      DataSourceOrdensViagens.DataSet := viagemDataSet;
+      DBGridOrdensViagens.DataSource := DataSourceOrdensViagens;
+    finally
+      ordensViagens.Free;
     end;
   finally
     controller.Free;
@@ -1153,6 +1199,7 @@ begin
   pnlOrdens.Visible := true;
   mostrarPedidosOrdens;
   mostrarOrdensCarreg;
+  mostrarordensViagens;
 
   Controller := ThomeController.Create;
   try
@@ -1161,7 +1208,6 @@ begin
     listaCarregador := Controller.mostrarUser('Carregador', idTransportadoraUsuario);
     listaVeiculo := Controller.mostrarVeiculo(usuarioLogado.UserLogado.getIdTransportadora);
     listaMotorista := controller.mostrarMotorista(idTransportadoraUsuario);
-
 
     try
       cbCarregador4Ordens.Items.Clear;
@@ -2019,7 +2065,7 @@ begin
     controller.criarOrdemViagem(viagem,usuarioLogado.UserLogado.getIdTransportadora);
     showMessage('Ordem criada com sucesso!');
     CleanFields(Self);
-    mostrarOrdensCarreg;
+    mostrarOrdensViagens;
   finally
     controller.free;
   end;

@@ -210,7 +210,7 @@ end;
 procedure TPedidoService.verificaStatusPedido(aStatusPedido: String);
 begin
  if aStatusPedido <> 'Confirmado' then begin
-    raise Exception.Create('Este pedido ja esta em preparo ou ja saiu para entrega por tanto não é possivel cancelar.');
+    raise Exception.Create('Este pedido ja esta em preparo ou ja saiu para entrega por tanto não é possivel cancelar ou até mesmo ja foi cancelado.');
  end;
 end;
 

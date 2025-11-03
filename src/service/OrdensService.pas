@@ -15,6 +15,7 @@ procedure finalizarCarregamento(aIdTransportadora,aIdCarregamento, aIdPedido: In
 function buscarMinhasOrdensViagens(aIdTransportadora: Integer;aIdmotorista:Integer): Tlist<TviagemDto>;
 procedure iniciarViagem(aIdTransportadora,aIdCarregamento,aIdviagem: Integer; aStatus:String);
 procedure FinalizarViagem(aIdTransportadora,aIdViagem,aIdCarregamento: Integer; aStatus:String);
+function buscarOrdensViagensPorTransp(aIdTransportadora: Integer): Tlist<TviagemDto>;
 
 end;
 
@@ -88,6 +89,33 @@ begin
     result:= repo.buscarOrdensPorStatus(aIdTransportadora,aIdCarregador,aStatus,aTabela);
   finally
     repo.free;
+  end;
+end;
+
+function TOrdemService.buscarOrdensViagensPorTransp(
+  aIdTransportadora: Integer): TList<TViagemDto>;
+var
+  repo: TOrdemRepository;
+  listaOrigem, listaDestino: TList<TViagemDto>;
+  i: Integer;
+  dto: TViagemDto;
+begin
+  repo := TOrdemRepository.Create;
+  listaOrigem := nil;
+  listaDestino := TList<TViagemDto>.Create;
+  try
+    listaOrigem := repo.buscarOrdensViagensPorTransp(aIdTransportadora);
+    for i := 0 to listaOrigem.Count - 1 do
+    begin
+      dto := listaOrigem[i];
+      dto.veiculo := IntToStr(dto.idVeiculo) + ' - ' + dto.modelo;
+      dto.motorista := IntToStr(dto.idMotorista) + ' - ' + dto.motorista;
+      listaDestino.Add(dto);
+    end;
+    Result := listaDestino;
+    listaOrigem.Free;
+  finally
+    repo.Free;
   end;
 end;
 
