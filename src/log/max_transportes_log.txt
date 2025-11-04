@@ -1,0 +1,8 @@
+[CREATE] Usuário alisson do ID 5 cadastrou um veiculo no dia 04/11/2025 e no horário 16:18:37
+[CREATE] Usuário alisson do ID 5 cadastrou um veiculo no dia 04/11/2025 e no horário 16:19:42
+[CREATE] Usuário alisson do ID 5 cadastrou um Carregador no dia 04/11/2025 e no horário 16:20:17
+[CREATE] Usuário alisson do ID 5 cadastrou um Carregador no dia 04/11/2025 e no horário 16:20:42
+[CREATE] Usuário alisson do ID 5 cadastrou um motorista no dia 04/11/2025 e no horário 16:21:57
+[CREATE] Usuário alisson do ID 5 cadastrou um motorista no dia 04/11/2025 e no horário 16:22:49
+[CREATE] Usuário alisson do ID 5 cadastrou um gerente no dia 04/11/2025 e no horário 16:23:17
+[CREATE] Usuário alisson do ID 5 cadastrou um gerente no dia 04/11/2025 e no horário 16:23:47

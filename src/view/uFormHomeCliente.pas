@@ -183,7 +183,6 @@ type
     procedure buscarMenssagensCLiente;
     procedure imgReloadMessagesClick(Sender: TObject);
     procedure graficoTranspsMaisUsadas;
-
   private
     { Private declarations }
   public
@@ -410,6 +409,7 @@ procedure TFormHomeCliente.imgFecharPanelCadastroClienteClick(Sender: TObject);
 begin
 pnlCriarPedido.visible := false;
 PageControlPedidos.visible:= false;
+pnlHome.visible:=true;
 end;
 
 
@@ -584,6 +584,7 @@ var
   Lista: TObjectList<TTransportadora>;
   Transp: TTransportadora;
 begin
+pnlHome.Visible:=false;
 pnlCriarPedido.Visible := true;
 PageControlPedidos.Visible := true;
 Controller := ThomeClientecontroller.Create;

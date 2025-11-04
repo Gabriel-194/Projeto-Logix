@@ -124,7 +124,7 @@ begin
 
     FDQuery.SQL.Text :=
       'INSERT INTO public.transportadora (nome, cnpj, telefone, email, cep, ativo, schema_name) ' +
-      'VALUES (:nome, :cnpj, :telefone, :email, :cep, TRUE, :schema_name)' +
+      'VALUES (:nome, :cnpj, :telefone, :email, :cep, TRUE, :schema_name) ' +
         'RETURNING id';
     FDQuery.ParamByName('nome').AsString := ATransp.getNome;
     FDQuery.ParamByName('cnpj').AsString := ATransp.getCNPJ;
@@ -143,7 +143,7 @@ begin
 
 
     DataModule2.FDConnection1.ExecSQL(Script);
-    FDQuery.SQL.Text := 'INSERT INTO ' + (SchemaName) + '.tipo_carga (tipo, preco_base_km, id_transportadora) ' +
+    FDQuery.SQL.Text := 'INSERT INTO ' + SchemaName + '.tipo_carga (tipo, preco_base_km, id_transportadora) ' +
                           'VALUES (:tipo, :preco_base_km, :id_transportadora)';
 
     for dto in aTiposCarga do

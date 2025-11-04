@@ -258,7 +258,7 @@
       Top = 1
       Width = 1498
       Height = 754
-      ActivePage = TabSheetCriarPedido
+      ActivePage = TabSheetMeusPedidos
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -2842,9 +2842,6 @@
         ParentFont = False
         TabOrder = 0
         ViewStyle = vsReport
-        ExplicitTop = 40
-        ExplicitWidth = 364
-        ExplicitHeight = 381
       end
     end
     object graficoTranspMaisUsada: TChart
@@ -2961,7 +2958,6 @@
       BevelOuter = bvNone
       Color = clWhite
       TabOrder = 2
-      ExplicitLeft = 888
       DefaultCanvas = 'TGDIPlusCanvas'
       PrintMargins = (
         15

@@ -11,3 +11,23 @@
 [DELETE] cliente gui do ID 1 cancelou um pedido no dia 31/10/2025 e no horário 10:36:19
 [CREATE] Usuário administrador logix do ID 1 cadastrou um Admin no dia 31/10/2025 e no horário 15:55:48
 [CREATE] Usuário administrador logix do ID 1 cadastrou um Admin no dia 31/10/2025 e no horário 15:56:16
+[CREATE] Um cliente se cadastrou no dia 04/11/2025 e no horário 14:12:15
+[CREATE] Um cliente se cadastrou no dia 04/11/2025 e no horário 14:13:27
+[CREATE] Um cliente se cadastrou no dia 04/11/2025 e no horário 14:14:24
+[CREATE] Um cliente se cadastrou no dia 04/11/2025 e no horário 14:14:56
+[CREATE] Usuário administrador logix do ID 1 cadastrou um Admin no dia 04/11/2025 e no horário 14:54:15
+[CREATE] Usuário administrador logix do ID 1 cadastrou um Admin no dia 04/11/2025 e no horário 14:54:44
+[CREATE] Usuário administrador logix do ID 1 cadastrou um Admin no dia 04/11/2025 e no horário 15:25:36
+[CREATE] Usuário administrador logix do ID 1 cadastrou uma transportadora no dia 04/11/2025 e no horário 15:39:45
+[CREATE] Usuário administrador logix do ID 1 cadastrou uma transportadora no dia 04/11/2025 e no horário 15:42:10
+[CREATE] Usuário administrador logix do ID 1 cadastrou uma transportadora no dia 04/11/2025 e no horário 15:43:13
+[CREATE] Usuário administrador logix do ID 1 cadastrou uma transportadora no dia 04/11/2025 e no horário 15:44:17
+[CREATE] Usuário administrador logix do ID 1 cadastrou uma transportadora no dia 04/11/2025 e no horário 15:45:01
+[CREATE] Usuário administrador logix do ID 1 cadastrou um Admin no dia 04/11/2025 e no horário 15:46:01
+[CREATE] Usuário administrador logix do ID 1 cadastrou um Admin no dia 04/11/2025 e no horário 15:46:27
+[CREATE] Usuário administrador logix do ID 1 cadastrou um Admin no dia 04/11/2025 e no horário 15:46:56
+[CREATE] Usuário administrador logix do ID 1 cadastrou um Admin no dia 04/11/2025 e no horário 15:47:20
+[CREATE] Um cliente se cadastrou no dia 04/11/2025 e no horário 16:53:37
+[CREATE] Um cliente se cadastrou no dia 04/11/2025 e no horário 16:54:33
+[CREATE] cliente guilherme do ID 1 fez um orçamento no dia 04/11/2025 e no horário 16:56:52
+[CREATE] cliente guilherme do ID 1 confirmou um pedido no dia 04/11/2025 e no horário 16:57:06

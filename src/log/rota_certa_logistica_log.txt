@@ -1,0 +1,8 @@
+[CREATE] Usuário kuchma do ID 2 cadastrou um gerente no dia 04/11/2025 e no horário 15:57:10
+[CREATE] Usuário kuchma do ID 2 cadastrou um gerente no dia 04/11/2025 e no horário 15:57:33
+[CREATE] Usuário kuchma do ID 2 cadastrou um motorista no dia 04/11/2025 e no horário 15:58:19
+[CREATE] Usuário kuchma do ID 2 cadastrou um motorista no dia 04/11/2025 e no horário 15:58:59
+[CREATE] Usuário kuchma do ID 2 cadastrou um Carregador no dia 04/11/2025 e no horário 15:59:33
+[CREATE] Usuário kuchma do ID 2 cadastrou um Carregador no dia 04/11/2025 e no horário 15:59:56
+[CREATE] Usuário kuchma do ID 2 cadastrou um veiculo no dia 04/11/2025 e no horário 16:00:21
+[CREATE] Usuário kuchma do ID 2 cadastrou um veiculo no dia 04/11/2025 e no horário 16:01:20

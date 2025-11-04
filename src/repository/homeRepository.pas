@@ -111,8 +111,8 @@ begin
 
     FDQuery.ExecSQL('SET search_path TO ' + QuotedStr(SchemaName) + ', public');
 
-     FDQuery.SQL.Text :='SELECT t.tipo AS TipoCarga, COUNT(p.id_pedido) AS TotalPedidos FROM transp_legal.tipo_carga t ' +
-      'LEFT JOIN transp_legal.pedido p ON t.tipo = p.tipo_carga GROUP BY t.tipo';
+     FDQuery.SQL.Text :='SELECT t.tipo AS TipoCarga, COUNT(p.id_pedido) AS TotalPedidos FROM '+schemaName+'.tipo_carga t ' +
+      'LEFT JOIN '+schemaName+'.pedido p ON t.tipo = p.tipo_carga GROUP BY t.tipo';
     FDQuery.Open;
 
     while not FDQuery.Eof do

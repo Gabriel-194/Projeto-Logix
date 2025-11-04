@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS {schema}.veiculo (
     ativo BOOLEAN DEFAULT TRUE,
     data_cadastro TIMESTAMPTZ DEFAULT NOW(),
     data_atualizacao TIMESTAMPTZ DEFAULT NOW(),
-    status varchar(50),
+    status varchar(50)
  );
 
 -- Tipo de carga

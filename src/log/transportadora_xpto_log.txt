@@ -1,0 +1,8 @@
+[CREATE] Usuário nicolas do ID 4 cadastrou um gerente no dia 04/11/2025 e no horário 16:09:18
+[CREATE] Usuário nicolas do ID 4 cadastrou um motorista no dia 04/11/2025 e no horário 16:10:30
+[CREATE] Usuário nicolas do ID 4 cadastrou um motorista no dia 04/11/2025 e no horário 16:11:25
+[CREATE] Usuário nicolas do ID 4 cadastrou um Carregador no dia 04/11/2025 e no horário 16:12:01
+[CREATE] Usuário nicolas do ID 4 cadastrou um Carregador no dia 04/11/2025 e no horário 16:12:26
+[CREATE] Usuário nicolas do ID 4 cadastrou um veiculo no dia 04/11/2025 e no horário 16:15:25
+[CREATE] Usuário nicolas do ID 4 cadastrou um veiculo no dia 04/11/2025 e no horário 16:16:17
+[CREATE] Usuário nicolas do ID 4 cadastrou um gerente no dia 04/11/2025 e no horário 16:16:51
