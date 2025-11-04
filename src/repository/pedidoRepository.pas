@@ -12,65 +12,12 @@ function BuscarPedidosPorTransp(aIdTransportadora:Integer):Tlist<TpedidoDto>;
 function buscarPedidosPorStatus(aIdTransportadora:Integer; aStatus:String):Integer;
 function buscarPedidosOrdens(aIdTransportadora:Integer):Tlist<TpedidoDto>;
 procedure cancelaPedido(aIdTransportadora,aIdPedido:Integer;aMotivoCancela:String);
-function BuscarAtualizacoesDiarias(aIdCliente: Integer): TList<TPedidoDto>;
 function BuscarMensagensCliente(aIdCliente: Integer): TList<TmessageDto>;
 
 
 
 end;
 implementation
-
-function TPedidoRepository.BuscarAtualizacoesDiarias(aIdCliente: Integer): TList<TPedidoDto>;
-var
-  QSchemas, QPedidos: TFDQuery;
-  Schema: string;
-  Pedido: TPedidoDto;
-begin
-  Result := TList<TPedidoDto>.Create;
-  QSchemas := TFDQuery.Create(nil);
-  QPedidos := TFDQuery.Create(nil);
-  try
-    QSchemas.Connection := DataModule2.FDConnection1;
-    QPedidos.Connection := DataModule2.FDConnection1;
-
-    QSchemas.SQL.Text :=
-      'SELECT nspname FROM pg_namespace ' +
-      'WHERE nspname NOT IN (''public'',''pg_catalog'',''information_schema'',''pg_toast'')';
-    QSchemas.Open;
-
-    while not QSchemas.Eof do
-    begin
-      Schema := QSchemas.FieldByName('nspname').AsString;
-      QPedidos.SQL.Text :=
-        'SELECT data_atualizacao, id_pedido, ''' + Schema + ''' AS transportadora, ' +
-        'status, data_pedido, preco, distancia_km ' +
-        'FROM ' + Schema + '.pedido ' +
-        'WHERE id_cliente = :id AND data_atualizacao::date = CURRENT_DATE';
-      QPedidos.ParamByName('id').AsInteger := aIdCliente;
-      QPedidos.Open;
-
-      while not QPedidos.Eof do
-      begin
-        Pedido.data_atualizacao := QPedidos.FieldByName('data_atualizacao').AsDateTime;
-        Pedido.idpedido := QPedidos.FieldByName('id_pedido').AsInteger;
-        Pedido.NomeTransportadora := Schema;
-        Pedido.status := QPedidos.FieldByName('status').AsString;
-        Pedido.dataPedido := QPedidos.FieldByName('data_pedido').AsDateTime;
-        Pedido.preco := QPedidos.FieldByName('preco').AsFloat;
-        Pedido.distanciakm := QPedidos.FieldByName('distancia_km').AsFloat;
-        Result.Add(Pedido);
-        QPedidos.Next;
-      end;
-
-      QPedidos.Close;
-      QSchemas.Next;
-    end;
-  finally
-    QSchemas.Free;
-    QPedidos.Free;
-  end;
-end;
-
 
 function TPedidoRepository.BuscarMensagensCliente(aIdCliente: Integer): TList<TmessageDto>;
 var

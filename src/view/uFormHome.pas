@@ -6,7 +6,9 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,dateUtils,
   Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask,viagemDto, usuarioLogado,uUsuario,carregamentoDto,uCleanFIelds,
-  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController,system.Generics.Collections,motoristaDto, uVeiculo,tipoCargaDto,pedidoDto;
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController,system.Generics.Collections,motoristaDto, uVeiculo,tipoCargaDto,pedidoDto,
+  VclTee.TeeGDIPlus, VCLTee.Series, VCLTee.TeEngine, VCLTee.TeeProcs,
+  VCLTee.Chart;
 
 type
   TFormHome = class(TForm)
@@ -417,6 +419,11 @@ type
     Label50: TLabel;
     lblOrdensViagensFinalizadas: TLabel;
     DTOrdensMinhasOrdensViagens: TDataSource;
+    pnlGraficosHome: TPanel;
+    graficoCargasMaisUsadas: TChart;
+    Series1: TPieSeries;
+    graficoVendasNosUltimosDias: TChart;
+    Series2: TBarSeries;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -489,6 +496,8 @@ type
     procedure imgFinalizarOrdemViagemClick(Sender: TObject);
     procedure verificarPermissoes;
     procedure mostrarordensViagens;
+    procedure PreencherGraficoCargasMaisUsadas;
+    procedure AtualizaGraficoPedidosPorMes;
   private
     { Private declarations }
   public
@@ -1152,6 +1161,8 @@ end;
 procedure TFormHome.FormShow(Sender: TObject);
 begin
     AtualizarDashboards;
+    PreencherGraficoCargasMaisUsadas;
+    AtualizaGraficoPedidosPorMes;
 end;
 
 procedure TFormHome.verificarPermissoes;
@@ -1172,10 +1183,61 @@ begin
     TabSheetOrdensCarregamento.PageControl := nil;
 
   end;
-
-
 end;
 
+procedure TFormHome.AtualizaGraficoPedidosPorMes;
+const
+  NomesMes: array[1..12] of string =
+    ('Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+     'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro');
+  tonsAzuis: array[1..12] of Tcolor = ($00A1470D ,$00A1470D,$00A1470D,$00A1470D,$00D27619,$00D27619,$00D27619,
+                                        $00D27619, $00FBDEBB, $00FBDEBB, $00FBDEBB, $00FBDEBB);
+var
+  ListaMeses: TList<TpedidoDto>;
+  Totais: array[1..12] of Integer;
+  PedidoMes: TpedidoDto;
+  i, anoDesejado: Integer;
+  controller:ThomeController;
+begin
+  controller:=ThomeCOntroller.create;
+  anoDesejado := 2025;
+  for i := 1 to 12 do
+    Totais[i] := 0;
+
+  ListaMeses := controller.ObterPedidosPorMes(userLogado.getIdTransportadora);
+  try
+    for PedidoMes in ListaMeses do
+    begin
+      if (PedidoMes.Mes >= 1) and (PedidoMes.Mes <= 12) and (PedidoMes.Ano = anoDesejado) then
+        Totais[PedidoMes.Mes] := PedidoMes.Total;
+    end;
+
+    graficoVendasNosUltimosDias.Series[0].Clear;
+    for i := 1 to 12 do
+    graficoVendasNosUltimosDias.Series[0].Add(Totais[i],NomesMes[i],TonsAzuis[i]);
+  finally
+    ListaMeses.Free;
+  end;
+end;
+
+procedure TFormHome.PreencherGraficoCargasMaisUsadas;
+var
+  controller:ThomeController;
+  ListaCargas: TList<TtipoCargaDto>;
+  Carga: TtipoCargaDto;
+begin
+  controller:=ThomeCOntroller.create;
+  ListaCargas := controller.ObterTiposCargasMaisPedidas(userLogado.getIdTransportadora);
+  try
+    graficoCargasMaisUsadas.Series[0].Clear;
+    for Carga in ListaCargas do
+    begin
+      graficoCargasMaisUsadas.Series[0].Add(Carga.Total, Carga.TipoCarga);
+    end;
+  finally
+    ListaCargas.Free;
+  end;
+end;
 //============HEADER =====================================================
 procedure TFormHome.lblCadastrosBtnClick(Sender: TObject);
 begin
@@ -1701,8 +1763,6 @@ begin
     usuario.setTelefone (MaskEditTelefoneCarregador.text);
     usuario.setCargo_descricao('Carregador');
       usuario.SetIdTransportadora(UsuarioLogado.UserLogado.getIdTransportadora);
-    // jeito para teste ->
-    //usuario.SetIdTransportadora(1);
 
     controller := ThomeController.create;
     try
@@ -1813,7 +1873,6 @@ procedure TFormHome.pnlBtnRecuperarCarregadorConfClick(Sender: TObject);
 begin
 
 end;
-
 //================= VEICULOS ===================================================
 
 

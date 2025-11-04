@@ -6,6 +6,7 @@ type TtipoCargaDto = record
   idTipoCarga:Integer;
   TipoCarga:String;
   precoBaseKmCarga:double;
+  total:integer;
 end;
 
 implementation

@@ -13,7 +13,6 @@ type TPedidoService = class
   function BuscarPedidosOrdens(aIdTransportadora:Integer):Tlist<TpedidoDto>;
   procedure verificaStatusPedido(aStatusPedido:String);
   procedure cancelaPedido(aIdTransportadora,aIdPedido:Integer;aMotivoCancela:String);
-  function BuscarAtualizacoesDiarias(aIdCliente: Integer): Tlist<TpedidoDto>;
   function BuscarMensagensCliente(aIdCliente: Integer): TList<TmessageDto>;
 
 end;
@@ -21,18 +20,6 @@ end;
 implementation
 var
 systemlog:Tlogger;
-
-
-function TPedidoService.BuscarAtualizacoesDiarias(aIdCliente: Integer): Tlist<TpedidoDto>;
-var repo: TPedidoRepository;
-begin
-  repo := TPedidoRepository.Create;
-  try
-    Result := repo.BuscarAtualizacoesDiarias(aIdCliente);
-  finally
-    repo.Free;
-  end;
-end;
 
 function TPedidoService.BuscarMensagensCliente(
   aIdCliente: Integer): TList<TmessageDto>;

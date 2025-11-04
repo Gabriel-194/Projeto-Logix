@@ -5,7 +5,9 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage, DBClient,uCleanFields,messageDto,
-  Vcl.StdCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.Mask,HomeClienteController,enderecoDto,utransportadora,System.Generics.Collections,pedidoDto,usuarioLogado;
+  Vcl.StdCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.Mask,HomeClienteController,enderecoDto,utransportadora,System.Generics.Collections,pedidoDto,usuarioLogado,
+  VclTee.TeeGDIPlus, VCLTee.TeEngine, VCLTee.Series, VCLTee.TeeProcs,
+  VCLTee.Chart;
 
 type
   TFormHomeCliente = class(TForm)
@@ -152,7 +154,8 @@ type
     pnlmessages: TPanel;
     imgReloadMessages: TImage;
     lwMenssagens: TListView;
-    DBGridAtualizacoesDiarias: TDBGrid;
+    graficoTranspMaisUsada: TChart;
+    Series1: TPieSeries;
     Label29: TLabel;
     procedure Image8Click(Sender: TObject);
     procedure imgFecharPanelCadastroClienteClick(Sender: TObject);
@@ -177,9 +180,9 @@ type
     procedure imgAtualizarDashboardClick(Sender: TObject);
     procedure DBGridMeusPedidosCellClick(Column: TColumn);
     procedure imgCancelarPedidClick(Sender: TObject);
-    procedure AtualizarGridAtualizacoesDiarias;
     procedure buscarMenssagensCLiente;
     procedure imgReloadMessagesClick(Sender: TObject);
+    procedure graficoTranspsMaisUsadas;
 
   private
     { Private declarations }
@@ -216,10 +219,9 @@ end;
 procedure TFormHomeCliente.FormShow(Sender: TObject);
 begin
   atualizarDashboards;
-  AtualizarGridAtualizacoesDiarias;
   buscarMenssagensCLiente;
+  graficoTranspsMaisUsadas;
 end;
-
 procedure TFormHomeCliente.buscarMenssagensCLiente;
 var
   Lista: TList<TmessageDto>;
@@ -242,6 +244,25 @@ begin
     end;
   finally
     Lista.Free;
+  end;
+end;
+
+procedure TFormHomeCliente.graficoTranspsMaisUsadas;
+var
+  controller: ThomeClienteController;
+  ListaTransp: TObjectList<TTransportadora>;
+  Transportadora: TTransportadora;
+begin
+  controller := ThomeClienteController.Create;
+  ListaTransp := controller.BuscarTransportadorasMaisUsadas(clienteLogado.getId);
+  try
+    graficoTranspMaisUsada.Series[0].Clear;
+    for Transportadora in ListaTransp do
+    begin
+      graficoTranspMaisUsada.Series[0].Add(Transportadora.getTotalPedidos,Transportadora.getNome);
+    end;
+  finally
+    ListaTransp.Free;
   end;
 end;
 
@@ -534,54 +555,6 @@ begin
     controller.Free;
   end;
 end;
-
-procedure TFormHomeCliente.AtualizarGridAtualizacoesDiarias;
-var
-  Controller: THomeClienteController;
-  Lista: TList<TPedidoDto>;
-  i: Integer;
-  cds: TClientDataSet;
-begin
-  Controller := THomeClienteController.Create;
-  try
-    Lista := Controller.BuscarAtualizacoesDiarias(clienteLogado.getId);
-    cds := TClientDataSet.Create(nil);
-    try
-      with cds.FieldDefs do
-      begin
-        Add('data_atualizacao', ftDateTime);
-        Add('idPedido', ftInteger);
-        Add('transportadora', ftString, 100);
-        Add('status', ftString, 30);
-        Add('dataCadastro', ftDate);
-        Add('preco', ftFloat);
-        Add('distanciaKm', ftFloat);
-      end;
-      cds.CreateDataSet;
-      TDateTimeField(cds.FieldByName('dataCadastro')).DisplayFormat := 'dd/mm/yyyy';
-      for i := 0 to Lista.Count - 1 do
-      begin
-        cds.Append;
-        cds.FieldByName('data_atualizacao').AsDateTime := Lista[i].data_atualizacao;
-        cds.FieldByName('idPedido').AsInteger := Lista[i].idpedido;
-        cds.FieldByName('transportadora').AsString := Lista[i].NomeTransportadora;
-        cds.FieldByName('status').AsString := Lista[i].status;
-        cds.FieldByName('dataCadastro').AsDateTime := Lista[i].DataPedido;
-        cds.FieldByName('preco').AsFloat := Lista[i].preco;
-        cds.FieldByName('distanciaKm').AsFloat := Lista[i].distanciaKm;
-        cds.Post;
-      end;
-      DataSourceAtualizaçoesDiarias.DataSet := cds;
-      DBGridAtualizacoesDiarias.DataSource := DataSourceAtualizaçoesDiarias;
-    finally
-      Lista.Free;
-    end;
-  finally
-    Controller.Free;
-  end;
-end;
-
-
 procedure TFormHomeCliente.cbTipoCargaSelect(Sender: TObject);
 
 var
@@ -666,8 +639,6 @@ begin
     showMessage('Pedido cancelado com sucesso!');
     atualizarDashBoards;
     mostrarPedidos;
-    AtualizarGridAtualizacoesDiarias;
-
   finally
     controller.free;
   end;

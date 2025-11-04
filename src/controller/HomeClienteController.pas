@@ -15,8 +15,8 @@ type ThomeClientecontroller = class
   function ContarPedidos(aIdCliente: Integer; const aStatus: String): Integer;
   procedure verificaStatusPedido(aStatusPedido:String);
   procedure cancelaPedido(aIdTransportadora,aIdPedido:Integer;aMotivoCancela:String);
-  function BuscarAtualizacoesDiarias(aIdCliente: Integer): Tlist<TpedidoDto>;
   function buscarMessagensCLiente(aIdCliente:Integer):Tlist<TmessageDto>;
+  function BuscarTransportadorasMaisUsadas(aIdCliente: Integer): TObjectList<TTransportadora>;
 
 end;
 
@@ -75,16 +75,6 @@ Service:= ThomeClienteService.create;
 
 end;
 
-function ThomeClientecontroller.BuscarAtualizacoesDiarias(aIdCliente: Integer): Tlist<TpedidoDto>;
-var service: TPedidoService;
-begin
-  service := TPedidoService.Create;
-  try
-    Result := service.BuscarAtualizacoesDiarias(aIdCliente);
-  finally
-    service.Free;
-  end;
-end;
 
 function ThomeClientecontroller.buscarMessagensCLiente(
   aIdCliente: Integer): Tlist<TmessageDto>;
@@ -109,13 +99,26 @@ begin
   end;
 end;
 
+function ThomeClientecontroller.BuscarTransportadorasMaisUsadas(
+  aIdCliente: Integer): TObjectList<TTransportadora>;
+var
+  service:ThomeClienteService;
+begin
+  service:=ThomeClienteService.create;
+  try
+    result:= service.BuscarTransportadorasMaisUsadas(aIdCliente);
+  finally
+    service.free;
+  end;
+end;
+
 function THomeClienteController.BuscarTransportadorasPorTipoCarga(const TipoCarga: string): TList<TTransportadora>;
 var
   Service: TTranspService;
 begin
   Service := TTranspService.Create;
   try
-    Result := Service.BuscarTransportadorasPorTipoCarga(TipoCarga); // retorna lista, owner será view
+    Result := Service.BuscarTransportadorasPorTipoCarga(TipoCarga);
   finally
     Service.Free;
   end;

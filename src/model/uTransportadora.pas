@@ -10,6 +10,7 @@ interface
     Telefone: string;
     Email: string;
     cep: string;
+    totalPedidos:integer;
   public
     function getId: Integer;
     procedure setId(aId: Integer);
@@ -28,6 +29,9 @@ interface
 
     function getCep: string;
     procedure setCep(aCep: string);
+
+    function getTotalPedidos:integer;
+    procedure setTotalPedidos(aTotalPedidos:integer);
   end;
 
 implementation
@@ -58,9 +62,19 @@ begin
   Result := Self.Telefone;
 end;
 
+function TTransportadora.getTotalPedidos: integer;
+begin
+  result := self.totalPedidos;
+end;
+
 procedure TTransportadora.setTelefone(aTelefone: string);
 begin
   Self.Telefone := aTelefone;
+end;
+
+procedure TTransportadora.setTotalPedidos(aTotalPedidos: integer);
+begin
+  self.totalPedidos := aTotalPedidos;
 end;
 
 function TTransportadora.getEmail: string;

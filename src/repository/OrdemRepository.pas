@@ -321,7 +321,7 @@ begin
     FDQuery.ExecSQL;
 
     FDQuery.SQL.Text :=
-      'INSERT INTO ' + SchemaName + '.mensagemCliente (id_pedido, id_transportadora, id_cliente, data_mensagem, texto) ' +
+      'INSERT INTO mensagemCliente (id_pedido, id_transportadora, id_cliente, data_mensagem, texto) ' +
       'SELECT :id_pedido, :id_transportadora, id_cliente, NOW(), :texto ' +
       'FROM ' + SchemaName + '.pedido WHERE id_pedido = :id_pedido';
 

@@ -48,6 +48,9 @@ function buscarMinhasOrdensViagens(aIdTransportadora: Integer;aIdmotorista:Integ
 procedure iniciarViagem(aIdTransportadora,aIdViagem,aIdCarregamento: Integer; aStatus:String);
 procedure FinalizarViagem(aIdTransportadora,aIdViagem,aIdCarregamento: Integer; aStatus:String);
 function buscarOrdensViagensPorTransp (aIdTransportadora:Integer):Tlist<TviagemDto>;
+//=====================================home
+function ObterTiposCargasMaisPedidas(aIdTransportadora:integer): Tlist<TtipoCargaDto>;
+    function ObterPedidosPorMes(aIdTransportadora:integer): Tlist<TpedidoDto>;
 
 
 end;
@@ -427,6 +430,33 @@ begin
   service.free;
  end;
 end;
+
+function THomeController.ObterPedidosPorMes(
+  aIdTransportadora: integer): Tlist<TpedidoDto>;
+var
+homeService:Thomeservice;
+begin
+  homeService:=Thomeservice.create;
+  try
+    result := homeService.ObterPedidosPorMes(aIdTransportadora);
+  finally
+    homeService.free;
+  end;
+end;
+
+function THomeController.ObterTiposCargasMaisPedidas(
+  aIdTransportadora: integer): Tlist<TtipoCargaDto>;
+var
+homeService:Thomeservice;
+begin
+  homeService:=Thomeservice.create;
+  try
+    result := homeService.ObterTiposCargasMaisPedidas(aIdTransportadora);
+  finally
+    homeService.free;
+  end;
+end;
+
 function THomeController.OrdensCarreg4Carreg(aIdTransportadora,
   aIdCarregador: Integer): Tlist<TcarregamentoDto>;
 var

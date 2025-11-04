@@ -29,6 +29,11 @@ type TpedidoDto = record
 
     motiv_cancelamento:String;
     data_atualizacao:TdateTime;
+
+    Ano: Integer;
+    Mes: Integer;
+    NomeMes: string;
+    Total: Integer;
   end;
 
 
