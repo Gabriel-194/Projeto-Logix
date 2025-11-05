@@ -191,6 +191,8 @@
         <DCCReference Include="src\log\uLog.pas"/>
         <DCCReference Include="src\view\uCleanFields.pas"/>
         <DCCReference Include="src\DTO\messageDto.pas"/>
+        <DCCReference Include="src\repository\relatorioRepository.pas"/>
+        <DCCReference Include="src\service\relatorioService.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

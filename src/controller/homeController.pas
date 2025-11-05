@@ -2,7 +2,7 @@ unit homeController;
 
 interface
 uses
-homeService,pedidoDto,pedidoService,viagemDto, uUsuario,carregamentoDto,OrdensService, userService, System.SysUtils, system.Generics.Collections,MotoristaDto,uVeiculo,veiculoService,tipocargaDto;
+homeService,pedidoDto,pedidoService,viagemDto, uUsuario,carregamentoDto,relatorioService,OrdensService, userService, System.SysUtils, system.Generics.Collections,MotoristaDto,uVeiculo,veiculoService,tipocargaDto;
 
 type THomeController = class
   procedure cadastrarUsuario(aUsuario:TUsuario);
@@ -50,7 +50,9 @@ procedure FinalizarViagem(aIdTransportadora,aIdViagem,aIdCarregamento: Integer; 
 function buscarOrdensViagensPorTransp (aIdTransportadora:Integer):Tlist<TviagemDto>;
 //=====================================home
 function ObterTiposCargasMaisPedidas(aIdTransportadora:integer): Tlist<TtipoCargaDto>;
-    function ObterPedidosPorMes(aIdTransportadora:integer): Tlist<TpedidoDto>;
+function ObterPedidosPorMes(aIdTransportadora:integer): Tlist<TpedidoDto>;
+//========= relatorios
+procedure relatoriosFaturamento;
 
 
 end;
@@ -551,6 +553,18 @@ begin
 service := TveiculoService.create;
   try
     service.recuperarVeiculo(veiculo);
+  finally
+    service.free;
+  end;
+end;
+
+procedure THomeController.relatoriosFaturamento;
+var
+  service: TrelatorioService;
+begin
+  service:= TrelatorioService.create;
+  try
+    service.relatorioUsuarios;
   finally
     service.free;
   end;

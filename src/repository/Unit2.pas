@@ -8,13 +8,22 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.PG,
   FireDAC.Phys.PGDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client;
+  FireDAC.Comp.Client, frxSmartMemo, frxClass, frCoreClasses, frxDBSet;
 
     type
   TDataModule2 = class(TDataModule)
-    FDConnection1: TFDConnection;
     FDQuery1: TFDQuery;
     FDPhysPgDriverLink1: TFDPhysPgDriverLink;
+    frxReportFaturamento: TfrxReport;
+    FDConnection1: TFDConnection;
+    FDQueryFaturamento: TFDQuery;
+    frxDBDatasetFaturamento: TfrxDBDataset;
+    FDQueryFaturamentoid_cliente: TIntegerField;
+    FDQueryFaturamentonome: TWideStringField;
+    FDQueryFaturamentocpf: TWideStringField;
+    FDQueryFaturamentoemail: TWideStringField;
+    FDQueryFaturamentototal_faturado: TFMTBCDField;
+    FDQueryFaturamentototal_geral: TFMTBCDField;
     procedure DataModuleCreate(Sender: TObject);
   end;
 

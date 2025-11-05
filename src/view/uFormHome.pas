@@ -11,7 +11,7 @@ uses
   VCLTee.Chart, frxSmartMemo, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, frxClass, frxExportBaseDialog, frxExportPDF, frxDBSet,unit2,
+  FireDAC.Comp.Client, frxClass, frxExportBaseDialog, frxExportPDF, frxDBSet,
   frCoreClasses;
 
 type
@@ -21,7 +21,7 @@ type
     Image1: TImage;
     PanelPermissoes: TPanel;
     Shape1: TShape;
-    lblPermissoesbtn: TLabel;
+    lblRelatoriosbtn: TLabel;
     PanelOrdens: TPanel;
     Shape5: TShape;
     lblOrdensBtn: TLabel;
@@ -429,9 +429,6 @@ type
     graficoVendasNosUltimosDias: TChart;
     Series2: TBarSeries;
     pnlRelatorios: TPanel;
-    frxDBDatasetFaturamento: TfrxDBDataset;
-    frxPDFExport1: TfrxPDFExport;
-    frxReportFaturamento: TfrxReport;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -506,6 +503,8 @@ type
     procedure mostrarordensViagens;
     procedure PreencherGraficoCargasMaisUsadas;
     procedure AtualizaGraficoPedidosPorMes;
+    procedure lblRelatoriosbtnClick(Sender: TObject);
+    procedure mostrarRelatorioFaturamento;
   private
     { Private declarations }
   public
@@ -1072,6 +1071,18 @@ begin
   end;
 end;
 
+procedure TFormHome.mostrarRelatorioFaturamento;
+var
+controller:ThomeController;
+begin
+  controller:=ThomeController.create;
+  try
+    controller.relatoriosFaturamento;
+  finally
+    controller.free;
+  end;
+end;
+
 procedure TFormHome.DBGridMeusPedidosDrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
 var
@@ -1312,6 +1323,13 @@ begin
 pnlPedidos.visible := true;
 mostrarPedidosPorTransp;
 atualizarDashboards;
+end;
+
+procedure TFormHome.lblRelatoriosbtnClick(Sender: TObject);
+begin
+pnlRelatorios.Visible := true;
+mostrarRelatorioFaturamento;
+
 end;
 
 //=================== GERENTE ============================================

@@ -465,6 +465,7 @@ begin
     controller.confirmarPedido(pedidoDto,schemaName);
     ShowMessage('Pedido confirmado com sucesso!');
     CleanFields(Self);
+    graficoTranspsMaisUsadas;
     atualizarDashboards;
   finally
     Controller.Free;

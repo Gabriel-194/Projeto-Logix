@@ -31,3 +31,5 @@
 [CREATE] Um cliente se cadastrou no dia 04/11/2025 e no horário 16:54:33
 [CREATE] cliente guilherme do ID 1 fez um orçamento no dia 04/11/2025 e no horário 16:56:52
 [CREATE] cliente guilherme do ID 1 confirmou um pedido no dia 04/11/2025 e no horário 16:57:06
+[CREATE] cliente adriana do ID 2 fez um orçamento no dia 05/11/2025 e no horário 15:56:46
+[CREATE] cliente adriana do ID 2 confirmou um pedido no dia 05/11/2025 e no horário 15:56:51

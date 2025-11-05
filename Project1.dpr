@@ -49,7 +49,9 @@ uses
   viagemDto in 'src\DTO\viagemDto.pas',
   uLog in 'src\log\uLog.pas',
   uCleanFields in 'src\view\uCleanFields.pas',
-  messageDto in 'src\DTO\messageDto.pas';
+  messageDto in 'src\DTO\messageDto.pas',
+  relatorioRepository in 'src\repository\relatorioRepository.pas',
+  relatorioService in 'src\service\relatorioService.pas';
 
 {$R *.res}
 
