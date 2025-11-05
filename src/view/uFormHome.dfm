@@ -9005,6 +9005,13 @@ object FormHome: TFormHome
       end
     end
   end
+  object pnlRelatorios: TPanel
+    Left = -1
+    Top = 83
+    Width = 1500
+    Height = 756
+    TabOrder = 7
+  end
   object DataSourcePedidos: TDataSource
     Left = 1344
     Top = 9
@@ -9031,5 +9038,83 @@ object FormHome: TFormHome
   object DTOrdensMinhasOrdensViagens: TDataSource
     Left = 856
     Top = 16
+  end
+  object frxDBDatasetFaturamento: TfrxDBDataset
+    UserName = 'frxDBDatasetFaturamento'
+    CloseDataSource = False
+    DataSet = DataModule2.FDQuery1
+    BCDToCurrency = False
+    DataSetOptions = []
+    Left = 104
+    Top = 179
+  end
+  object frxPDFExport1: TfrxPDFExport
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    DataOnly = False
+    InteractiveFormsFontSubset = 'A-Z,a-z,0-9,#43-#47 '
+    OpenAfterExport = False
+    PrintOptimized = False
+    Outline = False
+    Background = False
+    Quality = 95
+    Author = 'FastReport'
+    Subject = 'FastReport PDF export'
+    Creator = 'FastReport'
+    ProtectionFlags = [ePrint, eModify, eCopy, eAnnot]
+    HideToolbar = False
+    HideMenubar = False
+    HideWindowUI = False
+    FitWindow = False
+    CenterWindow = False
+    PrintScaling = False
+    PdfA = False
+    PDFStandard = psNone
+    PDFVersion = pv17
+    PDFColorSpace = csDeviceRGB
+    Left = 215
+    Top = 139
+  end
+  object frxReportFaturamento: TfrxReport
+    Version = '2026.1.0'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection, pbWatermarks]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 45966.479411203710000000
+    ReportOptions.LastChange = 45966.479411203710000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 63
+    Top = 115
+    Datasets = <
+      item
+        DataSet = frxDBDatasetFaturamento
+        DataSetName = 'frxDBDatasetFaturamento'
+      end>
+    Variables = <>
+    Style = <>
+    Watermarks = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 215.900000000000000000
+      PaperHeight = 279.400000000000000000
+      PaperSize = 1
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      Frame.Typ = []
+      MirrorMode = []
+    end
   end
 end

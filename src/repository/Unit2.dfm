@@ -1,7 +1,8 @@
 object DataModule2: TDataModule2
   OnCreate = DataModuleCreate
-  Height = 221
-  Width = 585
+  Height = 276
+  Width = 731
+  PixelsPerInch = 120
   object FDConnection1: TFDConnection
     Params.Strings = (
       'Database=logix'
@@ -9,19 +10,20 @@ object DataModule2: TDataModule2
       'Password=root'
       'Server=localhost'
       'DriverID=PG')
-    Left = 224
-    Top = 38
+    LoginPrompt = False
+    Left = 280
+    Top = 48
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
-    Left = 102
-    Top = 45
+    Left = 128
+    Top = 56
   end
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorLib = 
       'C:\Users\gabri\OneDrive\Documents\Embarcadero\Studio\Projects\Pr' +
       'ojeto-Logix\lib\libpq.dll'
-    Left = 333
-    Top = 38
+    Left = 416
+    Top = 48
   end
 end

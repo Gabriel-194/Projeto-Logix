@@ -10,16 +10,12 @@ uses
   FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client;
 
-type
+    type
   TDataModule2 = class(TDataModule)
     FDConnection1: TFDConnection;
     FDQuery1: TFDQuery;
     FDPhysPgDriverLink1: TFDPhysPgDriverLink;
     procedure DataModuleCreate(Sender: TObject);
-  private
-    { Private declarations }
-  public
-    { Public declarations }
   end;
 
 var

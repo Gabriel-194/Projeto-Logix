@@ -8,7 +8,11 @@ uses
   Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask,viagemDto, usuarioLogado,uUsuario,carregamentoDto,uCleanFIelds,
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController,system.Generics.Collections,motoristaDto, uVeiculo,tipoCargaDto,pedidoDto,
   VclTee.TeeGDIPlus, VCLTee.Series, VCLTee.TeEngine, VCLTee.TeeProcs,
-  VCLTee.Chart;
+  VCLTee.Chart, frxSmartMemo, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, frxClass, frxExportBaseDialog, frxExportPDF, frxDBSet,unit2,
+  frCoreClasses;
 
 type
   TFormHome = class(TForm)
@@ -424,6 +428,10 @@ type
     Series1: TPieSeries;
     graficoVendasNosUltimosDias: TChart;
     Series2: TBarSeries;
+    pnlRelatorios: TPanel;
+    frxDBDatasetFaturamento: TfrxDBDataset;
+    frxPDFExport1: TfrxPDFExport;
+    frxReportFaturamento: TfrxReport;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
