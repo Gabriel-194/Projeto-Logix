@@ -429,6 +429,24 @@ type
     graficoVendasNosUltimosDias: TChart;
     Series2: TBarSeries;
     pnlRelatorios: TPanel;
+    Label6: TLabel;
+    Shape84: TShape;
+    PanelRelatorioFaturamento: TPanel;
+    Image21: TImage;
+    lblBtnRelFaturamento: TLabel;
+    pnlFiltroFaturamento: TPanel;
+    Label49: TLabel;
+    Label51: TLabel;
+    DateTimePickerFiltro: TDateTimePicker;
+    Label52: TLabel;
+    ComboBoxClienteFiltro: TComboBox;
+    pnlConfRelFaturamento: TPanel;
+    Shape83: TShape;
+    lblBtnEmitirRelFaturamento: TLabel;
+    Label54: TLabel;
+    Shape85: TShape;
+    Image22: TImage;
+    imgFechaFIltroRelFat: TImage;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -505,6 +523,9 @@ type
     procedure AtualizaGraficoPedidosPorMes;
     procedure lblRelatoriosbtnClick(Sender: TObject);
     procedure mostrarRelatorioFaturamento;
+    procedure lblBtnEmitirRelFaturamentoClick(Sender: TObject);
+    procedure lblBtnRelFaturamentoClick(Sender: TObject);
+    procedure imgFechaFIltroRelFatClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -1328,8 +1349,6 @@ end;
 procedure TFormHome.lblRelatoriosbtnClick(Sender: TObject);
 begin
 pnlRelatorios.Visible := true;
-mostrarRelatorioFaturamento;
-
 end;
 
 //=================== GERENTE ============================================
@@ -1451,7 +1470,6 @@ procedure TFormHome.ImgBtnFechaOptionsGerenteClick(Sender: TObject);
 begin
 panelOptionsGerente.Visible := false;
 end;
-
 procedure TFormHome.lblBtnRecuperarGerenteClick(Sender: TObject);
 begin
 pnlBtnRecuperarGerenteConfirm.visible := true;
@@ -2297,5 +2315,22 @@ begin
     controller.free;
   end;
 end;
+
+//============RELATORIOS =====
+procedure TFormHome.lblBtnEmitirRelFaturamentoClick(Sender: TObject);
+begin
+mostrarRelatorioFaturamento;
+end;
+
+procedure TFormHome.lblBtnRelFaturamentoClick(Sender: TObject);
+begin
+pnlFiltroFaturamento.Visible:=true;
+end;
+
+procedure TFormHome.imgFechaFIltroRelFatClick(Sender: TObject);
+begin
+pnlFiltroFaturamento.Visible:=false;
+end;
+
 
 end.

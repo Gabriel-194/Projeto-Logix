@@ -16,7 +16,7 @@ var
 begin
 repo:=TrelatorioRepository.create;
   try
-    repo.relatorioUsuarios;
+    repo.relatorioFaturamento(userLogado.getIdTransportadora);;
   finally
     repo.free;
   end;

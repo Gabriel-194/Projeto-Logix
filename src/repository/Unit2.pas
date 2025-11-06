@@ -22,8 +22,9 @@ uses
     FDQueryFaturamentonome: TWideStringField;
     FDQueryFaturamentocpf: TWideStringField;
     FDQueryFaturamentoemail: TWideStringField;
-    FDQueryFaturamentototal_faturado: TFMTBCDField;
     FDQueryFaturamentototal_geral: TFMTBCDField;
+    FDQueryFaturamentoid_pedido: TIntegerField;
+    FDQueryFaturamentovalor_pedido: TFMTBCDField;
     procedure DataModuleCreate(Sender: TObject);
   end;
 
