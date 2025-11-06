@@ -9020,7 +9020,7 @@ object FormHome: TFormHome
       AlignWithMargins = True
       Left = 21
       Top = 40
-      Width = 301
+      Width = 245
       Height = 32
       Margins.Top = 30
       Alignment = taCenter
@@ -9070,6 +9070,8 @@ object FormHome: TFormHome
       Width = 301
       Height = 40
       BevelOuter = bvNone
+      Color = 15724527
+      ParentBackground = False
       TabOrder = 0
       object Image21: TImage
         Left = -2
@@ -9170,9 +9172,9 @@ object FormHome: TFormHome
       end
       object Label49: TLabel
         AlignWithMargins = True
-        Left = 14
+        Left = 159
         Top = 9
-        Width = 403
+        Width = 78
         Height = 32
         Margins.Top = 10
         Alignment = taCenter

@@ -2,7 +2,7 @@ unit homeController;
 
 interface
 uses
-homeService,pedidoDto,pedidoService,viagemDto, uUsuario,carregamentoDto,relatorioService,OrdensService, userService, System.SysUtils, system.Generics.Collections,MotoristaDto,uVeiculo,veiculoService,tipocargaDto;
+homeService,pedidoDto,pedidoService,uCliente,viagemDto,clienteService, uUsuario,carregamentoDto,relatorioService,OrdensService, userService, System.SysUtils, system.Generics.Collections,MotoristaDto,uVeiculo,veiculoService,tipocargaDto;
 
 type THomeController = class
   procedure cadastrarUsuario(aUsuario:TUsuario);
@@ -52,7 +52,9 @@ function buscarOrdensViagensPorTransp (aIdTransportadora:Integer):Tlist<TviagemD
 function ObterTiposCargasMaisPedidas(aIdTransportadora:integer): Tlist<TtipoCargaDto>;
 function ObterPedidosPorMes(aIdTransportadora:integer): Tlist<TpedidoDto>;
 //========= relatorios
-procedure relatoriosFaturamento;
+procedure relatorioFaturamento(aIdTransportadora: Integer;aIdCliente: Integer = 0;aData:TdateTime= 0);
+//=====clientes=====================
+  function ListarCliente(idTransportadora: Integer): TObjectList<Tcliente>;
 
 
 end;
@@ -397,6 +399,18 @@ begin
   end;
 end;
 
+function THomeController.ListarCliente(idTransportadora: Integer): TObjectList<Tcliente>;
+var
+service:TclienteService;
+begin
+service:=TclienteService.create;
+  try
+    result := service.ListarCliente(idTransportadora);
+  finally
+    service.free;
+  end;
+end;
+
 procedure THomeController.excluirUser(aUsuario: TUsuario);
 var
 service : TuserService;
@@ -558,13 +572,13 @@ service := TveiculoService.create;
   end;
 end;
 
-procedure THomeController.relatoriosFaturamento;
+procedure THomeController.relatorioFaturamento(aIdTransportadora: Integer;aIdCliente: Integer = 0; aData:TdateTime= 0);
 var
   service: TrelatorioService;
 begin
   service:= TrelatorioService.create;
   try
-    service.relatorioUsuarios;
+    service.relatorioFaturamento(aIdTransportadora,aIdCliente,aData);
   finally
     service.free;
   end;

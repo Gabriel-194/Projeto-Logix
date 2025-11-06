@@ -6,6 +6,7 @@ system.Generics.Collections, BCrypt, System.SysUtils,uCliente, clienteRepository
 
 type TclienteService = class
   procedure cadastrarCliente(aCliente:Tcliente);
+  function ListarCliente(idTransportadora: Integer): TObjectList<Tcliente>;
 end;
 
 implementation
@@ -50,8 +51,6 @@ begin
     raise Exception.Create('O CEP é obrigatório.');
   end;
 
-
-
   HashedSenha := TBCrypt.HashPassword(aCliente.getSenha_hash);
   aCliente.setSenha_hash(HashedSenha);
 
@@ -64,6 +63,18 @@ begin
   finally
     clienteRepo.Free;
     systemLog.free;
+  end;
+end;
+
+function TclienteService.ListarCliente(idTransportadora: Integer): TObjectList<Tcliente>;
+var
+repo:tClienteRepository;
+begin
+repo:=tClienteRepository.create;
+  try
+    result := repo.ListarCliente(idTransportadora);
+  finally
+    repo.free;
   end;
 end;
 

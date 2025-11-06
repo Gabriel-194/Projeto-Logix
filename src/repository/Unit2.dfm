@@ -1,8 +1,7 @@
 object DataModule2: TDataModule2
   OnCreate = DataModuleCreate
-  Height = 443
-  Width = 794
-  PixelsPerInch = 120
+  Height = 354
+  Width = 635
   object FDConnection1: TFDConnection
     Params.Strings = (
       'Database=logix'
@@ -12,23 +11,23 @@ object DataModule2: TDataModule2
       'DriverID=PG')
     Connected = True
     LoginPrompt = False
-    Left = 280
-    Top = 48
+    Left = 224
+    Top = 38
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
-    Left = 128
-    Top = 56
+    Left = 102
+    Top = 45
   end
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorLib = 
-      'C:\Users\gabri\OneDrive\Documents\Embarcadero\Studio\Projects\Pr' +
-      'ojeto-Logix\lib\libpq.dll'
-    Left = 416
-    Top = 48
+      'C:\Users\kuchma.2973\Documents\Embarcadero\Studio\Projects\Proje' +
+      'to-Logix\lib\libpq.dll'
+    Left = 333
+    Top = 38
   end
   object frxReportFaturamento: TfrxReport
-    Version = '2026.1.0'
+    Version = '2026.1.1'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection, pbWatermarks]
@@ -36,15 +35,15 @@ object DataModule2: TDataModule2
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 45967.414728171300000000
-    ReportOptions.LastChange = 45967.414728171300000000
+    ReportOptions.LastChange = 45967.724382962970000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
       'begin'
       ''
       'end.')
-    Left = 570
-    Top = 120
+    Left = 448
+    Top = 128
     Datasets = <
       item
         DataSet = frxDBDatasetFaturamento
@@ -371,7 +370,7 @@ object DataModule2: TDataModule2
           Height = 18.897650000000000000
           ContentScaleOptions.Constraints.MaxIterationValue = 0
           ContentScaleOptions.Constraints.MinIterationValue = 0
-          DataField = 'total_faturado'
+          DataField = 'valor_pedido'
           DataSet = frxDBDatasetFaturamento
           DataSetName = 'frxDBDatasetFaturamento'
           Font.Charset = DEFAULT_CHARSET
@@ -381,7 +380,7 @@ object DataModule2: TDataModule2
           Font.Style = []
           Frame.Typ = []
           Memo.UTF8W = (
-            '[frxDBDatasetFaturamento."total_faturado"]')
+            '[frxDBDatasetFaturamento."valor_pedido"]')
           ParentFont = False
           Style = 'Data'
         end
@@ -491,7 +490,7 @@ object DataModule2: TDataModule2
   object FDQueryFaturamento: TFDQuery
     Connection = FDConnection1
     SQL.Strings = (
-      'SET search_path TO max_transportes, public;'
+      'SET search_path TO rota_certa_logistica, public;'
       ''
       'SELECT c.id_cliente, '
       '       c.nome, '
@@ -502,7 +501,7 @@ object DataModule2: TDataModule2
       '       NULL AS total_geral'
       'FROM public.cliente c'
       'JOIN pedido p ON p.id_cliente = c.id_cliente'
-      'WHERE CAST(p.data_pedido AS DATE) = '#39'2025-06-14'#39
+      'WHERE CAST(p.data_pedido AS DATE) = '#39'2025-11-04'#39
       ''
       'UNION ALL'
       ''
@@ -511,11 +510,11 @@ object DataModule2: TDataModule2
         '_geral'
       'FROM public.cliente c'
       'JOIN pedido p ON p.id_cliente = c.id_cliente'
-      'WHERE CAST(p.data_pedido AS DATE) = '#39'2025-06-14'#39
+      'WHERE CAST(p.data_pedido AS DATE) = '#39'2025-11-04'#39
       ''
-      'ORDER BY id_pedido;  ')
-    Left = 560
-    Top = 330
+      'ORDER BY id_pedido;')
+    Left = 448
+    Top = 264
     object FDQueryFaturamentoid_cliente: TIntegerField
       FieldName = 'id_cliente'
       Origin = 'id_cliente'
@@ -563,8 +562,8 @@ object DataModule2: TDataModule2
     DataSet = FDQueryFaturamento
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 560
-    Top = 220
+    Left = 448
+    Top = 176
     FieldDefs = <
       item
         FieldName = 'id_cliente'
@@ -583,11 +582,6 @@ object DataModule2: TDataModule2
         FieldName = 'email'
         FieldType = fftString
         Size = 90
-      end
-      item
-        Active = False
-        FieldName = 'total_faturado'
-        Size = 64
       end
       item
         FieldName = 'total_geral'

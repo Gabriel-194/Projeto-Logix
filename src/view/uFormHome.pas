@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,dateUtils,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,dateUtils,uCliente,
   Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask,viagemDto, usuarioLogado,uUsuario,carregamentoDto,uCleanFIelds,
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController,system.Generics.Collections,motoristaDto, uVeiculo,tipoCargaDto,pedidoDto,
   VclTee.TeeGDIPlus, VCLTee.Series, VCLTee.TeEngine, VCLTee.TeeProcs,
@@ -522,7 +522,6 @@ type
     procedure PreencherGraficoCargasMaisUsadas;
     procedure AtualizaGraficoPedidosPorMes;
     procedure lblRelatoriosbtnClick(Sender: TObject);
-    procedure mostrarRelatorioFaturamento;
     procedure lblBtnEmitirRelFaturamentoClick(Sender: TObject);
     procedure lblBtnRelFaturamentoClick(Sender: TObject);
     procedure imgFechaFIltroRelFatClick(Sender: TObject);
@@ -1089,18 +1088,6 @@ begin
     end;
   finally
     controller.Free;
-  end;
-end;
-
-procedure TFormHome.mostrarRelatorioFaturamento;
-var
-controller:ThomeController;
-begin
-  controller:=ThomeController.create;
-  try
-    controller.relatoriosFaturamento;
-  finally
-    controller.free;
   end;
 end;
 
@@ -2318,13 +2305,49 @@ end;
 
 //============RELATORIOS =====
 procedure TFormHome.lblBtnEmitirRelFaturamentoClick(Sender: TObject);
+var
+  controller: ThomeController;
+  data: TDateTime;
+  idCLiente: Integer;
+  clienteTxt: string;
 begin
-mostrarRelatorioFaturamento;
+  controller := ThomeController.Create;
+  try
+
+    clienteTxt := ComboBoxClienteFiltro.Text;
+    if clienteTxt <> '' then
+      idCLiente := StrToIntDef(Trim(Copy(clienteTxt, 1, Pos(' - ', clienteTxt) - 1)), 0)
+    else
+      idCLiente := 0;
+    data := DateTimePickerFiltro.Date;
+
+    controller.relatorioFaturamento(userLogado.getIdTransportadora, idCLiente, data);
+  finally
+    controller.Free;
+  end;
 end;
 
 procedure TFormHome.lblBtnRelFaturamentoClick(Sender: TObject);
+var
+  controller: ThomeController;
+  ListaClientes: TObjectList<Tcliente>;
+  i: Integer;
+  cliente: Tcliente;
 begin
-pnlFiltroFaturamento.Visible:=true;
+  pnlFiltroFaturamento.Visible := true;
+  controller := ThomeController.Create;
+  try
+    listaClientes := controller.ListarCliente(userLogado.getIdTransportadora);
+    ComboBoxClienteFiltro.Items.Clear;
+    for i := 0 to ListaClientes.Count - 1 do
+    begin
+      cliente := ListaClientes[i];
+      ComboBoxClienteFiltro.Items.Add(IntToStr(cliente.getId) + ' - ' + cliente.getNome);
+    end;
+  finally
+    controller.Free;
+    ListaClientes.Free;
+  end;
 end;
 
 procedure TFormHome.imgFechaFIltroRelFatClick(Sender: TObject);

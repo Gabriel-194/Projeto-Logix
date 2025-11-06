@@ -4,19 +4,19 @@ interface
 uses
   System.SysUtils, transpRepository,uTransportadora,System.Generics.Collections,TipoCargaDto,uLog,usuarioLogado,relatorioRepository;
 type TrelatorioService = class
-  procedure relatorioUsuarios;
+  procedure relatorioFaturamento(aIdTransportadora: Integer;aIdCliente: Integer = 0;aData:TdateTime= 0);
 end;
 implementation
 
 { TrelatorioService }
 
-procedure TrelatorioService.relatorioUsuarios;
+procedure TrelatorioService.relatorioFaturamento(aIdTransportadora: Integer;aIdCliente: Integer = 0;aData:TdateTime= 0);
 var
   repo:TrelatorioRepository;
 begin
 repo:=TrelatorioRepository.create;
   try
-    repo.relatorioFaturamento(userLogado.getIdTransportadora);;
+    repo.relatorioFaturamento(aIdTransportadora,aIdCliente,aData);
   finally
     repo.free;
   end;

@@ -4,7 +4,7 @@ interface
 uses
   System.SysUtils, System.Classes, FireDAC.Comp.Client, System.Generics.Collections, unit2;
 type TrelatorioRepository = class
-  procedure relatorioFaturamento(aIdTransportadora: Integer;aIdCliente: Integer = 0;aData: TDateTime = 0);
+  procedure relatorioFaturamento(aIdTransportadora: Integer;aIdCliente: Integer = 0;aData:TdateTime= 0);
 end;
 
 
@@ -12,7 +12,7 @@ implementation
 
 { TrelatorioRepository }
 
-procedure TrelatorioRepository.relatorioFaturamento(aIdTransportadora: Integer;aIdCliente: Integer = 0;aData: TDateTime = 0);
+procedure TrelatorioRepository.relatorioFaturamento(aIdTransportadora: Integer;aIdCliente: Integer = 0;aData:TdateTime= 0);
 var
   SchemaName: string;
   QryAux: TFDQuery;
@@ -33,7 +33,6 @@ begin
       Filtros := Filtros + ' AND c.id_cliente = :id_cliente ';
     if aData <> 0 then
       Filtros := Filtros + ' AND CAST(p.data_pedido AS DATE) = :data_pedido ';
-
 
     if Filtros <> '' then
       SQLWhere := ' WHERE ' + Copy(Filtros, 6, Length(Filtros))
@@ -57,7 +56,7 @@ begin
     if aIdCliente > 0 then
       dataModule2.FDQueryFaturamento.ParamByName('id_cliente').AsInteger := aIdCliente;
     if aData <> 0 then
-      dataModule2.FDQueryFaturamento.ParamByName('data_pedido').AsDate := aData;
+      dataModule2.FDQueryFaturamento.ParamByName('data_pedido').Asdate := aData;
 
     dataModule2.FDQueryFaturamento.Open;
     dataModule2.frxReportFaturamento.ShowReport();

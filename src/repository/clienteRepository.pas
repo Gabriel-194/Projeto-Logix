@@ -5,6 +5,7 @@ uses
 uCliente,System.SysUtils, FireDAC.Comp.Client,unit2,System.Generics.Collections,enderecoDto;
 type TclienteRepository = class
   function CadastrarCliente(aCliente: Tcliente): Tcliente;
+  function ListarCliente(idTransportadora: Integer): TObjectList<Tcliente>;
 end;
 
 implementation
@@ -40,5 +41,44 @@ begin
   end;
 end;
 
+
+function TclienteRepository.ListarCliente(idTransportadora: Integer): TObjectList<Tcliente>;
+var
+  FDQuery: TFDQuery;
+  cliente: Tcliente;
+  lista: TObjectList<Tcliente>;
+  schemaName:string;
+begin
+  lista := TObjectList<Tcliente>.Create(True);
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+
+    FDQuery.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id_transportadora';
+    FDQuery.ParamByName('id_transportadora').AsInteger := IdTransportadora;
+    FDQuery.Open;
+
+    SchemaName := FDQuery.FieldByName('schema_name').AsString;
+    FDQuery.Close;
+
+    FDQuery.SQL.Text:= 'SELECT DISTINCT c.id_cliente, c.nome ' +
+      'FROM public.cliente c ' +
+      'JOIN '+schemaName+'.pedido p ON p.id_cliente = c.id_cliente ' +
+      'WHERE p.id_transportadora = :idtransp';
+    FDQuery.ParamByName('idtransp').AsInteger := idTransportadora;
+    FDQuery.Open;
+    while not FDQuery.Eof do
+    begin
+      cliente := Tcliente.Create;
+      cliente.setId(FDQuery.FieldByName('id_cliente').AsInteger);
+      cliente.setNome(FDQuery.FieldByName('nome').AsString);
+      lista.Add(cliente);
+      FDQuery.Next;
+    end;
+    Result := lista;
+  finally
+    FDQuery.Free;
+  end;
+end;
 
 end.
