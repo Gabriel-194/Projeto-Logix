@@ -447,6 +447,14 @@ type
     Shape85: TShape;
     Image22: TImage;
     imgFechaFIltroRelFat: TImage;
+    Chart1: TChart;
+    Chart2: TChart;
+    Chart3: TChart;
+    Chart4: TChart;
+    Series4: TLineSeries;
+    Series3: TPieSeries;
+    Series5: TBarSeries;
+    Series6: THorizBarSeries;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -525,6 +533,9 @@ type
     procedure lblBtnEmitirRelFaturamentoClick(Sender: TObject);
     procedure lblBtnRelFaturamentoClick(Sender: TObject);
     procedure imgFechaFIltroRelFatClick(Sender: TObject);
+    procedure Image22Click(Sender: TObject);
+    procedure Shape84ContextPopup(Sender: TObject; MousePos: TPoint;
+      var Handled: Boolean);
   private
     { Private declarations }
   public
@@ -1179,6 +1190,11 @@ begin
 panelMinhasOrdens.Visible:=false;
 end;
 
+procedure TFormHome.Image22Click(Sender: TObject);
+begin
+pnlRelatorios.visible:=false;
+end;
+
 procedure TFormHome.Image4Click(Sender: TObject);
 begin
 pnlPedidos.visible := false;
@@ -1265,6 +1281,12 @@ begin
     ListaCargas.Free;
   end;
 end;
+procedure TFormHome.Shape84ContextPopup(Sender: TObject; MousePos: TPoint;
+  var Handled: Boolean);
+begin
+
+end;
+
 //============HEADER =====================================================
 procedure TFormHome.lblCadastrosBtnClick(Sender: TObject);
 begin
@@ -2319,9 +2341,17 @@ begin
       idCLiente := StrToIntDef(Trim(Copy(clienteTxt, 1, Pos(' - ', clienteTxt) - 1)), 0)
     else
       idCLiente := 0;
-    data := DateTimePickerFiltro.Date;
 
+    if DateTimePickerFiltro.Checked then
+    begin
+      data := DateTimePickerFiltro.Date;
+    end
+    else
+    begin
+      data := 0;
+    end;
     controller.relatorioFaturamento(userLogado.getIdTransportadora, idCLiente, data);
+
   finally
     controller.Free;
   end;

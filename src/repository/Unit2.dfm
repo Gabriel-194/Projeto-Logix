@@ -1,7 +1,7 @@
 object DataModule2: TDataModule2
   OnCreate = DataModuleCreate
-  Height = 354
-  Width = 635
+  Height = 351
+  Width = 662
   object FDConnection1: TFDConnection
     Params.Strings = (
       'Database=logix'
@@ -21,13 +21,13 @@ object DataModule2: TDataModule2
   end
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorLib = 
-      'C:\Users\kuchma.2973\Documents\Embarcadero\Studio\Projects\Proje' +
-      'to-Logix\lib\libpq.dll'
+      'C:\Users\gabri\OneDrive\Documents\Embarcadero\Studio\Projects\Pr' +
+      'ojeto-Logix\lib\libpq.dll'
     Left = 333
     Top = 38
   end
   object frxReportFaturamento: TfrxReport
-    Version = '2026.1.1'
+    Version = '2026.1.0'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection, pbWatermarks]
@@ -35,7 +35,7 @@ object DataModule2: TDataModule2
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 45967.414728171300000000
-    ReportOptions.LastChange = 45967.724382962970000000
+    ReportOptions.LastChange = 45968.397554293980000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -274,7 +274,7 @@ object DataModule2: TDataModule2
         FillGap.Bottom = 0
         FillGap.Right = 0
         Frame.Typ = []
-        Height = 41.574831460000000000
+        Height = 34.015771460000000000
         Top = 162.519790000000000000
         Width = 740.409927000000000000
         DataSet = frxDBDatasetFaturamento
@@ -387,7 +387,7 @@ object DataModule2: TDataModule2
         object Line1: TfrxLineView
           AllowVectorExport = True
           Left = 0.000000100000000000
-          Top = 30.236241460000000000
+          Top = 26.456711460000000000
           Width = 737.008322720000000000
           Color = clBlack
           Frame.Typ = []
@@ -402,7 +402,7 @@ object DataModule2: TDataModule2
         FillGap.Right = 0
         Frame.Typ = []
         Height = 41.574830000000000000
-        Top = 325.039580000000000000
+        Top = 317.480520000000000000
         Width = 740.409927000000000000
         object Memo14: TfrxMemoView
           Align = baWidth
@@ -432,7 +432,7 @@ object DataModule2: TDataModule2
         FillGap.Right = 0
         Frame.Typ = []
         Height = 37.795300000000000000
-        Top = 264.567100000000000000
+        Top = 257.008040000000000000
         Width = 740.409927000000000000
         object Memo16: TfrxMemoView
           AllowVectorExport = True
@@ -488,6 +488,7 @@ object DataModule2: TDataModule2
     end
   end
   object FDQueryFaturamento: TFDQuery
+    Active = True
     Connection = FDConnection1
     SQL.Strings = (
       'SET search_path TO rota_certa_logistica, public;'

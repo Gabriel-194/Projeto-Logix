@@ -14,6 +14,213 @@ object FormHome: TFormHome
   Position = poScreenCenter
   OnShow = FormShow
   TextHeight = 15
+  object pnlGraficosHome: TPanel
+    Left = 21
+    Top = 378
+    Width = 1422
+    Height = 407
+    BevelOuter = bvNone
+    Color = 6957870
+    ParentBackground = False
+    TabOrder = 6
+    object graficoCargasMaisUsadas: TChart
+      AlignWithMargins = True
+      Left = 906
+      Top = 5
+      Width = 511
+      Height = 397
+      Margins.Left = 5
+      Margins.Top = 5
+      Margins.Right = 5
+      Margins.Bottom = 5
+      Gradient.Balance = 30
+      Gradient.Colors = <
+        item
+          Color = clWhite
+        end
+        item
+          Color = 4194304
+          Offset = 1.000000000000000000
+        end
+        item
+          Offset = 1.000000000000000000
+        end
+        item
+          Color = clGreen
+          Offset = 1.000000000000000000
+        end
+        item
+          Color = clGreen
+          Offset = 1.000000000000000000
+        end
+        item
+          Color = clGreen
+          Offset = 1.000000000000000000
+        end
+        item
+          Color = clGreen
+          Offset = 1.000000000000000000
+        end
+        item
+          Color = clGreen
+          Offset = 1.000000000000000000
+        end
+        item
+          Color = 7998981
+          Offset = 1.000000000000000000
+        end
+        item
+          Color = clGreen
+          Offset = 1.000000000000000000
+        end
+        item
+          Color = clGreen
+          Offset = 1.000000000000000000
+        end
+        item
+          Color = clGreen
+          Offset = 1.000000000000000000
+        end
+        item
+          Color = clGreen
+          Offset = 1.000000000000000000
+        end
+        item
+          Color = clGreen
+          Offset = 1.000000000000000000
+        end
+        item
+          Color = clGreen
+          Offset = 1.000000000000000000
+        end
+        item
+          Color = 4194304
+          Offset = 1.000000000000000000
+        end
+        item
+          Color = 6168326
+          Offset = 1.000000000000000000
+        end>
+      Gradient.Direction = gdFromTopLeft
+      Gradient.EndColor = 6168326
+      Gradient.MidColor = 4194304
+      MarginBottom = 0
+      MarginLeft = 0
+      MarginRight = 0
+      MarginTop = 0
+      Title.Color = clBlack
+      Title.Font.Color = 4194304
+      Title.Font.Height = -28
+      Title.Font.Style = [fsBold]
+      Title.Shadow.HorizSize = 0
+      Title.Shadow.SmoothBlur = 3
+      Title.Shadow.Transparency = 48
+      Title.Shadow.VertSize = 0
+      Title.Text.Strings = (
+        'Tipo de cargas com mais pedidos')
+      Chart3DPercent = 43
+      DepthTopAxis.Title.Font.DefaultFont = True
+      Emboss.Color = 2829099
+      Emboss.Transparency = 42
+      Shadow.Color = clWhite
+      Shadow.HorizSize = 9
+      Shadow.Transparency = 0
+      Shadow.VertSize = 9
+      View3DOptions.Elevation = 315
+      View3DOptions.HorizOffset = -14
+      View3DOptions.Orthogonal = False
+      View3DOptions.Perspective = 0
+      View3DOptions.Rotation = 360
+      View3DOptions.VertOffset = -14
+      View3DOptions.Zoom = 102
+      Align = alRight
+      BevelOuter = bvNone
+      Color = clWhite
+      TabOrder = 0
+      DefaultCanvas = 'TGDIPlusCanvas'
+      PrintMargins = (
+        15
+        11
+        15
+        11)
+      ColorPaletteIndex = 13
+      object Series1: TPieSeries
+        HoverElement = []
+        Marks.Tail.Margin = 2
+        Title = 'grafico de cargas mais usadas'
+        XValues.Order = loAscending
+        YValues.Name = 'Pie'
+        YValues.Order = loNone
+        Frame.InnerBrush.BackColor = clRed
+        Frame.InnerBrush.Gradient.EndColor = clGray
+        Frame.InnerBrush.Gradient.MidColor = clWhite
+        Frame.InnerBrush.Gradient.StartColor = 4210752
+        Frame.InnerBrush.Gradient.Visible = True
+        Frame.MiddleBrush.BackColor = clYellow
+        Frame.MiddleBrush.Gradient.EndColor = 8553090
+        Frame.MiddleBrush.Gradient.MidColor = clWhite
+        Frame.MiddleBrush.Gradient.StartColor = clGray
+        Frame.MiddleBrush.Gradient.Visible = True
+        Frame.OuterBrush.BackColor = clGreen
+        Frame.OuterBrush.Gradient.EndColor = 4210752
+        Frame.OuterBrush.Gradient.MidColor = clWhite
+        Frame.OuterBrush.Gradient.StartColor = clSilver
+        Frame.OuterBrush.Gradient.Visible = True
+        Frame.Width = 4
+        OtherSlice.Legend.Visible = False
+        Data = {0000000000}
+        Detail = {0000000000}
+      end
+    end
+    object graficoVendasNosUltimosDias: TChart
+      AlignWithMargins = True
+      Left = 16
+      Top = 5
+      Width = 880
+      Height = 397
+      Margins.Left = 5
+      Margins.Top = 5
+      Margins.Right = 5
+      Margins.Bottom = 5
+      MarginBottom = 0
+      MarginLeft = 0
+      MarginRight = 0
+      MarginTop = 0
+      Title.Font.Color = 4194304
+      Title.Font.Height = -28
+      Title.Font.Style = [fsBold]
+      Title.Text.Strings = (
+        'Pedidos nos ultimos meses')
+      Chart3DPercent = 5
+      Shadow.Color = 16645629
+      Shadow.HorizSize = 9
+      Shadow.Transparency = 0
+      Shadow.VertSize = 9
+      Align = alRight
+      TabOrder = 1
+      DefaultCanvas = 'TGDIPlusCanvas'
+      ColorPaletteIndex = 13
+      object Series2: TBarSeries
+        HoverElement = []
+        Marks.Visible = False
+        SeriesColor = 4194304
+        XValues.Name = 'X'
+        XValues.Order = loAscending
+        YValues.Name = 'Bar'
+        YValues.Order = loNone
+        Data = {
+          060C000000000000000000000000000020FF070000004A616E6569726F000000
+          000000000000000020FF0900000046657665726569726F000000000000000000
+          000020FF050000004D6172E76F000000000000000000000020FF050000004162
+          72696C00000000000000000000A000FF040000004D61696F0000000000000000
+          0000A000FF050000004A756E686F00000000000000000000A000FF050000004A
+          756C686F00000000000000000000A000FF0600000041676F73746F0000000000
+          0000000080FF00FF08000000536574656D62726F00000000000000000080FF00
+          FF070000004F75747562726F00000000000000000080FF00FF080000004E6F76
+          656D62726F00000000000000000080FF00FF0800000044657A656D62726F}
+      end
+    end
+  end
   object pnlDashboardCadastros: TPanel
     AlignWithMargins = True
     Left = 10
@@ -3947,212 +4154,6 @@ object FormHome: TFormHome
         OnClick = lblBtnMinhasOrdensClick
         ExplicitWidth = 141
         ExplicitHeight = 30
-      end
-    end
-  end
-  object pnlGraficosHome: TPanel
-    Left = 21
-    Top = 378
-    Width = 1422
-    Height = 407
-    BevelOuter = bvNone
-    Color = 6957870
-    ParentBackground = False
-    TabOrder = 6
-    object graficoCargasMaisUsadas: TChart
-      AlignWithMargins = True
-      Left = 906
-      Top = 5
-      Width = 511
-      Height = 397
-      Margins.Left = 5
-      Margins.Top = 5
-      Margins.Right = 5
-      Margins.Bottom = 5
-      Gradient.Balance = 30
-      Gradient.Colors = <
-        item
-          Color = clWhite
-        end
-        item
-          Color = 4194304
-          Offset = 1.000000000000000000
-        end
-        item
-          Offset = 1.000000000000000000
-        end
-        item
-          Color = clGreen
-          Offset = 1.000000000000000000
-        end
-        item
-          Color = clGreen
-          Offset = 1.000000000000000000
-        end
-        item
-          Color = clGreen
-          Offset = 1.000000000000000000
-        end
-        item
-          Color = clGreen
-          Offset = 1.000000000000000000
-        end
-        item
-          Color = clGreen
-          Offset = 1.000000000000000000
-        end
-        item
-          Color = 7998981
-          Offset = 1.000000000000000000
-        end
-        item
-          Color = clGreen
-          Offset = 1.000000000000000000
-        end
-        item
-          Color = clGreen
-          Offset = 1.000000000000000000
-        end
-        item
-          Color = clGreen
-          Offset = 1.000000000000000000
-        end
-        item
-          Color = clGreen
-          Offset = 1.000000000000000000
-        end
-        item
-          Color = clGreen
-          Offset = 1.000000000000000000
-        end
-        item
-          Color = clGreen
-          Offset = 1.000000000000000000
-        end
-        item
-          Color = 4194304
-          Offset = 1.000000000000000000
-        end
-        item
-          Color = 6168326
-          Offset = 1.000000000000000000
-        end>
-      Gradient.Direction = gdFromTopLeft
-      Gradient.EndColor = 6168326
-      Gradient.MidColor = 4194304
-      MarginBottom = 0
-      MarginLeft = 0
-      MarginRight = 0
-      MarginTop = 0
-      Title.Color = clBlack
-      Title.Font.Color = 4194304
-      Title.Font.Height = -28
-      Title.Font.Style = [fsBold]
-      Title.Shadow.HorizSize = 0
-      Title.Shadow.SmoothBlur = 3
-      Title.Shadow.Transparency = 48
-      Title.Shadow.VertSize = 0
-      Title.Text.Strings = (
-        'Tipo de cargas com mais pedidos')
-      Chart3DPercent = 43
-      DepthTopAxis.Title.Font.DefaultFont = True
-      Emboss.Color = 2829099
-      Emboss.Transparency = 42
-      Shadow.Color = clBlack
-      Shadow.HorizSize = 8
-      Shadow.Transparency = 3
-      Shadow.VertSize = 8
-      View3DOptions.Elevation = 315
-      View3DOptions.HorizOffset = -14
-      View3DOptions.Orthogonal = False
-      View3DOptions.Perspective = 0
-      View3DOptions.Rotation = 360
-      View3DOptions.VertOffset = -14
-      View3DOptions.Zoom = 102
-      Align = alRight
-      BevelOuter = bvNone
-      Color = clWhite
-      TabOrder = 0
-      DefaultCanvas = 'TGDIPlusCanvas'
-      PrintMargins = (
-        15
-        11
-        15
-        11)
-      ColorPaletteIndex = 13
-      object Series1: TPieSeries
-        HoverElement = []
-        Marks.Tail.Margin = 2
-        Title = 'grafico de cargas mais usadas'
-        XValues.Order = loAscending
-        YValues.Name = 'Pie'
-        YValues.Order = loNone
-        Frame.InnerBrush.BackColor = clRed
-        Frame.InnerBrush.Gradient.EndColor = clGray
-        Frame.InnerBrush.Gradient.MidColor = clWhite
-        Frame.InnerBrush.Gradient.StartColor = 4210752
-        Frame.InnerBrush.Gradient.Visible = True
-        Frame.MiddleBrush.BackColor = clYellow
-        Frame.MiddleBrush.Gradient.EndColor = 8553090
-        Frame.MiddleBrush.Gradient.MidColor = clWhite
-        Frame.MiddleBrush.Gradient.StartColor = clGray
-        Frame.MiddleBrush.Gradient.Visible = True
-        Frame.OuterBrush.BackColor = clGreen
-        Frame.OuterBrush.Gradient.EndColor = 4210752
-        Frame.OuterBrush.Gradient.MidColor = clWhite
-        Frame.OuterBrush.Gradient.StartColor = clSilver
-        Frame.OuterBrush.Gradient.Visible = True
-        Frame.Width = 4
-        OtherSlice.Legend.Visible = False
-        Data = {0000000000}
-        Detail = {0000000000}
-      end
-    end
-    object graficoVendasNosUltimosDias: TChart
-      AlignWithMargins = True
-      Left = 36
-      Top = 5
-      Width = 860
-      Height = 397
-      Margins.Left = 5
-      Margins.Top = 5
-      Margins.Right = 5
-      Margins.Bottom = 5
-      MarginBottom = 0
-      MarginLeft = 0
-      MarginRight = 0
-      MarginTop = 0
-      Title.Font.Color = 4194304
-      Title.Font.Height = -28
-      Title.Font.Style = [fsBold]
-      Title.Text.Strings = (
-        'Pedidos nos ultimos dias')
-      Chart3DPercent = 5
-      Shadow.Color = clBlack
-      Shadow.HorizSize = 8
-      Shadow.VertSize = 8
-      Align = alRight
-      TabOrder = 1
-      DefaultCanvas = 'TGDIPlusCanvas'
-      ColorPaletteIndex = 13
-      object Series2: TBarSeries
-        HoverElement = []
-        Marks.Visible = False
-        SeriesColor = 4194304
-        XValues.Name = 'X'
-        XValues.Order = loAscending
-        YValues.Name = 'Bar'
-        YValues.Order = loNone
-        Data = {
-          060C000000000000000000000000000020FF070000004A616E6569726F000000
-          000000000000000020FF0900000046657665726569726F000000000000000000
-          000020FF050000004D6172E76F000000000000000000000020FF050000004162
-          72696C00000000000000000000A000FF040000004D61696F0000000000000000
-          0000A000FF050000004A756E686F00000000000000000000A000FF050000004A
-          756C686F00000000000000000000A000FF0600000041676F73746F0000000000
-          0000000080FF00FF08000000536574656D62726F00000000000000000080FF00
-          FF070000004F75747562726F00000000000000000080FF00FF080000004E6F76
-          656D62726F00000000000000000080FF00FF0800000044657A656D62726F}
       end
     end
   end
@@ -9033,12 +9034,13 @@ object FormHome: TFormHome
       ParentFont = False
     end
     object Shape84: TShape
-      Left = 364
-      Top = 45
-      Width = 2
+      Left = 417
+      Top = 43
+      Width = 3
       Height = 628
       Brush.Color = 6957870
       Pen.Color = 6957870
+      OnContextPopup = Shape84ContextPopup
     end
     object Image22: TImage
       Left = 0
@@ -9062,7 +9064,7 @@ object FormHome: TFormHome
         BC5A2042C7B179B66B21420043D281577A45293F7E4C0411803875D59E518055
         D22D5AD69A07205E509F1ECF2280B2C10A698472AD790DE204ED34994701FE2A
         3A800EE007DA4794219C6C6FCB0000000049454E44AE426082}
-      OnClick = imgFecharPageControlClick
+      OnClick = Image22Click
     end
     object PanelRelatorioFaturamento: TPanel
       Left = 21
@@ -9131,12 +9133,12 @@ object FormHome: TFormHome
       end
       object lblBtnRelFaturamento: TLabel
         AlignWithMargins = True
-        Left = 0
-        Top = 2
-        Width = 296
-        Height = 38
+        Left = 30
+        Top = 3
+        Width = 295
+        Height = 29
         Margins.Top = 30
-        Alignment = taRightJustify
+        Alignment = taCenter
         Caption = 'Relatorio de faturamento'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = 6957870
@@ -9148,10 +9150,10 @@ object FormHome: TFormHome
       end
     end
     object pnlFiltroFaturamento: TPanel
-      Left = 533
-      Top = 159
-      Width = 411
-      Height = 278
+      Left = 19
+      Top = 386
+      Width = 375
+      Height = 287
       BevelOuter = bvNone
       Color = clWhite
       ParentBackground = False
@@ -9160,15 +9162,15 @@ object FormHome: TFormHome
       object Shape85: TShape
         Left = 0
         Top = 0
-        Width = 411
-        Height = 278
+        Width = 375
+        Height = 287
         Align = alClient
         Brush.Color = clBtnFace
         Shape = stRoundRect
-        ExplicitLeft = 50
-        ExplicitTop = -31
-        ExplicitWidth = 65
-        ExplicitHeight = 65
+        ExplicitLeft = -105
+        ExplicitTop = -18
+        ExplicitWidth = 411
+        ExplicitHeight = 278
       end
       object Label49: TLabel
         AlignWithMargins = True
@@ -9188,8 +9190,8 @@ object FormHome: TFormHome
       end
       object Label51: TLabel
         AlignWithMargins = True
-        Left = 72
-        Top = 101
+        Left = 47
+        Top = 103
         Width = 46
         Height = 25
         Margins.Top = 30
@@ -9204,8 +9206,8 @@ object FormHome: TFormHome
       end
       object Label52: TLabel
         AlignWithMargins = True
-        Left = 71
-        Top = 59
+        Left = 47
+        Top = 55
         Width = 66
         Height = 25
         Margins.Top = 30
@@ -9220,8 +9222,8 @@ object FormHome: TFormHome
       end
       object Label54: TLabel
         AlignWithMargins = True
-        Left = 40
-        Top = 147
+        Left = 28
+        Top = 152
         Width = 319
         Height = 30
         Margins.Top = 30
@@ -9261,12 +9263,13 @@ object FormHome: TFormHome
         OnClick = imgFechaFIltroRelFatClick
       end
       object DateTimePickerFiltro: TDateTimePicker
-        Left = 168
-        Top = 105
+        Left = 149
+        Top = 106
         Width = 186
         Height = 25
         Date = 45967.000000000000000000
         Time = 0.472179236108786400
+        ShowCheckbox = True
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
@@ -9276,8 +9279,8 @@ object FormHome: TFormHome
         TabOrder = 0
       end
       object ComboBoxClienteFiltro: TComboBox
-        Left = 168
-        Top = 62
+        Left = 141
+        Top = 60
         Width = 186
         Height = 25
         Font.Charset = DEFAULT_CHARSET
@@ -9291,9 +9294,9 @@ object FormHome: TFormHome
       end
       object pnlConfRelFaturamento: TPanel
         AlignWithMargins = True
-        Left = 45
+        Left = 28
         Top = 216
-        Width = 316
+        Width = 319
         Height = 33
         Margins.Left = 50
         Margins.Right = 50
@@ -9303,7 +9306,7 @@ object FormHome: TFormHome
         object Shape83: TShape
           Left = 0
           Top = 0
-          Width = 316
+          Width = 319
           Height = 33
           Align = alClient
           Brush.Color = 6957870
@@ -9315,7 +9318,7 @@ object FormHome: TFormHome
         object lblBtnEmitirRelFaturamento: TLabel
           Left = 0
           Top = 0
-          Width = 316
+          Width = 319
           Height = 33
           Align = alClient
           Alignment = taCenter
@@ -9330,6 +9333,108 @@ object FormHome: TFormHome
           ExplicitWidth = 138
           ExplicitHeight = 25
         end
+      end
+    end
+    object Chart1: TChart
+      Left = 984
+      Top = 43
+      Width = 458
+      Height = 293
+      Title.Text.Strings = (
+        'TChart')
+      View3D = False
+      TabOrder = 2
+      DefaultCanvas = 'TGDIPlusCanvas'
+      ColorPaletteIndex = 13
+      object Series5: TBarSeries
+        HoverElement = []
+        XValues.Name = 'X'
+        XValues.Order = loAscending
+        YValues.Name = 'Bar'
+        YValues.Order = loNone
+      end
+    end
+    object Chart2: TChart
+      Left = 985
+      Top = 378
+      Width = 458
+      Height = 293
+      Title.Text.Strings = (
+        'TChart')
+      View3D = False
+      TabOrder = 3
+      DefaultCanvas = 'TGDIPlusCanvas'
+      ColorPaletteIndex = 13
+      object Series6: THorizBarSeries
+        HoverElement = []
+        BarBrush.Gradient.Direction = gdLeftRight
+        Gradient.Direction = gdLeftRight
+        XValues.Name = 'Bar'
+        XValues.Order = loNone
+        YValues.Name = 'Y'
+        YValues.Order = loAscending
+      end
+    end
+    object Chart3: TChart
+      Left = 446
+      Top = 380
+      Width = 458
+      Height = 293
+      Title.Text.Strings = (
+        'TChart')
+      View3D = False
+      TabOrder = 4
+      DefaultCanvas = 'TGDIPlusCanvas'
+      ColorPaletteIndex = 13
+      object Series4: TLineSeries
+        HoverElement = [heCurrent]
+        Brush.BackColor = clDefault
+        Pointer.InflateMargins = True
+        Pointer.Style = psRectangle
+        XValues.Name = 'X'
+        XValues.Order = loAscending
+        YValues.Name = 'Y'
+        YValues.Order = loNone
+      end
+    end
+    object Chart4: TChart
+      Left = 442
+      Top = 46
+      Width = 458
+      Height = 293
+      Title.Text.Strings = (
+        'TChart')
+      View3D = False
+      View3DOptions.Elevation = 315
+      View3DOptions.Orthogonal = False
+      View3DOptions.Perspective = 0
+      View3DOptions.Rotation = 360
+      TabOrder = 5
+      DefaultCanvas = 'TGDIPlusCanvas'
+      ColorPaletteIndex = 13
+      object Series3: TPieSeries
+        HoverElement = []
+        Marks.Tail.Margin = 2
+        XValues.Order = loAscending
+        YValues.Name = 'Pie'
+        YValues.Order = loNone
+        Frame.InnerBrush.BackColor = clRed
+        Frame.InnerBrush.Gradient.EndColor = clGray
+        Frame.InnerBrush.Gradient.MidColor = clWhite
+        Frame.InnerBrush.Gradient.StartColor = 4210752
+        Frame.InnerBrush.Gradient.Visible = True
+        Frame.MiddleBrush.BackColor = clYellow
+        Frame.MiddleBrush.Gradient.EndColor = 8553090
+        Frame.MiddleBrush.Gradient.MidColor = clWhite
+        Frame.MiddleBrush.Gradient.StartColor = clGray
+        Frame.MiddleBrush.Gradient.Visible = True
+        Frame.OuterBrush.BackColor = clGreen
+        Frame.OuterBrush.Gradient.EndColor = 4210752
+        Frame.OuterBrush.Gradient.MidColor = clWhite
+        Frame.OuterBrush.Gradient.StartColor = clSilver
+        Frame.OuterBrush.Gradient.Visible = True
+        Frame.Width = 4
+        OtherSlice.Legend.Visible = False
       end
     end
   end
