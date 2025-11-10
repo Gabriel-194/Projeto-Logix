@@ -316,7 +316,7 @@ begin
     FDQuery.ParamByName('id_carregamento').AsInteger := aIdCarregamento;
     FDQuery.ExecSQL;
 
-    FDQuery.SQL.Text :='UPDATE pedido SET status = ''Em preparo'' data_atualizacao = Now() WHERE id_pedido = :id_pedido';
+    FDQuery.SQL.Text :='UPDATE pedido SET status = ''Em preparo'', data_atualizacao = Now() WHERE id_pedido = :id_pedido';
     FDQuery.ParamByName('id_pedido').AsInteger := aIdpedido;
     FDQuery.ExecSQL;
 

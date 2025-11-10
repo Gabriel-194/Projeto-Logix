@@ -25,6 +25,16 @@ uses
     FDQueryFaturamentototal_geral: TFMTBCDField;
     FDQueryFaturamentoid_pedido: TIntegerField;
     FDQueryFaturamentovalor_pedido: TFMTBCDField;
+    FDQueryTimeCarreg: TFDQuery;
+    frxReportTimeCarreg: TfrxReport;
+    frxDBDatasetTimeCarreg: TfrxDBDataset;
+    FDQueryTimeCarregid_carregador: TIntegerField;
+    FDQueryTimeCarregnome_carregador: TWideStringField;
+    FDQueryTimeCarregid_carregamento: TIntegerField;
+    FDQueryTimeCarregdata_hora_inicio: TSQLTimeStampField;
+    FDQueryTimeCarregdata_hora_fim: TSQLTimeStampField;
+    FDQueryTimeCarregtempo_hh_mm: TWideMemoField;
+    FDQueryTimeCarregmedia_geral_hh_mm: TWideMemoField;
     procedure DataModuleCreate(Sender: TObject);
   end;
 

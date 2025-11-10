@@ -51,7 +51,8 @@ CREATE TABLE IF NOT EXISTS {schema}.pedido (
   preco DECIMAL(10,2),
   id_transportadora INT NOT NULL REFERENCES public.transportadora(id),
   status VARCHAR(20) DEFAULT 'confirmado',
-  ativo boolean default true
+  ativo boolean default true,
+  data_atualizacao TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS {schema}.carregamento (

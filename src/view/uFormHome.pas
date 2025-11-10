@@ -455,6 +455,12 @@ type
     Series3: TPieSeries;
     Series5: TBarSeries;
     Series6: THorizBarSeries;
+    Panel4: TPanel;
+    Image26: TImage;
+    Label47: TLabel;
+    Panel5: TPanel;
+    Image27: TImage;
+    Label53: TLabel;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);

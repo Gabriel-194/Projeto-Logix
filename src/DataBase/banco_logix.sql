@@ -2,26 +2,25 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 17.4
--- Dumped by pg_dump version 17.4
+-- Dumped from database version 17.5
+-- Dumped by pg_dump version 17.5
 
--- Started on 2025-11-04 17:18:10
+-- Started on 2025-11-10 11:29:57
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
 SET transaction_timeout = 0;
 SET client_encoding = 'UTF8';
-SET standard_conforming_strings = off;
+SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
-SET escape_string_warning = off;
 SET row_security = off;
 
 --
--- TOC entry 7 (class 2615 OID 84082)
+-- TOC entry 5 (class 2615 OID 42492)
 -- Name: expresso_vanguarda; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -31,7 +30,7 @@ CREATE SCHEMA expresso_vanguarda;
 ALTER SCHEMA expresso_vanguarda OWNER TO postgres;
 
 --
--- TOC entry 9 (class 2615 OID 84330)
+-- TOC entry 6 (class 2615 OID 42493)
 -- Name: max_transportes; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -41,7 +40,7 @@ CREATE SCHEMA max_transportes;
 ALTER SCHEMA max_transportes OWNER TO postgres;
 
 --
--- TOC entry 5 (class 2615 OID 83871)
+-- TOC entry 9 (class 2615 OID 2200)
 -- Name: public; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -52,7 +51,7 @@ ALTER SCHEMA public OWNER TO postgres;
 
 --
 -- TOC entry 5331 (class 0 OID 0)
--- Dependencies: 5
+-- Dependencies: 9
 -- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
 --
 
@@ -60,7 +59,7 @@ COMMENT ON SCHEMA public IS '';
 
 
 --
--- TOC entry 6 (class 2615 OID 83958)
+-- TOC entry 7 (class 2615 OID 42494)
 -- Name: rota_certa_logistica; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -70,7 +69,7 @@ CREATE SCHEMA rota_certa_logistica;
 ALTER SCHEMA rota_certa_logistica OWNER TO postgres;
 
 --
--- TOC entry 8 (class 2615 OID 84206)
+-- TOC entry 8 (class 2615 OID 42495)
 -- Name: transportadora_xpto; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -84,7 +83,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 250 (class 1259 OID 84135)
+-- TOC entry 221 (class 1259 OID 42496)
 -- Name: carregamento; Type: TABLE; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -104,7 +103,7 @@ CREATE TABLE expresso_vanguarda.carregamento (
 ALTER TABLE expresso_vanguarda.carregamento OWNER TO postgres;
 
 --
--- TOC entry 249 (class 1259 OID 84134)
+-- TOC entry 222 (class 1259 OID 42502)
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -121,7 +120,7 @@ ALTER SEQUENCE expresso_vanguarda.carregamento_id_carregamento_seq OWNER TO post
 
 --
 -- TOC entry 5333 (class 0 OID 0)
--- Dependencies: 249
+-- Dependencies: 222
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE OWNED BY; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -129,7 +128,7 @@ ALTER SEQUENCE expresso_vanguarda.carregamento_id_carregamento_seq OWNED BY expr
 
 
 --
--- TOC entry 254 (class 1259 OID 84185)
+-- TOC entry 223 (class 1259 OID 42503)
 -- Name: mensagemcliente; Type: TABLE; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -146,7 +145,7 @@ CREATE TABLE expresso_vanguarda.mensagemcliente (
 ALTER TABLE expresso_vanguarda.mensagemcliente OWNER TO postgres;
 
 --
--- TOC entry 253 (class 1259 OID 84184)
+-- TOC entry 224 (class 1259 OID 42506)
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -163,7 +162,7 @@ ALTER SEQUENCE expresso_vanguarda.mensagemcliente_id_mensagem_seq OWNER TO postg
 
 --
 -- TOC entry 5334 (class 0 OID 0)
--- Dependencies: 253
+-- Dependencies: 224
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE OWNED BY; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -171,7 +170,7 @@ ALTER SEQUENCE expresso_vanguarda.mensagemcliente_id_mensagem_seq OWNED BY expre
 
 
 --
--- TOC entry 248 (class 1259 OID 84110)
+-- TOC entry 225 (class 1259 OID 42507)
 -- Name: pedido; Type: TABLE; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -195,14 +194,15 @@ CREATE TABLE expresso_vanguarda.pedido (
     preco numeric(10,2),
     id_transportadora integer NOT NULL,
     status character varying(20) DEFAULT 'confirmado'::character varying,
-    ativo boolean DEFAULT true
+    ativo boolean DEFAULT true,
+    data_atualizacao timestamp without time zone
 );
 
 
 ALTER TABLE expresso_vanguarda.pedido OWNER TO postgres;
 
 --
--- TOC entry 247 (class 1259 OID 84109)
+-- TOC entry 226 (class 1259 OID 42513)
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -219,7 +219,7 @@ ALTER SEQUENCE expresso_vanguarda.pedido_id_pedido_seq OWNER TO postgres;
 
 --
 -- TOC entry 5335 (class 0 OID 0)
--- Dependencies: 247
+-- Dependencies: 226
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE OWNED BY; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -227,7 +227,7 @@ ALTER SEQUENCE expresso_vanguarda.pedido_id_pedido_seq OWNED BY expresso_vanguar
 
 
 --
--- TOC entry 246 (class 1259 OID 84096)
+-- TOC entry 227 (class 1259 OID 42514)
 -- Name: tipo_carga; Type: TABLE; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -242,7 +242,7 @@ CREATE TABLE expresso_vanguarda.tipo_carga (
 ALTER TABLE expresso_vanguarda.tipo_carga OWNER TO postgres;
 
 --
--- TOC entry 245 (class 1259 OID 84095)
+-- TOC entry 228 (class 1259 OID 42517)
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -259,7 +259,7 @@ ALTER SEQUENCE expresso_vanguarda.tipo_carga_id_carga_seq OWNER TO postgres;
 
 --
 -- TOC entry 5336 (class 0 OID 0)
--- Dependencies: 245
+-- Dependencies: 228
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE OWNED BY; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -267,7 +267,7 @@ ALTER SEQUENCE expresso_vanguarda.tipo_carga_id_carga_seq OWNED BY expresso_vang
 
 
 --
--- TOC entry 244 (class 1259 OID 84084)
+-- TOC entry 229 (class 1259 OID 42518)
 -- Name: veiculo; Type: TABLE; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -289,7 +289,7 @@ CREATE TABLE expresso_vanguarda.veiculo (
 ALTER TABLE expresso_vanguarda.veiculo OWNER TO postgres;
 
 --
--- TOC entry 243 (class 1259 OID 84083)
+-- TOC entry 230 (class 1259 OID 42524)
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -306,7 +306,7 @@ ALTER SEQUENCE expresso_vanguarda.veiculo_id_veiculo_seq OWNER TO postgres;
 
 --
 -- TOC entry 5337 (class 0 OID 0)
--- Dependencies: 243
+-- Dependencies: 230
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE OWNED BY; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -314,7 +314,7 @@ ALTER SEQUENCE expresso_vanguarda.veiculo_id_veiculo_seq OWNED BY expresso_vangu
 
 
 --
--- TOC entry 252 (class 1259 OID 84160)
+-- TOC entry 231 (class 1259 OID 42525)
 -- Name: viagem; Type: TABLE; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -335,7 +335,7 @@ CREATE TABLE expresso_vanguarda.viagem (
 ALTER TABLE expresso_vanguarda.viagem OWNER TO postgres;
 
 --
--- TOC entry 251 (class 1259 OID 84159)
+-- TOC entry 232 (class 1259 OID 42531)
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -352,7 +352,7 @@ ALTER SEQUENCE expresso_vanguarda.viagem_id_viagem_seq OWNER TO postgres;
 
 --
 -- TOC entry 5338 (class 0 OID 0)
--- Dependencies: 251
+-- Dependencies: 232
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE OWNED BY; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -360,7 +360,7 @@ ALTER SEQUENCE expresso_vanguarda.viagem_id_viagem_seq OWNED BY expresso_vanguar
 
 
 --
--- TOC entry 274 (class 1259 OID 84383)
+-- TOC entry 233 (class 1259 OID 42532)
 -- Name: carregamento; Type: TABLE; Schema: max_transportes; Owner: postgres
 --
 
@@ -380,7 +380,7 @@ CREATE TABLE max_transportes.carregamento (
 ALTER TABLE max_transportes.carregamento OWNER TO postgres;
 
 --
--- TOC entry 273 (class 1259 OID 84382)
+-- TOC entry 234 (class 1259 OID 42538)
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE; Schema: max_transportes; Owner: postgres
 --
 
@@ -397,7 +397,7 @@ ALTER SEQUENCE max_transportes.carregamento_id_carregamento_seq OWNER TO postgre
 
 --
 -- TOC entry 5339 (class 0 OID 0)
--- Dependencies: 273
+-- Dependencies: 234
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE OWNED BY; Schema: max_transportes; Owner: postgres
 --
 
@@ -405,7 +405,7 @@ ALTER SEQUENCE max_transportes.carregamento_id_carregamento_seq OWNED BY max_tra
 
 
 --
--- TOC entry 278 (class 1259 OID 84433)
+-- TOC entry 235 (class 1259 OID 42539)
 -- Name: mensagemcliente; Type: TABLE; Schema: max_transportes; Owner: postgres
 --
 
@@ -422,7 +422,7 @@ CREATE TABLE max_transportes.mensagemcliente (
 ALTER TABLE max_transportes.mensagemcliente OWNER TO postgres;
 
 --
--- TOC entry 277 (class 1259 OID 84432)
+-- TOC entry 236 (class 1259 OID 42542)
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE; Schema: max_transportes; Owner: postgres
 --
 
@@ -439,7 +439,7 @@ ALTER SEQUENCE max_transportes.mensagemcliente_id_mensagem_seq OWNER TO postgres
 
 --
 -- TOC entry 5340 (class 0 OID 0)
--- Dependencies: 277
+-- Dependencies: 236
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE OWNED BY; Schema: max_transportes; Owner: postgres
 --
 
@@ -447,7 +447,7 @@ ALTER SEQUENCE max_transportes.mensagemcliente_id_mensagem_seq OWNED BY max_tran
 
 
 --
--- TOC entry 272 (class 1259 OID 84358)
+-- TOC entry 237 (class 1259 OID 42543)
 -- Name: pedido; Type: TABLE; Schema: max_transportes; Owner: postgres
 --
 
@@ -471,14 +471,15 @@ CREATE TABLE max_transportes.pedido (
     preco numeric(10,2),
     id_transportadora integer NOT NULL,
     status character varying(20) DEFAULT 'confirmado'::character varying,
-    ativo boolean DEFAULT true
+    ativo boolean DEFAULT true,
+    data_atualizacao timestamp without time zone
 );
 
 
 ALTER TABLE max_transportes.pedido OWNER TO postgres;
 
 --
--- TOC entry 271 (class 1259 OID 84357)
+-- TOC entry 238 (class 1259 OID 42549)
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE; Schema: max_transportes; Owner: postgres
 --
 
@@ -495,7 +496,7 @@ ALTER SEQUENCE max_transportes.pedido_id_pedido_seq OWNER TO postgres;
 
 --
 -- TOC entry 5341 (class 0 OID 0)
--- Dependencies: 271
+-- Dependencies: 238
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE OWNED BY; Schema: max_transportes; Owner: postgres
 --
 
@@ -503,7 +504,7 @@ ALTER SEQUENCE max_transportes.pedido_id_pedido_seq OWNED BY max_transportes.ped
 
 
 --
--- TOC entry 270 (class 1259 OID 84344)
+-- TOC entry 239 (class 1259 OID 42550)
 -- Name: tipo_carga; Type: TABLE; Schema: max_transportes; Owner: postgres
 --
 
@@ -518,7 +519,7 @@ CREATE TABLE max_transportes.tipo_carga (
 ALTER TABLE max_transportes.tipo_carga OWNER TO postgres;
 
 --
--- TOC entry 269 (class 1259 OID 84343)
+-- TOC entry 240 (class 1259 OID 42553)
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE; Schema: max_transportes; Owner: postgres
 --
 
@@ -535,7 +536,7 @@ ALTER SEQUENCE max_transportes.tipo_carga_id_carga_seq OWNER TO postgres;
 
 --
 -- TOC entry 5342 (class 0 OID 0)
--- Dependencies: 269
+-- Dependencies: 240
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE OWNED BY; Schema: max_transportes; Owner: postgres
 --
 
@@ -543,7 +544,7 @@ ALTER SEQUENCE max_transportes.tipo_carga_id_carga_seq OWNED BY max_transportes.
 
 
 --
--- TOC entry 268 (class 1259 OID 84332)
+-- TOC entry 241 (class 1259 OID 42554)
 -- Name: veiculo; Type: TABLE; Schema: max_transportes; Owner: postgres
 --
 
@@ -565,7 +566,7 @@ CREATE TABLE max_transportes.veiculo (
 ALTER TABLE max_transportes.veiculo OWNER TO postgres;
 
 --
--- TOC entry 267 (class 1259 OID 84331)
+-- TOC entry 242 (class 1259 OID 42560)
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE; Schema: max_transportes; Owner: postgres
 --
 
@@ -582,7 +583,7 @@ ALTER SEQUENCE max_transportes.veiculo_id_veiculo_seq OWNER TO postgres;
 
 --
 -- TOC entry 5343 (class 0 OID 0)
--- Dependencies: 267
+-- Dependencies: 242
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE OWNED BY; Schema: max_transportes; Owner: postgres
 --
 
@@ -590,7 +591,7 @@ ALTER SEQUENCE max_transportes.veiculo_id_veiculo_seq OWNED BY max_transportes.v
 
 
 --
--- TOC entry 276 (class 1259 OID 84408)
+-- TOC entry 243 (class 1259 OID 42561)
 -- Name: viagem; Type: TABLE; Schema: max_transportes; Owner: postgres
 --
 
@@ -611,7 +612,7 @@ CREATE TABLE max_transportes.viagem (
 ALTER TABLE max_transportes.viagem OWNER TO postgres;
 
 --
--- TOC entry 275 (class 1259 OID 84407)
+-- TOC entry 244 (class 1259 OID 42567)
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE; Schema: max_transportes; Owner: postgres
 --
 
@@ -628,7 +629,7 @@ ALTER SEQUENCE max_transportes.viagem_id_viagem_seq OWNER TO postgres;
 
 --
 -- TOC entry 5344 (class 0 OID 0)
--- Dependencies: 275
+-- Dependencies: 244
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE OWNED BY; Schema: max_transportes; Owner: postgres
 --
 
@@ -636,7 +637,7 @@ ALTER SEQUENCE max_transportes.viagem_id_viagem_seq OWNED BY max_transportes.via
 
 
 --
--- TOC entry 230 (class 1259 OID 83942)
+-- TOC entry 245 (class 1259 OID 42568)
 -- Name: cliente; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -661,7 +662,7 @@ CREATE TABLE public.cliente (
 ALTER TABLE public.cliente OWNER TO postgres;
 
 --
--- TOC entry 229 (class 1259 OID 83941)
+-- TOC entry 246 (class 1259 OID 42576)
 -- Name: cliente_id_cliente_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -678,7 +679,7 @@ ALTER SEQUENCE public.cliente_id_cliente_seq OWNER TO postgres;
 
 --
 -- TOC entry 5345 (class 0 OID 0)
--- Dependencies: 229
+-- Dependencies: 246
 -- Name: cliente_id_cliente_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -686,7 +687,7 @@ ALTER SEQUENCE public.cliente_id_cliente_seq OWNED BY public.cliente.id_cliente;
 
 
 --
--- TOC entry 224 (class 1259 OID 83889)
+-- TOC entry 247 (class 1259 OID 42577)
 -- Name: grupo; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -699,7 +700,7 @@ CREATE TABLE public.grupo (
 ALTER TABLE public.grupo OWNER TO postgres;
 
 --
--- TOC entry 223 (class 1259 OID 83888)
+-- TOC entry 248 (class 1259 OID 42580)
 -- Name: grupo_id_grupo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -716,7 +717,7 @@ ALTER SEQUENCE public.grupo_id_grupo_seq OWNER TO postgres;
 
 --
 -- TOC entry 5346 (class 0 OID 0)
--- Dependencies: 223
+-- Dependencies: 248
 -- Name: grupo_id_grupo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -724,7 +725,7 @@ ALTER SEQUENCE public.grupo_id_grupo_seq OWNED BY public.grupo.id_grupo;
 
 
 --
--- TOC entry 228 (class 1259 OID 83924)
+-- TOC entry 249 (class 1259 OID 42581)
 -- Name: motorista; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -742,7 +743,7 @@ CREATE TABLE public.motorista (
 ALTER TABLE public.motorista OWNER TO postgres;
 
 --
--- TOC entry 227 (class 1259 OID 83923)
+-- TOC entry 250 (class 1259 OID 42586)
 -- Name: motorista_id_motorista_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -759,7 +760,7 @@ ALTER SEQUENCE public.motorista_id_motorista_seq OWNER TO postgres;
 
 --
 -- TOC entry 5347 (class 0 OID 0)
--- Dependencies: 227
+-- Dependencies: 250
 -- Name: motorista_id_motorista_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -767,7 +768,7 @@ ALTER SEQUENCE public.motorista_id_motorista_seq OWNED BY public.motorista.id_mo
 
 
 --
--- TOC entry 222 (class 1259 OID 83873)
+-- TOC entry 251 (class 1259 OID 42587)
 -- Name: transportadora; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -788,7 +789,7 @@ CREATE TABLE public.transportadora (
 ALTER TABLE public.transportadora OWNER TO postgres;
 
 --
--- TOC entry 221 (class 1259 OID 83872)
+-- TOC entry 252 (class 1259 OID 42593)
 -- Name: transportadora_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -805,7 +806,7 @@ ALTER SEQUENCE public.transportadora_id_seq OWNER TO postgres;
 
 --
 -- TOC entry 5348 (class 0 OID 0)
--- Dependencies: 221
+-- Dependencies: 252
 -- Name: transportadora_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -813,7 +814,7 @@ ALTER SEQUENCE public.transportadora_id_seq OWNED BY public.transportadora.id;
 
 
 --
--- TOC entry 226 (class 1259 OID 83898)
+-- TOC entry 253 (class 1259 OID 42594)
 -- Name: usuarios; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -836,7 +837,7 @@ CREATE TABLE public.usuarios (
 ALTER TABLE public.usuarios OWNER TO postgres;
 
 --
--- TOC entry 225 (class 1259 OID 83897)
+-- TOC entry 254 (class 1259 OID 42602)
 -- Name: usuarios_id_usuario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -853,7 +854,7 @@ ALTER SEQUENCE public.usuarios_id_usuario_seq OWNER TO postgres;
 
 --
 -- TOC entry 5349 (class 0 OID 0)
--- Dependencies: 225
+-- Dependencies: 254
 -- Name: usuarios_id_usuario_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -861,7 +862,7 @@ ALTER SEQUENCE public.usuarios_id_usuario_seq OWNED BY public.usuarios.id_usuari
 
 
 --
--- TOC entry 238 (class 1259 OID 84011)
+-- TOC entry 255 (class 1259 OID 42603)
 -- Name: carregamento; Type: TABLE; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -881,7 +882,7 @@ CREATE TABLE rota_certa_logistica.carregamento (
 ALTER TABLE rota_certa_logistica.carregamento OWNER TO postgres;
 
 --
--- TOC entry 237 (class 1259 OID 84010)
+-- TOC entry 256 (class 1259 OID 42609)
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -898,7 +899,7 @@ ALTER SEQUENCE rota_certa_logistica.carregamento_id_carregamento_seq OWNER TO po
 
 --
 -- TOC entry 5350 (class 0 OID 0)
--- Dependencies: 237
+-- Dependencies: 256
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE OWNED BY; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -906,7 +907,7 @@ ALTER SEQUENCE rota_certa_logistica.carregamento_id_carregamento_seq OWNED BY ro
 
 
 --
--- TOC entry 242 (class 1259 OID 84061)
+-- TOC entry 257 (class 1259 OID 42610)
 -- Name: mensagemcliente; Type: TABLE; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -923,7 +924,7 @@ CREATE TABLE rota_certa_logistica.mensagemcliente (
 ALTER TABLE rota_certa_logistica.mensagemcliente OWNER TO postgres;
 
 --
--- TOC entry 241 (class 1259 OID 84060)
+-- TOC entry 258 (class 1259 OID 42613)
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -940,7 +941,7 @@ ALTER SEQUENCE rota_certa_logistica.mensagemcliente_id_mensagem_seq OWNER TO pos
 
 --
 -- TOC entry 5351 (class 0 OID 0)
--- Dependencies: 241
+-- Dependencies: 258
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE OWNED BY; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -948,7 +949,7 @@ ALTER SEQUENCE rota_certa_logistica.mensagemcliente_id_mensagem_seq OWNED BY rot
 
 
 --
--- TOC entry 236 (class 1259 OID 83986)
+-- TOC entry 259 (class 1259 OID 42614)
 -- Name: pedido; Type: TABLE; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -972,14 +973,15 @@ CREATE TABLE rota_certa_logistica.pedido (
     preco numeric(10,2),
     id_transportadora integer NOT NULL,
     status character varying(20) DEFAULT 'confirmado'::character varying,
-    ativo boolean DEFAULT true
+    ativo boolean DEFAULT true,
+    data_atualizacao timestamp without time zone
 );
 
 
 ALTER TABLE rota_certa_logistica.pedido OWNER TO postgres;
 
 --
--- TOC entry 235 (class 1259 OID 83985)
+-- TOC entry 260 (class 1259 OID 42620)
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -996,7 +998,7 @@ ALTER SEQUENCE rota_certa_logistica.pedido_id_pedido_seq OWNER TO postgres;
 
 --
 -- TOC entry 5352 (class 0 OID 0)
--- Dependencies: 235
+-- Dependencies: 260
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE OWNED BY; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -1004,7 +1006,7 @@ ALTER SEQUENCE rota_certa_logistica.pedido_id_pedido_seq OWNED BY rota_certa_log
 
 
 --
--- TOC entry 234 (class 1259 OID 83972)
+-- TOC entry 261 (class 1259 OID 42621)
 -- Name: tipo_carga; Type: TABLE; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -1019,7 +1021,7 @@ CREATE TABLE rota_certa_logistica.tipo_carga (
 ALTER TABLE rota_certa_logistica.tipo_carga OWNER TO postgres;
 
 --
--- TOC entry 233 (class 1259 OID 83971)
+-- TOC entry 262 (class 1259 OID 42624)
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -1036,7 +1038,7 @@ ALTER SEQUENCE rota_certa_logistica.tipo_carga_id_carga_seq OWNER TO postgres;
 
 --
 -- TOC entry 5353 (class 0 OID 0)
--- Dependencies: 233
+-- Dependencies: 262
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE OWNED BY; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -1044,7 +1046,7 @@ ALTER SEQUENCE rota_certa_logistica.tipo_carga_id_carga_seq OWNED BY rota_certa_
 
 
 --
--- TOC entry 232 (class 1259 OID 83960)
+-- TOC entry 263 (class 1259 OID 42625)
 -- Name: veiculo; Type: TABLE; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -1066,7 +1068,7 @@ CREATE TABLE rota_certa_logistica.veiculo (
 ALTER TABLE rota_certa_logistica.veiculo OWNER TO postgres;
 
 --
--- TOC entry 231 (class 1259 OID 83959)
+-- TOC entry 264 (class 1259 OID 42631)
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -1083,7 +1085,7 @@ ALTER SEQUENCE rota_certa_logistica.veiculo_id_veiculo_seq OWNER TO postgres;
 
 --
 -- TOC entry 5354 (class 0 OID 0)
--- Dependencies: 231
+-- Dependencies: 264
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE OWNED BY; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -1091,7 +1093,7 @@ ALTER SEQUENCE rota_certa_logistica.veiculo_id_veiculo_seq OWNED BY rota_certa_l
 
 
 --
--- TOC entry 240 (class 1259 OID 84036)
+-- TOC entry 265 (class 1259 OID 42632)
 -- Name: viagem; Type: TABLE; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -1112,7 +1114,7 @@ CREATE TABLE rota_certa_logistica.viagem (
 ALTER TABLE rota_certa_logistica.viagem OWNER TO postgres;
 
 --
--- TOC entry 239 (class 1259 OID 84035)
+-- TOC entry 266 (class 1259 OID 42638)
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -1129,7 +1131,7 @@ ALTER SEQUENCE rota_certa_logistica.viagem_id_viagem_seq OWNER TO postgres;
 
 --
 -- TOC entry 5355 (class 0 OID 0)
--- Dependencies: 239
+-- Dependencies: 266
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE OWNED BY; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -1137,7 +1139,7 @@ ALTER SEQUENCE rota_certa_logistica.viagem_id_viagem_seq OWNED BY rota_certa_log
 
 
 --
--- TOC entry 262 (class 1259 OID 84259)
+-- TOC entry 267 (class 1259 OID 42639)
 -- Name: carregamento; Type: TABLE; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1157,7 +1159,7 @@ CREATE TABLE transportadora_xpto.carregamento (
 ALTER TABLE transportadora_xpto.carregamento OWNER TO postgres;
 
 --
--- TOC entry 261 (class 1259 OID 84258)
+-- TOC entry 268 (class 1259 OID 42645)
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1174,7 +1176,7 @@ ALTER SEQUENCE transportadora_xpto.carregamento_id_carregamento_seq OWNER TO pos
 
 --
 -- TOC entry 5356 (class 0 OID 0)
--- Dependencies: 261
+-- Dependencies: 268
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE OWNED BY; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1182,7 +1184,7 @@ ALTER SEQUENCE transportadora_xpto.carregamento_id_carregamento_seq OWNED BY tra
 
 
 --
--- TOC entry 266 (class 1259 OID 84309)
+-- TOC entry 269 (class 1259 OID 42646)
 -- Name: mensagemcliente; Type: TABLE; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1199,7 +1201,7 @@ CREATE TABLE transportadora_xpto.mensagemcliente (
 ALTER TABLE transportadora_xpto.mensagemcliente OWNER TO postgres;
 
 --
--- TOC entry 265 (class 1259 OID 84308)
+-- TOC entry 270 (class 1259 OID 42649)
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1216,7 +1218,7 @@ ALTER SEQUENCE transportadora_xpto.mensagemcliente_id_mensagem_seq OWNER TO post
 
 --
 -- TOC entry 5357 (class 0 OID 0)
--- Dependencies: 265
+-- Dependencies: 270
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE OWNED BY; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1224,7 +1226,7 @@ ALTER SEQUENCE transportadora_xpto.mensagemcliente_id_mensagem_seq OWNED BY tran
 
 
 --
--- TOC entry 260 (class 1259 OID 84234)
+-- TOC entry 271 (class 1259 OID 42650)
 -- Name: pedido; Type: TABLE; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1248,14 +1250,15 @@ CREATE TABLE transportadora_xpto.pedido (
     preco numeric(10,2),
     id_transportadora integer NOT NULL,
     status character varying(20) DEFAULT 'confirmado'::character varying,
-    ativo boolean DEFAULT true
+    ativo boolean DEFAULT true,
+    data_atualizacao timestamp without time zone
 );
 
 
 ALTER TABLE transportadora_xpto.pedido OWNER TO postgres;
 
 --
--- TOC entry 259 (class 1259 OID 84233)
+-- TOC entry 272 (class 1259 OID 42656)
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1272,7 +1275,7 @@ ALTER SEQUENCE transportadora_xpto.pedido_id_pedido_seq OWNER TO postgres;
 
 --
 -- TOC entry 5358 (class 0 OID 0)
--- Dependencies: 259
+-- Dependencies: 272
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE OWNED BY; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1280,7 +1283,7 @@ ALTER SEQUENCE transportadora_xpto.pedido_id_pedido_seq OWNED BY transportadora_
 
 
 --
--- TOC entry 258 (class 1259 OID 84220)
+-- TOC entry 273 (class 1259 OID 42657)
 -- Name: tipo_carga; Type: TABLE; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1295,7 +1298,7 @@ CREATE TABLE transportadora_xpto.tipo_carga (
 ALTER TABLE transportadora_xpto.tipo_carga OWNER TO postgres;
 
 --
--- TOC entry 257 (class 1259 OID 84219)
+-- TOC entry 274 (class 1259 OID 42660)
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1312,7 +1315,7 @@ ALTER SEQUENCE transportadora_xpto.tipo_carga_id_carga_seq OWNER TO postgres;
 
 --
 -- TOC entry 5359 (class 0 OID 0)
--- Dependencies: 257
+-- Dependencies: 274
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE OWNED BY; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1320,7 +1323,7 @@ ALTER SEQUENCE transportadora_xpto.tipo_carga_id_carga_seq OWNED BY transportado
 
 
 --
--- TOC entry 256 (class 1259 OID 84208)
+-- TOC entry 275 (class 1259 OID 42661)
 -- Name: veiculo; Type: TABLE; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1342,7 +1345,7 @@ CREATE TABLE transportadora_xpto.veiculo (
 ALTER TABLE transportadora_xpto.veiculo OWNER TO postgres;
 
 --
--- TOC entry 255 (class 1259 OID 84207)
+-- TOC entry 276 (class 1259 OID 42667)
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1359,7 +1362,7 @@ ALTER SEQUENCE transportadora_xpto.veiculo_id_veiculo_seq OWNER TO postgres;
 
 --
 -- TOC entry 5360 (class 0 OID 0)
--- Dependencies: 255
+-- Dependencies: 276
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE OWNED BY; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1367,7 +1370,7 @@ ALTER SEQUENCE transportadora_xpto.veiculo_id_veiculo_seq OWNED BY transportador
 
 
 --
--- TOC entry 264 (class 1259 OID 84284)
+-- TOC entry 277 (class 1259 OID 42668)
 -- Name: viagem; Type: TABLE; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1388,7 +1391,7 @@ CREATE TABLE transportadora_xpto.viagem (
 ALTER TABLE transportadora_xpto.viagem OWNER TO postgres;
 
 --
--- TOC entry 263 (class 1259 OID 84283)
+-- TOC entry 278 (class 1259 OID 42674)
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1405,7 +1408,7 @@ ALTER SEQUENCE transportadora_xpto.viagem_id_viagem_seq OWNER TO postgres;
 
 --
 -- TOC entry 5361 (class 0 OID 0)
--- Dependencies: 263
+-- Dependencies: 278
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE OWNED BY; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1413,7 +1416,7 @@ ALTER SEQUENCE transportadora_xpto.viagem_id_viagem_seq OWNED BY transportadora_
 
 
 --
--- TOC entry 4929 (class 2604 OID 84138)
+-- TOC entry 4886 (class 2604 OID 42675)
 -- Name: carregamento id_carregamento; Type: DEFAULT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -1421,7 +1424,7 @@ ALTER TABLE ONLY expresso_vanguarda.carregamento ALTER COLUMN id_carregamento SE
 
 
 --
--- TOC entry 4937 (class 2604 OID 84188)
+-- TOC entry 4890 (class 2604 OID 42676)
 -- Name: mensagemcliente id_mensagem; Type: DEFAULT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -1429,7 +1432,7 @@ ALTER TABLE ONLY expresso_vanguarda.mensagemcliente ALTER COLUMN id_mensagem SET
 
 
 --
--- TOC entry 4925 (class 2604 OID 84113)
+-- TOC entry 4891 (class 2604 OID 42677)
 -- Name: pedido id_pedido; Type: DEFAULT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -1437,7 +1440,7 @@ ALTER TABLE ONLY expresso_vanguarda.pedido ALTER COLUMN id_pedido SET DEFAULT ne
 
 
 --
--- TOC entry 4924 (class 2604 OID 84099)
+-- TOC entry 4895 (class 2604 OID 42678)
 -- Name: tipo_carga id_carga; Type: DEFAULT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -1445,7 +1448,7 @@ ALTER TABLE ONLY expresso_vanguarda.tipo_carga ALTER COLUMN id_carga SET DEFAULT
 
 
 --
--- TOC entry 4920 (class 2604 OID 84087)
+-- TOC entry 4896 (class 2604 OID 42679)
 -- Name: veiculo id_veiculo; Type: DEFAULT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -1453,7 +1456,7 @@ ALTER TABLE ONLY expresso_vanguarda.veiculo ALTER COLUMN id_veiculo SET DEFAULT 
 
 
 --
--- TOC entry 4933 (class 2604 OID 84163)
+-- TOC entry 4900 (class 2604 OID 42680)
 -- Name: viagem id_viagem; Type: DEFAULT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -1461,7 +1464,7 @@ ALTER TABLE ONLY expresso_vanguarda.viagem ALTER COLUMN id_viagem SET DEFAULT ne
 
 
 --
--- TOC entry 4965 (class 2604 OID 84386)
+-- TOC entry 4904 (class 2604 OID 42681)
 -- Name: carregamento id_carregamento; Type: DEFAULT; Schema: max_transportes; Owner: postgres
 --
 
@@ -1469,7 +1472,7 @@ ALTER TABLE ONLY max_transportes.carregamento ALTER COLUMN id_carregamento SET D
 
 
 --
--- TOC entry 4973 (class 2604 OID 84436)
+-- TOC entry 4908 (class 2604 OID 42682)
 -- Name: mensagemcliente id_mensagem; Type: DEFAULT; Schema: max_transportes; Owner: postgres
 --
 
@@ -1477,7 +1480,7 @@ ALTER TABLE ONLY max_transportes.mensagemcliente ALTER COLUMN id_mensagem SET DE
 
 
 --
--- TOC entry 4961 (class 2604 OID 84361)
+-- TOC entry 4909 (class 2604 OID 42683)
 -- Name: pedido id_pedido; Type: DEFAULT; Schema: max_transportes; Owner: postgres
 --
 
@@ -1485,7 +1488,7 @@ ALTER TABLE ONLY max_transportes.pedido ALTER COLUMN id_pedido SET DEFAULT nextv
 
 
 --
--- TOC entry 4960 (class 2604 OID 84347)
+-- TOC entry 4913 (class 2604 OID 42684)
 -- Name: tipo_carga id_carga; Type: DEFAULT; Schema: max_transportes; Owner: postgres
 --
 
@@ -1493,7 +1496,7 @@ ALTER TABLE ONLY max_transportes.tipo_carga ALTER COLUMN id_carga SET DEFAULT ne
 
 
 --
--- TOC entry 4956 (class 2604 OID 84335)
+-- TOC entry 4914 (class 2604 OID 42685)
 -- Name: veiculo id_veiculo; Type: DEFAULT; Schema: max_transportes; Owner: postgres
 --
 
@@ -1501,7 +1504,7 @@ ALTER TABLE ONLY max_transportes.veiculo ALTER COLUMN id_veiculo SET DEFAULT nex
 
 
 --
--- TOC entry 4969 (class 2604 OID 84411)
+-- TOC entry 4918 (class 2604 OID 42686)
 -- Name: viagem id_viagem; Type: DEFAULT; Schema: max_transportes; Owner: postgres
 --
 
@@ -1509,7 +1512,7 @@ ALTER TABLE ONLY max_transportes.viagem ALTER COLUMN id_viagem SET DEFAULT nextv
 
 
 --
--- TOC entry 4898 (class 2604 OID 83945)
+-- TOC entry 4922 (class 2604 OID 42687)
 -- Name: cliente id_cliente; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1517,7 +1520,7 @@ ALTER TABLE ONLY public.cliente ALTER COLUMN id_cliente SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 4890 (class 2604 OID 83892)
+-- TOC entry 4926 (class 2604 OID 42688)
 -- Name: grupo id_grupo; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1525,7 +1528,7 @@ ALTER TABLE ONLY public.grupo ALTER COLUMN id_grupo SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 4895 (class 2604 OID 83927)
+-- TOC entry 4927 (class 2604 OID 42689)
 -- Name: motorista id_motorista; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1533,7 +1536,7 @@ ALTER TABLE ONLY public.motorista ALTER COLUMN id_motorista SET DEFAULT nextval(
 
 
 --
--- TOC entry 4886 (class 2604 OID 83876)
+-- TOC entry 4930 (class 2604 OID 42690)
 -- Name: transportadora id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1541,7 +1544,7 @@ ALTER TABLE ONLY public.transportadora ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 4891 (class 2604 OID 83901)
+-- TOC entry 4934 (class 2604 OID 42691)
 -- Name: usuarios id_usuario; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1549,7 +1552,7 @@ ALTER TABLE ONLY public.usuarios ALTER COLUMN id_usuario SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 4911 (class 2604 OID 84014)
+-- TOC entry 4938 (class 2604 OID 42692)
 -- Name: carregamento id_carregamento; Type: DEFAULT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -1557,7 +1560,7 @@ ALTER TABLE ONLY rota_certa_logistica.carregamento ALTER COLUMN id_carregamento 
 
 
 --
--- TOC entry 4919 (class 2604 OID 84064)
+-- TOC entry 4942 (class 2604 OID 42693)
 -- Name: mensagemcliente id_mensagem; Type: DEFAULT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -1565,7 +1568,7 @@ ALTER TABLE ONLY rota_certa_logistica.mensagemcliente ALTER COLUMN id_mensagem S
 
 
 --
--- TOC entry 4907 (class 2604 OID 83989)
+-- TOC entry 4943 (class 2604 OID 42694)
 -- Name: pedido id_pedido; Type: DEFAULT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -1573,7 +1576,7 @@ ALTER TABLE ONLY rota_certa_logistica.pedido ALTER COLUMN id_pedido SET DEFAULT 
 
 
 --
--- TOC entry 4906 (class 2604 OID 83975)
+-- TOC entry 4947 (class 2604 OID 42695)
 -- Name: tipo_carga id_carga; Type: DEFAULT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -1581,7 +1584,7 @@ ALTER TABLE ONLY rota_certa_logistica.tipo_carga ALTER COLUMN id_carga SET DEFAU
 
 
 --
--- TOC entry 4902 (class 2604 OID 83963)
+-- TOC entry 4948 (class 2604 OID 42696)
 -- Name: veiculo id_veiculo; Type: DEFAULT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -1589,7 +1592,7 @@ ALTER TABLE ONLY rota_certa_logistica.veiculo ALTER COLUMN id_veiculo SET DEFAUL
 
 
 --
--- TOC entry 4915 (class 2604 OID 84039)
+-- TOC entry 4952 (class 2604 OID 42697)
 -- Name: viagem id_viagem; Type: DEFAULT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -1597,7 +1600,7 @@ ALTER TABLE ONLY rota_certa_logistica.viagem ALTER COLUMN id_viagem SET DEFAULT 
 
 
 --
--- TOC entry 4947 (class 2604 OID 84262)
+-- TOC entry 4956 (class 2604 OID 42698)
 -- Name: carregamento id_carregamento; Type: DEFAULT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1605,7 +1608,7 @@ ALTER TABLE ONLY transportadora_xpto.carregamento ALTER COLUMN id_carregamento S
 
 
 --
--- TOC entry 4955 (class 2604 OID 84312)
+-- TOC entry 4960 (class 2604 OID 42699)
 -- Name: mensagemcliente id_mensagem; Type: DEFAULT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1613,7 +1616,7 @@ ALTER TABLE ONLY transportadora_xpto.mensagemcliente ALTER COLUMN id_mensagem SE
 
 
 --
--- TOC entry 4943 (class 2604 OID 84237)
+-- TOC entry 4961 (class 2604 OID 42700)
 -- Name: pedido id_pedido; Type: DEFAULT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1621,7 +1624,7 @@ ALTER TABLE ONLY transportadora_xpto.pedido ALTER COLUMN id_pedido SET DEFAULT n
 
 
 --
--- TOC entry 4942 (class 2604 OID 84223)
+-- TOC entry 4965 (class 2604 OID 42701)
 -- Name: tipo_carga id_carga; Type: DEFAULT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1629,7 +1632,7 @@ ALTER TABLE ONLY transportadora_xpto.tipo_carga ALTER COLUMN id_carga SET DEFAUL
 
 
 --
--- TOC entry 4938 (class 2604 OID 84211)
+-- TOC entry 4966 (class 2604 OID 42702)
 -- Name: veiculo id_veiculo; Type: DEFAULT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1637,7 +1640,7 @@ ALTER TABLE ONLY transportadora_xpto.veiculo ALTER COLUMN id_veiculo SET DEFAULT
 
 
 --
--- TOC entry 4951 (class 2604 OID 84287)
+-- TOC entry 4970 (class 2604 OID 42703)
 -- Name: viagem id_viagem; Type: DEFAULT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1645,8 +1648,8 @@ ALTER TABLE ONLY transportadora_xpto.viagem ALTER COLUMN id_viagem SET DEFAULT n
 
 
 --
--- TOC entry 5297 (class 0 OID 84135)
--- Dependencies: 250
+-- TOC entry 5268 (class 0 OID 42496)
+-- Dependencies: 221
 -- Data for Name: carregamento; Type: TABLE DATA; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -1655,8 +1658,8 @@ COPY expresso_vanguarda.carregamento (id_carregamento, id_pedido, id_veiculo, id
 
 
 --
--- TOC entry 5301 (class 0 OID 84185)
--- Dependencies: 254
+-- TOC entry 5270 (class 0 OID 42503)
+-- Dependencies: 223
 -- Data for Name: mensagemcliente; Type: TABLE DATA; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -1665,28 +1668,28 @@ COPY expresso_vanguarda.mensagemcliente (id_mensagem, id_pedido, id_transportado
 
 
 --
--- TOC entry 5295 (class 0 OID 84110)
--- Dependencies: 248
+-- TOC entry 5272 (class 0 OID 42507)
+-- Dependencies: 225
 -- Data for Name: pedido; Type: TABLE DATA; Schema: expresso_vanguarda; Owner: postgres
 --
 
-COPY expresso_vanguarda.pedido (id_pedido, id_cliente, cep_origem, estado_origem, municipio_origem, endereco_origem, numero_origem, cep_destino, estado_destino, municipio_destino, endereco_destino, numero_destino, distancia_km, data_pedido, peso, tipo_carga, preco, id_transportadora, status, ativo) FROM stdin;
-1	1	81.925-380	PR	Curitiba	Rua Maria Nicolas	65	01.001-000	SP	São Paulo	Praça da Sé	512	409	2025-01-15 10:23:50	5000	Líquida	3125.24	2	Confirmado	t
-2	1	89.070-730	SC	Joinville	Rua XV de Novembro	102	20.001-005	RJ	Rio de Janeiro	Avenida Brasil	781	800	2025-02-03 14:12:09	5000	Gás	3125.24	2	Confirmado	t
-3	1	29.015-270	ES	Vitória	Avenida Beira Mar	10	40.001-305	BA	Salvador	Praça Castro Alves	69	1300	2025-03-21 08:30:00	5000	Gás	3125.24	2	Confirmado	t
-4	1	74.085-040	GO	Goiânia	Rua 24 de Outubro	99	70.001-001	DF	Brasília	Esplanada dos Ministérios	45	215	2025-04-16 17:00:00	5000	Gás	3125.24	2	Confirmado	t
-5	1	60.802-260	CE	Fortaleza	Av. Abolição	500	58.001-021	PB	João Pessoa	Rua das Trincheiras	20	670	2025-05-05 13:51:10	5000	Gás	3125.24	2	Confirmado	t
-6	1	40.050-430	BA	Salvador	Rua Chile	144	69.015-250	AM	Manaus	Avenida Eduardo Ribeiro	111	2853	2025-06-14 09:23:40	5000	Gás	3125.24	2	Confirmado	t
-7	1	30.047-560	MG	Belo Horizonte	Avenida Afonso Pena	800	29.060-220	ES	Cariacica	Rua Leopoldina	77	540	2025-07-20 15:10:05	5000	Líquida	3125.24	2	Confirmado	t
-8	1	91.500-020	RS	Porto Alegre	Rua dos Andradas	999	29.015-270	ES	Vitória	Avenida Beira Mar	10	798	2025-08-29 11:07:33	5000	Líquida	3125.24	2	Confirmado	t
-9	1	80.010-110	PR	Curitiba	Rua Barão do Rio Branco	251	74.085-040	GO	Goiânia	Rua 24 de Outubro	99	820	2025-09-15 16:30:22	5000	Líquida	3125.24	2	Confirmado	t
-10	1	29.060-220	ES	Cariacica	Rua Leopoldina	77	91.500-020	RS	Porto Alegre	Rua dos Andradas	999	1630	2025-10-11 18:47:59	5000	Líquida	3125.24	2	Confirmado	t
+COPY expresso_vanguarda.pedido (id_pedido, id_cliente, cep_origem, estado_origem, municipio_origem, endereco_origem, numero_origem, cep_destino, estado_destino, municipio_destino, endereco_destino, numero_destino, distancia_km, data_pedido, peso, tipo_carga, preco, id_transportadora, status, ativo, data_atualizacao) FROM stdin;
+1	1	81.925-380	PR	Curitiba	Rua Maria Nicolas	65	01.001-000	SP	São Paulo	Praça da Sé	512	409	2025-01-15 10:23:50	5000	Líquida	3125.24	2	Confirmado	t	\N
+2	1	89.070-730	SC	Joinville	Rua XV de Novembro	102	20.001-005	RJ	Rio de Janeiro	Avenida Brasil	781	800	2025-02-03 14:12:09	5000	Gás	3125.24	2	Confirmado	t	\N
+3	1	29.015-270	ES	Vitória	Avenida Beira Mar	10	40.001-305	BA	Salvador	Praça Castro Alves	69	1300	2025-03-21 08:30:00	5000	Gás	3125.24	2	Confirmado	t	\N
+4	1	74.085-040	GO	Goiânia	Rua 24 de Outubro	99	70.001-001	DF	Brasília	Esplanada dos Ministérios	45	215	2025-04-16 17:00:00	5000	Gás	3125.24	2	Confirmado	t	\N
+5	1	60.802-260	CE	Fortaleza	Av. Abolição	500	58.001-021	PB	João Pessoa	Rua das Trincheiras	20	670	2025-05-05 13:51:10	5000	Gás	3125.24	2	Confirmado	t	\N
+6	1	40.050-430	BA	Salvador	Rua Chile	144	69.015-250	AM	Manaus	Avenida Eduardo Ribeiro	111	2853	2025-06-14 09:23:40	5000	Gás	3125.24	2	Confirmado	t	\N
+7	1	30.047-560	MG	Belo Horizonte	Avenida Afonso Pena	800	29.060-220	ES	Cariacica	Rua Leopoldina	77	540	2025-07-20 15:10:05	5000	Líquida	3125.24	2	Confirmado	t	\N
+8	1	91.500-020	RS	Porto Alegre	Rua dos Andradas	999	29.015-270	ES	Vitória	Avenida Beira Mar	10	798	2025-08-29 11:07:33	5000	Líquida	3125.24	2	Confirmado	t	\N
+9	1	80.010-110	PR	Curitiba	Rua Barão do Rio Branco	251	74.085-040	GO	Goiânia	Rua 24 de Outubro	99	820	2025-09-15 16:30:22	5000	Líquida	3125.24	2	Confirmado	t	\N
+10	1	29.060-220	ES	Cariacica	Rua Leopoldina	77	91.500-020	RS	Porto Alegre	Rua dos Andradas	999	1630	2025-10-11 18:47:59	5000	Líquida	3125.24	2	Confirmado	t	\N
 \.
 
 
 --
--- TOC entry 5293 (class 0 OID 84096)
--- Dependencies: 246
+-- TOC entry 5274 (class 0 OID 42514)
+-- Dependencies: 227
 -- Data for Name: tipo_carga; Type: TABLE DATA; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -1697,8 +1700,8 @@ COPY expresso_vanguarda.tipo_carga (id_carga, tipo, preco_base_km, id_transporta
 
 
 --
--- TOC entry 5291 (class 0 OID 84084)
--- Dependencies: 244
+-- TOC entry 5276 (class 0 OID 42518)
+-- Dependencies: 229
 -- Data for Name: veiculo; Type: TABLE DATA; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -1709,8 +1712,8 @@ COPY expresso_vanguarda.veiculo (id_veiculo, placa, modelo, ano, tipo_carga, cap
 
 
 --
--- TOC entry 5299 (class 0 OID 84160)
--- Dependencies: 252
+-- TOC entry 5278 (class 0 OID 42525)
+-- Dependencies: 231
 -- Data for Name: viagem; Type: TABLE DATA; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -1719,8 +1722,8 @@ COPY expresso_vanguarda.viagem (id_viagem, id_carregamento, id_veiculo, id_motor
 
 
 --
--- TOC entry 5321 (class 0 OID 84383)
--- Dependencies: 274
+-- TOC entry 5280 (class 0 OID 42532)
+-- Dependencies: 233
 -- Data for Name: carregamento; Type: TABLE DATA; Schema: max_transportes; Owner: postgres
 --
 
@@ -1729,8 +1732,8 @@ COPY max_transportes.carregamento (id_carregamento, id_pedido, id_veiculo, id_ca
 
 
 --
--- TOC entry 5325 (class 0 OID 84433)
--- Dependencies: 278
+-- TOC entry 5282 (class 0 OID 42539)
+-- Dependencies: 235
 -- Data for Name: mensagemcliente; Type: TABLE DATA; Schema: max_transportes; Owner: postgres
 --
 
@@ -1739,28 +1742,28 @@ COPY max_transportes.mensagemcliente (id_mensagem, id_pedido, id_transportadora,
 
 
 --
--- TOC entry 5319 (class 0 OID 84358)
--- Dependencies: 272
+-- TOC entry 5284 (class 0 OID 42543)
+-- Dependencies: 237
 -- Data for Name: pedido; Type: TABLE DATA; Schema: max_transportes; Owner: postgres
 --
 
-COPY max_transportes.pedido (id_pedido, id_cliente, cep_origem, estado_origem, municipio_origem, endereco_origem, numero_origem, cep_destino, estado_destino, municipio_destino, endereco_destino, numero_destino, distancia_km, data_pedido, peso, tipo_carga, preco, id_transportadora, status, ativo) FROM stdin;
-1	1	81.925-380	PR	Curitiba	Rua Maria Nicolas	65	01.001-000	SP	São Paulo	Praça da Sé	512	409	2025-01-15 10:23:50	5000	Seca	3125.24	4	Confirmado	t
-2	1	89.070-730	SC	Joinville	Rua XV de Novembro	102	20.001-005	RJ	Rio de Janeiro	Avenida Brasil	781	800	2025-02-03 14:12:09	5000	Gás	3125.24	4	Confirmado	t
-3	1	29.015-270	ES	Vitória	Avenida Beira Mar	10	40.001-305	BA	Salvador	Praça Castro Alves	69	1300	2025-03-21 08:30:00	5000	Gás	3125.24	4	Confirmado	t
-4	1	74.085-040	GO	Goiânia	Rua 24 de Outubro	99	70.001-001	DF	Brasília	Esplanada dos Ministérios	45	215	2025-04-16 17:00:00	5000	Gás	3125.24	4	Confirmado	t
-5	1	60.802-260	CE	Fortaleza	Av. Abolição	500	58.001-021	PB	João Pessoa	Rua das Trincheiras	20	670	2025-05-05 13:51:10	5000	Gás	3125.24	4	Confirmado	t
-6	1	40.050-430	BA	Salvador	Rua Chile	144	69.015-250	AM	Manaus	Avenida Eduardo Ribeiro	111	2853	2025-06-14 09:23:40	5000	Gás	3125.24	4	Confirmado	t
-7	1	30.047-560	MG	Belo Horizonte	Avenida Afonso Pena	800	29.060-220	ES	Cariacica	Rua Leopoldina	77	540	2025-07-20 15:10:05	5000	Seca	3125.24	4	Confirmado	t
-8	1	91.500-020	RS	Porto Alegre	Rua dos Andradas	999	29.015-270	ES	Vitória	Avenida Beira Mar	10	798	2025-08-29 11:07:33	5000	Seca	3125.24	4	Confirmado	t
-9	1	80.010-110	PR	Curitiba	Rua Barão do Rio Branco	251	74.085-040	GO	Goiânia	Rua 24 de Outubro	99	820	2025-09-15 16:30:22	5000	Seca	3125.24	4	Confirmado	t
-10	1	29.060-220	ES	Cariacica	Rua Leopoldina	77	91.500-020	RS	Porto Alegre	Rua dos Andradas	999	1630	2025-10-11 18:47:59	5000	Seca	3125.24	4	Confirmado	t
+COPY max_transportes.pedido (id_pedido, id_cliente, cep_origem, estado_origem, municipio_origem, endereco_origem, numero_origem, cep_destino, estado_destino, municipio_destino, endereco_destino, numero_destino, distancia_km, data_pedido, peso, tipo_carga, preco, id_transportadora, status, ativo, data_atualizacao) FROM stdin;
+1	1	81.925-380	PR	Curitiba	Rua Maria Nicolas	65	01.001-000	SP	São Paulo	Praça da Sé	512	409	2025-01-15 10:23:50	5000	Seca	3125.24	4	Confirmado	t	\N
+2	1	89.070-730	SC	Joinville	Rua XV de Novembro	102	20.001-005	RJ	Rio de Janeiro	Avenida Brasil	781	800	2025-02-03 14:12:09	5000	Gás	3125.24	4	Confirmado	t	\N
+3	1	29.015-270	ES	Vitória	Avenida Beira Mar	10	40.001-305	BA	Salvador	Praça Castro Alves	69	1300	2025-03-21 08:30:00	5000	Gás	3125.24	4	Confirmado	t	\N
+5	1	60.802-260	CE	Fortaleza	Av. Abolição	500	58.001-021	PB	João Pessoa	Rua das Trincheiras	20	670	2025-05-05 13:51:10	5000	Gás	3125.24	4	Confirmado	t	\N
+6	1	40.050-430	BA	Salvador	Rua Chile	144	69.015-250	AM	Manaus	Avenida Eduardo Ribeiro	111	2853	2025-06-14 09:23:40	5000	Gás	3125.24	4	Confirmado	t	\N
+7	1	30.047-560	MG	Belo Horizonte	Avenida Afonso Pena	800	29.060-220	ES	Cariacica	Rua Leopoldina	77	540	2025-07-20 15:10:05	5000	Seca	3125.24	4	Confirmado	t	\N
+8	1	91.500-020	RS	Porto Alegre	Rua dos Andradas	999	29.015-270	ES	Vitória	Avenida Beira Mar	10	798	2025-08-29 11:07:33	5000	Seca	3125.24	4	Confirmado	t	\N
+9	1	80.010-110	PR	Curitiba	Rua Barão do Rio Branco	251	74.085-040	GO	Goiânia	Rua 24 de Outubro	99	820	2025-09-15 16:30:22	5000	Seca	3125.24	4	Confirmado	t	\N
+10	1	29.060-220	ES	Cariacica	Rua Leopoldina	77	91.500-020	RS	Porto Alegre	Rua dos Andradas	999	1630	2025-10-11 18:47:59	5000	Seca	3125.24	4	Confirmado	t	\N
+4	1	74.085-040	GO	Goiânia	Rua 24 de Outubro	99	70.001-001	DF	Brasília	Esplanada dos Ministérios	45	215	2025-06-14 00:00:00	5000	Gás	3125.24	4	Confirmado	t	\N
 \.
 
 
 --
--- TOC entry 5317 (class 0 OID 84344)
--- Dependencies: 270
+-- TOC entry 5286 (class 0 OID 42550)
+-- Dependencies: 239
 -- Data for Name: tipo_carga; Type: TABLE DATA; Schema: max_transportes; Owner: postgres
 --
 
@@ -1771,8 +1774,8 @@ COPY max_transportes.tipo_carga (id_carga, tipo, preco_base_km, id_transportador
 
 
 --
--- TOC entry 5315 (class 0 OID 84332)
--- Dependencies: 268
+-- TOC entry 5288 (class 0 OID 42554)
+-- Dependencies: 241
 -- Data for Name: veiculo; Type: TABLE DATA; Schema: max_transportes; Owner: postgres
 --
 
@@ -1783,8 +1786,8 @@ COPY max_transportes.veiculo (id_veiculo, placa, modelo, ano, tipo_carga, capaci
 
 
 --
--- TOC entry 5323 (class 0 OID 84408)
--- Dependencies: 276
+-- TOC entry 5290 (class 0 OID 42561)
+-- Dependencies: 243
 -- Data for Name: viagem; Type: TABLE DATA; Schema: max_transportes; Owner: postgres
 --
 
@@ -1793,8 +1796,8 @@ COPY max_transportes.viagem (id_viagem, id_carregamento, id_veiculo, id_motorist
 
 
 --
--- TOC entry 5277 (class 0 OID 83942)
--- Dependencies: 230
+-- TOC entry 5292 (class 0 OID 42568)
+-- Dependencies: 245
 -- Data for Name: cliente; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1805,8 +1808,8 @@ COPY public.cliente (id_cliente, nome, cpf, telefone, email, data_cadastro, data
 
 
 --
--- TOC entry 5271 (class 0 OID 83889)
--- Dependencies: 224
+-- TOC entry 5294 (class 0 OID 42577)
+-- Dependencies: 247
 -- Data for Name: grupo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1819,8 +1822,8 @@ COPY public.grupo (id_grupo, nome) FROM stdin;
 
 
 --
--- TOC entry 5275 (class 0 OID 83924)
--- Dependencies: 228
+-- TOC entry 5296 (class 0 OID 42581)
+-- Dependencies: 249
 -- Data for Name: motorista; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1837,8 +1840,8 @@ COPY public.motorista (id_motorista, id_usuario, numero_cnh, categoria_cnh, vali
 
 
 --
--- TOC entry 5269 (class 0 OID 83873)
--- Dependencies: 222
+-- TOC entry 5298 (class 0 OID 42587)
+-- Dependencies: 251
 -- Data for Name: transportadora; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1851,8 +1854,8 @@ COPY public.transportadora (id, nome, cnpj, telefone, email, cep, ativo, schema_
 
 
 --
--- TOC entry 5273 (class 0 OID 83898)
--- Dependencies: 226
+-- TOC entry 5300 (class 0 OID 42594)
+-- Dependencies: 253
 -- Data for Name: usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1890,49 +1893,56 @@ COPY public.usuarios (id_usuario, nome, senha_hash, cpf, telefone, email, cargo_
 
 
 --
--- TOC entry 5285 (class 0 OID 84011)
--- Dependencies: 238
+-- TOC entry 5302 (class 0 OID 42603)
+-- Dependencies: 255
 -- Data for Name: carregamento; Type: TABLE DATA; Schema: rota_certa_logistica; Owner: postgres
 --
 
 COPY rota_certa_logistica.carregamento (id_carregamento, id_pedido, id_veiculo, id_carregador, data_hora_inicio, data_hora_fim, status, data_cadastro, data_atualizacao) FROM stdin;
+2	3	1	10	\N	\N	Aguardando	2025-11-10 09:58:47.471	2025-11-10 09:58:47.471669
+1	2	2	11	2025-11-10 10:05:53.829239	2025-11-10 11:15:53.829239	Pronto	2025-11-10 09:58:26.333	2025-11-10 09:58:26.337405
+3	6	2	11	2025-11-10 10:16:26.780585	2025-11-10 11:41:26.780585	Pronto	2025-11-10 10:15:31.425	2025-11-10 10:15:31.426893
 \.
 
 
 --
--- TOC entry 5289 (class 0 OID 84061)
--- Dependencies: 242
+-- TOC entry 5304 (class 0 OID 42610)
+-- Dependencies: 257
 -- Data for Name: mensagemcliente; Type: TABLE DATA; Schema: rota_certa_logistica; Owner: postgres
 --
 
 COPY rota_certa_logistica.mensagemcliente (id_mensagem, id_pedido, id_transportadora, id_cliente, data_mensagem, texto) FROM stdin;
+1	2	1	1	2025-11-10 10:05:53.836439	O carregamento foi iniciado para o pedido #2
+2	6	1	1	2025-11-10 10:16:26.786032	O carregamento foi iniciado para o pedido #6
+3	6	1	1	2025-11-10 10:24:24.283828	O carregamento foi finalizado para o pedido #6
 \.
 
 
 --
--- TOC entry 5283 (class 0 OID 83986)
--- Dependencies: 236
+-- TOC entry 5306 (class 0 OID 42614)
+-- Dependencies: 259
 -- Data for Name: pedido; Type: TABLE DATA; Schema: rota_certa_logistica; Owner: postgres
 --
 
-COPY rota_certa_logistica.pedido (id_pedido, id_cliente, cep_origem, estado_origem, municipio_origem, endereco_origem, numero_origem, cep_destino, estado_destino, municipio_destino, endereco_destino, numero_destino, distancia_km, data_pedido, peso, tipo_carga, preco, id_transportadora, status, ativo) FROM stdin;
-1	1	81.925-380	PR	Curitiba	Rua Maria Nicolas	65	01.001-000	SP	São Paulo	Praça da Sé	512	409	2025-11-04 16:57:06.243372	5000	Seca	3125.24	1	Confirmado	t
-2	1	81.925-380	PR	Curitiba	Rua Maria Nicolas	65	01.001-000	SP	São Paulo	Praça da Sé	512	409	2025-01-15 10:23:50	5000	Seca	3125.24	1	Confirmado	t
-3	1	89.070-730	SC	Joinville	Rua XV de Novembro	102	20.001-005	RJ	Rio de Janeiro	Avenida Brasil	781	800	2025-02-03 14:12:09	5000	Refrigerada	3125.24	1	Confirmado	t
-4	1	29.015-270	ES	Vitória	Avenida Beira Mar	10	40.001-305	BA	Salvador	Praça Castro Alves	69	1300	2025-03-21 08:30:00	5000	Seca	3125.24	1	Confirmado	t
-5	1	74.085-040	GO	Goiânia	Rua 24 de Outubro	99	70.001-001	DF	Brasília	Esplanada dos Ministérios	45	215	2025-04-16 17:00:00	5000	Refrigerada	3125.24	1	Confirmado	t
-6	1	60.802-260	CE	Fortaleza	Av. Abolição	500	58.001-021	PB	João Pessoa	Rua das Trincheiras	20	670	2025-05-05 13:51:10	5000	Seca	3125.24	1	Confirmado	t
-7	1	40.050-430	BA	Salvador	Rua Chile	144	69.015-250	AM	Manaus	Avenida Eduardo Ribeiro	111	2853	2025-06-14 09:23:40	5000	Refrigerada	3125.24	1	Confirmado	t
-8	1	30.047-560	MG	Belo Horizonte	Avenida Afonso Pena	800	29.060-220	ES	Cariacica	Rua Leopoldina	77	540	2025-07-20 15:10:05	5000	Refrigerada	3125.24	1	Confirmado	t
-9	1	91.500-020	RS	Porto Alegre	Rua dos Andradas	999	29.015-270	ES	Vitória	Avenida Beira Mar	10	798	2025-08-29 11:07:33	5000	Refrigerada	3125.24	1	Confirmado	t
-10	1	80.010-110	PR	Curitiba	Rua Barão do Rio Branco	251	74.085-040	GO	Goiânia	Rua 24 de Outubro	99	820	2025-09-15 16:30:22	5000	Seca	3125.24	1	Confirmado	t
-11	1	29.060-220	ES	Cariacica	Rua Leopoldina	77	91.500-020	RS	Porto Alegre	Rua dos Andradas	999	1630	2025-10-11 18:47:59	5000	Seca	3125.24	1	Confirmado	t
+COPY rota_certa_logistica.pedido (id_pedido, id_cliente, cep_origem, estado_origem, municipio_origem, endereco_origem, numero_origem, cep_destino, estado_destino, municipio_destino, endereco_destino, numero_destino, distancia_km, data_pedido, peso, tipo_carga, preco, id_transportadora, status, ativo, data_atualizacao) FROM stdin;
+3	1	89.070-730	SC	Joinville	Rua XV de Novembro	102	20.001-005	RJ	Rio de Janeiro	Avenida Brasil	781	800	2025-02-03 14:12:09	5000	Refrigerada	3125.24	1	Confirmado	t	\N
+4	1	29.015-270	ES	Vitória	Avenida Beira Mar	10	40.001-305	BA	Salvador	Praça Castro Alves	69	1300	2025-03-21 08:30:00	5000	Seca	3125.24	1	Confirmado	t	\N
+7	1	40.050-430	BA	Salvador	Rua Chile	144	69.015-250	AM	Manaus	Avenida Eduardo Ribeiro	111	2853	2025-06-14 09:23:40	5000	Refrigerada	3125.24	1	Confirmado	t	\N
+8	1	30.047-560	MG	Belo Horizonte	Avenida Afonso Pena	800	29.060-220	ES	Cariacica	Rua Leopoldina	77	540	2025-07-20 15:10:05	5000	Refrigerada	3125.24	1	Confirmado	t	\N
+9	1	91.500-020	RS	Porto Alegre	Rua dos Andradas	999	29.015-270	ES	Vitória	Avenida Beira Mar	10	798	2025-08-29 11:07:33	5000	Refrigerada	3125.24	1	Confirmado	t	\N
+10	1	80.010-110	PR	Curitiba	Rua Barão do Rio Branco	251	74.085-040	GO	Goiânia	Rua 24 de Outubro	99	820	2025-09-15 16:30:22	5000	Seca	3125.24	1	Confirmado	t	\N
+11	1	29.060-220	ES	Cariacica	Rua Leopoldina	77	91.500-020	RS	Porto Alegre	Rua dos Andradas	999	1630	2025-10-11 18:47:59	5000	Seca	3125.24	1	Confirmado	t	\N
+1	1	81.925-380	PR	Curitiba	Rua Maria Nicolas	65	01.001-000	SP	São Paulo	Praça da Sé	512	409	2025-04-11 00:00:00	5000	Seca	3125.24	1	Confirmado	t	\N
+5	1	74.085-040	GO	Goiânia	Rua 24 de Outubro	99	70.001-001	DF	Brasília	Esplanada dos Ministérios	45	215	2025-04-11 00:00:00	5000	Refrigerada	3125.24	1	Confirmado	t	\N
+12	2	81.925-380	PR	Curitiba	Rua Maria Nicolas	65	01.001-000	SP	São Paulo	Praça da Sé	23	409	2025-11-07 09:23:43.678824	6000	Refrigerada	4163.88	1	Confirmado	t	\N
+2	1	81.925-380	PR	Curitiba	Rua Maria Nicolas	65	01.001-000	SP	São Paulo	Praça da Sé	512	409	2025-01-15 10:23:50	5000	Seca	3125.24	1	Em preparo	t	2025-11-10 10:05:53.833447
+6	1	60.802-260	CE	Fortaleza	Av. Abolição	500	58.001-021	PB	João Pessoa	Rua das Trincheiras	20	670	2025-05-05 13:51:10	5000	Seca	3125.24	1	Em preparo	t	2025-11-10 10:24:24.281672
 \.
 
 
 --
--- TOC entry 5281 (class 0 OID 83972)
--- Dependencies: 234
+-- TOC entry 5308 (class 0 OID 42621)
+-- Dependencies: 261
 -- Data for Name: tipo_carga; Type: TABLE DATA; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -1943,8 +1953,8 @@ COPY rota_certa_logistica.tipo_carga (id_carga, tipo, preco_base_km, id_transpor
 
 
 --
--- TOC entry 5279 (class 0 OID 83960)
--- Dependencies: 232
+-- TOC entry 5310 (class 0 OID 42625)
+-- Dependencies: 263
 -- Data for Name: veiculo; Type: TABLE DATA; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -1955,18 +1965,19 @@ COPY rota_certa_logistica.veiculo (id_veiculo, placa, modelo, ano, tipo_carga, c
 
 
 --
--- TOC entry 5287 (class 0 OID 84036)
--- Dependencies: 240
+-- TOC entry 5312 (class 0 OID 42632)
+-- Dependencies: 265
 -- Data for Name: viagem; Type: TABLE DATA; Schema: rota_certa_logistica; Owner: postgres
 --
 
 COPY rota_certa_logistica.viagem (id_viagem, id_carregamento, id_veiculo, id_motorista, data_saida_cd, data_chegada, status, data_cadastro, data_atualizacao, distancia_km) FROM stdin;
+1	1	2	8	\N	\N	Aguardando	2025-11-10 10:15:48.615	2025-11-10 10:15:48.617354	409
 \.
 
 
 --
--- TOC entry 5309 (class 0 OID 84259)
--- Dependencies: 262
+-- TOC entry 5314 (class 0 OID 42639)
+-- Dependencies: 267
 -- Data for Name: carregamento; Type: TABLE DATA; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1975,8 +1986,8 @@ COPY transportadora_xpto.carregamento (id_carregamento, id_pedido, id_veiculo, i
 
 
 --
--- TOC entry 5313 (class 0 OID 84309)
--- Dependencies: 266
+-- TOC entry 5316 (class 0 OID 42646)
+-- Dependencies: 269
 -- Data for Name: mensagemcliente; Type: TABLE DATA; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -1985,28 +1996,28 @@ COPY transportadora_xpto.mensagemcliente (id_mensagem, id_pedido, id_transportad
 
 
 --
--- TOC entry 5307 (class 0 OID 84234)
--- Dependencies: 260
+-- TOC entry 5318 (class 0 OID 42650)
+-- Dependencies: 271
 -- Data for Name: pedido; Type: TABLE DATA; Schema: transportadora_xpto; Owner: postgres
 --
 
-COPY transportadora_xpto.pedido (id_pedido, id_cliente, cep_origem, estado_origem, municipio_origem, endereco_origem, numero_origem, cep_destino, estado_destino, municipio_destino, endereco_destino, numero_destino, distancia_km, data_pedido, peso, tipo_carga, preco, id_transportadora, status, ativo) FROM stdin;
-1	1	81.925-380	PR	Curitiba	Rua Maria Nicolas	65	01.001-000	SP	São Paulo	Praça da Sé	512	409	2025-01-15 10:23:50	5000	Líquida	3125.24	3	Confirmado	t
-2	1	89.070-730	SC	Joinville	Rua XV de Novembro	102	20.001-005	RJ	Rio de Janeiro	Avenida Brasil	781	800	2025-02-03 14:12:09	5000	Refrigerada	3125.24	3	Confirmado	t
-3	1	29.015-270	ES	Vitória	Avenida Beira Mar	10	40.001-305	BA	Salvador	Praça Castro Alves	69	1300	2025-03-21 08:30:00	5000	Refrigerada	3125.24	3	Confirmado	t
-4	1	74.085-040	GO	Goiânia	Rua 24 de Outubro	99	70.001-001	DF	Brasília	Esplanada dos Ministérios	45	215	2025-04-16 17:00:00	5000	Refrigerada	3125.24	3	Confirmado	t
-5	1	60.802-260	CE	Fortaleza	Av. Abolição	500	58.001-021	PB	João Pessoa	Rua das Trincheiras	20	670	2025-05-05 13:51:10	5000	Refrigerada	3125.24	3	Confirmado	t
-6	1	40.050-430	BA	Salvador	Rua Chile	144	69.015-250	AM	Manaus	Avenida Eduardo Ribeiro	111	2853	2025-06-14 09:23:40	5000	Refrigerada	3125.24	3	Confirmado	t
-7	1	30.047-560	MG	Belo Horizonte	Avenida Afonso Pena	800	29.060-220	ES	Cariacica	Rua Leopoldina	77	540	2025-07-20 15:10:05	5000	Líquida	3125.24	3	Confirmado	t
-8	1	91.500-020	RS	Porto Alegre	Rua dos Andradas	999	29.015-270	ES	Vitória	Avenida Beira Mar	10	798	2025-08-29 11:07:33	5000	Líquida	3125.24	3	Confirmado	t
-9	1	80.010-110	PR	Curitiba	Rua Barão do Rio Branco	251	74.085-040	GO	Goiânia	Rua 24 de Outubro	99	820	2025-09-15 16:30:22	5000	Líquida	3125.24	3	Confirmado	t
-10	1	29.060-220	ES	Cariacica	Rua Leopoldina	77	91.500-020	RS	Porto Alegre	Rua dos Andradas	999	1630	2025-10-11 18:47:59	5000	Líquida	3125.24	3	Confirmado	t
+COPY transportadora_xpto.pedido (id_pedido, id_cliente, cep_origem, estado_origem, municipio_origem, endereco_origem, numero_origem, cep_destino, estado_destino, municipio_destino, endereco_destino, numero_destino, distancia_km, data_pedido, peso, tipo_carga, preco, id_transportadora, status, ativo, data_atualizacao) FROM stdin;
+1	1	81.925-380	PR	Curitiba	Rua Maria Nicolas	65	01.001-000	SP	São Paulo	Praça da Sé	512	409	2025-01-15 10:23:50	5000	Líquida	3125.24	3	Confirmado	t	\N
+2	1	89.070-730	SC	Joinville	Rua XV de Novembro	102	20.001-005	RJ	Rio de Janeiro	Avenida Brasil	781	800	2025-02-03 14:12:09	5000	Refrigerada	3125.24	3	Confirmado	t	\N
+3	1	29.015-270	ES	Vitória	Avenida Beira Mar	10	40.001-305	BA	Salvador	Praça Castro Alves	69	1300	2025-03-21 08:30:00	5000	Refrigerada	3125.24	3	Confirmado	t	\N
+4	1	74.085-040	GO	Goiânia	Rua 24 de Outubro	99	70.001-001	DF	Brasília	Esplanada dos Ministérios	45	215	2025-04-16 17:00:00	5000	Refrigerada	3125.24	3	Confirmado	t	\N
+5	1	60.802-260	CE	Fortaleza	Av. Abolição	500	58.001-021	PB	João Pessoa	Rua das Trincheiras	20	670	2025-05-05 13:51:10	5000	Refrigerada	3125.24	3	Confirmado	t	\N
+6	1	40.050-430	BA	Salvador	Rua Chile	144	69.015-250	AM	Manaus	Avenida Eduardo Ribeiro	111	2853	2025-06-14 09:23:40	5000	Refrigerada	3125.24	3	Confirmado	t	\N
+7	1	30.047-560	MG	Belo Horizonte	Avenida Afonso Pena	800	29.060-220	ES	Cariacica	Rua Leopoldina	77	540	2025-07-20 15:10:05	5000	Líquida	3125.24	3	Confirmado	t	\N
+8	1	91.500-020	RS	Porto Alegre	Rua dos Andradas	999	29.015-270	ES	Vitória	Avenida Beira Mar	10	798	2025-08-29 11:07:33	5000	Líquida	3125.24	3	Confirmado	t	\N
+9	1	80.010-110	PR	Curitiba	Rua Barão do Rio Branco	251	74.085-040	GO	Goiânia	Rua 24 de Outubro	99	820	2025-09-15 16:30:22	5000	Líquida	3125.24	3	Confirmado	t	\N
+10	1	29.060-220	ES	Cariacica	Rua Leopoldina	77	91.500-020	RS	Porto Alegre	Rua dos Andradas	999	1630	2025-10-11 18:47:59	5000	Líquida	3125.24	3	Confirmado	t	\N
 \.
 
 
 --
--- TOC entry 5305 (class 0 OID 84220)
--- Dependencies: 258
+-- TOC entry 5320 (class 0 OID 42657)
+-- Dependencies: 273
 -- Data for Name: tipo_carga; Type: TABLE DATA; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -2017,8 +2028,8 @@ COPY transportadora_xpto.tipo_carga (id_carga, tipo, preco_base_km, id_transport
 
 
 --
--- TOC entry 5303 (class 0 OID 84208)
--- Dependencies: 256
+-- TOC entry 5322 (class 0 OID 42661)
+-- Dependencies: 275
 -- Data for Name: veiculo; Type: TABLE DATA; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -2029,8 +2040,8 @@ COPY transportadora_xpto.veiculo (id_veiculo, placa, modelo, ano, tipo_carga, ca
 
 
 --
--- TOC entry 5311 (class 0 OID 84284)
--- Dependencies: 264
+-- TOC entry 5324 (class 0 OID 42668)
+-- Dependencies: 277
 -- Data for Name: viagem; Type: TABLE DATA; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -2040,7 +2051,7 @@ COPY transportadora_xpto.viagem (id_viagem, id_carregamento, id_veiculo, id_moto
 
 --
 -- TOC entry 5362 (class 0 OID 0)
--- Dependencies: 249
+-- Dependencies: 222
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE SET; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2049,7 +2060,7 @@ SELECT pg_catalog.setval('expresso_vanguarda.carregamento_id_carregamento_seq', 
 
 --
 -- TOC entry 5363 (class 0 OID 0)
--- Dependencies: 253
+-- Dependencies: 224
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE SET; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2058,7 +2069,7 @@ SELECT pg_catalog.setval('expresso_vanguarda.mensagemcliente_id_mensagem_seq', 1
 
 --
 -- TOC entry 5364 (class 0 OID 0)
--- Dependencies: 247
+-- Dependencies: 226
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE SET; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2067,7 +2078,7 @@ SELECT pg_catalog.setval('expresso_vanguarda.pedido_id_pedido_seq', 10, true);
 
 --
 -- TOC entry 5365 (class 0 OID 0)
--- Dependencies: 245
+-- Dependencies: 228
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE SET; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2076,7 +2087,7 @@ SELECT pg_catalog.setval('expresso_vanguarda.tipo_carga_id_carga_seq', 2, true);
 
 --
 -- TOC entry 5366 (class 0 OID 0)
--- Dependencies: 243
+-- Dependencies: 230
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE SET; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2085,7 +2096,7 @@ SELECT pg_catalog.setval('expresso_vanguarda.veiculo_id_veiculo_seq', 2, true);
 
 --
 -- TOC entry 5367 (class 0 OID 0)
--- Dependencies: 251
+-- Dependencies: 232
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE SET; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2094,7 +2105,7 @@ SELECT pg_catalog.setval('expresso_vanguarda.viagem_id_viagem_seq', 1, false);
 
 --
 -- TOC entry 5368 (class 0 OID 0)
--- Dependencies: 273
+-- Dependencies: 234
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE SET; Schema: max_transportes; Owner: postgres
 --
 
@@ -2103,7 +2114,7 @@ SELECT pg_catalog.setval('max_transportes.carregamento_id_carregamento_seq', 1, 
 
 --
 -- TOC entry 5369 (class 0 OID 0)
--- Dependencies: 277
+-- Dependencies: 236
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE SET; Schema: max_transportes; Owner: postgres
 --
 
@@ -2112,7 +2123,7 @@ SELECT pg_catalog.setval('max_transportes.mensagemcliente_id_mensagem_seq', 1, f
 
 --
 -- TOC entry 5370 (class 0 OID 0)
--- Dependencies: 271
+-- Dependencies: 238
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE SET; Schema: max_transportes; Owner: postgres
 --
 
@@ -2121,7 +2132,7 @@ SELECT pg_catalog.setval('max_transportes.pedido_id_pedido_seq', 10, true);
 
 --
 -- TOC entry 5371 (class 0 OID 0)
--- Dependencies: 269
+-- Dependencies: 240
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE SET; Schema: max_transportes; Owner: postgres
 --
 
@@ -2130,7 +2141,7 @@ SELECT pg_catalog.setval('max_transportes.tipo_carga_id_carga_seq', 2, true);
 
 --
 -- TOC entry 5372 (class 0 OID 0)
--- Dependencies: 267
+-- Dependencies: 242
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE SET; Schema: max_transportes; Owner: postgres
 --
 
@@ -2139,7 +2150,7 @@ SELECT pg_catalog.setval('max_transportes.veiculo_id_veiculo_seq', 2, true);
 
 --
 -- TOC entry 5373 (class 0 OID 0)
--- Dependencies: 275
+-- Dependencies: 244
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE SET; Schema: max_transportes; Owner: postgres
 --
 
@@ -2148,7 +2159,7 @@ SELECT pg_catalog.setval('max_transportes.viagem_id_viagem_seq', 1, false);
 
 --
 -- TOC entry 5374 (class 0 OID 0)
--- Dependencies: 229
+-- Dependencies: 246
 -- Name: cliente_id_cliente_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -2157,7 +2168,7 @@ SELECT pg_catalog.setval('public.cliente_id_cliente_seq', 2, true);
 
 --
 -- TOC entry 5375 (class 0 OID 0)
--- Dependencies: 223
+-- Dependencies: 248
 -- Name: grupo_id_grupo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -2166,7 +2177,7 @@ SELECT pg_catalog.setval('public.grupo_id_grupo_seq', 4, true);
 
 --
 -- TOC entry 5376 (class 0 OID 0)
--- Dependencies: 227
+-- Dependencies: 250
 -- Name: motorista_id_motorista_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -2175,7 +2186,7 @@ SELECT pg_catalog.setval('public.motorista_id_motorista_seq', 8, true);
 
 --
 -- TOC entry 5377 (class 0 OID 0)
--- Dependencies: 221
+-- Dependencies: 252
 -- Name: transportadora_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -2184,7 +2195,7 @@ SELECT pg_catalog.setval('public.transportadora_id_seq', 4, true);
 
 --
 -- TOC entry 5378 (class 0 OID 0)
--- Dependencies: 225
+-- Dependencies: 254
 -- Name: usuarios_id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -2193,34 +2204,34 @@ SELECT pg_catalog.setval('public.usuarios_id_usuario_seq', 29, true);
 
 --
 -- TOC entry 5379 (class 0 OID 0)
--- Dependencies: 237
+-- Dependencies: 256
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE SET; Schema: rota_certa_logistica; Owner: postgres
 --
 
-SELECT pg_catalog.setval('rota_certa_logistica.carregamento_id_carregamento_seq', 1, false);
+SELECT pg_catalog.setval('rota_certa_logistica.carregamento_id_carregamento_seq', 3, true);
 
 
 --
 -- TOC entry 5380 (class 0 OID 0)
--- Dependencies: 241
+-- Dependencies: 258
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE SET; Schema: rota_certa_logistica; Owner: postgres
 --
 
-SELECT pg_catalog.setval('rota_certa_logistica.mensagemcliente_id_mensagem_seq', 1, false);
+SELECT pg_catalog.setval('rota_certa_logistica.mensagemcliente_id_mensagem_seq', 3, true);
 
 
 --
 -- TOC entry 5381 (class 0 OID 0)
--- Dependencies: 235
+-- Dependencies: 260
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE SET; Schema: rota_certa_logistica; Owner: postgres
 --
 
-SELECT pg_catalog.setval('rota_certa_logistica.pedido_id_pedido_seq', 11, true);
+SELECT pg_catalog.setval('rota_certa_logistica.pedido_id_pedido_seq', 12, true);
 
 
 --
 -- TOC entry 5382 (class 0 OID 0)
--- Dependencies: 233
+-- Dependencies: 262
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE SET; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -2229,7 +2240,7 @@ SELECT pg_catalog.setval('rota_certa_logistica.tipo_carga_id_carga_seq', 2, true
 
 --
 -- TOC entry 5383 (class 0 OID 0)
--- Dependencies: 231
+-- Dependencies: 264
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE SET; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -2238,16 +2249,16 @@ SELECT pg_catalog.setval('rota_certa_logistica.veiculo_id_veiculo_seq', 2, true)
 
 --
 -- TOC entry 5384 (class 0 OID 0)
--- Dependencies: 239
+-- Dependencies: 266
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE SET; Schema: rota_certa_logistica; Owner: postgres
 --
 
-SELECT pg_catalog.setval('rota_certa_logistica.viagem_id_viagem_seq', 1, false);
+SELECT pg_catalog.setval('rota_certa_logistica.viagem_id_viagem_seq', 1, true);
 
 
 --
 -- TOC entry 5385 (class 0 OID 0)
--- Dependencies: 261
+-- Dependencies: 268
 -- Name: carregamento_id_carregamento_seq; Type: SEQUENCE SET; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -2256,7 +2267,7 @@ SELECT pg_catalog.setval('transportadora_xpto.carregamento_id_carregamento_seq',
 
 --
 -- TOC entry 5386 (class 0 OID 0)
--- Dependencies: 265
+-- Dependencies: 270
 -- Name: mensagemcliente_id_mensagem_seq; Type: SEQUENCE SET; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -2265,7 +2276,7 @@ SELECT pg_catalog.setval('transportadora_xpto.mensagemcliente_id_mensagem_seq', 
 
 --
 -- TOC entry 5387 (class 0 OID 0)
--- Dependencies: 259
+-- Dependencies: 272
 -- Name: pedido_id_pedido_seq; Type: SEQUENCE SET; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -2274,7 +2285,7 @@ SELECT pg_catalog.setval('transportadora_xpto.pedido_id_pedido_seq', 10, true);
 
 --
 -- TOC entry 5388 (class 0 OID 0)
--- Dependencies: 257
+-- Dependencies: 274
 -- Name: tipo_carga_id_carga_seq; Type: SEQUENCE SET; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -2283,7 +2294,7 @@ SELECT pg_catalog.setval('transportadora_xpto.tipo_carga_id_carga_seq', 2, true)
 
 --
 -- TOC entry 5389 (class 0 OID 0)
--- Dependencies: 255
+-- Dependencies: 276
 -- Name: veiculo_id_veiculo_seq; Type: SEQUENCE SET; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -2292,7 +2303,7 @@ SELECT pg_catalog.setval('transportadora_xpto.veiculo_id_veiculo_seq', 2, true);
 
 --
 -- TOC entry 5390 (class 0 OID 0)
--- Dependencies: 263
+-- Dependencies: 278
 -- Name: viagem_id_viagem_seq; Type: SEQUENCE SET; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -2300,7 +2311,7 @@ SELECT pg_catalog.setval('transportadora_xpto.viagem_id_viagem_seq', 1, false);
 
 
 --
--- TOC entry 5031 (class 2606 OID 84143)
+-- TOC entry 4975 (class 2606 OID 42705)
 -- Name: carregamento carregamento_pkey; Type: CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2309,7 +2320,7 @@ ALTER TABLE ONLY expresso_vanguarda.carregamento
 
 
 --
--- TOC entry 5035 (class 2606 OID 84190)
+-- TOC entry 4977 (class 2606 OID 42707)
 -- Name: mensagemcliente mensagemcliente_pkey; Type: CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2318,7 +2329,7 @@ ALTER TABLE ONLY expresso_vanguarda.mensagemcliente
 
 
 --
--- TOC entry 5029 (class 2606 OID 84118)
+-- TOC entry 4979 (class 2606 OID 42709)
 -- Name: pedido pedido_pkey; Type: CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2327,7 +2338,7 @@ ALTER TABLE ONLY expresso_vanguarda.pedido
 
 
 --
--- TOC entry 5025 (class 2606 OID 84101)
+-- TOC entry 4981 (class 2606 OID 42711)
 -- Name: tipo_carga tipo_carga_pkey; Type: CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2336,7 +2347,7 @@ ALTER TABLE ONLY expresso_vanguarda.tipo_carga
 
 
 --
--- TOC entry 5027 (class 2606 OID 84103)
+-- TOC entry 4983 (class 2606 OID 42713)
 -- Name: tipo_carga tipo_carga_tipo_key; Type: CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2345,7 +2356,7 @@ ALTER TABLE ONLY expresso_vanguarda.tipo_carga
 
 
 --
--- TOC entry 5021 (class 2606 OID 84092)
+-- TOC entry 4985 (class 2606 OID 42715)
 -- Name: veiculo veiculo_pkey; Type: CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2354,7 +2365,7 @@ ALTER TABLE ONLY expresso_vanguarda.veiculo
 
 
 --
--- TOC entry 5023 (class 2606 OID 84094)
+-- TOC entry 4987 (class 2606 OID 42717)
 -- Name: veiculo veiculo_placa_key; Type: CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2363,7 +2374,7 @@ ALTER TABLE ONLY expresso_vanguarda.veiculo
 
 
 --
--- TOC entry 5033 (class 2606 OID 84168)
+-- TOC entry 4989 (class 2606 OID 42719)
 -- Name: viagem viagem_pkey; Type: CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2372,7 +2383,7 @@ ALTER TABLE ONLY expresso_vanguarda.viagem
 
 
 --
--- TOC entry 5063 (class 2606 OID 84391)
+-- TOC entry 4991 (class 2606 OID 42721)
 -- Name: carregamento carregamento_pkey; Type: CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2381,7 +2392,7 @@ ALTER TABLE ONLY max_transportes.carregamento
 
 
 --
--- TOC entry 5067 (class 2606 OID 84438)
+-- TOC entry 4993 (class 2606 OID 42723)
 -- Name: mensagemcliente mensagemcliente_pkey; Type: CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2390,7 +2401,7 @@ ALTER TABLE ONLY max_transportes.mensagemcliente
 
 
 --
--- TOC entry 5061 (class 2606 OID 84366)
+-- TOC entry 4995 (class 2606 OID 42725)
 -- Name: pedido pedido_pkey; Type: CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2399,7 +2410,7 @@ ALTER TABLE ONLY max_transportes.pedido
 
 
 --
--- TOC entry 5057 (class 2606 OID 84349)
+-- TOC entry 4997 (class 2606 OID 42727)
 -- Name: tipo_carga tipo_carga_pkey; Type: CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2408,7 +2419,7 @@ ALTER TABLE ONLY max_transportes.tipo_carga
 
 
 --
--- TOC entry 5059 (class 2606 OID 84351)
+-- TOC entry 4999 (class 2606 OID 42729)
 -- Name: tipo_carga tipo_carga_tipo_key; Type: CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2417,7 +2428,7 @@ ALTER TABLE ONLY max_transportes.tipo_carga
 
 
 --
--- TOC entry 5053 (class 2606 OID 84340)
+-- TOC entry 5001 (class 2606 OID 42731)
 -- Name: veiculo veiculo_pkey; Type: CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2426,7 +2437,7 @@ ALTER TABLE ONLY max_transportes.veiculo
 
 
 --
--- TOC entry 5055 (class 2606 OID 84342)
+-- TOC entry 5003 (class 2606 OID 42733)
 -- Name: veiculo veiculo_placa_key; Type: CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2435,7 +2446,7 @@ ALTER TABLE ONLY max_transportes.veiculo
 
 
 --
--- TOC entry 5065 (class 2606 OID 84416)
+-- TOC entry 5005 (class 2606 OID 42735)
 -- Name: viagem viagem_pkey; Type: CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2444,7 +2455,7 @@ ALTER TABLE ONLY max_transportes.viagem
 
 
 --
--- TOC entry 4999 (class 2606 OID 83954)
+-- TOC entry 5007 (class 2606 OID 42737)
 -- Name: cliente cliente_cpf_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2453,7 +2464,7 @@ ALTER TABLE ONLY public.cliente
 
 
 --
--- TOC entry 5001 (class 2606 OID 83956)
+-- TOC entry 5009 (class 2606 OID 42739)
 -- Name: cliente cliente_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2462,7 +2473,7 @@ ALTER TABLE ONLY public.cliente
 
 
 --
--- TOC entry 5003 (class 2606 OID 83952)
+-- TOC entry 5011 (class 2606 OID 42741)
 -- Name: cliente cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2471,7 +2482,7 @@ ALTER TABLE ONLY public.cliente
 
 
 --
--- TOC entry 4983 (class 2606 OID 83896)
+-- TOC entry 5013 (class 2606 OID 42743)
 -- Name: grupo grupo_nome_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2480,7 +2491,7 @@ ALTER TABLE ONLY public.grupo
 
 
 --
--- TOC entry 4985 (class 2606 OID 83894)
+-- TOC entry 5015 (class 2606 OID 42745)
 -- Name: grupo grupo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2489,7 +2500,7 @@ ALTER TABLE ONLY public.grupo
 
 
 --
--- TOC entry 4993 (class 2606 OID 83933)
+-- TOC entry 5017 (class 2606 OID 42747)
 -- Name: motorista motorista_id_usuario_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2498,7 +2509,7 @@ ALTER TABLE ONLY public.motorista
 
 
 --
--- TOC entry 4995 (class 2606 OID 83935)
+-- TOC entry 5019 (class 2606 OID 42749)
 -- Name: motorista motorista_numero_cnh_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2507,7 +2518,7 @@ ALTER TABLE ONLY public.motorista
 
 
 --
--- TOC entry 4997 (class 2606 OID 83931)
+-- TOC entry 5021 (class 2606 OID 42751)
 -- Name: motorista motorista_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2516,7 +2527,7 @@ ALTER TABLE ONLY public.motorista
 
 
 --
--- TOC entry 4975 (class 2606 OID 83883)
+-- TOC entry 5023 (class 2606 OID 42753)
 -- Name: transportadora transportadora_cnpj_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2525,7 +2536,7 @@ ALTER TABLE ONLY public.transportadora
 
 
 --
--- TOC entry 4977 (class 2606 OID 83885)
+-- TOC entry 5025 (class 2606 OID 42755)
 -- Name: transportadora transportadora_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2534,7 +2545,7 @@ ALTER TABLE ONLY public.transportadora
 
 
 --
--- TOC entry 4979 (class 2606 OID 83881)
+-- TOC entry 5027 (class 2606 OID 42757)
 -- Name: transportadora transportadora_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2543,7 +2554,7 @@ ALTER TABLE ONLY public.transportadora
 
 
 --
--- TOC entry 4981 (class 2606 OID 83887)
+-- TOC entry 5029 (class 2606 OID 42759)
 -- Name: transportadora transportadora_schema_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2552,7 +2563,7 @@ ALTER TABLE ONLY public.transportadora
 
 
 --
--- TOC entry 4987 (class 2606 OID 83910)
+-- TOC entry 5031 (class 2606 OID 42761)
 -- Name: usuarios usuarios_cpf_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2561,7 +2572,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 4989 (class 2606 OID 83912)
+-- TOC entry 5033 (class 2606 OID 42763)
 -- Name: usuarios usuarios_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2570,7 +2581,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 4991 (class 2606 OID 83908)
+-- TOC entry 5035 (class 2606 OID 42765)
 -- Name: usuarios usuarios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2579,7 +2590,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 5015 (class 2606 OID 84019)
+-- TOC entry 5037 (class 2606 OID 42767)
 -- Name: carregamento carregamento_pkey; Type: CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -2588,7 +2599,7 @@ ALTER TABLE ONLY rota_certa_logistica.carregamento
 
 
 --
--- TOC entry 5019 (class 2606 OID 84066)
+-- TOC entry 5039 (class 2606 OID 42769)
 -- Name: mensagemcliente mensagemcliente_pkey; Type: CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -2597,7 +2608,7 @@ ALTER TABLE ONLY rota_certa_logistica.mensagemcliente
 
 
 --
--- TOC entry 5013 (class 2606 OID 83994)
+-- TOC entry 5041 (class 2606 OID 42771)
 -- Name: pedido pedido_pkey; Type: CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -2606,7 +2617,7 @@ ALTER TABLE ONLY rota_certa_logistica.pedido
 
 
 --
--- TOC entry 5009 (class 2606 OID 83977)
+-- TOC entry 5043 (class 2606 OID 42773)
 -- Name: tipo_carga tipo_carga_pkey; Type: CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -2615,7 +2626,7 @@ ALTER TABLE ONLY rota_certa_logistica.tipo_carga
 
 
 --
--- TOC entry 5011 (class 2606 OID 83979)
+-- TOC entry 5045 (class 2606 OID 42775)
 -- Name: tipo_carga tipo_carga_tipo_key; Type: CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -2624,7 +2635,7 @@ ALTER TABLE ONLY rota_certa_logistica.tipo_carga
 
 
 --
--- TOC entry 5005 (class 2606 OID 83968)
+-- TOC entry 5047 (class 2606 OID 42777)
 -- Name: veiculo veiculo_pkey; Type: CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -2633,7 +2644,7 @@ ALTER TABLE ONLY rota_certa_logistica.veiculo
 
 
 --
--- TOC entry 5007 (class 2606 OID 83970)
+-- TOC entry 5049 (class 2606 OID 42779)
 -- Name: veiculo veiculo_placa_key; Type: CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -2642,7 +2653,7 @@ ALTER TABLE ONLY rota_certa_logistica.veiculo
 
 
 --
--- TOC entry 5017 (class 2606 OID 84044)
+-- TOC entry 5051 (class 2606 OID 42781)
 -- Name: viagem viagem_pkey; Type: CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -2651,7 +2662,7 @@ ALTER TABLE ONLY rota_certa_logistica.viagem
 
 
 --
--- TOC entry 5047 (class 2606 OID 84267)
+-- TOC entry 5053 (class 2606 OID 42783)
 -- Name: carregamento carregamento_pkey; Type: CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -2660,7 +2671,7 @@ ALTER TABLE ONLY transportadora_xpto.carregamento
 
 
 --
--- TOC entry 5051 (class 2606 OID 84314)
+-- TOC entry 5055 (class 2606 OID 42785)
 -- Name: mensagemcliente mensagemcliente_pkey; Type: CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -2669,7 +2680,7 @@ ALTER TABLE ONLY transportadora_xpto.mensagemcliente
 
 
 --
--- TOC entry 5045 (class 2606 OID 84242)
+-- TOC entry 5057 (class 2606 OID 42787)
 -- Name: pedido pedido_pkey; Type: CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -2678,7 +2689,7 @@ ALTER TABLE ONLY transportadora_xpto.pedido
 
 
 --
--- TOC entry 5041 (class 2606 OID 84225)
+-- TOC entry 5059 (class 2606 OID 42789)
 -- Name: tipo_carga tipo_carga_pkey; Type: CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -2687,7 +2698,7 @@ ALTER TABLE ONLY transportadora_xpto.tipo_carga
 
 
 --
--- TOC entry 5043 (class 2606 OID 84227)
+-- TOC entry 5061 (class 2606 OID 42791)
 -- Name: tipo_carga tipo_carga_tipo_key; Type: CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -2696,7 +2707,7 @@ ALTER TABLE ONLY transportadora_xpto.tipo_carga
 
 
 --
--- TOC entry 5037 (class 2606 OID 84216)
+-- TOC entry 5063 (class 2606 OID 42793)
 -- Name: veiculo veiculo_pkey; Type: CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -2705,7 +2716,7 @@ ALTER TABLE ONLY transportadora_xpto.veiculo
 
 
 --
--- TOC entry 5039 (class 2606 OID 84218)
+-- TOC entry 5065 (class 2606 OID 42795)
 -- Name: veiculo veiculo_placa_key; Type: CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -2714,7 +2725,7 @@ ALTER TABLE ONLY transportadora_xpto.veiculo
 
 
 --
--- TOC entry 5049 (class 2606 OID 84292)
+-- TOC entry 5067 (class 2606 OID 42797)
 -- Name: viagem viagem_pkey; Type: CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -2723,7 +2734,7 @@ ALTER TABLE ONLY transportadora_xpto.viagem
 
 
 --
--- TOC entry 5088 (class 2606 OID 84154)
+-- TOC entry 5068 (class 2606 OID 42798)
 -- Name: carregamento carregamento_id_carregador_fkey; Type: FK CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2732,7 +2743,7 @@ ALTER TABLE ONLY expresso_vanguarda.carregamento
 
 
 --
--- TOC entry 5089 (class 2606 OID 84144)
+-- TOC entry 5069 (class 2606 OID 42803)
 -- Name: carregamento carregamento_id_pedido_fkey; Type: FK CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2741,7 +2752,7 @@ ALTER TABLE ONLY expresso_vanguarda.carregamento
 
 
 --
--- TOC entry 5090 (class 2606 OID 84149)
+-- TOC entry 5070 (class 2606 OID 42808)
 -- Name: carregamento carregamento_id_veiculo_fkey; Type: FK CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2750,7 +2761,7 @@ ALTER TABLE ONLY expresso_vanguarda.carregamento
 
 
 --
--- TOC entry 5094 (class 2606 OID 84201)
+-- TOC entry 5071 (class 2606 OID 42813)
 -- Name: mensagemcliente fk_mensagem_cliente; Type: FK CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2759,7 +2770,7 @@ ALTER TABLE ONLY expresso_vanguarda.mensagemcliente
 
 
 --
--- TOC entry 5095 (class 2606 OID 84191)
+-- TOC entry 5072 (class 2606 OID 42818)
 -- Name: mensagemcliente fk_mensagem_pedido; Type: FK CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2768,7 +2779,7 @@ ALTER TABLE ONLY expresso_vanguarda.mensagemcliente
 
 
 --
--- TOC entry 5096 (class 2606 OID 84196)
+-- TOC entry 5073 (class 2606 OID 42823)
 -- Name: mensagemcliente fk_mensagem_transportadora; Type: FK CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2777,7 +2788,7 @@ ALTER TABLE ONLY expresso_vanguarda.mensagemcliente
 
 
 --
--- TOC entry 5085 (class 2606 OID 84119)
+-- TOC entry 5074 (class 2606 OID 42828)
 -- Name: pedido pedido_id_cliente_fkey; Type: FK CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2786,7 +2797,7 @@ ALTER TABLE ONLY expresso_vanguarda.pedido
 
 
 --
--- TOC entry 5086 (class 2606 OID 84129)
+-- TOC entry 5075 (class 2606 OID 42833)
 -- Name: pedido pedido_id_transportadora_fkey; Type: FK CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2795,7 +2806,7 @@ ALTER TABLE ONLY expresso_vanguarda.pedido
 
 
 --
--- TOC entry 5087 (class 2606 OID 84124)
+-- TOC entry 5076 (class 2606 OID 42838)
 -- Name: pedido pedido_tipo_carga_fkey; Type: FK CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2804,7 +2815,7 @@ ALTER TABLE ONLY expresso_vanguarda.pedido
 
 
 --
--- TOC entry 5084 (class 2606 OID 84104)
+-- TOC entry 5077 (class 2606 OID 42843)
 -- Name: tipo_carga tipo_carga_id_transportadora_fkey; Type: FK CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2813,7 +2824,7 @@ ALTER TABLE ONLY expresso_vanguarda.tipo_carga
 
 
 --
--- TOC entry 5091 (class 2606 OID 84169)
+-- TOC entry 5078 (class 2606 OID 42848)
 -- Name: viagem viagem_id_carregamento_fkey; Type: FK CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2822,7 +2833,7 @@ ALTER TABLE ONLY expresso_vanguarda.viagem
 
 
 --
--- TOC entry 5092 (class 2606 OID 84179)
+-- TOC entry 5079 (class 2606 OID 42853)
 -- Name: viagem viagem_id_motorista_fkey; Type: FK CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2831,7 +2842,7 @@ ALTER TABLE ONLY expresso_vanguarda.viagem
 
 
 --
--- TOC entry 5093 (class 2606 OID 84174)
+-- TOC entry 5080 (class 2606 OID 42858)
 -- Name: viagem viagem_id_veiculo_fkey; Type: FK CONSTRAINT; Schema: expresso_vanguarda; Owner: postgres
 --
 
@@ -2840,7 +2851,7 @@ ALTER TABLE ONLY expresso_vanguarda.viagem
 
 
 --
--- TOC entry 5114 (class 2606 OID 84402)
+-- TOC entry 5081 (class 2606 OID 42863)
 -- Name: carregamento carregamento_id_carregador_fkey; Type: FK CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2849,7 +2860,7 @@ ALTER TABLE ONLY max_transportes.carregamento
 
 
 --
--- TOC entry 5115 (class 2606 OID 84392)
+-- TOC entry 5082 (class 2606 OID 42868)
 -- Name: carregamento carregamento_id_pedido_fkey; Type: FK CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2858,7 +2869,7 @@ ALTER TABLE ONLY max_transportes.carregamento
 
 
 --
--- TOC entry 5116 (class 2606 OID 84397)
+-- TOC entry 5083 (class 2606 OID 42873)
 -- Name: carregamento carregamento_id_veiculo_fkey; Type: FK CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2867,7 +2878,7 @@ ALTER TABLE ONLY max_transportes.carregamento
 
 
 --
--- TOC entry 5120 (class 2606 OID 84449)
+-- TOC entry 5084 (class 2606 OID 42878)
 -- Name: mensagemcliente fk_mensagem_cliente; Type: FK CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2876,7 +2887,7 @@ ALTER TABLE ONLY max_transportes.mensagemcliente
 
 
 --
--- TOC entry 5121 (class 2606 OID 84439)
+-- TOC entry 5085 (class 2606 OID 42883)
 -- Name: mensagemcliente fk_mensagem_pedido; Type: FK CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2885,7 +2896,7 @@ ALTER TABLE ONLY max_transportes.mensagemcliente
 
 
 --
--- TOC entry 5122 (class 2606 OID 84444)
+-- TOC entry 5086 (class 2606 OID 42888)
 -- Name: mensagemcliente fk_mensagem_transportadora; Type: FK CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2894,7 +2905,7 @@ ALTER TABLE ONLY max_transportes.mensagemcliente
 
 
 --
--- TOC entry 5111 (class 2606 OID 84367)
+-- TOC entry 5087 (class 2606 OID 42893)
 -- Name: pedido pedido_id_cliente_fkey; Type: FK CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2903,7 +2914,7 @@ ALTER TABLE ONLY max_transportes.pedido
 
 
 --
--- TOC entry 5112 (class 2606 OID 84377)
+-- TOC entry 5088 (class 2606 OID 42898)
 -- Name: pedido pedido_id_transportadora_fkey; Type: FK CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2912,7 +2923,7 @@ ALTER TABLE ONLY max_transportes.pedido
 
 
 --
--- TOC entry 5113 (class 2606 OID 84372)
+-- TOC entry 5089 (class 2606 OID 42903)
 -- Name: pedido pedido_tipo_carga_fkey; Type: FK CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2921,7 +2932,7 @@ ALTER TABLE ONLY max_transportes.pedido
 
 
 --
--- TOC entry 5110 (class 2606 OID 84352)
+-- TOC entry 5090 (class 2606 OID 42908)
 -- Name: tipo_carga tipo_carga_id_transportadora_fkey; Type: FK CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2930,7 +2941,7 @@ ALTER TABLE ONLY max_transportes.tipo_carga
 
 
 --
--- TOC entry 5117 (class 2606 OID 84417)
+-- TOC entry 5091 (class 2606 OID 42913)
 -- Name: viagem viagem_id_carregamento_fkey; Type: FK CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2939,7 +2950,7 @@ ALTER TABLE ONLY max_transportes.viagem
 
 
 --
--- TOC entry 5118 (class 2606 OID 84427)
+-- TOC entry 5092 (class 2606 OID 42918)
 -- Name: viagem viagem_id_motorista_fkey; Type: FK CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2948,7 +2959,7 @@ ALTER TABLE ONLY max_transportes.viagem
 
 
 --
--- TOC entry 5119 (class 2606 OID 84422)
+-- TOC entry 5093 (class 2606 OID 42923)
 -- Name: viagem viagem_id_veiculo_fkey; Type: FK CONSTRAINT; Schema: max_transportes; Owner: postgres
 --
 
@@ -2957,7 +2968,7 @@ ALTER TABLE ONLY max_transportes.viagem
 
 
 --
--- TOC entry 5070 (class 2606 OID 83936)
+-- TOC entry 5094 (class 2606 OID 42928)
 -- Name: motorista motorista_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2966,7 +2977,7 @@ ALTER TABLE ONLY public.motorista
 
 
 --
--- TOC entry 5068 (class 2606 OID 83913)
+-- TOC entry 5095 (class 2606 OID 42933)
 -- Name: usuarios usuarios_id_grupo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2975,7 +2986,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 5069 (class 2606 OID 83918)
+-- TOC entry 5096 (class 2606 OID 42938)
 -- Name: usuarios usuarios_id_transportadora_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2984,7 +2995,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 5075 (class 2606 OID 84030)
+-- TOC entry 5097 (class 2606 OID 42943)
 -- Name: carregamento carregamento_id_carregador_fkey; Type: FK CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -2993,7 +3004,7 @@ ALTER TABLE ONLY rota_certa_logistica.carregamento
 
 
 --
--- TOC entry 5076 (class 2606 OID 84020)
+-- TOC entry 5098 (class 2606 OID 42948)
 -- Name: carregamento carregamento_id_pedido_fkey; Type: FK CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -3002,7 +3013,7 @@ ALTER TABLE ONLY rota_certa_logistica.carregamento
 
 
 --
--- TOC entry 5077 (class 2606 OID 84025)
+-- TOC entry 5099 (class 2606 OID 42953)
 -- Name: carregamento carregamento_id_veiculo_fkey; Type: FK CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -3011,7 +3022,7 @@ ALTER TABLE ONLY rota_certa_logistica.carregamento
 
 
 --
--- TOC entry 5081 (class 2606 OID 84077)
+-- TOC entry 5100 (class 2606 OID 42958)
 -- Name: mensagemcliente fk_mensagem_cliente; Type: FK CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -3020,7 +3031,7 @@ ALTER TABLE ONLY rota_certa_logistica.mensagemcliente
 
 
 --
--- TOC entry 5082 (class 2606 OID 84067)
+-- TOC entry 5101 (class 2606 OID 42963)
 -- Name: mensagemcliente fk_mensagem_pedido; Type: FK CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -3029,7 +3040,7 @@ ALTER TABLE ONLY rota_certa_logistica.mensagemcliente
 
 
 --
--- TOC entry 5083 (class 2606 OID 84072)
+-- TOC entry 5102 (class 2606 OID 42968)
 -- Name: mensagemcliente fk_mensagem_transportadora; Type: FK CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -3038,7 +3049,7 @@ ALTER TABLE ONLY rota_certa_logistica.mensagemcliente
 
 
 --
--- TOC entry 5072 (class 2606 OID 83995)
+-- TOC entry 5103 (class 2606 OID 42973)
 -- Name: pedido pedido_id_cliente_fkey; Type: FK CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -3047,7 +3058,7 @@ ALTER TABLE ONLY rota_certa_logistica.pedido
 
 
 --
--- TOC entry 5073 (class 2606 OID 84005)
+-- TOC entry 5104 (class 2606 OID 42978)
 -- Name: pedido pedido_id_transportadora_fkey; Type: FK CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -3056,7 +3067,7 @@ ALTER TABLE ONLY rota_certa_logistica.pedido
 
 
 --
--- TOC entry 5074 (class 2606 OID 84000)
+-- TOC entry 5105 (class 2606 OID 42983)
 -- Name: pedido pedido_tipo_carga_fkey; Type: FK CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -3065,7 +3076,7 @@ ALTER TABLE ONLY rota_certa_logistica.pedido
 
 
 --
--- TOC entry 5071 (class 2606 OID 83980)
+-- TOC entry 5106 (class 2606 OID 42988)
 -- Name: tipo_carga tipo_carga_id_transportadora_fkey; Type: FK CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -3074,7 +3085,7 @@ ALTER TABLE ONLY rota_certa_logistica.tipo_carga
 
 
 --
--- TOC entry 5078 (class 2606 OID 84045)
+-- TOC entry 5107 (class 2606 OID 42993)
 -- Name: viagem viagem_id_carregamento_fkey; Type: FK CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -3083,7 +3094,7 @@ ALTER TABLE ONLY rota_certa_logistica.viagem
 
 
 --
--- TOC entry 5079 (class 2606 OID 84055)
+-- TOC entry 5108 (class 2606 OID 42998)
 -- Name: viagem viagem_id_motorista_fkey; Type: FK CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -3092,7 +3103,7 @@ ALTER TABLE ONLY rota_certa_logistica.viagem
 
 
 --
--- TOC entry 5080 (class 2606 OID 84050)
+-- TOC entry 5109 (class 2606 OID 43003)
 -- Name: viagem viagem_id_veiculo_fkey; Type: FK CONSTRAINT; Schema: rota_certa_logistica; Owner: postgres
 --
 
@@ -3101,7 +3112,7 @@ ALTER TABLE ONLY rota_certa_logistica.viagem
 
 
 --
--- TOC entry 5101 (class 2606 OID 84278)
+-- TOC entry 5110 (class 2606 OID 43008)
 -- Name: carregamento carregamento_id_carregador_fkey; Type: FK CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -3110,7 +3121,7 @@ ALTER TABLE ONLY transportadora_xpto.carregamento
 
 
 --
--- TOC entry 5102 (class 2606 OID 84268)
+-- TOC entry 5111 (class 2606 OID 43013)
 -- Name: carregamento carregamento_id_pedido_fkey; Type: FK CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -3119,7 +3130,7 @@ ALTER TABLE ONLY transportadora_xpto.carregamento
 
 
 --
--- TOC entry 5103 (class 2606 OID 84273)
+-- TOC entry 5112 (class 2606 OID 43018)
 -- Name: carregamento carregamento_id_veiculo_fkey; Type: FK CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -3128,7 +3139,7 @@ ALTER TABLE ONLY transportadora_xpto.carregamento
 
 
 --
--- TOC entry 5107 (class 2606 OID 84325)
+-- TOC entry 5113 (class 2606 OID 43023)
 -- Name: mensagemcliente fk_mensagem_cliente; Type: FK CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -3137,7 +3148,7 @@ ALTER TABLE ONLY transportadora_xpto.mensagemcliente
 
 
 --
--- TOC entry 5108 (class 2606 OID 84315)
+-- TOC entry 5114 (class 2606 OID 43028)
 -- Name: mensagemcliente fk_mensagem_pedido; Type: FK CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -3146,7 +3157,7 @@ ALTER TABLE ONLY transportadora_xpto.mensagemcliente
 
 
 --
--- TOC entry 5109 (class 2606 OID 84320)
+-- TOC entry 5115 (class 2606 OID 43033)
 -- Name: mensagemcliente fk_mensagem_transportadora; Type: FK CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -3155,7 +3166,7 @@ ALTER TABLE ONLY transportadora_xpto.mensagemcliente
 
 
 --
--- TOC entry 5098 (class 2606 OID 84243)
+-- TOC entry 5116 (class 2606 OID 43038)
 -- Name: pedido pedido_id_cliente_fkey; Type: FK CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -3164,7 +3175,7 @@ ALTER TABLE ONLY transportadora_xpto.pedido
 
 
 --
--- TOC entry 5099 (class 2606 OID 84253)
+-- TOC entry 5117 (class 2606 OID 43043)
 -- Name: pedido pedido_id_transportadora_fkey; Type: FK CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -3173,7 +3184,7 @@ ALTER TABLE ONLY transportadora_xpto.pedido
 
 
 --
--- TOC entry 5100 (class 2606 OID 84248)
+-- TOC entry 5118 (class 2606 OID 43048)
 -- Name: pedido pedido_tipo_carga_fkey; Type: FK CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -3182,7 +3193,7 @@ ALTER TABLE ONLY transportadora_xpto.pedido
 
 
 --
--- TOC entry 5097 (class 2606 OID 84228)
+-- TOC entry 5119 (class 2606 OID 43053)
 -- Name: tipo_carga tipo_carga_id_transportadora_fkey; Type: FK CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -3191,7 +3202,7 @@ ALTER TABLE ONLY transportadora_xpto.tipo_carga
 
 
 --
--- TOC entry 5104 (class 2606 OID 84293)
+-- TOC entry 5120 (class 2606 OID 43058)
 -- Name: viagem viagem_id_carregamento_fkey; Type: FK CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -3200,7 +3211,7 @@ ALTER TABLE ONLY transportadora_xpto.viagem
 
 
 --
--- TOC entry 5105 (class 2606 OID 84303)
+-- TOC entry 5121 (class 2606 OID 43063)
 -- Name: viagem viagem_id_motorista_fkey; Type: FK CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -3209,7 +3220,7 @@ ALTER TABLE ONLY transportadora_xpto.viagem
 
 
 --
--- TOC entry 5106 (class 2606 OID 84298)
+-- TOC entry 5122 (class 2606 OID 43068)
 -- Name: viagem viagem_id_veiculo_fkey; Type: FK CONSTRAINT; Schema: transportadora_xpto; Owner: postgres
 --
 
@@ -3219,14 +3230,14 @@ ALTER TABLE ONLY transportadora_xpto.viagem
 
 --
 -- TOC entry 5332 (class 0 OID 0)
--- Dependencies: 5
+-- Dependencies: 9
 -- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
 --
 
 REVOKE USAGE ON SCHEMA public FROM PUBLIC;
 
 
--- Completed on 2025-11-04 17:18:10
+-- Completed on 2025-11-10 11:29:58
 
 --
 -- PostgreSQL database dump complete
