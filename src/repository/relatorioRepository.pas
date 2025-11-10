@@ -5,6 +5,7 @@ uses
   System.SysUtils, System.Classes, FireDAC.Comp.Client, System.Generics.Collections, unit2;
 type TrelatorioRepository = class
   procedure relatorioFaturamento(aIdTransportadora: Integer;aIdCliente: Integer = 0;aData:TdateTime= 0);
+  procedure relatorioTempoCarregamento(aIdTransportadora,aIdCarregador:Integer);
 end;
 
 
@@ -64,5 +65,89 @@ begin
     QryAux.Free;
   end;
 end;
+
+procedure TrelatorioRepository.relatorioTempoCarregamento(aIdTransportadora, aIdCarregador: Integer);
+var
+  SchemaName: string;
+  QryAux: TFDQuery;
+  SQLWhere, SQLMedia, Filtros: string;
+begin
+  QryAux := TFDQuery.Create(nil);
+  try
+    QryAux.Connection := dataModule2.FDConnection1;
+    QryAux.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id';
+    QryAux.ParamByName('id').AsInteger := aIdTransportadora;
+    QryAux.Open;
+    SchemaName := QryAux.FieldByName('schema_name').AsString;
+    QryAux.Close;
+
+    Filtros := '';
+    if aIdCarregador > 0 then
+      Filtros := Filtros + ' AND u.id_usuario = :id_carregador ';
+
+    if Filtros <> '' then
+      SQLWhere := ' WHERE ' + Copy(Filtros, 6, Length(Filtros))
+    else
+      SQLWhere := '';
+
+    SQLMedia :=
+      ' UNION ALL ' +
+      'SELECT u.id_usuario AS id_carregador, ' +
+      '       u.nome       AS nome_carregador, ' +
+      '       NULL::bigint AS id_carregamento, ' +
+      '       NULL::timestamp AS data_hora_inicio, ' +
+      '       NULL::timestamp AS data_hora_fim, ' +
+      '       NULL::text   AS tempo_hh_mm, ' +
+      '       (LPAD(FLOOR(AVG(EXTRACT(EPOCH FROM (c.data_hora_fim - c.data_hora_inicio))) / 3600)::text, 2, ''0'') || '':'' || ' +
+      '        LPAD(FLOOR((AVG(EXTRACT(EPOCH FROM (c.data_hora_fim - c.data_hora_inicio))) % 3600) / 60)::text, 2, ''0''))::text AS media_geral_hh_mm ' +
+      'FROM ' + SchemaName + '.carregamento c ' +
+      'JOIN public.usuarios u ON u.id_usuario = c.id_carregador ' +
+      'WHERE c.data_hora_inicio IS NOT NULL AND c.data_hora_fim IS NOT NULL ' + Filtros +
+      'GROUP BY u.id_usuario, u.nome ';
+
+    if aIdCarregador = 0 then
+      SQLMedia := SQLMedia +
+        ' UNION ALL ' +
+        'SELECT NULL::bigint AS id_carregador, ' +
+        '       ''MÉDIA GERAL'' AS nome_carregador, ' +
+        '       NULL::bigint AS id_carregamento, ' +
+        '       NULL::timestamp AS data_hora_inicio, ' +
+        '       NULL::timestamp AS data_hora_fim, ' +
+        '       NULL::text AS tempo_hh_mm, ' +
+        '       (LPAD(FLOOR(AVG(EXTRACT(EPOCH FROM (c.data_hora_fim - c.data_hora_inicio))) / 3600)::text, 2, ''0'') || '':'' || ' +
+        '        LPAD(FLOOR((AVG(EXTRACT(EPOCH FROM (c.data_hora_fim - c.data_hora_inicio))) % 3600) / 60)::text, 2, ''0''))::text AS media_geral_hh_mm ' +
+        'FROM ' + SchemaName + '.carregamento c ' +
+        'WHERE c.data_hora_inicio IS NOT NULL AND c.data_hora_fim IS NOT NULL ';
+
+    dataModule2.FDQueryTimeCarreg.Close;
+    dataModule2.FDQueryTimeCarreg.SQL.Text :=
+      'SELECT u.id_usuario AS id_carregador, ' +
+      '       u.nome AS nome_carregador, ' +
+      '       c.id_carregamento, ' +
+      '       c.data_hora_inicio, ' +
+      '       c.data_hora_fim, ' +
+      '       (LPAD(FLOOR(EXTRACT(EPOCH FROM (c.data_hora_fim - c.data_hora_inicio)) / 3600)::text, 2, ''0'') || '':'' || ' +
+      '        LPAD(FLOOR((EXTRACT(EPOCH FROM (c.data_hora_fim - c.data_hora_inicio)) % 3600) / 60)::text, 2, ''0''))::text AS tempo_hh_mm, ' +
+      '       NULL::text AS media_geral_hh_mm ' +
+      'FROM ' + SchemaName + '.carregamento c ' +
+      'JOIN public.usuarios u ON u.id_usuario = c.id_carregador ' +
+      'WHERE c.data_hora_inicio IS NOT NULL AND c.data_hora_fim IS NOT NULL ' + Filtros +
+      SQLMedia +
+      ' ORDER BY nome_carregador NULLS LAST, data_hora_inicio NULLS LAST;';
+
+
+    dataModule2.FDQueryTimeCarreg.Params.Clear;
+    if aIdCarregador > 0 then
+      dataModule2.FDQueryTimeCarreg.ParamByName('id_carregador').AsInteger := aIdCarregador;
+
+
+    dataModule2.FDQueryTimeCarreg.Open;
+    dataModule2.frxReportTimeCarreg.ShowReport;
+  finally
+    QryAux.Free;
+  end;
+end;
+
+
 
 end.

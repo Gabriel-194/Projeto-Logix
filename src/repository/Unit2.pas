@@ -26,7 +26,6 @@ uses
     FDQueryFaturamentoid_pedido: TIntegerField;
     FDQueryFaturamentovalor_pedido: TFMTBCDField;
     FDQueryTimeCarreg: TFDQuery;
-    frxReportTimeCarreg: TfrxReport;
     frxDBDatasetTimeCarreg: TfrxDBDataset;
     FDQueryTimeCarregid_carregador: TIntegerField;
     FDQueryTimeCarregnome_carregador: TWideStringField;
@@ -35,6 +34,7 @@ uses
     FDQueryTimeCarregdata_hora_fim: TSQLTimeStampField;
     FDQueryTimeCarregtempo_hh_mm: TWideMemoField;
     FDQueryTimeCarregmedia_geral_hh_mm: TWideMemoField;
+    frxReportTimecarreg: TfrxReport;
     procedure DataModuleCreate(Sender: TObject);
   end;
 

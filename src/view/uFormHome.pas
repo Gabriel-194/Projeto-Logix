@@ -455,12 +455,22 @@ type
     Series3: TPieSeries;
     Series5: TBarSeries;
     Series6: THorizBarSeries;
-    Panel4: TPanel;
+    PanelMediaCarregamento: TPanel;
     Image26: TImage;
-    Label47: TLabel;
-    Panel5: TPanel;
+    lblBtnMediacarregamento: TLabel;
+    PanelRelatorioMediaViagem: TPanel;
     Image27: TImage;
-    Label53: TLabel;
+    lblBtnMediaViagem: TLabel;
+    PanelFiltroRelatorioMediaCarreg: TPanel;
+    Shape86: TShape;
+    Label47: TLabel;
+    Label55: TLabel;
+    Label56: TLabel;
+    Image28: TImage;
+    ComboBoxCarregadorfiltro: TComboBox;
+    PnlFiltroEmitirRelatorioCarreg: TPanel;
+    Shape87: TShape;
+    lblBtnEmitirRelatorioCarreg: TLabel;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -542,6 +552,9 @@ type
     procedure Image22Click(Sender: TObject);
     procedure Shape84ContextPopup(Sender: TObject; MousePos: TPoint;
       var Handled: Boolean);
+    procedure Image28Click(Sender: TObject);
+    procedure lblBtnMediacarregamentoClick(Sender: TObject);
+    procedure lblBtnEmitirRelatorioCarregClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -2332,6 +2345,29 @@ begin
 end;
 
 //============RELATORIOS =====
+procedure TFormHome.lblBtnEmitirRelatorioCarregClick(Sender: TObject);
+var
+  controller: ThomeController;
+  idCarregador: Integer;
+  carregadorTxt: string;
+begin
+  controller := ThomeController.Create;
+  try
+
+    carregadorTxt := ComboBoxCarregadorFiltro.Text;
+    if carregadorTxt <> '' then
+      idCarregador := StrToIntDef(Trim(Copy(carregadorTxt, 1, Pos(' - ', carregadorTxt) - 1)), 0)
+    else
+      idCarregador:= 0;
+
+    controller.relatorioTempoCarregamento(userLogado.getIdTransportadora, idCarregador);
+
+  finally
+    controller.Free;
+  end;
+end;
+
+
 procedure TFormHome.lblBtnEmitirRelFaturamentoClick(Sender: TObject);
 var
   controller: ThomeController;
@@ -2390,6 +2426,36 @@ procedure TFormHome.imgFechaFIltroRelFatClick(Sender: TObject);
 begin
 pnlFiltroFaturamento.Visible:=false;
 end;
+
+procedure TFormHome.Image28Click(Sender: TObject);
+begin
+PanelFiltroRelatorioMediaCarreg.visible:=true;
+end;
+
+procedure TFormHome.lblBtnMediacarregamentoClick(Sender: TObject);
+var
+  controller: ThomeController;
+  ListaUser: TObjectList<TUsuario>;
+  i: Integer;
+  user: Tusuario;
+begin
+  PanelFiltroRelatorioMediaCarreg.visible:=true;
+    pnlFiltroFaturamento.Visible := false;
+  controller := ThomeController.Create;
+  try
+    listaUser := controller.mostrarUser('Carregador',userLogado.getIdTransportadora);
+    ComboBoxClienteFiltro.Items.Clear;
+    for i := 0 to ListaUser.Count - 1 do
+    begin
+      user := ListaUser[i];
+      ComboBoxCarregadorFiltro.Items.Add(IntToStr(user.getId) + ' - ' + user.getNome);
+    end;
+  finally
+    controller.Free;
+    ListaUser.Free;
+  end;
+end;
+
 
 
 end.
