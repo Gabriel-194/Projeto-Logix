@@ -7,12 +7,9 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,dateUtils,uCliente,
   Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask,viagemDto, usuarioLogado,uUsuario,carregamentoDto,uCleanFIelds,
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController,system.Generics.Collections,motoristaDto, uVeiculo,tipoCargaDto,pedidoDto,
-  VclTee.TeeGDIPlus, VCLTee.Series, VCLTee.TeEngine, VCLTee.TeeProcs,
-  VCLTee.Chart, frxSmartMemo, FireDAC.Stan.Intf, FireDAC.Stan.Option,
-  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
-  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, frxClass, frxExportBaseDialog, frxExportPDF, frxDBSet,
-  frCoreClasses;
+  VclTee.TeeGDIPlus, VCLTee.Series, VCLTee.TeEngine, VCLTee.TeeProcs,VCLTee.Chart, frxSmartMemo, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, frxClass, frxExportBaseDialog, frxExportPDF, frxDBSet,frCoreClasses;
 
 type
   TFormHome = class(TForm)
@@ -461,7 +458,7 @@ type
     PanelRelatorioMediaViagem: TPanel;
     Image27: TImage;
     lblBtnMediaViagem: TLabel;
-    PanelFiltroRelatorioMediaCarreg: TPanel;
+    PanelFiltroRelatorioMedia: TPanel;
     Shape86: TShape;
     Label47: TLabel;
     Label55: TLabel;
@@ -470,7 +467,7 @@ type
     ComboBoxCarregadorfiltro: TComboBox;
     PnlFiltroEmitirRelatorioCarreg: TPanel;
     Shape87: TShape;
-    lblBtnEmitirRelatorioCarreg: TLabel;
+    lblBtnEmitirRelatorio: TLabel;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -554,7 +551,9 @@ type
       var Handled: Boolean);
     procedure Image28Click(Sender: TObject);
     procedure lblBtnMediacarregamentoClick(Sender: TObject);
-    procedure lblBtnEmitirRelatorioCarregClick(Sender: TObject);
+    procedure lblBtnEmitirRelatorioClick(Sender: TObject);
+    procedure lblBtnMediaViagemClick(Sender: TObject);
+    procedure lblBtnEmitirRelatorioViagem(Sender: TObject);
   private
     { Private declarations }
   public
@@ -2345,7 +2344,7 @@ begin
 end;
 
 //============RELATORIOS =====
-procedure TFormHome.lblBtnEmitirRelatorioCarregClick(Sender: TObject);
+procedure TFormHome.lblBtnEmitirRelatorioClick(Sender: TObject);
 var
   controller: ThomeController;
   idCarregador: Integer;
@@ -2367,6 +2366,28 @@ begin
   end;
 end;
 
+
+procedure TFormHome.lblBtnEmitirRelatorioViagem(Sender: TObject);
+var
+  controller: ThomeController;
+  idmotorista: Integer;
+  motoristaTxt: string;
+begin
+  controller := ThomeController.Create;
+  try
+
+    motoristaTxt := ComboBoxCarregadorFiltro.Text;
+    if motoristaTxt <> '' then
+      idmotorista := StrToIntDef(Trim(Copy(motoristaTxt, 1, Pos(' - ', motoristaTxt) - 1)), 0)
+    else
+      idMotorista:= 0;
+
+    controller.relatorioTempoviagem(userLogado.getIdTransportadora, idmotorista);
+
+  finally
+    controller.Free;
+  end;
+end;
 
 procedure TFormHome.lblBtnEmitirRelFaturamentoClick(Sender: TObject);
 var
@@ -2429,7 +2450,7 @@ end;
 
 procedure TFormHome.Image28Click(Sender: TObject);
 begin
-PanelFiltroRelatorioMediaCarreg.visible:=true;
+PanelFiltroRelatorioMedia.visible:=false;
 end;
 
 procedure TFormHome.lblBtnMediacarregamentoClick(Sender: TObject);
@@ -2439,12 +2460,16 @@ var
   i: Integer;
   user: Tusuario;
 begin
-  PanelFiltroRelatorioMediaCarreg.visible:=true;
-    pnlFiltroFaturamento.Visible := false;
+  PanelFiltroRelatorioMedia.visible:=true;
+  pnlFiltroFaturamento.Visible := false;
   controller := ThomeController.Create;
+  Label55.Caption:='Carregadores';
+  ComboBoxCarregadorfiltro.TextHint:='Selecione o carregador';
+  Label56.caption:='Caso nenhum carregador seja informado o relatorio '+sLineBreak+'vai exibir a média de tempo de carregamento da empresa toda';
+  lblBtnEmitirRelatorio.OnClick := lblBtnEmitirRelatorioClick;
   try
     listaUser := controller.mostrarUser('Carregador',userLogado.getIdTransportadora);
-    ComboBoxClienteFiltro.Items.Clear;
+    ComboBoxCarregadorFiltro.Items.Clear;
     for i := 0 to ListaUser.Count - 1 do
     begin
       user := ListaUser[i];
@@ -2457,5 +2482,33 @@ begin
 end;
 
 
+
+procedure TFormHome.lblBtnMediaViagemClick(Sender: TObject);
+var
+  controller: ThomeController;
+  ListaMotorista: TList<TmotoristaDto>;
+  i: Integer;
+  motorista: tmotoristaDto;
+begin
+  PanelFiltroRelatorioMedia.visible:=true;
+  pnlFiltroFaturamento.Visible := false;
+  controller := ThomeController.Create;
+  Label55.Caption:='Motoristas';
+  ComboBoxCarregadorfiltro.TextHint:='Selecione o motorista';
+  Label56.caption:='Caso nenhum Motorista seja informado o relatorio '+sLineBreak+'vai exibir a média de tempo de viagem da empresa toda';
+  lblBtnEmitirRelatorio.OnClick := lblBtnEmitirRelatorioViagem;
+  try
+    ListaMotorista:=  controller.MostrarMotorista(userLogado.getIdTransportadora);
+    ComboBoxCarregadorFiltro.Items.Clear;
+    for i := 0 to ListaMotorista.Count - 1 do
+    begin
+      motorista := ListaMotorista[i];
+      ComboBoxCarregadorFiltro.Items.Add(IntToStr(motorista.IdUsuario) + ' - ' + motorista.Nome);
+    end;
+  finally
+    controller.Free;
+    ListaMotorista.Free;
+  end;
+end;
 
 end.

@@ -91,7 +91,6 @@ begin
         '(placa, modelo, ano, tipo_carga, capacidade, unidade_medida, ativo, data_cadastro, data_atualizacao,status) ' +
         'VALUES ' +
         '(:placa, :modelo, :ano, :tipo_carga, :capacidade, :unidade_medida, TRUE, NOW(), NOW(), ''disponivel'')';
-
       FDQuery.ParamByName('placa').AsString := veiculo.getPlaca;
       FDQuery.ParamByName('modelo').AsString := veiculo.getModelo;
       FDQuery.ParamByName('ano').AsInteger := veiculo.getAno;

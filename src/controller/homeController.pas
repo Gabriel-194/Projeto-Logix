@@ -54,6 +54,7 @@ function ObterPedidosPorMes(aIdTransportadora:integer): Tlist<TpedidoDto>;
 //========= relatorios
 procedure relatorioFaturamento(aIdTransportadora: Integer;aIdCliente: Integer = 0;aData:TdateTime= 0);
 procedure relatorioTempoCarregamento(aIdTransportadora,aIdCarregador:Integer);
+ procedure relatorioTempoViagem(aIdTransportadora, aIdMotorista: Integer);
 //=====clientes=====================
   function ListarCliente(idTransportadora: Integer): TObjectList<Tcliente>;
 
@@ -593,6 +594,19 @@ begin
   service:= TrelatorioService.create;
   try
     service.relatorioTempoCarregamento(aIdTransportadora,aIdCarregador);
+  finally
+    service.free;
+  end;
+end;
+
+procedure THomeController.relatorioTempoViagem(aIdTransportadora,
+  aIdMotorista: Integer);
+var
+  service: TrelatorioService;
+begin
+  service:= TrelatorioService.create;
+  try
+    service.relatorioTempoviagem(aIdTransportadora,aIdmotorista);
   finally
     service.free;
   end;

@@ -1,8 +1,7 @@
 object DataModule2: TDataModule2
   OnCreate = DataModuleCreate
-  Height = 439
-  Width = 828
-  PixelsPerInch = 120
+  Height = 351
+  Width = 662
   object FDConnection1: TFDConnection
     Params.Strings = (
       'Database=logix'
@@ -12,20 +11,20 @@ object DataModule2: TDataModule2
       'DriverID=PG')
     Connected = True
     LoginPrompt = False
-    Left = 280
-    Top = 48
+    Left = 224
+    Top = 38
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
-    Left = 128
-    Top = 56
+    Left = 102
+    Top = 45
   end
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorLib = 
-      'C:\Users\gabri\OneDrive\Documents\Embarcadero\Studio\Projects\Pr' +
+      'C:\Users\gabriel kuchma\Documents\Embarcadero\Studio\Projects\Pr' +
       'ojeto-Logix\lib\libpq.dll'
-    Left = 416
-    Top = 48
+    Left = 333
+    Top = 38
   end
   object frxReportFaturamento: TfrxReport
     Version = '2026.1.0'
@@ -36,15 +35,27 @@ object DataModule2: TDataModule2
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 45967.414728171300000000
-    ReportOptions.LastChange = 45968.397554294000000000
+    ReportOptions.LastChange = 45972.617403692130000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
+      ''
+      'procedure MasterData1OnBeforePrint(Sender: TfrxComponent);'
+      'begin  '
+      '  if ([frxDBDatasetFaturamento."nome"] = '#39#39') then'
+      '  begin'
+      '    MasterData1.Visible := False;'
+      '  end'
+      '  else'
+      '  begin    '
+      '    MasterData1.Visible := True;'
+      '  end;'
+      'end;'
       ''
       'begin'
       ''
       'end.')
-    Left = 73
-    Top = 184
+    Left = 58
+    Top = 147
     Datasets = <
       item
         DataSet = frxDBDatasetFaturamento
@@ -139,6 +150,8 @@ object DataModule2: TDataModule2
           AllowVectorExport = True
           Width = 740.409912109375000000
           Height = 22.677180000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -16
@@ -148,7 +161,7 @@ object DataModule2: TDataModule2
           Fill.BackColor = clGray
           HAlign = haCenter
           Memo.UTF8W = (
-            'Report')
+            'Relatorio de faturamento por cliente')
           ParentFont = False
           Style = 'Title'
           VAlign = vaCenter
@@ -278,6 +291,7 @@ object DataModule2: TDataModule2
         Height = 34.015771460000000000
         Top = 162.519790000000000000
         Width = 740.409927000000000000
+        OnBeforePrint = 'MasterData1OnBeforePrint'
         DataSet = frxDBDatasetFaturamento
         DataSetName = 'frxDBDatasetFaturamento'
         RowCount = 0
@@ -287,7 +301,6 @@ object DataModule2: TDataModule2
           Height = 18.897650000000000000
           ContentScaleOptions.Constraints.MaxIterationValue = 0
           ContentScaleOptions.Constraints.MinIterationValue = 0
-          DataField = 'id_cliente'
           DataSet = frxDBDatasetFaturamento
           DataSetName = 'frxDBDatasetFaturamento'
           Font.Charset = DEFAULT_CHARSET
@@ -308,7 +321,6 @@ object DataModule2: TDataModule2
           Height = 18.897650000000000000
           ContentScaleOptions.Constraints.MaxIterationValue = 0
           ContentScaleOptions.Constraints.MinIterationValue = 0
-          DataField = 'nome'
           DataSet = frxDBDatasetFaturamento
           DataSetName = 'frxDBDatasetFaturamento'
           Font.Charset = DEFAULT_CHARSET
@@ -438,7 +450,7 @@ object DataModule2: TDataModule2
         object Memo16: TfrxMemoView
           AllowVectorExport = True
           Top = 7.559060000000000000
-          Width = 45.839330610000000000
+          Width = 53.398390610000000000
           Height = 22.677180000000000000
           ContentScaleOptions.Constraints.MaxIterationValue = 0
           ContentScaleOptions.Constraints.MinIterationValue = 0
@@ -455,7 +467,7 @@ object DataModule2: TDataModule2
         end
         object Memo17: TfrxMemoView
           AllowVectorExport = True
-          Left = 45.354360000000000000
+          Left = 52.913420000000000000
           Top = 7.559060000000000000
           Width = 241.685671630000000000
           Height = 22.677180000000000000
@@ -515,8 +527,8 @@ object DataModule2: TDataModule2
       'WHERE CAST(p.data_pedido AS DATE) = '#39'2025-11-04'#39
       ''
       'ORDER BY id_pedido;')
-    Left = 64
-    Top = 328
+    Left = 51
+    Top = 262
     object FDQueryFaturamentoid_cliente: TIntegerField
       FieldName = 'id_cliente'
       Origin = 'id_cliente'
@@ -564,8 +576,8 @@ object DataModule2: TDataModule2
     DataSet = FDQueryFaturamento
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 73
-    Top = 256
+    Left = 58
+    Top = 205
     FieldDefs = <
       item
         FieldName = 'id_cliente'
@@ -667,8 +679,8 @@ object DataModule2: TDataModule2
       'GROUP BY u.id_usuario, u.nome'
       ''
       'ORDER BY data_hora_inicio NULLS LAST;')
-    Left = 328
-    Top = 336
+    Left = 302
+    Top = 269
     object FDQueryTimeCarregid_carregador: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'id_carregador'
@@ -723,8 +735,8 @@ object DataModule2: TDataModule2
     DataSet = FDQueryTimeCarreg
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 328
-    Top = 264
+    Left = 302
+    Top = 211
     FieldDefs = <
       item
         FieldName = 'id_carregador'
@@ -759,7 +771,7 @@ object DataModule2: TDataModule2
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 45971.642065879600000000
-    ReportOptions.LastChange = 45972.451022083330000000
+    ReportOptions.LastChange = 45972.612424664350000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -789,8 +801,8 @@ object DataModule2: TDataModule2
       'begin'
       ''
       'end.')
-    Left = 326
-    Top = 190
+    Left = 309
+    Top = 152
     Datasets = <
       item
         DataSet = frxDBDatasetTimeCarreg
@@ -896,7 +908,7 @@ object DataModule2: TDataModule2
           Fill.BackColor = clGray
           HAlign = haCenter
           Memo.UTF8W = (
-            'Report')
+            'Relatorio de tempo medio por carregamento')
           ParentFont = False
           Style = 'Title'
           VAlign = vaCenter
@@ -987,7 +999,7 @@ object DataModule2: TDataModule2
         FillGap.Bottom = 0
         FillGap.Right = 0
         Frame.Typ = []
-        Height = 26.456710000000000000
+        Height = 37.795301460000000000
         Top = 158.740260000000000000
         Width = 718.110700000000000000
         OnBeforePrint = 'MasterData1OnBeforePrint'
@@ -996,6 +1008,7 @@ object DataModule2: TDataModule2
         RowCount = 0
         object Memo6: TfrxMemoView
           AllowVectorExport = True
+          Top = 3.779530000000000000
           Width = 330.472326220000000000
           Height = 18.897650000000000000
           ContentScaleOptions.Constraints.MaxIterationValue = 0
@@ -1018,6 +1031,7 @@ object DataModule2: TDataModule2
         object Memo8: TfrxMemoView
           AllowVectorExport = True
           Left = 603.992116220000000000
+          Top = 3.779530000000000000
           Width = 114.118120000000000000
           Height = 18.897650000000000000
           ContentScaleOptions.Constraints.MaxIterationValue = 0
@@ -1039,6 +1053,7 @@ object DataModule2: TDataModule2
         object Memo15: TfrxMemoView
           AllowVectorExport = True
           Left = 415.748300000000000000
+          Top = 3.779530000000000000
           Width = 114.118120000000000000
           Height = 18.897650000000000000
           ContentScaleOptions.Constraints.MaxIterationValue = 0
@@ -1058,6 +1073,14 @@ object DataModule2: TDataModule2
           ParentFont = False
           Style = 'Data'
         end
+        object Line1: TfrxLineView
+          AllowVectorExport = True
+          Left = 3.779530100000000000
+          Top = 30.236241460000000000
+          Width = 710.551624630000000000
+          Color = clBlack
+          Frame.Typ = [ftTop]
+        end
       end
       object PageFooter1: TfrxPageFooter
         FillType = ftBrush
@@ -1067,7 +1090,7 @@ object DataModule2: TDataModule2
         FillGap.Right = 0
         Frame.Typ = []
         Height = 26.456710000000000000
-        Top = 302.362400000000000000
+        Top = 313.700990000000000000
         Width = 718.110700000000000000
         object Memo9: TfrxMemoView
           Align = baWidth
@@ -1110,12 +1133,12 @@ object DataModule2: TDataModule2
         FillGap.Right = 0
         Frame.Typ = []
         Height = 34.015770000000000000
-        Top = 245.669450000000000000
+        Top = 257.008040000000000000
         Width = 718.110700000000000000
         object Memo12: TfrxMemoView
           AllowVectorExport = True
           Top = 7.559060000000000000
-          Width = 239.504020000000000000
+          Width = 197.929190000000000000
           Height = 22.677180000000000000
           ContentScaleOptions.Constraints.MaxIterationValue = 0
           ContentScaleOptions.Constraints.MinIterationValue = 0
@@ -1132,7 +1155,7 @@ object DataModule2: TDataModule2
         end
         object Memo13: TfrxMemoView
           AllowVectorExport = True
-          Left = 238.110390000000000000
+          Left = 200.315090000000000000
           Top = 7.559060000000000000
           Width = 111.000000000000000000
           Height = 22.677180000000000000
@@ -1148,6 +1171,593 @@ object DataModule2: TDataModule2
           Frame.Typ = []
           Memo.UTF8W = (
             '[frxDBDatasetTimeCarreg."media_geral_hh_mm"]')
+          ParentFont = False
+          Style = 'Data'
+        end
+        object Memo14: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Width = 718.110717773437500000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          Frame.Typ = [ftTop]
+          Frame.Width = 2.000000000000000000
+        end
+      end
+    end
+  end
+  object FDQueryTimeViagem: TFDQuery
+    Active = True
+    Connection = FDConnection1
+    SQL.Strings = (
+      
+        '-- CEN'#193'RIO 1: Relat'#243'rio para TODOS os motoristas (aIdMotorista =' +
+        ' 0)'
+      ''
+      'SELECT'
+      '  u.id_usuario AS id_motorista,'
+      '  u.nome AS nome_motorista,'
+      '  v.id_viagem,'
+      '  v.data_saida_cd,'
+      '  v.data_chegada,'
+      '  -- CORRE'#199#195'O APLICADA AQUI (removido LPAD das horas)'
+      '  ('
+      
+        '    FLOOR(EXTRACT(EPOCH FROM (v.data_chegada - v.data_saida_cd))' +
+        ' / 3600)::text || '#39':'#39' ||'
+      
+        '    LPAD(FLOOR((EXTRACT(EPOCH FROM (v.data_chegada - v.data_said' +
+        'a_cd)) % 3600) / 60)::text, 2, '#39'0'#39')'
+      '  )::text AS tempo_hh_mm,'
+      '  NULL::text AS media_geral_hh_mm'
+      'FROM'
+      '  rota_certa_logistica.viagem v -- Substitua pelo seu schema'
+      '  JOIN public.usuarios u ON u.id_usuario = v.id_motorista'
+      'WHERE'
+      '  v.data_saida_cd IS NOT NULL'
+      '  AND v.data_chegada IS NOT NULL'
+      '  '
+      'UNION ALL'
+      ''
+      '-- M'#233'dia por Motorista'
+      'SELECT'
+      '  u.id_usuario AS id_motorista,'
+      '  u.nome AS nome_motorista,'
+      '  NULL::integer AS id_viagem,'
+      '  NULL::timestamp AS data_saida_cd,'
+      '  NULL::timestamp AS data_chegada,'
+      '  NULL::text AS tempo_hh_mm,'
+      '  -- CORRE'#199#195'O APLICADA AQUI (removido LPAD das horas)'
+      '  ('
+      
+        '    FLOOR(AVG(EXTRACT(EPOCH FROM (v.data_chegada - v.data_saida_' +
+        'cd))) / 3600)::text || '#39':'#39' ||'
+      
+        '    LPAD(FLOOR((AVG(EXTRACT(EPOCH FROM (v.data_chegada - v.data_' +
+        'saida_cd))) % 3600) / 60)::text, 2, '#39'0'#39')'
+      '  )::text AS media_geral_hh_mm'
+      'FROM'
+      '  rota_certa_logistica.viagem v -- Substitua pelo seu schema'
+      '  JOIN public.usuarios u ON u.id_usuario = v.id_motorista'
+      'WHERE'
+      '  v.data_saida_cd IS NOT NULL'
+      '  AND v.data_chegada IS NOT NULL'
+      'GROUP BY'
+      '  u.id_usuario,'
+      '  u.nome'
+      '  '
+      'UNION ALL'
+      ''
+      '-- M'#233'dia Geral'
+      'SELECT'
+      '  NULL::integer AS id_motorista,'
+      '  '#39'M'#201'DIA GERAL'#39' AS nome_motorista,'
+      '  NULL::integer AS id_viagem,'
+      '  NULL::timestamp AS data_saida_cd,'
+      '  NULL::timestamp AS data_chegada,'
+      '  NULL::text AS tempo_hh_mm,'
+      '  -- CORRE'#199#195'O APLICADA AQUI (removido LPAD das horas)'
+      '  ('
+      
+        '    FLOOR(AVG(EXTRACT(EPOCH FROM (v.data_chegada - v.data_saida_' +
+        'cd))) / 3600)::text || '#39':'#39' ||'
+      
+        '    LPAD(FLOOR((AVG(EXTRACT(EPOCH FROM (v.data_chegada - v.data_' +
+        'saida_cd))) % 3600) / 60)::text, 2, '#39'0'#39')'
+      '  )::text AS media_geral_hh_mm'
+      'FROM'
+      '  rota_certa_logistica.viagem v -- Substitua pelo seu schema'
+      'WHERE'
+      '  v.data_saida_cd IS NOT NULL'
+      '  AND v.data_chegada IS NOT NULL'
+      ''
+      'ORDER BY'
+      '  nome_motorista NULLS LAST,'
+      '  data_saida_cd NULLS LAST;')
+    Left = 536
+    Top = 272
+    object FDQueryTimeViagemid_motorista: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'id_motorista'
+      Origin = 'id_motorista'
+      ReadOnly = True
+    end
+    object FDQueryTimeViagemnome_motorista: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'nome_motorista'
+      Origin = 'nome_motorista'
+      ReadOnly = True
+      Size = 8190
+    end
+    object FDQueryTimeViagemid_viagem: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'id_viagem'
+      Origin = 'id_viagem'
+      ReadOnly = True
+    end
+    object FDQueryTimeViagemdata_saida_cd: TSQLTimeStampField
+      AutoGenerateValue = arDefault
+      FieldName = 'data_saida_cd'
+      Origin = 'data_saida_cd'
+      ProviderFlags = [pfInUpdate]
+      ReadOnly = True
+    end
+    object FDQueryTimeViagemdata_chegada: TSQLTimeStampField
+      AutoGenerateValue = arDefault
+      FieldName = 'data_chegada'
+      Origin = 'data_chegada'
+      ProviderFlags = [pfInUpdate]
+      ReadOnly = True
+    end
+    object FDQueryTimeViagemtempo_hh_mm: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'tempo_hh_mm'
+      Origin = 'tempo_hh_mm'
+      ReadOnly = True
+      BlobType = ftWideMemo
+    end
+    object FDQueryTimeViagemmedia_geral_hh_mm: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'media_geral_hh_mm'
+      Origin = 'media_geral_hh_mm'
+      ReadOnly = True
+      BlobType = ftWideMemo
+    end
+  end
+  object frxDBDatasetTimeViagem: TfrxDBDataset
+    UserName = 'frxDBDatasetTimeViagem'
+    CloseDataSource = False
+    DataSet = FDQueryTimeViagem
+    BCDToCurrency = False
+    DataSetOptions = []
+    Left = 536
+    Top = 216
+    FieldDefs = <
+      item
+        FieldName = 'id_motorista'
+      end
+      item
+        FieldName = 'nome_motorista'
+        FieldType = fftString
+        Size = 8190
+      end
+      item
+        FieldName = 'id_viagem'
+      end
+      item
+        FieldName = 'data_saida_cd'
+      end
+      item
+        FieldName = 'data_chegada'
+      end
+      item
+        FieldName = 'tempo_hh_mm'
+      end
+      item
+        FieldName = 'media_geral_hh_mm'
+      end>
+  end
+  object frxReportTimeViagem: TfrxReport
+    Version = '2026.1.0'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection, pbWatermarks]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 45972.589072303200000000
+    ReportOptions.LastChange = 45972.612714305560000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      ''
+      'procedure MasterData1OnBeforePrint(Sender: TfrxComponent);'
+      'begin  '
+      '  if (VarToStr(<frxDBDatasetTimeViagem."tempo_hh_mm">) = '#39#39') or'
+      
+        '     (VarToStr(<frxDBDatasetTimeViagem."nome_motorista">) = '#39'M'#201'D' +
+        'IA GERAL'#39') then'
+      '  begin'
+      '    MasterData1.Visible := False;'
+      '  end'
+      '  else'
+      '  begin'
+      ''
+      '    MasterData1.Visible := True;'
+      '  end;'
+      'end;'
+      ''
+      'begin'
+      ''
+      'end.')
+    Left = 536
+    Top = 160
+    Datasets = <
+      item
+        DataSet = frxDBDatasetTimeViagem
+        DataSetName = 'frxDBDatasetTimeViagem'
+      end>
+    Variables = <>
+    Style = <
+      item
+        Name = 'Title'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Frame.Typ = []
+        Fill.BackColor = clGray
+      end
+      item
+        Name = 'Header'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clMaroon
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Frame.Typ = []
+      end
+      item
+        Name = 'Group header'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clMaroon
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Frame.Typ = []
+        Fill.BackColor = 16053492
+      end
+      item
+        Name = 'Data'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = []
+      end
+      item
+        Name = 'Group footer'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Frame.Typ = []
+      end
+      item
+        Name = 'Header line'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftBottom]
+        Frame.Width = 2.000000000000000000
+      end>
+    Watermarks = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      Frame.Typ = []
+      MirrorMode = []
+      object ReportTitle1: TfrxReportTitle
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 26.456710000000000000
+        Top = 16.000000000000000000
+        Width = 718.110700000000000000
+        object Memo1: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Width = 718.110717773437500000
+          Height = 22.677180000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Fill.BackColor = clGray
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'Relatorio de tempo medio de viagens')
+          ParentFont = False
+          Style = 'Title'
+          VAlign = vaCenter
+        end
+      end
+      object PageHeader1: TfrxPageHeader
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 22.677180000000000000
+        Top = 64.000000000000000000
+        Width = 718.110700000000000000
+        object Memo2: TfrxMemoView
+          AllowVectorExport = True
+          Width = 718.110236220472000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftBottom]
+          Frame.Width = 2.000000000000000000
+          ParentFont = False
+          Style = 'Header line'
+        end
+        object Memo3: TfrxMemoView
+          AllowVectorExport = True
+          Width = 342.020884190000000000
+          Height = 22.677180000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clMaroon
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Nome motorista:')
+          ParentFont = False
+          Style = 'Header'
+        end
+        object Memo4: TfrxMemoView
+          AllowVectorExport = True
+          Left = 394.934304190000000000
+          Width = 69.278282030000000000
+          Height = 22.677180000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clMaroon
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Id viagem')
+          ParentFont = False
+          Style = 'Header'
+        end
+        object Memo5: TfrxMemoView
+          AllowVectorExport = True
+          Left = 592.716606220000000000
+          Width = 125.456710000000000000
+          Height = 22.677180000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clMaroon
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Tempo em horas')
+          ParentFont = False
+          Style = 'Header'
+        end
+      end
+      object MasterData1: TfrxMasterData
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 34.015770000000000000
+        Top = 108.000000000000000000
+        Width = 718.110700000000000000
+        OnBeforePrint = 'MasterData1OnBeforePrint'
+        DataSet = frxDBDatasetTimeViagem
+        DataSetName = 'frxDBDatasetTimeViagem'
+        RowCount = 0
+        object Memo7: TfrxMemoView
+          AllowVectorExport = True
+          Top = 3.779530000000000000
+          Width = 413.831954190000000000
+          Height = 18.897650000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          DataSet = frxDBDatasetTimeViagem
+          DataSetName = 'frxDBDatasetTimeViagem'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            
+              '[IIF(<frxDBDatasetTimeViagem."tempo_hh_mm"> <> '#39#39', <frxDBDataset' +
+              'TimeViagem."nome_motorista">, '#39#39')]')
+          ParentFont = False
+          Style = 'Data'
+        end
+        object Memo8: TfrxMemoView
+          AllowVectorExport = True
+          Left = 413.831954190000000000
+          Top = 3.779530000000000000
+          Width = 69.278282030000000000
+          Height = 22.677180000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          DataField = 'id_viagem'
+          DataSet = frxDBDatasetTimeViagem
+          DataSetName = 'frxDBDatasetTimeViagem'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDatasetTimeViagem."id_viagem"]')
+          ParentFont = False
+          Style = 'Data'
+        end
+        object Memo9: TfrxMemoView
+          AllowVectorExport = True
+          Left = 611.614256220000000000
+          Top = 3.779530000000000000
+          Width = 106.559060000000000000
+          Height = 22.677180000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          DataField = 'tempo_hh_mm'
+          DataSet = frxDBDatasetTimeViagem
+          DataSetName = 'frxDBDatasetTimeViagem'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDatasetTimeViagem."tempo_hh_mm"]')
+          ParentFont = False
+          Style = 'Data'
+        end
+        object Line1: TfrxLineView
+          AllowVectorExport = True
+          Left = 3.779530100000000000
+          Top = 26.456708940000000000
+          Width = 710.551657680000000000
+          Color = clBlack
+          Frame.Typ = [ftTop]
+        end
+      end
+      object PageFooter1: TfrxPageFooter
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 26.456710000000000000
+        Top = 224.000000000000000000
+        Width = 718.110700000000000000
+        object Memo11: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Width = 718.110717773437500000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          Frame.Typ = [ftTop]
+          Frame.Width = 2.000000000000000000
+        end
+        object Memo12: TfrxMemoView
+          AllowVectorExport = True
+          Top = 1.000000000000000000
+          Height = 22.677180000000000000
+          AutoWidth = True
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[Date] [Time]')
+        end
+        object Memo13: TfrxMemoView
+          Align = baRight
+          AllowVectorExport = True
+          Left = 642.520117773437500000
+          Top = 1.000000000000000000
+          Width = 75.590600000000000000
+          Height = 22.677180000000000000
+          Frame.Typ = []
+          HAlign = haRight
+          Memo.UTF8W = (
+            'Page [Page#]')
+        end
+      end
+      object ReportSummary1: TfrxReportSummary
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 41.574830000000000000
+        Top = 164.000000000000000000
+        Width = 718.110700000000000000
+        object Memo6: TfrxMemoView
+          AllowVectorExport = True
+          Left = 0.062616220000000000
+          Top = 7.559060000000000000
+          Width = 170.015770000000000000
+          Height = 22.677180000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clMaroon
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Tempo medio por viagem:')
+          ParentFont = False
+          Style = 'Header'
+        end
+        object Memo10: TfrxMemoView
+          AllowVectorExport = True
+          Left = 170.078850000000000000
+          Top = 7.559060000000000000
+          Width = 136.000000000000000000
+          Height = 22.677180000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          DataField = 'media_geral_hh_mm'
+          DataSet = frxDBDatasetTimeViagem
+          DataSetName = 'frxDBDatasetTimeViagem'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDatasetTimeViagem."media_geral_hh_mm"]')
           ParentFont = False
           Style = 'Data'
         end

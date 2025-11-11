@@ -35,6 +35,16 @@ uses
     FDQueryTimeCarregtempo_hh_mm: TWideMemoField;
     FDQueryTimeCarregmedia_geral_hh_mm: TWideMemoField;
     frxReportTimecarreg: TfrxReport;
+    FDQueryTimeViagem: TFDQuery;
+    frxDBDatasetTimeViagem: TfrxDBDataset;
+    frxReportTimeViagem: TfrxReport;
+    FDQueryTimeViagemid_motorista: TIntegerField;
+    FDQueryTimeViagemnome_motorista: TWideStringField;
+    FDQueryTimeViagemid_viagem: TIntegerField;
+    FDQueryTimeViagemdata_saida_cd: TSQLTimeStampField;
+    FDQueryTimeViagemdata_chegada: TSQLTimeStampField;
+    FDQueryTimeViagemtempo_hh_mm: TWideMemoField;
+    FDQueryTimeViagemmedia_geral_hh_mm: TWideMemoField;
     procedure DataModuleCreate(Sender: TObject);
   end;
 

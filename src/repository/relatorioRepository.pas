@@ -6,6 +6,7 @@ uses
 type TrelatorioRepository = class
   procedure relatorioFaturamento(aIdTransportadora: Integer;aIdCliente: Integer = 0;aData:TdateTime= 0);
   procedure relatorioTempoCarregamento(aIdTransportadora,aIdCarregador:Integer);
+  procedure relatorioTempoViagem(aIdTransportadora, aIdMotorista: Integer);
 end;
 
 
@@ -138,6 +139,85 @@ begin
 
     dataModule2.FDQueryTimeCarreg.Open;
     dataModule2.frxReportTimeCarreg.ShowReport;
+
+  finally
+    QryAux.Free;
+  end;
+end;
+
+procedure TrelatorioRepository.relatorioTempoViagem(aIdTransportadora, aIdMotorista: Integer);
+var
+  SchemaName: string;
+  QryAux: TFDQuery;
+  SQLWhere, SQLMedia: string;
+begin
+  QryAux := TFDQuery.Create(nil);
+  try
+    QryAux.Connection := dataModule2.FDConnection1;
+    QryAux.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id';
+    QryAux.ParamByName('id').AsInteger := aIdTransportadora;
+    QryAux.Open;
+
+    SchemaName := '';
+    if QryAux.RecordCount > 0 then
+      SchemaName := QryAux.FieldByName('schema_name').AsString;
+    QryAux.Close;
+
+    dataModule2.FDQueryTimeViagem.Close;
+    dataModule2.FDQueryTimeViagem.Params.Clear;
+
+    if aIdMotorista > 0 then
+    begin
+      with dataModule2.FDQueryTimeViagem.Params.Add do
+      begin
+        Name := 'id_motorista';
+        ParamType := ptInput;
+        DataType := ftInteger;
+        Value := aIdMotorista;
+      end;
+    end;
+
+    SQLWhere := 'WHERE v.data_saida_cd IS NOT NULL AND v.data_chegada IS NOT NULL';
+    if aIdMotorista > 0 then
+      SQLWhere := SQLWhere + ' AND u.id_usuario = :id_motorista';
+
+    SQLMedia :=
+      ' UNION ALL ' +
+      'SELECT u.id_usuario AS id_motorista, u.nome AS nome_motorista, NULL::integer AS id_viagem, ' +
+      'NULL::timestamp AS data_saida_cd, NULL::timestamp AS data_chegada, ' +
+      'NULL::text AS tempo_hh_mm, ' +
+
+      '(LPAD(FLOOR(AVG(EXTRACT(EPOCH FROM (v.data_chegada - v.data_saida_cd))) / 3600)::text, 2, ''0'') || '':'' || ' +
+      'LPAD(FLOOR((AVG(EXTRACT(EPOCH FROM (v.data_chegada - v.data_saida_cd))) % 3600) / 60)::text, 2, ''0''))::text AS media_geral_hh_mm ' +
+      'FROM ' + SchemaName + '.viagem v ' +
+      'JOIN public.usuarios u ON u.id_usuario = v.id_motorista ' +
+      SQLWhere +
+      ' GROUP BY u.id_usuario, u.nome ';
+
+    if aIdMotorista = 0 then
+      SQLMedia := SQLMedia +
+        ' UNION ALL ' +
+        'SELECT NULL::integer AS id_motorista, ''MÉDIA GERAL'' AS nome_motorista, NULL::integer AS id_viagem, ' +
+        'NULL::timestamp AS data_saida_cd, NULL::timestamp AS data_chegada, NULL::text AS tempo_hh_mm, ' +
+        '(LPAD(FLOOR(AVG(EXTRACT(EPOCH FROM (v.data_chegada - v.data_saida_cd))) / 3600)::text, 2, ''0'') || '':'' || ' +
+        'LPAD(FLOOR((AVG(EXTRACT(EPOCH FROM (v.data_chegada - v.data_saida_cd))) % 3600) / 60)::text, 2, ''0''))::text AS media_geral_hh_mm ' +
+        'FROM ' + SchemaName + '.viagem v ' +
+        'WHERE v.data_saida_cd IS NOT NULL AND v.data_chegada IS NOT NULL ';
+
+
+    dataModule2.FDQueryTimeViagem.SQL.Text :=
+      'SELECT u.id_usuario AS id_motorista, u.nome AS nome_motorista, v.id_viagem, v.data_saida_cd, v.data_chegada, ' +
+      '(LPAD(FLOOR(EXTRACT(EPOCH FROM (v.data_chegada - v.data_saida_cd)) / 3600)::text, 2, ''0'') || '':'' || ' +
+      'LPAD(FLOOR((EXTRACT(EPOCH FROM (v.data_chegada - v.data_saida_cd)) % 3600) / 60)::text, 2, ''0''))::text AS tempo_hh_mm, ' +
+      'NULL::text AS media_geral_hh_mm ' +
+      'FROM ' + SchemaName + '.viagem v ' +
+      'JOIN public.usuarios u ON u.id_usuario = v.id_motorista ' +
+      SQLWhere +
+      SQLMedia +
+      ' ORDER BY nome_motorista NULLS LAST, data_saida_cd NULLS LAST;';
+
+    dataModule2.FDQueryTimeViagem.Open;
+    dataModule2.frxReportTimeViagem.ShowReport;
 
   finally
     QryAux.Free;
