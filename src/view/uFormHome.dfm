@@ -1910,7 +1910,7 @@ object FormHome: TFormHome
           AlignWithMargins = True
           Left = 3
           Top = 30
-          Width = 1484
+          Width = 456
           Height = 32
           Margins.Top = 30
           Align = alTop
@@ -1922,7 +1922,6 @@ object FormHome: TFormHome
           Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
           ParentFont = False
-          ExplicitWidth = 456
         end
         object Image16: TImage
           Left = 3
@@ -4408,8 +4407,8 @@ object FormHome: TFormHome
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 360
-            Height = 23
+            Width = 185
+            Height = 25
             Align = alClient
             Alignment = taCenter
             Caption = 'CONFIRMAR ORDEM'
@@ -4420,8 +4419,6 @@ object FormHome: TFormHome
             Font.Style = [fsBold]
             ParentFont = False
             OnClick = lblBtnConfCarregamentoClick
-            ExplicitWidth = 185
-            ExplicitHeight = 25
           end
         end
         object cbCarregador4Ordens: TComboBox
@@ -5249,8 +5246,8 @@ object FormHome: TFormHome
               AlignWithMargins = True
               Left = 3
               Top = 3
-              Width = 215
-              Height = 23
+              Width = 107
+              Height = 25
               Align = alClient
               Alignment = taCenter
               Caption = 'RECUPERAR'
@@ -5261,8 +5258,6 @@ object FormHome: TFormHome
               Font.Style = [fsBold]
               ParentFont = False
               OnClick = lblBtnRecuperaGerenteConfirmClick
-              ExplicitWidth = 107
-              ExplicitHeight = 25
             end
           end
           object pnlBtnExcluirGerenteConfirm: TPanel
@@ -5296,8 +5291,8 @@ object FormHome: TFormHome
               AlignWithMargins = True
               Left = 3
               Top = 3
-              Width = 215
-              Height = 23
+              Width = 76
+              Height = 25
               Align = alClient
               Alignment = taCenter
               Caption = 'EXCLUIR'
@@ -5308,8 +5303,6 @@ object FormHome: TFormHome
               Font.Style = [fsBold]
               ParentFont = False
               OnClick = lblBtnExcluirGerenteConfirmClick
-              ExplicitWidth = 76
-              ExplicitHeight = 25
             end
           end
         end
@@ -5334,7 +5327,7 @@ object FormHome: TFormHome
             AlignWithMargins = True
             Left = 50
             Top = 25
-            Width = 764
+            Width = 282
             Height = 40
             Margins.Left = 50
             Margins.Top = 25
@@ -5348,7 +5341,6 @@ object FormHome: TFormHome
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            ExplicitWidth = 282
           end
           object Panel17: TPanel
             AlignWithMargins = True
@@ -5470,7 +5462,7 @@ object FormHome: TFormHome
               Left = 80
               Top = 3
               Width = 75
-              Height = 35
+              Height = 32
               Margins.Left = 80
               Align = alLeft
               Caption = 'Senha:'
@@ -5480,7 +5472,6 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              ExplicitHeight = 32
             end
           end
           object Panel21: TPanel
@@ -5555,7 +5546,7 @@ object FormHome: TFormHome
               Left = 80
               Top = 3
               Width = 97
-              Height = 35
+              Height = 31
               Margins.Left = 80
               Align = alLeft
               Caption = 'Telefone:'
@@ -5565,14 +5556,13 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              ExplicitHeight = 31
             end
             object Label15: TLabel
               AlignWithMargins = True
               Left = 524
               Top = 3
               Width = 79
-              Height = 35
+              Height = 32
               Margins.Right = 255
               Align = alRight
               Caption = 'E-mail:'
@@ -5582,7 +5572,6 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              ExplicitHeight = 32
             end
           end
           object Panel24: TPanel
@@ -5707,7 +5696,7 @@ object FormHome: TFormHome
               Left = 80
               Top = 3
               Width = 76
-              Height = 43
+              Height = 32
               Margins.Left = 80
               Align = alLeft
               Caption = 'Nome:'
@@ -5717,14 +5706,13 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              ExplicitHeight = 32
             end
             object Label17: TLabel
               AlignWithMargins = True
               Left = 529
               Top = 3
               Width = 49
-              Height = 43
+              Height = 32
               Margins.Right = 280
               Align = alRight
               Caption = 'CPF:'
@@ -5734,7 +5722,6 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              ExplicitHeight = 32
             end
           end
           object Panel29: TPanel
@@ -5777,8 +5764,8 @@ object FormHome: TFormHome
               object lblBtnCadastrarGerenteConf: TLabel
                 Left = 0
                 Top = 0
-                Width = 258
-                Height = 29
+                Width = 111
+                Height = 25
                 Align = alClient
                 Alignment = taCenter
                 Caption = 'CADASTRAR'
@@ -5789,8 +5776,6 @@ object FormHome: TFormHome
                 Font.Style = [fsBold]
                 ParentFont = False
                 OnClick = lblBtnCadastrarGerenteConfClick
-                ExplicitWidth = 111
-                ExplicitHeight = 25
               end
             end
             object pnlEditarGerente: TPanel
@@ -5821,8 +5806,8 @@ object FormHome: TFormHome
               object lblBtnEditarGerenteConf: TLabel
                 Left = 0
                 Top = 0
-                Width = 258
-                Height = 29
+                Width = 65
+                Height = 25
                 Align = alClient
                 Alignment = taCenter
                 Caption = 'EDITAR'
@@ -5833,8 +5818,6 @@ object FormHome: TFormHome
                 Font.Style = [fsBold]
                 ParentFont = False
                 OnClick = lblBtnEditarGerenteConfClick
-                ExplicitWidth = 65
-                ExplicitHeight = 25
               end
             end
           end
@@ -6159,8 +6142,8 @@ object FormHome: TFormHome
               AlignWithMargins = True
               Left = 3
               Top = 3
-              Width = 215
-              Height = 23
+              Width = 107
+              Height = 25
               Align = alClient
               Alignment = taCenter
               Caption = 'RECUPERAR'
@@ -6171,8 +6154,6 @@ object FormHome: TFormHome
               Font.Style = [fsBold]
               ParentFont = False
               OnClick = lblBtnRecuperarMotoristaConfClick
-              ExplicitWidth = 107
-              ExplicitHeight = 25
             end
           end
           object pnlBtnExcluirMotoristaConf: TPanel
@@ -6206,8 +6187,8 @@ object FormHome: TFormHome
               AlignWithMargins = True
               Left = 3
               Top = 3
-              Width = 215
-              Height = 23
+              Width = 76
+              Height = 25
               Align = alClient
               Alignment = taCenter
               Caption = 'EXCLUIR'
@@ -6218,8 +6199,6 @@ object FormHome: TFormHome
               Font.Style = [fsBold]
               ParentFont = False
               OnClick = lblBtnExcluirMotoristaConfClick
-              ExplicitWidth = 76
-              ExplicitHeight = 25
             end
           end
         end
@@ -6460,7 +6439,7 @@ object FormHome: TFormHome
               Left = 80
               Top = 3
               Width = 97
-              Height = 35
+              Height = 31
               Margins.Left = 80
               Align = alLeft
               Caption = 'Telefone:'
@@ -6470,14 +6449,13 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              ExplicitHeight = 31
             end
             object Label27: TLabel
               AlignWithMargins = True
               Left = 524
               Top = 3
               Width = 79
-              Height = 35
+              Height = 32
               Margins.Right = 255
               Align = alRight
               Caption = 'E-mail:'
@@ -6487,7 +6465,6 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              ExplicitHeight = 32
             end
           end
           object Panel30: TPanel
@@ -6612,7 +6589,7 @@ object FormHome: TFormHome
               Left = 80
               Top = 3
               Width = 76
-              Height = 43
+              Height = 32
               Margins.Left = 80
               Align = alLeft
               Caption = 'Nome:'
@@ -6622,14 +6599,13 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              ExplicitHeight = 32
             end
             object Label29: TLabel
               AlignWithMargins = True
               Left = 529
               Top = 3
               Width = 49
-              Height = 43
+              Height = 32
               Margins.Right = 280
               Align = alRight
               Caption = 'CPF:'
@@ -6639,7 +6615,6 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              ExplicitHeight = 32
             end
           end
           object pnlFechaOptionsMotorista: TPanel
@@ -6755,8 +6730,8 @@ object FormHome: TFormHome
               object lblBtnCadastrarMotoristaConf: TLabel
                 Left = 0
                 Top = 0
-                Width = 258
-                Height = 29
+                Width = 111
+                Height = 25
                 Align = alClient
                 Alignment = taCenter
                 Caption = 'CADASTRAR'
@@ -6767,8 +6742,6 @@ object FormHome: TFormHome
                 Font.Style = [fsBold]
                 ParentFont = False
                 OnClick = lblBtnCadastrarMotoristaConfClick
-                ExplicitWidth = 111
-                ExplicitHeight = 25
               end
             end
             object pnlBtnEditarMotoristaConf: TPanel
@@ -6799,8 +6772,8 @@ object FormHome: TFormHome
               object lblBtnEditarMotoristaConf: TLabel
                 Left = 0
                 Top = 0
-                Width = 258
-                Height = 29
+                Width = 65
+                Height = 25
                 Align = alClient
                 Alignment = taCenter
                 Caption = 'EDITAR'
@@ -6811,8 +6784,6 @@ object FormHome: TFormHome
                 Font.Style = [fsBold]
                 ParentFont = False
                 OnClick = lblBtnEditarMotoristaConfClick
-                ExplicitWidth = 65
-                ExplicitHeight = 25
               end
             end
           end
@@ -6831,7 +6802,7 @@ object FormHome: TFormHome
               Left = 80
               Top = 3
               Width = 150
-              Height = 35
+              Height = 31
               Margins.Left = 80
               Align = alLeft
               Caption = 'Numero CNH:'
@@ -6841,14 +6812,13 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              ExplicitHeight = 31
             end
             object lblValidadeCnh: TLabel
               AlignWithMargins = True
               Left = 495
               Top = 3
               Width = 163
-              Height = 35
+              Height = 32
               Margins.Right = 200
               Align = alRight
               Caption = 'Validade CNH:'
@@ -6858,7 +6828,6 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              ExplicitHeight = 32
             end
           end
           object Panel2: TPanel
@@ -6980,7 +6949,7 @@ object FormHome: TFormHome
               Left = 80
               Top = 3
               Width = 75
-              Height = 35
+              Height = 32
               Margins.Left = 80
               Align = alLeft
               Caption = 'Senha:'
@@ -6990,14 +6959,13 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              ExplicitHeight = 32
             end
             object Label18: TLabel
               AlignWithMargins = True
               Left = 543
               Top = 3
               Width = 165
-              Height = 35
+              Height = 31
               Margins.Right = 150
               Align = alRight
               Caption = 'Categoria CNH:'
@@ -7007,7 +6975,6 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              ExplicitHeight = 31
             end
           end
         end
@@ -7386,8 +7353,8 @@ object FormHome: TFormHome
               AlignWithMargins = True
               Left = 3
               Top = 3
-              Width = 215
-              Height = 23
+              Width = 107
+              Height = 25
               Align = alClient
               Alignment = taCenter
               Caption = 'RECUPERAR'
@@ -7398,8 +7365,6 @@ object FormHome: TFormHome
               Font.Style = [fsBold]
               ParentFont = False
               OnClick = lblBtnRecuperarCarregadorConfClick
-              ExplicitWidth = 107
-              ExplicitHeight = 25
             end
           end
           object pnlBtnExcluirCarregadorConf: TPanel
@@ -7433,8 +7398,8 @@ object FormHome: TFormHome
               AlignWithMargins = True
               Left = 3
               Top = 3
-              Width = 215
-              Height = 23
+              Width = 76
+              Height = 25
               Align = alClient
               Alignment = taCenter
               Caption = 'EXCLUIR'
@@ -7445,8 +7410,6 @@ object FormHome: TFormHome
               Font.Style = [fsBold]
               ParentFont = False
               OnClick = lblBtnExcluirCarregadorConfClick
-              ExplicitWidth = 76
-              ExplicitHeight = 25
             end
           end
         end
@@ -7471,7 +7434,7 @@ object FormHome: TFormHome
             AlignWithMargins = True
             Left = 50
             Top = 25
-            Width = 764
+            Width = 357
             Height = 40
             Margins.Left = 50
             Margins.Top = 25
@@ -7485,7 +7448,6 @@ object FormHome: TFormHome
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            ExplicitWidth = 357
           end
           object Panel11: TPanel
             AlignWithMargins = True
@@ -7607,7 +7569,7 @@ object FormHome: TFormHome
               Left = 80
               Top = 3
               Width = 75
-              Height = 35
+              Height = 32
               Margins.Left = 80
               Align = alLeft
               Caption = 'Senha:'
@@ -7617,7 +7579,6 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              ExplicitHeight = 32
             end
           end
           object Panel16: TPanel
@@ -7692,7 +7653,7 @@ object FormHome: TFormHome
               Left = 80
               Top = 3
               Width = 97
-              Height = 35
+              Height = 31
               Margins.Left = 80
               Align = alLeft
               Caption = 'Telefone:'
@@ -7702,14 +7663,13 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              ExplicitHeight = 31
             end
             object Label22: TLabel
               AlignWithMargins = True
               Left = 524
               Top = 3
               Width = 79
-              Height = 35
+              Height = 32
               Margins.Right = 255
               Align = alRight
               Caption = 'E-mail:'
@@ -7719,7 +7679,6 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              ExplicitHeight = 32
             end
           end
           object Panel25: TPanel
@@ -7844,7 +7803,7 @@ object FormHome: TFormHome
               Left = 80
               Top = 3
               Width = 76
-              Height = 43
+              Height = 32
               Margins.Left = 80
               Align = alLeft
               Caption = 'Nome:'
@@ -7854,14 +7813,13 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              ExplicitHeight = 32
             end
             object Label24: TLabel
               AlignWithMargins = True
               Left = 529
               Top = 3
               Width = 49
-              Height = 43
+              Height = 32
               Margins.Right = 280
               Align = alRight
               Caption = 'CPF:'
@@ -7871,7 +7829,6 @@ object FormHome: TFormHome
               Font.Name = 'Segoe UI'
               Font.Style = [fsBold]
               ParentFont = False
-              ExplicitHeight = 32
             end
           end
           object Panel37: TPanel
@@ -7914,8 +7871,8 @@ object FormHome: TFormHome
               object lblBtnCadastrarCarregadorConf: TLabel
                 Left = 0
                 Top = 0
-                Width = 258
-                Height = 29
+                Width = 111
+                Height = 25
                 Align = alClient
                 Alignment = taCenter
                 Caption = 'CADASTRAR'
@@ -7926,8 +7883,6 @@ object FormHome: TFormHome
                 Font.Style = [fsBold]
                 ParentFont = False
                 OnClick = lblBtnCadastrarCarregadorConfClick
-                ExplicitWidth = 111
-                ExplicitHeight = 25
               end
             end
             object pnlBtnEditarCarregadorConf: TPanel
@@ -7958,8 +7913,8 @@ object FormHome: TFormHome
               object lblBtnEditarCarregadorConf: TLabel
                 Left = 0
                 Top = 0
-                Width = 258
-                Height = 29
+                Width = 65
+                Height = 25
                 Align = alClient
                 Alignment = taCenter
                 Caption = 'EDITAR'
@@ -7970,8 +7925,6 @@ object FormHome: TFormHome
                 Font.Style = [fsBold]
                 ParentFont = False
                 OnClick = lblBtnEditarCarregadorConfClick
-                ExplicitWidth = 65
-                ExplicitHeight = 25
               end
             end
           end
@@ -9496,9 +9449,9 @@ object FormHome: TFormHome
         ExplicitHeight = 41
       end
       object lblBtnMediacarregamento: TLabel
-        Left = 61
+        Left = 152
         Top = 0
-        Width = 248
+        Width = 157
         Height = 54
         Margins.Top = 30
         Align = alRight
@@ -9511,6 +9464,7 @@ object FormHome: TFormHome
         Font.Style = [fsBold]
         ParentFont = False
         OnClick = lblBtnMediacarregamentoClick
+        ExplicitHeight = 50
       end
     end
     object PanelRelatorioMediaViagem: TPanel
@@ -9593,9 +9547,9 @@ object FormHome: TFormHome
         ExplicitHeight = 41
       end
       object lblBtnMediaViagem: TLabel
-        Left = 73
+        Left = 164
         Top = 0
-        Width = 236
+        Width = 145
         Height = 54
         Margins.Top = 30
         Align = alRight
@@ -9608,6 +9562,7 @@ object FormHome: TFormHome
         Font.Style = [fsBold]
         ParentFont = False
         OnClick = lblBtnRelFaturamentoClick
+        ExplicitHeight = 50
       end
     end
     object PanelFiltroRelatorioMediaCarreg: TPanel

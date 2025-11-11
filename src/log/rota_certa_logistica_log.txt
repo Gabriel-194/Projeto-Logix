@@ -13,3 +13,8 @@
 [CREATE] Usuário kuchma do ID 2 criou uma ordem de viagem no dia 10/11/2025 e no horário 10:15:48
 [CHECK] Usuário julio do ID 11 iniciou uma ordem de carregamento no dia 10/11/2025 e no horário 10:16:26
 [CHECK] Usuário julio do ID 11 finalizou uma ordem de carregamento no dia 10/11/2025 e no horário 10:24:24
+[CREATE] Usuário kuchma do ID 2 criou uma ordem de carregamento no dia 11/11/2025 e no horário 09:59:27
+[CHECK] Usuário luis gustavo do ID 10 iniciou uma ordem de carregamento no dia 11/11/2025 e no horário 10:02:09
+[CHECK] Usuário luis gustavo do ID 10 finalizou uma ordem de carregamento no dia 11/11/2025 e no horário 10:05:57
+[CHECK] Usuário luis gustavo do ID 10 iniciou uma ordem de carregamento no dia 11/11/2025 e no horário 10:06:01
+[CHECK] Usuário luis gustavo do ID 10 finalizou uma ordem de carregamento no dia 11/11/2025 e no horário 10:06:09

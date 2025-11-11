@@ -1,7 +1,8 @@
 object DataModule2: TDataModule2
   OnCreate = DataModuleCreate
-  Height = 351
-  Width = 662
+  Height = 439
+  Width = 828
+  PixelsPerInch = 120
   object FDConnection1: TFDConnection
     Params.Strings = (
       'Database=logix'
@@ -11,20 +12,20 @@ object DataModule2: TDataModule2
       'DriverID=PG')
     Connected = True
     LoginPrompt = False
-    Left = 224
-    Top = 38
+    Left = 280
+    Top = 48
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
-    Left = 102
-    Top = 45
+    Left = 128
+    Top = 56
   end
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorLib = 
-      'C:\Users\gabriel kuchma\Documents\Embarcadero\Studio\Projects\Pr' +
+      'C:\Users\gabri\OneDrive\Documents\Embarcadero\Studio\Projects\Pr' +
       'ojeto-Logix\lib\libpq.dll'
-    Left = 333
-    Top = 38
+    Left = 416
+    Top = 48
   end
   object frxReportFaturamento: TfrxReport
     Version = '2026.1.0'
@@ -42,8 +43,8 @@ object DataModule2: TDataModule2
       'begin'
       ''
       'end.')
-    Left = 58
-    Top = 147
+    Left = 73
+    Top = 184
     Datasets = <
       item
         DataSet = frxDBDatasetFaturamento
@@ -488,6 +489,7 @@ object DataModule2: TDataModule2
     end
   end
   object FDQueryFaturamento: TFDQuery
+    Active = True
     Connection = FDConnection1
     SQL.Strings = (
       'SET search_path TO rota_certa_logistica, public;'
@@ -513,8 +515,8 @@ object DataModule2: TDataModule2
       'WHERE CAST(p.data_pedido AS DATE) = '#39'2025-11-04'#39
       ''
       'ORDER BY id_pedido;')
-    Left = 51
-    Top = 262
+    Left = 64
+    Top = 328
     object FDQueryFaturamentoid_cliente: TIntegerField
       FieldName = 'id_cliente'
       Origin = 'id_cliente'
@@ -562,8 +564,8 @@ object DataModule2: TDataModule2
     DataSet = FDQueryFaturamento
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 58
-    Top = 205
+    Left = 73
+    Top = 256
     FieldDefs = <
       item
         FieldName = 'id_cliente'
@@ -665,8 +667,8 @@ object DataModule2: TDataModule2
       'GROUP BY u.id_usuario, u.nome'
       ''
       'ORDER BY data_hora_inicio NULLS LAST;')
-    Left = 224
-    Top = 269
+    Left = 328
+    Top = 336
     object FDQueryTimeCarregid_carregador: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'id_carregador'
@@ -721,8 +723,8 @@ object DataModule2: TDataModule2
     DataSet = FDQueryTimeCarreg
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 224
-    Top = 211
+    Left = 328
+    Top = 264
     FieldDefs = <
       item
         FieldName = 'id_carregador'
@@ -757,15 +759,38 @@ object DataModule2: TDataModule2
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 45971.642065879600000000
-    ReportOptions.LastChange = 45971.642065879600000000
+    ReportOptions.LastChange = 45972.451022083330000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
+      ''
+      ''
+      'procedure MasterData1OnBeforePrint(Sender: TfrxComponent);'
+      'begin'
+      
+        '  // Verifica se o campo que voc'#234' usa para o IF est'#225' vazio ou nu' +
+        'lo'
+      
+        '  // (Use "tempo_hh_mm" ou "id_carregamento", o que for nulo nas' +
+        ' linhas de m'#233'dia)'
+      '  if <frxDBDatasetTimeCarreg."tempo_hh_mm"> = '#39#39' then'
+      '  begin'
+      '    // Torna a banda MasterData1 (a linha inteira) invis'#237'vel'
+      '    MasterData1.Visible := False;'
+      '  end'
+      '  else'
+      '  begin'
+      
+        '    // Caso contr'#225'rio, garante que ela seja vis'#237'vel (para as lin' +
+        'has de dados)'
+      '    MasterData1.Visible := True;'
+      '  end;'
+      'end;'
       ''
       'begin'
       ''
       'end.')
-    Left = 216
-    Top = 152
+    Left = 326
+    Top = 190
     Datasets = <
       item
         DataSet = frxDBDatasetTimeCarreg
@@ -965,6 +990,7 @@ object DataModule2: TDataModule2
         Height = 26.456710000000000000
         Top = 158.740260000000000000
         Width = 718.110700000000000000
+        OnBeforePrint = 'MasterData1OnBeforePrint'
         DataSet = frxDBDatasetTimeCarreg
         DataSetName = 'frxDBDatasetTimeCarreg'
         RowCount = 0
