@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage, DBClient,uCleanFields,messageDto,
   Vcl.StdCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.Mask,HomeClienteController,enderecoDto,utransportadora,System.Generics.Collections,pedidoDto,usuarioLogado,
-  VclTee.TeeGDIPlus, VCLTee.TeEngine, VCLTee.Series, VCLTee.TeeProcs,
+  VclTee.TeeGDIPlus, VCLTee.TeEngine, VCLTee.Series, VCLTee.TeeProcs,comObj,
   VCLTee.Chart;
 
 type
@@ -18,9 +18,6 @@ type
     PanelPermissoes: TPanel;
     Shape1: TShape;
     lblPermissoesbtn: TLabel;
-    PanelClientes: TPanel;
-    Shape5: TShape;
-    lblClientesBtn: TLabel;
     pnl: TPanel;
     Shape6: TShape;
     lblCadastrosBtn: TLabel;
@@ -157,6 +154,11 @@ type
     graficoTranspMaisUsada: TChart;
     Series1: TPieSeries;
     Label29: TLabel;
+    soundOff: TImage;
+    soundOn: TImage;
+    PnlFiltroEmitirRelatorioCarreg: TPanel;
+    Shape87: TShape;
+    lblBtnEmitirRelatorio: TLabel;
     procedure Image8Click(Sender: TObject);
     procedure imgFecharPanelCadastroClienteClick(Sender: TObject);
     procedure imgBuscaCepOrigemClick(Sender: TObject);
@@ -183,6 +185,8 @@ type
     procedure buscarMenssagensCLiente;
     procedure imgReloadMessagesClick(Sender: TObject);
     procedure graficoTranspsMaisUsadas;
+    procedure soundOffClick(Sender: TObject);
+    procedure soundOnClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -191,6 +195,7 @@ type
 
 var
   FormHomeCliente: TFormHomeCliente;
+  voz:OleVariant;
 
 implementation
 
@@ -325,6 +330,26 @@ begin
  if PageControlPedidos.activePage = TabSheetMeusPedidos  then begin
    mostrarPedidos;
  end;
+end;
+
+procedure TFormHomeCliente.soundOffClick(Sender: TObject);
+begin
+  soundOn.Visible:=true;
+  soundOff.Visible:=False;
+
+    voz:=createOleObject('SAPI.spvoice');
+    voz.rate := 2;
+    voz.speak(Label17.caption + Label19.caption + Label20.caption + Label22.caption + Label23.caption + Label24.caption + Label25.caption,1);
+end;
+
+procedure TFormHomeCliente.soundOnClick(Sender: TObject);
+begin
+  soundOn.Visible:=false;
+  soundOff.Visible:=true;
+
+   voz:=createOleObject('SAPI.spvoice');
+   voz.rate := 2;
+   voz.speak('',2);
 end;
 
 procedure TFormHomeCliente.DBGridMeusPedidosDrawColumnCell(

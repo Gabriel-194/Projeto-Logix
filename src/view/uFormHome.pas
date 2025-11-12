@@ -9,7 +9,7 @@ uses
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.CheckLst, Datasnap.DBClient, homeController,system.Generics.Collections,motoristaDto, uVeiculo,tipoCargaDto,pedidoDto,
   VclTee.TeeGDIPlus, VCLTee.Series, VCLTee.TeEngine, VCLTee.TeeProcs,VCLTee.Chart, frxSmartMemo, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, frxClass, frxExportBaseDialog, frxExportPDF, frxDBSet,frCoreClasses;
+  FireDAC.Comp.Client, frxClass, frxExportBaseDialog, frxExportPDF, frxDBSet,frCoreClasses,comObj;
 
 type
   TFormHome = class(TForm)
@@ -554,6 +554,7 @@ type
     procedure lblBtnEmitirRelatorioClick(Sender: TObject);
     procedure lblBtnMediaViagemClick(Sender: TObject);
     procedure lblBtnEmitirRelatorioViagem(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -562,7 +563,7 @@ type
 
 var
   FormHome: TFormHome;
-
+  voz:OLEvariant;
 implementation
 
 {$R *.dfm}
@@ -625,7 +626,6 @@ begin
   end;
 
 end;
-
 
 procedure TFormHome.mostrarUserInativo;
 var
@@ -2149,6 +2149,8 @@ begin
 end;
 
 procedure TFormHome.lblBtnMinhasOrdensClick(Sender: TObject);
+var
+controller:ThomeController;
 begin
 panelMinhasOrdens.Visible:=true;
 ordensCarregamento4Carregadores;
@@ -2253,6 +2255,13 @@ begin
   carregamento.status := DTordensCarreg4Carreg.dataSet.FieldByName('status').asString;;
   aStatus:= carregamento.status;
 
+  if lblCountOrdensCarregProcesso.caption > '0' then begin
+    voz:=createOleObject('SAPI.spvoice');
+    voz.rate := 2;
+    voz.speak(userLogado.getNome + ' você tem Ordens em processo, finalize ela antes de iniciar uma nova',1);
+    exit;
+  end;
+
   try
     controller.iniciarCarregamento(usuarioLogado.UserLogado.getIdTransportadora,aIdCarregamento,aIdPedido,aStatus);
     ordensCarregamento4Carregadores;
@@ -2279,6 +2288,13 @@ begin
 
   viagem.status := DTOrdensMinhasOrdensViagens.dataSet.FieldByName('status').asString;
   aStatus:= viagem.status;
+
+  if lblCountViagensEmRota.caption > '0' then begin
+    voz:=createOleObject('SAPI.spvoice');
+    voz.rate := 2;
+    voz.speak(userLogado.getNome + ' você tem Ordens em rota, finalize ela antes de iniciar uma nova',1);
+    exit;
+  end;
 
   try
     controller.iniciarviagem(usuarioLogado.UserLogado.getIdTransportadora,aIdCarregamento,aIdviagem,aStatus);

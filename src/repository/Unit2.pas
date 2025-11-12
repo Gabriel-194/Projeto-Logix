@@ -45,6 +45,19 @@ uses
     FDQueryTimeViagemdata_chegada: TSQLTimeStampField;
     FDQueryTimeViagemtempo_hh_mm: TWideMemoField;
     FDQueryTimeViagemmedia_geral_hh_mm: TWideMemoField;
+    FDQueryRelCliente: TFDQuery;
+    FDQueryRelClientenspname: TWideStringField;
+    FDQueryRelClienteid: TIntegerField;
+    FDQueryRelClientenome: TWideStringField;
+    FDQueryRelClientetotal_pedidos: TLargeintField;
+    FDQueryRelClienteid_pedido: TIntegerField;
+    FDQueryRelClientestatus: TWideStringField;
+    FDQueryRelClientedata_pedido: TSQLTimeStampField;
+    FDQueryRelClientetransportadora_id: TIntegerField;
+    FDQueryRelClientetransportadora_nome: TWideStringField;
+    frxDBDatasetRelCliente: TfrxDBDataset;
+    frxReportRelCliente: TfrxReport;
+    FDQueryRelClientecliente_nome: TWideStringField;
     procedure DataModuleCreate(Sender: TObject);
   end;
 

@@ -1,7 +1,7 @@
 object DataModule2: TDataModule2
   OnCreate = DataModuleCreate
   Height = 351
-  Width = 662
+  Width = 884
   object FDConnection1: TFDConnection
     Params.Strings = (
       'Database=logix'
@@ -737,30 +737,6 @@ object DataModule2: TDataModule2
     DataSetOptions = []
     Left = 302
     Top = 211
-    FieldDefs = <
-      item
-        FieldName = 'id_carregador'
-      end
-      item
-        FieldName = 'nome_carregador'
-        FieldType = fftString
-        Size = 90
-      end
-      item
-        FieldName = 'id_carregamento'
-      end
-      item
-        FieldName = 'data_hora_inicio'
-      end
-      item
-        FieldName = 'data_hora_fim'
-      end
-      item
-        FieldName = 'tempo_hh_mm'
-      end
-      item
-        FieldName = 'media_geral_hh_mm'
-      end>
   end
   object frxReportTimecarreg: TfrxReport
     Version = '2026.1.0'
@@ -1332,30 +1308,6 @@ object DataModule2: TDataModule2
     DataSetOptions = []
     Left = 536
     Top = 216
-    FieldDefs = <
-      item
-        FieldName = 'id_motorista'
-      end
-      item
-        FieldName = 'nome_motorista'
-        FieldType = fftString
-        Size = 8190
-      end
-      item
-        FieldName = 'id_viagem'
-      end
-      item
-        FieldName = 'data_saida_cd'
-      end
-      item
-        FieldName = 'data_chegada'
-      end
-      item
-        FieldName = 'tempo_hh_mm'
-      end
-      item
-        FieldName = 'media_geral_hh_mm'
-      end>
   end
   object frxReportTimeViagem: TfrxReport
     Version = '2026.1.0'
@@ -1769,6 +1721,485 @@ object DataModule2: TDataModule2
           ContentScaleOptions.Constraints.MinIterationValue = 0
           Frame.Typ = [ftTop]
           Frame.Width = 2.000000000000000000
+        end
+      end
+    end
+  end
+  object FDQueryRelCliente: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'SELECT'
+      '    p.id_pedido,'
+      '    p.status,'
+      '    p.data_pedido,'
+      '    t.id AS transportadora_id,'
+      '    t.nome AS transportadora_nome,'
+      '    c.nome AS cliente_nome  '
+      'FROM'
+      '    rota_certa_logistica.pedido p'
+      'JOIN'
+      '    public.transportadora t ON t.id = p.id_transportadora'
+      'JOIN'
+      '    public.cliente c ON c.id_cliente = p.id_cliente  '
+      'WHERE'
+      '    p.id_cliente = 1'
+      'ORDER BY'
+      '    p.data_pedido DESC;')
+    Left = 744
+    Top = 272
+    object FDQueryRelClientenspname: TWideStringField
+      FieldName = 'nspname'
+      Origin = 'nspname'
+      Size = 64
+    end
+    object FDQueryRelClienteid: TIntegerField
+      FieldName = 'id'
+      Origin = 'id'
+    end
+    object FDQueryRelClientenome: TWideStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 90
+    end
+    object FDQueryRelClientetotal_pedidos: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'total_pedidos'
+      Origin = 'total_pedidos'
+      ReadOnly = True
+    end
+    object FDQueryRelClienteid_pedido: TIntegerField
+      FieldName = 'id_pedido'
+      Origin = 'id_pedido'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object FDQueryRelClientestatus: TWideStringField
+      FieldName = 'status'
+      Origin = 'status'
+    end
+    object FDQueryRelClientedata_pedido: TSQLTimeStampField
+      FieldName = 'data_pedido'
+      Origin = 'data_pedido'
+      ProviderFlags = [pfInUpdate]
+    end
+    object FDQueryRelClientetransportadora_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'transportadora_id'
+      Origin = 'transportadora_id'
+    end
+    object FDQueryRelClientetransportadora_nome: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'transportadora_nome'
+      Origin = 'transportadora_nome'
+      Size = 90
+    end
+    object FDQueryRelClientecliente_nome: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cliente_nome'
+      Origin = 'cliente_nome'
+      Size = 90
+    end
+  end
+  object frxDBDatasetRelCliente: TfrxDBDataset
+    UserName = 'frxDBDatasetRelCliente'
+    CloseDataSource = False
+    DataSet = FDQueryRelCliente
+    BCDToCurrency = False
+    DataSetOptions = []
+    Left = 744
+    Top = 224
+    FieldDefs = <
+      item
+        FieldName = 'nspname'
+        FieldType = fftString
+        Size = 64
+      end
+      item
+        FieldName = 'id'
+      end
+      item
+        FieldName = 'nome'
+        FieldType = fftString
+        Size = 90
+      end
+      item
+        FieldName = 'total_pedidos'
+      end
+      item
+        FieldName = 'id_pedido'
+      end
+      item
+        FieldName = 'status'
+        FieldType = fftString
+        Size = 20
+      end
+      item
+        FieldName = 'data_pedido'
+      end
+      item
+        FieldName = 'transportadora_id'
+      end
+      item
+        FieldName = 'transportadora_nome'
+        FieldType = fftString
+        Size = 90
+      end
+      item
+        FieldName = 'cliente_nome'
+        FieldType = fftString
+        Size = 90
+      end>
+  end
+  object frxReportRelCliente: TfrxReport
+    Version = '2026.1.0'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection, pbWatermarks]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 45973.708465601800000000
+    ReportOptions.LastChange = 45973.709384178240000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      ''
+      'begin'
+      ''
+      'end.')
+    Left = 744
+    Top = 152
+    Datasets = <
+      item
+        DataSet = frxDBDatasetRelCliente
+        DataSetName = 'frxDBDatasetRelCliente'
+      end>
+    Variables = <>
+    Style = <
+      item
+        Name = 'Title'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Frame.Typ = []
+        Fill.BackColor = clGray
+      end
+      item
+        Name = 'Header'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clMaroon
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Frame.Typ = []
+      end
+      item
+        Name = 'Group header'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clMaroon
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Frame.Typ = []
+        Fill.BackColor = 16053492
+      end
+      item
+        Name = 'Data'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = []
+      end
+      item
+        Name = 'Group footer'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Frame.Typ = []
+      end
+      item
+        Name = 'Header line'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Frame.Typ = [ftBottom]
+        Frame.Width = 2.000000000000000000
+      end>
+    Watermarks = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      Frame.Typ = []
+      MirrorMode = []
+      object ReportTitle1: TfrxReportTitle
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 26.456710000000000000
+        Top = 18.897650000000000000
+        Width = 718.110700000000000000
+        object Memo1: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Width = 718.110717773437500000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Fill.BackColor = clGray
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'Report')
+          ParentFont = False
+          Style = 'Title'
+          VAlign = vaCenter
+        end
+      end
+      object PageHeader1: TfrxPageHeader
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 22.677180000000000000
+        Top = 68.031540000000000000
+        Width = 718.110700000000000000
+        object Memo2: TfrxMemoView
+          AllowVectorExport = True
+          Width = 718.110236220472000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftBottom]
+          Frame.Width = 2.000000000000000000
+          ParentFont = False
+          Style = 'Header line'
+        end
+        object Memo3: TfrxMemoView
+          AllowVectorExport = True
+          Width = 78.000000000000000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clMaroon
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'id_pedido')
+          ParentFont = False
+          Style = 'Header'
+        end
+        object Memo4: TfrxMemoView
+          AllowVectorExport = True
+          Left = 78.000000000000000000
+          Width = 82.000000000000000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clMaroon
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'data_pedido')
+          ParentFont = False
+          Style = 'Header'
+        end
+        object Memo5: TfrxMemoView
+          AllowVectorExport = True
+          Left = 160.000000000000000000
+          Width = 151.000000000000000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clMaroon
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'status')
+          ParentFont = False
+          Style = 'Header'
+        end
+      end
+      object GroupHeader1: TfrxGroupHeader
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 26.456710000000000000
+        Top = 151.181200000000000000
+        Width = 718.110700000000000000
+        KeepWithData = False
+        Condition = 'frxDBDatasetRelCliente."transportadora_nome"'
+        object Memo6: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Width = 718.110717773437500000
+          Height = 22.677180000000000000
+          DataField = 'transportadora_nome'
+          DataSet = frxDBDatasetRelCliente
+          DataSetName = 'frxDBDatasetRelCliente'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clMaroon
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Fill.BackColor = 16053492
+          Memo.UTF8W = (
+            '[frxDBDatasetRelCliente."transportadora_nome"]')
+          ParentFont = False
+          Style = 'Group header'
+          VAlign = vaCenter
+        end
+      end
+      object MasterData1: TfrxMasterData
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 18.897650000000000000
+        Top = 200.315090000000000000
+        Width = 718.110700000000000000
+        DataSet = frxDBDatasetRelCliente
+        DataSetName = 'frxDBDatasetRelCliente'
+        RowCount = 0
+        object Memo7: TfrxMemoView
+          AllowVectorExport = True
+          Width = 78.000000000000000000
+          Height = 18.897650000000000000
+          DataField = 'id_pedido'
+          DataSet = frxDBDatasetRelCliente
+          DataSetName = 'frxDBDatasetRelCliente'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDatasetRelCliente."id_pedido"]')
+          ParentFont = False
+          Style = 'Data'
+        end
+        object Memo8: TfrxMemoView
+          AllowVectorExport = True
+          Left = 78.000000000000000000
+          Width = 82.000000000000000000
+          Height = 18.897650000000000000
+          DataField = 'data_pedido'
+          DataSet = frxDBDatasetRelCliente
+          DataSetName = 'frxDBDatasetRelCliente'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDatasetRelCliente."data_pedido"]')
+          ParentFont = False
+          Style = 'Data'
+        end
+        object Memo9: TfrxMemoView
+          AllowVectorExport = True
+          Left = 160.000000000000000000
+          Width = 151.000000000000000000
+          Height = 18.897650000000000000
+          DataField = 'status'
+          DataSet = frxDBDatasetRelCliente
+          DataSetName = 'frxDBDatasetRelCliente'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDatasetRelCliente."status"]')
+          ParentFont = False
+          Style = 'Data'
+        end
+      end
+      object GroupFooter1: TfrxGroupFooter
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Top = 241.889920000000000000
+        Width = 718.110700000000000000
+        KeepWithData = False
+      end
+      object PageFooter1: TfrxPageFooter
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 26.456710000000000000
+        Top = 302.362400000000000000
+        Width = 718.110700000000000000
+        object Memo10: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Width = 718.110717773437500000
+          Frame.Typ = [ftTop]
+          Frame.Width = 2.000000000000000000
+        end
+        object Memo11: TfrxMemoView
+          AllowVectorExport = True
+          Top = 1.000000000000000000
+          Height = 22.677180000000000000
+          AutoWidth = True
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[Date] [Time]')
+        end
+        object Memo12: TfrxMemoView
+          Align = baRight
+          AllowVectorExport = True
+          Left = 642.520117773437500000
+          Top = 1.000000000000000000
+          Width = 75.590600000000000000
+          Height = 22.677180000000000000
+          Frame.Typ = []
+          HAlign = haRight
+          Memo.UTF8W = (
+            'Page [Page#]')
         end
       end
     end
