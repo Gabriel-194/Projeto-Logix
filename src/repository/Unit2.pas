@@ -8,7 +8,8 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.PG,
   FireDAC.Phys.PGDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, frxSmartMemo, frxClass, frCoreClasses, frxDBSet;
+  FireDAC.Comp.Client, frxSmartMemo, frxClass, frCoreClasses, frxDBSet,
+  frxExportBaseDialog, frxExportPDF;
 
     type
   TDataModule2 = class(TDataModule)
@@ -56,8 +57,9 @@ uses
     FDQueryRelClientetransportadora_id: TIntegerField;
     FDQueryRelClientetransportadora_nome: TWideStringField;
     frxDBDatasetRelCliente: TfrxDBDataset;
-    frxReportRelCliente: TfrxReport;
     FDQueryRelClientecliente_nome: TWideStringField;
+    frxReportRelCliente: TfrxReport;
+    frxPDFExportRelCliente: TfrxPDFExport;
     procedure DataModuleCreate(Sender: TObject);
   end;
 

@@ -1,7 +1,8 @@
 object DataModule2: TDataModule2
   OnCreate = DataModuleCreate
-  Height = 351
-  Width = 884
+  Height = 439
+  Width = 1063
+  PixelsPerInch = 120
   object FDConnection1: TFDConnection
     Params.Strings = (
       'Database=logix'
@@ -11,20 +12,20 @@ object DataModule2: TDataModule2
       'DriverID=PG')
     Connected = True
     LoginPrompt = False
-    Left = 224
-    Top = 38
+    Left = 280
+    Top = 48
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
-    Left = 102
-    Top = 45
+    Left = 128
+    Top = 56
   end
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorLib = 
-      'C:\Users\gabriel kuchma\Documents\Embarcadero\Studio\Projects\Pr' +
+      'C:\Users\gabri\OneDrive\Documents\Embarcadero\Studio\Projects\Pr' +
       'ojeto-Logix\lib\libpq.dll'
-    Left = 333
-    Top = 38
+    Left = 416
+    Top = 48
   end
   object frxReportFaturamento: TfrxReport
     Version = '2026.1.0'
@@ -54,8 +55,8 @@ object DataModule2: TDataModule2
       'begin'
       ''
       'end.')
-    Left = 58
-    Top = 147
+    Left = 73
+    Top = 184
     Datasets = <
       item
         DataSet = frxDBDatasetFaturamento
@@ -501,7 +502,6 @@ object DataModule2: TDataModule2
     end
   end
   object FDQueryFaturamento: TFDQuery
-    Active = True
     Connection = FDConnection1
     SQL.Strings = (
       'SET search_path TO rota_certa_logistica, public;'
@@ -527,8 +527,8 @@ object DataModule2: TDataModule2
       'WHERE CAST(p.data_pedido AS DATE) = '#39'2025-11-04'#39
       ''
       'ORDER BY id_pedido;')
-    Left = 51
-    Top = 262
+    Left = 64
+    Top = 328
     object FDQueryFaturamentoid_cliente: TIntegerField
       FieldName = 'id_cliente'
       Origin = 'id_cliente'
@@ -576,8 +576,8 @@ object DataModule2: TDataModule2
     DataSet = FDQueryFaturamento
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 58
-    Top = 205
+    Left = 73
+    Top = 256
     FieldDefs = <
       item
         FieldName = 'id_cliente'
@@ -610,7 +610,6 @@ object DataModule2: TDataModule2
       end>
   end
   object FDQueryTimeCarreg: TFDQuery
-    Active = True
     Connection = FDConnection1
     SQL.Strings = (
       ' SET search_path TO rota_certa_logistica, public;'
@@ -679,8 +678,8 @@ object DataModule2: TDataModule2
       'GROUP BY u.id_usuario, u.nome'
       ''
       'ORDER BY data_hora_inicio NULLS LAST;')
-    Left = 302
-    Top = 269
+    Left = 378
+    Top = 336
     object FDQueryTimeCarregid_carregador: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'id_carregador'
@@ -735,8 +734,8 @@ object DataModule2: TDataModule2
     DataSet = FDQueryTimeCarreg
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 302
-    Top = 211
+    Left = 378
+    Top = 264
   end
   object frxReportTimecarreg: TfrxReport
     Version = '2026.1.0'
@@ -777,8 +776,8 @@ object DataModule2: TDataModule2
       'begin'
       ''
       'end.')
-    Left = 309
-    Top = 152
+    Left = 386
+    Top = 190
     Datasets = <
       item
         DataSet = frxDBDatasetTimeCarreg
@@ -1163,7 +1162,6 @@ object DataModule2: TDataModule2
     end
   end
   object FDQueryTimeViagem: TFDQuery
-    Active = True
     Connection = FDConnection1
     SQL.Strings = (
       
@@ -1250,8 +1248,8 @@ object DataModule2: TDataModule2
       'ORDER BY'
       '  nome_motorista NULLS LAST,'
       '  data_saida_cd NULLS LAST;')
-    Left = 536
-    Top = 272
+    Left = 670
+    Top = 340
     object FDQueryTimeViagemid_motorista: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'id_motorista'
@@ -1306,8 +1304,8 @@ object DataModule2: TDataModule2
     DataSet = FDQueryTimeViagem
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 536
-    Top = 216
+    Left = 670
+    Top = 270
   end
   object frxReportTimeViagem: TfrxReport
     Version = '2026.1.0'
@@ -1341,8 +1339,8 @@ object DataModule2: TDataModule2
       'begin'
       ''
       'end.')
-    Left = 536
-    Top = 160
+    Left = 670
+    Top = 200
     Datasets = <
       item
         DataSet = frxDBDatasetTimeViagem
@@ -1745,8 +1743,8 @@ object DataModule2: TDataModule2
       '    p.id_cliente = 1'
       'ORDER BY'
       '    p.data_pedido DESC;')
-    Left = 744
-    Top = 272
+    Left = 930
+    Top = 340
     object FDQueryRelClientenspname: TWideStringField
       FieldName = 'nspname'
       Origin = 'nspname'
@@ -1805,8 +1803,8 @@ object DataModule2: TDataModule2
     DataSet = FDQueryRelCliente
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 744
-    Top = 224
+    Left = 930
+    Top = 280
     FieldDefs = <
       item
         FieldName = 'nspname'
@@ -1857,16 +1855,16 @@ object DataModule2: TDataModule2
     PreviewOptions.Zoom = 1.000000000000000000
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
-    ReportOptions.CreateDate = 45973.708465601800000000
-    ReportOptions.LastChange = 45973.709384178240000000
+    ReportOptions.CreateDate = 45974.454889432900000000
+    ReportOptions.LastChange = 45974.477845127320000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
       'begin'
       ''
       'end.')
-    Left = 744
-    Top = 152
+    Left = 928
+    Top = 192
     Datasets = <
       item
         DataSet = frxDBDatasetRelCliente
@@ -1937,9 +1935,9 @@ object DataModule2: TDataModule2
       Width = 1000.000000000000000000
     end
     object Page1: TfrxReportPage
-      PaperWidth = 210.000000000000000000
-      PaperHeight = 297.000000000000000000
-      PaperSize = 9
+      PaperWidth = 215.900000000000000000
+      PaperHeight = 279.400000000000000000
+      PaperSize = 1
       LeftMargin = 10.000000000000000000
       RightMargin = 10.000000000000000000
       TopMargin = 10.000000000000000000
@@ -1955,12 +1953,14 @@ object DataModule2: TDataModule2
         Frame.Typ = []
         Height = 26.456710000000000000
         Top = 18.897650000000000000
-        Width = 718.110700000000000000
+        Width = 740.409927000000000000
         object Memo1: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
-          Width = 718.110717773437500000
+          Width = 740.409912109375000000
           Height = 22.677180000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -16
@@ -1970,7 +1970,7 @@ object DataModule2: TDataModule2
           Fill.BackColor = clGray
           HAlign = haCenter
           Memo.UTF8W = (
-            'Report')
+            'Relatorio de pedidos do cliente')
           ParentFont = False
           Style = 'Title'
           VAlign = vaCenter
@@ -1983,69 +1983,51 @@ object DataModule2: TDataModule2
         FillGap.Bottom = 0
         FillGap.Right = 0
         Frame.Typ = []
-        Height = 22.677180000000000000
+        Height = 30.236240000000000000
         Top = 68.031540000000000000
-        Width = 718.110700000000000000
-        object Memo2: TfrxMemoView
+        Width = 740.409927000000000000
+        object Memo13: TfrxMemoView
           AllowVectorExport = True
-          Width = 718.110236220472000000
+          Width = 52.913420000000000000
           Height = 22.677180000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = [ftBottom]
-          Frame.Width = 2.000000000000000000
-          ParentFont = False
-          Style = 'Header line'
-        end
-        object Memo3: TfrxMemoView
-          AllowVectorExport = True
-          Width = 78.000000000000000000
-          Height = 22.677180000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          DataSet = frxDBDatasetRelCliente
+          DataSetName = 'frxDBDatasetRelCliente'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clMaroon
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           Frame.Typ = []
+          Fill.BackColor = 16053492
           Memo.UTF8W = (
-            'id_pedido')
+            'Cliente:')
           ParentFont = False
-          Style = 'Header'
+          Style = 'Group header'
+          VAlign = vaCenter
         end
-        object Memo4: TfrxMemoView
+        object Memo21: TfrxMemoView
           AllowVectorExport = True
-          Left = 78.000000000000000000
-          Width = 82.000000000000000000
+          Left = 52.913420000000000000
+          Width = 687.496492110000000000
           Height = 22.677180000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          DataSet = frxDBDatasetRelCliente
+          DataSetName = 'frxDBDatasetRelCliente'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clMaroon
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           Frame.Typ = []
+          Fill.BackColor = 16053492
           Memo.UTF8W = (
-            'data_pedido')
+            '[frxDBDatasetRelCliente."cliente_nome"]')
           ParentFont = False
-          Style = 'Header'
-        end
-        object Memo5: TfrxMemoView
-          AllowVectorExport = True
-          Left = 160.000000000000000000
-          Width = 151.000000000000000000
-          Height = 22.677180000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clMaroon
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          Frame.Typ = []
-          Memo.UTF8W = (
-            'status')
-          ParentFont = False
-          Style = 'Header'
+          Style = 'Group header'
+          VAlign = vaCenter
         end
       end
       object GroupHeader1: TfrxGroupHeader
@@ -2055,16 +2037,20 @@ object DataModule2: TDataModule2
         FillGap.Bottom = 0
         FillGap.Right = 0
         Frame.Typ = []
-        Height = 26.456710000000000000
-        Top = 151.181200000000000000
-        Width = 718.110700000000000000
+        Height = 41.574830000000000000
+        Top = 204.094620000000000000
+        Width = 740.409927000000000000
         KeepWithData = False
         Condition = 'frxDBDatasetRelCliente."transportadora_nome"'
-        object Memo6: TfrxMemoView
+        object Memo8: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
-          Width = 718.110717773437500000
+          Left = 105.826840000000000000
+          Top = 7.559060000000000000
+          Width = 634.583072109375000000
           Height = 22.677180000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
           DataField = 'transportadora_nome'
           DataSet = frxDBDatasetRelCliente
           DataSetName = 'frxDBDatasetRelCliente'
@@ -2081,6 +2067,29 @@ object DataModule2: TDataModule2
           Style = 'Group header'
           VAlign = vaCenter
         end
+        object Memo20: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Top = 7.559060000000000000
+          Width = 105.826840000000000000
+          Height = 22.677180000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          DataSet = frxDBDatasetRelCliente
+          DataSetName = 'frxDBDatasetRelCliente'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clMaroon
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Fill.BackColor = 16053492
+          Memo.UTF8W = (
+            'Transportadora:')
+          ParentFont = False
+          Style = 'Group header'
+          VAlign = vaCenter
+        end
       end
       object MasterData1: TfrxMasterData
         FillType = ftBrush
@@ -2089,16 +2098,19 @@ object DataModule2: TDataModule2
         FillGap.Bottom = 0
         FillGap.Right = 0
         Frame.Typ = []
-        Height = 18.897650000000000000
-        Top = 200.315090000000000000
-        Width = 718.110700000000000000
+        Height = 26.456710000000000000
+        Top = 268.346630000000000000
+        Width = 740.409927000000000000
         DataSet = frxDBDatasetRelCliente
         DataSetName = 'frxDBDatasetRelCliente'
         RowCount = 0
-        object Memo7: TfrxMemoView
+        object Memo10: TfrxMemoView
           AllowVectorExport = True
-          Width = 78.000000000000000000
+          Left = 0.291280000000000000
+          Width = 72.822563130000000000
           Height = 18.897650000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
           DataField = 'id_pedido'
           DataSet = frxDBDatasetRelCliente
           DataSetName = 'frxDBDatasetRelCliente'
@@ -2113,30 +2125,13 @@ object DataModule2: TDataModule2
           ParentFont = False
           Style = 'Data'
         end
-        object Memo8: TfrxMemoView
+        object Memo11: TfrxMemoView
           AllowVectorExport = True
-          Left = 78.000000000000000000
-          Width = 82.000000000000000000
+          Left = 228.074573130000000000
+          Width = 262.686773440000000000
           Height = 18.897650000000000000
-          DataField = 'data_pedido'
-          DataSet = frxDBDatasetRelCliente
-          DataSetName = 'frxDBDatasetRelCliente'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          Memo.UTF8W = (
-            '[frxDBDatasetRelCliente."data_pedido"]')
-          ParentFont = False
-          Style = 'Data'
-        end
-        object Memo9: TfrxMemoView
-          AllowVectorExport = True
-          Left = 160.000000000000000000
-          Width = 151.000000000000000000
-          Height = 18.897650000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
           DataField = 'status'
           DataSet = frxDBDatasetRelCliente
           DataSetName = 'frxDBDatasetRelCliente'
@@ -2151,6 +2146,27 @@ object DataModule2: TDataModule2
           ParentFont = False
           Style = 'Data'
         end
+        object Memo12: TfrxMemoView
+          AllowVectorExport = True
+          Left = 490.761346570000000000
+          Width = 249.648565540000000000
+          Height = 18.897650000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          DataField = 'data_pedido'
+          DataSet = frxDBDatasetRelCliente
+          DataSetName = 'frxDBDatasetRelCliente'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDatasetRelCliente."data_pedido"]')
+          ParentFont = False
+          Style = 'Data'
+        end
       end
       object GroupFooter1: TfrxGroupFooter
         FillType = ftBrush
@@ -2159,8 +2175,8 @@ object DataModule2: TDataModule2
         FillGap.Bottom = 0
         FillGap.Right = 0
         Frame.Typ = []
-        Top = 241.889920000000000000
-        Width = 718.110700000000000000
+        Top = 317.480520000000000000
+        Width = 740.409927000000000000
         KeepWithData = False
       end
       object PageFooter1: TfrxPageFooter
@@ -2171,16 +2187,16 @@ object DataModule2: TDataModule2
         FillGap.Right = 0
         Frame.Typ = []
         Height = 26.456710000000000000
-        Top = 302.362400000000000000
-        Width = 718.110700000000000000
-        object Memo10: TfrxMemoView
+        Top = 377.953000000000000000
+        Width = 740.409927000000000000
+        object Memo14: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
-          Width = 718.110717773437500000
+          Width = 740.409912109375000000
           Frame.Typ = [ftTop]
           Frame.Width = 2.000000000000000000
         end
-        object Memo11: TfrxMemoView
+        object Memo15: TfrxMemoView
           AllowVectorExport = True
           Top = 1.000000000000000000
           Height = 22.677180000000000000
@@ -2189,10 +2205,10 @@ object DataModule2: TDataModule2
           Memo.UTF8W = (
             '[Date] [Time]')
         end
-        object Memo12: TfrxMemoView
+        object Memo16: TfrxMemoView
           Align = baRight
           AllowVectorExport = True
-          Left = 642.520117773437500000
+          Left = 664.819312109375000000
           Top = 1.000000000000000000
           Width = 75.590600000000000000
           Height = 22.677180000000000000
@@ -2202,6 +2218,99 @@ object DataModule2: TDataModule2
             'Page [Page#]')
         end
       end
+      object Header1: TfrxHeader
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 22.677180000000000000
+        Top = 158.740260000000000000
+        Width = 740.409927000000000000
+        object Memo17: TfrxMemoView
+          AllowVectorExport = True
+          Width = 72.822563130000000000
+          Height = 22.677180000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clMaroon
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Id pedido')
+          ParentFont = False
+          Style = 'Header'
+        end
+        object Memo18: TfrxMemoView
+          AllowVectorExport = True
+          Left = 227.783293130000000000
+          Width = 261.675280310000000000
+          Height = 22.677180000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clMaroon
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Status')
+          ParentFont = False
+          Style = 'Header'
+        end
+        object Memo19: TfrxMemoView
+          AllowVectorExport = True
+          Left = 489.458573440000000000
+          Width = 250.951338670000000000
+          Height = 22.677180000000000000
+          ContentScaleOptions.Constraints.MaxIterationValue = 0
+          ContentScaleOptions.Constraints.MinIterationValue = 0
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clMaroon
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Data pedido')
+          ParentFont = False
+          Style = 'Header'
+        end
+      end
     end
+  end
+  object frxPDFExportRelCliente: TfrxPDFExport
+    ShowDialog = False
+    UseFileCache = True
+    ShowProgress = False
+    OverwritePrompt = False
+    DataOnly = False
+    InteractiveFormsFontSubset = 'A-Z,a-z,0-9,#43-#47 '
+    OpenAfterExport = False
+    PrintOptimized = False
+    Outline = False
+    Background = False
+    Quality = 95
+    Author = 'FastReport'
+    Subject = 'FastReport PDF export'
+    Creator = 'FastReport'
+    ProtectionFlags = [ePrint, eModify, eCopy, eAnnot]
+    HideToolbar = False
+    HideMenubar = False
+    HideWindowUI = False
+    FitWindow = False
+    CenterWindow = False
+    PrintScaling = False
+    PdfA = False
+    PDFStandard = psNone
+    PDFVersion = pv17
+    PDFColorSpace = csDeviceRGB
+    Left = 872
+    Top = 120
   end
 end

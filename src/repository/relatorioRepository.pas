@@ -1,18 +1,39 @@
-unit relatorioRepository;
+﻿unit relatorioRepository;
 
 interface
 uses
-  System.SysUtils, System.Classes,data.db, FireDAC.Comp.Client, System.Generics.Collections, unit2,Vcl.Dialogs;
+  System.SysUtils, System.Classes,data.db, FireDAC.Comp.Client, System.Generics.Collections, unit2,Vcl.Dialogs, Winapi.ShellAPI;
 type TrelatorioRepository = class
   procedure relatorioFaturamento(aIdTransportadora: Integer;aIdCliente: Integer = 0;aData:TdateTime= 0);
   procedure relatorioTempoCarregamento(aIdTransportadora,aIdCarregador:Integer);
   procedure relatorioTempoViagem(aIdTransportadora, aIdMotorista: Integer);
+  procedure relatorioTransportadorasMaisUsadas(aIdCliente: Integer);
+  procedure exportarRelPdfCliente;
 end;
 
 
 implementation
 
 { TrelatorioRepository }
+
+procedure TrelatorioRepository.exportarRelPdfCliente;
+var
+  CaminhoArquivo: string;
+begin
+  if (not DataModule2.FDQueryRelCliente.Active) or (DataModule2.FDQueryRelCliente.IsEmpty) then
+  begin
+    ShowMessage('Antes de exportar para PDF, você deve primeiro gerar o relatório.');
+    Exit;
+  end;
+
+  DataModule2.frxReportRelCliente.PrepareReport;
+
+  CaminhoArquivo := 'C:\Users\gabri\OneDrive\Documents\relatorio.pdf';
+  DataModule2.frxPDFExportRelCliente.FileName := CaminhoArquivo;
+  DataModule2.frxReportRelCliente.Export(DataModule2.frxPDFExportRelCliente);
+
+  ShellExecute(0, 'open', PChar(CaminhoArquivo), nil, nil, 1);
+end;
 
 procedure TrelatorioRepository.relatorioFaturamento(aIdTransportadora: Integer;aIdCliente: Integer = 0;aData:TdateTime= 0);
 var
@@ -118,7 +139,7 @@ begin
     if aIdCarregador = 0 then
       SQLMedia := SQLMedia +
         ' UNION ALL ' +
-        'SELECT NULL::integer AS id_carregador,''M�DIA GERAL'' AS nome_carregador, NULL::integer AS id_carregamento, NULL::timestamp AS data_hora_inicio, ' +
+        'SELECT NULL::integer AS id_carregador,''MÉDIA GERAL'' AS nome_carregador, NULL::integer AS id_carregamento, NULL::timestamp AS data_hora_inicio, ' +
         'NULL::timestamp AS data_hora_fim, NULL::text AS tempo_hh_mm, ' +
         '(LPAD(FLOOR(AVG(EXTRACT(EPOCH FROM (c.data_hora_fim - c.data_hora_inicio))) / 3600)::text, 2, ''0'') || '':'' || ' +
         'LPAD(FLOOR((AVG(EXTRACT(EPOCH FROM (c.data_hora_fim - c.data_hora_inicio))) % 3600) / 60)::text, 2, ''0''))::text AS media_geral_hh_mm ' +
@@ -197,7 +218,7 @@ begin
     if aIdMotorista = 0 then
       SQLMedia := SQLMedia +
         ' UNION ALL ' +
-        'SELECT NULL::integer AS id_motorista, ''M�DIA GERAL'' AS nome_motorista, NULL::integer AS id_viagem, ' +
+        'SELECT NULL::integer AS id_motorista, ''MÉDIA GERAL'' AS nome_motorista, NULL::integer AS id_viagem, ' +
         'NULL::timestamp AS data_saida_cd, NULL::timestamp AS data_chegada, NULL::text AS tempo_hh_mm, ' +
         '(LPAD(FLOOR(AVG(EXTRACT(EPOCH FROM (v.data_chegada - v.data_saida_cd))) / 3600)::text, 2, ''0'') || '':'' || ' +
         'LPAD(FLOOR((AVG(EXTRACT(EPOCH FROM (v.data_chegada - v.data_saida_cd))) % 3600) / 60)::text, 2, ''0''))::text AS media_geral_hh_mm ' +
@@ -225,5 +246,78 @@ begin
 end;
 
 
+procedure TrelatorioRepository.relatorioTransportadorasMaisUsadas(aIdCliente: Integer);
+var
+  QrySchemas: TFDQuery;
+  Schema: string;
+  SQLUnion, FinalSQL: TStringList;
+  i: Integer;
+begin
+  QrySchemas := TFDQuery.Create(nil);
+  SQLUnion := TStringList.Create;
+  FinalSQL := TStringList.Create;
+  try
+    QrySchemas.Connection := DataModule2.FDConnection1;
+    QrySchemas.SQL.Text :=
+      'SELECT nspname FROM pg_namespace ' +
+      'WHERE nspname NOT IN (''public'', ''pg_catalog'', ''information_schema'', ''pg_toast'') ' +
+      'ORDER BY nspname';
+    QrySchemas.Open;
+
+    while not QrySchemas.Eof do
+    begin
+      Schema := QrySchemas.FieldByName('nspname').AsString;
+      SQLUnion.Add(
+        'SELECT t.id AS transportadora_id, ' +
+        '       t.nome AS transportadora_nome, ' +
+        '       p.id_pedido, ' +
+        '       p.status, ' +
+        '       p.data_pedido, ' +
+        '       c.nome AS cliente_nome, ' +
+        '       c.id_cliente AS id ' +
+        'FROM ' + Schema + '.pedido p ' +
+        'JOIN public.transportadora t ON t.id = p.id_transportadora ' +
+        'JOIN public.cliente c ON c.id_cliente = p.id_cliente ' +
+        'WHERE p.id_cliente = :id_cliente'
+      );
+      QrySchemas.Next;
+    end;
+    QrySchemas.Close;
+
+    if SQLUnion.Count = 0 then
+      Exit;
+
+    FinalSQL.Add('SELECT *, ');
+    FinalSQL.Add('       COUNT(*) OVER (PARTITION BY transportadora_id) AS total_pedidos ');
+    FinalSQL.Add('FROM (');
+
+    for i := 0 to SQLUnion.Count - 1 do
+    begin
+      FinalSQL.Add(SQLUnion[i]);
+      if i < SQLUnion.Count - 1 then
+        FinalSQL.Add('UNION ALL');
+    end;
+
+    FinalSQL.Add(') AS todos_pedidos ');
+    FinalSQL.Add('ORDER BY total_pedidos DESC, transportadora_nome, data_pedido DESC');
+
+    with DataModule2.FDQueryRelCliente do
+    begin
+      Close;
+      SQL.Clear;
+      Params.Clear;
+      Fields.Clear;
+      SQL.Text := FinalSQL.Text;
+      ParamByName('id_cliente').AsInteger := aIdCliente;
+      Open;
+    end;
+
+    DataModule2.frxReportRelCliente.ShowReport();
+  finally
+    SQLUnion.Free;
+    FinalSQL.Free;
+    QrySchemas.Free;
+  end;
+end;
 
 end.

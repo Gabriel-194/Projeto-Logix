@@ -9,7 +9,6 @@ type ThomeClienteRepository = class
     function ContarPedidos(aIdCliente: Integer; const aStatus: String ): Integer;
     function BuscarTransportadorasMaisUsadas(aIdCliente: Integer): TObjectList<TTransportadora>;
 
-
 end;
 
 implementation
@@ -72,6 +71,7 @@ begin
     QrySchemas.Free;
   end;
 end;
+
 function ThomeClienteRepository.ContarPedidos(aIdCliente: Integer; const aStatus: String): Integer;
 var
   QrySchemas, QryPedidos: TFDQuery;

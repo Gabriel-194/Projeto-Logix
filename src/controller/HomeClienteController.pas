@@ -17,6 +17,8 @@ type ThomeClientecontroller = class
   procedure cancelaPedido(aIdTransportadora,aIdPedido:Integer;aMotivoCancela:String);
   function buscarMessagensCLiente(aIdCliente:Integer):Tlist<TmessageDto>;
   function BuscarTransportadorasMaisUsadas(aIdCliente: Integer): TObjectList<TTransportadora>;
+  procedure relatorioTransportadorasMaisUsadas(aIdCliente: Integer);
+  procedure exportarRelPdfCliente;
 
 end;
 
@@ -75,6 +77,18 @@ Service:= ThomeClienteService.create;
 
 end;
 
+
+procedure ThomeClientecontroller.exportarRelPdfCliente;
+var
+  service:ThomeClienteservice;
+begin
+  service:=ThomeClienteService.create;
+  try
+    service.exportarRelPdfCliente;
+  finally
+    service.free;
+  end;
+end;
 
 function ThomeClientecontroller.buscarMessagensCLiente(
   aIdCliente: Integer): Tlist<TmessageDto>;
@@ -159,6 +173,19 @@ begin
     Result := service.BuscarPorCEP(ACep);
   finally
     service.Free;
+  end;
+end;
+
+procedure ThomeClientecontroller.relatorioTransportadorasMaisUsadas(
+  aIdCliente: Integer);
+var
+  service:ThomeClienteservice;
+begin
+  service:=ThomeClienteService.create;
+  try
+    service.relatorioTransportadorasMaisUsadas(aIdCliente);
+  finally
+    service.free;
   end;
 end;
 

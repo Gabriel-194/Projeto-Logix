@@ -159,6 +159,7 @@ type
     PnlFiltroEmitirRelatorioCarreg: TPanel;
     Shape87: TShape;
     lblBtnEmitirRelatorio: TLabel;
+    ImgExportPdf: TImage;
     procedure Image8Click(Sender: TObject);
     procedure imgFecharPanelCadastroClienteClick(Sender: TObject);
     procedure imgBuscaCepOrigemClick(Sender: TObject);
@@ -187,6 +188,8 @@ type
     procedure graficoTranspsMaisUsadas;
     procedure soundOffClick(Sender: TObject);
     procedure soundOnClick(Sender: TObject);
+    procedure lblBtnEmitirRelatorioClick(Sender: TObject);
+    procedure ImgExportPdfClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -420,6 +423,18 @@ begin
 end;
 
 
+procedure TFormHomeCliente.ImgExportPdfClick(Sender: TObject);
+var
+  controller:ThomeClienteController;
+begin
+  controller:=ThomeClienteController.create;
+  try
+    controller.exportarRelPdfCliente;
+  finally
+    controller.free;
+  end;
+end;
+
 procedure TFormHomeCliente.Image5Click(Sender: TObject);
 begin
 panel9.visible := false;
@@ -497,6 +512,18 @@ begin
   end;
 end;
 
+
+procedure TFormHomeCliente.lblBtnEmitirRelatorioClick(Sender: TObject);
+var
+  controller:ThomeClienteController;
+begin
+  controller:=ThomeClienteController.create;
+  try
+    controller.relatorioTransportadorasMaisUsadas(clienteLogado.getId);
+  finally
+    controller.free;
+  end;
+end;
 
 procedure TFormHomeCliente.lblBtnInstrucoesPedidoClick(Sender: TObject);
 begin
@@ -630,6 +657,9 @@ Controller := ThomeClientecontroller.Create;
     Controller.Free;
   end;
 end;
+
+
+
 //========= excluir pedido
 procedure TFormHomeCliente.DBGridMeusPedidosCellClick(Column: TColumn);
 var
