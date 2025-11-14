@@ -77,7 +77,6 @@ Service:= ThomeClienteService.create;
 
 end;
 
-
 procedure ThomeClientecontroller.exportarRelPdfCliente;
 var
   service:ThomeClienteservice;

@@ -523,6 +523,7 @@ begin
   finally
     controller.free;
   end;
+  imgExportPdf.Visible:=true;
 end;
 
 procedure TFormHomeCliente.lblBtnInstrucoesPedidoClick(Sender: TObject);

@@ -1,7 +1,7 @@
 object DataModule2: TDataModule2
   OnCreate = DataModuleCreate
-  Height = 439
-  Width = 1063
+  Height = 658
+  Width = 1125
   PixelsPerInch = 120
   object FDConnection1: TFDConnection
     Params.Strings = (
@@ -13,7 +13,7 @@ object DataModule2: TDataModule2
     Connected = True
     LoginPrompt = False
     Left = 280
-    Top = 48
+    Top = 40
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
@@ -36,27 +36,25 @@ object DataModule2: TDataModule2
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 45967.414728171300000000
-    ReportOptions.LastChange = 45972.617403692130000000
+    ReportOptions.LastChange = 45975.437770543980000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
-      ''
       'procedure MasterData1OnBeforePrint(Sender: TfrxComponent);'
-      'begin  '
-      '  if ([frxDBDatasetFaturamento."nome"] = '#39#39') then'
+      'begin'
+      '  if (<frxDBDatasetFaturamento."nome"> = '#39#39') then'
       '  begin'
       '    MasterData1.Visible := False;'
       '  end'
       '  else'
-      '  begin    '
+      '  begin'
       '    MasterData1.Visible := True;'
       '  end;'
       'end;'
       ''
       'begin'
-      ''
       'end.')
     Left = 73
-    Top = 184
+    Top = 336
     Datasets = <
       item
         DataSet = frxDBDatasetFaturamento
@@ -136,6 +134,7 @@ object DataModule2: TDataModule2
       BottomMargin = 10.000000000000000000
       Frame.Typ = []
       MirrorMode = []
+      OnBeforePrint = 'MasterData1OnBeforePrint'
       object ReportTitle1: TfrxReportTitle
         FillType = ftBrush
         FillGap.Top = 0
@@ -144,7 +143,7 @@ object DataModule2: TDataModule2
         FillGap.Right = 0
         Frame.Typ = []
         Height = 26.456710000000000000
-        Top = 18.897650000000000000
+        Top = 16.000000000000000000
         Width = 740.409927000000000000
         object Memo1: TfrxMemoView
           Align = baWidth
@@ -176,7 +175,7 @@ object DataModule2: TDataModule2
         FillGap.Right = 0
         Frame.Typ = []
         Height = 34.015770000000000000
-        Top = 68.031540000000000000
+        Top = 64.000000000000000000
         Width = 740.409927000000000000
         object Memo2: TfrxMemoView
           AllowVectorExport = True
@@ -290,9 +289,8 @@ object DataModule2: TDataModule2
         FillGap.Right = 0
         Frame.Typ = []
         Height = 34.015771460000000000
-        Top = 162.519790000000000000
+        Top = 120.000000000000000000
         Width = 740.409927000000000000
-        OnBeforePrint = 'MasterData1OnBeforePrint'
         DataSet = frxDBDatasetFaturamento
         DataSetName = 'frxDBDatasetFaturamento'
         RowCount = 0
@@ -416,7 +414,7 @@ object DataModule2: TDataModule2
         FillGap.Right = 0
         Frame.Typ = []
         Height = 41.574830000000000000
-        Top = 317.480520000000000000
+        Top = 232.000000000000000000
         Width = 740.409927000000000000
         object Memo14: TfrxMemoView
           Align = baWidth
@@ -446,7 +444,7 @@ object DataModule2: TDataModule2
         FillGap.Right = 0
         Frame.Typ = []
         Height = 37.795300000000000000
-        Top = 257.008040000000000000
+        Top = 176.000000000000000000
         Width = 740.409927000000000000
         object Memo16: TfrxMemoView
           AllowVectorExport = True
@@ -502,6 +500,7 @@ object DataModule2: TDataModule2
     end
   end
   object FDQueryFaturamento: TFDQuery
+    Active = True
     Connection = FDConnection1
     SQL.Strings = (
       'SET search_path TO rota_certa_logistica, public;'
@@ -528,7 +527,7 @@ object DataModule2: TDataModule2
       ''
       'ORDER BY id_pedido;')
     Left = 64
-    Top = 328
+    Top = 480
     object FDQueryFaturamentoid_cliente: TIntegerField
       FieldName = 'id_cliente'
       Origin = 'id_cliente'
@@ -577,7 +576,7 @@ object DataModule2: TDataModule2
     BCDToCurrency = False
     DataSetOptions = []
     Left = 73
-    Top = 256
+    Top = 408
     FieldDefs = <
       item
         FieldName = 'id_cliente'
@@ -678,8 +677,8 @@ object DataModule2: TDataModule2
       'GROUP BY u.id_usuario, u.nome'
       ''
       'ORDER BY data_hora_inicio NULLS LAST;')
-    Left = 378
-    Top = 336
+    Left = 362
+    Top = 488
     object FDQueryTimeCarregid_carregador: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'id_carregador'
@@ -734,8 +733,8 @@ object DataModule2: TDataModule2
     DataSet = FDQueryTimeCarreg
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 378
-    Top = 264
+    Left = 362
+    Top = 416
   end
   object frxReportTimecarreg: TfrxReport
     Version = '2026.1.0'
@@ -776,8 +775,8 @@ object DataModule2: TDataModule2
       'begin'
       ''
       'end.')
-    Left = 386
-    Top = 190
+    Left = 370
+    Top = 342
     Datasets = <
       item
         DataSet = frxDBDatasetTimeCarreg
@@ -1162,6 +1161,7 @@ object DataModule2: TDataModule2
     end
   end
   object FDQueryTimeViagem: TFDQuery
+    Active = True
     Connection = FDConnection1
     SQL.Strings = (
       
@@ -1249,7 +1249,7 @@ object DataModule2: TDataModule2
       '  nome_motorista NULLS LAST,'
       '  data_saida_cd NULLS LAST;')
     Left = 670
-    Top = 340
+    Top = 492
     object FDQueryTimeViagemid_motorista: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'id_motorista'
@@ -1305,7 +1305,31 @@ object DataModule2: TDataModule2
     BCDToCurrency = False
     DataSetOptions = []
     Left = 670
-    Top = 270
+    Top = 422
+    FieldDefs = <
+      item
+        FieldName = 'id_motorista'
+      end
+      item
+        FieldName = 'nome_motorista'
+        FieldType = fftString
+        Size = 8190
+      end
+      item
+        FieldName = 'id_viagem'
+      end
+      item
+        FieldName = 'data_saida_cd'
+      end
+      item
+        FieldName = 'data_chegada'
+      end
+      item
+        FieldName = 'tempo_hh_mm'
+      end
+      item
+        FieldName = 'media_geral_hh_mm'
+      end>
   end
   object frxReportTimeViagem: TfrxReport
     Version = '2026.1.0'
@@ -1316,10 +1340,10 @@ object DataModule2: TDataModule2
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 45972.589072303200000000
-    ReportOptions.LastChange = 45972.612714305560000000
+    ReportOptions.LastChange = 45975.439115208300000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
-      ''
+      '   '
       'procedure MasterData1OnBeforePrint(Sender: TfrxComponent);'
       'begin  '
       '  if (VarToStr(<frxDBDatasetTimeViagem."tempo_hh_mm">) = '#39#39') or'
@@ -1340,7 +1364,7 @@ object DataModule2: TDataModule2
       ''
       'end.')
     Left = 670
-    Top = 200
+    Top = 352
     Datasets = <
       item
         DataSet = frxDBDatasetTimeViagem
@@ -1428,7 +1452,7 @@ object DataModule2: TDataModule2
         FillGap.Right = 0
         Frame.Typ = []
         Height = 26.456710000000000000
-        Top = 16.000000000000000000
+        Top = 18.897650000000000000
         Width = 718.110700000000000000
         object Memo1: TfrxMemoView
           Align = baWidth
@@ -1460,7 +1484,7 @@ object DataModule2: TDataModule2
         FillGap.Right = 0
         Frame.Typ = []
         Height = 22.677180000000000000
-        Top = 64.000000000000000000
+        Top = 68.031540000000000000
         Width = 718.110700000000000000
         object Memo2: TfrxMemoView
           AllowVectorExport = True
@@ -1538,7 +1562,7 @@ object DataModule2: TDataModule2
         FillGap.Right = 0
         Frame.Typ = []
         Height = 34.015770000000000000
-        Top = 108.000000000000000000
+        Top = 151.181200000000000000
         Width = 718.110700000000000000
         OnBeforePrint = 'MasterData1OnBeforePrint'
         DataSet = frxDBDatasetTimeViagem
@@ -1627,7 +1651,7 @@ object DataModule2: TDataModule2
         FillGap.Right = 0
         Frame.Typ = []
         Height = 26.456710000000000000
-        Top = 224.000000000000000000
+        Top = 309.921460000000000000
         Width = 718.110700000000000000
         object Memo11: TfrxMemoView
           Align = baWidth
@@ -1668,7 +1692,7 @@ object DataModule2: TDataModule2
         FillGap.Right = 0
         Frame.Typ = []
         Height = 41.574830000000000000
-        Top = 164.000000000000000000
+        Top = 245.669450000000000000
         Width = 718.110700000000000000
         object Memo6: TfrxMemoView
           AllowVectorExport = True
@@ -1743,8 +1767,8 @@ object DataModule2: TDataModule2
       '    p.id_cliente = 1'
       'ORDER BY'
       '    p.data_pedido DESC;')
-    Left = 930
-    Top = 340
+    Left = 986
+    Top = 396
     object FDQueryRelClientenspname: TWideStringField
       FieldName = 'nspname'
       Origin = 'nspname'
@@ -1803,49 +1827,8 @@ object DataModule2: TDataModule2
     DataSet = FDQueryRelCliente
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 930
-    Top = 280
-    FieldDefs = <
-      item
-        FieldName = 'nspname'
-        FieldType = fftString
-        Size = 64
-      end
-      item
-        FieldName = 'id'
-      end
-      item
-        FieldName = 'nome'
-        FieldType = fftString
-        Size = 90
-      end
-      item
-        FieldName = 'total_pedidos'
-      end
-      item
-        FieldName = 'id_pedido'
-      end
-      item
-        FieldName = 'status'
-        FieldType = fftString
-        Size = 20
-      end
-      item
-        FieldName = 'data_pedido'
-      end
-      item
-        FieldName = 'transportadora_id'
-      end
-      item
-        FieldName = 'transportadora_nome'
-        FieldType = fftString
-        Size = 90
-      end
-      item
-        FieldName = 'cliente_nome'
-        FieldType = fftString
-        Size = 90
-      end>
+    Left = 986
+    Top = 336
   end
   object frxReportRelCliente: TfrxReport
     Version = '2026.1.0'
@@ -1863,8 +1846,8 @@ object DataModule2: TDataModule2
       'begin'
       ''
       'end.')
-    Left = 928
-    Top = 192
+    Left = 984
+    Top = 248
     Datasets = <
       item
         DataSet = frxDBDatasetRelCliente
@@ -2285,13 +2268,12 @@ object DataModule2: TDataModule2
     end
   end
   object frxPDFExportRelCliente: TfrxPDFExport
-    ShowDialog = False
     UseFileCache = True
     ShowProgress = False
     OverwritePrompt = False
     DataOnly = False
     InteractiveFormsFontSubset = 'A-Z,a-z,0-9,#43-#47 '
-    OpenAfterExport = False
+    OpenAfterExport = True
     PrintOptimized = False
     Outline = False
     Background = False
@@ -2310,7 +2292,91 @@ object DataModule2: TDataModule2
     PDFStandard = psNone
     PDFVersion = pv17
     PDFColorSpace = csDeviceRGB
-    Left = 872
-    Top = 120
+    Left = 984
+    Top = 184
+  end
+  object frxPDFExportFaturamento: TfrxPDFExport
+    UseFileCache = True
+    ShowProgress = False
+    OverwritePrompt = False
+    DataOnly = False
+    InteractiveFormsFontSubset = 'A-Z,a-z,0-9,#43-#47 '
+    OpenAfterExport = True
+    PrintOptimized = False
+    Outline = False
+    Background = False
+    Quality = 95
+    Author = 'FastReport'
+    Subject = 'FastReport PDF export'
+    Creator = 'FastReport'
+    ProtectionFlags = [ePrint, eModify, eCopy, eAnnot]
+    HideToolbar = False
+    HideMenubar = False
+    HideWindowUI = False
+    FitWindow = False
+    CenterWindow = False
+    PrintScaling = False
+    PdfA = False
+    PDFStandard = psNone
+    PDFVersion = pv17
+    PDFColorSpace = csDeviceRGB
+    Left = 88
+    Top = 272
+  end
+  object frxPDFExportTimeCarreg: TfrxPDFExport
+    UseFileCache = True
+    ShowProgress = False
+    OverwritePrompt = False
+    DataOnly = False
+    InteractiveFormsFontSubset = 'A-Z,a-z,0-9,#43-#47 '
+    OpenAfterExport = True
+    PrintOptimized = False
+    Outline = False
+    Background = False
+    Quality = 95
+    Author = 'FastReport'
+    Subject = 'FastReport PDF export'
+    Creator = 'FastReport'
+    ProtectionFlags = [ePrint, eModify, eCopy, eAnnot]
+    HideToolbar = False
+    HideMenubar = False
+    HideWindowUI = False
+    FitWindow = False
+    CenterWindow = False
+    PrintScaling = False
+    PdfA = False
+    PDFStandard = psNone
+    PDFVersion = pv17
+    PDFColorSpace = csDeviceRGB
+    Left = 368
+    Top = 256
+  end
+  object frxPDFExportTimeViagem: TfrxPDFExport
+    UseFileCache = True
+    ShowProgress = False
+    OverwritePrompt = False
+    DataOnly = False
+    InteractiveFormsFontSubset = 'A-Z,a-z,0-9,#43-#47 '
+    OpenAfterExport = True
+    PrintOptimized = False
+    Outline = False
+    Background = False
+    Quality = 95
+    Author = 'FastReport'
+    Subject = 'FastReport PDF export'
+    Creator = 'FastReport'
+    ProtectionFlags = [ePrint, eModify, eCopy, eAnnot]
+    HideToolbar = False
+    HideMenubar = False
+    HideWindowUI = False
+    FitWindow = False
+    CenterWindow = False
+    PrintScaling = False
+    PdfA = False
+    PDFStandard = psNone
+    PDFVersion = pv17
+    PDFColorSpace = csDeviceRGB
+    Left = 664
+    Top = 272
   end
 end

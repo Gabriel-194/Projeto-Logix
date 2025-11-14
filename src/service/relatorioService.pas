@@ -7,10 +7,36 @@ type TrelatorioService = class
   procedure relatorioFaturamento(aIdTransportadora: Integer;aIdCliente: Integer = 0;aData:TdateTime= 0);
     procedure relatorioTempoCarregamento(aIdTransportadora,aIdCarregador:Integer);
     procedure relatorioTempoViagem(aIdTransportadora, aIdMotorista: Integer);
+    procedure exportarRelFaturamento;
+      procedure exportarRelCarreg;
 end;
 implementation
 
 { TrelatorioService }
+
+procedure TrelatorioService.exportarRelCarreg;
+var
+  repo:TrelatorioRepository;
+begin
+  repo:=TrelatorioRepository.create;
+  try
+    repo.exportarRelCarreg;
+  finally
+    repo.free;
+  end;
+end;
+
+procedure TrelatorioService.exportarRelFaturamento;
+var
+  repo:TrelatorioRepository;
+begin
+  repo:=TrelatorioRepository.create;
+  try
+    repo.exportarRelFaturamento;
+  finally
+    repo.free;
+  end;
+end;
 
 procedure TrelatorioService.relatorioFaturamento(aIdTransportadora: Integer;aIdCliente: Integer = 0;aData:TdateTime= 0);
 var

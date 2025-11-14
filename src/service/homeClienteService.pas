@@ -10,6 +10,7 @@ type ThomeCLienteService = class
   function BuscarTransportadorasMaisUsadas(aIdCliente: Integer): TObjectList<TTransportadora>;
   procedure relatorioTransportadorasMaisUsadas(aIdCliente: Integer);
   procedure exportarRelPdfCliente;
+
 end;
 
 implementation

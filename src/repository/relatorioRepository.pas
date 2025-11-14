@@ -9,6 +9,8 @@ type TrelatorioRepository = class
   procedure relatorioTempoViagem(aIdTransportadora, aIdMotorista: Integer);
   procedure relatorioTransportadorasMaisUsadas(aIdCliente: Integer);
   procedure exportarRelPdfCliente;
+  procedure exportarRelFaturamento;
+  procedure exportarRelCarreg;
 end;
 
 
@@ -16,26 +18,27 @@ implementation
 
 { TrelatorioRepository }
 
-procedure TrelatorioRepository.exportarRelPdfCliente;
-var
-  CaminhoArquivo: string;
+procedure TrelatorioRepository.exportarRelCarreg;
 begin
-  if (not DataModule2.FDQueryRelCliente.Active) or (DataModule2.FDQueryRelCliente.IsEmpty) then
-  begin
-    ShowMessage('Antes de exportar para PDF, você deve primeiro gerar o relatório.');
-    Exit;
-  end;
-
-  DataModule2.frxReportRelCliente.PrepareReport;
-
-  CaminhoArquivo := 'C:\Users\gabri\OneDrive\Documents\relatorio.pdf';
-  DataModule2.frxPDFExportRelCliente.FileName := CaminhoArquivo;
-  DataModule2.frxReportRelCliente.Export(DataModule2.frxPDFExportRelCliente);
-
-  ShellExecute(0, 'open', PChar(CaminhoArquivo), nil, nil, 1);
+  DataModule2.frxReportTimecarreg.PrepareReport;
+  DataModule2.frxReportTimecarreg.Export(DataModule2.frxPDFExportTimeCarreg);
+end;
+procedure TrelatorioRepository.exportarRelFaturamento;
+begin
+  DataModule2.frxReportFaturamento.PrepareReport;
+  DataModule2.frxReportFaturamento.Export(DataModule2.frxPDFExportFaturamento);
 end;
 
-procedure TrelatorioRepository.relatorioFaturamento(aIdTransportadora: Integer;aIdCliente: Integer = 0;aData:TdateTime= 0);
+procedure TrelatorioRepository.exportarRelPdfCliente;
+begin
+  DataModule2.frxReportRelCliente.PrepareReport;
+  DataModule2.frxPDFExportRelCliente.ShowDialog := True;
+  DataModule2.frxPDFExportRelCliente.OpenAfterExport := True;
+  DataModule2.frxReportRelCliente.Export(DataModule2.frxPDFExportRelCliente);
+end;
+
+procedure TrelatorioRepository.relatorioFaturamento(aIdTransportadora: Integer;
+  aIdCliente: Integer = 0; aData: TDateTime = 0);
 var
   SchemaName: string;
   QryAux: TFDQuery;
@@ -51,11 +54,10 @@ begin
     QryAux.Close;
 
     Filtros := '';
-
     if aIdCliente > 0 then
-      Filtros := Filtros + ' AND c.id_cliente = :id_cliente ';
+      Filtros := Filtros + ' AND c.id_cliente = ' + IntToStr(aIdCliente);
     if aData <> 0 then
-      Filtros := Filtros + ' AND CAST(p.data_pedido AS DATE) = :data_pedido ';
+      Filtros := Filtros + ' AND CAST(p.data_pedido AS DATE) = ''' + FormatDateTime('yyyy-mm-dd', aData) + '''';
 
     if Filtros <> '' then
       SQLWhere := ' WHERE ' + Copy(Filtros, 6, Length(Filtros))
@@ -63,23 +65,23 @@ begin
       SQLWhere := '';
 
     dataModule2.FDQueryFaturamento.Close;
+    dataModule2.FDQueryFaturamento.SQL.Clear;
     dataModule2.FDQueryFaturamento.SQL.Text :=
-      'SELECT c.id_cliente, c.nome, c.cpf, c.email, p.id_pedido, p.preco AS valor_pedido, NULL AS total_geral ' +
-      'FROM public.cliente c ' +
-      'JOIN ' + SchemaName + '.pedido p ON p.id_cliente = c.id_cliente ' +
+      'WITH dados_filtrados AS ( ' +
+      '  SELECT c.id_cliente, c.nome, c.cpf, c.email, p.id_pedido, p.preco AS valor_pedido ' +
+      '  FROM public.cliente c ' +
+      '  JOIN ' + SchemaName + '.pedido p ON p.id_cliente = c.id_cliente ' +
       SQLWhere +
-      ' UNION ALL ' +
-      'SELECT NULL, NULL, NULL, NULL, NULL, NULL, SUM(p.preco) AS total_geral ' +
-      'FROM public.cliente c ' +
-      'JOIN ' + SchemaName + '.pedido p ON p.id_cliente = c.id_cliente ' +
-      SQLWhere +
-      ' ORDER BY id_pedido;';
+      ') ' +
+      'SELECT id_cliente, nome, cpf, email, id_pedido, valor_pedido, CAST(NULL AS NUMERIC) AS total_geral ' +
+      'FROM dados_filtrados ' +
+      'UNION ALL ' +
+      'SELECT NULL, NULL, NULL, NULL, NULL, NULL, SUM(valor_pedido) AS total_geral ' +
+      'FROM dados_filtrados ' +
+      'ORDER BY id_pedido NULLS LAST;';
 
-
-    if aIdCliente > 0 then
-      dataModule2.FDQueryFaturamento.ParamByName('id_cliente').AsInteger := aIdCliente;
-    if aData <> 0 then
-      dataModule2.FDQueryFaturamento.ParamByName('data_pedido').Asdate := aData;
+    // Debug: Mostre a SQL gerada
+    ShowMessage(dataModule2.FDQueryFaturamento.SQL.Text);
 
     dataModule2.FDQueryFaturamento.Open;
     dataModule2.frxReportFaturamento.ShowReport();

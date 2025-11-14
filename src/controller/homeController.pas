@@ -55,6 +55,8 @@ function ObterPedidosPorMes(aIdTransportadora:integer): Tlist<TpedidoDto>;
 procedure relatorioFaturamento(aIdTransportadora: Integer;aIdCliente: Integer = 0;aData:TdateTime= 0);
 procedure relatorioTempoCarregamento(aIdTransportadora,aIdCarregador:Integer);
  procedure relatorioTempoViagem(aIdTransportadora, aIdMotorista: Integer);
+ procedure exportarRelFaturamento;
+ procedure exportarRelCarreg;
 //=====clientes=====================
   function ListarCliente(idTransportadora: Integer): TObjectList<Tcliente>;
 
@@ -340,6 +342,30 @@ begin
 service := TveiculoService.create;
   try
     service.excluirVeiculo(veiculo);
+  finally
+    service.free;
+  end;
+end;
+
+procedure THomeController.exportarRelCarreg;
+var
+service:TRelatorioService;
+begin
+  service:=TRelatorioService.create;
+  try
+    service.exportarRelCarreg;
+  finally
+    service.free;
+  end;
+end;
+
+procedure THomeController.exportarRelFaturamento;
+var
+service:TRelatorioService;
+begin
+  service:=TRelatorioService.create;
+  try
+    service.exportarRelFaturamento;
   finally
     service.free;
   end;

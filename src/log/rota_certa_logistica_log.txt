@@ -37,3 +37,17 @@
 [CHECK] Usuário julio do ID 11 finalizou uma ordem de carregamento no dia 12/11/2025 e no horário 15:10:11
 [CREATE] Usuário kuchma do ID 2 criou uma ordem de viagem no dia 12/11/2025 e no horário 15:10:49
 [CHECK] Usuário sergio do ID 8 iniciou uma ordem de viagem no dia 12/11/2025 e no horário 15:11:18
+[CREATE] Usuário kuchma do ID 2 criou uma ordem de viagem no dia 14/11/2025 e no horário 12:12:20
+[CREATE] Usuário kuchma do ID 2 criou uma ordem de viagem no dia 14/11/2025 e no horário 12:12:25
+[CREATE] Usuário kuchma do ID 2 criou uma ordem de viagem no dia 14/11/2025 e no horário 12:12:30
+[CREATE] Usuário kuchma do ID 2 criou uma ordem de viagem no dia 14/11/2025 e no horário 12:12:43
+[CHECK] Usuário sergio do ID 8 iniciou uma ordem de viagem no dia 14/11/2025 e no horário 12:13:17
+[CHECK] Usuário sergio do ID 8 finalizou uma ordem de viagem no dia 14/11/2025 e no horário 12:13:33
+[CHECK] Usuário sergio do ID 8 iniciou uma ordem de viagem no dia 14/11/2025 e no horário 12:13:35
+[CHECK] Usuário sergio do ID 8 finalizou uma ordem de viagem no dia 14/11/2025 e no horário 12:13:37
+[CHECK] Usuário sergio do ID 8 iniciou uma ordem de viagem no dia 14/11/2025 e no horário 12:13:39
+[CHECK] Usuário sergio do ID 8 finalizou uma ordem de viagem no dia 14/11/2025 e no horário 12:13:47
+[CHECK] Usuário eduardo do ID 9 iniciou uma ordem de viagem no dia 14/11/2025 e no horário 12:14:25
+[CHECK] Usuário eduardo do ID 9 finalizou uma ordem de viagem no dia 14/11/2025 e no horário 12:14:26
+[CHECK] Usuário eduardo do ID 9 iniciou uma ordem de viagem no dia 14/11/2025 e no horário 12:14:29
+[CHECK] Usuário eduardo do ID 9 finalizou uma ordem de viagem no dia 14/11/2025 e no horário 12:14:34

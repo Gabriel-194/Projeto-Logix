@@ -60,6 +60,9 @@ uses
     FDQueryRelClientecliente_nome: TWideStringField;
     frxReportRelCliente: TfrxReport;
     frxPDFExportRelCliente: TfrxPDFExport;
+    frxPDFExportFaturamento: TfrxPDFExport;
+    frxPDFExportTimeCarreg: TfrxPDFExport;
+    frxPDFExportTimeViagem: TfrxPDFExport;
     procedure DataModuleCreate(Sender: TObject);
   end;
 

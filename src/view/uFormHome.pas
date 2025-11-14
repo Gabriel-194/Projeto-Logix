@@ -468,6 +468,9 @@ type
     PnlFiltroEmitirRelatorioCarreg: TPanel;
     Shape87: TShape;
     lblBtnEmitirRelatorio: TLabel;
+    ImgRelViagemtPdf: TImage;
+    imgRelCarregPdf: TImage;
+    imgRelFaturamentoPdf: TImage;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -554,6 +557,8 @@ type
     procedure lblBtnEmitirRelatorioClick(Sender: TObject);
     procedure lblBtnMediaViagemClick(Sender: TObject);
     procedure lblBtnEmitirRelatorioViagem(Sender: TObject);
+    procedure imgRelFaturamentoPdfClick(Sender: TObject);
+    procedure imgRelCarregPdfClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -2305,6 +2310,30 @@ begin
   end;
 end;
 
+procedure TFormHome.imgRelCarregPdfClick(Sender: TObject);
+var
+  controller:ThomeController;
+begin
+  controller:=ThomeController.create;
+  try
+    controller.exportarRelCarreg;
+  finally
+    controller.free;
+  end;
+end;
+
+procedure TFormHome.imgRelFaturamentoPdfClick(Sender: TObject);
+var
+  controller:ThomeController;
+begin
+  controller:=ThomeController.create;
+  try
+    controller.exportarRelFaturamento;
+  finally
+    controller.free;
+  end;
+end;
+
 procedure TFormHome.imgFimCarregamentoClick(Sender: TObject);
 var
   controller:ThomeController;
@@ -2379,6 +2408,7 @@ begin
 
   finally
     controller.Free;
+    imgRelCarregPdf.visible:=true;
   end;
 end;
 
@@ -2402,6 +2432,7 @@ begin
 
   finally
     controller.Free;
+    ImgRelViagemtPdf.Visible:=true;
   end;
 end;
 
@@ -2433,6 +2464,7 @@ begin
 
   finally
     controller.Free;
+    imgRelFaturamentopdf.Visible:=true;
   end;
 end;
 
