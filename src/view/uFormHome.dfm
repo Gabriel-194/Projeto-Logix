@@ -9165,6 +9165,7 @@ object FormHome: TFormHome
         22112B822E84ED6785EAD65F0148257AFCFDDC40D039517F3BB1E10FF2F16FC8
         86067E9D0000000049454E44AE426082}
       Visible = False
+      OnClick = ImgRelViagemtPdfClick
     end
     object imgRelCarregPdf: TImage
       Left = 366
@@ -9724,7 +9725,6 @@ object FormHome: TFormHome
         Font.Style = [fsBold]
         ParentFont = False
         OnClick = lblBtnMediacarregamentoClick
-        ExplicitLeft = 73
         ExplicitHeight = 21
       end
     end

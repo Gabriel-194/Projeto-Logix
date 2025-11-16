@@ -2,7 +2,7 @@
 
 interface
 uses
-  System.SysUtils, System.Classes,data.db, FireDAC.Comp.Client, System.Generics.Collections, unit2,Vcl.Dialogs, Winapi.ShellAPI;
+  System.SysUtils, System.Classes,data.db, FireDAC.Comp.Client, Vcl.Forms, System.Generics.Collections, unit2,Vcl.Dialogs, Winapi.ShellAPI, Winapi.Windows;
 type TrelatorioRepository = class
   procedure relatorioFaturamento(aIdTransportadora: Integer;aIdCliente: Integer = 0;aData:TdateTime= 0);
   procedure relatorioTempoCarregamento(aIdTransportadora,aIdCarregador:Integer);
@@ -11,6 +11,7 @@ type TrelatorioRepository = class
   procedure exportarRelPdfCliente;
   procedure exportarRelFaturamento;
   procedure exportarRelCarreg;
+  procedure exportarRelViagem;
 end;
 
 
@@ -19,24 +20,113 @@ implementation
 { TrelatorioRepository }
 
 procedure TrelatorioRepository.exportarRelCarreg;
+var
+  SaveDialog: TSaveDialog;
 begin
-  DataModule2.frxReportTimecarreg.PrepareReport;
-  DataModule2.frxReportTimecarreg.Export(DataModule2.frxPDFExportTimeCarreg);
+  SaveDialog := TSaveDialog.Create(nil);
+  try
+    SaveDialog.Title := 'Salvar Relatório de Tempo Médio de Carregamento';
+    SaveDialog.Filter := 'PDF Files (*.pdf)|*.pdf';
+    SaveDialog.DefaultExt := 'pdf';
+    SaveDialog.FileName := 'Tempo_Carregamento_' + FormatDateTime('yyyymmdd_hhnnss', Now) + '.pdf';
+    SaveDialog.InitialDir := ExtractFilePath(ParamStr(0));
+
+    if SaveDialog.Execute then
+    begin
+      DataModule2.frxPDFExportTimeCarreg.FileName := SaveDialog.FileName;
+      DataModule2.frxPDFExportTimeCarreg.ShowDialog := False;
+      DataModule2.frxPDFExportTimeCarreg.ShowProgress := True;
+      DataModule2.frxPDFExportTimeCarreg.OverwritePrompt := False;
+      DataModule2.frxPDFExportTimeCarreg.OpenAfterExport := True;
+
+      DataModule2.frxReportTimecarreg.Export(DataModule2.frxPDFExportTimeCarreg);
+    end;
+  finally
+    SaveDialog.Free;
+  end;
 end;
+
 procedure TrelatorioRepository.exportarRelFaturamento;
+var
+  SaveDialog: TSaveDialog;
 begin
-  DataModule2.frxReportFaturamento.PrepareReport;
-  DataModule2.frxReportFaturamento.Export(DataModule2.frxPDFExportFaturamento);
+  SaveDialog := TSaveDialog.Create(nil);
+  try
+    SaveDialog.Title := 'Salvar Relatório de Faturamento';
+    SaveDialog.Filter := 'PDF Files (*.pdf)|*.pdf';
+    SaveDialog.DefaultExt := 'pdf';
+    SaveDialog.FileName := 'Faturamento_' + FormatDateTime('yyyymmdd_hhnnss', Now) + '.pdf';
+    SaveDialog.InitialDir := ExtractFilePath(ParamStr(0));
+
+    if SaveDialog.Execute then
+    begin
+      DataModule2.frxPDFExportFaturamento.FileName := SaveDialog.FileName;
+      DataModule2.frxPDFExportFaturamento.ShowDialog := False;
+      DataModule2.frxPDFExportFaturamento.ShowProgress := True;
+      DataModule2.frxPDFExportFaturamento.OverwritePrompt := False;
+      DataModule2.frxPDFExportFaturamento.OpenAfterExport := True;
+
+      DataModule2.frxReportFaturamento.Export(DataModule2.frxPDFExportFaturamento);
+
+    end;
+  finally
+    SaveDialog.Free;
+  end;
 end;
 
 procedure TrelatorioRepository.exportarRelPdfCliente;
+var
+  SaveDialog: TSaveDialog;
 begin
-  DataModule2.frxReportRelCliente.PrepareReport;
-  DataModule2.frxPDFExportRelCliente.ShowDialog := True;
-  DataModule2.frxPDFExportRelCliente.OpenAfterExport := True;
-  DataModule2.frxReportRelCliente.Export(DataModule2.frxPDFExportRelCliente);
+  SaveDialog := TSaveDialog.Create(nil);
+  try
+    SaveDialog.Title := 'Salvar Relatório de Pedidos do Cliente';
+    SaveDialog.Filter := 'PDF Files (*.pdf)|*.pdf';
+    SaveDialog.DefaultExt := 'pdf';
+    SaveDialog.FileName := 'Pedidos_Cliente_' + FormatDateTime('yyyymmdd_hhnnss', Now) + '.pdf';
+    SaveDialog.InitialDir := ExtractFilePath(ParamStr(0));
+
+    if SaveDialog.Execute then
+    begin
+      DataModule2.frxPDFExportRelCliente.FileName := SaveDialog.FileName;
+      DataModule2.frxPDFExportRelCliente.ShowDialog := False;
+      DataModule2.frxPDFExportRelCliente.ShowProgress := True;
+      DataModule2.frxPDFExportRelCliente.OverwritePrompt := False;
+      DataModule2.frxPDFExportRelCliente.OpenAfterExport := True;
+
+      DataModule2.frxReportRelCliente.Export(DataModule2.frxPDFExportRelCliente);
+    end;
+  finally
+    SaveDialog.Free;
+  end;
 end;
 
+procedure TrelatorioRepository.exportarRelViagem;
+var
+  SaveDialog: TSaveDialog;
+begin
+  SaveDialog := TSaveDialog.Create(nil);
+  try
+    SaveDialog.Title := 'Salvar Relatório de Viagens';
+    SaveDialog.Filter := 'PDF Files (*.pdf)|*.pdf';
+    SaveDialog.DefaultExt := 'pdf';
+    SaveDialog.FileName := 'Relatorio_Viagens_' + FormatDateTime('yyyymmdd_hhnnss', Now) + '.pdf';
+    SaveDialog.InitialDir := ExtractFilePath(ParamStr(0));
+
+    if SaveDialog.Execute then
+    begin
+      DataModule2.frxPDFExportTimeViagem.FileName := SaveDialog.FileName;
+      DataModule2.frxPDFExportTimeViagem.ShowDialog := False;
+      DataModule2.frxPDFExportTimeViagem.ShowProgress := True;
+      DataModule2.frxPDFExportTimeViagem.OverwritePrompt := False;
+      DataModule2.frxPDFExportTimeViagem.OpenAfterExport := True;
+
+      DataModule2.frxReportTimeViagem.Export(DataModule2.frxPDFExportTimeViagem);
+    end;
+  finally
+    SaveDialog.Free;
+  end;
+end;
 procedure TrelatorioRepository.relatorioFaturamento(aIdTransportadora: Integer;
   aIdCliente: Integer = 0; aData: TDateTime = 0);
 var
@@ -79,9 +169,6 @@ begin
       'SELECT NULL, NULL, NULL, NULL, NULL, NULL, SUM(valor_pedido) AS total_geral ' +
       'FROM dados_filtrados ' +
       'ORDER BY id_pedido NULLS LAST;';
-
-    // Debug: Mostre a SQL gerada
-    ShowMessage(dataModule2.FDQueryFaturamento.SQL.Text);
 
     dataModule2.FDQueryFaturamento.Open;
     dataModule2.frxReportFaturamento.ShowReport();

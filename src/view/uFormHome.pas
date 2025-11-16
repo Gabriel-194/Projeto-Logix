@@ -559,6 +559,7 @@ type
     procedure lblBtnEmitirRelatorioViagem(Sender: TObject);
     procedure imgRelFaturamentoPdfClick(Sender: TObject);
     procedure imgRelCarregPdfClick(Sender: TObject);
+    procedure ImgRelViagemtPdfClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -2334,6 +2335,18 @@ begin
   end;
 end;
 
+procedure TFormHome.ImgRelViagemtPdfClick(Sender: TObject);
+var
+  controller:ThomeController;
+begin
+  controller:=ThomeController.create;
+  try
+    controller.exportarRelViagem;
+  finally
+    controller.free;
+  end;
+end;
+
 procedure TFormHome.imgFimCarregamentoClick(Sender: TObject);
 var
   controller:ThomeController;
@@ -2476,6 +2489,7 @@ var
   cliente: Tcliente;
 begin
   pnlFiltroFaturamento.Visible := true;
+  PanelFiltroRelatorioMedia.visible:=false;
   controller := ThomeController.Create;
   try
     listaClientes := controller.ListarCliente(userLogado.getIdTransportadora);

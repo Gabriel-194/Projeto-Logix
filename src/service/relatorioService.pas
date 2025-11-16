@@ -8,7 +8,8 @@ type TrelatorioService = class
     procedure relatorioTempoCarregamento(aIdTransportadora,aIdCarregador:Integer);
     procedure relatorioTempoViagem(aIdTransportadora, aIdMotorista: Integer);
     procedure exportarRelFaturamento;
-      procedure exportarRelCarreg;
+    procedure exportarRelCarreg;
+    procedure exportarRelViagem;
 end;
 implementation
 
@@ -33,6 +34,18 @@ begin
   repo:=TrelatorioRepository.create;
   try
     repo.exportarRelFaturamento;
+  finally
+    repo.free;
+  end;
+end;
+
+procedure TrelatorioService.exportarRelViagem;
+var
+  repo:TrelatorioRepository;
+begin
+  repo:=TrelatorioRepository.create;
+  try
+    repo.exportarRelViagem;
   finally
     repo.free;
   end;

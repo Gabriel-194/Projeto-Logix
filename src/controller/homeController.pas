@@ -57,6 +57,7 @@ procedure relatorioTempoCarregamento(aIdTransportadora,aIdCarregador:Integer);
  procedure relatorioTempoViagem(aIdTransportadora, aIdMotorista: Integer);
  procedure exportarRelFaturamento;
  procedure exportarRelCarreg;
+ procedure exportarRelViagem;
 //=====clientes=====================
   function ListarCliente(idTransportadora: Integer): TObjectList<Tcliente>;
 
@@ -371,6 +372,17 @@ begin
   end;
 end;
 
+procedure THomeController.exportarRelViagem;
+var
+service:TRelatorioService;
+begin
+  service:=TRelatorioService.create;
+  try
+    service.exportarRelViagem;
+  finally
+    service.free;
+  end;
+end;
 procedure THomeController.finalizarCarregamento(aIdTransportadora,
   aIdCarregamento, aIdPedido: Integer; aStatus:String);
 var
