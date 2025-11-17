@@ -16,7 +16,7 @@ type
     PanelHeader: TPanel;
     lblLogix: TLabel;
     Image1: TImage;
-    PanelPermissoes: TPanel;
+    PanelRelatorios: TPanel;
     Shape1: TShape;
     lblRelatoriosbtn: TLabel;
     PanelOrdens: TPanel;
@@ -1247,12 +1247,15 @@ begin
     pnlCadastros.Visible:=false;
     PanelOrdens.visible:=false;
     TabSheetOrdensViagens.PageControl := nil;
+    PanelRelatorios.Visible:= false;
 
   end else if userLogado.getIdGrupo = 4 then begin
     pnlCadastros.Visible:=false;
     PanelOrdens.visible:=false;
     TabSheetOrdensCarregamento.PageControl := nil;
-
+    PanelRelatorios.Visible:= false;
+  end else if userLogado.getIdGrupo = 4 then begin
+    pnlMinhasOrdens.visible:=false;
   end;
 end;
 

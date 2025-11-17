@@ -51,7 +51,8 @@ CREATE TABLE IF NOT EXISTS public.usuarios (
     ativo             BOOLEAN DEFAULT TRUE,
     id_transportadora INT REFERENCES public.transportadora(id),
     data_cadastro     TIMESTAMP DEFAULT now(),
-    data_atualizacao  TIMESTAMP DEFAULT now()
+    data_atualizacao  TIMESTAMP DEFAULT now(),
+    token varchar(100)
 );
 
 -- Motoristas (1:1 com usuários)

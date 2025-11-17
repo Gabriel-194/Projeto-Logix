@@ -137,9 +137,6 @@ object FormHome: TFormHome
       BevelOuter = bvNone
       Color = clWhite
       TabOrder = 0
-      ExplicitLeft = 906
-      ExplicitTop = 5
-      ExplicitHeight = 397
       DefaultCanvas = 'TGDIPlusCanvas'
       PrintMargins = (
         15
@@ -201,7 +198,6 @@ object FormHome: TFormHome
       Shadow.VertSize = 9
       Align = alLeft
       TabOrder = 1
-      ExplicitLeft = 20
       DefaultCanvas = 'TGDIPlusCanvas'
       ColorPaletteIndex = 13
       object Series2: TBarSeries
@@ -1174,7 +1170,7 @@ object FormHome: TFormHome
       ExplicitLeft = 1343
       ExplicitTop = -1
     end
-    object PanelPermissoes: TPanel
+    object PanelRelatorios: TPanel
       AlignWithMargins = True
       Left = 688
       Top = 21

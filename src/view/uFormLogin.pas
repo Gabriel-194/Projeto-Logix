@@ -167,7 +167,7 @@ type
     Label2: TLabel;
     pnlBtnRecoverPassword: TPanel;
     Shape36: TShape;
-    Label3: TLabel;
+    lbnBtnRecuperarSenha: TLabel;
     pnlCadastroCliente: TPanel;
     Shape37: TShape;
     lblBtnCadastrarCliente: TLabel;
@@ -271,6 +271,7 @@ type
     procedure imgEyeClick(Sender: TObject);
     procedure lblBtnCadastrarClienteClick(Sender: TObject);
     procedure MaskEditCEPClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
 
 
   private
@@ -564,6 +565,11 @@ begin
   pnlBtnExcluirConfirm.Visible := true;
 end;
 
+
+procedure TFormLogin.FormShow(Sender: TObject);
+begin
+edtEmailLogin.SetFocus;
+end;
 
 procedure TFormLogin.imgVoltarMenuAdminClick(Sender: TObject);
 begin
