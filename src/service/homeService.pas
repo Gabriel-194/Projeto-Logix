@@ -9,6 +9,10 @@ function ContarRegistrosAtivos(  const ATabela: string;AIdTransportadora: Intege
 ):Integer;
 function ObterTiposCargasMaisPedidas(aIdTransportadora:integer): Tlist<TtipoCargaDto>;
 function ObterPedidosPorMes(aIdTransportadora:integer): Tlist<TpedidoDto>;
+function graficoReceitaPorMes(aIdTransportadora: Integer): TDictionary<String, Double>;
+function graficoStatusPedidos(aIdTransportadora: Integer): TDictionary<String, Integer>;
+function graficoDistanciaPorMes(aIdTransportadora: Integer): TDictionary<String, Double>;
+function graficoVeiculosMaisUsados(aIdTransportadora: Integer): TDictionary<String, Integer>;
 end;
 
 
@@ -48,6 +52,58 @@ begin
     result := homeRepo.ContarUsuariosPorCargo(aCargo);
   finally
     homeRepo.free;
+  end;
+end;
+
+function ThomeService.graficoDistanciaPorMes(
+  aIdTransportadora: Integer): TDictionary<String, Double>;
+var
+repo:ThomeRepository;
+begin
+  repo:=ThomeRepository.create;
+  try
+    result:= repo.graficoDistanciaPorMes(aIdTransportadora);
+  finally
+    repo.free;
+  end;
+end;
+
+function ThomeService.graficoReceitaPorMes(
+  aIdTransportadora: Integer): TDictionary<String, Double>;
+var
+repo:ThomeRepository;
+begin
+  repo:=ThomeRepository.create;
+  try
+    result:= repo.graficoReceitaPorMes(aIdTransportadora);
+  finally
+    repo.free;
+  end;
+end;
+
+function ThomeService.graficoStatusPedidos(
+  aIdTransportadora: Integer): TDictionary<String, Integer>;
+var
+repo:ThomeRepository;
+begin
+  repo:=ThomeRepository.create;
+  try
+    result:= repo.graficoStatusPedidos(aIdTransportadora);
+  finally
+    repo.free;
+  end;
+end;
+
+function ThomeService.graficoVeiculosMaisUsados(
+  aIdTransportadora: Integer): TDictionary<String, Integer>;
+var
+repo:ThomeRepository;
+begin
+  repo:=ThomeRepository.create;
+  try
+    result:= repo.graficoVeiculosMaisUsados(aIdTransportadora);
+  finally
+    repo.free;
   end;
 end;
 

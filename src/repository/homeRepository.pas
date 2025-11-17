@@ -10,6 +10,10 @@ type ThomeRepository = class
 ):Integer;
     function ObterTiposCargasMaisPedidas(aIdTransportadora:integer): Tlist<TtipoCargaDto>;
     function ObterPedidosPorMes(aIdTransportadora:integer): Tlist<TpedidoDto>;
+    function graficoReceitaPorMes(aIdTransportadora: Integer): TDictionary<String, Double>;
+    function graficoStatusPedidos(aIdTransportadora: Integer): TDictionary<String, Integer>;
+    function graficoDistanciaPorMes(aIdTransportadora: Integer): TDictionary<String, Double>;
+    function graficoVeiculosMaisUsados(aIdTransportadora: Integer): TDictionary<String, Integer>;
 end;
 
 implementation
@@ -35,6 +39,185 @@ begin
     if not FDQuery.IsEmpty then
       Result := FDQuery.Fields[0].AsInteger;
 
+  finally
+    FDQuery.Free;
+  end;
+end;
+
+function ThomeRepository.graficoDistanciaPorMes(
+  aIdTransportadora: Integer): TDictionary<String, Double>;
+var
+  FDQuery: TFDQuery;
+  SchemaName: String;
+begin
+  Result := TDictionary<String, Double>.Create;
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+    FDQuery.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id';
+    FDQuery.ParamByName('id').AsInteger := aIdTransportadora;
+    FDQuery.Open;
+
+    if not FDQuery.IsEmpty then
+    begin
+      SchemaName := FDQuery.FieldByName('schema_name').AsString;
+      FDQuery.Close;
+
+      FDQuery.SQL.Text :=
+        'SELECT ' +
+        '  TO_CHAR(data_pedido, ''Mon'') as mes, ' +
+        '  SUM(distancia_km) as km_total ' +
+        'FROM ' + SchemaName + '.pedido ' +
+        'WHERE id_transportadora = :id_transportadora ' +
+        '  AND data_pedido >= CURRENT_DATE - INTERVAL ''12 months'' ' +
+        'GROUP BY TO_CHAR(data_pedido, ''Mon''), EXTRACT(MONTH FROM data_pedido) ' +
+        'ORDER BY EXTRACT(MONTH FROM data_pedido)';
+
+      FDQuery.ParamByName('id_transportadora').AsInteger := aIdTransportadora;
+      FDQuery.Open;
+
+      while not FDQuery.Eof do
+      begin
+        Result.Add(
+          FDQuery.FieldByName('mes').AsString,
+          FDQuery.FieldByName('km_total').AsFloat
+        );
+        FDQuery.Next;
+      end;
+    end;
+  finally
+    FDQuery.Free;
+  end;
+end;
+
+function ThomeRepository.graficoReceitaPorMes(
+  aIdTransportadora: Integer): TDictionary<String, Double>;
+var
+  FDQuery: TFDQuery;
+  SchemaName: String;
+begin
+  Result := TDictionary<String, Double>.Create;
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+    FDQuery.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id';
+    FDQuery.ParamByName('id').AsInteger := aIdTransportadora;
+    FDQuery.Open;
+
+    if not FDQuery.IsEmpty then
+    begin
+      SchemaName := FDQuery.FieldByName('schema_name').AsString;
+      FDQuery.Close;
+
+      FDQuery.SQL.Text :=
+        'SELECT ' +
+        '  TO_CHAR(data_pedido, ''Mon'') as mes, ' +
+        '  SUM(preco) as receita_total ' +
+        'FROM ' + SchemaName + '.pedido ' +
+        'WHERE id_transportadora = :id_transportadora ' +
+        '  AND EXTRACT(YEAR FROM data_pedido) = EXTRACT(YEAR FROM CURRENT_DATE) ' +
+        'GROUP BY TO_CHAR(data_pedido, ''Mon''), EXTRACT(MONTH FROM data_pedido) ' +
+        'ORDER BY EXTRACT(MONTH FROM data_pedido)';
+
+      FDQuery.ParamByName('id_transportadora').AsInteger := aIdTransportadora;
+      FDQuery.Open;
+
+      while not FDQuery.Eof do
+      begin
+        Result.Add(
+          FDQuery.FieldByName('mes').AsString,
+          FDQuery.FieldByName('receita_total').AsFloat
+        );
+        FDQuery.Next;
+      end;
+    end;
+  finally
+    FDQuery.Free;
+  end;
+end;
+
+function ThomeRepository.graficoStatusPedidos(
+  aIdTransportadora: Integer): TDictionary<String, Integer>;
+var
+  FDQuery: TFDQuery;
+  SchemaName: String;
+begin
+  Result := TDictionary<String, Integer>.Create;
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+    FDQuery.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id';
+    FDQuery.ParamByName('id').AsInteger := aIdTransportadora;
+    FDQuery.Open;
+
+    if not FDQuery.IsEmpty then
+    begin
+      SchemaName := FDQuery.FieldByName('schema_name').AsString;
+      FDQuery.Close;
+
+      FDQuery.SQL.Text :=
+        'SELECT status, COUNT(*) as total ' +
+        'FROM ' + SchemaName + '.pedido ' +
+        'WHERE id_transportadora = :id_transportadora ' +
+        'GROUP BY status ' +
+        'ORDER BY total DESC';
+
+      FDQuery.ParamByName('id_transportadora').AsInteger := aIdTransportadora;
+      FDQuery.Open;
+
+      while not FDQuery.Eof do
+      begin
+        Result.Add(
+          FDQuery.FieldByName('status').AsString,
+          FDQuery.FieldByName('total').AsInteger
+        );
+        FDQuery.Next;
+      end;
+    end;
+  finally
+    FDQuery.Free;
+  end;
+end;
+
+function ThomeRepository.graficoVeiculosMaisUsados(
+  aIdTransportadora: Integer): TDictionary<String, Integer>;
+var
+  FDQuery: TFDQuery;
+  SchemaName: String;
+begin
+  Result := TDictionary<String, Integer>.Create;
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataModule2.FDConnection1;
+    FDQuery.SQL.Text := 'SELECT schema_name FROM public.transportadora WHERE id = :id';
+    FDQuery.ParamByName('id').AsInteger := aIdTransportadora;
+    FDQuery.Open;
+
+    if not FDQuery.IsEmpty then
+    begin
+      SchemaName := FDQuery.FieldByName('schema_name').AsString;
+      FDQuery.Close;
+
+      FDQuery.SQL.Text :=
+        'SELECT v.placa || '' ('' || v.modelo || '')'' as veiculo, ' +
+        '       COUNT(vg.id_viagem) as total_viagens ' +
+        'FROM ' + SchemaName + '.veiculo v ' +
+        'LEFT JOIN ' + SchemaName + '.viagem vg ON v.id_veiculo = vg.id_veiculo ' +
+        'GROUP BY v.placa, v.modelo ' +
+        'ORDER BY total_viagens DESC ' +
+        'LIMIT 5';
+
+      FDQuery.Open;
+
+      while not FDQuery.Eof do
+      begin
+        Result.Add(
+          FDQuery.FieldByName('veiculo').AsString,
+          FDQuery.FieldByName('total_viagens').AsInteger
+        );
+        FDQuery.Next;
+      end;
+    end;
   finally
     FDQuery.Free;
   end;

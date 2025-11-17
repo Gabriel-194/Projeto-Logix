@@ -16,23 +16,23 @@ object FormHome: TFormHome
   TextHeight = 15
   object pnlGraficosHome: TPanel
     Left = 21
-    Top = 378
+    Top = 361
     Width = 1422
-    Height = 407
+    Height = 424
     BevelOuter = bvNone
     Color = 6957870
     ParentBackground = False
     TabOrder = 6
     object graficoCargasMaisUsadas: TChart
       AlignWithMargins = True
-      Left = 906
-      Top = 5
+      Left = 901
+      Top = 10
       Width = 511
-      Height = 397
+      Height = 404
       Margins.Left = 5
-      Margins.Top = 5
-      Margins.Right = 5
-      Margins.Bottom = 5
+      Margins.Top = 10
+      Margins.Right = 10
+      Margins.Bottom = 10
       Gradient.Balance = 30
       Gradient.Colors = <
         item
@@ -137,6 +137,9 @@ object FormHome: TFormHome
       BevelOuter = bvNone
       Color = clWhite
       TabOrder = 0
+      ExplicitLeft = 906
+      ExplicitTop = 5
+      ExplicitHeight = 397
       DefaultCanvas = 'TGDIPlusCanvas'
       PrintMargins = (
         15
@@ -174,14 +177,14 @@ object FormHome: TFormHome
     end
     object graficoVendasNosUltimosDias: TChart
       AlignWithMargins = True
-      Left = 16
-      Top = 5
-      Width = 880
-      Height = 397
-      Margins.Left = 5
-      Margins.Top = 5
+      Left = 15
+      Top = 10
+      Width = 871
+      Height = 404
+      Margins.Left = 15
+      Margins.Top = 10
       Margins.Right = 5
-      Margins.Bottom = 5
+      Margins.Bottom = 10
       MarginBottom = 0
       MarginLeft = 0
       MarginRight = 0
@@ -196,8 +199,9 @@ object FormHome: TFormHome
       Shadow.HorizSize = 9
       Shadow.Transparency = 0
       Shadow.VertSize = 9
-      Align = alRight
+      Align = alLeft
       TabOrder = 1
+      ExplicitLeft = 20
       DefaultCanvas = 'TGDIPlusCanvas'
       ColorPaletteIndex = 13
       object Series2: TBarSeries
@@ -9117,8 +9121,8 @@ object FormHome: TFormHome
       OnClick = Image22Click
     end
     object ImgRelViagemtPdf: TImage
-      Left = 366
-      Top = 265
+      Left = 365
+      Top = 267
       Width = 32
       Height = 32
       AutoSize = True
@@ -9168,7 +9172,7 @@ object FormHome: TFormHome
       OnClick = ImgRelViagemtPdfClick
     end
     object imgRelCarregPdf: TImage
-      Left = 366
+      Left = 365
       Top = 181
       Width = 32
       Height = 32
@@ -9550,14 +9554,23 @@ object FormHome: TFormHome
         end
       end
     end
-    object Chart1: TChart
-      Left = 984
+    object graficoReceitaPorMes: TChart
+      Left = 944
       Top = 43
-      Width = 458
+      Width = 543
       Height = 293
+      Title.Color = 4194304
+      Title.Font.Color = 4194304
+      Title.Font.Height = -17
+      Title.Font.Style = [fsBold]
       Title.Text.Strings = (
-        'TChart')
+        'Receita por m'#234's')
+      Shadow.Color = -1
+      Shadow.HorizSize = 6
+      Shadow.Transparency = 46
+      Shadow.VertSize = 6
       View3D = False
+      Color = clWhite
       TabOrder = 2
       DefaultCanvas = 'TGDIPlusCanvas'
       ColorPaletteIndex = 13
@@ -9569,14 +9582,22 @@ object FormHome: TFormHome
         YValues.Order = loNone
       end
     end
-    object Chart2: TChart
-      Left = 985
-      Top = 378
-      Width = 458
-      Height = 293
+    object graficoVeiculosMaisUtilizados: TChart
+      Left = 445
+      Top = 388
+      Width = 457
+      Height = 285
+      Title.Font.Color = 4194304
+      Title.Font.Height = -17
+      Title.Font.Style = [fsBold]
       Title.Text.Strings = (
-        'TChart')
+        'Ve'#237'culos mais utilizados')
+      Shadow.Color = clBlack
+      Shadow.HorizSize = 6
+      Shadow.Transparency = 45
+      Shadow.VertSize = 6
       View3D = False
+      Color = clWhite
       TabOrder = 3
       DefaultCanvas = 'TGDIPlusCanvas'
       ColorPaletteIndex = 13
@@ -9590,14 +9611,21 @@ object FormHome: TFormHome
         YValues.Order = loAscending
       end
     end
-    object Chart3: TChart
-      Left = 446
-      Top = 380
-      Width = 458
-      Height = 293
+    object graficoDistanciaPercorrida: TChart
+      Left = 944
+      Top = 388
+      Width = 543
+      Height = 285
+      Title.Font.Color = 4194304
+      Title.Font.Height = -17
+      Title.Font.Style = [fsBold]
       Title.Text.Strings = (
-        'TChart')
+        'Distancia percorrida por m'#234's')
+      Shadow.Color = -1
+      Shadow.HorizSize = 6
+      Shadow.VertSize = 6
       View3D = False
+      Color = clWhite
       TabOrder = 4
       DefaultCanvas = 'TGDIPlusCanvas'
       ColorPaletteIndex = 13
@@ -9612,18 +9640,26 @@ object FormHome: TFormHome
         YValues.Order = loNone
       end
     end
-    object Chart4: TChart
+    object graficoStatusPedidos: TChart
       Left = 442
       Top = 46
       Width = 458
       Height = 293
+      Title.Font.Color = 4194304
+      Title.Font.Height = -17
+      Title.Font.Style = [fsBold]
       Title.Text.Strings = (
-        'TChart')
+        'Status de pedidos')
+      Shadow.Color = -1
+      Shadow.HorizSize = 6
+      Shadow.Transparency = 37
+      Shadow.VertSize = 6
       View3D = False
       View3DOptions.Elevation = 315
       View3DOptions.Orthogonal = False
       View3DOptions.Perspective = 0
       View3DOptions.Rotation = 360
+      Color = clWhite
       TabOrder = 5
       DefaultCanvas = 'TGDIPlusCanvas'
       ColorPaletteIndex = 13

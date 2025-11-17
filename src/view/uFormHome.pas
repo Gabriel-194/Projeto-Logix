@@ -444,10 +444,10 @@ type
     Shape85: TShape;
     Image22: TImage;
     imgFechaFIltroRelFat: TImage;
-    Chart1: TChart;
-    Chart2: TChart;
-    Chart3: TChart;
-    Chart4: TChart;
+    graficoReceitaPorMes: TChart;
+    graficoVeiculosMaisUtilizados: TChart;
+    graficoDistanciaPercorrida: TChart;
+    graficoStatusPedidos: TChart;
     Series4: TLineSeries;
     Series3: TPieSeries;
     Series5: TBarSeries;
@@ -560,6 +560,10 @@ type
     procedure imgRelFaturamentoPdfClick(Sender: TObject);
     procedure imgRelCarregPdfClick(Sender: TObject);
     procedure ImgRelViagemtPdfClick(Sender: TObject);
+    procedure CarregarGraficoReceitaPorMes;
+    procedure CarregarGraficoStatusPedidos;
+    procedure CarregarGraficoDistanciaPorMes;
+    procedure CarregarGraficoVeiculosMaisUsados;
 
   private
     { Private declarations }
@@ -1382,6 +1386,10 @@ end;
 procedure TFormHome.lblRelatoriosbtnClick(Sender: TObject);
 begin
 pnlRelatorios.Visible := true;
+CarregarGraficoReceitaPorMes;
+CarregarGraficoStatusPedidos;
+CarregarGraficoDistanciaPorMes;
+CarregarGraficoVeiculosMaisUsados;
 end;
 
 //=================== GERENTE ============================================
@@ -2572,5 +2580,134 @@ begin
     ListaMotorista.Free;
   end;
 end;
+
+//===============graficos======
+procedure TFormHome.CarregarGraficoReceitaPorMes;
+var
+  Dados: TDictionary<String, Double>;
+  Serie: TBarSeries;
+  controller: ThomeController;
+  Mes: String;
+  Valor: Double;
+  const
+  MesesOrdenados: array[1..12] of String =
+    ('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec');
+begin
+  controller := ThomeController.Create;
+  Dados := controller.graficoReceitaPorMes(userLogado.getIdTransportadora);
+
+  try
+    graficoReceitaPorMes.RemoveAllSeries;
+
+    Serie := TBarSeries.Create(graficoReceitaPorMes);
+    Serie.Title := 'Receita Mensal';
+
+    Serie.Marks.Visible := False;
+
+    graficoReceitaPorMes.AddSeries(Serie);
+
+    for Mes in MesesOrdenados do
+    begin
+      if Dados.TryGetValue(Mes, Valor) then
+        Serie.Add(Valor, Mes)
+      else
+        Serie.Add(0, Mes);
+    end;
+
+  finally
+    Dados.Free;
+  end;
+end;
+
+
+
+procedure TFormHome.CarregarGraficoStatusPedidos;
+var
+  Dados: TDictionary<String, Integer>;
+  Chave: String;
+  Serie: TPieSeries;
+  controller:thomeController;
+begin
+  controller:=thomeController.create;
+  Dados := controller.graficoStatusPedidos(userLogado.getIdTransportadora);
+  try
+    graficoStatusPedidos.RemoveAllSeries;
+
+    Serie := TPieSeries.Create(graficoStatusPedidos);
+    graficoStatusPedidos.AddSeries(Serie);
+
+    for Chave in Dados.Keys do
+    begin
+      Serie.Add(Dados[Chave], Chave);
+    end;
+  finally
+    Dados.Free;
+  end;
+end;
+
+procedure TFormHome.CarregarGraficoVeiculosMaisUsados;
+var
+  Dados: TDictionary<String, Integer>;
+  Chave: String;
+  Serie: THorizBarSeries;
+controller:thomeController;
+begin
+  controller:=thomeController.create;
+  Dados := controller.graficoVeiculosMaisUsados(userLogado.getIdTransportadora);
+  try
+    graficoVeiculosMaisUtilizados.RemoveAllSeries;
+
+    Serie := THorizBarSeries.Create(graficoVeiculosMaisUtilizados);
+    Serie.Title := 'Total de Viagens';
+    graficoVeiculosMaisUtilizados.AddSeries(Serie);
+
+    for Chave in Dados.Keys do
+    begin
+      Serie.Add(Dados[Chave], Chave);
+    end;
+;
+  finally
+    Dados.Free;
+  end;
+end;
+
+procedure TFormHome.CarregarGraficoDistanciaPorMes;
+var
+  Dados: TDictionary<String, Double>;
+  Serie: TLineSeries;
+  controller: ThomeController;
+  Mes: String;
+  Valor: Double;
+const
+  MesesOrdenados: array[1..12] of String = ('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec');
+begin
+  controller := ThomeController.Create;
+  Dados := controller.graficoDistanciaPorMes(userLogado.getIdTransportadora);
+
+  try
+    graficoDistanciaPercorrida.RemoveAllSeries;
+
+    Serie := TLineSeries.Create(graficoDistanciaPercorrida);
+    Serie.Title := 'Distância (km)';
+
+    Serie.Marks.Visible := False;
+
+    graficoDistanciaPercorrida.AddSeries(Serie);
+
+
+    for Mes in MesesOrdenados do
+    begin
+      if Dados.TryGetValue(Mes, Valor) then
+        Serie.Add(Valor, Mes)
+      else
+        Serie.Add(0, Mes);
+    end;
+
+  finally
+    Dados.Free;
+  end;
+end;
+
+
 
 end.

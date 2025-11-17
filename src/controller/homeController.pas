@@ -48,9 +48,13 @@ function buscarMinhasOrdensViagens(aIdTransportadora: Integer;aIdmotorista:Integ
 procedure iniciarViagem(aIdTransportadora,aIdViagem,aIdCarregamento: Integer; aStatus:String);
 procedure FinalizarViagem(aIdTransportadora,aIdViagem,aIdCarregamento: Integer; aStatus:String);
 function buscarOrdensViagensPorTransp (aIdTransportadora:Integer):Tlist<TviagemDto>;
-//=====================================home
+//=====================================graficos
 function ObterTiposCargasMaisPedidas(aIdTransportadora:integer): Tlist<TtipoCargaDto>;
 function ObterPedidosPorMes(aIdTransportadora:integer): Tlist<TpedidoDto>;
+function graficoReceitaPorMes(aIdTransportadora: Integer): TDictionary<String, Double>;
+function graficoStatusPedidos(aIdTransportadora: Integer): TDictionary<String, Integer>;
+function graficoDistanciaPorMes(aIdTransportadora: Integer): TDictionary<String, Double>;
+function graficoVeiculosMaisUsados(aIdTransportadora: Integer): TDictionary<String, Integer>;
 //========= relatorios
 procedure relatorioFaturamento(aIdTransportadora: Integer;aIdCliente: Integer = 0;aData:TdateTime= 0);
 procedure relatorioTempoCarregamento(aIdTransportadora,aIdCarregador:Integer);
@@ -406,6 +410,57 @@ begin
 
   try
     service.finalizarViagem(aIdTransportadora,aIdviagem,aIdCarregamento,aStatus);
+  finally
+    service.free;
+  end;
+end;
+
+function THomeController.graficoDistanciaPorMes(
+  aIdTransportadora: Integer): TDictionary<String, Double>;
+var
+  service:ThomeService;
+begin
+  service:=ThomeService.create;
+  try
+    result := service.GraficodistanciaPorMes(aIdTransportadora);
+  finally
+    service.free;
+  end;
+end;
+function THomeController.graficoReceitaPorMes(
+  aIdTransportadora: Integer): TDictionary<String, Double>;
+var
+  service:ThomeService;
+begin
+  service:=ThomeService.create;
+  try
+    result := service.GraficoReceitaPorMes(aIdTransportadora);
+  finally
+    service.free;
+  end;
+end;
+
+function THomeController.graficoStatusPedidos(
+  aIdTransportadora: Integer): TDictionary<String, Integer>;
+var
+  service:ThomeService;
+begin
+  service:=ThomeService.create;
+  try
+    result := service.graficoStatusPedidos(aIdTransportadora);
+  finally
+    service.free;
+  end;
+end;
+
+function THomeController.graficoVeiculosMaisUsados(
+  aIdTransportadora: Integer): TDictionary<String, Integer>;
+var
+  service:ThomeService;
+begin
+  service:=ThomeService.create;
+  try
+    result := service.graficoVeiculosMaisUsados(aIdTransportadora);
   finally
     service.free;
   end;
