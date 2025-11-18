@@ -2,7 +2,7 @@ unit loginService;
 
 interface
 uses
-   System.SysUtils,uUsuario,loginRepository, loginTypes, LoginDto, BCrypt,uCliente;
+   System.SysUtils,uUsuario,loginRepository, loginTypes, LoginDto, BCrypt,uCliente,uEmailHelper;
    type
    TloginService = class
 
@@ -10,11 +10,75 @@ uses
      loginRepo : TloginRepository;
     public
     function verificaLogin(aLoginDto: TLoginDto; var user: TUsuario; var cliente:Tcliente): TLoginResult;
+    procedure SolicitarRecuperacaoSenha(AEmail: string);
+     function ValidarTokenRecuperacao(AEmail, AToken: string): Boolean;
+     procedure RedefinirSenha(AEmail, AToken, ANovaSenha: string);
 
   end;
 
 implementation
 
+
+procedure TloginService.SolicitarRecuperacaoSenha(AEmail: string);
+var
+  Token: string;
+  uid, tid, gid: Integer;
+  sh, cg, sn: string;
+  cid: Integer;
+  EmailExiste: Boolean;
+  repo:TloginRepository;
+begin
+  repo:=TloginRepository.create;
+  try
+    EmailExiste := loginRepo.FindByEmail(AEmail, uid, sh, tid, cg, sn, gid);
+    if not EmailExiste then
+     EmailExiste := loginRepo.findByEmailCliente(AEmail, cid, sh);
+
+    if not EmailExiste then
+    raise Exception.Create('E-mail não encontrado na base de dados.');
+
+    Randomize;
+    Token := FormatFloat('000000', Random(999999));
+
+    loginRepo.GravarToken(AEmail, Token);
+
+    TEmailHelper.EnviarEmailRecuperacao(AEmail, Token);
+  finally
+    repo.free;
+  end;
+
+end;
+
+function TloginService.ValidarTokenRecuperacao(AEmail, AToken: string): Boolean;
+var
+ repo:TloginRepository;
+begin
+  repo:=TloginRepository.create;
+  try
+    Result := Repo.ValidarToken(AEmail, AToken);
+  finally
+    repo.free;
+  end;
+end;
+
+procedure TloginService.RedefinirSenha(AEmail, AToken, ANovaSenha: string);
+var
+  NovaSenhaHash: string;
+ repo:TloginRepository;
+begin
+  repo:=TloginRepository.create;
+  try
+  if not loginRepo.ValidarToken(AEmail, AToken) then
+    raise Exception.Create('Token inválido ou expirado.');
+
+    NovaSenhaHash := TBCrypt.HashPassword(ANovaSenha, 10);
+
+    loginRepo.AtualizarSenhaPorToken(AEmail, AToken, NovaSenhaHash);
+  finally
+    repo.free;
+  end;
+
+end;
 
 { TadminService }
 

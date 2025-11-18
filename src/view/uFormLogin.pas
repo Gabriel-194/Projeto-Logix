@@ -238,6 +238,54 @@ type
     imgEye: TImage;
     Label12: TLabel;
     StringGridTiposCarga: TStringGrid;
+    PageControlRecoverSenha: TPageControl;
+    TsEmail: TTabSheet;
+    TsToken: TTabSheet;
+    TsNovaSenha: TTabSheet;
+    Image5: TImage;
+    Image6: TImage;
+    Image7: TImage;
+    Label3: TLabel;
+    pnlRecuperarEmail: TPanel;
+    Shape51: TShape;
+    EdtEmailRecuperacao: TEdit;
+    Label26: TLabel;
+    pnlEnviarCodigo: TPanel;
+    Shape52: TShape;
+    lblBtnEnviarCodigo: TLabel;
+    pnlValidarToken: TPanel;
+    Shape53: TShape;
+    lblBtnValidarToken: TLabel;
+    Label28: TLabel;
+    pnlEdtToken: TPanel;
+    Shape54: TShape;
+    Label29: TLabel;
+    MaskEditToken: TMaskEdit;
+    pnlEdtConfSenha: TPanel;
+    Shape55: TShape;
+    Image8: TImage;
+    Image9: TImage;
+    edtConfSenha: TEdit;
+    Label27: TLabel;
+    Label30: TLabel;
+    pnlConfSenha: TPanel;
+    Shape56: TShape;
+    lblBtnConfSenha: TLabel;
+    Label32: TLabel;
+    pnlNovaSenha: TPanel;
+    Shape57: TShape;
+    Image10: TImage;
+    Image11: TImage;
+    edtNovaSenha: TEdit;
+    Shape58: TShape;
+    Shape59: TShape;
+    Shape60: TShape;
+    Shape61: TShape;
+    Shape62: TShape;
+    Shape63: TShape;
+    Shape77: TShape;
+    Shape78: TShape;
+    Shape79: TShape;
     procedure lick(Sender: TObject);
     procedure btnchangeCadastrarClick(Sender: TObject);
     procedure voltarImageClick(Sender: TObject);
@@ -272,6 +320,10 @@ type
     procedure lblBtnCadastrarClienteClick(Sender: TObject);
     procedure MaskEditCEPClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure lbnBtnRecuperarSenhaClick(Sender: TObject);
+    procedure lblBtnEnviarCodigoClick(Sender: TObject);
+    procedure lblBtnValidarTokenClick(Sender: TObject);
+    procedure lblBtnConfSenhaClick(Sender: TObject);
 
 
   private
@@ -342,6 +394,32 @@ end;
 procedure TFormLogin.lblBtnCadastrarClienteMouseLeave(Sender: TObject);
 begin
 Shape37.Pen.Color := clWhite;
+end;
+
+procedure TFormLogin.lblBtnConfSenhaClick(Sender: TObject);
+var
+  Controller: TloginController;
+begin
+  if EdtNovaSenha.Text <> edtConfSenha.Text then
+  begin
+    ShowMessage('As senhas não conferem!');
+    Exit;
+  end;
+
+  Controller := TloginController.Create;
+  try
+    try
+      Controller.RedefinirSenha(EdtEmailRecuperacao.Text, maskEditToken.Text, EdtNovaSenha.Text);
+      ShowMessage('Senha alterada com sucesso! Faça login com a nova senha.');
+
+      PageControlRecoverSenha.visible:=false;
+    except
+      on E: Exception do
+        ShowMessage('Erro ao redefinir senha');
+    end;
+  finally
+    Controller.Free;
+  end;
 end;
 
 procedure TFormLogin.imgBtnBuscarCepClick(Sender: TObject);
@@ -567,8 +645,13 @@ end;
 
 
 procedure TFormLogin.FormShow(Sender: TObject);
+var
+  i: Integer;
 begin
-edtEmailLogin.SetFocus;
+  edtEmailLogin.SetFocus;
+
+  for i := 0 to PageControlRecoverSenha.PageCount - 1 do
+    PageControlRecoverSenha.Pages[i].TabVisible := False;
 end;
 
 procedure TFormLogin.imgVoltarMenuAdminClick(Sender: TObject);
@@ -756,6 +839,28 @@ begin
     editEmailAdm.Text := lswAdmins.selected.subItems[4];
   end;
 
+procedure TFormLogin.lblBtnEnviarCodigoClick(Sender: TObject);
+var
+  Controller: TloginController;
+begin
+  Controller := TloginController.Create;
+  try
+    Screen.Cursor := crHourGlass;
+    try
+      Controller.SolicitarRecuperacao(EdtEmailRecuperacao.Text);
+      ShowMessage('Código enviado para seu e-mail!');
+
+      PageControlRecoverSenha.ActivePage := tsToken;
+    except
+      on E: Exception do
+        ShowMessage('Erro interno do sistema');
+    end;
+  finally
+
+    Controller.Free;
+  end;
+end;
+
 procedure TFormLogin.lblBtnExcluirAdmConfirmClick(Sender: TObject);
 var
 controller: TadminController;
@@ -834,6 +939,25 @@ begin
     AdminsInativo;
   finally
     controller.free;
+  end;
+end;
+
+procedure TFormLogin.lblBtnValidarTokenClick(Sender: TObject);
+var
+  Controller: TloginController;
+begin
+  Controller := TloginController.Create;
+  try
+    if Controller.ValidarToken(EdtEmailRecuperacao.Text, maskEditToken.Text) then
+    begin
+      PageControlRecoverSenha.ActivePage := tsNovaSenha;
+    end
+    else
+    begin
+      ShowMessage('Código inválido.');
+    end;
+  finally
+    Controller.Free;
   end;
 end;
 
@@ -975,6 +1099,14 @@ begin
     transp.free;
     PanelOptionsTransp.Visible:=false;
   end;
+end;
+
+procedure TFormLogin.lbnBtnRecuperarSenhaClick(Sender: TObject);
+begin
+  PageControlRecoverSenha.visible:=true;
+  PageControlRecoverSenha.ActivePage := tsEmail;
+  if EdtEmailRecuperacao.CanFocus then
+    EdtEmailRecuperacao.SetFocus;
 end;
 
 procedure TFormLogin.tabelaInativo;

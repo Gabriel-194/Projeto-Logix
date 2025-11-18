@@ -9,6 +9,9 @@ uses
       function verificaLogin(ALoginDto: TLoginDto; out aUser: TUsuario; out cliente:Tcliente): TloginResult;
       function getByCep(const ACep: string): TEndereco;
       procedure cadastrarCliente(aCliente:Tcliente);
+      procedure SolicitarRecuperacao(AEmail: string);
+      function ValidarToken(AEmail, AToken: string): Boolean;
+      procedure RedefinirSenha(AEmail, AToken, ANovaSenha: string);
     end;
 
 implementation
@@ -33,6 +36,42 @@ begin
   service := TEnderecoService.Create;
   try
     Result := service.BuscarPorCEP(ACep);
+  finally
+    service.Free;
+  end;
+end;
+
+procedure TloginController.SolicitarRecuperacao(AEmail: string);
+var
+  service: TloginService;
+begin
+  service := TloginService.Create;
+  try
+    service.SolicitarRecuperacaoSenha(AEmail);
+  finally
+    service.Free;
+  end;
+end;
+
+function TloginController.ValidarToken(AEmail, AToken: string): Boolean;
+var
+  service: TloginService;
+begin
+  service := TloginService.Create;
+  try
+    Result := service.ValidarTokenRecuperacao(AEmail, AToken);
+  finally
+    service.Free;
+  end;
+end;
+
+procedure TloginController.RedefinirSenha(AEmail, AToken, ANovaSenha: string);
+var
+  service: TloginService;
+begin
+  service := TloginService.Create;
+  try
+    service.RedefinirSenha(AEmail, AToken, ANovaSenha);
   finally
     service.Free;
   end;

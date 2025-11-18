@@ -51,7 +51,8 @@ uses
   uCleanFields in 'src\view\uCleanFields.pas',
   messageDto in 'src\DTO\messageDto.pas',
   relatorioRepository in 'src\repository\relatorioRepository.pas',
-  relatorioService in 'src\service\relatorioService.pas';
+  relatorioService in 'src\service\relatorioService.pas',
+  uEmailHelper in 'src\utils\uEmailHelper.pas';
 
 {$R *.res}
 
