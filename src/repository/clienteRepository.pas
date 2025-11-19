@@ -19,6 +19,17 @@ begin
   FDQuery := TFDQuery.Create(nil);
   try
     FDQuery.Connection := DataModule2.FDConnection1;
+
+    FDQuery.SQL.Text := 'SELECT id_cliente FROM public.cliente WHERE cpf = :cpf';
+    FDQuery.ParamByName('cpf').AsString := acliente.getcpf;;
+    FDQuery.Open;
+
+    if not FDQuery.IsEmpty then
+    begin
+      FDQuery.Close;
+      raise Exception.Create('Já existe um cliente cadastrado com este CPF.');
+    end;
+
     FDQuery.SQL.Text :=
       'INSERT INTO cliente (nome, cpf, telefone, email, cep, estado, municipio, endereco, numero, senha_hash, ativo, data_cadastro, data_atualizacao) ' +
       'VALUES (:nome, :cpf, :telefone, :email, :cep, :estado, :municipio, :endereco, :numero, :senha_hash, TRUE, NOW(), NOW()) ';

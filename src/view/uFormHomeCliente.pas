@@ -13,11 +13,7 @@ type
   TFormHomeCliente = class(TForm)
     PanelHeader: TPanel;
     lblLogix: TLabel;
-    Image1: TImage;
     Image8: TImage;
-    PanelPermissoes: TPanel;
-    Shape1: TShape;
-    lblPermissoesbtn: TLabel;
     pnl: TPanel;
     Shape6: TShape;
     lblCadastrosBtn: TLabel;

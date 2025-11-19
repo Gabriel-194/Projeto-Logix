@@ -15,7 +15,6 @@ type
   TFormHome = class(TForm)
     PanelHeader: TPanel;
     lblLogix: TLabel;
-    Image1: TImage;
     PanelRelatorios: TPanel;
     Shape1: TShape;
     lblRelatoriosbtn: TLabel;
@@ -180,7 +179,6 @@ type
     Panel2: TPanel;
     pblEdtNumCnh: TPanel;
     Shape40: TShape;
-    edtNumCnh: TEdit;
     pnlEdtValidadeCnh: TPanel;
     Shape41: TShape;
     MaskEditValidadeCnh: TMaskEdit;
@@ -471,6 +469,7 @@ type
     ImgRelViagemtPdf: TImage;
     imgRelCarregPdf: TImage;
     imgRelFaturamentoPdf: TImage;
+    edtNumCnh: TMaskEdit;
     procedure lblCadastrosBtnClick(Sender: TObject);
     procedure Image8Click(Sender: TObject);
     procedure lblBtnCadastrarGerenteClick(Sender: TObject);
@@ -1202,7 +1201,6 @@ begin
     lblCountViagensEmRota.Caption := intToStr(controller.buscarOrdensporStatus(IdTransportadoraLogada,usuarioLogado.UserLogado.getId,'Em rota','viagem'));
     lblOrdensViagensFinalizadas.caption := intToStr(controller.buscarOrdensporStatus(IdTransportadoraLogada,usuarioLogado.UserLogado.getId,'Finalizada','viagem'));
 
-    verificarPermissoes;
   finally
     controller.Free;
   end;
@@ -1234,6 +1232,7 @@ begin
     AtualizarDashboards;
     PreencherGraficoCargasMaisUsadas;
     AtualizaGraficoPedidosPorMes;
+    verificarPermissoes;
 end;
 
 procedure TFormHome.verificarPermissoes;
@@ -1254,7 +1253,7 @@ begin
     PanelOrdens.visible:=false;
     TabSheetOrdensCarregamento.PageControl := nil;
     PanelRelatorios.Visible:= false;
-  end else if userLogado.getIdGrupo = 4 then begin
+  end else if userLogado.getIdGrupo = 1 then begin
     pnlMinhasOrdens.visible:=false;
   end;
 end;
@@ -1321,8 +1320,13 @@ end;
 //============HEADER =====================================================
 procedure TFormHome.lblCadastrosBtnClick(Sender: TObject);
 begin
+pnlRelatorios.visible:=false;
+pnlPedidos.visible:=false;
+PnlOrdens.visible:=false;
+PanelMinhasOrdens.visible:=false;
 panelCadastrar.Visible := true;
 pagecontrolCadastrar.visible := true;
+
 end;
 
 procedure TFormHome.lblOrdensBtnClick(Sender: TObject);
@@ -1336,6 +1340,10 @@ var
   listaMotorista: Tlist<TmotoristaDto>;
   motorista:TmotoristaDto;
 begin
+  pnlRelatorios.visible:=false;
+  pnlPedidos.visible:=false;
+  PanelMinhasOrdens.visible:=false;
+  panelCadastrar.Visible := false;
   listaCarregador:= tobjectList<Tusuario>.create;
   listaCarregador:= TObjectList<Tusuario>.create;
   pnlOrdens.Visible := true;
@@ -1381,6 +1389,10 @@ end;
 
 procedure TFormHome.lblpedidosBtnClick(Sender: TObject);
 begin
+pnlRelatorios.visible:=false;
+PnlOrdens.visible:=false;
+PanelMinhasOrdens.visible:=false;
+panelCadastrar.Visible := false;
 pnlPedidos.visible := true;
 mostrarPedidosPorTransp;
 atualizarDashboards;
@@ -1388,6 +1400,10 @@ end;
 
 procedure TFormHome.lblRelatoriosbtnClick(Sender: TObject);
 begin
+pnlPedidos.visible:=false;
+PnlOrdens.visible:=false;
+PanelMinhasOrdens.visible:=false;
+panelCadastrar.Visible := false;
 pnlRelatorios.Visible := true;
 CarregarGraficoReceitaPorMes;
 CarregarGraficoStatusPedidos;
@@ -2169,6 +2185,10 @@ procedure TFormHome.lblBtnMinhasOrdensClick(Sender: TObject);
 var
 controller:ThomeController;
 begin
+pnlRelatorios.visible:=false;
+pnlPedidos.visible:=false;
+PnlOrdens.visible:=false;
+panelCadastrar.Visible := false;
 panelMinhasOrdens.Visible:=true;
 ordensCarregamento4Carregadores;
 ordensViagens4Motoristas;

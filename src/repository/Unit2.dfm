@@ -1,7 +1,8 @@
 object DataModule2: TDataModule2
   OnCreate = DataModuleCreate
-  Height = 526
-  Width = 900
+  Height = 658
+  Width = 1125
+  PixelsPerInch = 120
   object FDConnection1: TFDConnection
     Params.Strings = (
       'Database=logix'
@@ -10,20 +11,20 @@ object DataModule2: TDataModule2
       'Server=localhost'
       'DriverID=PG')
     LoginPrompt = False
-    Left = 224
-    Top = 32
+    Left = 280
+    Top = 40
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
-    Left = 102
-    Top = 45
+    Left = 128
+    Top = 56
   end
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorLib = 
-      'C:\Users\gabriel kuchma\Documents\Embarcadero\Studio\Projects\Pr' +
+      'C:\Users\gabri\OneDrive\Documents\Embarcadero\Studio\Projects\Pr' +
       'ojeto-Logix\lib\libpq.dll'
-    Left = 333
-    Top = 38
+    Left = 416
+    Top = 48
   end
   object frxReportFaturamento: TfrxReport
     Version = '2026.1.0'
@@ -48,8 +49,8 @@ object DataModule2: TDataModule2
       ''
       'begin'
       'end.')
-    Left = 58
-    Top = 269
+    Left = 73
+    Top = 336
     Datasets = <
       item
         DataSet = frxDBDatasetFaturamento
@@ -1006,8 +1007,8 @@ object DataModule2: TDataModule2
       'WHERE CAST(p.data_pedido AS DATE) = '#39'2025-11-04'#39
       ''
       'ORDER BY id_pedido;')
-    Left = 51
-    Top = 384
+    Left = 64
+    Top = 480
     object FDQueryFaturamentoid_cliente: TIntegerField
       FieldName = 'id_cliente'
       Origin = 'id_cliente'
@@ -1055,8 +1056,8 @@ object DataModule2: TDataModule2
     DataSet = FDQueryFaturamento
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 58
-    Top = 326
+    Left = 73
+    Top = 408
   end
   object FDQueryTimeCarreg: TFDQuery
     Connection = FDConnection1
@@ -1127,8 +1128,8 @@ object DataModule2: TDataModule2
       'GROUP BY u.id_usuario, u.nome'
       ''
       'ORDER BY data_hora_inicio NULLS LAST;')
-    Left = 290
-    Top = 390
+    Left = 363
+    Top = 488
     object FDQueryTimeCarregid_carregador: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'id_carregador'
@@ -1183,8 +1184,8 @@ object DataModule2: TDataModule2
     DataSet = FDQueryTimeCarreg
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 290
-    Top = 333
+    Left = 363
+    Top = 416
   end
   object frxReportTimecarreg: TfrxReport
     Version = '2026.1.0'
@@ -1225,8 +1226,8 @@ object DataModule2: TDataModule2
       'begin'
       ''
       'end.')
-    Left = 296
-    Top = 274
+    Left = 370
+    Top = 343
     Datasets = <
       item
         DataSet = frxDBDatasetTimeCarreg
@@ -2191,8 +2192,8 @@ object DataModule2: TDataModule2
       'ORDER BY'
       '  nome_motorista NULLS LAST,'
       '  data_saida_cd NULLS LAST;')
-    Left = 536
-    Top = 394
+    Left = 670
+    Top = 493
     object FDQueryTimeViagemid_motorista: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'id_motorista'
@@ -2247,8 +2248,8 @@ object DataModule2: TDataModule2
     DataSet = FDQueryTimeViagem
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 536
-    Top = 338
+    Left = 670
+    Top = 423
   end
   object frxReportTimeViagem: TfrxReport
     Version = '2026.1.0'
@@ -2282,8 +2283,8 @@ object DataModule2: TDataModule2
       'begin'
       ''
       'end.')
-    Left = 536
-    Top = 282
+    Left = 670
+    Top = 353
     Datasets = <
       item
         DataSet = frxDBDatasetTimeViagem
@@ -3180,8 +3181,8 @@ object DataModule2: TDataModule2
       '    p.id_cliente = 1'
       'ORDER BY'
       '    p.data_pedido DESC;')
-    Left = 789
-    Top = 317
+    Left = 986
+    Top = 396
     object FDQueryRelClientenspname: TWideStringField
       FieldName = 'nspname'
       Origin = 'nspname'
@@ -3240,8 +3241,8 @@ object DataModule2: TDataModule2
     DataSet = FDQueryRelCliente
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 789
-    Top = 269
+    Left = 986
+    Top = 336
   end
   object frxReportRelCliente: TfrxReport
     Version = '2026.1.0'
@@ -3259,8 +3260,8 @@ object DataModule2: TDataModule2
       'begin'
       ''
       'end.')
-    Left = 787
-    Top = 198
+    Left = 984
+    Top = 248
     Datasets = <
       item
         DataSet = frxDBDatasetRelCliente
@@ -4199,8 +4200,8 @@ object DataModule2: TDataModule2
     PDFStandard = psNone
     PDFVersion = pv17
     PDFColorSpace = csDeviceRGB
-    Left = 787
-    Top = 147
+    Left = 984
+    Top = 184
   end
   object frxPDFExportFaturamento: TfrxPDFExport
     UseFileCache = True
@@ -4227,8 +4228,8 @@ object DataModule2: TDataModule2
     PDFStandard = psNone
     PDFVersion = pv17
     PDFColorSpace = csDeviceRGB
-    Left = 70
-    Top = 218
+    Left = 88
+    Top = 273
   end
   object frxPDFExportTimeCarreg: TfrxPDFExport
     UseFileCache = True
@@ -4255,8 +4256,8 @@ object DataModule2: TDataModule2
     PDFStandard = psNone
     PDFVersion = pv17
     PDFColorSpace = csDeviceRGB
-    Left = 294
-    Top = 205
+    Left = 368
+    Top = 256
   end
   object frxPDFExportTimeViagem: TfrxPDFExport
     UseFileCache = True
@@ -4283,7 +4284,7 @@ object DataModule2: TDataModule2
     PDFStandard = psNone
     PDFVersion = pv17
     PDFColorSpace = csDeviceRGB
-    Left = 531
-    Top = 218
+    Left = 664
+    Top = 273
   end
 end

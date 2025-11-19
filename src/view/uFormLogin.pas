@@ -516,12 +516,6 @@ begin
 
        lrSucessoUsuario:
         begin
-          ShowMessage(
-            'Login realizado com sucesso! ' + sLineBreak +
-            'Bem-vindo: ' + user.getNome + sLineBreak +
-            'Cargo: ' + user.getCargo_descricao + sLineBreak +
-            'Transportadora ID: ' + user.getIdTransportadora.ToString
-          );
           UsuarioLogado.userLogado := user;
           FormHome.ShowModal;
           Close;
@@ -529,12 +523,6 @@ begin
 
         lrSucessoAdmin:
           begin
-            ShowMessage(
-              'Bem-vindo ADMINISTRADOR!' + sLineBreak +
-              'Nome: ' + user.getNome + sLineBreak +
-              'Cargo: ' + user.getCargo_descricao + sLineBreak +
-              'Transportadora ID: ' + user.getIdTransportadora.ToString
-            );
               UsuarioLogado.userLogado := user;
               PanelLoginStart.Visible := False;
               PanelAdmin.Visible := True;
@@ -544,7 +532,6 @@ begin
 
         lrSucessocliente:
         begin
-          ShowMessage('Bem vindo ' + cliente.getNome+' !!');
           UsuarioLogado.clienteLogado := cliente;
           FormHomeCliente.ShowModal;
           Close;

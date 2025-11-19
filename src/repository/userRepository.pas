@@ -34,6 +34,27 @@ begin
   FDQuery := TFDQuery.Create(nil);
   try
     FDQuery.Connection := DataModule2.FDConnection1;
+
+    FDQuery.SQL.Text := 'SELECT id_usuario FROM public.usuarios WHERE cpf = :cpf';
+    FDQuery.ParamByName('cpf').AsString := motorista.cpf;
+    FDQuery.Open;
+
+    if not FDQuery.IsEmpty then
+    begin
+      raise Exception.Create('Já existe um usuário cadastrado com este CPF.');
+    end;
+    FDQuery.Close;
+
+    FDQuery.SQL.Text := 'SELECT id_motorista FROM public.motorista WHERE numero_cnh = :numero_cnh';
+    FDQuery.ParamByName('numero_cnh').AsString := motorista.NumeroCNH;
+    FDQuery.Open;
+
+    if not FDQuery.IsEmpty then
+    begin
+      raise Exception.Create('Já existe um motorista cadastrado com esta CNH.');
+    end;
+    FDQuery.Close;
+
     FDQuery.Connection.StartTransaction;
 
     try
@@ -100,6 +121,17 @@ begin
   try
     FDQuery.Connection := DataModule2.FDConnection1;
 
+    FDQuery.SQL.Text := 'SELECT id_usuario FROM public.usuarios WHERE cpf = :cpf';
+    FDQuery.ParamByName('cpf').AsString := aUsuario.getcpf;;
+    FDQuery.Open;
+
+    if not FDQuery.IsEmpty then
+    begin
+      FDQuery.Close;
+      raise Exception.Create('Já existe um usuário cadastrado com este CPF.');
+    end;
+
+
     FDQuery.SQL.Text :=
     'INSERT INTO USUARIOS (nome, cpf, telefone, email, senha_hash, cargo_descricao,id_grupo, ativo, data_cadastro, data_atualizacao, id_transportadora) ' +
     'VALUES (:nome, :cpf, :telefone, :email, :senha_hash, :cargo_descricao,:id_grupo, TRUE, NOW(), NOW(), :id_transportadora)';
@@ -128,6 +160,7 @@ begin
   FDQuery := TFDQuery.Create(nil);
   try
     FDQuery.Connection := DataModule2.FDConnection1;
+
     FDQuery.Connection.StartTransaction;
 
     try
@@ -194,6 +227,11 @@ begin
   FDQuery := TFDQuery.Create(nil);
   try
     FDQuery.Connection := DataModule2.FDConnection1;
+
+    FDQuery.SQL.Text := 'SELECT id_motorista FROM public.motorista WHERE numero_cnh = :numero_cnh';
+    FDQuery.ParamByName('numero_cnh').AsString := motorista.NumeroCNH;
+    FDQuery.Open;
+
     FDQuery.Connection.StartTransaction;
 
     try

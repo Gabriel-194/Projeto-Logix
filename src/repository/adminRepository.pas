@@ -26,6 +26,16 @@ begin
   try
     FDQuery.Connection := DataModule2.FDConnection1;
 
+    FDQuery.SQL.Text := 'SELECT id_usuario FROM public.usuarios WHERE cpf = :cpf';
+    FDQuery.ParamByName('cpf').AsString := AadminDto.cpf;
+    FDQuery.Open;
+
+    if not FDQuery.IsEmpty then
+    begin
+      FDQuery.Close;
+      raise Exception.Create('Já existe um usuário cadastrado com este CPF.');
+    end;
+
     FDQuery.SQL.Text :=
       'INSERT INTO public.usuarios ' +
       '(nome, cpf, telefone, email, senha_hash, cargo_descricao,id_grupo, ativo, data_cadastro, data_atualizacao, id_transportadora) ' +

@@ -51,3 +51,5 @@
 [CHECK] Usuário eduardo do ID 9 finalizou uma ordem de viagem no dia 14/11/2025 e no horário 12:14:26
 [CHECK] Usuário eduardo do ID 9 iniciou uma ordem de viagem no dia 14/11/2025 e no horário 12:14:29
 [CHECK] Usuário eduardo do ID 9 finalizou uma ordem de viagem no dia 14/11/2025 e no horário 12:14:34
+[CREATE] Usuário kuchma do ID 2 cadastrou um gerente no dia 18/11/2025 e no horário 20:25:08
+[EDIT] Usuário kuchma do ID 2 editou um gerente no dia 18/11/2025 e no horário 20:25:29

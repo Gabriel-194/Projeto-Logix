@@ -47,48 +47,8 @@
       ParentFont = False
       ExplicitHeight = 38
     end
-    object Image1: TImage
-      Left = 1424
-      Top = 1
-      Width = 75
-      Height = 79
-      Align = alRight
-      Center = True
-      Picture.Data = {
-        0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
-        00200806000000737A7AF4000000097048597300000EC300000EC301C76FA864
-        0000001974455874536F667477617265007777772E696E6B73636170652E6F72
-        679BEE3C1A0000030C4944415478DAD5975D684E711CC7FF473137249ED46E66
-        E3626AD136A3A590954869C4B0920BEA11F352C353233794699B971A9A869B5D
-        98D148925D7889A2BC8CB96029F356A2ED425C60E2F1F9757E0F67C7733CE73C
-        E7504E7DFBF6FB3FDFFFEFF73DFFF37F7B2C13F0492693F9500D58000AB4B90F
-        5C06472CCB7A19249F15A0B06813603718E121FB027661A2F16F186882B6A642
-        7003DCD7781A98EDC8D7888944640628BE04EAD4F0195849817B2ECD74E81498
-        A44D95682E8436A043FF0414827E795B12BFF6D0E6E9A8C4B44F11DA64580332
-        BCA9B7AD25E1C10CFA5A68BF86A5E81F8435B00E6AD1303FD32C472F2BA34FC3
-        38FAD6B006EAA0BD1AE6907030833E07FAACE10EF4F5610DC4A1631A1690F0C5
-        BF1E8152F36BB9F99903B2549B342C41FF30AC01D13C0693C180B157C12B0FAD
-        AC826E304EFAA02BCA94DFEF3E50099DD750F6816A92DF756966187B1F98A84D
-        8BD05C8CC480166880B6A74270D30CDD096739F2EDA3789D9FBCBE0DA8896DD0
-        1E30D24322B37F27C50FF8CD19C8809A98006D30F669981A6EF92C721A1EF59A
-        1F911988FAF9BF0C30FC33A1F9608EB12F2331FD4996E773701D74F1196E4766
-        40F7816A63AF80629F79E5006AC0487B28033AE1642B9DE768FE0E7A1403DA16
-        537353C13087B6CBD8DBB1E7C4F434A0C7F025305E9BDE8066708284FD1E7D44
-        BB166C02B9DAFC0E2CA44FB76F03242A83AE8251DA24C77182241FFD8C3FFD47
-        43722F8C6BD30730379D092B4DE7B1C6BE80C824FB0636D2B1C564F1906B3D74
-        D8D89F453E43997BF4D219380D2DD770331D9AB329EEC8B7053AA4613BF9AA3D
-        0D202E876E697B07E215618A3BF29E819619FB0C2927EF1D2F03E7A0C5E01328
-        F4BA7C6661405653AFB1CF904EF22EFDCD00A231D05B2057AA5644F1A0853298
-        386EEC152207562EF9DFBB0D54411D1A5620B816B1810AE88A8655E43FEB36E0
-        BCFDCAF03F8DD880FCAFE8D5F0E75DD169A0C4D8D729791E01713818A4C81F1E
-        F92F29233C45E3620CF40C31A026DAA05551BE799AA78DE2AB5381DBC07048AE
-        526B409E89EEB896E5271BD149508F81AFA91F7E00ADFC1A3074501A0D000000
-        0049454E44AE426082}
-      ExplicitLeft = 1440
-      ExplicitHeight = 71
-    end
     object Image8: TImage
-      Left = 1349
+      Left = 1424
       Top = 1
       Width = 75
       Height = 79
@@ -115,49 +75,6 @@
       ExplicitLeft = 1343
       ExplicitTop = -1
     end
-    object PanelPermissoes: TPanel
-      AlignWithMargins = True
-      Left = 268
-      Top = 21
-      Width = 113
-      Height = 39
-      Margins.Left = 10
-      Margins.Top = 20
-      Margins.Bottom = 20
-      Align = alLeft
-      BevelOuter = bvNone
-      Color = 6957870
-      ParentBackground = False
-      TabOrder = 0
-      object Shape1: TShape
-        Left = 0
-        Top = 0
-        Width = 113
-        Height = 39
-        Align = alClient
-        Brush.Style = bsClear
-        Pen.Color = clWhite
-        Shape = stRoundRect
-        ExplicitWidth = 153
-      end
-      object lblPermissoesbtn: TLabel
-        Left = 0
-        Top = 0
-        Width = 113
-        Height = 39
-        Align = alClient
-        Alignment = taCenter
-        Caption = 'Relatorios'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWhite
-        Font.Height = -21
-        Font.Name = 'Segoe UI'
-        Font.Style = []
-        ParentFont = False
-        ExplicitWidth = 91
-        ExplicitHeight = 30
-      end
-    end
     object pnl: TPanel
       AlignWithMargins = True
       Left = 142
@@ -171,7 +88,7 @@
       BevelOuter = bvNone
       Color = 6957870
       ParentBackground = False
-      TabOrder = 1
+      TabOrder = 0
       object Shape6: TShape
         Left = 0
         Top = 0
@@ -2155,6 +2072,7 @@
       Top = 705
       Width = 32
       Height = 32
+      Cursor = crHandPoint
       AutoSize = True
       Center = True
       Picture.Data = {
@@ -2237,6 +2155,7 @@
         Top = 3
         Width = 59
         Height = 55
+        Cursor = crHandPoint
         Center = True
         Picture.Data = {
           0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
@@ -2869,6 +2788,7 @@
         Top = 0
         Width = 39
         Height = 41
+        Cursor = crHandPoint
         Center = True
         Picture.Data = {
           0954506E67496D61676589504E470D0A1A0A0000000D49484452000000180000
@@ -2896,8 +2816,9 @@
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 742
+        Width = 685
         Height = 37
+        Margins.Right = 60
         Align = alTop
         Caption = 'Ultimas mensagens:'
         Color = clWhite
@@ -2908,8 +2829,7 @@
         Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False
-        ExplicitLeft = 0
-        ExplicitTop = 4
+        ExplicitWidth = 256
       end
       object lwMenssagens: TListView
         AlignWithMargins = True
@@ -3052,8 +2972,6 @@
       BevelOuter = bvNone
       Color = clWhite
       TabOrder = 2
-      ExplicitLeft = 675
-      ExplicitTop = 211
       DefaultCanvas = 'TGDIPlusCanvas'
       PrintMargins = (
         15
