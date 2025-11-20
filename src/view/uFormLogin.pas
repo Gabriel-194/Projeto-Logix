@@ -286,6 +286,7 @@ type
     Shape77: TShape;
     Shape78: TShape;
     Shape79: TShape;
+    Image12: TImage;
     procedure lick(Sender: TObject);
     procedure btnchangeCadastrarClick(Sender: TObject);
     procedure voltarImageClick(Sender: TObject);
@@ -324,6 +325,7 @@ type
     procedure lblBtnEnviarCodigoClick(Sender: TObject);
     procedure lblBtnValidarTokenClick(Sender: TObject);
     procedure lblBtnConfSenhaClick(Sender: TObject);
+    procedure Image12Click(Sender: TObject);
 
 
   private
@@ -660,6 +662,12 @@ begin
  panelOptionsAdmins.Visible := false;
 end;
 
+procedure TFormLogin.Image12Click(Sender: TObject);
+begin
+PageControlRecoverSenha.visible:=false;
+panelLogin.Visible:=true;
+end;
+
 procedure TFormLogin.ImgAdminClick(Sender: TObject);
 begin
   panelForAdmins.Visible:= true;
@@ -840,7 +848,7 @@ begin
       PageControlRecoverSenha.ActivePage := tsToken;
     except
       on E: Exception do
-        ShowMessage('Erro interno do sistema');
+        ShowMessage('Email não encontrado');
     end;
   finally
 
@@ -1090,6 +1098,8 @@ end;
 
 procedure TFormLogin.lbnBtnRecuperarSenhaClick(Sender: TObject);
 begin
+  panelLoginstart.visible:=true;
+  panelLogin.visible:=false;
   PageControlRecoverSenha.visible:=true;
   PageControlRecoverSenha.ActivePage := tsEmail;
   if EdtEmailRecuperacao.CanFocus then

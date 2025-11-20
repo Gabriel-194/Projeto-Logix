@@ -2060,9 +2060,9 @@ pnlBtnExcluirVeiculoConf.visible := false;
   MaskEditPlacaVeiculo.Text := lswVeiculos.selected.subItems[0];
   edtModeloVeiculo.Text := lswVeiculos.selected.subItems[1];
   MaskEditAnoVeiculo.Text := lswVeiculos.selected.subItems[2];
-  cbTipoCarga4Veiculo.text := lswVeiculos.selected.subItems[4];
-  EdtCapacidadeVeiculo.Text := lswVeiculos.selected.subItems[5];
-  cbUnidadeMedida.Text := lswVeiculos.selected.subItems[6];
+  cbTipoCarga4Veiculo.text := lswVeiculos.selected.subItems[3];
+  EdtCapacidadeVeiculo.Text := lswVeiculos.selected.subItems[4];
+  cbUnidadeMedida.Text := lswVeiculos.selected.subItems[5];
 end;
 
 procedure TFormHome.lblBtnEditarVeiculoConfClick(Sender: TObject);

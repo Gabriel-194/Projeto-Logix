@@ -53,3 +53,39 @@
 [CHECK] Usuário eduardo do ID 9 finalizou uma ordem de viagem no dia 14/11/2025 e no horário 12:14:34
 [CREATE] Usuário kuchma do ID 2 cadastrou um gerente no dia 18/11/2025 e no horário 20:25:08
 [EDIT] Usuário kuchma do ID 2 editou um gerente no dia 18/11/2025 e no horário 20:25:29
+[CREATE] Usuário kuchma do ID 2 cadastrou um gerente no dia 20/11/2025 e no horário 12:07:47
+[EDIT] Usuário kuchma do ID 2 editou um gerente no dia 20/11/2025 e no horário 12:08:11
+[EDIT] Usuário kuchma do ID 2 editou um gerente no dia 20/11/2025 e no horário 12:08:20
+[DELETE] Usuário kuchma do ID 2 excluiu um Gerente no dia 20/11/2025 e no horário 12:08:44
+[RECOVER] Usuário kuchma do ID 2 recuperou um Gerente no dia 20/11/2025 e no horário 12:08:52
+[CREATE] Usuário kuchma do ID 2 cadastrou um motorista no dia 20/11/2025 e no horário 12:10:06
+[EDIT] Usuário kuchma do ID 2 editou um motorista no dia 20/11/2025 e no horário 12:10:18
+[EDIT] Usuário kuchma do ID 2 editou um motorista no dia 20/11/2025 e no horário 12:10:27
+[DELETE] Usuário kuchma do ID 2 excluiu um motorista no dia 20/11/2025 e no horário 12:10:41
+[RECOVER] Usuário kuchma do ID 2 recuperou um motorista no dia 20/11/2025 e no horário 12:10:47
+[CREATE] Usuário kuchma do ID 2 cadastrou um Carregador no dia 20/11/2025 e no horário 12:11:25
+[EDIT] Usuário kuchma do ID 2 editou um Carregador no dia 20/11/2025 e no horário 12:11:37
+[EDIT] Usuário kuchma do ID 2 editou um Carregador no dia 20/11/2025 e no horário 12:11:44
+[DELETE] Usuário kuchma do ID 2 excluiu um Carregador no dia 20/11/2025 e no horário 12:12:02
+[DELETE] Usuário kuchma do ID 2 excluiu um Carregador no dia 20/11/2025 e no horário 12:12:16
+[DELETE] Usuário kuchma do ID 2 excluiu um Carregador no dia 20/11/2025 e no horário 12:12:27
+[RECOVER] Usuário kuchma do ID 2 recuperou um Carregador no dia 20/11/2025 e no horário 12:12:37
+[CREATE] Usuário kuchma do ID 2 cadastrou um veiculo no dia 20/11/2025 e no horário 12:14:35
+[DELETE] Usuário kuchma do ID 2 excluiu um veiculo no dia 20/11/2025 e no horário 12:14:48
+[RECOVER] Usuário kuchma do ID 2 recuperou um veiculo no dia 20/11/2025 e no horário 12:14:55
+[EDIT] Usuário kuchma do ID 2 editou um veiculo no dia 20/11/2025 e no horário 12:19:18
+[DELETE] Usuário kuchma do ID 2 excluiu um veiculo no dia 20/11/2025 e no horário 12:20:42
+[RECOVER] Usuário kuchma do ID 2 recuperou um veiculo no dia 20/11/2025 e no horário 12:20:48
+[CREATE] Usuário kuchma do ID 2 criou uma ordem de carregamento no dia 20/11/2025 e no horário 12:21:42
+[CREATE] Usuário kuchma do ID 2 criou uma ordem de carregamento no dia 20/11/2025 e no horário 12:22:47
+[CREATE] Usuário kuchma do ID 2 criou uma ordem de viagem no dia 20/11/2025 e no horário 12:23:16
+[CREATE] Usuário kuchma do ID 2 criou uma ordem de viagem no dia 20/11/2025 e no horário 12:23:25
+[CREATE] Usuário kuchma do ID 2 criou uma ordem de viagem no dia 20/11/2025 e no horário 12:23:30
+[CREATE] Usuário kuchma do ID 2 criou uma ordem de viagem no dia 20/11/2025 e no horário 12:23:36
+[CREATE] Usuário kuchma do ID 2 criou uma ordem de carregamento no dia 20/11/2025 e no horário 12:27:52
+[CHECK] Usuário julio do ID 11 iniciou uma ordem de carregamento no dia 20/11/2025 e no horário 12:28:22
+[CHECK] Usuário julio do ID 11 finalizou uma ordem de carregamento no dia 20/11/2025 e no horário 12:28:43
+[CHECK] Usuário sergio do ID 8 iniciou uma ordem de viagem no dia 20/11/2025 e no horário 12:29:18
+[CHECK] Usuário sergio do ID 8 finalizou uma ordem de viagem no dia 20/11/2025 e no horário 12:29:41
+[CHECK] Usuário sergio do ID 8 iniciou uma ordem de viagem no dia 20/11/2025 e no horário 12:29:43
+[CHECK] Usuário sergio do ID 8 finalizou uma ordem de viagem no dia 20/11/2025 e no horário 12:29:44

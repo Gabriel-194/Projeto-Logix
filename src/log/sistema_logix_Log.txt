@@ -37,3 +37,4 @@
 [CREATE] cliente adriana do ID 2 confirmou um pedido no dia 07/11/2025 e no horário 09:23:43
 [DELETE] cliente guilherme do ID 1 cancelou um pedido no dia 18/11/2025 e no horário 19:33:41
 [CREATE] Um cliente se cadastrou no dia 18/11/2025 e no horário 19:36:41
+[DELETE] cliente guilherme do ID 1 cancelou um pedido no dia 19/11/2025 e no horário 21:08:01

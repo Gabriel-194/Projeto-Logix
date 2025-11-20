@@ -3397,8 +3397,8 @@ object FormHome: TFormHome
             Font.Style = [fsBold]
             ParentFont = False
             OnClick = lblBtnConfCarregamentoClick
-            ExplicitTop = -6
-            ExplicitHeight = 23
+            ExplicitWidth = 185
+            ExplicitHeight = 25
           end
         end
         object cbCarregador4Ordens: TComboBox
@@ -5868,7 +5868,7 @@ object FormHome: TFormHome
       Width = 1498
       Height = 757
       Cursor = crHandPoint
-      ActivePage = TabSheetMotoristas
+      ActivePage = TabSheetVeiculos
       Align = alTop
       Font.Charset = DEFAULT_CHARSET
       Font.Color = 6957870
@@ -5899,7 +5899,6 @@ object FormHome: TFormHome
           Color = clWhite
           ParentBackground = False
           TabOrder = 0
-          ExplicitHeight = 696
           object imgFecharPageControl: TImage
             Left = 0
             Top = 0
@@ -6071,7 +6070,6 @@ object FormHome: TFormHome
             ParentFont = False
             TabOrder = 2
             ViewStyle = vsReport
-            ExplicitTop = 456
           end
           object pnlBtnExcluirGerente: TPanel
             AlignWithMargins = True
@@ -6278,7 +6276,6 @@ object FormHome: TFormHome
           ParentBackground = False
           TabOrder = 1
           Visible = False
-          ExplicitHeight = 696
           object lblPanelOptionGerente: TLabel
             AlignWithMargins = True
             Left = 50
@@ -6311,7 +6308,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 0
-            ExplicitTop = 249
             object pnlEditNomeGerente: TPanel
               AlignWithMargins = True
               Left = 80
@@ -6415,7 +6411,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 2
-            ExplicitTop = 381
             object Label1: TLabel
               AlignWithMargins = True
               Left = 80
@@ -6446,7 +6441,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 3
-            ExplicitTop = 425
             object pnlEditSenhaGerente: TPanel
               AlignWithMargins = True
               Left = 80
@@ -6502,7 +6496,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 4
-            ExplicitTop = 293
             object Label2: TLabel
               AlignWithMargins = True
               Left = 80
@@ -6550,7 +6543,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 5
-            ExplicitTop = 337
             object pnlEditTelefoneGerente: TPanel
               AlignWithMargins = True
               Left = 80
@@ -6656,7 +6648,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 1
-            ExplicitTop = 200
             object Label16: TLabel
               AlignWithMargins = True
               Left = 80
@@ -6704,7 +6695,6 @@ object FormHome: TFormHome
             Color = clWhite
             ParentBackground = False
             TabOrder = 6
-            ExplicitTop = 549
             object pnlCadastrarGerente: TPanel
               AlignWithMargins = True
               Left = 300
@@ -6883,7 +6873,6 @@ object FormHome: TFormHome
           Color = clWhite
           ParentBackground = False
           TabOrder = 0
-          ExplicitHeight = 463
           object Image9: TImage
             Left = 0
             Top = 0
@@ -8046,7 +8035,6 @@ object FormHome: TFormHome
           ParentFont = False
           TabOrder = 2
           ViewStyle = vsReport
-          ExplicitTop = 466
         end
       end
       object TabSheetCarregador: TTabSheet
@@ -8062,7 +8050,6 @@ object FormHome: TFormHome
           Color = clWhite
           ParentBackground = False
           TabOrder = 0
-          ExplicitHeight = 696
           object ImgFechaPageCoontrolCadastrar: TImage
             Left = 0
             Top = 0
@@ -8234,7 +8221,6 @@ object FormHome: TFormHome
             ParentFont = False
             TabOrder = 2
             ViewStyle = vsReport
-            ExplicitTop = 456
           end
           object pnlBtnExcluirCarregador: TPanel
             AlignWithMargins = True
@@ -8442,7 +8428,6 @@ object FormHome: TFormHome
           ParentBackground = False
           TabOrder = 1
           Visible = False
-          ExplicitHeight = 696
           object lblOptionsCarregadores: TLabel
             AlignWithMargins = True
             Left = 50
@@ -8475,7 +8460,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 0
-            ExplicitTop = 199
             object pnlEdtNomeCarregador: TPanel
               AlignWithMargins = True
               Left = 80
@@ -8579,7 +8563,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 2
-            ExplicitTop = 331
             object Label20: TLabel
               AlignWithMargins = True
               Left = 80
@@ -8610,7 +8593,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 3
-            ExplicitTop = 375
             object PnlEdtSenhaCarregador: TPanel
               AlignWithMargins = True
               Left = 80
@@ -8666,7 +8648,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 4
-            ExplicitTop = 243
             object Label21: TLabel
               AlignWithMargins = True
               Left = 80
@@ -8714,7 +8695,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 5
-            ExplicitTop = 287
             object pnlEdtTelefoneCarregador: TPanel
               AlignWithMargins = True
               Left = 80
@@ -8820,7 +8800,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 1
-            ExplicitTop = 150
             object Label23: TLabel
               AlignWithMargins = True
               Left = 80
@@ -8868,7 +8847,6 @@ object FormHome: TFormHome
             Color = clWhite
             ParentBackground = False
             TabOrder = 6
-            ExplicitTop = 539
             object pnlBtnCadastrarCarregadorConf: TPanel
               AlignWithMargins = True
               Left = 300
@@ -9047,7 +9025,6 @@ object FormHome: TFormHome
           Color = clWhite
           ParentBackground = False
           TabOrder = 0
-          ExplicitHeight = 696
           object imgFechaPageControl: TImage
             Left = 0
             Top = 0
@@ -9218,7 +9195,6 @@ object FormHome: TFormHome
             ParentFont = False
             TabOrder = 2
             ViewStyle = vsReport
-            ExplicitTop = 456
           end
           object pnlBtnExcluirVeiculo: TPanel
             AlignWithMargins = True
@@ -9426,7 +9402,6 @@ object FormHome: TFormHome
           ParentBackground = False
           TabOrder = 1
           Visible = False
-          ExplicitHeight = 696
           object lblOptionsVeiculo: TLabel
             AlignWithMargins = True
             Left = 50
@@ -9459,7 +9434,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 0
-            ExplicitTop = 239
             object pnlEdtModeloVeiculo: TPanel
               AlignWithMargins = True
               Left = 480
@@ -9562,7 +9536,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 2
-            ExplicitTop = 371
             object Label25: TLabel
               AlignWithMargins = True
               Left = 80
@@ -9593,7 +9566,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 3
-            ExplicitTop = 415
             object pnlEdtCapacidadeVeiculo: TPanel
               AlignWithMargins = True
               Left = 80
@@ -9673,7 +9645,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 4
-            ExplicitTop = 283
             object Label30: TLabel
               AlignWithMargins = True
               Left = 80
@@ -9721,7 +9692,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 5
-            ExplicitTop = 327
             object pnlEdtAnoVeiculo: TPanel
               AlignWithMargins = True
               Left = 80
@@ -9796,7 +9766,6 @@ object FormHome: TFormHome
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 1
-            ExplicitTop = 190
             object Label32: TLabel
               AlignWithMargins = True
               Left = 80
@@ -9844,7 +9813,6 @@ object FormHome: TFormHome
             Color = clWhite
             ParentBackground = False
             TabOrder = 6
-            ExplicitTop = 539
             object pnlBtnCadastrarVeiculoConf: TPanel
               AlignWithMargins = True
               Left = 300
