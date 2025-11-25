@@ -30,9 +30,9 @@ var
 begin
   repo:=TloginRepository.create;
   try
-    EmailExiste := loginRepo.FindByEmail(AEmail, uid, sh, tid, cg, sn, gid);
+    EmailExiste := Repo.FindByEmail(AEmail, uid, sh, tid, cg, sn, gid);
     if not EmailExiste then
-     EmailExiste := loginRepo.findByEmailCliente(AEmail, cid, sh);
+     EmailExiste := Repo.findByEmailCliente(AEmail, cid, sh);
 
     if not EmailExiste then
     raise Exception.Create('E-mail não encontrado na base de dados.');
@@ -40,7 +40,7 @@ begin
     Randomize;
     Token := FormatFloat('000000', Random(999999));
 
-    loginRepo.GravarToken(AEmail, Token);
+    Repo.GravarToken(AEmail, Token);
 
     TEmailHelper.EnviarEmailRecuperacao(AEmail, Token);
   finally

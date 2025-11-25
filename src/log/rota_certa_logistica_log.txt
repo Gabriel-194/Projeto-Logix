@@ -89,3 +89,5 @@
 [CHECK] Usuário sergio do ID 8 finalizou uma ordem de viagem no dia 20/11/2025 e no horário 12:29:41
 [CHECK] Usuário sergio do ID 8 iniciou uma ordem de viagem no dia 20/11/2025 e no horário 12:29:43
 [CHECK] Usuário sergio do ID 8 finalizou uma ordem de viagem no dia 20/11/2025 e no horário 12:29:44
+[CREATE] Usuário kuchma do ID 2 cadastrou um Carregador no dia 24/11/2025 e no horário 20:21:54
+[CREATE] Usuário kuchma do ID 2 cadastrou um gerente no dia 24/11/2025 e no horário 20:23:30

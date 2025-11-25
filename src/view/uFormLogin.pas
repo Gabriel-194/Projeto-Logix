@@ -261,22 +261,12 @@ type
     Shape54: TShape;
     Label29: TLabel;
     MaskEditToken: TMaskEdit;
-    pnlEdtConfSenha: TPanel;
-    Shape55: TShape;
-    Image8: TImage;
-    Image9: TImage;
-    edtConfSenha: TEdit;
     Label27: TLabel;
     Label30: TLabel;
     pnlConfSenha: TPanel;
     Shape56: TShape;
     lblBtnConfSenha: TLabel;
     Label32: TLabel;
-    pnlNovaSenha: TPanel;
-    Shape57: TShape;
-    Image10: TImage;
-    Image11: TImage;
-    edtNovaSenha: TEdit;
     Shape58: TShape;
     Shape59: TShape;
     Shape60: TShape;
@@ -287,6 +277,12 @@ type
     Shape78: TShape;
     Shape79: TShape;
     Image12: TImage;
+    PnledtConfSenha: TPanel;
+    Shape55: TShape;
+    edtConfSenha: TEdit;
+    PanelNovaSenha: TPanel;
+    Shape64: TShape;
+    EdtNovaSenha: TEdit;
     procedure lick(Sender: TObject);
     procedure btnchangeCadastrarClick(Sender: TObject);
     procedure voltarImageClick(Sender: TObject);
@@ -415,6 +411,8 @@ begin
       ShowMessage('Senha alterada com sucesso! Faça login com a nova senha.');
 
       PageControlRecoverSenha.visible:=false;
+      panelLoginstart.visible:=true;
+      panelLogin.visible:=true;
     except
       on E: Exception do
         ShowMessage('Erro ao redefinir senha');

@@ -38,3 +38,7 @@
 [DELETE] cliente guilherme do ID 1 cancelou um pedido no dia 18/11/2025 e no horário 19:33:41
 [CREATE] Um cliente se cadastrou no dia 18/11/2025 e no horário 19:36:41
 [DELETE] cliente guilherme do ID 1 cancelou um pedido no dia 19/11/2025 e no horário 21:08:01
+[CREATE] Usuário administrador logix do ID 1 cadastrou um Admin no dia 22/11/2025 e no horário 23:34:44
+[CREATE] Usuário administrador logix do ID 1 cadastrou um Admin no dia 22/11/2025 e no horário 23:35:47
+[CREATE] Usuário administrador logix do ID 1 cadastrou um Admin no dia 22/11/2025 e no horário 23:36:23
+[DELETE] Usuário administrador logix do ID 1 excluiu um Admin no dia 24/11/2025 e no horário 20:44:02

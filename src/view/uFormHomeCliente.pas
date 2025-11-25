@@ -186,6 +186,7 @@ type
     procedure soundOnClick(Sender: TObject);
     procedure lblBtnEmitirRelatorioClick(Sender: TObject);
     procedure ImgExportPdfClick(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -195,6 +196,8 @@ type
 var
   FormHomeCliente: TFormHomeCliente;
   voz:OleVariant;
+  vozReconhecimento: OleVariant;
+  reconhecimentoAtivo: Boolean;
 
 implementation
 
@@ -634,10 +637,11 @@ var
   Lista: TObjectList<TTransportadora>;
   Transp: TTransportadora;
 begin
-pnlHome.Visible:=false;
-pnlCriarPedido.Visible := true;
-PageControlPedidos.Visible := true;
-Controller := ThomeClientecontroller.Create;
+  pnlHome.Visible := False;
+  pnlCriarPedido.Visible := True;
+  PageControlPedidos.Visible := True;
+
+  Controller := ThomeClientecontroller.Create;
   try
     Lista := Controller.atualizarTabela;
     try
@@ -697,5 +701,4 @@ begin
     controller.free;
   end;
 end;
-
 end.

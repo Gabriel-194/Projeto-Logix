@@ -2683,6 +2683,7 @@ begin
     Serie := THorizBarSeries.Create(graficoVeiculosMaisUtilizados);
     Serie.Title := 'Total de Viagens';
     graficoVeiculosMaisUtilizados.AddSeries(Serie);
+    Serie.Marks.Visible := False;
 
     for Chave in Dados.Keys do
     begin

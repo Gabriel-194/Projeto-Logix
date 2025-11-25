@@ -117,7 +117,7 @@ begin
 
     systemLog:=Tlogger.create;
     try
-          SystemLog.Log('',
+      SystemLog.Log('',
       Format('[CREATE] cliente %s do ID %d fez um orçamento no dia %s e no horário %s',
       [clienteLogado.getNome, clienteLogado.getId, FormatDateTime('dd/MM/yyyy', Now), FormatDateTime('hh:nn:ss', Now)]));
     finally
